@@ -1,0 +1,19 @@
+﻿//模版        
+        switch (controlname)
+        {
+            case "btnClose":
+                UIMgr.GetInstance().HidePanel("BagPanel");
+                break;
+
+            case "btnGem":
+                Debug.Log("Gem");
+                break;
+
+            case "btnEquip":
+                Debug.Log("Equip");
+                break;
+
+            case "btnItem":
+                Debug.Log("Item");
+                break;
+        }

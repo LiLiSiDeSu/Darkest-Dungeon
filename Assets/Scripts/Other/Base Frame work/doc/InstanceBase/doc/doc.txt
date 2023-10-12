@@ -1,0 +1,10 @@
+如何使用 BaseFramework 里 BaseInstance 下的 InstanceMgr 来管理继承了 BaseAutoInstance_Mono 的脚本
+
+1. 在场景里创建一个空对象(Creat Empty)
+1.1 （你可以给这个空物体起个名字 比如 InstanceMgr 不过脚本运行后他会自己改名字 名字会变成:IntanceMgr_Instance 为什么这样
+     可以去看看BaseInstance_Mono脚本 因为 InstanceMgr 继承了它）
+
+2. 给这个空物体添加 InstanceMgr 脚本
+
+3. 在 InstanceMgr 脚本里面调用你想要使用的继承了 BaseAutoInstance_Mono 脚本的 GetInstance 方法
+   然后就会自动的创建一个挂载 BaseAutoInstance_Mono 的单例对象了

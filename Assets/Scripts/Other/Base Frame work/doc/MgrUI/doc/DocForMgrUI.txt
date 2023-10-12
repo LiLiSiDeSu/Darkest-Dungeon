@@ -1,0 +1,63 @@
+//用来Ctrl+CV的套话
+//你可以扩展它的功能
+//具体解释到脚本里看哦>-<
+------------------------------------------
+
+！！！Foreword：
+
+//前缀VS_的意思是静态变量
+//前缀VM_的意思是成员变量
+
+//前缀PS_的意思是静态属性
+//前缀PM_的意思是成员属性
+
+//前缀FS_的意思是静态方法
+//前缀FM_的意思是成员方法
+
+//...代表你试着可去脚本内部修改
+
+！！！
+------------------------------------------
+
+>- ---- -< Document
+
+Usage: 1.创建一个Canvas
+       2.创建空物体 Bottom Middle Top System 并把他们按UGUI的规则设置为Canvas的子对象 这是为了管理UI的层级
+       2.1 层级(Bottom < Middle < Top < System)
+       3.创建一个EventSystem
+       4.
+
+
+Example: 纯净版脚本模版
+     
+
+Inherit: >- ---------- -<
+
+Variable
+    Static
+        No
+
+    Member
+        No
+        
+Property
+
+    Static
+        No
+
+    Member
+        No
+
+Function
+
+    Static
+        No
+
+    Member
+        No
+    
+    Life
+        No
+
+问题: 1.关于运行之后UI的位置和一开始制作UIPrefabs时的设置位置不一样
+     *1.别乱设置锚点

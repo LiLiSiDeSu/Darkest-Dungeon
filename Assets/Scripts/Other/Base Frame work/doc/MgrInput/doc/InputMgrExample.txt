@@ -1,0 +1,50 @@
+using UnityEngine;
+
+public class InputMgrExample
+{
+    //事例模版
+
+    private void Start()
+    {
+        //注册事件
+        //也可以写在其他用于初始化的函数里面
+        
+        //第一种方式 用lambda表达式来注册 也有其他方式 但这里就写两种
+        //这里的第一个参数默认可填 "CertainKeyUp" "CertainKeyDown"
+        //如果想要填其他的话 要到脚本内部修改 里面提供了教程
+        //"CertainKeyUp" 添加到抬起事件统一管理
+        //"CertainKeyDown" 添加到按下事件统一管理
+        EventCenter.GetInstance().AddEventListener<KeyCode>("CertainKeyUp", (callbackkey) =>
+        {
+            // == 右边也可以不是InputMgr.GetInstance().W 你可以自己选一个你喜欢的键
+            //但这样的话 自定义键你就要自己实现了 或者 你不需要
+            //比如 key == KeyCode.C
+            if (callbackkey == InputMgr.GetInstance().W)
+            {
+                //InputMgr.GetInstance().W按下处理的逻辑
+                //或 自己喜欢的键按下处理的逻辑
+            }
+        });
+
+        //第二种方式
+        //申明一个函数用来注册
+        //好处是你可以通过函数名来删除注册的事件
+        //这里第一个参数的介绍和上面第一种方式的一样
+        EventCenter.GetInstance().AddEventListener<KeyCode>("CertainKeyUp", ___Down);
+
+        //注册其他事件同理
+    }
+
+    private void ___Down(KeyCode key)
+    {
+        //这里要注意的和第一种方式的一样
+        if (key == InputMgr.GetInstance().W)
+        {
+            //InputMgr.GetInstance().W按下处理的逻辑
+            //或 自己喜欢的键按下处理的逻辑
+        }
+    }
+}
+
+//常见问题:
+//待补充......

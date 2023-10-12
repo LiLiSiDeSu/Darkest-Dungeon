@@ -1,0 +1,3 @@
+Note: 要想Dictionary能被XmlMgr序列化的话 你得使用SerializerDictionary
+	  被private修饰的不会被转成Xml
+	  无参构造函数要存在
