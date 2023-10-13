@@ -9,6 +9,7 @@ public class PanelRooms : PanelBase
     public bool IsShow = false;
 
     private Transform ImgCurrentChoice;
+    private float PosOffsetForImgCurrentChoice = 90f;
     private Dictionary<string, Transform> PosPanelRoom = new Dictionary<string, Transform>();
 
     public PanelBase CurrentPanel;
@@ -75,7 +76,7 @@ public class PanelRooms : PanelBase
     {
         ImgCurrentChoice.gameObject.SetActive(true);
         ImgCurrentChoice.position = new Vector3
-                         (PosPanelRoom[Key].position.x - 70, PosPanelRoom[Key].position.y, 0);
+                         (PosPanelRoom[Key].position.x - PosOffsetForImgCurrentChoice, PosPanelRoom[Key].position.y, 0);
     }
 
     public void HideBeforePanelAndShowNewPanel(PanelBase NewPanel, string BtnNameToChangeImgCurrentChoicePos)

@@ -53,7 +53,7 @@ public class PanelCellGameArchive : PanelBase
                     {                        
                         DestroyImmediate(gameObject);
                         MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").
-                                                                            PanelCellGameArchiveNowIndex -= 1;
+                                                                            NowIndex -= 1;
                         MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").SortCellGameArchive();
 
                         StartDataAndMgr.GetInstance().DataListCellGameArchive.RemoveAt(IndexCellGameArchive);

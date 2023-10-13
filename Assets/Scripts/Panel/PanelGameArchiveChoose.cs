@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChoose : PanelBase
 {       
-    public int PanelCellGameArchiveNowIndex = 0;    
+    public int NowIndex = 0;    
 
     public Transform Content;
 
@@ -46,8 +46,8 @@ public class PanelGameArchiveChoose : PanelBase
                 (panel) =>
                 {
                     panel.transform.parent = Content;
-                    panel.IndexCellGameArchive = PanelCellGameArchiveNowIndex;
-                    PanelCellGameArchiveNowIndex += 1;
+                    panel.IndexCellGameArchive = NowIndex;
+                    NowIndex += 1;
                     StartDataAndMgr.GetInstance().DataListCellGameArchive.Add(new DataContainer_CellGameArchive());
                     MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                               StartDataAndMgr.GetInstance().PathGameArchiveData);                    
@@ -67,8 +67,8 @@ public class PanelGameArchiveChoose : PanelBase
             {
                 panel.transform.SetParent(Content, false);
                 panel.DataCellGameArchive = StartDataAndMgr.GetInstance().DataListCellGameArchive[tempi];
-                panel.IndexCellGameArchive = PanelCellGameArchiveNowIndex;
-                PanelCellGameArchiveNowIndex += 1;
+                panel.IndexCellGameArchive = NowIndex;
+                NowIndex += 1;
             });
         } 
     }

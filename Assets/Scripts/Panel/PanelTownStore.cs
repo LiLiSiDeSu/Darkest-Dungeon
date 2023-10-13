@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PanelTownStore : PanelBase
 {
-    public int PanelCellStoreNowIndex = 0;    
+    public int NowIndex = 0;    
 
     private Transform Content;
 
@@ -27,8 +27,8 @@ public class PanelTownStore : PanelBase
          i++)
         {
             int tempi = i;
-            MgrUI.GetInstance().CreatePanelAndPush<PanelCellStore>
-                             (false, "/PanelCellStore", false, false, "PanelCellStore",
+            MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
+                             (false, "/PanelCellTownStore", false, false, "PanelCellTownStore",
             (panel) =>
             {
                 panel.transform.parent = Content;
@@ -37,7 +37,7 @@ public class PanelTownStore : PanelBase
                                     GetPanel<PanelGameArchiveChoose>
                                     ("PanelGameArchiveChoose").NowGameArchive.DataCellGameArchive.DataListCellStore[tempi];
                 panel.IndexCellCellStore = tempi;
-                PanelCellStoreNowIndex++;
+                NowIndex++;
             });
         }
     }

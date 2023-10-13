@@ -29,6 +29,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         MgrUI.GetInstance().CreatePanelAndPush<PanelTownStore>
                          (true, "/PanelTownStore", true, true, "PanelTownStore");
 
+        MgrUI.GetInstance().CreatePanelAndPush<PanelTownStoreItem>
+                         (true, "/PanelTownStoreItem", true, true, "PanelTownStoreItem");
+
         Destroy(gameObject);
     }
 }

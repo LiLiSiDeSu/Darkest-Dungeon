@@ -379,7 +379,8 @@
 "Assets/Scripts/Other/EnumAll.cs"
 "Assets/Scripts/Other/Test/Test1.cs"
 "Assets/Scripts/Panel/PanelCellGameArchive.cs"
-"Assets/Scripts/Panel/PanelCellStore.cs"
+"Assets/Scripts/Panel/PanelCellTownStore.cs"
+"Assets/Scripts/Panel/PanelCellTownStoreItem.cs"
 "Assets/Scripts/Panel/PanelGameArchiveChoose.cs"
 "Assets/Scripts/Panel/PanelGameArchiveChooseLevel.cs"
 "Assets/Scripts/Panel/PanelOtherHint.cs"
@@ -394,6 +395,7 @@
 "Assets/Scripts/Panel/PanelRoomWineHouse.cs"
 "Assets/Scripts/Panel/PanelTown.cs"
 "Assets/Scripts/Panel/PanelTownStore.cs"
+"Assets/Scripts/Panel/PanelTownStoreItem.cs"
 "Assets/Scripts/Panel/StartDataAndMgr.cs"
 "Assets/Scripts/Panel/StartUI.cs"
 -langversion:9.0

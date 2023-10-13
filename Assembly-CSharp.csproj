@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomShop.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomRecruit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrXml.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelCellTownStore.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelCellTownStoreItem.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\EditorGUILayout.cs" />
     <Compile Include="Assets\Scripts\Panel\StartDataAndMgr.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBase.cs" />
@@ -97,9 +99,9 @@
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChoose.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherHint.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\CenterEvent.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelCellStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrAudioSource.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolBuffer.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelTownStoreItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellGameArchive.cs" />
   </ItemGroup>
   <ItemGroup>
