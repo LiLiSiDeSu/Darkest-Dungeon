@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17088
+  controlID: 133
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 17089
+  controlID: 17
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 1008
     height: 489
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 489
     width: 1008
     height: 498
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 17166
+  controlID: 76
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 397
     width: 339
     height: 590
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -296,8 +296,8 @@ MonoBehaviour:
     y: 0
     width: 573
     height: 987
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 135.82436, y: 175.1524, z: -3.217041}
     speed: 2
-    m_Value: {x: 397.5, y: 223.5, z: 0}
+    m_Value: {x: 135.82436, y: 175.1524, z: -3.217041}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -854,11 +854,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.09226624, y: 0.004481007, z: -0.00041400612, w: 0.9957298}
     speed: 2
-    m_Value: {x: 0.092265725, y: 0.0044809817, z: -0.0004140038, w: 0.9957242}
+    m_Value: {x: -0.09226624, y: -0.004481007, z: 0.00041400612, w: -0.9957298}
   m_Size:
     m_Target: 215.45308
     speed: 2
-    m_Value: 0.8660254
+    m_Value: 215.45308
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -961,8 +961,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders:
-    - Assets/Resources/Prefabs
+    m_Folders: []
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -971,14 +970,14 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Unity\Unity Project\-Darkestdungeon-
+  m_LastProjectPath: C:\Unity\Unity Project\Darkest-Dungeon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 44590000
     m_LastClickedID: 22852
-    m_ExpandedIDs: ffffffff0000000098590000605a0000645a00006a5a00006c5a00006e5a0000765a0000785a0000
+    m_ExpandedIDs: 00000000ec590000ee590000f0590000f2590000f4590000f6590000f8590000fa590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1003,24 +1002,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 586}
+    scrollPos: {x: 0, y: 840}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: f001ffffffffffff0000000098590000605a0000645a00006a5a00006c5a00006e5a0000765a0000785a0000
+    m_ExpandedIDs: ffffffff00000000ec590000ee590000f0590000f2590000f4590000f6590000f8590000fa590000d45a0000da5a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PanelTownStore
-      m_OriginalName: PanelTownStore
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 26234
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -1099,9 +1098,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: b6f9ffff
       m_LastClickedID: 0
-      m_ExpandedIDs: 7cf7feff86f7feff90f7feff96f7feffb4f8feff72fafeff84fafeffcefafeff760cffffc00cffff601cffff6a1cffff741cffff7a1cffff92c2ffff9cc2ffffa6c2ffffacc2ffff98e8ffff3af2ffff44f2ffff4ef2ffff54f2ffffb2f5ffff30fbffff
+      m_ExpandedIDs: 24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
