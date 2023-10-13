@@ -30,8 +30,10 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
     {
         if (ListEsc.Count > 0)
         {
-            MgrUI.GetInstance().HidePanel
-            (false, MgrUI.GetInstance().GetPanel(ListEsc[ListEsc.Count - 1]).gameObject,ListEsc[ListEsc.Count - 1]);
+            PoolBuffer.GetInstance().Push
+            (false, MgrUI.GetInstance().GetPanel(ListEsc[ListEsc.Count - 1]).gameObject, ListEsc[ListEsc.Count - 1]);
+
+            PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[ListEsc.Count - 1]);
 
             ListEsc.RemoveAt(ListEsc.Count - 1);           
         }            
