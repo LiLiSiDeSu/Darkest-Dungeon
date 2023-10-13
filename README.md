@@ -1,1 +1,1 @@
-# -DarkestDungeon-
+# Darkest-Dungeon
