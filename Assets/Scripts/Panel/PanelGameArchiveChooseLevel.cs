@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChooseLevel : PanelBase
 {
-    public PanelGameArchiveCell Cell;
+    public PanelCellGameArchive Cell;
 
     private Transform ImgCurrentChoice;
     private Image ImgGameArchiveDecorateLevel;

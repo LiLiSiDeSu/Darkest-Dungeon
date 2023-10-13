@@ -7,7 +7,8 @@ public class StartDataAndMgr : InstanceBaseAuto_Mono<StartDataAndMgr>
 {
     public string PathGameArchiveDataDirectory;
     public string PathGameArchiveData;
-    public List<Container_GameArchiveDataCell> ListGameArchiveDataCell = new List<Container_GameArchiveDataCell>();
+
+    public List<DataContainer_CellGameArchive> ListGameArchiveDataCell = new List<DataContainer_CellGameArchive>();
 
     protected override void Start()
     {
@@ -16,7 +17,7 @@ public class StartDataAndMgr : InstanceBaseAuto_Mono<StartDataAndMgr>
         PathGameArchiveDataDirectory = MgrXml.GetInstance().filePath + "/GameArchiveData";
         PathGameArchiveData = "/GameArchiveData" + "/GameArchiveDataDic";        
 
-        ListGameArchiveDataCell = MgrXml.GetInstance().Load<List<Container_GameArchiveDataCell>>(PathGameArchiveData);                  
+        ListGameArchiveDataCell = MgrXml.GetInstance().Load<List<DataContainer_CellGameArchive>>(PathGameArchiveData);                  
     }
 }
 

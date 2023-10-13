@@ -21,13 +21,13 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + "/UIBaseCanvas", callback : (obj) =>
         {            
-            UIBaseCanvas = obj.transform as RectTransform;            
-            UIBaseCanvas.gameObject.name = UIBaseCanvas.gameObject.name.Replace("(Clone)", "");
+            UIBaseCanvas = obj.transform as RectTransform;
+            UIBaseCanvas.gameObject.name = "UIBaseCanvas";
             obj.transform.parent = UI.transform;
         });
 
-        GameObject UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem");        
-        UIBaseEventSystem.name = UIBaseEventSystem.gameObject.name.Replace("(Clone)", "");
+        GameObject UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem");
+        UIBaseEventSystem.gameObject.name = "UIBaseEventSystem";
         UIBaseEventSystem.transform.parent = UI.transform;
     }
 
@@ -126,13 +126,15 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <summary>
     /// 隐藏面板
     /// </summary>
-    /// <param name="Active">面板在缓存池后的的激活状态</param>
+    /// <param name="Active">面板在缓存池的激活状态</param>
     /// <param name="panel">面板名对象</param>
     /// <param name="panelname">面板在缓存池中的名字(一般直接gameObject.name)</param>
     public void HidePanel(bool Active, GameObject panel, string panelname)
     {
         PoolBuffer.GetInstance().Push(Active, panel, panelname);
         PoolNowPanel.GetInstance().ListNowPanel.Remove(panelname);    
+        if (PoolEsc.GetInstance().ListEsc.Contains(panelname))
+            PoolEsc.GetInstance().ListEsc.Remove(panelname);
     }
 
     public void DestroyPanel(string panelname, UnityAction callback = null)

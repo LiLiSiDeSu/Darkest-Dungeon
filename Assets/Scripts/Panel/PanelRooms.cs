@@ -11,7 +11,7 @@ public class PanelRooms : PanelBase
     private Transform ImgCurrentChoice;
     private Dictionary<string, Transform> PosPanelRoom = new Dictionary<string, Transform>();
 
-    public PanelBase CurrentPanel = new PanelBase();
+    public PanelBase CurrentPanel;
     public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
 
     protected override void Start()
@@ -21,13 +21,13 @@ public class PanelRooms : PanelBase
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");  
         ImgCurrentChoice.gameObject.SetActive(false);
 
-        Button[] temppos = transform.FindSonSonSon("PanelRoomBarRoot").GetComponentsInChildren<Button>();
+        Button[] temppos = transform.FindSonSonSon("BtnRootSwitchRoom").GetComponentsInChildren<Button>();
         for (int i = 0; i < temppos.Length; i++)
         {
             PosPanelRoom.Add(temppos[i].gameObject.name, temppos[i].transform);
         }
         
-        PanelBase[] temppanel = transform.FindSonSonSon("PanelRoomRoot").GetComponentsInChildren<PanelBase>();
+        PanelBase[] temppanel = transform.FindSonSonSon("PanelRootRoom").GetComponentsInChildren<PanelBase>();
         for (int i = 0; i < temppanel.Length; i++)
         {            
             AllPanel.Add(temppanel[i].gameObject.name, temppanel[i]);

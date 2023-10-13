@@ -18,7 +18,7 @@ public class PanelGameArchiveChoose : PanelBase
         Content = transform.FindSonSonSon("Content");
         transform.FindSonSonSon("BtnBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
-        InitContentArchiveScrollView();
+        InitContent();
         
         gameObject.SetActive(false);
     }    
@@ -39,14 +39,14 @@ public class PanelGameArchiveChoose : PanelBase
                 break;
 
             case "BtnAddpanelGameArchivCell":
-                MgrUI.GetInstance().CreatePanelAndPush<PanelGameArchiveCell>
-                (false, "/PanelGameArchiveCell", false, false, "PanelGameArchiveCell",
+                MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
+                (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
                 (panel) =>
                 {
                     panel.transform.SetParent(Content, false);
                     panel.IndexGameArchiveCell = PanelGameArchiveCellNowIndex;
                     PanelGameArchiveCellNowIndex += 1;
-                    StartDataAndMgr.GetInstance().ListGameArchiveDataCell.Add(new Container_GameArchiveDataCell());
+                    StartDataAndMgr.GetInstance().ListGameArchiveDataCell.Add(new DataContainer_CellGameArchive());
                     MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, 
                                               StartDataAndMgr.GetInstance().PathGameArchiveData);                    
                 });
@@ -54,13 +54,13 @@ public class PanelGameArchiveChoose : PanelBase
         }
     }
     
-    private void InitContentArchiveScrollView()
+    private void InitContent()
     {
         for (int i = 0; i < StartDataAndMgr.GetInstance().ListGameArchiveDataCell.Count; i++)
         {
             int tempi = i;
-            MgrUI.GetInstance().CreatePanelAndPush<PanelGameArchiveCell>
-                             (false, "/PanelGameArchiveCell", false, false, "PanelGameArchiveCell", 
+            MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
+                             (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive", 
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
@@ -73,7 +73,7 @@ public class PanelGameArchiveChoose : PanelBase
 
     public void GameArchiveCellSort()
     {
-        PanelGameArchiveCell[] all = Content.GetComponentsInChildren<PanelGameArchiveCell>();
+        PanelCellGameArchive[] all = Content.GetComponentsInChildren<PanelCellGameArchive>();
         for (int i = 0; i < all.Length; i++)
         {
             all[i].IndexGameArchiveCell = i;            

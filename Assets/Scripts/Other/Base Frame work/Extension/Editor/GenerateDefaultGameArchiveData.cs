@@ -18,11 +18,11 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         if (!File.Exists(StartDataAndMgr.GetInstance().PathGameArchiveDataDirectory))
             Directory.CreateDirectory(StartDataAndMgr.GetInstance().PathGameArchiveDataDirectory);
 
-        List<Container_GameArchiveDataCell> GameArchiveDataCellList = new List<Container_GameArchiveDataCell>();
+        List<DataContainer_CellGameArchive> GameArchiveDataCellList = new List<DataContainer_CellGameArchive>();
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
         {
-            GameArchiveDataCellList.Add(new Container_GameArchiveDataCell());
+            GameArchiveDataCellList.Add(new DataContainer_CellGameArchive());
         }
 
         MgrXml.GetInstance().Save(GameArchiveDataCellList, StartDataAndMgr.GetInstance().PathGameArchiveData);

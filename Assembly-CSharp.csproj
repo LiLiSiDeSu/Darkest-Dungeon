@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CE86C03E-05B5-B07C-E92B-1231C17BE816}</ProjectGuid>
+    <ProjectGuid>{784C1550-839D-B453-A6B3-81B08EBA7E1A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -78,8 +78,9 @@
     <Compile Include="Assets\Scripts\Panel\PanelTown.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomSmithy.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBaseAuto_Mono.cs" />
+    <Compile Include="Assets\Scripts\Other\DataContainer.cs" />
     <Compile Include="Assets\Scripts\Panel\StartUI.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelGameArchiveCell.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MonoMgr.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrRes.cs" />
     <Compile Include="Assets\Scripts\Other\EnumAll.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MonoController.cs" />
-    <Compile Include="Assets\Scripts\Contain\Container.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrInput.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />
@@ -97,8 +97,10 @@
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChoose.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherHint.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\CenterEvent.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelCellStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrAudioSource.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolBuffer.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelCellGameArchive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Other\Base Frame work\doc\InstanceBase\doc\doc.txt" />

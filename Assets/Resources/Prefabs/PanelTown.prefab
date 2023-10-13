@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4351577101874913403}
   m_Layer: 5
-  m_Name: BtnRooms
+  m_Name: BtnRootRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

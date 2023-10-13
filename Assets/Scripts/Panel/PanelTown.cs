@@ -46,6 +46,16 @@ public class PanelTown : PanelBase
             case "BtnMercenaryaAssociation":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomMercenaryaAssociation");           
                 break;
+
+            case "BtnTownStore":
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelTownStore"))
+                {
+                    MgrUI.GetInstance().HidePanel
+                    (false, MgrUI.GetInstance().DicPanel["PanelTownStore"].gameObject, "PanelTownStore");
+                    break;
+                }
+                MgrUI.GetInstance().ShowPanel<PanelTownStore>(true, "PanelTownStore");
+                break;
         }
     }   
 }
