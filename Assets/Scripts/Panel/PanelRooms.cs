@@ -31,6 +31,7 @@ public class PanelRooms : PanelBase
         for (int i = 0; i < temppanel.Length; i++)
         {            
             AllPanel.Add(temppanel[i].gameObject.name, temppanel[i]);
+            MgrUI.GetInstance().AddDicPanel(temppanel[i].gameObject.name, temppanel[i]);
         }
 
         HideAllRooms();

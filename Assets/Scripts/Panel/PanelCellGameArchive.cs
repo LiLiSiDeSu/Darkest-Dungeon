@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PanelCellGameArchive : PanelBase
 {
-    public int IndexGameArchiveCell;
+    public int IndexCellGameArchive;
 
     public Image ImgEnvelope;
     private InputField IptGameArchiveInput;
@@ -15,7 +15,7 @@ public class PanelCellGameArchive : PanelBase
     private Text TxtWeek;
     private Text TxtTime;
 
-    public DataContainer_CellGameArchive GameArchiveCellData = new DataContainer_CellGameArchive();
+    public DataContainer_CellGameArchive DataCellGameArchive = new DataContainer_CellGameArchive();
 
     protected override void Start()
     {
@@ -25,7 +25,7 @@ public class PanelCellGameArchive : PanelBase
         transform.FindSonSonSon("BtnGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
         InitGameArchiveCellControl();
-        InitGameArchiveCellData(GameArchiveCellData);
+        InitGameArchiveCellData(DataCellGameArchive);
 
         ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
     }
@@ -41,10 +41,9 @@ public class PanelCellGameArchive : PanelBase
                 (false, MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").gameObject, 
                 "PanelGameArchiveChoose");
 
-                MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown", (panel) =>
-                {
-
-                });
+                MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
+                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowGameArchive = this;
+                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").InitContent();
                 break;
 
             case "BtnGameArchiveDestroy":
@@ -54,11 +53,11 @@ public class PanelCellGameArchive : PanelBase
                     {                        
                         DestroyImmediate(gameObject);
                         MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").
-                                                                            PanelGameArchiveCellNowIndex -= 1;
-                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").GameArchiveCellSort();
+                                                                            PanelCellGameArchiveNowIndex -= 1;
+                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").SortCellGameArchive();
 
-                        StartDataAndMgr.GetInstance().ListGameArchiveDataCell.RemoveAt(IndexGameArchiveCell);
-                        MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, 
+                        StartDataAndMgr.GetInstance().DataListCellGameArchive.RemoveAt(IndexCellGameArchive);
+                        MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                                   StartDataAndMgr.GetInstance().PathGameArchiveData);
 
                         MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");                        
@@ -92,11 +91,11 @@ public class PanelCellGameArchive : PanelBase
         {
             case "IptGameArchiveInput":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
-                GameArchiveCellData.GameArchiveName = EventParam;
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, 
+                DataCellGameArchive.GameArchiveName = EventParam;
+                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                           StartDataAndMgr.GetInstance().PathGameArchiveData);
 
-                if (GameArchiveCellData.e_GameArchiveLevel == E_GameArchiveLevel.None)
+                if (DataCellGameArchive.e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
                     MgrUI.GetInstance().ShowPanel<PanelGameArchiveChooseLevel>
                     (true, "PanelGameArchiveChooseLevel",                                                                                

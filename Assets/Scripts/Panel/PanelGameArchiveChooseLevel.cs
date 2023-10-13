@@ -79,21 +79,21 @@ public class PanelGameArchiveChooseLevel : PanelBase
         switch (controlname)
         {
             case "BtnGameArchiveChooseLevelBright":
-                Cell.GameArchiveCellData.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
-                Cell.InitGameArchiveCellData(Cell.GameArchiveCellData);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
+                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 
             case "BtnGameArchiveChooseLevelDarkness":
-                Cell.GameArchiveCellData.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
-                Cell.InitGameArchiveCellData(Cell.GameArchiveCellData);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
+                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 
             case "BtnGameArchiveChooseLevelBloodmoon":
-                Cell.GameArchiveCellData.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
-                Cell.InitGameArchiveCellData(Cell.GameArchiveCellData);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
+                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 
             case "BtnClose":

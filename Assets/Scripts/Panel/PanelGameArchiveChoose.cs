@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChoose : PanelBase
 {       
-    public int PanelGameArchiveCellNowIndex = 0;    
+    public int PanelCellGameArchiveNowIndex = 0;    
 
-    public Transform Content;        
+    public Transform Content;
+
+    public PanelCellGameArchive NowGameArchive = new PanelCellGameArchive();
 
     protected override void Start()
     {
@@ -43,11 +45,11 @@ public class PanelGameArchiveChoose : PanelBase
                 (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
                 (panel) =>
                 {
-                    panel.transform.SetParent(Content, false);
-                    panel.IndexGameArchiveCell = PanelGameArchiveCellNowIndex;
-                    PanelGameArchiveCellNowIndex += 1;
-                    StartDataAndMgr.GetInstance().ListGameArchiveDataCell.Add(new DataContainer_CellGameArchive());
-                    MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().ListGameArchiveDataCell, 
+                    panel.transform.parent = Content;
+                    panel.IndexCellGameArchive = PanelCellGameArchiveNowIndex;
+                    PanelCellGameArchiveNowIndex += 1;
+                    StartDataAndMgr.GetInstance().DataListCellGameArchive.Add(new DataContainer_CellGameArchive());
+                    MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                               StartDataAndMgr.GetInstance().PathGameArchiveData);                    
                 });
                 break;
@@ -56,7 +58,7 @@ public class PanelGameArchiveChoose : PanelBase
     
     private void InitContent()
     {
-        for (int i = 0; i < StartDataAndMgr.GetInstance().ListGameArchiveDataCell.Count; i++)
+        for (int i = 0; i < StartDataAndMgr.GetInstance().DataListCellGameArchive.Count; i++)
         {
             int tempi = i;
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
@@ -64,19 +66,19 @@ public class PanelGameArchiveChoose : PanelBase
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
-                panel.GameArchiveCellData = StartDataAndMgr.GetInstance().ListGameArchiveDataCell[tempi];
-                panel.IndexGameArchiveCell = PanelGameArchiveCellNowIndex;
-                PanelGameArchiveCellNowIndex += 1;
+                panel.DataCellGameArchive = StartDataAndMgr.GetInstance().DataListCellGameArchive[tempi];
+                panel.IndexCellGameArchive = PanelCellGameArchiveNowIndex;
+                PanelCellGameArchiveNowIndex += 1;
             });
         } 
     }
 
-    public void GameArchiveCellSort()
+    public void SortCellGameArchive()
     {
         PanelCellGameArchive[] all = Content.GetComponentsInChildren<PanelCellGameArchive>();
         for (int i = 0; i < all.Length; i++)
         {
-            all[i].IndexGameArchiveCell = i;            
+            all[i].IndexCellGameArchive = i;            
         }
     }
 }

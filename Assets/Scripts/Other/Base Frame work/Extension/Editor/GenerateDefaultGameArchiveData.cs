@@ -11,12 +11,8 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
     [MenuItem("Tools/Generate/DefaultGameArchiveData", false, 1)]
     private static void Generate()
     {
-        MgrXml.GetInstance().filePath = Application.persistentDataPath + "/Data/XmlData";
-        StartDataAndMgr.GetInstance().PathGameArchiveDataDirectory = MgrXml.GetInstance().filePath + "/GameArchiveData";
-        StartDataAndMgr.GetInstance().PathGameArchiveData = "/GameArchiveData" + "/GameArchiveDataDic";
-
-        if (!File.Exists(StartDataAndMgr.GetInstance().PathGameArchiveDataDirectory))
-            Directory.CreateDirectory(StartDataAndMgr.GetInstance().PathGameArchiveDataDirectory);
+        MgrXml.GetInstance().filePath = Application.persistentDataPath + "/Data/XmlData";        
+        StartDataAndMgr.GetInstance().PathGameArchiveData = "/GameArchiveDataDic";
 
         List<DataContainer_CellGameArchive> GameArchiveDataCellList = new List<DataContainer_CellGameArchive>();
 
@@ -24,6 +20,14 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         {
             GameArchiveDataCellList.Add(new DataContainer_CellGameArchive());
         }
+
+        GameArchiveDataCellList[0].DataListCellStore = new List<DataContainer_CellStore>()
+        { 
+            new DataContainer_CellStore(100, 200),
+            new DataContainer_CellStore(120, 103),
+            new DataContainer_CellStore(200, 220),
+            new DataContainer_CellStore(103, 20),
+        };
 
         MgrXml.GetInstance().Save(GameArchiveDataCellList, StartDataAndMgr.GetInstance().PathGameArchiveData);
 
