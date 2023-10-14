@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelTownStore : PanelBase
 {
@@ -10,7 +11,7 @@ public class PanelTownStore : PanelBase
     private Transform ContentStore;
     public Transform RootPanelTownStoreItem;
 
-    public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();
+    public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
     protected override void Start()
     {
@@ -31,13 +32,15 @@ public class PanelTownStore : PanelBase
          i++)
         {
             int tempi = i;
-            
+
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
                              (false, "/" + MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].PrefabName, 
+                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].
+                             e_PanelCellStorePrefabName.ToString(), 
                              false, false, 
                              MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].PrefabName,
+                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].
+                             e_PanelCellStorePrefabName.ToString(),
             (PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.transform.SetParent(ContentStore);
@@ -49,8 +52,7 @@ public class PanelTownStore : PanelBase
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownStoreItem>
                                  (false, "/PanelTownStoreItem", false, false, "PanelTownStoreItem",
                 (PanelTownStoreItem_) =>
-                {
-                    PanelTownStoreItem_.gameObject.name = "PanelTownStoreItem_" + tempi.ToString();
+                {                    
                     PanelTownStoreItem_.transform.SetParent(RootPanelTownStoreItem);
                     PanelCellTownStore_.PanelItem = PanelTownStoreItem_;
                 });

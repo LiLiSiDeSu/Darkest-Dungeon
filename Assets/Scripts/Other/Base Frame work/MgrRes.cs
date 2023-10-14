@@ -8,7 +8,7 @@ public class MgrRes : InstanceBaseAuto_Mono<MgrRes>
     public T Load<T>(string path) where T : Object
     {
         T res = Resources.Load<T>(path);
-
+        
         if (res is GameObject)
             return Instantiate(res);
         else
@@ -21,7 +21,7 @@ public class MgrRes : InstanceBaseAuto_Mono<MgrRes>
     }
     
     private IEnumerator ReallyLoadAsync<T>(string path, UnityAction<T> callback) where T : Object
-    {
+    {        
         ResourceRequest r = Resources.LoadAsync<T>(path);
         yield return r;
 

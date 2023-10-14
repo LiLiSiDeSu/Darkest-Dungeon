@@ -9,3 +9,10 @@ public enum E_GameArchiveLevel
     Darkness,
     Bloodmoon
 }
+
+public enum E_PanelCellStorePrefabName
+{
+    PanelCellStoreWood,
+    PanelCellStoreIron,
+    PanelCellStoreGold
+}

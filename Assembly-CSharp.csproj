@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChooseLevel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolEsc.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrScene.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\SetAciveFalseInPlaying.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolNowPanel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />
@@ -82,14 +83,14 @@
     <Compile Include="Assets\Scripts\Panel\PanelCellItem.cs" />
     <Compile Include="Assets\Scripts\Other\DataContainer.cs" />
     <Compile Include="Assets\Scripts\Panel\StartUI.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
-    <Compile Include="Assets\Scripts\Other\Base Frame work\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrRes.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\EnumAll.cs" />
-    <Compile Include="Assets\Scripts\Other\Base Frame work\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrInput.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />

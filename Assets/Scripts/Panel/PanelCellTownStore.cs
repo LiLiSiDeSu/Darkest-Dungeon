@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class PanelCellTownStore : PanelBase
 {
-    public int IndexCellCellStore;
+    public int IndexCellCellStore;    
 
-    public DataContainer_CellStore DataCellStore = new DataContainer_CellStore();
+    public Text TxtMaxWeight;
+    public Text TxtNowWeight;
+    public Text TxtMaxCapacity;
+    public Text TxtNowCapacity;
 
-    public Text TxtWeight;
-    public Text TxtCapacity;
-
-    public PanelTownStoreItem PanelItem = new PanelTownStoreItem();
+    public DataContainer_CellStore DataCellStore;
+    public PanelTownStoreItem PanelItem;
 
     protected override void Start()
     {
@@ -21,11 +22,17 @@ public class PanelCellTownStore : PanelBase
 
         transform.FindSonSonSon("ImgStoreItem").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
-        TxtWeight = transform.FindSonSonSon("TxtWeight").GetComponent<Text>();
-        TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
+        TxtMaxWeight = transform.FindSonSonSon("TxtMaxWeight").GetComponent<Text>();
+        TxtNowWeight = transform.FindSonSonSon("TxtNowWeight").GetComponent<Text>();
+        TxtMaxCapacity = transform.FindSonSonSon("TxtMaxCapacity").GetComponent<Text>();
+        TxtNowCapacity = transform.FindSonSonSon("TxtNowCapacity").GetComponent<Text>();
 
-        TxtWeight.text = DataCellStore.Weight.ToString();
-        TxtCapacity.text = DataCellStore.Capacity.ToString();
+        InitDataInfo();
+
+        TxtMaxWeight.text = "/" + DataCellStore.MaxWeight.ToString();
+        TxtNowWeight.text = DataCellStore.NowWeight.ToString();
+        TxtMaxCapacity.text = "/" + DataCellStore.MaxCapacity.ToString();
+        TxtNowCapacity.text = DataCellStore.NowCapacity.ToString();
     }
 
     protected override void Button_OnClick(string controlname)
@@ -37,6 +44,27 @@ public class PanelCellTownStore : PanelBase
             case "BtnCellTownStore":                
                 PanelItem.Show(this);                
                 break;
+        }
+    }
+
+    public void InitDataInfo()
+    {
+        switch (DataCellStore.e_PanelCellStorePrefabName)
+        {
+            case E_PanelCellStorePrefabName.PanelCellStoreWood:
+                DataCellStore.MaxWeight = 50;
+                DataCellStore.MaxCapacity = 100;
+                break;
+
+            case E_PanelCellStorePrefabName.PanelCellStoreIron:
+                DataCellStore.MaxWeight = 200;
+                DataCellStore.MaxCapacity = 250;
+                break;
+
+            case E_PanelCellStorePrefabName.PanelCellStoreGold:
+                DataCellStore.MaxWeight = 70;
+                DataCellStore.MaxCapacity = 400;
+                break;        
         }
     }
 }

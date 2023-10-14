@@ -17,6 +17,15 @@ public class PanelTownStoreItem : PanelBase
 
     public void Show(PanelCellTownStore NowPanelCellTownStore)
     {
+        if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore == NowPanelCellTownStore)
+        {
+            PoolEsc.GetInstance().RemoveListNoInMgrUI
+                               (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.PanelItem.gameObject);
+            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore != null)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI
@@ -24,7 +33,7 @@ public class PanelTownStoreItem : PanelBase
             MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.PanelItem.gameObject.SetActive(false);
         }
         MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = NowPanelCellTownStore;
-        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject);        
+        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject);
         gameObject.SetActive(true);
     } 
 }

@@ -17,29 +17,34 @@ public class DataContainer_CellGameArchive
     public DataContainer_CellGameArchive() { }
     public DataContainer_CellGameArchive
     (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, string Location, string Week, string Time, 
-     List<DataContainer_CellStore> PanelTownStore_)
+     List<DataContainer_CellStore> DataListCellStore)
     {
         this.GameArchiveName = GameArchiveName;
         this.e_GameArchiveLevel = e_GameArchiveLevel;
         this.Location = Location;
         this.Week = Week;
         this.Time = Time;
-        this.DataListCellStore = PanelTownStore_;
+        this.DataListCellStore = DataListCellStore;
     }
 }
 
 public class DataContainer_CellStore
 {
-    public string PrefabName = "PanelCellStoreWood";
-    public int Weight = 0;
-    public int Capacity = 0;
+    public E_PanelCellStorePrefabName e_PanelCellStorePrefabName = E_PanelCellStorePrefabName.PanelCellStoreWood;
+    public int MaxWeight = 0;
+    public int NowWeight = 0;
+    public int MaxCapacity = 0;
+    public int NowCapacity = 0;
 
     public DataContainer_CellStore() { }
     public DataContainer_CellStore
-    (string PrefabsName, int Weight, int Capacity)
+    (E_PanelCellStorePrefabName e_PanelCellStorePrefabName)
     {
-        this.PrefabName = PrefabsName;
-        this.Weight = Weight;
-        this.Capacity = Capacity;
+        this.e_PanelCellStorePrefabName = e_PanelCellStorePrefabName;        
     }
+}
+
+public class DataContainer_
+{
+
 }
