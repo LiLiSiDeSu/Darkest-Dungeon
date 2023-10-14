@@ -8,7 +8,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
 {
     private Transform RootPool; 
     
-    private Dictionary<string, GameObject> DicItemRoot;
+    private Dictionary<string, GameObject> RootDicItem;
     public Dictionary<string, List<GameObject>> DicPool;
 
     protected override void Start()
@@ -16,7 +16,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
         base.Start();
 
         RootPool = transform;
-        DicItemRoot = new Dictionary<string, GameObject>();
+        RootDicItem = new Dictionary<string, GameObject>();
         DicPool = new Dictionary<string, List<GameObject>>();
     }
 
@@ -37,14 +37,14 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
     /// <param name="name">对象在缓存池的名字(名字一般就直接是对象的gameObject.name)</param>    
     public void Push(bool Active, GameObject item, string name)
     {        
-        if (!DicItemRoot.ContainsKey(name + "_Root"))
+        if (!RootDicItem.ContainsKey("Root_" + name))
         {
-            GameObject obj = new GameObject(name + "_Root");            
+            GameObject obj = new GameObject("Root_" + name);            
             obj.transform.SetParent(RootPool);
-            DicItemRoot.Add(obj.name, obj);
+            RootDicItem.Add(obj.name, obj);
         }
 
-        item.transform.SetParent(DicItemRoot[name + "_Root"].transform);
+        item.transform.SetParent(RootDicItem["Root_" + name].transform);
 
         if (!DicPool.ContainsKey(name))
         {
@@ -63,7 +63,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
 
     public void ClearOne(string name)
     {
-        Transform[] all = DicItemRoot[name].GetComponentsInChildren<Transform>();
+        Transform[] all = RootDicItem[name].GetComponentsInChildren<Transform>();
         for (int i = 0; i < all.Length; i++)
         {
             Destroy(all[i]);
@@ -77,7 +77,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
         {
             Destroy(all[i]);
         }
-        DicItemRoot.Clear();
+        RootDicItem.Clear();
         DicPool.Clear();
     }
 }

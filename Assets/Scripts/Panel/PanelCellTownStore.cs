@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 
 public class PanelCellTownStore : PanelBase
@@ -12,10 +13,12 @@ public class PanelCellTownStore : PanelBase
     public Text TxtWeight;
     public Text TxtCapacity;
 
+    public PanelTownStoreItem PanelItem = new PanelTownStoreItem();
+
     protected override void Start()
     {
-        base.Start();
-       
+        base.Start();        
+
         transform.FindSonSonSon("ImgStoreItem").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
         TxtWeight = transform.FindSonSonSon("TxtWeight").GetComponent<Text>();
@@ -31,8 +34,8 @@ public class PanelCellTownStore : PanelBase
 
         switch (controlname)
         {
-            case "BtnCellTownStore":
-                MgrUI.GetInstance().ShowPanel<PanelTownStoreItem>(true, "PanelTownStoreItem");
+            case "BtnCellTownStore":                
+                PanelItem.Show(this);                
                 break;
         }
     }

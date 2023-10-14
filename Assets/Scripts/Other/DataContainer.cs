@@ -30,13 +30,15 @@ public class DataContainer_CellGameArchive
 
 public class DataContainer_CellStore
 {
-    public int Weight;
-    public int Capacity;
+    public string PrefabName = "PanelCellStoreWood";
+    public int Weight = 0;
+    public int Capacity = 0;
 
     public DataContainer_CellStore() { }
     public DataContainer_CellStore
-    (int Weight, int Capacity)
+    (string PrefabsName, int Weight, int Capacity)
     {
+        this.PrefabName = PrefabsName;
         this.Weight = Weight;
         this.Capacity = Capacity;
     }

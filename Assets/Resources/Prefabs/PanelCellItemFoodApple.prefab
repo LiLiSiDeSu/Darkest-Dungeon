@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6478537478795599584}
   - component: {fileID: 6739698291434866343}
   m_Layer: 5
-  m_Name: PanelCellTownStoreItem
+  m_Name: PanelCellItemFoodApple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

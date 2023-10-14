@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 6690014079074663710}
   - component: {fileID: 4421358955859829744}
   m_Layer: 0
-  m_Name: PanelCellTownStore
+  m_Name: PanelCellStoreWood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

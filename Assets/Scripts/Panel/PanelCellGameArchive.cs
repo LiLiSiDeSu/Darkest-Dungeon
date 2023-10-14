@@ -42,7 +42,7 @@ public class PanelCellGameArchive : PanelBase
                 "PanelGameArchiveChoose");
 
                 MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
-                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowGameArchive = this;
+                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowPanelGameArchive = this;
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").InitContent();
                 break;
 

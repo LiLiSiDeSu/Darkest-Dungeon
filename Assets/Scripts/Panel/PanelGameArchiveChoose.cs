@@ -11,7 +11,7 @@ public class PanelGameArchiveChoose : PanelBase
 
     public Transform Content;
 
-    public PanelCellGameArchive NowGameArchive = new PanelCellGameArchive();
+    public PanelCellGameArchive NowPanelGameArchive = new PanelCellGameArchive();
 
     protected override void Start()
     {

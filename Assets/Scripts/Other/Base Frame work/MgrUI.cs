@@ -23,7 +23,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         {            
             UIBaseCanvas = obj.transform as RectTransform;
             UIBaseCanvas.gameObject.name = "UIBaseCanvas";
-            obj.transform.parent = UI.transform;
+            obj.transform.SetParent(UI.transform);
         });
 
         GameObject UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem");

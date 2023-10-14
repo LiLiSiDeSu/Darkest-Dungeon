@@ -23,10 +23,10 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].DataListCellStore = new List<DataContainer_CellStore>()
         { 
-            new DataContainer_CellStore(100, 200),
-            new DataContainer_CellStore(120, 103),
-            new DataContainer_CellStore(200, 220),
-            new DataContainer_CellStore(103, 20),
+            new DataContainer_CellStore("PanelCellStoreWood", 100, 20),
+            new DataContainer_CellStore("PanelCellStoreWood", 120, 103),
+            new DataContainer_CellStore("PanelCellStoreWood", 200, 220),
+            new DataContainer_CellStore("PanelCellStoreWood", 103, 20),
         };
 
         MgrXml.GetInstance().Save(GameArchiveDataCellList, StartDataAndMgr.GetInstance().PathGameArchiveData);

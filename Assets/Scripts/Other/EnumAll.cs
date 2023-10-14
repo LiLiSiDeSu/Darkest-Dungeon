@@ -9,11 +9,3 @@ public enum E_GameArchiveLevel
     Darkness,
     Bloodmoon
 }
-
-public enum E_UIPanelLevel
-{
-    Bottom,
-    Middle,
-    Top,
-    System
-}
