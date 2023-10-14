@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 106
+  controlID: 49
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 84
+  controlID: 50
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -296,8 +296,8 @@ MonoBehaviour:
     y: 0
     width: 573
     height: 987
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.014101296, y: -0.00599938, z: -0.00008341358, w: 0.9998886}
     speed: 2
-    m_Value: {x: -0.014101212, y: -0.005999344, z: -0.000083413084, w: 0.99988264}
+    m_Value: {x: 0.014101297, y: 0.0059993803, z: 0.00008341358, w: -0.99988866}
   m_Size:
     m_Target: 190.24496
     speed: 2
@@ -962,7 +962,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs
+    - Assets/Scripts/Other/Base Frame work
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -978,7 +978,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 44590000
     m_LastClickedID: 22852
-    m_ExpandedIDs: 00000000b05a0000b25a0000b45a0000b65a0000b85a0000ba5a0000bc5a0000be5a0000c05a0000c25a0000
+    m_ExpandedIDs: 00000000b25a0000b45a0000b65a0000b85a0000ba5a0000bc5a0000be5a0000c05a0000c25a0000c45a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1003,24 +1003,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 730}
+    scrollPos: {x: 0, y: 1150}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000b05a0000b25a0000b45a0000b65a0000b85a0000ba5a0000bc5a0000be5a0000c05a0000c25a0000
+    m_ExpandedIDs: ffffffff00000000b25a0000b45a0000b65a0000b85a0000ba5a0000bc5a0000be5a0000c05a0000c25a0000c45a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PanelTownStore
-      m_OriginalName: PanelTownStore
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 22932
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -1099,23 +1099,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 22080000
       m_LastClickedID: 0
-      m_ExpandedIDs: f6cafdfffccafdffeecdfdff00cefdff4acefdffecdcfdfff2dcfdff0ce0fdff1ee0fdff68e0fdffcef9fdffd4f9fdffc6fcfdffd8fcfdff22fdfdff6212feff6612feff6c12feff2615feff3815feff8215feff3a22fefff424feff0625feff5025feff0030feff0a30feff1430feff1830feff1e30feff0033feff1233feff5c33feffb061feffb661feff7064feff8264feffcc64feffb8e9feffc2e9feffcce9feffd0e9feffd6e9feff92ecfeffa4ecfeffeeecfeffdef7feffe8f7fefff2f7fefff6f7fefffcf7feffb8fafeffcafafeff14fbfeff2005ffff2a05ffff3405ffff3805ffff3e05fffffa07ffff0c08ffff5608ffffd014ffff0040ffff1240ffff5c40ffff3266ffffc866ffff1267ffff4487ffff6a87ffff7487ffffa287ffffa887ffffa488ffffb488ffffb888ffffd292ffff1c93ffffd2b3fffffab3ffff04b4ffff0eb4ffff02b7ffff14b7ffff4ab7ffff5eb7fffffec3ffff20c7ffff32c7ffff7cc7ffff96d2ffff28f4ffff32f4ffff3cf4ffff42f4ffff7af7ffff8cf7ffffd6f7ffff28faffff32faffff3cfaffff40faffff68faffff72faffffd6faffff2efbffff30fbffff74590000
+      m_ExpandedIDs: 30fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: ContentStore
-        m_OriginalName: ContentStore
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -118784
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
