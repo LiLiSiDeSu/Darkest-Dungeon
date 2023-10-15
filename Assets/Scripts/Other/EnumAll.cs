@@ -10,9 +10,14 @@ public enum E_GameArchiveLevel
     Bloodmoon
 }
 
-public enum E_PanelCellStorePrefabName
+public enum E_SpriteNamePanelCellTownStore
 {
-    PanelCellStoreWood,
-    PanelCellStoreIron,
-    PanelCellStoreGold
+    StoreWood,
+    StoreIron,
+    StoreGold
+}
+
+public enum E_PanelCellStore
+{
+
 }

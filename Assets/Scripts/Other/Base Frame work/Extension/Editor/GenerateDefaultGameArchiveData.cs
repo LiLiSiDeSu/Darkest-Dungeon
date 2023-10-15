@@ -22,12 +22,12 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         }
 
         //¡Ÿ ±≤‚ ‘ ˝æ›
-        GameArchiveDataCellList[0].DataListCellStore = new List<DataContainer_CellStore>()
+        GameArchiveDataCellList[0].DataListCellStore = new List<DataContainer_PanelCellStore>()
         { 
-            new DataContainer_CellStore(E_PanelCellStorePrefabName.PanelCellStoreWood),
-            new DataContainer_CellStore(E_PanelCellStorePrefabName.PanelCellStoreIron),
-            new DataContainer_CellStore(E_PanelCellStorePrefabName.PanelCellStoreGold),
-            new DataContainer_CellStore(E_PanelCellStorePrefabName.PanelCellStoreWood),
+            new DataContainer_PanelCellStore(E_SpriteNamePanelCellTownStore.StoreWood),
+            new DataContainer_PanelCellStore(E_SpriteNamePanelCellTownStore.StoreIron),
+            new DataContainer_PanelCellStore(E_SpriteNamePanelCellTownStore.StoreGold),
+            new DataContainer_PanelCellStore(E_SpriteNamePanelCellTownStore.StoreWood),
         };
 
         MgrXml.GetInstance().Save(GameArchiveDataCellList, StartDataAndMgr.GetInstance().PathGameArchiveData);

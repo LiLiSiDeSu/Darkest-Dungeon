@@ -34,13 +34,7 @@ public class PanelTownStore : PanelBase
             int tempi = i;
 
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
-                             (false, "/" + MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].
-                             e_PanelCellStorePrefabName.ToString(), 
-                             false, false, 
-                             MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-                             ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi].
-                             e_PanelCellStorePrefabName.ToString(),
+                             (false, "/PanelCellTownStore", false, false, "PanelCellTownStore",
             (PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.transform.SetParent(ContentStore);
