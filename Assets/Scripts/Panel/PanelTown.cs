@@ -15,7 +15,7 @@ public class PanelTown : PanelBase
         transform.FindSonSonSon("BtnShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("BtnSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("BtnMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-    }
+    }  
 
     protected override void Button_OnClick(string controlname)
     {

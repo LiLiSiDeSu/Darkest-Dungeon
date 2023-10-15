@@ -25,7 +25,7 @@ public class PanelTownStore : PanelBase
         for 
         (int i = 0; 
          i < MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-         ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore.Count; 
+                              ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore.Count; 
          i++)
         {
             int tempi = i;

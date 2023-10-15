@@ -18,7 +18,7 @@ public class InstanceMgr : InstanceBase_Mono<InstanceMgr>
         Other.transform.SetParent(transform);
 
         //数据一定要先加载出来
-        StartDataAndMgr.GetInstance().transform.SetParent(Other.transform);
+        MgrData.GetInstance().transform.SetParent(Other.transform);
         MgrAudioSource.GetInstance().transform.SetParent(Other.transform);
         //--
         PoolBuffer.GetInstance().transform.SetParent(transform);           

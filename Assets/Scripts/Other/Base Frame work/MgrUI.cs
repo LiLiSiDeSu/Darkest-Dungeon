@@ -109,15 +109,21 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
     /// <param name="panelname">面板名</param>    
     /// <param name="callback">回调函数</param>
+    /// <param name="CallBackForPoolEsc">PoolEsc的回调函数</param>
     public void ShowPanel<T>
-    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null) 
+    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null, UnityAction CallBackForPoolEsc = null) 
     where T : PanelBase
     {
         PoolBuffer.GetInstance().TakeAndGet(panelname).transform.SetParent(UIBaseCanvas);
         GetPanel<T>(panelname).transform.localPosition = Vector3.zero;
         GetPanel<T>(panelname).transform.localScale = Vector3.one;
 
-        if (isAddpoolEsc) PoolEsc.GetInstance().ListEsc.Add(panelname);
+        if (isAddpoolEsc)
+        {
+            PoolEsc.GetInstance().ListEsc.Add(panelname);
+            PoolEsc.GetInstance().ListEscEvent.Add(CallBackForPoolEsc);
+        }
+
         PoolNowPanel.GetInstance().ListNowPanel.Add(panelname);
 
         callback?.Invoke(GetPanel<T>(panelname));

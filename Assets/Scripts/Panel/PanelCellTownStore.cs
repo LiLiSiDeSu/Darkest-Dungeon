@@ -18,8 +18,8 @@ public class PanelCellTownStore : PanelBase
     public Text TxtNowCapacity;
     public Image ImgStore;
 
-    public DataContainer_PanelCellTownStore DataPanelCellTownStore;
-    public PanelTownItem NowPanelTownStoreItem;
+    public DataContainer_PanelCellTownStore DataPanelCellTownStore = new DataContainer_PanelCellTownStore();
+    public PanelTownItem NowPanelTownStoreItem = new PanelTownItem();
 
     protected override void Start()
     {

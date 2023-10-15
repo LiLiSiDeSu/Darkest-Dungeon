@@ -45,9 +45,8 @@ public class PanelGameArchiveChoose : PanelBase
                     panel.transform.parent = Content;
                     panel.IndexCellGameArchive = NowIndex;
                     NowIndex += 1;
-                    StartDataAndMgr.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
-                    MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
-                                              StartDataAndMgr.GetInstance().PathGameArchiveData);                    
+                    MgrData.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
+                    MgrData.GetInstance().Save();
                 });
                 break;
         }
@@ -55,7 +54,7 @@ public class PanelGameArchiveChoose : PanelBase
     
     private void InitContent()
     {
-        for (int i = 0; i < StartDataAndMgr.GetInstance().DataListCellGameArchive.Count; i++)
+        for (int i = 0; i < MgrData.GetInstance().DataListCellGameArchive.Count; i++)
         {
             int tempi = i;
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
@@ -63,7 +62,7 @@ public class PanelGameArchiveChoose : PanelBase
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
-                panel.DataPanelCellGameArchive = StartDataAndMgr.GetInstance().DataListCellGameArchive[tempi];
+                panel.DataPanelCellGameArchive = MgrData.GetInstance().DataListCellGameArchive[tempi];
                 panel.IndexCellGameArchive = NowIndex;
                 NowIndex += 1;
             });

@@ -12,7 +12,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
     private static void Generate()
     {
         MgrXml.GetInstance().filePath = Application.persistentDataPath + "/Data/XmlData";        
-        StartDataAndMgr.GetInstance().PathGameArchiveData = "/GameArchiveDataDic";
+        MgrData.GetInstance().PathGameArchiveData = "/GameArchiveDataDic";
 
         List<DataContainer_PanelCellGameArchive> GameArchiveDataCellList = new List<DataContainer_PanelCellGameArchive>();
 
@@ -53,9 +53,9 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         #endregion
 
-        MgrXml.GetInstance().Save(GameArchiveDataCellList, StartDataAndMgr.GetInstance().PathGameArchiveData);
+        MgrXml.GetInstance().Save(GameArchiveDataCellList, MgrData.GetInstance().PathGameArchiveData);        
 
-        DestroyImmediate(StartDataAndMgr.GetInstance().gameObject);
+        DestroyImmediate(MgrData.GetInstance().gameObject);
         DestroyImmediate(MgrXml.GetInstance().gameObject);
     }
 }

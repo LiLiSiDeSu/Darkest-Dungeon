@@ -23,21 +23,23 @@ public class PanelTownItem : PanelBase
     {
         if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore == NowPanelCellTownStore)
         {
-            PoolEsc.GetInstance().RemoveListNoInMgrUI
-                               (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.NowPanelTownStoreItem.gameObject);
-            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;
+            PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
+            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;            
             gameObject.SetActive(false);
             return;
         }
 
         if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore != null)
         {
-            PoolEsc.GetInstance().RemoveListNoInMgrUI
-                               (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.NowPanelTownStoreItem.gameObject);
+            PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
             MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.NowPanelTownStoreItem.gameObject.SetActive(false);
         }
         MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = NowPanelCellTownStore;
-        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject);
+        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
+        () => 
+        {
+            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;            
+        });
         gameObject.SetActive(true);
     } 
 

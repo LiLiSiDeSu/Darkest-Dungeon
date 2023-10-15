@@ -379,6 +379,7 @@
 "Assets/Scripts/Other/Base Frame work/PoolEsc.cs"
 "Assets/Scripts/Other/Base Frame work/PoolNowPanel.cs"
 "Assets/Scripts/Other/Test/Test1.cs"
+"Assets/Scripts/Panel/MgrData.cs"
 "Assets/Scripts/Panel/PanelCellGameArchive.cs"
 "Assets/Scripts/Panel/PanelCellTownItem.cs"
 "Assets/Scripts/Panel/PanelCellTownStore.cs"
@@ -397,7 +398,6 @@
 "Assets/Scripts/Panel/PanelTown.cs"
 "Assets/Scripts/Panel/PanelTownItem.cs"
 "Assets/Scripts/Panel/PanelTownStore.cs"
-"Assets/Scripts/Panel/StartDataAndMgr.cs"
 "Assets/Scripts/Panel/StartUI.cs"
 -langversion:9.0
 

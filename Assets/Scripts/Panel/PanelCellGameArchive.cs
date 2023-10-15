@@ -56,9 +56,8 @@ public class PanelCellGameArchive : PanelBase
                                                                             NowIndex -= 1;
                         MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").SortCellGameArchive();
 
-                        StartDataAndMgr.GetInstance().DataListCellGameArchive.RemoveAt(IndexCellGameArchive);
-                        MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
-                                                  StartDataAndMgr.GetInstance().PathGameArchiveData);
+                        MgrData.GetInstance().DataListCellGameArchive.RemoveAt(IndexCellGameArchive);
+                        MgrData.GetInstance().Save();
 
                         MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");                        
                     };
@@ -92,8 +91,7 @@ public class PanelCellGameArchive : PanelBase
             case "IptGameArchiveInput":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
                 DataPanelCellGameArchive.GameArchiveName = EventParam;
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
-                                          StartDataAndMgr.GetInstance().PathGameArchiveData);
+                MgrData.GetInstance().Save();
 
                 if (DataPanelCellGameArchive.e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {

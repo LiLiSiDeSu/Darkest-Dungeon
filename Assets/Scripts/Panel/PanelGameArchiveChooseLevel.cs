@@ -81,19 +81,19 @@ public class PanelGameArchiveChooseLevel : PanelBase
             case "BtnGameArchiveChooseLevelBright":
                 Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
                 Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                MgrData.GetInstance().Save();
                 break;
 
             case "BtnGameArchiveChooseLevelDarkness":
                 Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
                 Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                MgrData.GetInstance().Save();
                 break;
 
             case "BtnGameArchiveChooseLevelBloodmoon":
                 Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
                 Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
+                MgrData.GetInstance().Save();
                 break;
 
             case "BtnClose":

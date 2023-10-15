@@ -2,11 +2,13 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 {
-    public List<string> ListEsc = new List<string>();
+    public List<string> ListEsc = new List<string>();    
     public List<GameObject> ListNoInMgrUI = new List<GameObject>();
+    public List<UnityAction> ListEscEvent = new List<UnityAction>();
 
     protected override void Start()
     {
@@ -21,16 +23,18 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
         });
     }
 
-    public void AddListNoInMgrUI(GameObject obj)
+    public void AddListNoInMgrUI(GameObject obj, UnityAction callback = null)
     {
         ListEsc.Add(obj.name);
         ListNoInMgrUI.Add(obj);
+        ListEscEvent.Add(callback);
     }
 
     public void RemoveListNoInMgrUI(GameObject obj)
     {
        ListEsc.Remove(obj.name);
        ListNoInMgrUI.Remove(obj);
+       ListEscEvent.RemoveAt(ListEscEvent.Count - 1);
     }
 
     public void HideAll()
@@ -58,6 +62,8 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
                 ListEsc.RemoveAt(ListEsc.Count - 1);
                 ListNoInMgrUI.RemoveAt(ListNoInMgrUI.Count - 1);
             }
-        }            
+
+            ListEscEvent[ListEscEvent.Count - 1]?.Invoke();
+        }               
     }
 }
