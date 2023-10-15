@@ -15,7 +15,7 @@ public class PanelCellGameArchive : PanelBase
     private Text TxtWeek;
     private Text TxtTime;
 
-    public DataContainer_CellGameArchive DataCellGameArchive = new DataContainer_CellGameArchive();
+    public DataContainer_PanelCellGameArchive DataPanelCellGameArchive = new DataContainer_PanelCellGameArchive();
 
     protected override void Start()
     {
@@ -25,7 +25,7 @@ public class PanelCellGameArchive : PanelBase
         transform.FindSonSonSon("BtnGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
         InitGameArchiveCellControl();
-        InitGameArchiveCellData(DataCellGameArchive);
+        InitGameArchiveCellData(DataPanelCellGameArchive);
 
         ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
     }
@@ -42,7 +42,7 @@ public class PanelCellGameArchive : PanelBase
                 "PanelGameArchiveChoose");
 
                 MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
-                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowPanelGameArchive = this;
+                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowGameArchive = this;
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").InitContent();
                 break;
 
@@ -91,11 +91,11 @@ public class PanelCellGameArchive : PanelBase
         {
             case "IptGameArchiveInput":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
-                DataCellGameArchive.GameArchiveName = EventParam;
+                DataPanelCellGameArchive.GameArchiveName = EventParam;
                 MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                           StartDataAndMgr.GetInstance().PathGameArchiveData);
 
-                if (DataCellGameArchive.e_GameArchiveLevel == E_GameArchiveLevel.None)
+                if (DataPanelCellGameArchive.e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
                     MgrUI.GetInstance().ShowPanel<PanelGameArchiveChooseLevel>
                     (true, "PanelGameArchiveChooseLevel",                                                                                
@@ -119,7 +119,7 @@ public class PanelCellGameArchive : PanelBase
         TxtTime = transform.FindSonSonSon("TxtTime").GetComponent<Text>();
     }
 
-    public void InitGameArchiveCellData(DataContainer_CellGameArchive data)
+    public void InitGameArchiveCellData(DataContainer_PanelCellGameArchive data)
     {
         IptGameArchiveInput.text = data.GameArchiveName;
 

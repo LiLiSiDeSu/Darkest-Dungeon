@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class PanelTownStore : PanelBase
 {
     public int NowIndex = 0;    
-
     private Transform ContentStore;
-    public Transform RootPanelTownStoreItem;
+    public Transform RootPanelTownItem;
 
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
@@ -18,9 +17,7 @@ public class PanelTownStore : PanelBase
         base.Start();        
 
         ContentStore = transform.FindSonSonSon("ContentStore");
-        RootPanelTownStoreItem = transform.FindSonSonSon("RootPanelTownStoreItem");
-
-        gameObject.SetActive(false);
+        RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
     }
 
     public void InitContent()
@@ -28,7 +25,7 @@ public class PanelTownStore : PanelBase
         for 
         (int i = 0; 
          i < MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-         ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore.Count; 
+         ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore.Count; 
          i++)
         {
             int tempi = i;
@@ -38,20 +35,21 @@ public class PanelTownStore : PanelBase
             (PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.transform.SetParent(ContentStore);
-                PanelCellTownStore_.DataCellStore = 
+                PanelCellTownStore_.DataPanelCellTownStore = 
                                     MgrUI.GetInstance().
                                     GetPanel<PanelGameArchiveChoose>
-                                    ("PanelGameArchiveChoose").NowPanelGameArchive.DataCellGameArchive.DataListCellStore[tempi];
+                                    ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore[tempi];
 
-                MgrUI.GetInstance().CreatePanelAndPush<PanelTownStoreItem>
-                                 (false, "/PanelTownStoreItem", false, false, "PanelTownStoreItem",
-                (PanelTownStoreItem_) =>
+                MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
+                                 (false, "/PanelTownItem", false, false, "PanelTownItem",
+                (PanelTownItem_) =>
                 {                    
-                    PanelTownStoreItem_.transform.SetParent(RootPanelTownStoreItem);
-                    PanelCellTownStore_.PanelItem = PanelTownStoreItem_;
+                    PanelTownItem_.transform.SetParent(RootPanelTownItem);
+                    PanelCellTownStore_.NowPanelTownStoreItem = PanelTownItem_;
+                    PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
                 });
 
-                PanelCellTownStore_.IndexCellCellStore = tempi;
+                PanelCellTownStore_.IndexCellTownStore = tempi;
                 NowIndex++;
             });
         }

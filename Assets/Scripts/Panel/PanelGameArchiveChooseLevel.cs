@@ -79,20 +79,20 @@ public class PanelGameArchiveChooseLevel : PanelBase
         switch (controlname)
         {
             case "BtnGameArchiveChooseLevelBright":
-                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
-                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
+                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
                 MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 
             case "BtnGameArchiveChooseLevelDarkness":
-                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
-                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
+                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
                 MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 
             case "BtnGameArchiveChooseLevelBloodmoon":
-                Cell.DataCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
-                Cell.InitGameArchiveCellData(Cell.DataCellGameArchive);
+                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
+                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
                 MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, StartDataAndMgr.GetInstance().PathGameArchiveData);
                 break;
 

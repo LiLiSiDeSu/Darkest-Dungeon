@@ -10,8 +10,7 @@ public class PanelGameArchiveChoose : PanelBase
     public int NowIndex = 0;    
 
     public Transform Content;
-
-    public PanelCellGameArchive NowPanelGameArchive = new PanelCellGameArchive();
+    public PanelCellGameArchive NowGameArchive = new PanelCellGameArchive();
 
     protected override void Start()
     {
@@ -20,9 +19,7 @@ public class PanelGameArchiveChoose : PanelBase
         Content = transform.FindSonSonSon("Content");
         transform.FindSonSonSon("BtnBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
-        InitContent();
-        
-        gameObject.SetActive(false);
+        InitContent();                
     }    
 
     protected override void Button_OnClick(string controlname)
@@ -48,7 +45,7 @@ public class PanelGameArchiveChoose : PanelBase
                     panel.transform.parent = Content;
                     panel.IndexCellGameArchive = NowIndex;
                     NowIndex += 1;
-                    StartDataAndMgr.GetInstance().DataListCellGameArchive.Add(new DataContainer_CellGameArchive());
+                    StartDataAndMgr.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
                     MgrXml.GetInstance().Save(StartDataAndMgr.GetInstance().DataListCellGameArchive, 
                                               StartDataAndMgr.GetInstance().PathGameArchiveData);                    
                 });
@@ -66,7 +63,7 @@ public class PanelGameArchiveChoose : PanelBase
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
-                panel.DataCellGameArchive = StartDataAndMgr.GetInstance().DataListCellGameArchive[tempi];
+                panel.DataPanelCellGameArchive = StartDataAndMgr.GetInstance().DataListCellGameArchive[tempi];
                 panel.IndexCellGameArchive = NowIndex;
                 NowIndex += 1;
             });

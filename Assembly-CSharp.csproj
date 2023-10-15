@@ -80,8 +80,6 @@
     <Compile Include="Assets\Scripts\Panel\PanelTown.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomSmithy.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBaseAuto_Mono.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelCellItem.cs" />
-    <Compile Include="Assets\Scripts\Other\DataContainer.cs" />
     <Compile Include="Assets\Scripts\Panel\StartUI.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
@@ -90,28 +88,22 @@
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrRes.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
-    <Compile Include="Assets\Scripts\Other\EnumAll.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrInput.cs" />
+    <Compile Include="Assets\Scripts\Other\AllDataContainer.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />
+    <Compile Include="Assets\Scripts\Other\AllEnum.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\BaseEditorGUIExtension.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomGraveyard.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelCellTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherSetting.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChoose.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherHint.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\CenterEvent.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrAudioSource.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolBuffer.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelTownStoreItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellGameArchive.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\InstanceBase\doc\doc.txt" />
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\MgrData\MgrXml\doc\DocForMgrXml.txt" />
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\MgrUI\doc\DocForMgrUI.txt" />
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\MgrInput\doc\InputMgrExample.txt" />
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\MgrUI\doc\Doc For panelBase.txt" />
-    <None Include="Assets\Scripts\Other\Base Frame work\doc\MgrInput\doc\DocForMgrInput.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

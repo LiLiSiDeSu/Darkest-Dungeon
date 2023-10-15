@@ -7,24 +7,27 @@ using UnityEngine.UI;
 
 public class PanelCellTownStore : PanelBase
 {
-    public int IndexCellCellStore;    
+    public int IndexCellTownStore;
 
-    public Text TxtMaxWeight;
-    public Text TxtNowWeight;
+    public int MaxWeight;
+    public int MaxCapacity;
+
+    public Text TxtMaxWeight;    
     public Text TxtMaxCapacity;
+    public Text TxtNowWeight;
     public Text TxtNowCapacity;
     public Image ImgStore;
 
-    public DataContainer_PanelCellStore DataCellStore;
-    public PanelTownStoreItem PanelItem;
+    public DataContainer_PanelCellTownStore DataPanelCellTownStore;
+    public PanelTownItem NowPanelTownStoreItem;
 
     protected override void Start()
     {
         base.Start();                
 
-        TxtMaxWeight = transform.FindSonSonSon("TxtMaxWeight").GetComponent<Text>();
-        TxtNowWeight = transform.FindSonSonSon("TxtNowWeight").GetComponent<Text>();
+        TxtMaxWeight = transform.FindSonSonSon("TxtMaxWeight").GetComponent<Text>();        
         TxtMaxCapacity = transform.FindSonSonSon("TxtMaxCapacity").GetComponent<Text>();
+        TxtNowWeight = transform.FindSonSonSon("TxtNowWeight").GetComponent<Text>();
         TxtNowCapacity = transform.FindSonSonSon("TxtNowCapacity").GetComponent<Text>();
         ImgStore = transform.FindSonSonSon("ImgStore").GetComponent<Image>();        
 
@@ -32,10 +35,10 @@ public class PanelCellTownStore : PanelBase
 
         ImgStore.alphaHitTestMinimumThreshold = 0.2f;
 
-        TxtMaxWeight.text = "/" + DataCellStore.MaxWeight.ToString();
-        TxtNowWeight.text = DataCellStore.NowWeight.ToString();
-        TxtMaxCapacity.text = "/" + DataCellStore.MaxCapacity.ToString();
-        TxtNowCapacity.text = DataCellStore.NowCapacity.ToString();
+        TxtMaxWeight.text = "/" + MaxWeight.ToString();        
+        TxtMaxCapacity.text = "/" + MaxCapacity.ToString();
+        TxtNowWeight.text = DataPanelCellTownStore.NowWeight.ToString();
+        TxtNowCapacity.text = DataPanelCellTownStore.NowCapacity.ToString();
     }
 
     protected override void Button_OnClick(string controlname)
@@ -45,32 +48,31 @@ public class PanelCellTownStore : PanelBase
         switch (controlname)
         {
             case "BtnCellTownStore":                
-                PanelItem.Show(this);                
+                NowPanelTownStoreItem.Show(this);                
                 break;
         }
     }
 
     public void InitDataInfo()
     {
-        switch (DataCellStore.e_PanelCellStorePrefabName)
+        switch (DataPanelCellTownStore.e_SpriteNamePanelCellTownStore)
         {
             case E_SpriteNamePanelCellTownStore.StoreWood:
-                DataCellStore.MaxWeight = 50;
-                DataCellStore.MaxCapacity = 100;                
-                ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + E_SpriteNamePanelCellTownStore.StoreWood.ToString());
+                MaxWeight = 50;
+                MaxCapacity = 100;
                 break;
 
             case E_SpriteNamePanelCellTownStore.StoreIron:
-                DataCellStore.MaxWeight = 200;
-                DataCellStore.MaxCapacity = 250;
-                ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + E_SpriteNamePanelCellTownStore.StoreIron.ToString());
+                MaxWeight = 200;
+                MaxCapacity = 250;                
                 break;
 
             case E_SpriteNamePanelCellTownStore.StoreGold:
-                DataCellStore.MaxWeight = 70;
-                DataCellStore.MaxCapacity = 400;
-                ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + E_SpriteNamePanelCellTownStore.StoreGold.ToString());
+                MaxWeight = 70;
+                MaxCapacity = 400;                
                 break;        
         }
+
+        ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + DataPanelCellTownStore.e_SpriteNamePanelCellTownStore.ToString());
     }
 }
