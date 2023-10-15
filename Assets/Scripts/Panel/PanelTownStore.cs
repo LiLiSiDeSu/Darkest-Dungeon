@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PanelTownStore : PanelBase
 {
     public int NowIndex = 0;    
-    private Transform ContentStore;
+    private Transform Content;
     public Transform RootPanelTownItem;
 
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
@@ -16,17 +16,13 @@ public class PanelTownStore : PanelBase
     {
         base.Start();        
 
-        ContentStore = transform.FindSonSonSon("ContentStore");
+        Content = transform.FindSonSonSon("Content");
         RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
     }
 
     public void InitContent()
     {
-        for 
-        (int i = 0; 
-         i < MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>
-                              ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore.Count; 
-         i++)
+        for (int i = 0;  i < GlobalHot.NowCellGameArchive.DataListCellStore.Count; i++)
         {
             int tempi = i;
 
@@ -34,11 +30,7 @@ public class PanelTownStore : PanelBase
                              (false, "/PanelCellTownStore", false, false, "PanelCellTownStore",
             (PanelCellTownStore_) =>
             {
-                PanelCellTownStore_.transform.SetParent(ContentStore);
-                PanelCellTownStore_.DataPanelCellTownStore = 
-                                    MgrUI.GetInstance().
-                                    GetPanel<PanelGameArchiveChoose>
-                                    ("PanelGameArchiveChoose").NowGameArchive.DataPanelCellGameArchive.DataListCellStore[tempi];
+                PanelCellTownStore_.transform.SetParent(Content);
 
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
                                  (false, "/PanelTownItem", false, false, "PanelTownItem",
@@ -49,13 +41,13 @@ public class PanelTownStore : PanelBase
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
                 });
 
-                PanelCellTownStore_.IndexCellTownStore = tempi;
+                PanelCellTownStore_.Index = tempi;
                 NowIndex++;
             });
         }
     }
 
-    public void SortCellStore()
+    public void SortIndex()
     {
 
     }

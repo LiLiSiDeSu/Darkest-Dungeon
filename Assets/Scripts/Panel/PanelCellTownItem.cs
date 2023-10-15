@@ -6,14 +6,22 @@ using UnityEngine.UI;
 
 public class PanelCellTownItem : PanelBase
 {    
-    public int IndexPanelCellItem;
+    public E_SpriteNamePanelCellItem Hot_ESpriteName
+    {
+        get
+        {
+            return GlobalHot.NowCellGameArchive.DataListCellStore
+                   [transform.parent.parent.parent.parent.GetComponent<PanelTownItem>().FatherPanelCellTownStore.Index].
+                   DataListCellItem[Index].e_SpriteNamePanelCellItem;
+        }
+    }
+
+    public int Index;
 
     public int Weight;
     public int Capacity;
 
-    public Image ImgItem;
-
-    public DataContainer_PanelCellItem DataPanelCellTownItem;
+    public Image ImgItem;    
 
     protected override void Start()
     {
@@ -28,7 +36,7 @@ public class PanelCellTownItem : PanelBase
 
     public void InitDataInfo()
     {
-        switch (DataPanelCellTownItem.e_SpriteNamePanelCellItem)
+        switch (Hot_ESpriteName)
         {
             case E_SpriteNamePanelCellItem.ItemFoodCookie:                
                 break;
@@ -54,6 +62,6 @@ public class PanelCellTownItem : PanelBase
                 break;
         }
 
-        ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + DataPanelCellTownItem.e_SpriteNamePanelCellItem.ToString());
+        ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + Hot_ESpriteName.ToString());
     }
 }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelTownItem : PanelBase
-{
-    public int NowIndex = 0;
+{    
+    public int NowIndex;
     public PanelCellTownStore FatherPanelCellTownStore;
-    private Transform ContentItem;
+    private Transform Content;
 
     protected override void Start()
     {
         base.Start();
 
-        ContentItem = transform.FindSonSonSon("ContentItem");
+        Content = transform.FindSonSonSon("Content");
 
         InitContent();
 
@@ -45,7 +45,7 @@ public class PanelTownItem : PanelBase
 
     public void InitContent()
     {
-        for (int i = 0; i < FatherPanelCellTownStore.DataPanelCellTownStore.DataListCellItem.Count; i++)
+        for (int i = 0; i < GlobalHot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellItem.Count; i++)
         {
             int tempi = i;
 
@@ -53,9 +53,8 @@ public class PanelTownItem : PanelBase
                              (false, "/PanelCellTownItem", callback :
             (panel) =>
             {
-                panel.transform.SetParent(ContentItem);
-                panel.DataPanelCellTownItem = FatherPanelCellTownStore.DataPanelCellTownStore.DataListCellItem[tempi];
-                panel.IndexPanelCellItem = NowIndex;
+                panel.transform.SetParent(Content);               
+                panel.Index = NowIndex;
                 NowIndex++;
             });
         }

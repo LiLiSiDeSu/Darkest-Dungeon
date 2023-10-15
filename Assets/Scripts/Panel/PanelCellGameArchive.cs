@@ -6,16 +6,14 @@ using UnityEngine.UI;
 
 public class PanelCellGameArchive : PanelBase
 {
-    public int IndexCellGameArchive;
+    public int Index;
 
     public Image ImgEnvelope;
     private InputField IptGameArchiveInput;
-    private Image ImgGameArchiveLevel;
+    public Image ImgGameArchiveLevel;
     private Text TxtLocation;
     private Text TxtWeek;
-    private Text TxtTime;
-
-    public DataContainer_PanelCellGameArchive DataPanelCellGameArchive = new DataContainer_PanelCellGameArchive();
+    private Text TxtTime;    
 
     protected override void Start()
     {
@@ -25,7 +23,7 @@ public class PanelCellGameArchive : PanelBase
         transform.FindSonSonSon("BtnGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
         InitGameArchiveCellControl();
-        InitGameArchiveCellData(DataPanelCellGameArchive);
+        InitGameArchiveCellData(Data.GetInstance().DataListCellGameArchive[Index]);
 
         ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
     }
@@ -37,35 +35,41 @@ public class PanelCellGameArchive : PanelBase
         switch (controlname)
         {
             case "BtnGameArchiveChoosed":
+                #region ChoosedGameArchive
+
                 MgrUI.GetInstance().HidePanel
-                (false, MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").gameObject, 
-                "PanelGameArchiveChoose");
+                (false, MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").gameObject, "PanelGameArchiveChoose");
 
                 MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
-                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowGameArchive = this;
+                MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive = Index;
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").InitContent();
+
+                #endregion
                 break;
 
             case "BtnGameArchiveDestroy":
+                #region DestroyGameArchive
+
                 MgrUI.GetInstance().ShowPanel<PanelOtherHint>(true, "PanelOtherHint", (panel1) =>
                 {
                     MgrUI.GetInstance().GetPanel<PanelOtherHint>("PanelOtherHint").DelConfirm += (panel2) =>
-                    {                        
+                    {
                         DestroyImmediate(gameObject);
-                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").
-                                                                            NowIndex -= 1;
+                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowIndex -= 1;
                         MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").SortCellGameArchive();
 
-                        MgrData.GetInstance().DataListCellGameArchive.RemoveAt(IndexCellGameArchive);
-                        MgrData.GetInstance().Save();
+                        Data.GetInstance().DataListCellGameArchive.RemoveAt(Index);
+                        Data.GetInstance().Save();
 
-                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");                        
+                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");
                     };
                     MgrUI.GetInstance().GetPanel<PanelOtherHint>("PanelOtherHint").DelCancel += (panel2) =>
-                    {                        
-                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");                        
+                    {
+                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");
                     };
-                });                
+                });
+
+                #endregion
                 break;
         }             
     }
@@ -90,19 +94,19 @@ public class PanelCellGameArchive : PanelBase
         {
             case "IptGameArchiveInput":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
-                DataPanelCellGameArchive.GameArchiveName = EventParam;
-                MgrData.GetInstance().Save();
+                Data.GetInstance().DataListCellGameArchive[Index].GameArchiveName = EventParam;
+                Data.GetInstance().Save();
 
-                if (DataPanelCellGameArchive.e_GameArchiveLevel == E_GameArchiveLevel.None)
+                if (Data.GetInstance().DataListCellGameArchive[Index].e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
                     MgrUI.GetInstance().ShowPanel<PanelGameArchiveChooseLevel>
                     (true, "PanelGameArchiveChooseLevel",                                                                                
                     (panel) =>
                     {
-                        panel.Cell = this;
+                        panel.IndexNowGameArchive = Index;
+                        panel.ImgGameArchiveLevel = ImgGameArchiveLevel;
                     });
-                }
-                
+                }                
                 break;
         }
     }
@@ -115,13 +119,22 @@ public class PanelCellGameArchive : PanelBase
         TxtLocation = transform.FindSonSonSon("TxtLocation").GetComponent<Text>();
         TxtWeek = transform.FindSonSonSon("TxtWeek").GetComponent<Text>();
         TxtTime = transform.FindSonSonSon("TxtTime").GetComponent<Text>();
-    }
+    }    
 
     public void InitGameArchiveCellData(DataContainer_PanelCellGameArchive data)
     {
         IptGameArchiveInput.text = data.GameArchiveName;
 
-        switch (data.e_GameArchiveLevel)
+        ChangeImgGameArchiveLevel(data.e_GameArchiveLevel);
+
+        TxtLocation.text = data.Location;
+        TxtWeek.text = data.Week;
+        TxtTime.text = data.Time;
+    }
+
+    public void ChangeImgGameArchiveLevel(E_GameArchiveLevel level)
+    {
+        switch (level)
         {
             case E_GameArchiveLevel.None:
                 ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelNone");
@@ -136,9 +149,5 @@ public class PanelCellGameArchive : PanelBase
                 ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelBloodmoon");
                 break;
         }
-
-        TxtLocation.text = data.Location;
-        TxtWeek.text = data.Week;
-        TxtTime.text = data.Time;
     }
 }

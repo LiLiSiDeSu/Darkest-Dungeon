@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChoose : PanelBase
 {       
-    public int NowIndex = 0;    
+    public int NowIndex = 0;
+    public int IndexNowCellGameArchive = 0;
 
-    public Transform Content;
-    public PanelCellGameArchive NowGameArchive = new PanelCellGameArchive();
+    public Transform Content;    
 
     protected override void Start()
     {
@@ -42,11 +42,11 @@ public class PanelGameArchiveChoose : PanelBase
                 (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
                 (panel) =>
                 {
-                    panel.transform.parent = Content;
-                    panel.IndexCellGameArchive = NowIndex;
+                    panel.transform.SetParent(Content, false);
+                    panel.Index = NowIndex;
                     NowIndex += 1;
-                    MgrData.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
-                    MgrData.GetInstance().Save();
+                    Data.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
+                    Data.GetInstance().Save();
                 });
                 break;
         }
@@ -54,16 +54,15 @@ public class PanelGameArchiveChoose : PanelBase
     
     private void InitContent()
     {
-        for (int i = 0; i < MgrData.GetInstance().DataListCellGameArchive.Count; i++)
+        for (int i = 0; i < Data.GetInstance().DataListCellGameArchive.Count; i++)
         {
             int tempi = i;
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
                              (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive", 
             (panel) =>
             {
-                panel.transform.SetParent(Content, false);
-                panel.DataPanelCellGameArchive = MgrData.GetInstance().DataListCellGameArchive[tempi];
-                panel.IndexCellGameArchive = NowIndex;
+                panel.transform.SetParent(Content, false);                
+                panel.Index = NowIndex;
                 NowIndex += 1;
             });
         } 
@@ -74,7 +73,7 @@ public class PanelGameArchiveChoose : PanelBase
         PanelCellGameArchive[] all = Content.GetComponentsInChildren<PanelCellGameArchive>();
         for (int i = 0; i < all.Length; i++)
         {
-            all[i].IndexCellGameArchive = i;            
+            all[i].Index = i;            
         }
     }
 }

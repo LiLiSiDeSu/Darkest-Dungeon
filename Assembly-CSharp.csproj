@@ -79,13 +79,14 @@
     <Compile Include="Assets\Scripts\Panel\PanelTown.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomSmithy.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBaseAuto_Mono.cs" />
-    <Compile Include="Assets\Scripts\Panel\MgrData.cs" />
+    <Compile Include="Assets\Scripts\Other\GlobalHot.cs" />
     <Compile Include="Assets\Scripts\Panel\StartUI.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />
+    <Compile Include="Assets\Scripts\Panel\Data.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrRes.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />

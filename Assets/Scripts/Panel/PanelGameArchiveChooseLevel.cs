@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChooseLevel : PanelBase
 {
-    public PanelCellGameArchive Cell;
+    public int IndexNowGameArchive;
 
+    public Image ImgGameArchiveLevel;
     private Transform ImgCurrentChoice;
     private Image ImgGameArchiveDecorateLevel;
     private Text TxtDescribes;
@@ -79,21 +80,21 @@ public class PanelGameArchiveChooseLevel : PanelBase
         switch (controlname)
         {
             case "BtnGameArchiveChooseLevelBright":
-                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bright;
-                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrData.GetInstance().Save();
+                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bright;
+                ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelBright");
+                Data.GetInstance().Save();
                 break;
 
             case "BtnGameArchiveChooseLevelDarkness":
-                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
-                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrData.GetInstance().Save();
+                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
+                ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelDarkness");
+                Data.GetInstance().Save();
                 break;
 
             case "BtnGameArchiveChooseLevelBloodmoon":
-                Cell.DataPanelCellGameArchive.e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
-                Cell.InitGameArchiveCellData(Cell.DataPanelCellGameArchive);
-                MgrData.GetInstance().Save();
+                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
+                ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelBloodmoon");
+                Data.GetInstance().Save();
                 break;
 
             case "BtnClose":

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PanelCellTownStore : PanelBase
 {
-    public int IndexCellTownStore;
+    public int Index;
 
     public int MaxWeight;
     public int MaxCapacity;
@@ -17,8 +17,7 @@ public class PanelCellTownStore : PanelBase
     public Text TxtNowWeight;
     public Text TxtNowCapacity;
     public Image ImgStore;
-
-    public DataContainer_PanelCellTownStore DataPanelCellTownStore = new DataContainer_PanelCellTownStore();
+    
     public PanelTownItem NowPanelTownStoreItem = new PanelTownItem();
 
     protected override void Start()
@@ -37,8 +36,8 @@ public class PanelCellTownStore : PanelBase
 
         TxtMaxWeight.text = "/" + MaxWeight.ToString();        
         TxtMaxCapacity.text = "/" + MaxCapacity.ToString();
-        TxtNowWeight.text = DataPanelCellTownStore.NowWeight.ToString();
-        TxtNowCapacity.text = DataPanelCellTownStore.NowCapacity.ToString();
+        TxtNowWeight.text = GlobalHot.NowCellGameArchive.DataListCellStore[Index].NowWeight.ToString();
+        TxtNowCapacity.text = GlobalHot.NowCellGameArchive.DataListCellStore[Index].NowCapacity.ToString();
     }
 
     protected override void Button_OnClick(string controlname)
@@ -55,7 +54,7 @@ public class PanelCellTownStore : PanelBase
 
     public void InitDataInfo()
     {
-        switch (DataPanelCellTownStore.e_SpriteNamePanelCellTownStore)
+        switch (GlobalHot.NowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore)
         {
             case E_SpriteNamePanelCellTownStore.StoreWood:
                 MaxWeight = 50;
@@ -73,6 +72,7 @@ public class PanelCellTownStore : PanelBase
                 break;        
         }
 
-        ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + DataPanelCellTownStore.e_SpriteNamePanelCellTownStore.ToString());
+        ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>
+        ("Art/" + GlobalHot.NowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore.ToString());
     }
 }
