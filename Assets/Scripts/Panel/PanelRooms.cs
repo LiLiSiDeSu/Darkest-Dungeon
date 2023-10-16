@@ -9,7 +9,7 @@ public class PanelRooms : PanelBase
     public bool IsShow = false;
 
     private Transform ImgCurrentChoice;
-    private float PosOffsetForImgCurrentChoice = 90f;
+    private float PosOffsetForImgCurrentChoice = 80f;
     private Dictionary<string, Transform> PosPanelRoom = new Dictionary<string, Transform>();
 
     public PanelBase CurrentPanel;
@@ -85,6 +85,7 @@ public class PanelRooms : PanelBase
 
         if (CurrentPanel != null)
             CurrentPanel.gameObject.SetActive(false);
+        
         CurrentPanel = NewPanel;
         CurrentPanel.gameObject.SetActive(true);
     }
