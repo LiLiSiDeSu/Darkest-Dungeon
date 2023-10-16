@@ -16,6 +16,11 @@ public class Data : InstanceBaseAuto_Mono<Data>
 
         PathGameArchiveData = "/GameArchiveData";
 
+        if (!File.Exists(MgrXml.GetInstance().filePath))
+        {
+            Directory.CreateDirectory(MgrXml.GetInstance().filePath);
+        }
+
         string[] AllPathGameArchive = Directory.GetFiles(MgrXml.GetInstance().filePath);        
         
         for (int i = 0; i < AllPathGameArchive.Length; i++)

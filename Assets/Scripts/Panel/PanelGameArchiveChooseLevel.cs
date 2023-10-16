@@ -80,19 +80,19 @@ public class PanelGameArchiveChooseLevel : PanelBase
         switch (controlname)
         {
             case "BtnGameArchiveChooseLevelBright":
-                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bright;
+                Data.GetInstance().DataListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bright;
                 ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelBright");
                 Data.GetInstance().Save(IndexNowGameArchive);
                 break;
 
             case "BtnGameArchiveChooseLevelDarkness":
-                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
+                Data.GetInstance().DataListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Darkness;
                 ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelDarkness");
                 Data.GetInstance().Save(IndexNowGameArchive);
                 break;
 
             case "BtnGameArchiveChooseLevelBloodmoon":
-                GlobalHot.ListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
+                Data.GetInstance().DataListCellGameArchive[IndexNowGameArchive].e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
                 ImgGameArchiveLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/DecorateGameArchiveLevelBloodmoon");
                 Data.GetInstance().Save(IndexNowGameArchive);
                 break;

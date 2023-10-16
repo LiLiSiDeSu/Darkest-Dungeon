@@ -12,13 +12,5 @@ public static class GlobalHot
             return Data.GetInstance().DataListCellGameArchive
                    [MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive];
         }        
-    }
-
-    public static List<DataContainer_PanelCellGameArchive> ListCellGameArchive
-    {
-        get
-        {
-            return Data.GetInstance().DataListCellGameArchive;                  
-        }
-    }
+    }    
 }

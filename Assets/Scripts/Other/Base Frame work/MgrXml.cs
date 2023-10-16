@@ -75,10 +75,7 @@ public class MgrXml : InstanceBaseAuto_Mono<MgrXml>
         if (!File.Exists(filePath))
             Directory.CreateDirectory(filePath);
 
-        string path = filePath + fileName + ".xml";
-        
-        if (!File.Exists(path)) 
-            return Activator.CreateInstance(typeof(T)) as T;
+        string path = filePath + fileName + ".xml";               
 
         using (StreamReader reader = new StreamReader(path))
         {
