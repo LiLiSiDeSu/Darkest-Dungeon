@@ -10,7 +10,7 @@ public class PanelOtherStart : PanelBase
     {
         base.Start();
 
-        transform.FindSonSonSon("BtnStart").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgStart").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)

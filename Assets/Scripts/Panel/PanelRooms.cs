@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,8 @@ public class PanelRooms : PanelBase
     public bool IsShow = false;
 
     private Transform ImgCurrentChoice;
-    private float PosOffsetForImgCurrentChoice = 80f;
-    private Dictionary<string, Transform> PosPanelRoom = new Dictionary<string, Transform>();
+    private float PosOffsetForImgCurrentChoice = 85f;
+    private Dictionary<string, Transform> PosBtnRoom = new Dictionary<string, Transform>();
 
     public PanelBase CurrentPanel;
     public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
@@ -19,16 +20,15 @@ public class PanelRooms : PanelBase
     {
         base.Start();
 
-        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");  
-        ImgCurrentChoice.gameObject.SetActive(false);
+        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
 
-        Button[] temppos = transform.FindSonSonSon("BtnRootSwitchRoom").GetComponentsInChildren<Button>();
+        Button[] temppos = transform.FindSonSonSon("BtnRoomRoot").GetComponentsInChildren<Button>();
         for (int i = 0; i < temppos.Length; i++)
         {
-            PosPanelRoom.Add(temppos[i].gameObject.name, temppos[i].transform);
+            PosBtnRoom.Add(temppos[i].gameObject.name, temppos[i].transform);
         }
-        
-        PanelBase[] temppanel = transform.FindSonSonSon("PanelRootRoom").GetComponentsInChildren<PanelBase>();
+
+        PanelBase[] temppanel = transform.FindSonSonSon("PanelRoomRoot").GetComponentsInChildren<PanelBase>();
         for (int i = 0; i < temppanel.Length; i++)
         {            
             AllPanel.Add(temppanel[i].gameObject.name, temppanel[i]);
@@ -73,10 +73,10 @@ public class PanelRooms : PanelBase
     }
 
     public void ChangeImgCurrentChoicePos(string Key)
-    {
+    {        
         ImgCurrentChoice.gameObject.SetActive(true);
         ImgCurrentChoice.position = new Vector3
-                         (PosPanelRoom[Key].position.x - PosOffsetForImgCurrentChoice, PosPanelRoom[Key].position.y, 0);
+                         (PosBtnRoom[Key].position.x - PosOffsetForImgCurrentChoice, PosBtnRoom[Key].position.y, 0);
     }
 
     public void HideBeforePanelAndShowNewPanel(PanelBase NewPanel, string BtnNameToChangeImgCurrentChoicePos)
@@ -97,8 +97,8 @@ public class PanelRooms : PanelBase
     }
 
     public void StartByTown(string RoomName)
-    {
-        HideBeforePanelAndShowNewPanel(AllPanel[RoomName], RoomName.Replace("Panel", "Btn"));
+    {        
+        HideBeforePanelAndShowNewPanel(AllPanel[RoomName], RoomName.Replace("Panel", "Btn"));        
         MgrUI.GetInstance().ShowPanel<PanelRooms>(true, "PanelRooms");
     }
 }
