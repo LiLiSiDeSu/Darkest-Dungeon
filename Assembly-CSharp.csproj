@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChooseLevel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolEsc.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrScene.cs" />
-    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\SetAciveFalseInPlaying.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolNowPanel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />

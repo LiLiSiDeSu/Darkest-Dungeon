@@ -46,7 +46,7 @@ public class PanelGameArchiveChoose : PanelBase
                     panel.Index = NowIndex;
                     NowIndex += 1;
                     Data.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
-                    Data.GetInstance().Save();
+                    Data.GetInstance().Save(panel.Index);
                 });
                 break;
         }
