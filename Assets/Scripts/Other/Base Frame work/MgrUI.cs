@@ -145,13 +145,9 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 
     public void DestroyPanel(string panelname, UnityAction callback = null)
     {
-        if (DicPanel.ContainsKey(panelname))
-        {            
-            Destroy(DicPanel[panelname].gameObject);
-            DicPanel.Remove(panelname);
-            if (callback != null)
-                callback();
-        }
+        Destroy(DicPanel[panelname].gameObject);
+        DicPanel.Remove(panelname);
+        callback?.Invoke();
     }
 
     public T GetPanel<T>(string panelname) where T : PanelBase

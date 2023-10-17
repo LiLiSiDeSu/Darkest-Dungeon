@@ -390,6 +390,7 @@
 "Assets/Scripts/Panel/PanelGameArchiveChoose.cs"
 "Assets/Scripts/Panel/PanelGameArchiveChooseLevel.cs"
 "Assets/Scripts/Panel/PanelOtherHint.cs"
+"Assets/Scripts/Panel/PanelOtherKeySetting.cs"
 "Assets/Scripts/Panel/PanelOtherSetting.cs"
 "Assets/Scripts/Panel/PanelOtherStart.cs"
 "Assets/Scripts/Panel/PanelResTransform.cs"

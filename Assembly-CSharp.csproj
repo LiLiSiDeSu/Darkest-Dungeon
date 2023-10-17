@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceMgr.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForBatchRename.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTown.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelOtherKeySetting.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomSmithy.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBaseAuto_Mono.cs" />
     <Compile Include="Assets\Scripts\Other\GlobalHot.cs" />

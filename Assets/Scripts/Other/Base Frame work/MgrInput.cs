@@ -14,6 +14,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode UpArrow = KeyCode.UpArrow;
     public KeyCode DownArrow = KeyCode.DownArrow;
     public KeyCode Esc = KeyCode.Escape;
+    public KeyCode Setting = KeyCode.I;
 
     #endregion
 
@@ -66,6 +67,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(UpArrow);
         CheckKeyCode(DownArrow);
         CheckKeyCode(Esc);
+        CheckKeyCode(Setting);
     }
 
     #endregion 

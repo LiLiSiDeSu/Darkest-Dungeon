@@ -9,8 +9,8 @@ public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public List<DataContainer_PanelCellTownStore> DataListCellStore = new List<DataContainer_PanelCellTownStore>();
-    public DataContainer_PanelStoreAncestralProperty DataResAncestralProperty = new DataContainer_PanelStoreAncestralProperty();
-    public DataContainer_PanelStoreCoin DataResCoin = new DataContainer_PanelStoreCoin();
+    public DataContainer_PanelStoreAncestralProperty DataStoreAncestralProperty = new DataContainer_PanelStoreAncestralProperty();
+    public DataContainer_PanelStoreCoin DataStoreCoin = new DataContainer_PanelStoreCoin();
     public string GameArchiveName = "---";
     public string Location = "---";
     public string Week = "0";

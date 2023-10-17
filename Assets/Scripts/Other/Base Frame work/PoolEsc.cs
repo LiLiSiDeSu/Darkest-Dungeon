@@ -39,7 +39,8 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 
     public void HideAll()
     {
-        for (int i = 0; i < ListEsc.Count; i++)
+        int tempCount = ListEsc.Count;
+        for (int i = 0; i < tempCount; i++)
             HideTop();
     }
 

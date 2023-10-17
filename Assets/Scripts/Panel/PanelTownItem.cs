@@ -8,13 +8,11 @@ public class PanelTownItem : PanelBase
     public PanelCellTownStore FatherPanelCellTownStore;
     private Transform Content;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
-        Content = transform.FindSonSonSon("Content");
-
-        InitContent();   
+        Content = transform.FindSonSonSon("Content");        
 
         gameObject.SetActive(false);
     }
@@ -43,7 +41,7 @@ public class PanelTownItem : PanelBase
         gameObject.SetActive(true);
     } 
 
-    public void InitContent()
+    public void UpdateContent()
     {
         for (int i = 0; i < GlobalHot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellItem.Count; i++)
         {
@@ -53,7 +51,7 @@ public class PanelTownItem : PanelBase
                              (false, "/PanelCellTownItem", callback :
             (panel) =>
             {
-                panel.transform.SetParent(Content);               
+                panel.transform.SetParent(Content, false);               
                 panel.Index = NowIndex;
                 NowIndex++;
             });

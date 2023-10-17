@@ -51,10 +51,10 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
 
-        GameArchiveDataCellList[0].DataResAncestralProperty = 
+        GameArchiveDataCellList[0].DataStoreAncestralProperty = 
             new DataContainer_PanelStoreAncestralProperty(11, 22, 33, 44, 55);
 
-        GameArchiveDataCellList[0].DataResCoin =
+        GameArchiveDataCellList[0].DataStoreCoin =
             new DataContainer_PanelStoreCoin(11, 22, 33, 44, E_StoreCoinLevel.Silver, 5);
         #endregion
 

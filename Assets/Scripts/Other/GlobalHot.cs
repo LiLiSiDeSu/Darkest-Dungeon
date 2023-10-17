@@ -9,8 +9,7 @@ public static class GlobalHot
     {
         get
         {
-            return Data.GetInstance().DataListCellGameArchive
-                   [MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive];
+            return Data.GetInstance().DataListCellGameArchive[IndexNowCellGameArchive];
         }        
     }    
 

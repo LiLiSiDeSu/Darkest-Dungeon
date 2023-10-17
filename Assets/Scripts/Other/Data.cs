@@ -38,6 +38,11 @@ public class Data : InstanceBaseAuto_Mono<Data>
         MgrXml.GetInstance().Save(DataListCellGameArchive[index], PathGameArchiveData + index);
     }
 
+    public void Save()
+    {
+        Save(GlobalHot.IndexNowCellGameArchive);
+    }
+
     public void SaveAll()
     {
         for (int i = 0; i < DataListCellGameArchive.Count; i++)

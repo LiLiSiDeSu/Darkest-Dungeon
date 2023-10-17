@@ -14,6 +14,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         MgrUI.GetInstance().CreatePanelAndPush<PanelOtherHint>
                          (true, "/PanelOtherHint", true, false, "PanelOtherHint");
 
+        MgrUI.GetInstance().CreatePanelAndPush<PanelOtherSetting>
+                         (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
+
         MgrUI.GetInstance().CreatePanelAndPush<PanelGameArchiveChoose>
                          (true, "/PanelGameArchiveChoose", true, true, "PanelGameArchiveChoose");
 

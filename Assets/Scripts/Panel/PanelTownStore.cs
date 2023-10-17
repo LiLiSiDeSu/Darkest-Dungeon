@@ -12,15 +12,15 @@ public class PanelTownStore : PanelBase
 
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();        
+        base.Awake();        
 
         Content = transform.FindSonSonSon("Content");
         RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
     }
 
-    public void InitContent()
+    public void UpdateContent()
     {
         for (int i = 0;  i < GlobalHot.NowCellGameArchive.DataListCellStore.Count; i++)
         {
@@ -30,20 +30,34 @@ public class PanelTownStore : PanelBase
                              (false, "/PanelCellTownStore", false, false, "PanelCellTownStore",
             (PanelCellTownStore_) =>
             {
-                PanelCellTownStore_.transform.SetParent(Content);
+                PanelCellTownStore_.transform.SetParent(Content, false);
 
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
                                  (false, "/PanelTownItem", false, false, "PanelTownItem",
                 (PanelTownItem_) =>
                 {                    
-                    PanelTownItem_.transform.SetParent(RootPanelTownItem);
+                    PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
                     PanelCellTownStore_.NowPanelTownStoreItem = PanelTownItem_;
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
+                    PanelTownItem_.UpdateContent();
                 });
 
                 PanelCellTownStore_.Index = tempi;
                 NowIndex++;
             });
+        }
+    }
+
+    /// <summary>
+    /// 删除Content下的物体 用于重新读档
+    /// </summary>
+    public void DestroyContent()
+    {
+        PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            DestroyImmediate(all[i].NowPanelTownStoreItem.gameObject);
+            DestroyImmediate(all[i].gameObject);
         }
     }
 

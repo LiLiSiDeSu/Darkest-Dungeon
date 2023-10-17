@@ -40,9 +40,11 @@ public class PanelCellGameArchive : PanelBase
                 MgrUI.GetInstance().HidePanel
                 (false, MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").gameObject, "PanelGameArchiveChoose");
 
-                MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
                 GlobalHot.IndexNowCellGameArchive = Index;
-                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").InitContent();
+                MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
+                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").UpdateContent();
+                MgrUI.GetInstance().GetPanel<PanelStoreAncestralProperty>("PanelStoreAncestralProperty").UpdateDataInfo();
+                MgrUI.GetInstance().GetPanel<PanelStoreCoin>("PanelStoreCoin").UpdateDataInfo();
 
                 #endregion
                 break;
