@@ -19,8 +19,8 @@ public class PanelCellGameArchive : PanelBase
     {
         base.Start();
 
-        transform.FindSonSonSon("BtnGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
+        transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
         InitGameArchiveCellControl();
         InitGameArchiveCellData(Data.GetInstance().DataListCellGameArchive[Index]);

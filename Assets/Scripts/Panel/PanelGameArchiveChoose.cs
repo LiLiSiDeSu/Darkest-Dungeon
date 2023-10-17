@@ -17,7 +17,8 @@ public class PanelGameArchiveChoose : PanelBase
         base.Start();
 
         Content = transform.FindSonSonSon("Content");
-        transform.FindSonSonSon("BtnBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgAddpanelGameArchivCell").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
         InitContent();                
     }    

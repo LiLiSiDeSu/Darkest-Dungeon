@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Elasticity: 0
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 450
+  m_ScrollSensitivity: -450
   m_Viewport: {fileID: 8251749362887276226}
   m_HorizontalScrollbar: {fileID: 4623727059204503614}
   m_VerticalScrollbar: {fileID: 0}
@@ -2645,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5913277078534926886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2734,7 +2734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6530673355992556079
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6663,7 +6663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6632419916173981188
 RectTransform:
   m_ObjectHideFlags: 0

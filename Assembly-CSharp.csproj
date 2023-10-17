@@ -62,16 +62,20 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomMercenaryaAssociation.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherStart.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChooseLevel.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelResAncestralProperty.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolEsc.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrScene.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolNowPanel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomShop.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelResTransform.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomRecruit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrXml.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownStore.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelResCoin.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\EditorGUILayout.cs" />
+    <Compile Include="Assets\Scripts\Other\Data.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBase.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceMgr.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForBatchRename.cs" />
@@ -85,7 +89,6 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />
-    <Compile Include="Assets\Scripts\Panel\Data.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrRes.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
@@ -789,6 +792,9 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>

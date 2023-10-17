@@ -13,8 +13,8 @@ public class PanelOtherHint : PanelBase
     {
         base.Start();
 
-        transform.FindSonSonSon("BtnConfirm").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnCancel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgConfirm").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgCancel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)

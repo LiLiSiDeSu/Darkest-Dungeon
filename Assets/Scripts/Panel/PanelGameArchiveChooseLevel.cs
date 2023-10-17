@@ -21,7 +21,7 @@ public class PanelGameArchiveChooseLevel : PanelBase
 
     protected override void Start()
     {
-        base.Start();
+        base.Start(); 
 
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
         ImgCurrentChoice.gameObject.SetActive(false);

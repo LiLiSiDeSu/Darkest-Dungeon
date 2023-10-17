@@ -9,12 +9,13 @@ public class PanelTown : PanelBase
     {
         base.Start();
 
-        transform.FindSonSonSon("BtnRecruit").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnWineHouse").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("BtnMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRecruit").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgWineHouse").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgTownStore").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
     }  
 
     protected override void Button_OnClick(string controlname)
