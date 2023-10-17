@@ -9,8 +9,8 @@ public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public List<DataContainer_PanelCellTownStore> DataListCellStore = new List<DataContainer_PanelCellTownStore>();
-    public DataContainer_PanelResAncestralProperty DataResAncestralProperty = new DataContainer_PanelResAncestralProperty();
-    public DataContainer_PanelResCoin DataResCoin = new DataContainer_PanelResCoin();
+    public DataContainer_PanelStoreAncestralProperty DataResAncestralProperty = new DataContainer_PanelStoreAncestralProperty();
+    public DataContainer_PanelStoreCoin DataResCoin = new DataContainer_PanelStoreCoin();
     public string GameArchiveName = "---";
     public string Location = "---";
     public string Week = "0";
@@ -57,40 +57,58 @@ public class DataContainer_PanelCellItem
     }
 }
 
-public class DataContainer_PanelResAncestralProperty
+public class DataContainer_PanelStoreAncestralProperty
 {
-    public int NumStatue;
-    public int NumDeed;
-    public int NumBadge;
-    public int NumPicture;
-    public int NumCrystal;
+    public int NowStatue = 0;
+    public int NowDeed = 0;
+    public int NowBadge = 0;
+    public int NowPicture = 0;
+    public int NowCrystal = 0;
 
-    public DataContainer_PanelResAncestralProperty() { }
-    public DataContainer_PanelResAncestralProperty
-    (int NumStatue, int NumDeed, int NumBadge, int NumPicture, int NumCrystal)
+    public int MaxStatue = 10;
+    public int MaxDeed = 10;
+    public int MaxBadge = 10;
+    public int MaxPicture = 10;
+    public int MaxCrystal = 10;
+
+    //Rate
+
+    public DataContainer_PanelStoreAncestralProperty() { }
+    public DataContainer_PanelStoreAncestralProperty
+    (int NowStatue, int NowDeed, int NowBadge, int NowPicture, int NowCrystal)
     {
-        this.NumStatue = NumStatue;
-        this.NumDeed = NumDeed;
-        this.NumBadge = NumBadge;
-        this.NumPicture = NumPicture;
-        this.NumCrystal = NumCrystal;
+        this.NowStatue = NowStatue;
+        this.NowDeed = NowDeed;
+        this.NowBadge = NowBadge;
+        this.NowPicture = NowPicture;
+        this.NowCrystal = NowCrystal;
     }
 }
 
-public class DataContainer_PanelResCoin
+public class DataContainer_PanelStoreCoin
 {
-    public int NumCopper;
-    public int NumSilver;
-    public int NumGold;
-    public int NumPlatinum;
+    public int NowCopper = 0;
+    public int NowSilver = 0;
+    public int NowGold = 0;
+    public int NowPlatinum = 0;       
 
-    public DataContainer_PanelResCoin() { }
-    public DataContainer_PanelResCoin
-    (int NumCopper, int NumSilver, int NumGold, int NumPlatinum)
+    public int RateCopperToSilver = 100;
+    public int RateSilverToGold = 100;
+    public int RateGoldToPlatinum = 100;
+
+    public E_StoreCoinLevel e_StoreCoinLevel = E_StoreCoinLevel.Silver;
+    public int StoreCoinLevel = 1;
+
+    public DataContainer_PanelStoreCoin() { }
+    public DataContainer_PanelStoreCoin
+    (int NowCopper, int NowSilver, int NowGold, int NowPlatinum,      
+     E_StoreCoinLevel e_StoreCoinLevel, int StoreCoinLevel)
     {
-        this.NumCopper = NumCopper;
-        this.NumSilver = NumSilver;
-        this.NumGold = NumGold;
-        this.NumPlatinum = NumPlatinum;
+        this.NowCopper = NowCopper;
+        this.NowSilver = NowSilver;
+        this.NowGold = NowGold;
+        this.NowPlatinum = NowPlatinum;        
+        this.e_StoreCoinLevel = e_StoreCoinLevel;
+        this.StoreCoinLevel = StoreCoinLevel;
     }
 }

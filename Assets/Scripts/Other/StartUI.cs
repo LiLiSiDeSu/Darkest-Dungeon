@@ -29,11 +29,11 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         MgrUI.GetInstance().CreatePanelAndPush<PanelTownStore>
                          (true, "/PanelTownStore", true, true, "PanelTownStore");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelResAncestralProperty>
-                         (true, "/PanelResAncestralProperty", true, false, "PanelResAncestralProperty");
+        MgrUI.GetInstance().CreatePanelAndPush<PanelStoreAncestralProperty>
+                         (true, "/PanelStoreAncestralProperty", true, false, "PanelStoreAncestralProperty");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelResCoin>
-                         (true, "/PanelResCoin", true, false, "PanelResCoin");
+        MgrUI.GetInstance().CreatePanelAndPush<PanelStoreCoin>
+                         (true, "/PanelStoreCoin", true, false, "PanelStoreCoin");
 
         Destroy(gameObject);
     }

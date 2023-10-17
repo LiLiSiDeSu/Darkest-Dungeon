@@ -34,8 +34,8 @@ public class PanelCellTownStore : PanelBase
 
         ImgStore.alphaHitTestMinimumThreshold = 0.2f;
 
-        TxtMaxWeight.text = "/" + MaxWeight.ToString();        
-        TxtMaxCapacity.text = "/" + MaxCapacity.ToString();
+        TxtMaxWeight.text = MaxWeight.ToString();        
+        TxtMaxCapacity.text = MaxCapacity.ToString();
         TxtNowWeight.text = GlobalHot.NowCellGameArchive.DataListCellStore[Index].NowWeight.ToString();
         TxtNowCapacity.text = GlobalHot.NowCellGameArchive.DataListCellStore[Index].NowCapacity.ToString();
     }

@@ -13,4 +13,17 @@ public static class GlobalHot
                    [MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive];
         }        
     }    
+
+    public static int IndexNowCellGameArchive
+    {
+        get
+        {
+            return MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive;
+        }
+
+        set
+        {
+            MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive = value;
+        }
+    }
 }

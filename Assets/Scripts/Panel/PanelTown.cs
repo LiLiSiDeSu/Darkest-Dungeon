@@ -59,23 +59,23 @@ public class PanelTown : PanelBase
                 break;
 
             case "BtnAncestralProperty":
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelResAncestralProperty"))
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelStoreAncestralProperty"))
                 {
                     MgrUI.GetInstance().HidePanel
-                    (false, MgrUI.GetInstance().DicPanel["PanelResAncestralProperty"].gameObject, "PanelResAncestralProperty");
+                    (false, MgrUI.GetInstance().DicPanel["PanelStoreAncestralProperty"].gameObject, "PanelStoreAncestralProperty");
                     break;
                 }
-                MgrUI.GetInstance().ShowPanel<PanelResAncestralProperty>(true, "PanelResAncestralProperty");
+                MgrUI.GetInstance().ShowPanel<PanelStoreAncestralProperty>(true, "PanelStoreAncestralProperty");
                 break;
 
             case "BtnCoin":
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelResCoin"))
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelStoreCoin"))
                 {
                     MgrUI.GetInstance().HidePanel
-                    (false, MgrUI.GetInstance().DicPanel["PanelResCoin"].gameObject, "PanelResCoin");
+                    (false, MgrUI.GetInstance().DicPanel["PanelStoreCoin"].gameObject, "PanelStoreCoin");
                     break;
                 }
-                MgrUI.GetInstance().ShowPanel<PanelResCoin>(true, "PanelResCoin");
+                MgrUI.GetInstance().ShowPanel<PanelStoreCoin>(true, "PanelStoreCoin");
                 break;
 
             case "BtnTransformRes":

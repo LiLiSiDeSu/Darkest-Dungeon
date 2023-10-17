@@ -31,3 +31,10 @@ public enum E_SpriteNamePanelCellItem
     ItemFoodCoodedMutton,
     ItemFoodCookedPotato,
 }
+
+public enum E_StoreCoinLevel
+{    
+    Silver,
+    Gold,
+    Platinum
+}

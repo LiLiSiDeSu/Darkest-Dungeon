@@ -52,11 +52,10 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         };
 
         GameArchiveDataCellList[0].DataResAncestralProperty = 
-            new DataContainer_PanelResAncestralProperty(11, 22, 33, 44, 55);
+            new DataContainer_PanelStoreAncestralProperty(11, 22, 33, 44, 55);
 
         GameArchiveDataCellList[0].DataResCoin =
-            new DataContainer_PanelResCoin(11, 22, 33, 44);
-
+            new DataContainer_PanelStoreCoin(11, 22, 33, 44, E_StoreCoinLevel.Silver, 5);
         #endregion
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
