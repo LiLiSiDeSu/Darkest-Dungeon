@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBase_Mono.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomMercenaryaAssociation.cs" />
+    <Compile Include="Assets\Scripts\Other\StartUI.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherStart.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChooseLevel.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelResAncestralProperty.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomShop.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelResTransform.cs" />
+    <Compile Include="Assets\Scripts\Other\Test\Test2.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomRecruit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrXml.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownStore.cs" />
@@ -83,7 +85,6 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomSmithy.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBaseAuto_Mono.cs" />
     <Compile Include="Assets\Scripts\Other\GlobalHot.cs" />
-    <Compile Include="Assets\Scripts\Panel\StartUI.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />

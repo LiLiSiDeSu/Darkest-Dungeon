@@ -381,6 +381,7 @@
 "Assets/Scripts/Other/Data.cs"
 "Assets/Scripts/Other/GlobalHot.cs"
 "Assets/Scripts/Other/Test/Test1.cs"
+"Assets/Scripts/Other/Test/Test2.cs"
 "Assets/Scripts/Panel/PanelCellGameArchive.cs"
 "Assets/Scripts/Panel/PanelCellTownItem.cs"
 "Assets/Scripts/Panel/PanelCellTownStore.cs"

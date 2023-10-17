@@ -57,6 +57,29 @@ public class PanelTown : PanelBase
                 }
                 MgrUI.GetInstance().ShowPanel<PanelTownStore>(true, "PanelTownStore");
                 break;
+
+            case "BtnAncestralProperty":
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelResAncestralProperty"))
+                {
+                    MgrUI.GetInstance().HidePanel
+                    (false, MgrUI.GetInstance().DicPanel["PanelResAncestralProperty"].gameObject, "PanelResAncestralProperty");
+                    break;
+                }
+                MgrUI.GetInstance().ShowPanel<PanelResAncestralProperty>(true, "PanelResAncestralProperty");
+                break;
+
+            case "BtnCoin":
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelResCoin"))
+                {
+                    MgrUI.GetInstance().HidePanel
+                    (false, MgrUI.GetInstance().DicPanel["PanelResCoin"].gameObject, "PanelResCoin");
+                    break;
+                }
+                MgrUI.GetInstance().ShowPanel<PanelResCoin>(true, "PanelResCoin");
+                break;
+
+            case "BtnTransformRes":
+                break;
         }
     }   
 }

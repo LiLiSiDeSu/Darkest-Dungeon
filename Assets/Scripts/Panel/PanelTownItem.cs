@@ -14,7 +14,7 @@ public class PanelTownItem : PanelBase
 
         Content = transform.FindSonSonSon("Content");
 
-        InitContent();
+        InitContent();   
 
         gameObject.SetActive(false);
     }

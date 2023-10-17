@@ -6,31 +6,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Test2
+public class Test1 : InstanceBaseAuto_Mono<Test1>
 {
-    public int cao;
-    public string caocao;
+    public int caocaocaocaocao;
 
-    public Test2() { }
-
-    public Test2(int cao, string caocao)
+    protected override void Start()
     {
-        this.cao = cao;
-        this.caocao = caocao;
+        base.Start();
+
+        gameObject.SetActive(false);
     }
-} 
 
-public class Test1 : MonoBehaviour
-{    
-    private void Start()
+    public void Init()
     {
-        Test2 test= new Test2(3, "123");
-
-        Test2 caocc = new Test2();
-
-        caocc = test;
-
-        test.cao = 222;
-        test.caocao = "caocaocaocao";
+        caocaocaocaocao = 1111111111;
+        Debug.Log(caocaocaocaocao);
     }
 }
