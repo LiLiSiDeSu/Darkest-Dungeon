@@ -96,17 +96,18 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrInput.cs" />
-    <Compile Include="Assets\Scripts\Other\AllDataContainer.cs" />
     <Compile Include="Assets\Scripts\Other\AllInit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />
     <Compile Include="Assets\Scripts\Other\AllEnum.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\BaseEditorGUIExtension.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelShopItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomGraveyard.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelStoreAncestralProperty.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherSetting.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChoose.cs" />
+    <Compile Include="Assets\Scripts\Other\AllDataOrInfoContainer.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherHint.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\CenterEvent.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrAudioSource.cs" />
@@ -368,6 +369,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Unity\Install\2022.3.8f1c1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

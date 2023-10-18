@@ -18,7 +18,7 @@ public class PanelCellTownStore : PanelBase
     public Text TxtNowCapacity;
     public Image ImgStore;
     
-    public PanelTownItem NowPanelTownStoreItem = new PanelTownItem();
+    public PanelTownItem PanelCellItem_ = new PanelTownItem();
 
     protected override void Start()
     {
@@ -47,7 +47,7 @@ public class PanelCellTownStore : PanelBase
         switch (controlname)
         {
             case "BtnCellTownStore":                
-                NowPanelTownStoreItem.Show(this);                
+                PanelCellItem_.Show(this);                
                 break;
         }
     }

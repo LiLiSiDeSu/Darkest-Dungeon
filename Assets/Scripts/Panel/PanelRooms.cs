@@ -14,7 +14,7 @@ public class PanelRooms : PanelBase
     private Dictionary<string, Transform> PosBtnRoom = new Dictionary<string, Transform>();
 
     public PanelBase CurrentPanel;
-    public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
+    public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();    
 
     protected override void Start()
     {

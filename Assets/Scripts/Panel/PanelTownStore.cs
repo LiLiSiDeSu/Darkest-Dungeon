@@ -22,6 +22,8 @@ public class PanelTownStore : PanelBase
 
     public void UpdateContent()
     {
+        NowIndex = 0;
+
         for (int i = 0;  i < GlobalHot.NowCellGameArchive.DataListCellStore.Count; i++)
         {
             int tempi = i;
@@ -37,12 +39,12 @@ public class PanelTownStore : PanelBase
                 (PanelTownItem_) =>
                 {                    
                     PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
-                    PanelCellTownStore_.NowPanelTownStoreItem = PanelTownItem_;
+                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
                     PanelTownItem_.UpdateContent();
                 });
 
-                PanelCellTownStore_.Index = tempi;
+                PanelCellTownStore_.Index = NowIndex;
                 NowIndex++;
             });
         }
@@ -52,11 +54,11 @@ public class PanelTownStore : PanelBase
     /// 删除Content下的物体 用于重新读档
     /// </summary>
     public void DestroyContent()
-    {
+    {        
         PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
         {
-            DestroyImmediate(all[i].NowPanelTownStoreItem.gameObject);
+            DestroyImmediate(all[i].PanelCellItem_.gameObject);
             DestroyImmediate(all[i].gameObject);
         }
     }

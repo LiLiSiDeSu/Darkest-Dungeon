@@ -42,9 +42,11 @@ public class PanelCellGameArchive : PanelBase
 
                 GlobalHot.IndexNowCellGameArchive = Index;
                 MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
+
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").UpdateContent();
                 MgrUI.GetInstance().GetPanel<PanelStoreAncestralProperty>("PanelStoreAncestralProperty").UpdateDataInfo();
                 MgrUI.GetInstance().GetPanel<PanelStoreCoin>("PanelStoreCoin").UpdateDataInfo();
+                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop).PanelShopItem_.UpdateContent();
 
                 #endregion
                 break;

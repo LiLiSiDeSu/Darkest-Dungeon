@@ -42,6 +42,31 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     }
 
     /// <summary>
+    /// 就是简单的创建一个面板 
+    /// </summary>
+    /// <typeparam name="T">面板类型</typeparam>
+    /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
+    ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>
+    /// <param name="callback">回调函数</param>
+    public void CreatePanel<T>
+    (string panelname, UnityAction<T> callback = null)
+    where T : PanelBase
+    {
+        MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
+        {
+            obj.name = obj.name.Replace("(Clone)", "");
+
+            obj.transform.SetParent(UIBaseCanvas);
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
+
+            T panel = obj.GetComponent<T>();
+
+            callback?.Invoke(panel);
+        });
+    }
+
+    /// <summary>
     /// 创建面板并显示面板 主要用于需要创建并需要显示的面板
     /// </summary>
     /// <typeparam name="T">面板类型</typeparam>   

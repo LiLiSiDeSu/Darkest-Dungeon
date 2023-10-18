@@ -1,29 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelRoomShop : PanelBase
-{
-    private Animator PoPoCat;
+{    
     private Toggle TogTrigger;
     private Animator AnimatorMinistrantForShop;
     private GameObject Open;
-    private GameObject Close;    
+    private GameObject Close;
 
-    protected override void Start()
+    public PanelShopCost PanelShopCost_ = new PanelShopCost();
+    public PanelShopItem PanelShopItem_ = new PanelShopItem();
+
+    protected override void Awake()
     {
-        base.Start();        
-
+        base.Awake();
+        
         AnimatorMinistrantForShop = transform.FindSonSonSon("AnimatorMinistrantForShop").GetComponent<Animator>();
         TogTrigger = transform.FindSonSonSon("TogTrigger").GetComponent<Toggle>();
         Open = transform.FindSonSonSon("Open").gameObject;
-        Close = transform.FindSonSonSon("Close").gameObject;
-        PoPoCat = transform.FindSonSonSon("TogTrigger").GetComponent<Animator>();
+        Close = transform.FindSonSonSon("Close").gameObject;        
 
         Open.SetActive(false);
         Close.SetActive(false);
+
+        MgrUI.GetInstance().CreatePanel<PanelShopCost>
+        ("/PanelShopCost",
+        (panel) =>
+        {
+            PanelShopCost_ = panel;
+            panel.transform.SetParent(transform, false);
+        });
+        MgrUI.GetInstance().CreatePanel<PanelShopItem>
+        ("/PanelShopItem",
+        (panel) =>
+        {
+            PanelShopItem_ = panel;
+            panel.transform.SetParent(transform, false);
+        });
 
         MgrUI.GetInstance().AddCustomEventListener(transform.FindSonSonSon("TogTrigger").gameObject,
                          UnityEngine.EventSystems.EventTriggerType.PointerEnter, 
@@ -48,7 +65,7 @@ public class PanelRoomShop : PanelBase
                              AnimatorMinistrantForShop.gameObject.SetActive(true);
                              Open.SetActive(false);
                              Close.SetActive(false);
-                         });
+                         });        
     }
 
     protected override void Toggle_OnValueChange(string controlname, bool EventParam)

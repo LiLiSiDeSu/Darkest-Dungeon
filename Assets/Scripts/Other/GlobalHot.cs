@@ -25,4 +25,12 @@ public static class GlobalHot
             MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive = value;
         }
     }
+
+    public static PanelRoomShop PanelRoomShop_
+    {
+        get
+        {
+            return MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop;
+        }
+    }
 }

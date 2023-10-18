@@ -14,6 +14,9 @@ public class PanelOtherSetting : PanelBase
     {
         base.Awake();
 
+        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
+        ImgCurrentChoice.gameObject.SetActive(false);
+
         CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
             if (key == MgrInput.GetInstance().Setting)
@@ -22,9 +25,7 @@ public class PanelOtherSetting : PanelBase
             }
         });
 
-        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
-        ImgCurrentChoice.gameObject.SetActive(false);
-
+        Button[] btns = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Button>();
         Text[] txts = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Text>();
         RectTransform[] pos = new RectTransform[txts.Length];
         for (int i = 0; i < txts.Length; i++)
@@ -34,26 +35,27 @@ public class PanelOtherSetting : PanelBase
             int tempi = i;
 
             MgrUI.GetInstance().AddCustomEventListener
-            (pos[i].gameObject, EventTriggerType.PointerEnter,
+            (btns[i].gameObject, EventTriggerType.PointerEnter,
             (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(true);      
                 ImgCurrentChoice.position = new Vector3
-                                 ((pos[tempi].position.x - pos[tempi].rect.width / 5) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
+                                 ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
             });
             MgrUI.GetInstance().AddCustomEventListener
-            (pos[i].gameObject, EventTriggerType.PointerExit, (param) =>
+            (btns[i].gameObject, EventTriggerType.PointerExit, (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(false);
             });
-        }        
+        }
+        btns = null;
     }
 
-    protected override void Button_OnClick(string controlname)
+    protected override void Button_OnClick(string Controlname)
     {
-        base.Button_OnClick(controlname);
+        base.Button_OnClick(Controlname);
 
-        switch (controlname)
+        switch (Controlname)
         {
             case "BtnQuitGame":
                 Application.Quit();
@@ -61,6 +63,8 @@ public class PanelOtherSetting : PanelBase
 
             case "BtnBackStart":
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").DestroyContent();
+                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop).PanelShopItem_.DestroyContent();
+
                 MgrUI.GetInstance().HidePanel
                 (false, MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject,
                 MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject.name);
@@ -69,16 +73,16 @@ public class PanelOtherSetting : PanelBase
                 break;
 
             case "BtnKeySetting":
-                
+
                 break;
 
-            case "BtnThanks":                
+            case "BtnThanks":
                 Debug.Log("°¢Àê¸Á¶¼");
                 break;
 
-            case "Btn>-<":                
+            case "Btn>-<":
                 Debug.Log(">-<");
                 break;
         }
-    }  
+    }
 }

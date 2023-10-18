@@ -30,7 +30,7 @@ public class PanelTownItem : PanelBase
         if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore != null)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.NowPanelTownStoreItem.gameObject.SetActive(false);
+            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
         }
         MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = NowPanelCellTownStore;
         PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
@@ -43,7 +43,9 @@ public class PanelTownItem : PanelBase
 
     public void UpdateContent()
     {
-        for (int i = 0; i < GlobalHot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellItem.Count; i++)
+        NowIndex = 0;
+
+        for (int i = 0; i < GlobalHot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
         {
             int tempi = i;
 
@@ -51,8 +53,9 @@ public class PanelTownItem : PanelBase
                              (false, "/PanelCellTownItem", callback :
             (panel) =>
             {
-                panel.transform.SetParent(Content, false);               
-                panel.Index = NowIndex;
+                panel.transform.SetParent(Content, false);
+                panel.e_Location = E_Location.TownStore;
+                panel.Index = NowIndex;                
                 NowIndex++;
             });
         }

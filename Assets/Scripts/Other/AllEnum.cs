@@ -38,3 +38,9 @@ public enum E_StoreCoinLevel
     Gold,
     Platinum
 }
+
+public enum E_Location
+{
+    TownStore,
+    TownShop
+}

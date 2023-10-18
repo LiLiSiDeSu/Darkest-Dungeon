@@ -31,7 +31,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellTownStore(E_SpriteNamePanelCellTownStore.StoreWood),
         };
 
-        GameArchiveDataCellList[0].DataListCellStore[0].DataListCellItem = new List<DataContainer_PanelCellItem>()
+        GameArchiveDataCellList[0].DataListCellStore[0].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
@@ -41,7 +41,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
 
-        GameArchiveDataCellList[0].DataListCellStore[2].DataListCellItem = new List<DataContainer_PanelCellItem>()
+        GameArchiveDataCellList[0].DataListCellStore[2].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
@@ -56,6 +56,16 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].DataStoreCoin =
             new DataContainer_PanelStoreCoin(11, 22, 33, 44, E_StoreCoinLevel.Silver, 5);
+
+        GameArchiveDataCellList[0].DataListCellShopItem = new List<DataContainer_PanelCellItem>()
+        {
+            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedPotato),
+            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCoodedChicken),
+            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie)
+        };
+
         #endregion
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)

@@ -6,13 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Test1 : MonoBehaviour
+public class Test1 : PanelBase
 {
-    private void Start()
-    {
-        DataContainer_PanelCellGameArchive cao = new DataContainer_PanelCellGameArchive();
-        MgrJson.GetInstance().Save(cao, "/cao");
-
-        DataContainer_PanelCellGameArchive cc = MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>("/cao");
-    }
+    
 }
