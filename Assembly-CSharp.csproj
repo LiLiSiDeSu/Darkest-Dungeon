@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolNowPanel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelShopCost.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomShop.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelResTransform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test2.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Panel\PanelCellTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\EditorGUILayout.cs" />
     <Compile Include="Assets\Scripts\Other\Data.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\MgrJson.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceBase.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\InstanceMgr.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForBatchRename.cs" />

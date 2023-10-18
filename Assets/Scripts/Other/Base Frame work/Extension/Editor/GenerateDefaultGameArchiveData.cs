@@ -11,7 +11,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
     [MenuItem("Tools/Generate/DefaultGameArchiveData", false, 1)]
     private static void Generate()
     {
-        MgrXml.GetInstance().filePath = Application.persistentDataPath + "/Data/XmlData";        
+        MgrJson.GetInstance().filePath = Application.persistentDataPath + "/Data/JsonData";        
         Data.GetInstance().PathGameArchiveData = "/GameArchiveData";
 
         List<DataContainer_PanelCellGameArchive> GameArchiveDataCellList = new List<DataContainer_PanelCellGameArchive>();
@@ -60,10 +60,10 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
         {            
-            MgrXml.GetInstance().Save(GameArchiveDataCellList[i], Data.GetInstance().PathGameArchiveData + i);
+            MgrJson.GetInstance().Save(GameArchiveDataCellList[i], Data.GetInstance().PathGameArchiveData + i);
         }
 
         DestroyImmediate(Data.GetInstance().gameObject);
-        DestroyImmediate(MgrXml.GetInstance().gameObject);
+        DestroyImmediate(MgrJson.GetInstance().gameObject);
     }
 }

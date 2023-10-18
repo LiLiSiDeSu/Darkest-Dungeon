@@ -521,7 +521,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 445.42, y: -164.321}
-  m_SizeDelta: {x: 900, y: 630}
+  m_SizeDelta: {x: 800, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3598831068798245656
 CanvasRenderer:
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Elasticity: 0
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: -450
+  m_ScrollSensitivity: -205
   m_Viewport: {fileID: 8251749362887276226}
   m_HorizontalScrollbar: {fileID: 4623727059204503614}
   m_VerticalScrollbar: {fileID: 0}
@@ -4781,7 +4781,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 200, y: 200}
-  m_Spacing: {x: 250, y: 5}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 2
   m_ConstraintCount: 3
 --- !u!1 &6434351249809548721
@@ -5389,7 +5389,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2985250732010985014}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.19148937
+  m_Size: 0.35555556
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class PanelOtherSetting : PanelBase
 {
     private Transform ImgCurrentChoice;
-    private float PosOffsetForImgCurrentChoice = 85f;
-    private Dictionary<string, Transform> PosBtnRoom = new Dictionary<string, Transform>();
+    private float PosOffsetForImgCurrentChoice = 10f;    
 
     protected override void Awake()
     {
@@ -24,12 +23,30 @@ public class PanelOtherSetting : PanelBase
         });
 
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
+        ImgCurrentChoice.gameObject.SetActive(false);
 
-        Button[] temppos = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Button>();
-        for (int i = 0; i < temppos.Length; i++)
+        Text[] txts = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Text>();
+        RectTransform[] pos = new RectTransform[txts.Length];
+        for (int i = 0; i < txts.Length; i++)
         {
-            PosBtnRoom.Add(temppos[i].gameObject.name, temppos[i].transform);
-        }
+            pos[i] = txts[i].GetComponent<RectTransform>();
+
+            int tempi = i;
+
+            MgrUI.GetInstance().AddCustomEventListener
+            (pos[i].gameObject, EventTriggerType.PointerEnter,
+            (param) =>
+            {
+                ImgCurrentChoice.gameObject.SetActive(true);      
+                ImgCurrentChoice.position = new Vector3
+                                 ((pos[tempi].position.x - pos[tempi].rect.width / 5) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
+            });
+            MgrUI.GetInstance().AddCustomEventListener
+            (pos[i].gameObject, EventTriggerType.PointerExit, (param) =>
+            {
+                ImgCurrentChoice.gameObject.SetActive(false);
+            });
+        }        
     }
 
     protected override void Button_OnClick(string controlname)
@@ -38,11 +55,11 @@ public class PanelOtherSetting : PanelBase
 
         switch (controlname)
         {
-            case "BtnQuitGame":                
+            case "BtnQuitGame":
                 Application.Quit();
                 break;
 
-            case "BtnBackStart":                
+            case "BtnBackStart":
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").DestroyContent();
                 MgrUI.GetInstance().HidePanel
                 (false, MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject,
@@ -52,22 +69,16 @@ public class PanelOtherSetting : PanelBase
                 break;
 
             case "BtnKeySetting":
+                
                 break;
 
-            case "BtnThanks":
+            case "BtnThanks":                
                 Debug.Log("°¢Àê¸Á¶¼");
                 break;
 
-            case "Btn>-<":
+            case "Btn>-<":                
                 Debug.Log(">-<");
                 break;
         }
-    }
-
-    public void ChangeImgCurrentChoicePos(string Key)
-    {
-        ImgCurrentChoice.gameObject.SetActive(true);
-        ImgCurrentChoice.position = new Vector3
-                         (PosBtnRoom[Key].position.x - PosOffsetForImgCurrentChoice, PosBtnRoom[Key].position.y, 0);
-    }
+    }  
 }

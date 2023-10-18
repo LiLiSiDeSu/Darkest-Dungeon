@@ -16,16 +16,16 @@ public class Data : InstanceBaseAuto_Mono<Data>
 
         PathGameArchiveData = "/GameArchiveData";
 
-        if (!File.Exists(MgrXml.GetInstance().filePath))
+        if (!File.Exists(MgrJson.GetInstance().filePath))
         {
-            Directory.CreateDirectory(MgrXml.GetInstance().filePath);
+            Directory.CreateDirectory(MgrJson.GetInstance().filePath);
         }
 
-        string[] AllPathGameArchive = Directory.GetFiles(MgrXml.GetInstance().filePath);        
+        string[] AllPathGameArchive = Directory.GetFiles(MgrJson.GetInstance().filePath);        
         
         for (int i = 0; i < AllPathGameArchive.Length; i++)
         {
-            DataListCellGameArchive.Add(MgrXml.GetInstance().Load<DataContainer_PanelCellGameArchive>(PathGameArchiveData + i));
+            DataListCellGameArchive.Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>(PathGameArchiveData + i));
         }
     }
 
@@ -35,7 +35,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// <param name="index">要被保存的存档的Index</param>
     public void Save(int index)
     {
-        MgrXml.GetInstance().Save(DataListCellGameArchive[index], PathGameArchiveData + index);
+        MgrJson.GetInstance().Save(DataListCellGameArchive[index], PathGameArchiveData + index);
     }
 
     public void Save()
@@ -57,12 +57,12 @@ public class Data : InstanceBaseAuto_Mono<Data>
     {                
         for (int i = index; i < DataListCellGameArchive.Count - 1; i++)
         {
-            File.Copy(MgrXml.GetInstance().filePath + PathGameArchiveData + (i + 1) + ".xml",
-                      MgrXml.GetInstance().filePath + PathGameArchiveData + i + ".xml", true);            
+            File.Copy(MgrJson.GetInstance().filePath + PathGameArchiveData + (i + 1) + ".json",
+                      MgrJson.GetInstance().filePath + PathGameArchiveData + i + ".json", true);            
         }
             
 
-        File.Delete(MgrXml.GetInstance().filePath + PathGameArchiveData + (DataListCellGameArchive.Count - 1) + ".xml");
+        File.Delete(MgrJson.GetInstance().filePath + PathGameArchiveData + (DataListCellGameArchive.Count - 1) + ".json");
         DataListCellGameArchive.RemoveAt(index);
     }
 }
