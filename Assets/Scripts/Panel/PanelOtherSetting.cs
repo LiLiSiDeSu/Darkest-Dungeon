@@ -62,7 +62,7 @@ public class PanelOtherSetting : PanelBase
                 break;
 
             case "BtnBackStart":
-                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").DestroyContent();
+                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").ClearContent();
                 (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop).PanelShopItem_.DestroyContent();
 
                 MgrUI.GetInstance().HidePanel

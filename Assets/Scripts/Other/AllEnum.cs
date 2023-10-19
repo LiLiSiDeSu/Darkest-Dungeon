@@ -44,3 +44,9 @@ public enum E_Location
     TownStore,
     TownShop
 }
+
+public enum E_PoPoCatStatus
+{
+    Open,
+    Close
+}

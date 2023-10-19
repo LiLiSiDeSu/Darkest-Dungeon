@@ -46,7 +46,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     /// <typeparam name="T">面板类型</typeparam>
     /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
-    ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>
+    ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>    
     /// <param name="callback">回调函数</param>
     public void CreatePanel<T>
     (string panelname, UnityAction<T> callback = null)
@@ -61,7 +61,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             obj.transform.localScale = Vector3.one;
 
             T panel = obj.GetComponent<T>();
-
+            
             callback?.Invoke(panel);
         });
     }

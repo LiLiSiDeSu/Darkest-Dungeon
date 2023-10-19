@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class PanelTownStore : PanelBase
 {
-    public int NowIndex = 0;    
-    private Transform Content;
+    public int NowIndex = 0;        
     public Transform RootPanelTownItem;
+    public Transform Content;
 
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
@@ -53,7 +53,7 @@ public class PanelTownStore : PanelBase
     /// <summary>
     /// 删除Content下的物体 用于重新读档
     /// </summary>
-    public void DestroyContent()
+    public void ClearContent()
     {        
         PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
@@ -64,6 +64,16 @@ public class PanelTownStore : PanelBase
     }
 
     public void SortIndex()
+    {
+
+    }
+
+    public void Add()
+    {
+
+    }
+
+    public void Subtraction()
     {
 
     }

@@ -53,6 +53,7 @@ public class PanelTown : PanelBase
                 {
                     MgrUI.GetInstance().HidePanel
                     (false, MgrUI.GetInstance().DicPanel["PanelTownStore"].gameObject, "PanelTownStore");
+                    GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;
                     break;
                 }
                 MgrUI.GetInstance().ShowPanel<PanelTownStore>(true, "PanelTownStore");

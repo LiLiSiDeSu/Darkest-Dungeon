@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellTownItem : PanelBase
+public class PanelCellTownItem : PanelBase, 
+             IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {    
     public E_SpriteNamePanelCellItem Hot_ESpriteName
     {
@@ -27,10 +28,9 @@ public class PanelCellTownItem : PanelBase
     public int Capacity;
 
     public E_Location e_Location;
-
     public InfoContainer_Cost Cost = new InfoContainer_Cost();
-
-    public Image ImgItem;    
+    public Image ImgItem;
+    private Vector2 DragOffSet;
 
     protected override void Start()
     {
@@ -40,21 +40,49 @@ public class PanelCellTownItem : PanelBase
 
         InitDataInfo();
 
-        ImgItem.alphaHitTestMinimumThreshold = 0.2f;
-
-        MgrUI.GetInstance().AddCustomEventListener
-        (gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
-        (panel) =>
-        {
-            GlobalHot.PanelRoomShop_.PanelShopCost_.UpdateInfo(Cost);
-        });
-        MgrUI.GetInstance().AddCustomEventListener
-        (gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
-        (panel) =>
-        {
-            GlobalHot.PanelRoomShop_.PanelShopCost_.Clear();
-        });
+        ImgItem.alphaHitTestMinimumThreshold = 0.2f;    
     }
+
+    #region EventSystem接口实现
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        GlobalHot.PanelRoomShop_.PanelShopCost_.UpdateInfo(Cost);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GlobalHot.PanelRoomShop_.PanelShopCost_.Clear();        
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {        
+        transform.parent = GlobalHot.PanelRoomShop_.PanelShopItem_.transform;
+        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+        GlobalHot.DragingObj = gameObject;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {                
+        transform.position = eventData.position + DragOffSet;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        switch (e_Location)
+        {
+            case E_Location.TownStore:
+                transform.SetParent(GlobalHot.NowPanelTownItem.Content, false);
+                break;
+            case E_Location.TownShop:
+                transform.SetParent(GlobalHot.PanelRoomShop_.PanelShopItem_.Content, false);
+                break;
+        }
+
+        GlobalHot.DragingObj = null;
+    }
+
+    #endregion
 
     public void InitDataInfo()
     {
@@ -118,5 +146,5 @@ public class PanelCellTownItem : PanelBase
         }
 
         ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + Hot_ESpriteName.ToString());
-    }
+    } 
 }

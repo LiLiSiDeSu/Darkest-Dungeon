@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomRecruit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrXml.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownStore.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelMinistrantPoPoCat.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\EditorGUILayout.cs" />
     <Compile Include="Assets\Scripts\Other\Data.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrJson.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\Other\GlobalHot.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelAction.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />

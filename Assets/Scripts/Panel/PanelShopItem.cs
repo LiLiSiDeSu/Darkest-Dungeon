@@ -5,7 +5,7 @@ using UnityEngine;
 public class PanelShopItem : PanelBase
 {
     public int NowIndex;    
-    private Transform Content;
+    public Transform Content;
 
     protected override void Awake()
     {
@@ -39,5 +39,15 @@ public class PanelShopItem : PanelBase
         PanelCellTownItem[] all = Content.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
             DestroyImmediate(all[i].gameObject);
+    }
+
+    public void AddIte()
+    {
+
+    }
+
+    public void Subtraction()
+    {
+
     }
 }

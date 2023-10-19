@@ -6,8 +6,8 @@ public class PanelTownItem : PanelBase
 {    
     public int NowIndex;
     public PanelCellTownStore FatherPanelCellTownStore;
-    private Transform Content;
-
+    public Transform Content;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -19,27 +19,27 @@ public class PanelTownItem : PanelBase
 
     public void Show(PanelCellTownStore NowPanelCellTownStore)
     {
-        if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore == NowPanelCellTownStore)
+        if (GlobalHot.PanelTownStore_.NowPanelCellTownStore == NowPanelCellTownStore)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;            
+            GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;            
             gameObject.SetActive(false);
             return;
         }
 
-        if (MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore != null)
+        if (GlobalHot.PanelTownStore_.NowPanelCellTownStore != null)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
+            GlobalHot.PanelTownStore_.NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
         }
-        MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = NowPanelCellTownStore;
+        GlobalHot.PanelTownStore_.NowPanelCellTownStore = NowPanelCellTownStore;
         PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
         () => 
         {
-            MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").NowPanelCellTownStore = null;            
+            GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;            
         });
         gameObject.SetActive(true);
-    } 
+    }     
 
     public void UpdateContent()
     {
@@ -59,5 +59,15 @@ public class PanelTownItem : PanelBase
                 NowIndex++;
             });
         }
+    }
+
+    public void Add()
+    {
+
+    }
+
+    public void Subtraction()
+    {
+
     }
 }

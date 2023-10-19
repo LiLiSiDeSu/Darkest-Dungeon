@@ -38,6 +38,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         MgrUI.GetInstance().CreatePanelAndPush<PanelStoreCoin>
                          (true, "/PanelStoreCoin", true, false, "PanelStoreCoin");
 
+        MgrUI.GetInstance().CreatePanelAndPush<PanelAction>
+                         (true, "/PanelAction", true, false, "PanelAction");
+
         Destroy(gameObject);
     }
 }
