@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class PanelRoomTownShop : PanelBase
 {        
-    public PanelShopCost PanelShopCost_ = new PanelShopCost();
+    public PanelTownShopCost PanelShopCost_ = new PanelTownShopCost();
     public PanelTownShopItem PanelTownShopItem_ = new PanelTownShopItem();
     public PanelMinistrantPoPoCat PanelMinistrantPoPoCat_ = new PanelMinistrantPoPoCat();
 
@@ -16,8 +16,8 @@ public class PanelRoomTownShop : PanelBase
     {
         base.Awake();               
 
-        MgrUI.GetInstance().CreatePanel<PanelShopCost>
-        ("/PanelShopCost",
+        MgrUI.GetInstance().CreatePanel<PanelTownShopCost>
+        ("/PanelTownShopCost",
         (panel) =>
         {
             PanelShopCost_ = panel;

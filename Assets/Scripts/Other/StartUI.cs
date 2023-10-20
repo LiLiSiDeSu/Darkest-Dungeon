@@ -8,38 +8,32 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
     {
         base.Start();
 
-        MgrUI.GetInstance().CreatePanelAndShow<PanelOtherStart>
-                         (true, "/PanelOtherStart");
+        Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
+            (true, "/PanelOtherStart");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelOtherDestroyArchiveHint>
-                         (true, "/PanelOtherDestroyArchiveHint", true, false, "PanelOtherDestroyArchiveHint");
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherDestroyArchiveHint>
+            (true, "/PanelOtherDestroyArchiveHint", true, false, "PanelOtherDestroyArchiveHint");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelOtherSetting>
-                         (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherSetting>
+            (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelGameArchiveChoose>
-                         (true, "/PanelGameArchiveChoose", true, true, "PanelGameArchiveChoose");
+        Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChoose>
+            (true, "/PanelGameArchiveChoose", true, true, "PanelGameArchiveChoose");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelGameArchiveChooseLevel>
-                         (true, "/PanelGameArchiveChooseLevel", true, false, "PanelGameArchiveChooseLevel");
+        Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChooseLevel>
+            (true, "/PanelGameArchiveChooseLevel", true, false, "PanelGameArchiveChooseLevel");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelTown>
-                         (true, "/PanelTown", true, false, "PanelTown");
+        Hot.MgrUI_.CreatePanelAndPush<PanelTown>
+            (true, "/PanelTown", true, false, "PanelTown");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelRooms>
-                         (true, "/PanelRooms", true, true, "PanelRooms");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRooms>
+            (true, "/PanelRooms", true, true, "PanelRooms");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelTownStore>
-                         (true, "/PanelTownStore", true, true, "PanelTownStore");
+        Hot.MgrUI_.CreatePanelAndPush<PanelTownStore>
+            (true, "/PanelTownStore", true, true, "PanelTownStore");        
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelStoreAncestralProperty>
-                         (true, "/PanelStoreAncestralProperty", true, false, "PanelStoreAncestralProperty");
-
-        MgrUI.GetInstance().CreatePanelAndPush<PanelStoreCoin>
-                         (true, "/PanelStoreCoin", true, false, "PanelStoreCoin");
-
-        MgrUI.GetInstance().CreatePanelAndPush<PanelAction>
-                         (true, "/PanelAction", true, false, "PanelAction");
+        Hot.MgrUI_.CreatePanelAndPush<PanelOhterResTable>
+            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");                    
 
         Destroy(gameObject);
     }

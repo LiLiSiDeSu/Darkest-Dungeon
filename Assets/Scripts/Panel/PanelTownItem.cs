@@ -25,9 +25,9 @@ public class PanelTownItem : PanelBase,
     {
         Hot.e_NowPointerLocation = E_Location.PanelTownItem;
 
-        if (Hot.NowItem != null)
+        if (Hot.DragingItem != null)
         {
-            Hot.NowItem.transform.SetParent(transform, false);
+            Hot.DragingItem.transform.SetParent(transform, false);
         }
     }
 
@@ -43,7 +43,7 @@ public class PanelTownItem : PanelBase,
         if (Hot.PanelTownStore_.NowPanelCellTownStore == NowPanelCellTownStore)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            Hot.PanelTownStore_.NowPanelCellTownStore = null;            
+            Hot.NowPanelCellTownStore = null;            
             gameObject.SetActive(false);
             return;
         }
@@ -57,7 +57,7 @@ public class PanelTownItem : PanelBase,
         PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
         () => 
         {
-            Hot.PanelTownStore_.NowPanelCellTownStore = null;            
+            Hot.NowPanelCellTownStore = null;            
         });
         gameObject.SetActive(true);
     }     
@@ -66,7 +66,7 @@ public class PanelTownItem : PanelBase,
     {
         NowIndex = 0;
 
-        for (int i = 0; i < Hot.DataNowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
         {
             int tempi = i;
 
@@ -77,7 +77,7 @@ public class PanelTownItem : PanelBase,
                 panel.transform.SetParent(Content, false);
                 panel.e_Location = E_Location.PanelTownItem;
                 panel.e_SpriteNamePanelCellItem = 
-                    Hot.DataNowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].
+                    Hot.DataNowCellGameArchive.ListCellStore[FatherPanelCellTownStore.Index].
                     DataListCellStoreItem[tempi].e_SpriteNamePanelCellItem;
                 panel.Index = NowIndex;                
                 NowIndex++;

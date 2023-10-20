@@ -14,8 +14,7 @@ public class PanelTown : PanelBase
         transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgTownStore").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
     }  
 
     protected override void Button_OnClick(string controlname)
@@ -46,40 +45,6 @@ public class PanelTown : PanelBase
 
             case "BtnMercenaryaAssociation":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomMercenaryaAssociation");           
-                break;
-
-            case "BtnTownStore":
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelTownStore"))
-                {
-                    MgrUI.GetInstance().HidePanel
-                    (false, MgrUI.GetInstance().DicPanel["PanelTownStore"].gameObject, "PanelTownStore");
-                    Hot.PanelTownStore_.NowPanelCellTownStore = null;
-                    break;
-                }
-                MgrUI.GetInstance().ShowPanel<PanelTownStore>(true, "PanelTownStore");
-                break;
-
-            case "BtnAncestralProperty":
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelStoreAncestralProperty"))
-                {
-                    MgrUI.GetInstance().HidePanel
-                    (false, MgrUI.GetInstance().DicPanel["PanelStoreAncestralProperty"].gameObject, "PanelStoreAncestralProperty");
-                    break;
-                }
-                MgrUI.GetInstance().ShowPanel<PanelStoreAncestralProperty>(true, "PanelStoreAncestralProperty");
-                break;
-
-            case "BtnCoin":
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelStoreCoin"))
-                {
-                    MgrUI.GetInstance().HidePanel
-                    (false, MgrUI.GetInstance().DicPanel["PanelStoreCoin"].gameObject, "PanelStoreCoin");
-                    break;
-                }
-                MgrUI.GetInstance().ShowPanel<PanelStoreCoin>(true, "PanelStoreCoin");
-                break;
-
-            case "BtnTransformRes":
                 break;
         }
     }   

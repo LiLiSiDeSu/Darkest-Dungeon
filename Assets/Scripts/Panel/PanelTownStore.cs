@@ -16,7 +16,24 @@ public class PanelTownStore : PanelBase,
 
     protected override void Awake()
     {
-        base.Awake();        
+        base.Awake();
+
+        CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        {
+            if (key == MgrInput.GetInstance().PanelTownStore)
+            {
+
+                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelTownStore"))
+                {
+                    Hot.MgrUI_.HidePanel
+                        (false, Hot.MgrUI_.GetPanel<PanelTownStore>("PanelTownStore").gameObject, "PanelTownStore");
+                }
+                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore", CallBackForPoolEsc: () =>
+                {
+                    Hot.NowPanelCellTownStore = null;
+                });
+            }
+        });
 
         Content = transform.FindSonSonSon("Content");
         RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
@@ -40,7 +57,7 @@ public class PanelTownStore : PanelBase,
     {
         NowIndex = 0;
 
-        for (int i = 0;  i < Hot.DataNowCellGameArchive.DataListCellStore.Count; i++)
+        for (int i = 0;  i < Hot.DataNowCellGameArchive.ListCellStore.Count; i++)
         {
             int tempi = i;
 
@@ -86,15 +103,5 @@ public class PanelTownStore : PanelBase,
         {
             all[i].Index = i;
         }
-    }
-
-    public void Add()
-    {
-
-    }
-
-    public void Subtraction()
-    {
-
     }
 }

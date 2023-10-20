@@ -19,7 +19,17 @@ public static class Hot
     public static Data Data_
     {
         get { return Data.GetInstance(); }
-    }    
+    }
+    #region Panel
+
+    public static DataContainer_PanelResTable DataPanelResTable
+    {
+        get { return DataNowCellGameArchive.PanelResTable; }
+    }
+    public static PanelOhterResTable PanelOtherResTable_
+    {
+        get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
+    }
     /// <summary>
     /// 存档选择面板
     /// </summary>
@@ -34,12 +44,19 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
     }
+    public static DataContainer_PanelResTable DataPanelResTable_
+    {
+        get { return DataNowCellGameArchive.PanelResTable; }
+    }
+
+    #endregion
+
     /// <summary>
     /// 现在读取的存档Data
     /// </summary>
     public static DataContainer_PanelCellGameArchive DataNowCellGameArchive
     {
-        get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
+        get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }        
     }
     /// <summary>
     /// 现在读取的存档的Index
@@ -50,7 +67,9 @@ public static class Hot
 
         set { MgrUI_.GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").IndexNowCellGameArchive = value; }
     }
-    //---
+
+    #region 城镇商店
+
     /// <summary>
     /// 城镇商店
     /// </summary>
@@ -59,25 +78,18 @@ public static class Hot
         get { return MgrUI_.GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomTownShop"] as PanelRoomTownShop; }
     }
     /// <summary>
-    /// 城镇商店花费面板
-    /// </summary>
-    public static PanelShopCost PanelShopCost_
-    {
-        get { return PanelRoomTownShop_.PanelShopCost_; }
-    }
-    /// <summary>
     /// 城镇商店面板在存档里的Data
     /// </summary>
     public static List<DataContainer_PanelCellItem> DataPanelTownShopItem
     {
-        get { return DataNowCellGameArchive.DataListCellShopItem; }
+        get { return DataNowCellGameArchive.ListCellShopItem; }
     }
     /// <summary>
-    /// 诚征商店面板
+    /// 城镇商店花费面板
     /// </summary>
-    public static PanelTownShopItem PanelTownShopItem_
+    public static PanelTownShopCost PanelShopCost_
     {
-        get { return PanelRoomTownShop_.PanelTownShopItem_; }
+        get { return PanelRoomTownShop_.PanelShopCost_; }
     }
     /// <summary>
     /// 城镇商店面板娘PoPoCat
@@ -87,60 +99,65 @@ public static class Hot
         get { return PanelRoomTownShop_.PanelMinistrantPoPoCat_; }
     }
     /// <summary>
-    /// 城镇仓库面板
+    /// 城镇商店面板
+    /// </summary>
+    public static PanelTownShopItem PanelTownShopItem_
+    {
+        get { return PanelRoomTownShop_.PanelTownShopItem_; }
+    }
+
+    #endregion
+
+    /// <summary>
+    /// 所有城镇箱子面板
     /// </summary>
     public static PanelTownStore PanelTownStore_
     {
         get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
     }    
     /// <summary>
-    /// 现在打开的诚征仓库面板Data
-    /// </summary>
-    public static List<DataContainer_PanelCellItem> DataNowPanelTownItem
-    {
-        get { return DataNowPanelCellTownStore.DataListCellStoreItem; }
-    }
-    /// <summary>
-    /// 现在打开的城镇仓库在存档中对应的Data
+    /// 现在打开的城镇箱子在存档中对应的Data
     /// </summary>
     public static DataContainer_PanelCellTownStore DataNowPanelCellTownStore
     {
-        get { return DataNowCellGameArchive.DataListCellStore[NowIndexPanelCellTownStore]; }
+        get { return DataNowCellGameArchive.ListCellStore[NowIndexPanelCellTownStore]; }
     }
     /// <summary>
-    /// 现在打开的城镇仓库的Index
+    /// 现在打开的城镇箱子的Index
     /// </summary>
     public static int NowIndexPanelCellTownStore
     {
         get { return NowPanelCellTownStore.Index; }
     }
     /// <summary>
-    /// 现在打开的城镇仓库
+    /// 现在打开的箱子
     /// </summary>
     public static PanelCellTownStore NowPanelCellTownStore
     {
-        get { return PanelTownStore_.NowPanelCellTownStore; }                            
+        get { return PanelTownStore_.NowPanelCellTownStore; }
+        set { PanelTownStore_.NowPanelCellTownStore = value; }
     }
     /// <summary>
-    /// 现在打开的物品栏
+    /// 祖产面板
     /// </summary>
-    public static PanelTownItem NowPanelTownItem
-    {
-        get { return NowPanelCellTownStore.PanelCellItem_; }
-    }
-    //---
     public static PanelStoreAncestralProperty PanelStoreAncestralProperty_
     {
         get { return MgrUI_.GetPanel<PanelStoreAncestralProperty>("PanelStoreAncestralProperty"); }
     }
-
+    /// <summary>
+    /// 钱币面板
+    /// </summary>
     public static PanelStoreCoin PanelStoreCoin_
     {
         get { return MgrUI_.GetPanel<PanelStoreCoin>("PanelStoreCoin"); }
-    }
+    }    
     //---
     /// <summary>
     /// 拖拽的物品
+    /// </summary>
+    public static PanelCellTownItem DragingItem;
+    /// <summary>
+    /// 光标进入的物品
     /// </summary>
     public static PanelCellTownItem NowItem;
     /// <summary>
@@ -158,41 +175,28 @@ public static class Hot
     /// <param name="e_AddLocation">添加到哪里</param>
     public static void AddItem(E_Location e_AddLocation)
     {
-        int SoureceIndex = NowItem.Index;
-        E_Location e_SourceLocation = NowItem.e_Location;
+        int SoureceIndex = DragingItem.Index;
+        E_Location e_SourceLocation = DragingItem.e_Location;
 
         switch (e_AddLocation)
         {
             case E_Location.PanelTownItem:
-                NowItem.transform.SetParent(NowPanelTownItem.Content, false);
-                NowItem.e_Location = E_Location.PanelTownItem;
-                NowItem.Index = NowPanelTownItem.NowIndex++;
-                DataNowPanelCellTownStore.DataListCellStoreItem.Add(MakeItemDataBySourceItem(e_SourceLocation, SoureceIndex));
+                DragingItem.transform.SetParent(NowPanelCellTownStore.PanelCellItem_.Content, false);
+                DragingItem.e_Location = E_Location.PanelTownItem;
+                DragingItem.Index = NowPanelCellTownStore.PanelCellItem_.NowIndex++;
+                DataNowPanelCellTownStore.DataListCellStoreItem.Add
+                    (new DataContainer_PanelCellItem(E_Location.PanelTownItem, DragingItem.e_SpriteNamePanelCellItem));
                 DestroySourceItemData(e_SourceLocation, SoureceIndex);
                 break;
             case E_Location.PanelTownShopItem:
-                NowItem.transform.SetParent(PanelTownShopItem_.Content, false);
-                NowItem.e_Location = E_Location.PanelTownShopItem;
-                NowItem.Index = PanelTownShopItem_.NowIndex++;
-                DataPanelTownShopItem.Add(MakeItemDataBySourceItem(e_SourceLocation, SoureceIndex));
+                DragingItem.transform.SetParent(PanelTownShopItem_.Content, false);
+                DragingItem.e_Location = E_Location.PanelTownShopItem;
+                DragingItem.Index = PanelTownShopItem_.NowIndex++;
+                DataPanelTownShopItem.Add
+                    (new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, DragingItem.e_SpriteNamePanelCellItem));
                 DestroySourceItemData(e_SourceLocation, SoureceIndex);
                 break;
         }                      
-    }
-
-    public static DataContainer_PanelCellItem MakeItemDataBySourceItem(E_Location e_SourceLocation, int SoureceIndex)
-    {        
-        switch (e_SourceLocation)
-        {
-            case E_Location.PanelTownItem:
-                NowPanelTownItem.NowIndex--;
-                return DataNowPanelTownItem[SoureceIndex];                
-            case E_Location.PanelTownShopItem:
-                PanelTownShopItem_.NowIndex--;
-                return DataPanelTownShopItem[SoureceIndex];                
-        }
-
-        return null;
     }
 
     private static void DestroySourceItemData(E_Location e_SourceLocation, int SoureceIndex)
@@ -200,9 +204,11 @@ public static class Hot
         switch (e_SourceLocation)
         {
             case E_Location.PanelTownItem:
-                DataNowPanelTownItem.RemoveAt(SoureceIndex);
+                NowPanelCellTownStore.PanelCellItem_.NowIndex--;
+                DataNowPanelCellTownStore.DataListCellStoreItem.RemoveAt(SoureceIndex);
                 break;
             case E_Location.PanelTownShopItem:
+                PanelTownShopItem_.NowIndex--;
                 DataPanelTownShopItem.RemoveAt(SoureceIndex);
                 break;
         }

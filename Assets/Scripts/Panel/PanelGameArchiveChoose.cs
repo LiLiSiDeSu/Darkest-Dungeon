@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PanelGameArchiveChoose : PanelBase
 {       
     public int NowIndex = 0;
-    public int IndexNowCellGameArchive = 0;
+    public int IndexNowCellGameArchive = -1;
 
     public Transform Content;    
 

@@ -24,9 +24,9 @@ public class PanelTownShopItem : PanelBase,
     {        
         Hot.e_NowPointerLocation = E_Location.PanelTownShopItem;
 
-        if (Hot.NowItem != null)
+        if (Hot.DragingItem != null)
         {
-            Hot.NowItem.transform.SetParent(transform, false);
+            Hot.DragingItem.transform.SetParent(transform, false);
         }
     }
 
@@ -41,7 +41,7 @@ public class PanelTownShopItem : PanelBase,
     {
         NowIndex = 0;
 
-        for (int i = 0; i < Hot.DataNowCellGameArchive.DataListCellShopItem.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListCellShopItem.Count; i++)
         {
             int tempi = i;
 
@@ -51,7 +51,7 @@ public class PanelTownShopItem : PanelBase,
             {
                 panel.transform.SetParent(Content, false);
                 panel.e_Location = E_Location.PanelTownShopItem;
-                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.DataListCellShopItem[tempi].e_SpriteNamePanelCellItem;
+                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;
                 panel.Index = NowIndex;
                 NowIndex++;
             });

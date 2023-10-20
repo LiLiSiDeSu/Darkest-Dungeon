@@ -9,12 +9,9 @@ public sealed class AllDataOrInfoContainer { }
 public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
-    public List<DataContainer_PanelCellTownStore> DataListCellStore = new List<DataContainer_PanelCellTownStore>();
-
-    public DataContainer_PanelStoreAncestralProperty DataStoreAncestralProperty = new DataContainer_PanelStoreAncestralProperty();
-    public DataContainer_PanelStoreCoin DataStoreCoin = new DataContainer_PanelStoreCoin();
-
-    public List<DataContainer_PanelCellItem> DataListCellShopItem = new List<DataContainer_PanelCellItem>();
+    public List<DataContainer_PanelCellTownStore> ListCellStore = new List<DataContainer_PanelCellTownStore>();
+    public DataContainer_PanelResTable PanelResTable = new DataContainer_PanelResTable();
+    public List<DataContainer_PanelCellItem> ListCellShopItem = new List<DataContainer_PanelCellItem>();
 
     public string GameArchiveName = "---";
     public string Location = "---";
@@ -31,7 +28,7 @@ public class DataContainer_PanelCellGameArchive
         this.Location = Location;
         this.Week = Week;
         this.Time = Time;
-        this.DataListCellStore = DataListCellStore;
+        this.ListCellStore = DataListCellStore;
     }
 }
 
@@ -64,60 +61,67 @@ public class DataContainer_PanelCellItem
     }
 }
 
-public class DataContainer_PanelStoreAncestralProperty
+public class DataContainer_PanelResTable
 {
+    public int StoreDebris = 0;
+
+    #region AncestralProperty
+
     public int NowStatue = 0;
     public int NowDeed = 0;
     public int NowBadge = 0;
     public int NowPicture = 0;
     public int NowCrystal = 0;
 
-    public int MaxStatue = 10;
-    public int MaxDeed = 10;
-    public int MaxBadge = 10;
-    public int MaxPicture = 10;
-    public int MaxCrystal = 10;
+    public int NowLevelStatue = 1;
+    public int NowLevelDeed = 1;
+    public int NowLevelBadge = 1;
+    public int NowLevelPicture = 1;
+    public int NowLevelCrystal = 1;
 
-    //Rate
+    public int LevelStepStatue = 10;
+    public int LevelStepDeed = 10;
+    public int LevelStepBadge = 10;
+    public int LevelStepPicture = 10;
+    public int LevelStepCrystal = 10;
 
-    public DataContainer_PanelStoreAncestralProperty() { }
-    public DataContainer_PanelStoreAncestralProperty
-    (int NowStatue, int NowDeed, int NowBadge, int NowPicture, int NowCrystal)
-    {
-        this.NowStatue = NowStatue;
-        this.NowDeed = NowDeed;
-        this.NowBadge = NowBadge;
-        this.NowPicture = NowPicture;
-        this.NowCrystal = NowCrystal;
-    }
-}
+    public int LevelMaxStatue = 100;
+    public int LevelMaxDeed = 100;
+    public int LevelMaxBadge = 100;
+    public int LevelMaxPicture = 100;
+    public int LevelMaxCrystal = 100;
 
-public class DataContainer_PanelStoreCoin
-{
+    #endregion
+
+    #region Coin
+
     public int NowCopper = 0;
     public int NowSilver = 0;
     public int NowGold = 0;
     public int NowPlatinum = 0;
 
+    public int NowLevelCopper = 1;
+    public int NowLevelSilver = 1;
+    public int NowLevelGold = 1;
+    public int NowLevelPlatinum = 1;
+
+    public int LevelStepCopper = 100;
+    public int LevelStepSilver = 50;
+    public int LevelStepGold = 10;
+    public int LevelStepPlatinum = 5;
+
+    public int LevelMaxCopper = 100;
+    public int LevelMaxSilver = 100;
+    public int LevelMaxGold = 100;
+    public int LevelMaxPlatinum = 100;
+
     public int RateCopperToSilver = 100;
     public int RateSilverToGold = 100;
     public int RateGoldToPlatinum = 100;
 
-    public E_StoreCoinLevel e_StoreCoinLevel = E_StoreCoinLevel.Silver;
-    public int StoreCoinLevel = 1;
+    #endregion
 
-    public DataContainer_PanelStoreCoin() { }
-    public DataContainer_PanelStoreCoin
-    (int NowCopper, int NowSilver, int NowGold, int NowPlatinum,
-     E_StoreCoinLevel e_StoreCoinLevel, int StoreCoinLevel)
-    {
-        this.NowCopper = NowCopper;
-        this.NowSilver = NowSilver;
-        this.NowGold = NowGold;
-        this.NowPlatinum = NowPlatinum;
-        this.e_StoreCoinLevel = e_StoreCoinLevel;
-        this.StoreCoinLevel = StoreCoinLevel;
-    }
+    public DataContainer_PanelResTable() { }
 }
 
 //特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他

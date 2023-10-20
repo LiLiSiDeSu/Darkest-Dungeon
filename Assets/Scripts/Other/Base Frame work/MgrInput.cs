@@ -7,6 +7,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     #region CustomKey
 
     //自定义键
+    //每个都要在下面添加检测哦
     public KeyCode W = KeyCode.N;
     public KeyCode A = KeyCode.A;
     public KeyCode S = KeyCode.S;
@@ -15,6 +16,8 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode DownArrow = KeyCode.DownArrow;
     public KeyCode Esc = KeyCode.Escape;
     public KeyCode Setting = KeyCode.I;
+    public KeyCode PanelTownStore = KeyCode.Tab;
+    public KeyCode PanelResTable = KeyCode.CapsLock;
 
     #endregion
 
@@ -68,6 +71,8 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(DownArrow);
         CheckKeyCode(Esc);
         CheckKeyCode(Setting);
+        CheckKeyCode(PanelTownStore);
+        CheckKeyCode(PanelResTable);
     }
 
     #endregion 

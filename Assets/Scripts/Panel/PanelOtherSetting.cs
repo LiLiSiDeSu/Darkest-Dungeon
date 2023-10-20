@@ -21,7 +21,7 @@ public class PanelOtherSetting : PanelBase
         {
             if (key == MgrInput.GetInstance().Setting)
             {
-                MgrUI.GetInstance().ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
+                Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
             }
         });
 
@@ -34,7 +34,7 @@ public class PanelOtherSetting : PanelBase
 
             int tempi = i;
 
-            MgrUI.GetInstance().AddCustomEventListener
+            Hot.MgrUI_.AddCustomEventListener
             (btns[i].gameObject, EventTriggerType.PointerEnter,
             (param) =>
             {
@@ -42,7 +42,7 @@ public class PanelOtherSetting : PanelBase
                 ImgCurrentChoice.position = new Vector3
                                  ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
             });
-            MgrUI.GetInstance().AddCustomEventListener
+            Hot.MgrUI_.AddCustomEventListener
             (btns[i].gameObject, EventTriggerType.PointerExit, (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(false);
@@ -62,18 +62,21 @@ public class PanelOtherSetting : PanelBase
                 break;
 
             case "BtnBackStart":
-                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").ClearContent();
-                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomTownShop"] as PanelRoomTownShop).PanelTownShopItem_.DestroyContent();
+                if (Hot.NowIndexCellGameArchive != -1)
+                {
+                    Hot.PanelTownStore_.ClearContent();
+                    Hot.PanelRoomTownShop_.PanelTownShopItem_.DestroyContent();
 
-                MgrUI.GetInstance().HidePanel
-                (false, MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject,
-                MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject.name);
-                PoolEsc.GetInstance().HideAll();
-                MgrUI.GetInstance().ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
+                    Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject,
+                    Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject.name);
+                    PoolEsc.GetInstance().HideAll();
+                    Hot.MgrUI_.ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
+
+                    Hot.NowIndexCellGameArchive = -1;
+                }
                 break;
 
             case "BtnKeySetting":
-
                 break;
 
             case "BtnThanks":

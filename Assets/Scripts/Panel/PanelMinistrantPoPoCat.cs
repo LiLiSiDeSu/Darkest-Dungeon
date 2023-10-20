@@ -64,8 +64,8 @@ public class PanelMinistrantPoPoCat : PanelBase, IPointerEnterHandler, IPointerE
         }
 
 
-        if (Hot.NowItem != null)
-            Hot.NowItem.transform.SetParent(transform, false);
+        if (Hot.DragingItem != null)
+            Hot.DragingItem.transform.SetParent(transform, false);
     }
 
     public void OnPointerExit(PointerEventData eventData)

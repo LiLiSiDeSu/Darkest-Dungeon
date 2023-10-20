@@ -42,10 +42,8 @@ public class PanelCellGameArchive : PanelBase
 
                 Hot.NowIndexCellGameArchive = Index;
                 Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
-
+                Hot.PanelOtherResTable_.UpdateInfo();
                 Hot.PanelTownStore_.UpdateContent();
-                Hot.PanelStoreAncestralProperty_.UpdateDataInfo();
-                Hot.PanelStoreCoin_.UpdateDataInfo();
                 Hot.PanelTownShopItem_.UpdateContent();
 
                 #endregion

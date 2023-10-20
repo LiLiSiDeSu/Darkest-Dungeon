@@ -69,8 +69,6 @@
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolNowPanel.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrUI.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelShopCost.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelResTransform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test2.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomRecruit.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrXml.cs" />
@@ -92,7 +90,6 @@
     <Compile Include="Assets\Scripts\Other\SetActiveFalseOnAwake.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoMgr.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownStore.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelAction.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Ex_Transform.cs" />
     <Compile Include="Assets\Scripts\Other\Test\Test1.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRooms.cs" />
@@ -100,10 +97,12 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\MonoController.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorGUILayout\LayoutForCreaterNews.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrInput.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelTownShopCost.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherDestroyArchiveHint.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />
     <Compile Include="Assets\Scripts\Other\AllEnum.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\BaseEditorGUIExtension.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelOhterResTable.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomGraveyard.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelStoreAncestralProperty.cs" />
