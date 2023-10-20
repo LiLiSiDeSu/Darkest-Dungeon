@@ -51,7 +51,7 @@ public class DataContainer_PanelCellTownStore
 
 public class DataContainer_PanelCellItem
 {
-    public E_Location e_Location = E_Location.TownStore;
+    public E_Location e_Location = E_Location.PanelTownItem;
     public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.ItemFoodCookie;   
 
     public DataContainer_PanelCellItem() { }

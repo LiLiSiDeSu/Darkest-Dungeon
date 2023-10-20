@@ -58,8 +58,8 @@ public class PanelRooms : PanelBase
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomGraveyard"], "BtnRoomGraveyard");                
                 break;
 
-            case "BtnRoomShop":                               
-                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomShop"], "BtnRoomShop");                
+            case "BtnRoomTownShop":                               
+                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomTownShop"], "BtnRoomTownShop");                
                 break;
 
             case "BtnRoomSmithy":                                

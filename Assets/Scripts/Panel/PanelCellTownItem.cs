@@ -11,12 +11,12 @@ public class PanelCellTownItem : PanelBase,
     {
         get
         {
-            if (e_Location == E_Location.TownShop)
+            if (e_Location == E_Location.PanelTownShopItem)
             {
-                return GlobalHot.NowCellGameArchive.DataListCellShopItem[Index].e_SpriteNamePanelCellItem;
+                return Hot.NowCellGameArchive.DataListCellShopItem[Index].e_SpriteNamePanelCellItem;
             }
 
-            return GlobalHot.NowCellGameArchive.DataListCellStore
+            return Hot.NowCellGameArchive.DataListCellStore
                    [transform.parent.parent.parent.parent.GetComponent<PanelTownItem>().FatherPanelCellTownStore.Index].
                    DataListCellStoreItem[Index].e_SpriteNamePanelCellItem;
         }
@@ -28,6 +28,7 @@ public class PanelCellTownItem : PanelBase,
     public int Capacity;
 
     public E_Location e_Location;
+    
     public InfoContainer_Cost Cost = new InfoContainer_Cost();
     public Image ImgItem;
     private Vector2 DragOffSet;
@@ -47,19 +48,29 @@ public class PanelCellTownItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GlobalHot.PanelRoomShop_.PanelShopCost_.UpdateInfo(Cost);
+        Hot.PanelRoomTownShop_.PanelShopCost_.UpdateInfo(Cost);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GlobalHot.PanelRoomShop_.PanelShopCost_.Clear();        
+        Hot.PanelRoomTownShop_.PanelShopCost_.Clear();        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {        
-        transform.parent = GlobalHot.PanelRoomShop_.PanelShopItem_.transform;
+    {
+        ImgItem.raycastTarget = false;
+
+        switch (e_Location)
+        {
+            case E_Location.PanelTownItem:
+                transform.parent = Hot.NowPanelCellTownStore.PanelCellItem_.transform;
+                break;
+            case E_Location.PanelTownShopItem:
+                transform.parent = Hot.PanelRoomTownShop_.PanelTownShopItem_.transform;
+                break;            
+        }
         DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
-        GlobalHot.DragingObj = gameObject;
+        Hot.NowItem = this;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -69,17 +80,34 @@ public class PanelCellTownItem : PanelBase,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        switch (e_Location)
+        ImgItem.raycastTarget = true;
+
+        switch (Hot.e_NowPointerLocation)
         {
-            case E_Location.TownStore:
-                transform.SetParent(GlobalHot.NowPanelTownItem.Content, false);
+            case E_Location.None:
+                switch (e_Location)
+                {                   
+                    case E_Location.PanelTownItem:
+                        transform.SetParent(Hot.NowPanelTownItem.Content, false);
+                        Hot.NowPanelTownItem.SortContent();
+                        break;
+                    case E_Location.PanelTownShopItem:
+                        transform.SetParent(Hot.PanelRoomTownShop_.PanelTownShopItem_.Content, false);
+                        Hot.PanelTownShopItem_.SortContent();
+                        break;                    
+                }
                 break;
-            case E_Location.TownShop:
-                transform.SetParent(GlobalHot.PanelRoomShop_.PanelShopItem_.Content, false);
+            case E_Location.PanelTownItem:
+                transform.SetParent(Hot.NowPanelTownItem.Content, false);
+                Hot.NowPanelTownItem.SortContent();
+                break;
+            case E_Location.PanelTownShopItem:
+                transform.SetParent(Hot.PanelRoomTownShop_.PanelTownShopItem_.Content, false);
+                Hot.PanelTownShopItem_.SortContent();
                 break;
         }
 
-        GlobalHot.DragingObj = null;
+        Hot.NowItem = null;
     }
 
     #endregion

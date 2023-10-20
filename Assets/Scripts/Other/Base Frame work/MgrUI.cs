@@ -54,6 +54,10 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     {
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
+            //调试用 一般这边报错了就是Prefabs名字和类名不一样
+            if (obj == null)
+                Debug.Log(panelname);
+
             obj.name = obj.name.Replace("(Clone)", "");
 
             obj.transform.SetParent(UIBaseCanvas);
@@ -80,7 +84,11 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     where T : PanelBase
     {                  
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
-        {            
+        {
+            //调试用 一般这边报错了就是Prefabs名字和类名不一样
+            if (obj == null)
+                Debug.Log(panelname);
+
             obj.name = obj.name.Replace("(Clone)", "");            
 
             obj.transform.SetParent(UIBaseCanvas);
@@ -115,6 +123,9 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     {        
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
+            //调试用
+            if (obj == null)            
+                Debug.Log(panelname);            
             obj.name = obj.name.Replace("(Clone)", "");
 
             T panel = obj.GetComponent<T>();

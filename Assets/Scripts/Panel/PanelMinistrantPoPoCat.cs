@@ -5,25 +5,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PanelMinistrantPoPoCat : PanelBase, IPointerEnterHandler, IPointerExitHandler
-{
-    private Toggle TogTrigger;
+{    
     private Animator AnimatorMinistrantForShop;
     private GameObject BtnOpen;
     private GameObject BtnClose;
-    public Transform Eat;
     private E_PoPoCatStatus e_PoPoCatStatus;
 
     protected override void Awake()
     {
         base.Awake();
-
-        TogTrigger = GetComponent<Toggle>();
+        
         AnimatorMinistrantForShop = transform.FindSonSonSon("AnimatorMinistrantForShop").GetComponent<Animator>();        
         BtnOpen = transform.FindSonSonSon("BtnOpen").gameObject;
         BtnClose = transform.FindSonSonSon("BtnClose").gameObject;
         transform.FindSonSonSon("ImgOpen").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgClose").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        Eat = transform.FindSonSonSon("Eat");
+        transform.FindSonSonSon("ImgClose").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
         BtnOpen.SetActive(false);
         BtnClose.SetActive(false);
@@ -68,8 +64,8 @@ public class PanelMinistrantPoPoCat : PanelBase, IPointerEnterHandler, IPointerE
         }
 
 
-        if (GlobalHot.DragingObj != null)
-            GlobalHot.DragingObj.transform.SetParent(Eat, false);
+        if (Hot.NowItem != null)
+            Hot.NowItem.transform.SetParent(transform, false);
     }
 
     public void OnPointerExit(PointerEventData eventData)

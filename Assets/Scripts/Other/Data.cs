@@ -40,7 +40,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
 
     public void Save()
     {
-        Save(GlobalHot.IndexNowCellGameArchive);
+        Save(Hot.IndexNowCellGameArchive);
     }
 
     public void SaveAll()

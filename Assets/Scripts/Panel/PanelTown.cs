@@ -12,7 +12,7 @@ public class PanelTown : PanelBase
         transform.FindSonSonSon("ImgRecruit").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgWineHouse").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgTownStore").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
@@ -36,8 +36,8 @@ public class PanelTown : PanelBase
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGraveyard");              
                 break;
 
-            case "BtnShop":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomShop");
+            case "BtnTownShop":
+                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTownShop");
                 break;
 
             case "BtnSmithy":
@@ -53,7 +53,7 @@ public class PanelTown : PanelBase
                 {
                     MgrUI.GetInstance().HidePanel
                     (false, MgrUI.GetInstance().DicPanel["PanelTownStore"].gameObject, "PanelTownStore");
-                    GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;
+                    Hot.PanelTownStore_.NowPanelCellTownStore = null;
                     break;
                 }
                 MgrUI.GetInstance().ShowPanel<PanelTownStore>(true, "PanelTownStore");

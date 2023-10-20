@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1049213347941158352}
   - component: {fileID: 2249551927439966901}
   m_Layer: 5
-  m_Name: BtnShop
+  m_Name: BtnTownShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 5386004394816854786}
   - component: {fileID: 5337503579748084984}
   m_Layer: 5
-  m_Name: ImgShop
+  m_Name: ImgTownShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

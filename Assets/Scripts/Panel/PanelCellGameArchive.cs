@@ -37,16 +37,16 @@ public class PanelCellGameArchive : PanelBase
             case "BtnGameArchiveChoosed":
                 #region ChoosedGameArchive
 
-                MgrUI.GetInstance().HidePanel
-                (false, MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").gameObject, "PanelGameArchiveChoose");
+                Hot.MgrUI_.HidePanel
+                (false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 
-                GlobalHot.IndexNowCellGameArchive = Index;
-                MgrUI.GetInstance().ShowPanel<PanelTown>(false, "PanelTown");
+                Hot.IndexNowCellGameArchive = Index;
+                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
-                MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").UpdateContent();
-                MgrUI.GetInstance().GetPanel<PanelStoreAncestralProperty>("PanelStoreAncestralProperty").UpdateDataInfo();
-                MgrUI.GetInstance().GetPanel<PanelStoreCoin>("PanelStoreCoin").UpdateDataInfo();
-                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop).PanelShopItem_.UpdateContent();
+                Hot.PanelTownStore_.UpdateContent();
+                Hot.PanelStoreAncestralProperty_.UpdateDataInfo();
+                Hot.PanelStoreCoin_.UpdateDataInfo();
+                Hot.PanelTownShopItem_.UpdateContent();
 
                 #endregion
                 break;
@@ -54,21 +54,21 @@ public class PanelCellGameArchive : PanelBase
             case "BtnGameArchiveDestroy":
                 #region DestroyGameArchive
 
-                MgrUI.GetInstance().ShowPanel<PanelOtherHint>(true, "PanelOtherHint", (panel1) =>
+                Hot.MgrUI_.ShowPanel<PanelOtherDestroyArchiveHint>(true, "PanelOtherDestroyArchiveHint", (panel1) =>
                 {
-                    MgrUI.GetInstance().GetPanel<PanelOtherHint>("PanelOtherHint").DelConfirm += (panel2) =>
+                    Hot.PanelOtherDestroyArchiveHint_.DelConfirm += (panel2) =>
                     {
                         DestroyImmediate(gameObject);
-                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").NowIndex -= 1;
-                        MgrUI.GetInstance().GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose").SortCellGameArchive();
+                        Hot.PanelGameArchiveChoose_.NowIndex -= 1;
+                        Hot.PanelGameArchiveChoose_.SortCellGameArchive();
 
-                        Data.GetInstance().Destroy(Index);
+                        Hot.Data_.Destroy(Index);
 
-                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");
+                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");
                     };
-                    MgrUI.GetInstance().GetPanel<PanelOtherHint>("PanelOtherHint").DelCancel += (panel2) =>
+                    Hot.PanelOtherDestroyArchiveHint_.DelCancel += (panel2) =>
                     {
-                        MgrUI.GetInstance().HidePanel(false, panel2, "PanelOtherHint");
+                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");
                     };
                 });
 
@@ -102,7 +102,7 @@ public class PanelCellGameArchive : PanelBase
 
                 if (Data.GetInstance().DataListCellGameArchive[Index].e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
-                    MgrUI.GetInstance().ShowPanel<PanelGameArchiveChooseLevel>
+                    Hot.MgrUI_.ShowPanel<PanelGameArchiveChooseLevel>
                     (true, "PanelGameArchiveChooseLevel",                                                                                
                     (panel) =>
                     {

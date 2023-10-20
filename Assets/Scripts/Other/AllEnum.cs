@@ -39,10 +39,17 @@ public enum E_StoreCoinLevel
     Platinum
 }
 
-public enum E_Location
+public enum E_StatusItemGrid
 {
-    TownStore,
-    TownShop
+    None,
+    Have
+}
+
+public enum E_Location
+{    
+    None,
+    PanelTownItem,
+    PanelTownShopItem
 }
 
 public enum E_PoPoCatStatus

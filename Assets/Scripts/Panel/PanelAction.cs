@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PanelAction : PanelBase
 {
-    public bool CanShow;
+    
 }

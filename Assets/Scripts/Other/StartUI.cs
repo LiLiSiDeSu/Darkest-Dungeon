@@ -11,8 +11,8 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         MgrUI.GetInstance().CreatePanelAndShow<PanelOtherStart>
                          (true, "/PanelOtherStart");
 
-        MgrUI.GetInstance().CreatePanelAndPush<PanelOtherHint>
-                         (true, "/PanelOtherHint", true, false, "PanelOtherHint");
+        MgrUI.GetInstance().CreatePanelAndPush<PanelOtherDestroyArchiveHint>
+                         (true, "/PanelOtherDestroyArchiveHint", true, false, "PanelOtherDestroyArchiveHint");
 
         MgrUI.GetInstance().CreatePanelAndPush<PanelOtherSetting>
                          (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");

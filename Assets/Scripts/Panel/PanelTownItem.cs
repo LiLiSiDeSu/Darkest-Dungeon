@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PanelTownItem : PanelBase
+public class PanelTownItem : PanelBase, 
+             IPointerEnterHandler, IPointerExitHandler
 {    
     public int NowIndex;
     public PanelCellTownStore FatherPanelCellTownStore;
@@ -17,26 +19,45 @@ public class PanelTownItem : PanelBase
         gameObject.SetActive(false);
     }
 
+    #region EventSystem接口实现
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Hot.e_NowPointerLocation = E_Location.PanelTownItem;
+
+        if (Hot.NowItem != null)
+        {
+            Hot.NowItem.transform.SetParent(transform, false);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {        
+        Hot.e_NowPointerLocation = E_Location.None;
+    }
+
+    #endregion
+
     public void Show(PanelCellTownStore NowPanelCellTownStore)
     {
-        if (GlobalHot.PanelTownStore_.NowPanelCellTownStore == NowPanelCellTownStore)
+        if (Hot.PanelTownStore_.NowPanelCellTownStore == NowPanelCellTownStore)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;            
+            Hot.PanelTownStore_.NowPanelCellTownStore = null;            
             gameObject.SetActive(false);
             return;
         }
 
-        if (GlobalHot.PanelTownStore_.NowPanelCellTownStore != null)
+        if (Hot.PanelTownStore_.NowPanelCellTownStore != null)
         {
             PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            GlobalHot.PanelTownStore_.NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
+            Hot.PanelTownStore_.NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
         }
-        GlobalHot.PanelTownStore_.NowPanelCellTownStore = NowPanelCellTownStore;
+        Hot.PanelTownStore_.NowPanelCellTownStore = NowPanelCellTownStore;
         PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
         () => 
         {
-            GlobalHot.PanelTownStore_.NowPanelCellTownStore = null;            
+            Hot.PanelTownStore_.NowPanelCellTownStore = null;            
         });
         gameObject.SetActive(true);
     }     
@@ -45,7 +66,7 @@ public class PanelTownItem : PanelBase
     {
         NowIndex = 0;
 
-        for (int i = 0; i < GlobalHot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
+        for (int i = 0; i < Hot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
         {
             int tempi = i;
 
@@ -54,10 +75,19 @@ public class PanelTownItem : PanelBase
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
-                panel.e_Location = E_Location.TownStore;
+                panel.e_Location = E_Location.PanelTownItem;
                 panel.Index = NowIndex;                
                 NowIndex++;
             });
+        }
+    }
+
+    public void SortContent()
+    {
+        PanelCellTownItem[] all = transform.GetComponentsInChildren<PanelCellTownItem>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            all[i].Index = i;
         }
     }
 
@@ -69,5 +99,5 @@ public class PanelTownItem : PanelBase
     public void Subtraction()
     {
 
-    }
+    }    
 }

@@ -6,7 +6,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Test1 : PanelBase
+public class Test1 : MonoBehaviour
 {
-    
+    private void Update()
+    {
+        Debug.Log(Hot.e_NowPointerLocation);        
+    }
 }

@@ -63,7 +63,7 @@ public class PanelOtherSetting : PanelBase
 
             case "BtnBackStart":
                 MgrUI.GetInstance().GetPanel<PanelTownStore>("PanelTownStore").ClearContent();
-                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomShop"] as PanelRoomShop).PanelShopItem_.DestroyContent();
+                (MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomTownShop"] as PanelRoomTownShop).PanelTownShopItem_.DestroyContent();
 
                 MgrUI.GetInstance().HidePanel
                 (false, MgrUI.GetInstance().GetPanel<PanelTown>("PanelTown").gameObject,

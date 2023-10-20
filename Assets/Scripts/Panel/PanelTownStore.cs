@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelTownStore : PanelBase
+public class PanelTownStore : PanelBase, 
+             IPointerEnterHandler, IPointerExitHandler
 {
     public int NowIndex = 0;        
     public Transform RootPanelTownItem;
@@ -20,11 +22,25 @@ public class PanelTownStore : PanelBase
         RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
     }
 
+    #region EventSystem接口实现
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        
+    }
+
+    #endregion
+
     public void UpdateContent()
     {
         NowIndex = 0;
 
-        for (int i = 0;  i < GlobalHot.NowCellGameArchive.DataListCellStore.Count; i++)
+        for (int i = 0;  i < Hot.NowCellGameArchive.DataListCellStore.Count; i++)
         {
             int tempi = i;
 
@@ -63,9 +79,13 @@ public class PanelTownStore : PanelBase
         }
     }
 
-    public void SortIndex()
+    public void SortContent()
     {
-
+        PanelCellTownStore[] all = transform.GetComponentsInChildren<PanelCellTownStore>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            all[i].Index = i;
+        }
     }
 
     public void Add()
