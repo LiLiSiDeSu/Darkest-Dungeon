@@ -40,7 +40,7 @@ public class PanelTownStore : PanelBase,
     {
         NowIndex = 0;
 
-        for (int i = 0;  i < Hot.NowCellGameArchive.DataListCellStore.Count; i++)
+        for (int i = 0;  i < Hot.DataNowCellGameArchive.DataListCellStore.Count; i++)
         {
             int tempi = i;
 

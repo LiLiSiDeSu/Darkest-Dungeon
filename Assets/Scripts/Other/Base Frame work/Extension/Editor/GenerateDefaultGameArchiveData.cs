@@ -33,22 +33,21 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].DataListCellStore[0].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodRawChicken),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodApple),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodRawMutton),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodRawChicken),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodRawMutton),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
 
         GameArchiveDataCellList[0].DataListCellStore[2].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
 
         GameArchiveDataCellList[0].DataStoreAncestralProperty = 
@@ -59,11 +58,11 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].DataListCellShopItem = new List<DataContainer_PanelCellItem>()
         {
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookedPotato),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCoodedChicken),
-            new DataContainer_PanelCellItem(E_SpriteNamePanelCellItem.ItemFoodCookie)
+            new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+            new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, E_SpriteNamePanelCellItem.ItemFoodCookedPotato),
+            new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, E_SpriteNamePanelCellItem.ItemFoodCoodedChicken),
+            new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, E_SpriteNamePanelCellItem.ItemFoodCookie)
         };
 
         #endregion

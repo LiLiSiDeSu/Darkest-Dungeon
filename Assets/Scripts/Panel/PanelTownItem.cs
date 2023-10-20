@@ -66,7 +66,7 @@ public class PanelTownItem : PanelBase,
     {
         NowIndex = 0;
 
-        for (int i = 0; i < Hot.NowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].DataListCellStoreItem.Count; i++)
         {
             int tempi = i;
 
@@ -76,6 +76,9 @@ public class PanelTownItem : PanelBase,
             {
                 panel.transform.SetParent(Content, false);
                 panel.e_Location = E_Location.PanelTownItem;
+                panel.e_SpriteNamePanelCellItem = 
+                    Hot.DataNowCellGameArchive.DataListCellStore[FatherPanelCellTownStore.Index].
+                    DataListCellStoreItem[tempi].e_SpriteNamePanelCellItem;
                 panel.Index = NowIndex;                
                 NowIndex++;
             });

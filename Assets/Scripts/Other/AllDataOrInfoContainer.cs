@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public sealed class AllDataOrInfoContainer { }
 
@@ -44,7 +45,7 @@ public class DataContainer_PanelCellTownStore
     public DataContainer_PanelCellTownStore() { }
     public DataContainer_PanelCellTownStore
     (E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore)
-    {
+    {        
         this.e_SpriteNamePanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
 }
@@ -56,8 +57,9 @@ public class DataContainer_PanelCellItem
 
     public DataContainer_PanelCellItem() { }
     public DataContainer_PanelCellItem
-    (E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    (E_Location e_Location, E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
     {     
+        this.e_Location = e_Location;
         this.e_SpriteNamePanelCellItem = e_SpriteNamePanelCellItem;
     }
 }

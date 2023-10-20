@@ -45,8 +45,8 @@ public class PanelCellTownStore : PanelBase,
 
         TxtMaxWeight.text = MaxWeight.ToString();        
         TxtMaxCapacity.text = MaxCapacity.ToString();
-        TxtNowWeight.text = Hot.NowCellGameArchive.DataListCellStore[Index].NowWeight.ToString();
-        TxtNowCapacity.text = Hot.NowCellGameArchive.DataListCellStore[Index].NowCapacity.ToString();
+        TxtNowWeight.text = Hot.DataNowCellGameArchive.DataListCellStore[Index].NowWeight.ToString();
+        TxtNowCapacity.text = Hot.DataNowCellGameArchive.DataListCellStore[Index].NowCapacity.ToString();
     }
 
     #region EventSystem接口实现
@@ -88,7 +88,7 @@ public class PanelCellTownStore : PanelBase,
 
     public void InitDataInfo()
     {
-        switch (Hot.NowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore)
+        switch (Hot.DataNowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore)
         {
             case E_SpriteNamePanelCellTownStore.StoreWood:
                 MaxWeight = 50;
@@ -107,6 +107,6 @@ public class PanelCellTownStore : PanelBase,
         }
 
         ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>
-        ("Art/" + Hot.NowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore.ToString());
+        ("Art/" + Hot.DataNowCellGameArchive.DataListCellStore[Index].e_SpriteNamePanelCellTownStore.ToString());
     }
 }

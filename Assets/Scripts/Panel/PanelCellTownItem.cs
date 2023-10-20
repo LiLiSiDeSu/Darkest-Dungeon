@@ -7,28 +7,14 @@ using UnityEngine.UI;
 public class PanelCellTownItem : PanelBase, 
              IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {    
-    public E_SpriteNamePanelCellItem Hot_ESpriteName
-    {
-        get
-        {
-            if (e_Location == E_Location.PanelTownShopItem)
-            {
-                return Hot.NowCellGameArchive.DataListCellShopItem[Index].e_SpriteNamePanelCellItem;
-            }
-
-            return Hot.NowCellGameArchive.DataListCellStore
-                   [transform.parent.parent.parent.parent.GetComponent<PanelTownItem>().FatherPanelCellTownStore.Index].
-                   DataListCellStoreItem[Index].e_SpriteNamePanelCellItem;
-        }
-    }
-
     public int Index;
 
     public int Weight;
     public int Capacity;
 
     public E_Location e_Location;
-    
+    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem;
+
     public InfoContainer_Cost Cost = new InfoContainer_Cost();
     public Image ImgItem;
     private Vector2 DragOffSet;
@@ -82,31 +68,46 @@ public class PanelCellTownItem : PanelBase,
     {
         ImgItem.raycastTarget = true;
 
-        switch (Hot.e_NowPointerLocation)
+        if (Hot.e_NowPointerLocation == e_Location)
         {
-            case E_Location.None:
-                switch (e_Location)
-                {                   
-                    case E_Location.PanelTownItem:
-                        transform.SetParent(Hot.NowPanelTownItem.Content, false);
-                        Hot.NowPanelTownItem.SortContent();
-                        break;
-                    case E_Location.PanelTownShopItem:
-                        transform.SetParent(Hot.PanelRoomTownShop_.PanelTownShopItem_.Content, false);
-                        Hot.PanelTownShopItem_.SortContent();
-                        break;                    
-                }
-                break;
-            case E_Location.PanelTownItem:
-                transform.SetParent(Hot.NowPanelTownItem.Content, false);
-                Hot.NowPanelTownItem.SortContent();
-                break;
-            case E_Location.PanelTownShopItem:
-                transform.SetParent(Hot.PanelRoomTownShop_.PanelTownShopItem_.Content, false);
-                Hot.PanelTownShopItem_.SortContent();
-                break;
+            switch (e_Location)
+            {
+                case E_Location.PanelTownItem:
+                    transform.SetParent(Hot.NowPanelTownItem.Content, false);
+                    break;
+                case E_Location.PanelTownShopItem:
+                    transform.SetParent(Hot.PanelTownShopItem_.Content, false);
+                    break;
+            }
         }
+        else
+        {
+            switch (Hot.e_NowPointerLocation)
+            {
+                case E_Location.None:
+                    switch (e_Location)
+                    {
+                        case E_Location.PanelTownItem:
+                            transform.SetParent(Hot.NowPanelTownItem.Content, false);
+                            break;
+                        case E_Location.PanelTownShopItem:
+                            transform.SetParent(Hot.PanelTownShopItem_.Content, false);
+                            break;
+                    }
+                    break;
+                case E_Location.PanelTownItem:
+                    Hot.AddItem(E_Location.PanelTownItem);
+                    break;
+                case E_Location.PanelTownShopItem:
+                    Hot.AddItem(E_Location.PanelTownShopItem);
+                    break;
+            }
 
+            Hot.Data_.Save();
+        }        
+
+        Hot.NowPanelTownItem.SortContent();
+        Hot.PanelTownShopItem_.SortContent();
         Hot.NowItem = null;
     }
 
@@ -114,7 +115,7 @@ public class PanelCellTownItem : PanelBase,
 
     public void InitDataInfo()
     {
-        switch (Hot_ESpriteName)
+        switch (e_SpriteNamePanelCellItem)
         {
             case E_SpriteNamePanelCellItem.ItemFoodCookie:
                 Cost = new InfoContainer_Cost
@@ -173,6 +174,6 @@ public class PanelCellTownItem : PanelBase,
                 break;
         }
 
-        ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + Hot_ESpriteName.ToString());
+        ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + e_SpriteNamePanelCellItem.ToString());
     } 
 }

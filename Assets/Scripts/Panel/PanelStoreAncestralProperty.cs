@@ -38,54 +38,54 @@ public class PanelStoreAncestralProperty : PanelBase
     {
         Rounding();
 
-        TxtNowStatue.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.NowStatue.ToString();
-        TxtNowDeed.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.NowDeed.ToString();
-        TxtNowBadge.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.NowBadge.ToString();
-        TxtNowPicture.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.NowPicture.ToString();
-        TxtNowCrystal.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.NowCrystal.ToString();
+        TxtNowStatue.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowStatue.ToString();
+        TxtNowDeed.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowDeed.ToString();
+        TxtNowBadge.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowBadge.ToString();
+        TxtNowPicture.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowPicture.ToString();
+        TxtNowCrystal.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowCrystal.ToString();
 
-        TxtMaxStatue.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxStatue.ToString();
-        TxtMaxDeed.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxDeed.ToString();
-        TxtMaxBadge.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxBadge.ToString();
-        TxtMaxPicture.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxPicture.ToString();
-        TxtMaxCrystal.text = Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxCrystal.ToString();
+        TxtMaxStatue.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxStatue.ToString();
+        TxtMaxDeed.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxDeed.ToString();
+        TxtMaxBadge.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxBadge.ToString();
+        TxtMaxPicture.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxPicture.ToString();
+        TxtMaxCrystal.text = Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxCrystal.ToString();
     }
 
     public void Rounding()
     {
-        if (Hot.NowCellGameArchive.DataStoreAncestralProperty.NowStatue > 
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxStatue)
+        if (Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowStatue > 
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxStatue)
         {
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.NowStatue =
-                Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxStatue;
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowStatue =
+                Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxStatue;
         }
 
-        if (Hot.NowCellGameArchive.DataStoreAncestralProperty.NowDeed >
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxDeed)
+        if (Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowDeed >
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxDeed)
         {
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.NowDeed =
-                Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxDeed;
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowDeed =
+                Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxDeed;
         }
 
-        if (Hot.NowCellGameArchive.DataStoreAncestralProperty.NowBadge >
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxBadge)
+        if (Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowBadge >
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxBadge)
         {
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.NowBadge =
-                Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxBadge;
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowBadge =
+                Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxBadge;
         }
 
-        if (Hot.NowCellGameArchive.DataStoreAncestralProperty.NowPicture >
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxPicture)
+        if (Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowPicture >
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxPicture)
         {
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.NowPicture =
-                Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxPicture;
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowPicture =
+                Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxPicture;
         }
 
-        if (Hot.NowCellGameArchive.DataStoreAncestralProperty.NowCrystal >
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxCrystal)
+        if (Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowCrystal >
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxCrystal)
         {
-            Hot.NowCellGameArchive.DataStoreAncestralProperty.NowCrystal =
-                Hot.NowCellGameArchive.DataStoreAncestralProperty.MaxCrystal;
+            Hot.DataNowCellGameArchive.DataStoreAncestralProperty.NowCrystal =
+                Hot.DataNowCellGameArchive.DataStoreAncestralProperty.MaxCrystal;
         }
 
         Data.GetInstance().Save();

@@ -10,6 +10,7 @@ public class Test1 : MonoBehaviour
 {
     private void Update()
     {
-        Debug.Log(Hot.e_NowPointerLocation);        
+        Debug.Log("PanelTownItem" + Hot.DataNowPanelTownItem[Hot.DataNowPanelTownItem.Count - 1]);
+        Debug.Log("Shop: " + Hot.DataPanelTownShopItem[Hot.DataPanelTownShopItem.Count - 1]);
     }
 }

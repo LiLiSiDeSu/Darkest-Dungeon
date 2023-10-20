@@ -38,11 +38,17 @@ public class Data : InstanceBaseAuto_Mono<Data>
         MgrJson.GetInstance().Save(DataListCellGameArchive[index], PathGameArchiveData + index);
     }
 
+    /// <summary>
+    /// 保存当前存档
+    /// </summary>
     public void Save()
     {
-        Save(Hot.IndexNowCellGameArchive);
+        Save(Hot.NowIndexCellGameArchive);
     }
 
+    /// <summary>
+    /// 保存所有存档
+    /// </summary>
     public void SaveAll()
     {
         for (int i = 0; i < DataListCellGameArchive.Count; i++)

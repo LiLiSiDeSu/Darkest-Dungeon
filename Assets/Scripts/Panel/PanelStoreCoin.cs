@@ -30,12 +30,12 @@ public class PanelStoreCoin : PanelBase
     {
         Rounding();
 
-        TextCopper.text = Hot.NowCellGameArchive.DataStoreCoin.NowCopper.ToString();
-        TextSilver.text = Hot.NowCellGameArchive.DataStoreCoin.NowSilver.ToString();
-        TextGold.text = Hot.NowCellGameArchive.DataStoreCoin.NowGold.ToString();
-        TextPlatinum.text = Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum.ToString();
+        TextCopper.text = Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper.ToString();
+        TextSilver.text = Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver.ToString();
+        TextGold.text = Hot.DataNowCellGameArchive.DataStoreCoin.NowGold.ToString();
+        TextPlatinum.text = Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum.ToString();
 
-        switch (Hot.NowCellGameArchive.DataStoreCoin.e_StoreCoinLevel)
+        switch (Hot.DataNowCellGameArchive.DataStoreCoin.e_StoreCoinLevel)
         {                
             case E_StoreCoinLevel.Silver:
                 ImgStoreCoinLevel.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + "StoreCoinSilver");
@@ -48,43 +48,43 @@ public class PanelStoreCoin : PanelBase
                 break;      
         }
 
-        TxtStoreCoinLevel.text = Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel.ToString();
+        TxtStoreCoinLevel.text = Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel.ToString();
     }
 
     public void Rounding()
     {
-        switch (Hot.NowCellGameArchive.DataStoreCoin.e_StoreCoinLevel)
+        switch (Hot.DataNowCellGameArchive.DataStoreCoin.e_StoreCoinLevel)
         {
             case E_StoreCoinLevel.Silver:
                 CopperToSilver();
-                Hot.NowCellGameArchive.DataStoreCoin.NowGold = 0;
-                Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum = 0;
-                if (Hot.NowCellGameArchive.DataStoreCoin.NowSilver >= Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel)
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowGold = 0;
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum = 0;
+                if (Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver >= Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel)
                 {
-                    Hot.NowCellGameArchive.DataStoreCoin.NowCopper = 0;                    
-                    Hot.NowCellGameArchive.DataStoreCoin.NowSilver = Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper = 0;                    
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver = Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel;
                 }
                 break;
 
             case E_StoreCoinLevel.Gold:
                 SilverToGold();
-                Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum = 0;
-                if (Hot.NowCellGameArchive.DataStoreCoin.NowGold >= Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel)
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum = 0;
+                if (Hot.DataNowCellGameArchive.DataStoreCoin.NowGold >= Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel)
                 {
-                    Hot.NowCellGameArchive.DataStoreCoin.NowCopper = 0;
-                    Hot.NowCellGameArchive.DataStoreCoin.NowSilver = 0;                    
-                    Hot.NowCellGameArchive.DataStoreCoin.NowGold = Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper = 0;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver = 0;                    
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowGold = Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel;
                 }
                 break;
 
             case E_StoreCoinLevel.Platinum:
                 GoldToPlatinum();
-                if (Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum >= Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel)
+                if (Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum >= Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel)
                 {
-                    Hot.NowCellGameArchive.DataStoreCoin.NowCopper = 0;
-                    Hot.NowCellGameArchive.DataStoreCoin.NowSilver = 0;
-                    Hot.NowCellGameArchive.DataStoreCoin.NowGold = 0;
-                    Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum = Hot.NowCellGameArchive.DataStoreCoin.StoreCoinLevel;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper = 0;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver = 0;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowGold = 0;
+                    Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum = Hot.DataNowCellGameArchive.DataStoreCoin.StoreCoinLevel;
                 }
                 break;            
         }
@@ -94,11 +94,11 @@ public class PanelStoreCoin : PanelBase
 
     private void CopperToSilver()
     {
-        if (Hot.NowCellGameArchive.DataStoreCoin.NowCopper >= Hot.NowCellGameArchive.DataStoreCoin.RateCopperToSilver)
+        if (Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper >= Hot.DataNowCellGameArchive.DataStoreCoin.RateCopperToSilver)
         {
-            Hot.NowCellGameArchive.DataStoreCoin.NowSilver +=
-                Hot.NowCellGameArchive.DataStoreCoin.NowCopper / Hot.NowCellGameArchive.DataStoreCoin.RateCopperToSilver;
-            Hot.NowCellGameArchive.DataStoreCoin.NowCopper %= Hot.NowCellGameArchive.DataStoreCoin.RateCopperToSilver;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver +=
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper / Hot.DataNowCellGameArchive.DataStoreCoin.RateCopperToSilver;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowCopper %= Hot.DataNowCellGameArchive.DataStoreCoin.RateCopperToSilver;
         }
     }
 
@@ -106,11 +106,11 @@ public class PanelStoreCoin : PanelBase
     {
         CopperToSilver();
 
-        if (Hot.NowCellGameArchive.DataStoreCoin.NowSilver >= Hot.NowCellGameArchive.DataStoreCoin.RateSilverToGold)
+        if (Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver >= Hot.DataNowCellGameArchive.DataStoreCoin.RateSilverToGold)
         {
-            Hot.NowCellGameArchive.DataStoreCoin.NowGold +=
-                Hot.NowCellGameArchive.DataStoreCoin.NowSilver / Hot.NowCellGameArchive.DataStoreCoin.RateSilverToGold;
-            Hot.NowCellGameArchive.DataStoreCoin.NowSilver %= Hot.NowCellGameArchive.DataStoreCoin.RateSilverToGold;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowGold +=
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver / Hot.DataNowCellGameArchive.DataStoreCoin.RateSilverToGold;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowSilver %= Hot.DataNowCellGameArchive.DataStoreCoin.RateSilverToGold;
         }
     }
 
@@ -118,11 +118,11 @@ public class PanelStoreCoin : PanelBase
     {
         SilverToGold();
 
-        if (Hot.NowCellGameArchive.DataStoreCoin.NowGold >= Hot.NowCellGameArchive.DataStoreCoin.RateGoldToPlatinum)
+        if (Hot.DataNowCellGameArchive.DataStoreCoin.NowGold >= Hot.DataNowCellGameArchive.DataStoreCoin.RateGoldToPlatinum)
         {
-            Hot.NowCellGameArchive.DataStoreCoin.NowPlatinum +=
-                Hot.NowCellGameArchive.DataStoreCoin.NowGold / Hot.NowCellGameArchive.DataStoreCoin.RateGoldToPlatinum;
-            Hot.NowCellGameArchive.DataStoreCoin.NowGold %= Hot.NowCellGameArchive.DataStoreCoin.RateGoldToPlatinum;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowPlatinum +=
+                Hot.DataNowCellGameArchive.DataStoreCoin.NowGold / Hot.DataNowCellGameArchive.DataStoreCoin.RateGoldToPlatinum;
+            Hot.DataNowCellGameArchive.DataStoreCoin.NowGold %= Hot.DataNowCellGameArchive.DataStoreCoin.RateGoldToPlatinum;
         }
     }
 }

@@ -18,7 +18,7 @@ public class PanelCellGameArchive : PanelBase
     protected override void Start()
     {
         base.Start();
-
+        
         transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
@@ -40,7 +40,7 @@ public class PanelCellGameArchive : PanelBase
                 Hot.MgrUI_.HidePanel
                 (false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 
-                Hot.IndexNowCellGameArchive = Index;
+                Hot.NowIndexCellGameArchive = Index;
                 Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
                 Hot.PanelTownStore_.UpdateContent();
@@ -92,7 +92,7 @@ public class PanelCellGameArchive : PanelBase
     protected override void InputField_OnEndEdit(string controlname, string EventParam)
     {
         base.InputField_OnEndEdit(controlname, EventParam);
-
+        
         switch (controlname)
         {
             case "IptGameArchiveInput":
