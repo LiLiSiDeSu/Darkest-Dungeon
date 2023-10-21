@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,21 +13,23 @@ public class PanelTownStore : PanelBase,
     public Transform RootPanelTownItem;
     public Transform Content;
 
+    public List<Transform> ListPanelTownItemSteps;
+
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
     protected override void Awake()
     {
         base.Awake();
 
-        CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == MgrInput.GetInstance().PanelTownStore)
+            if (key == Hot.MgrInput_.PanelTownStore)
             {
 
-                if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelTownStore"))
+                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
                 {
                     Hot.MgrUI_.HidePanel
-                        (false, Hot.MgrUI_.GetPanel<PanelTownStore>("PanelTownStore").gameObject, "PanelTownStore");
+                        (false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
                 }
                 Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore", CallBackForPoolEsc: () =>
                 {
@@ -70,10 +73,14 @@ public class PanelTownStore : PanelBase,
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
                                  (false, "/PanelTownItem", false, false, "PanelTownItem",
                 (PanelTownItem_) =>
-                {                    
-                    PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
+                {
+                    GameObject obj = new GameObject(tempi.ToString());
+                    ListPanelTownItemSteps.Add(obj.transform);
+                    obj.transform.SetParent(RootPanelTownItem, false);
+                    PanelTownItem_.transform.SetParent(obj.transform, false);
                     PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
+                    PanelTownItem_.gameObject.name += tempi;
                     PanelTownItem_.UpdateContent();
                 });
 
@@ -81,6 +88,25 @@ public class PanelTownStore : PanelBase,
                 NowIndex++;
             });
         }
+    }
+
+    public void Bubbling(int IndexToBubble)
+    {
+        ListPanelTownItemSteps[IndexToBubble].FindSonSonSon("PanelTownItem" + IndexToBubble).GetComponent<PanelTownItem>().
+            FatherPanelCellTownStore.Index = ListPanelTownItemSteps.Count - 1;
+        ListPanelTownItemSteps[IndexToBubble].FindSonSonSon("PanelTownItem" + IndexToBubble).transform.SetParent
+                (ListPanelTownItemSteps[ListPanelTownItemSteps.Count - 1], false);
+        ListPanelTownItemSteps[ListPanelTownItemSteps.Count - 1].
+            FindSonSonSon("PanelTownItem" + IndexToBubble).gameObject.name = "PanelTownItem" + (ListPanelTownItemSteps.Count - 1);
+
+        for (int i = IndexToBubble; i < NowIndex - 1; i++)
+        {
+            ListPanelTownItemSteps[i + 1].FindSonSonSon("PanelTownItem" + (i + 1)).
+                GetComponent<PanelTownItem>().FatherPanelCellTownStore.Index = i;
+            ListPanelTownItemSteps[i + 1].FindSonSonSon("PanelTownItem" + (i + 1)).transform.SetParent
+                (ListPanelTownItemSteps[i], false);
+            ListPanelTownItemSteps[i].FindSonSonSon("PanelTownItem" + (i + 1)).gameObject.name = "PanelTownItem" + i;            
+        }        
     }
 
     /// <summary>

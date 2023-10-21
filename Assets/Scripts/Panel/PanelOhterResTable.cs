@@ -6,23 +6,26 @@ using UnityEngine.UI;
 public class PanelOhterResTable : PanelBase
 {
     private Dictionary<string, Text> AllText = new Dictionary<string, Text>();
+    private Transform RootRes;
 
     protected override void Awake()
     {
         base.Awake();
 
-        CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        RootRes = transform.FindSonSonSon("RootRes");
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == MgrInput.GetInstance().PanelResTable)
+            if (key == Hot.MgrInput_.PanelResTable)
             {
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
                     if (Hot.NowIndexCellGameArchive != -1)
                     {
-                        if (PoolNowPanel.GetInstance().ListNowPanel.Contains("PanelOhterResTable"))
+                        if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOhterResTable"))
                         {
                             Hot.MgrUI_.HidePanel
-                                (false, Hot.MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable").gameObject, "PanelOhterResTable");                            
+                                (false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");                            
                         }
                         Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
                     }
@@ -30,12 +33,12 @@ public class PanelOhterResTable : PanelBase
             }
         });
 
-        Text[] texts = GetComponentsInChildren<Text>();
+        Text[] texts = RootRes.GetComponentsInChildren<Text>();
         for (int i = 0; i < texts.Length; i++)
         {
             AllText.Add(texts[i].gameObject.name, texts[i]);
         }
-        Image[] images = GetComponentsInChildren<Image>();
+        Image[] images = RootRes.GetComponentsInChildren<Image>();
         for (int i = 0; i < images.Length; i++)
         {
             images[i].alphaHitTestMinimumThreshold = 0.2f;

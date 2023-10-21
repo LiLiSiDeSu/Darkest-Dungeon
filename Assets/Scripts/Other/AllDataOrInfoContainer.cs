@@ -21,14 +21,14 @@ public class DataContainer_PanelCellGameArchive
     public DataContainer_PanelCellGameArchive() { }
     public DataContainer_PanelCellGameArchive
     (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, string Location, string Week, string Time, 
-    List<DataContainer_PanelCellTownStore> DataListCellStore)
+    List<DataContainer_PanelCellTownStore> ListCellStore)
     {
         this.GameArchiveName = GameArchiveName;
         this.e_GameArchiveLevel = e_GameArchiveLevel;
         this.Location = Location;
         this.Week = Week;
         this.Time = Time;
-        this.ListCellStore = DataListCellStore;
+        this.ListCellStore = ListCellStore;
     }
 }
 

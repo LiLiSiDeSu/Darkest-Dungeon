@@ -12,7 +12,7 @@ public class PanelTownItem : PanelBase,
     
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake();        
 
         Content = transform.FindSonSonSon("Content");        
 
@@ -38,27 +38,16 @@ public class PanelTownItem : PanelBase,
 
     #endregion
 
-    public void Show(PanelCellTownStore NowPanelCellTownStore)
+    public void Show(bool IsOpen)
     {
-        if (Hot.PanelTownStore_.NowPanelCellTownStore == NowPanelCellTownStore)
+        if (IsOpen)
         {
-            PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            Hot.NowPanelCellTownStore = null;            
-            gameObject.SetActive(false);
+            //PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
+            //Hot.NowPanelCellTownStore = null;            
+            //gameObject.SetActive(false);
             return;
         }
-
-        if (Hot.PanelTownStore_.NowPanelCellTownStore != null)
-        {
-            PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            Hot.PanelTownStore_.NowPanelCellTownStore.PanelCellItem_.gameObject.SetActive(false);
-        }
-        Hot.PanelTownStore_.NowPanelCellTownStore = NowPanelCellTownStore;
-        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject, 
-        () => 
-        {
-            Hot.NowPanelCellTownStore = null;            
-        });
+        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject);
         gameObject.SetActive(true);
     }     
 

@@ -6,20 +6,40 @@ using UnityEngine;
 
 public static class Hot
 {
-    /// <summary>
-    /// 快捷得到MgrUI
-    /// </summary>
+
+    #region 快捷得到BaseFrameWork里的脚本
+
     public static MgrUI MgrUI_
     {
         get { return MgrUI.GetInstance(); }
     }
-    /// <summary>
-    /// 快捷得到Data
-    /// </summary>
     public static Data Data_
     {
         get { return Data.GetInstance(); }
+    }    
+    public static PoolNowPanel PoolNowPanel_
+    {
+        get { return PoolNowPanel.GetInstance(); }
     }
+    public static PoolBuffer PoolBuffer_
+    {
+        get { return PoolBuffer.GetInstance(); }
+    }
+    public static MgrInput MgrInput_
+    {
+        get { return MgrInput.GetInstance(); }
+    }
+    public static MgrJson MgrJson_
+    {
+        get { return MgrJson.GetInstance(); }
+    }
+    public static CenterEvent CenterEvent_
+    {
+        get { return CenterEvent.GetInstance(); }
+    }
+
+    #endregion
+
     #region Panel
 
     public static DataContainer_PanelResTable DataPanelResTable
@@ -137,21 +157,6 @@ public static class Hot
         get { return PanelTownStore_.NowPanelCellTownStore; }
         set { PanelTownStore_.NowPanelCellTownStore = value; }
     }
-    /// <summary>
-    /// 祖产面板
-    /// </summary>
-    public static PanelStoreAncestralProperty PanelStoreAncestralProperty_
-    {
-        get { return MgrUI_.GetPanel<PanelStoreAncestralProperty>("PanelStoreAncestralProperty"); }
-    }
-    /// <summary>
-    /// 钱币面板
-    /// </summary>
-    public static PanelStoreCoin PanelStoreCoin_
-    {
-        get { return MgrUI_.GetPanel<PanelStoreCoin>("PanelStoreCoin"); }
-    }    
-    //---
     /// <summary>
     /// 拖拽的物品
     /// </summary>

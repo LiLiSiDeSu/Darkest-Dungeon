@@ -14,16 +14,18 @@ public class PanelOtherSetting : PanelBase
     {
         base.Awake();
 
-        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
-        ImgCurrentChoice.gameObject.SetActive(false);
-
         CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == MgrInput.GetInstance().Setting)
+            if (key == Hot.MgrInput_.Setting)
             {
+                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOtherSetting"))
+                    Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelOtherSetting>("PanelOtherSetting").gameObject, "PanelOtherSetting");
                 Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
             }
         });
+
+        ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
+        ImgCurrentChoice.gameObject.SetActive(false);        
 
         Button[] btns = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Button>();
         Text[] txts = transform.FindSonSonSon("BtnRoot").GetComponentsInChildren<Text>();

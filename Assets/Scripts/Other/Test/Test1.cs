@@ -5,11 +5,16 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Test1 : MonoBehaviour
 {
     private void Update()
     {
-        Debug.Log(PoolBuffer.GetInstance().DicPool["PanelOhterResTable"][0].name);
+        Graphic[] all = GetComponentsInChildren<Graphic>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            Debug.Log(all[i].gameObject.name);
+        }
     }
 }

@@ -23,6 +23,8 @@ public class PanelCellTownItem : PanelBase,
     {
         base.Start();
 
+        gameObject.name += Index;
+
         ImgItem = transform.FindSonSonSon("ImgItem").GetComponent<Image>();
 
         InitDataInfo();

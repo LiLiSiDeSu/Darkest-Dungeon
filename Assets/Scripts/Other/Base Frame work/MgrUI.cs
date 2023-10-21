@@ -150,7 +150,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null, UnityAction CallBackForPoolEsc = null) 
     where T : PanelBase
     {
-        PoolBuffer.GetInstance().TakeAndGet(panelname).transform.SetParent(UIBaseCanvas);
+        PoolBuffer.GetInstance().TakeAndGet(panelname).transform.SetParent(UIBaseCanvas, false);
         GetPanel<T>(panelname).transform.localPosition = Vector3.zero;
         GetPanel<T>(panelname).transform.localScale = Vector3.one;
 
@@ -169,7 +169,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// 隐藏面板
     /// </summary>
     /// <param name="Active">面板在缓存池的激活状态</param>
-    /// <param name="panel">面板名对象</param>
+    /// <param name="panel">面板对象</param>
     /// <param name="panelname">面板在缓存池中的名字(一般直接gameObject.name)</param>
     public void HidePanel(bool Active, GameObject panel, string panelname)
     {

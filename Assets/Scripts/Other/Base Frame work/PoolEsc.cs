@@ -12,11 +12,11 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 
     protected override void Start()
     {
-        base.Start();        
+        base.Start();
 
-        CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == MgrInput.GetInstance().Esc)
+            if (key == Hot.MgrInput_.Esc)
             {                
                 HideTop();
             }

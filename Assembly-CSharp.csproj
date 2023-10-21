@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\Other\StartUI.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherStart.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChooseLevel.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelStoreCoin.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolEsc.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrScene.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomWineHouse.cs" />
@@ -105,12 +104,12 @@
     <Compile Include="Assets\Scripts\Panel\PanelOhterResTable.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomGraveyard.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownItem.cs" />
-    <Compile Include="Assets\Scripts\Panel\PanelStoreAncestralProperty.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherSetting.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelGameArchiveChoose.cs" />
     <Compile Include="Assets\Scripts\Other\AllDataOrInfoContainer.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\CenterEvent.cs" />
+    <Compile Include="Assets\Scripts\Other\DragAreaForPanelCellTownStore.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\MgrAudioSource.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PoolBuffer.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellGameArchive.cs" />
