@@ -11,10 +11,6 @@ public class Test1 : MonoBehaviour
 {
     private void Update()
     {
-        Graphic[] all = GetComponentsInChildren<Graphic>();
-        for (int i = 0; i < all.Length; i++)
-        {
-            Debug.Log(all[i].gameObject.name);
-        }
+        Debug.Log(Hot.NowPanelCellTownStore);
     }
 }

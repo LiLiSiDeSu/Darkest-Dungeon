@@ -23,7 +23,8 @@ public class PanelTownItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.e_NowPointerLocation = E_Location.PanelTownItem;
+        Hot.NowPanelCellTownStore = FatherPanelCellTownStore;
+        Hot.e_NowPointerLocation = E_Location.PanelTownItem;        
 
         if (Hot.DragingItem != null)
         {
@@ -38,17 +39,21 @@ public class PanelTownItem : PanelBase,
 
     #endregion
 
-    public void Show(bool IsOpen)
-    {
-        if (IsOpen)
+    public void Hide()
+    {        
+        Hot.MgrUI_.HidePanel(false, gameObject, gameObject.name);
+    }
+
+    public void Show()
+    {        
+        if (!PoolNowPanel.GetInstance().ListNowPanel.Contains(gameObject.name))
         {
-            //PoolEsc.GetInstance().RemoveListNoInMgrUI(gameObject);
-            //Hot.NowPanelCellTownStore = null;            
-            //gameObject.SetActive(false);
-            return;
+            Hot.MgrUI_.ShowPanel<PanelTownItem>(true, gameObject.name,
+            (panel) =>
+            {
+                panel.transform.SetParent(Hot.PanelTownStore_.RootPanelTownItem, false);
+            });
         }
-        PoolEsc.GetInstance().AddListNoInMgrUI(gameObject);
-        gameObject.SetActive(true);
     }     
 
     public void UpdateContent()

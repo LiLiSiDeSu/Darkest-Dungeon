@@ -36,26 +36,22 @@ public class PanelCellTownItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Hot.NowItem == null)
-        {
-            Hot.NowItem = this;
-            Hot.PanelShopCost_.UpdateInfo(Cost);
-        }
+        Hot.NowItem = this;
+        Hot.PanelShopCost_.UpdateInfo(Cost);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!Hot.PanelShopCost_.CanBuy || Hot.DragingItem == null)
-        {
-            Hot.NowItem = null;
-            Hot.PanelShopCost_.Clear();
-        }
+        Hot.NowItem = null;
+        Hot.PanelShopCost_.Clear();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {
+    {        
         if (Hot.PanelShopCost_.CanBuy)
         {
+            Hot.DragingItem = this;
+
             ImgItem.raycastTarget = false;
 
             switch (e_Location)
@@ -68,8 +64,7 @@ public class PanelCellTownItem : PanelBase,
                     break;
             }
 
-            DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
-            Hot.DragingItem = this;
+            DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;            
         }        
     }
 

@@ -381,7 +381,7 @@
 "Assets/Scripts/Other/Base Frame work/PoolEsc.cs"
 "Assets/Scripts/Other/Base Frame work/PoolNowPanel.cs"
 "Assets/Scripts/Other/Data.cs"
-"Assets/Scripts/Other/DragArea.cs"
+"Assets/Scripts/Other/DragAreaForPanelCellTownStore.cs"
 "Assets/Scripts/Other/Hot.cs"
 "Assets/Scripts/Other/SetActiveFalseOnAwake.cs"
 "Assets/Scripts/Other/StartUI.cs"

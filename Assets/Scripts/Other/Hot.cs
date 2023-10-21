@@ -37,6 +37,10 @@ public static class Hot
     {
         get { return CenterEvent.GetInstance(); }
     }
+    public static MgrRes MgrRes_
+    {
+        get { return MgrRes.GetInstance(); }
+    }
 
     #endregion
 

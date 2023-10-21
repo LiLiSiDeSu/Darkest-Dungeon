@@ -176,7 +176,10 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         PoolBuffer.GetInstance().Push(Active, panel, panelname);
         PoolNowPanel.GetInstance().ListNowPanel.Remove(panelname);    
         if (PoolEsc.GetInstance().ListEsc.Contains(panelname))
-            PoolEsc.GetInstance().ListEsc.Remove(panelname);
+        {
+            PoolEsc.GetInstance().ListEscEvent.RemoveAt(PoolEsc.GetInstance().ListEsc.IndexOf(panelname));
+            PoolEsc.GetInstance().ListEsc.Remove(panelname);            
+        }
     }
 
     public void DestroyPanel(string panelname, UnityAction callback = null)

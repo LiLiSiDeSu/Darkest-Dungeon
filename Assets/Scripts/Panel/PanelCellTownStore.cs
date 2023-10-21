@@ -25,14 +25,11 @@ public class PanelCellTownStore : PanelBase,
     public Text TxtNowCapacity;
     public Image ImgStore;
     
-    public PanelTownItem PanelCellItem_ = new PanelTownItem();
-    public bool IsOpen;
+    public PanelTownItem PanelCellItem_ = new PanelTownItem();    
 
     protected override void Start()
     {
-        base.Start();
-
-        gameObject.name += Index;
+        base.Start();        
 
         TxtMaxWeight = transform.FindSonSonSon("TxtMaxWeight").GetComponent<Text>();        
         TxtMaxCapacity = transform.FindSonSonSon("TxtMaxCapacity").GetComponent<Text>();
@@ -84,7 +81,7 @@ public class PanelCellTownStore : PanelBase,
         switch (controlname)
         {
             case "BtnCellTownStore":                
-                PanelCellItem_.Show(IsOpen);                
+                PanelCellItem_.Show();                
                 break;
         }
     }

@@ -13,8 +13,6 @@ public class PanelTownStore : PanelBase,
     public Transform RootPanelTownItem;
     public Transform Content;
 
-    public List<Transform> ListPanelTownItemSteps;
-
     public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
 
     protected override void Awake()
@@ -31,7 +29,8 @@ public class PanelTownStore : PanelBase,
                     Hot.MgrUI_.HidePanel
                         (false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
                 }
-                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore", CallBackForPoolEsc: () =>
+                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore", (panel) => { Hot.NowPanelCellTownStore = null; }, 
+                CallBackForPoolEsc: () =>
                 {
                     Hot.NowPanelCellTownStore = null;
                 });
@@ -65,22 +64,20 @@ public class PanelTownStore : PanelBase,
             int tempi = i;
 
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
-                             (false, "/PanelCellTownStore", false, false, "PanelCellTownStore",
+                             (true, "/PanelCellTownStore", false, false, "PanelCellTownStore" + tempi,
             (PanelCellTownStore_) =>
             {
+                PanelCellTownStore_.gameObject.name += tempi;
                 PanelCellTownStore_.transform.SetParent(Content, false);
 
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
-                                 (false, "/PanelTownItem", false, false, "PanelTownItem",
+                                 (true, "/PanelTownItem", true, true, "PanelTownItem" + tempi,
                 (PanelTownItem_) =>
                 {
-                    GameObject obj = new GameObject(tempi.ToString());
-                    ListPanelTownItemSteps.Add(obj.transform);
-                    obj.transform.SetParent(RootPanelTownItem, false);
-                    PanelTownItem_.transform.SetParent(obj.transform, false);
-                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
-                    PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;
                     PanelTownItem_.gameObject.name += tempi;
+                    PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
+                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
+                    PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;                    
                     PanelTownItem_.UpdateContent();
                 });
 
@@ -88,25 +85,6 @@ public class PanelTownStore : PanelBase,
                 NowIndex++;
             });
         }
-    }
-
-    public void Bubbling(int IndexToBubble)
-    {
-        ListPanelTownItemSteps[IndexToBubble].FindSonSonSon("PanelTownItem" + IndexToBubble).GetComponent<PanelTownItem>().
-            FatherPanelCellTownStore.Index = ListPanelTownItemSteps.Count - 1;
-        ListPanelTownItemSteps[IndexToBubble].FindSonSonSon("PanelTownItem" + IndexToBubble).transform.SetParent
-                (ListPanelTownItemSteps[ListPanelTownItemSteps.Count - 1], false);
-        ListPanelTownItemSteps[ListPanelTownItemSteps.Count - 1].
-            FindSonSonSon("PanelTownItem" + IndexToBubble).gameObject.name = "PanelTownItem" + (ListPanelTownItemSteps.Count - 1);
-
-        for (int i = IndexToBubble; i < NowIndex - 1; i++)
-        {
-            ListPanelTownItemSteps[i + 1].FindSonSonSon("PanelTownItem" + (i + 1)).
-                GetComponent<PanelTownItem>().FatherPanelCellTownStore.Index = i;
-            ListPanelTownItemSteps[i + 1].FindSonSonSon("PanelTownItem" + (i + 1)).transform.SetParent
-                (ListPanelTownItemSteps[i], false);
-            ListPanelTownItemSteps[i].FindSonSonSon("PanelTownItem" + (i + 1)).gameObject.name = "PanelTownItem" + i;            
-        }        
     }
 
     /// <summary>
@@ -127,6 +105,7 @@ public class PanelTownStore : PanelBase,
         PanelCellTownStore[] all = transform.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
         {
+            all[i].gameObject.name += i;
             all[i].Index = i;
         }
     }
