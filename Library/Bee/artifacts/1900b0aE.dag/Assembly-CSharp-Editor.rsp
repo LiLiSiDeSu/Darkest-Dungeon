@@ -372,11 +372,8 @@
 -analyzer:"C:/Unity/Install/2022.3.8f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/BatchNaming.cs"
 "Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/GenerateDefaultGameArchiveData.cs"
+"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/NowNews.cs"
 "Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/PanelNews.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorGUILayout/BaseEditorGUIExtension.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorGUILayout/EditorGUILayout.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorGUILayout/LayoutForBatchRename.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorGUILayout/LayoutForNews.cs"
 -langversion:9.0
 
 /deterministic

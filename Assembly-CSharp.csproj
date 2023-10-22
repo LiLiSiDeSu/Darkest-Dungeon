@@ -103,7 +103,9 @@
     <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\EditorExtensionGUILayout\EditorGUILayout.cs" />
     <Compile Include="Assets\Scripts\Other\Base Frame work\PanelBase.cs" />
     <Compile Include="Assets\Scripts\Other\AllEnum.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelBaseTranslateMore.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOhterResTable.cs" />
+    <Compile Include="Assets\Scripts\Panel\PanelBaseTranslateOne.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelRoomGraveyard.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelCellTownItem.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelOtherSetting.cs" />
