@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.XR;
 using UnityEngine;
 
-public class LayoutForCreaterNews : MonoBehaviour
+public class LayoutForPanelNews : MonoBehaviour
 {
     public string String_PoolEsc = "PoolEsc";
     public Rect Rect_PoolEsc = new Rect(0, 20, 0 ,0);

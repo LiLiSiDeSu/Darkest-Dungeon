@@ -7,8 +7,7 @@ using UnityEngine.Events;
 public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 {
     public List<string> ListEsc = new List<string>();    
-    public List<GameObject> ListNoInMgrUI = new List<GameObject>();
-    public List<UnityAction> ListEscEvent = new List<UnityAction>();
+    public List<GameObject> ListNoInMgrUI = new List<GameObject>();    
 
     protected override void Start()
     {
@@ -23,18 +22,16 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
         });
     }
 
-    public void AddListNoInMgrUI(GameObject obj, UnityAction callback = null)
+    public void AddListNoInMgrUI(GameObject obj)
     {
         ListEsc.Add(obj.name);
-        ListNoInMgrUI.Add(obj);
-        ListEscEvent.Add(callback);
+        ListNoInMgrUI.Add(obj);        
     }
 
     public void RemoveListNoInMgrUI(GameObject obj)
     {
        ListEsc.Remove(obj.name);
-       ListNoInMgrUI.Remove(obj);
-       ListEscEvent.RemoveAt(ListEscEvent.Count - 1);
+       ListNoInMgrUI.Remove(obj);       
     }
 
     public void HideAll()
@@ -62,9 +59,7 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
                 ListNoInMgrUI[ListNoInMgrUI.Count - 1].SetActive(false);
                 ListEsc.RemoveAt(ListEsc.Count - 1);
                 ListNoInMgrUI.RemoveAt(ListNoInMgrUI.Count - 1);
-            }
-
-            ListEscEvent[ListEscEvent.Count - 1]?.Invoke();
+            }            
         }               
     }
 }

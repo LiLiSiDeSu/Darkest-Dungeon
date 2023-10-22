@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,16 +15,15 @@ public class PanelCellTownItem : PanelBase,
 
     public E_Location e_Location;
     public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem;
-
-    public InfoContainer_Cost Cost = new InfoContainer_Cost();
     public Image ImgItem;
+    public InfoContainer_Cost Cost;    
     private Vector2 DragOffSet;
+    
+    public PanelBaseItem MemberOf;
 
     protected override void Start()
     {
-        base.Start();
-
-        gameObject.name += Index;
+        base.Start();        
 
         ImgItem = transform.FindSonSonSon("ImgItem").GetComponent<Image>();
 
@@ -36,28 +36,35 @@ public class PanelCellTownItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.NowItem = this;
-        Hot.PanelShopCost_.UpdateInfo(Cost);
+        if (Hot.DragingItem == null)
+        {
+            Hot.NowItem = this;
+            Hot.PanelShopCost_.UpdateInfo(Cost);
+        }        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Hot.NowItem = null;
-        Hot.PanelShopCost_.Clear();
+        if (Hot.DragingItem == null)
+        {
+            Hot.NowItem = null;
+            Hot.PanelShopCost_.Clear();
+        }
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {        
-        if (Hot.PanelShopCost_.CanBuy)
-        {
-            Hot.DragingItem = this;
+    {
+        Hot.DragingItem = this;
 
+        if (Hot.PanelShopCost_.CanBuy || Hot.DragingItem.e_Location == E_Location.PanelTownItem)
+        {            
             ImgItem.raycastTarget = false;
 
             switch (e_Location)
             {
                 case E_Location.PanelTownItem:
-                    transform.parent = Hot.NowPanelCellTownStore.PanelCellItem_.transform;
+                    transform.parent = Hot.NowPanelItem.transform;
                     break;
                 case E_Location.PanelTownShopItem:
                     transform.parent = Hot.PanelRoomTownShop_.PanelTownShopItem_.transform;
@@ -66,43 +73,40 @@ public class PanelCellTownItem : PanelBase,
 
             DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;            
         }        
+        else
+            Hot.DragingItem = null;
     }
 
     public void OnDrag(PointerEventData eventData)
-    {                
-        if (Hot.PanelShopCost_.CanBuy)
+    {
+        if (Hot.DragingItem != null)
         {
             transform.position = eventData.position + DragOffSet;
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-        if (Hot.PanelShopCost_.CanBuy)
-        {
+    {        
+        if (Hot.DragingItem != null)
+        {            
             ImgItem.raycastTarget = true;
 
             switch (Hot.e_NowPointerLocation)
             {
                 case E_Location.None:
-                    switch (e_Location)
-                    {
-                        case E_Location.PanelTownItem:
-                            transform.SetParent(Hot.NowPanelCellTownStore.PanelCellItem_.Content, false);
-                            break;
-                        case E_Location.PanelTownShopItem:
-                            transform.SetParent(Hot.PanelTownShopItem_.Content, false);
-                            break;
-                    }
+                    transform.SetParent(MemberOf.Content, false);
                     break;
                 case E_Location.PanelTownItem:
                     switch (e_Location)
                     {
                         case E_Location.PanelTownItem:
-                            transform.SetParent(Hot.NowPanelCellTownStore.PanelCellItem_.Content, false);
+                            MemberOf.NowIndex--;
+                            Hot.AddItem(E_Location.PanelTownItem);
                             break;
                         //买物品
                         case E_Location.PanelTownShopItem:
+                            MemberOf.NowIndex--;
+                            Hot.PanelOtherResTable_.Subtraction(Cost);
                             Hot.AddItem(E_Location.PanelTownItem);
                             break;
                     }
@@ -112,23 +116,26 @@ public class PanelCellTownItem : PanelBase,
                     {
                         //卖物品
                         case E_Location.PanelTownItem:
+                            MemberOf.NowIndex--;
+                            Hot.PanelOtherResTable_.Add(Cost);
+                            Hot.AddItem(E_Location.PanelTownShopItem);
                             break;
                         case E_Location.PanelTownShopItem:
                             transform.SetParent(Hot.PanelTownShopItem_.Content, false);
                             break;
-                    }
-                    Hot.AddItem(E_Location.PanelTownShopItem);
+                    }                    
                     break;
             }
 
+            MemberOf.SortContent();
+
+            if (Hot.NowPanelItem != null)
+                MemberOf = Hot.NowPanelItem;
+            
+            Hot.DragingItem = null;
             Hot.NowItem = null;
             Hot.PanelShopCost_.Clear();
-
             Hot.Data_.Save();
-            if (Hot.PanelTownStore_.NowPanelCellTownStore != null)
-                Hot.NowPanelCellTownStore.PanelCellItem_.SortContent();
-            Hot.PanelTownShopItem_.SortContent();
-            Hot.DragingItem = null;
         }
     }
 
@@ -163,8 +170,8 @@ public class PanelCellTownItem : PanelBase,
         }
 
         Cost = new InfoContainer_Cost
-                    (Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 0), Random.Range(0, 0),
-                     Random.Range(0, 12), Random.Range(0, 12), Random.Range(0, 12), Random.Range(0, 12), Random.Range(0, 12));
+                    (Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3),
+                     Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
 
         ImgItem.sprite = MgrRes.GetInstance().Load<Sprite>("Art/" + e_SpriteNamePanelCellItem.ToString());
     } 

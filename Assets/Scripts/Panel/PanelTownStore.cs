@@ -11,9 +11,7 @@ public class PanelTownStore : PanelBase,
 {
     public int NowIndex = 0;        
     public Transform RootPanelTownItem;
-    public Transform Content;
-
-    public PanelCellTownStore NowPanelCellTownStore = new PanelCellTownStore();    
+    public Transform Content;      
 
     protected override void Awake()
     {
@@ -29,11 +27,7 @@ public class PanelTownStore : PanelBase,
                     Hot.MgrUI_.HidePanel
                         (false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
                 }
-                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore", (panel) => { Hot.NowPanelCellTownStore = null; }, 
-                CallBackForPoolEsc: () =>
-                {
-                    Hot.NowPanelCellTownStore = null;
-                });
+                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
             }
         });
 

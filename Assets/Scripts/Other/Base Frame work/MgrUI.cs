@@ -147,18 +147,14 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="callback">回调函数</param>
     /// <param name="CallBackForPoolEsc">PoolEsc的回调函数</param>
     public void ShowPanel<T>
-    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null, UnityAction CallBackForPoolEsc = null) 
+    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null) 
     where T : PanelBase
     {
         PoolBuffer.GetInstance().TakeAndGet(panelname).transform.SetParent(UIBaseCanvas, false);
         GetPanel<T>(panelname).transform.localPosition = Vector3.zero;
         GetPanel<T>(panelname).transform.localScale = Vector3.one;
 
-        if (isAddpoolEsc)
-        {
-            PoolEsc.GetInstance().ListEsc.Add(panelname);
-            PoolEsc.GetInstance().ListEscEvent.Add(CallBackForPoolEsc);
-        }
+        if (isAddpoolEsc) PoolEsc.GetInstance().ListEsc.Add(panelname);
 
         PoolNowPanel.GetInstance().ListNowPanel.Add(panelname);
 
@@ -176,10 +172,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         PoolBuffer.GetInstance().Push(Active, panel, panelname);
         PoolNowPanel.GetInstance().ListNowPanel.Remove(panelname);    
         if (PoolEsc.GetInstance().ListEsc.Contains(panelname))
-        {
-            PoolEsc.GetInstance().ListEscEvent.RemoveAt(PoolEsc.GetInstance().ListEsc.IndexOf(panelname));
-            PoolEsc.GetInstance().ListEsc.Remove(panelname);            
-        }
+            PoolEsc.GetInstance().ListEsc.Remove(panelname);
     }
 
     public void DestroyPanel(string panelname, UnityAction callback = null)

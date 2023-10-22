@@ -5,12 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelTownShopItem : PanelBase, 
+public class PanelTownShopItem : PanelBaseItem, 
              IPointerEnterHandler, IPointerExitHandler
-{
-    public int NowIndex;    
-    public Transform Content;    
-
+{   
     protected override void Awake()
     {
         base.Awake();
@@ -21,7 +18,8 @@ public class PanelTownShopItem : PanelBase,
     #region EventSystem接口实现
 
     public void OnPointerEnter(PointerEventData eventData)
-    {        
+    {
+        Hot.NowPanelItem = this;
         Hot.e_NowPointerLocation = E_Location.PanelTownShopItem;
 
         if (Hot.DragingItem != null)
@@ -31,7 +29,8 @@ public class PanelTownShopItem : PanelBase,
     }
 
     public void OnPointerExit(PointerEventData eventData)
-    {        
+    {
+        Hot.NowPanelItem = null;
         Hot.e_NowPointerLocation = E_Location.None;
     }
 
@@ -50,6 +49,7 @@ public class PanelTownShopItem : PanelBase,
             (panel) =>
             {
                 panel.transform.SetParent(Content, false);
+                panel.MemberOf = this;
                 panel.e_Location = E_Location.PanelTownShopItem;
                 panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;
                 panel.Index = NowIndex;
@@ -65,12 +65,15 @@ public class PanelTownShopItem : PanelBase,
             DestroyImmediate(all[i].gameObject);
     }
 
-    public void SortContent()
+    public override void SortContent()
     {
+        List<DataContainer_PanelCellItem> data = new List<DataContainer_PanelCellItem>();
         PanelCellTownItem[] all = transform.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
         {
-            all[i].Index = i;
+            data.Add(Hot.DataNowCellGameArchive.ListCellShopItem[all[i].Index]);
+            all[i].Index = i;            
         }
+        Hot.DataNowCellGameArchive.ListCellShopItem = data;
     }
 }

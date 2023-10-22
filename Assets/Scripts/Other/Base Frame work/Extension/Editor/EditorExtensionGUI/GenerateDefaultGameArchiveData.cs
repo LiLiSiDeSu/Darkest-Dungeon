@@ -37,7 +37,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellTownStore(E_SpriteNamePanelCellTownStore.StoreIron),
         };
 
-        GameArchiveDataCellList[0].ListCellStore[0].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
+        GameArchiveDataCellList[0].ListCellStore[0].ListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodRawPotato),
@@ -46,7 +46,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
-        GameArchiveDataCellList[0].ListCellStore[1].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
+        GameArchiveDataCellList[0].ListCellStore[1].ListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
@@ -55,7 +55,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
-        GameArchiveDataCellList[0].ListCellStore[2].DataListCellStoreItem = new List<DataContainer_PanelCellItem>()
+        GameArchiveDataCellList[0].ListCellStore[2].ListCellStoreItem = new List<DataContainer_PanelCellItem>()
         {
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
@@ -73,7 +73,9 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
-        };        
+        };
+
+        GameArchiveDataCellList[0].PanelResTable = new DataContainer_PanelResTable(100, 100, 100, 100, 100, 100, 100, 100, 100);        
 
         #endregion
 

@@ -4,12 +4,12 @@ using System.Reflection.Emit;
 using UnityEditor;
 using UnityEngine;
 
-public class CenterNews : BaseEditorGUIExtension<LayoutForCreaterNews>
+public class PanelNews : BaseEditorGUIExtension<LayoutForPanelNews>
 {    
-    [MenuItem("Tools/CenterNews %_q", false, 2)]
+    [MenuItem("Tools/News/PanelNews %_q", false, 2)]
     public static void ShowWindow()
     {
-        CenterNews CenterNews = GetWindow<CenterNews>();
+        PanelNews CenterNews = GetWindow<PanelNews>();
         CenterNews.Show();
 
         layout.Style_PoolEsc.fontSize = 15;
@@ -21,6 +21,11 @@ public class CenterNews : BaseEditorGUIExtension<LayoutForCreaterNews>
 
     private void OnGUI()
     {
+        if (!Application.isPlaying)
+        {
+            Close();
+        }
+
         GUI.Label(layout.Rect_PoolEsc, layout.String_PoolEsc, layout.Style_PoolEsc);
         GUI.Label(layout.Rect_PoolNowPanel, layout.String_PoolNowPanel, layout.Style_PoolNowPanel);
         GUI.Label(layout.Rect_PoolBuffer, layout.String_PoolBuffer, layout.Style_PoolBuffer);
@@ -29,5 +34,7 @@ public class CenterNews : BaseEditorGUIExtension<LayoutForCreaterNews>
         if (layout.Bool_IsAlwaysRefresh = GUI.Toggle
            (layout.Rect_IsAlwaysRefresh, layout.Bool_IsAlwaysRefresh, layout.String_IsAlwaysRefresh))
             layout.Refresh();
+
+        Repaint();
     }
 }

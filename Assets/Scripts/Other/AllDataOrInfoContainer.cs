@@ -35,7 +35,7 @@ public class DataContainer_PanelCellGameArchive
 public class DataContainer_PanelCellTownStore
 {
     public E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore = E_SpriteNamePanelCellTownStore.StoreWood;
-    public List<DataContainer_PanelCellItem> DataListCellStoreItem = new List<DataContainer_PanelCellItem>();    
+    public List<DataContainer_PanelCellItem> ListCellStoreItem = new List<DataContainer_PanelCellItem>();    
     public int NowWeight = 0;    
     public int NowCapacity = 0;    
 
@@ -122,6 +122,20 @@ public class DataContainer_PanelResTable
     #endregion
 
     public DataContainer_PanelResTable() { }
+    public DataContainer_PanelResTable
+    (int NowCopper, int NowSilver, int NowGold, int NowPlatinum, 
+     int NowStatue, int NowDeed, int NowBadge, int NowPicture, int NowCrystal) 
+    { 
+        this.NowCopper = NowCopper;
+        this.NowSilver = NowSilver;
+        this.NowGold = NowGold;
+        this.NowPlatinum = NowPlatinum;
+        this.NowStatue = NowStatue;
+        this.NowDeed = NowDeed;
+        this.NowBadge = NowBadge;
+        this.NowPicture = NowPicture;
+        this.NowCrystal = NowCrystal;
+    }
 }
 
 //特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他

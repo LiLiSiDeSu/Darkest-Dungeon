@@ -24,5 +24,5 @@ public class BaseEditorGUIExtension<T> : EditorWindow where T : Component
         GameObject obj = new GameObject(typeof(T).ToString());
         obj.transform.parent = EditorGUILayoutObj.transform;
         layout = obj.AddComponent<T>();
-    }
+    }    
 }

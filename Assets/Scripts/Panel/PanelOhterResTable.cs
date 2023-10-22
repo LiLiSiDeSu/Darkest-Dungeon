@@ -114,4 +114,36 @@ public class PanelOhterResTable : PanelBase
             Hot.DataPanelResTable_.NowLevelPlatinum * Hot.DataPanelResTable_.LevelStepPlatinum + " - " +
             Hot.DataPanelResTable_.NowLevelPlatinum;
     }
+
+    public void Subtraction(InfoContainer_Cost cost)
+    {        
+        Hot.DataPanelResTable_.NowCopper -= cost.Copper;
+        Hot.DataPanelResTable_.NowSilver -= cost.Silver;
+        Hot.DataPanelResTable_.NowGold -= cost.Gold;
+        Hot.DataPanelResTable_.NowPlatinum -= cost.Platinum;
+
+        Hot.DataPanelResTable_.NowStatue -= cost.Statue;
+        Hot.DataPanelResTable_.NowDeed -= cost.Deed;
+        Hot.DataPanelResTable_.NowPicture -= cost.Picture;
+        Hot.DataPanelResTable_.NowBadge -= cost.Badge;
+        Hot.DataPanelResTable_.NowCrystal -= cost.Crystal;
+
+        UpdateInfo();
+    }
+
+    public void Add(InfoContainer_Cost cost)
+    {
+        Hot.DataPanelResTable_.NowCopper += cost.Copper;
+        Hot.DataPanelResTable_.NowSilver += cost.Silver;
+        Hot.DataPanelResTable_.NowGold += cost.Gold;
+        Hot.DataPanelResTable_.NowPlatinum += cost.Platinum;
+
+        Hot.DataPanelResTable_.NowStatue += cost.Statue;
+        Hot.DataPanelResTable_.NowDeed += cost.Deed;
+        Hot.DataPanelResTable_.NowPicture += cost.Picture;
+        Hot.DataPanelResTable_.NowBadge += cost.Badge;
+        Hot.DataPanelResTable_.NowCrystal += cost.Crystal;
+
+        UpdateInfo();
+    }
 }

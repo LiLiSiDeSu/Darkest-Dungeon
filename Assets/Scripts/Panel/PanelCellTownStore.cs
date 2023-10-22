@@ -81,7 +81,7 @@ public class PanelCellTownStore : PanelBase,
         switch (controlname)
         {
             case "BtnCellTownStore":                
-                PanelCellItem_.Show();                
+                PanelCellItem_.ShowForBtn();                
                 break;
         }
     }

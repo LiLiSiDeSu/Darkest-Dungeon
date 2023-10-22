@@ -370,9 +370,10 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"C:/Unity/Install/2022.3.8f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Unity/Install/2022.3.8f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/BatchNaming.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/CenterNews.cs"
-"Assets/Scripts/Other/Base Frame work/Extension/Editor/GenerateDefaultGameArchiveData.cs"
+"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/BatchNaming.cs"
+"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/GenerateDefaultGameArchiveData.cs"
+"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/NowNews.cs"
+"Assets/Scripts/Other/Base Frame work/Extension/Editor/EditorExtensionGUI/PanelNews.cs"
 -langversion:9.0
 
 /deterministic

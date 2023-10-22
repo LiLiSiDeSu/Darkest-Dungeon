@@ -6,21 +6,21 @@ using UnityEngine.Events;
 
 public interface IEventInfo { }
 
-public class _EventInfo<T> : IEventInfo
+public class EventInfo<T> : IEventInfo
 {
     public UnityAction<T> actions;
 
-    public _EventInfo(UnityAction<T> action)
+    public EventInfo(UnityAction<T> action)
     {
         actions += action;
     }
 }
 
-public class _EventInfo : IEventInfo
+public class EventInfo : IEventInfo
 {
     public UnityAction actions;
 
-    public _EventInfo(UnityAction action)
+    public EventInfo(UnityAction action)
     {
         actions += action;
     }
@@ -35,11 +35,11 @@ public class CenterEvent : InstanceBaseAuto_Mono<CenterEvent>
     {        
         if (EventDic.ContainsKey(name))
         {
-            (EventDic[name] as _EventInfo<T>).actions += action;
+            (EventDic[name] as EventInfo<T>).actions += action;
         }        
         else
         {
-            EventDic.Add(name, new _EventInfo<T>(action));
+            EventDic.Add(name, new EventInfo<T>(action));
         }
     }
     
@@ -48,32 +48,32 @@ public class CenterEvent : InstanceBaseAuto_Mono<CenterEvent>
 
         if (EventDic.ContainsKey(name))
         {
-            (EventDic[name] as _EventInfo).actions += action;
+            (EventDic[name] as EventInfo).actions += action;
         }        
         else
         {
-            EventDic.Add(name, new _EventInfo(action));
+            EventDic.Add(name, new EventInfo(action));
         }
     }
     
     public void RemoveEventListener<T>(string name, UnityAction<T> action)
     {
         if (EventDic.ContainsKey(name))
-            (EventDic[name] as _EventInfo<T>).actions -= action;
+            (EventDic[name] as EventInfo<T>).actions -= action;
     }
     
     public void RemoveEventListener(string name, UnityAction action)
     {
         if (EventDic.ContainsKey(name))
-            (EventDic[name] as _EventInfo).actions -= action;
+            (EventDic[name] as EventInfo).actions -= action;
     }
 
     public void EventTrigger<T>(string name, T info)
     {       
         if (EventDic.ContainsKey(name))
         {            
-            if ((EventDic[name] as _EventInfo<T>).actions != null)
-                (EventDic[name] as _EventInfo<T>).actions.Invoke(info);            
+            if ((EventDic[name] as EventInfo<T>).actions != null)
+                (EventDic[name] as EventInfo<T>).actions.Invoke(info);            
         }
     }
     
@@ -81,8 +81,8 @@ public class CenterEvent : InstanceBaseAuto_Mono<CenterEvent>
     {      
         if (EventDic.ContainsKey(name))
         {            
-            if ((EventDic[name] as _EventInfo).actions != null)
-                (EventDic[name] as _EventInfo).actions.Invoke();            
+            if ((EventDic[name] as EventInfo).actions != null)
+                (EventDic[name] as EventInfo).actions.Invoke();            
         }
     }
   
@@ -90,5 +90,4 @@ public class CenterEvent : InstanceBaseAuto_Mono<CenterEvent>
     {
         EventDic.Clear();
     }
-
 }

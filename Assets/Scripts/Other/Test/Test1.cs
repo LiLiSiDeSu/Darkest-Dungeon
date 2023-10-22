@@ -11,6 +11,6 @@ public class Test1 : MonoBehaviour
 {
     private void Update()
     {
-        Debug.Log(Hot.NowPanelCellTownStore);
+        
     }
 }

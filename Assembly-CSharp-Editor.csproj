@@ -58,9 +58,10 @@
     <Analyzer Include="C:\Unity\Install\2022.3.8f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\GenerateDefaultGameArchiveData.cs" />
-    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\CenterNews.cs" />
-    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\BatchNaming.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\EditorExtensionGUI\BatchNaming.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\EditorExtensionGUI\GenerateDefaultGameArchiveData.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\EditorExtensionGUI\NowNews.cs" />
+    <Compile Include="Assets\Scripts\Other\Base Frame work\Extension\Editor\EditorExtensionGUI\PanelNews.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
