@@ -21,6 +21,11 @@ public class PanelOhterResTable : PanelBase
         {
             panel.transform.SetParent(RootTranslate, false);                        
         });
+        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateCoinAncestralProperty>(true, "/PanelTranslateCoinAncestralProperty",
+        callback: (panel) =>
+        {
+            panel.transform.SetParent(RootTranslate, false);
+        });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {

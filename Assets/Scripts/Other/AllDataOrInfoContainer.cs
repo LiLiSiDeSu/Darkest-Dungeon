@@ -123,7 +123,7 @@ public class DataContainer_PanelResTable
     public int NowLevelGold = 1;
     public int NowLevelPlatinum = 1;
 
-    public int LevelStepCopper = 100;
+    public int LevelStepCopper = 1000;
     public int LevelStepSilver = 50;
     public int LevelStepGold = 10;
     public int LevelStepPlatinum = 5;
@@ -136,6 +136,28 @@ public class DataContainer_PanelResTable
     public int RateCopperToSilver = 100;
     public int RateSilverToGold = 100;
     public int RateGoldToPlatinum = 100;
+
+    #endregion
+
+    #region CoinToAncestralProperty    
+
+    public int RateBadgeToCopper = 10000;
+    public int RateStatueToCopper = 20000;
+    public int RatePictureToCopper = 40000;
+    public int RateDeedToCopper = 80000;
+    public int RateCrystalToCopper = 160000;
+
+    public int RateBadgeToSilver = 100;
+    public int RateStatueToSilver = 200;
+    public int RatePictureToSilver = 400;
+    public int RateDeedToSilver = 800;
+    public int RateCrystalToSilver = 1600;
+
+    public int RateBadgeToGold = 1;
+    public int RateStatueToGold = 2;
+    public int RatePictureToGold = 4;
+    public int RateDeedToGold = 8;
+    public int RateCrystalToGold = 16;
 
     #endregion
 

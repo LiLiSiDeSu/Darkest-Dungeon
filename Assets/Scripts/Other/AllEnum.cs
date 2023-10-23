@@ -65,7 +65,9 @@ public enum E_Location
 public enum E_ArrowDirection
 {
     Up,
-    Down
+    Down,
+    Left,
+    Right
 }
 
 public enum E_PoPoCatStatus

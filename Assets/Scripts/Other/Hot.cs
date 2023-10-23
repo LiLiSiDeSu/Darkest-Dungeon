@@ -53,6 +53,9 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
     }
+    /// <summary>
+    /// ×ÊÔ´Ãæ°å
+    /// </summary>
     public static PanelOhterResTable PanelOtherResTable_
     {
         get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }

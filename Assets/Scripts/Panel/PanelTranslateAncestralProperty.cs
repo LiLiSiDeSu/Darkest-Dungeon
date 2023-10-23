@@ -38,6 +38,8 @@ public class PanelTranslateAncestralProperty : PanelBase
         Img2.alphaHitTestMinimumThreshold = 0.2f;
         Img3.alphaHitTestMinimumThreshold = 0.2f;
         Img4.alphaHitTestMinimumThreshold = 0.2f;
+
+        UpdateImg();
     }
 
     protected override void Button_OnClick(string controlname)

@@ -88,7 +88,11 @@ public class PanelTownStore : PanelBase,
     {        
         PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
-        {
+        {            
+            Hot.MgrUI_.DicPanel.Remove(all[i].PanelCellItem_.gameObject.name);
+            if (Hot.PoolBuffer_.ContainKey(all[i].PanelCellItem_.gameObject.name))
+                Hot.PoolBuffer_.DicPool.Remove(all[i].PanelCellItem_.gameObject.name);
+            Hot.MgrUI_.DicPanel.Remove(all[i].gameObject.name);
             DestroyImmediate(all[i].PanelCellItem_.gameObject);
             DestroyImmediate(all[i].gameObject);
         }

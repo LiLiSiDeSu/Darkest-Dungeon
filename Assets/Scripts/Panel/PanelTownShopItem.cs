@@ -58,7 +58,7 @@ public class PanelTownShopItem : PanelBaseItem,
         }
     }
 
-    public void DestroyContent()
+    public void ClearContent()
     {
         PanelCellTownItem[] all = Content.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)

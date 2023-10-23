@@ -42,7 +42,7 @@ public class PanelOtherSetting : PanelBase
             {
                 ImgCurrentChoice.gameObject.SetActive(true);      
                 ImgCurrentChoice.position = new Vector3
-                                 ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
+                    ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
             });
             Hot.MgrUI_.AddCustomEventListener
             (btns[i].gameObject, EventTriggerType.PointerExit, (param) =>
@@ -67,7 +67,7 @@ public class PanelOtherSetting : PanelBase
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
                     Hot.PanelTownStore_.ClearContent();
-                    Hot.PanelRoomTownShop_.PanelTownShopItem_.DestroyContent();
+                    Hot.PanelRoomTownShop_.PanelTownShopItem_.ClearContent();                    
 
                     Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject,
                     Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject.name);
