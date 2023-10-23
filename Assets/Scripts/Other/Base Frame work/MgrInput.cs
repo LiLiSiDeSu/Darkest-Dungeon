@@ -18,6 +18,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode Setting = KeyCode.I;
     public KeyCode PanelTownStore = KeyCode.Tab;
     public KeyCode PanelResTable = KeyCode.CapsLock;
+    public KeyCode UpAdd = KeyCode.LeftControl;
 
     #endregion
 
@@ -73,6 +74,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(Setting);
         CheckKeyCode(PanelTownStore);
         CheckKeyCode(PanelResTable);
+        CheckKeyCode(UpAdd);
     }
 
     #endregion 

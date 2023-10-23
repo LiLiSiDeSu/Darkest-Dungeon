@@ -26,6 +26,26 @@ public class PanelOhterResTable : PanelBase
         {
             panel.transform.SetParent(RootTranslate, false);
         });
+        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateCoinCoin>(true, "/PanelTranslateCoinCoin",
+        callback: (panel) =>
+        {
+            panel.transform.SetParent(RootTranslate, false);
+        });
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        {
+            if (key == Hot.MgrInput_.UpAdd)
+            {
+                Hot.TranslateNum += Hot.AddTranslateNum;                
+            }
+        });
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyUp", (key) =>
+        {
+            if (key == Hot.MgrInput_.UpAdd)
+            {
+                Hot.TranslateNum = 1;                
+            }
+        });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {

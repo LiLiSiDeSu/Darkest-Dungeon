@@ -23,7 +23,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
     };
 
     private int NowIndexCoin = 0;
-    private int NowIndexAncestralProperty = 0;
+    private int NowIndexAncestralProperty = 0;    
 
     private Image ImgAncestralProperty;
     private Image ImgCoin;
@@ -83,17 +83,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowStatue > 0)
+                                if (Hot.DataPanelResTable.NowStatue >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue -= 1;
-                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateStatueToCopper;
+                                    Hot.DataPanelResTable.NowStatue -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateStatueToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.RateStatueToCopper)
+                                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateStatueToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue += 1;
-                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateStatueToCopper;
+                                    Hot.DataPanelResTable.NowStatue += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateStatueToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -102,17 +102,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowDeed > 0)
+                                if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed -= 1;
-                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.RateDeedToCopper)
+                                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed += 1;
-                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -121,17 +121,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowPicture > 0)
+                                if (Hot.DataPanelResTable.NowPicture >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture -= 1;
-                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.RatePictureToCopper)
+                                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture += 1;
-                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -140,17 +140,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowBadge > 0)
+                                if (Hot.DataPanelResTable.NowBadge >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge -= 1;
-                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.RateBadgeToCopper)
+                                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge += 1;
-                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -159,17 +159,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowCrystal > 0)
+                                if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal -= 1;
-                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.RateCrystalToCopper)
+                                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal += 1;
-                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -183,17 +183,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowStatue > 0)
+                                if (Hot.DataPanelResTable.NowStatue >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue -= 1;
-                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateStatueToSilver;
+                                    Hot.DataPanelResTable.NowStatue -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.RateStatueToSilver)
+                                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue += 1;
-                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateStatueToSilver;
+                                    Hot.DataPanelResTable.NowStatue += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -202,17 +202,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowDeed > 0)
+                                if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed -= 1;
-                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.RateDeedToCopper)
+                                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed += 1;
-                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -221,17 +221,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowPicture > 0)
+                                if (Hot.DataPanelResTable.NowPicture >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture -= 1;
-                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.RatePictureToCopper)
+                                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture += 1;
-                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -240,17 +240,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowBadge > 0)
+                                if (Hot.DataPanelResTable.NowBadge >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge -= 1;
-                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.RateBadgeToCopper)
+                                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge += 1;
-                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -259,17 +259,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowCrystal > 0)
+                                if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal -= 1;
-                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.RateCrystalToCopper)
+                                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal += 1;
-                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -283,17 +283,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowStatue > 0)
+                                if (Hot.DataPanelResTable.NowStatue >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue -= 1;
-                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateStatueToSilver;
+                                    Hot.DataPanelResTable.NowStatue -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.RateStatueToSilver)
+                                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowStatue += 1;
-                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateStatueToSilver;
+                                    Hot.DataPanelResTable.NowStatue += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateStatueToSilver * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -302,17 +302,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowDeed > 0)
+                                if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed -= 1;
-                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.RateDeedToCopper)
+                                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowDeed += 1;
-                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateDeedToCopper;
+                                    Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateDeedToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -321,17 +321,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowPicture > 0)
+                                if (Hot.DataPanelResTable.NowPicture >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture -= 1;
-                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.RatePictureToCopper)
+                                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowPicture += 1;
-                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RatePictureToCopper;
+                                    Hot.DataPanelResTable.NowPicture += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RatePictureToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -340,17 +340,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowBadge > 0)
+                                if (Hot.DataPanelResTable.NowBadge >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge -= 1;
-                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.RateBadgeToCopper)
+                                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowBadge += 1;
-                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateBadgeToCopper;
+                                    Hot.DataPanelResTable.NowBadge += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateBadgeToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
@@ -359,17 +359,17 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
-                                if (Hot.DataPanelResTable.NowCrystal > 0)
+                                if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal -= 1;
-                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                             case E_ArrowDirection.Right:
-                                if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.RateCrystalToCopper)
+                                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum)
                                 {
-                                    Hot.DataPanelResTable.NowCrystal += 1;
-                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateCrystalToCopper;
+                                    Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateCrystalToCopper * Hot.TranslateNum;
                                 }
                                 break;
                         }
