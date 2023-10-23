@@ -32,11 +32,21 @@ public enum E_SpriteNamePanelCellItem
     ItemFoodCookedPotato,
 }
 
-public enum E_StoreCoinLevel
-{    
-    Silver,
-    Gold,
-    Platinum
+public enum E_SpriteNameCoin
+{
+    ResCoinCopper,
+    ResCoinSilver,
+    ResCoinGold,
+    ResCoinPlatinum
+}
+
+public enum E_SpriteNameAncestralProperty
+{
+    ResAncestralPropertyStatue,
+    ResAncestralPropertyDeed,
+    ResAncestralPropertyPicture,
+    ResAncestralPropertyBadge,
+    ResAncestralPropertyCrystal
 }
 
 public enum E_StatusItemGrid
@@ -50,6 +60,12 @@ public enum E_Location
     None,
     PanelTownItem,
     PanelTownShopItem
+}
+
+public enum E_ArrowDirection
+{
+    Up,
+    Down
 }
 
 public enum E_PoPoCatStatus

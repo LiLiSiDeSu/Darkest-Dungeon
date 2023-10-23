@@ -7,12 +7,20 @@ public class PanelOhterResTable : PanelBase
 {
     private Dictionary<string, Text> AllText = new Dictionary<string, Text>();
     private Transform RootRes;
+    private Transform RootTranslate;
 
     protected override void Awake()
     {
         base.Awake();
 
         RootRes = transform.FindSonSonSon("RootRes");
+        RootTranslate = transform.FindSonSonSon("RootTranslate");
+
+        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateAncestralProperty>(true, "/PanelTranslateAncestralProperty", 
+        callback : (panel) =>
+        {
+            panel.transform.SetParent(RootTranslate, false);                        
+        });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
@@ -74,75 +82,75 @@ public class PanelOhterResTable : PanelBase
     
     public void UpdateInfo()
     {
-        AllText["TxtStoreDebris"].text = Hot.DataPanelResTable_.StoreDebris.ToString();
+        AllText["TxtStoreDebris"].text = Hot.DataPanelResTable.StoreDebris.ToString();
 
         AllText["TxtStatue"].text =
-            Hot.DataPanelResTable_.NowStatue + " / " +
-            Hot.DataPanelResTable_.NowLevelStatue * Hot.DataPanelResTable_.LevelStepStatue + " - " +
-            Hot.DataPanelResTable_.NowLevelStatue;
+            Hot.DataPanelResTable.NowStatue + " / " +
+            Hot.DataPanelResTable.NowLevelStatue * Hot.DataPanelResTable.LevelStepStatue + " - " +
+            Hot.DataPanelResTable.NowLevelStatue;
         AllText["TxtDeed"].text =
-            Hot.DataPanelResTable_.NowDeed + " / " +
-            Hot.DataPanelResTable_.NowLevelDeed * Hot.DataPanelResTable_.LevelStepDeed + " - " +
-            Hot.DataPanelResTable_.NowLevelDeed;
+            Hot.DataPanelResTable.NowDeed + " / " +
+            Hot.DataPanelResTable.NowLevelDeed * Hot.DataPanelResTable.LevelStepDeed + " - " +
+            Hot.DataPanelResTable.NowLevelDeed;
         AllText["TxtBadge"].text =
-            Hot.DataPanelResTable_.NowBadge + " / " +
-            Hot.DataPanelResTable_.NowLevelBadge * Hot.DataPanelResTable_.LevelStepBadge + " - " +
-            Hot.DataPanelResTable_.NowLevelBadge;
+            Hot.DataPanelResTable.NowBadge + " / " +
+            Hot.DataPanelResTable.NowLevelBadge * Hot.DataPanelResTable.LevelStepBadge + " - " +
+            Hot.DataPanelResTable.NowLevelBadge;
         AllText["TxtPicture"].text =
-            Hot.DataPanelResTable_.NowPicture + " / " +
-            Hot.DataPanelResTable_.NowLevelPicture * Hot.DataPanelResTable_.LevelStepPicture + " - " +
-            Hot.DataPanelResTable_.NowLevelPicture;
+            Hot.DataPanelResTable.NowPicture + " / " +
+            Hot.DataPanelResTable.NowLevelPicture * Hot.DataPanelResTable.LevelStepPicture + " - " +
+            Hot.DataPanelResTable.NowLevelPicture;
         AllText["TxtCrystal"].text =
-            Hot.DataPanelResTable_.NowCrystal + " / " +
-            Hot.DataPanelResTable_.NowLevelCrystal * Hot.DataPanelResTable_.LevelStepCrystal + " - " +
-            Hot.DataPanelResTable_.NowLevelCrystal;
+            Hot.DataPanelResTable.NowCrystal + " / " +
+            Hot.DataPanelResTable.NowLevelCrystal * Hot.DataPanelResTable.LevelStepCrystal + " - " +
+            Hot.DataPanelResTable.NowLevelCrystal;
 
         AllText["TxtCopper"].text =
-            Hot.DataPanelResTable_.NowCopper + " / " +
-            Hot.DataPanelResTable_.NowLevelCopper * Hot.DataPanelResTable_.LevelStepCopper + " - " +
-            Hot.DataPanelResTable_.NowLevelCopper;
+            Hot.DataPanelResTable.NowCopper + " / " +
+            Hot.DataPanelResTable.NowLevelCopper * Hot.DataPanelResTable.LevelStepCopper + " - " +
+            Hot.DataPanelResTable.NowLevelCopper;
         AllText["TxtSilver"].text =
-            Hot.DataPanelResTable_.NowSilver + " / " +
-            Hot.DataPanelResTable_.NowLevelSilver * Hot.DataPanelResTable_.LevelStepSilver + " - " +
-            Hot.DataPanelResTable_.NowLevelSilver;
+            Hot.DataPanelResTable.NowSilver + " / " +
+            Hot.DataPanelResTable.NowLevelSilver * Hot.DataPanelResTable.LevelStepSilver + " - " +
+            Hot.DataPanelResTable.NowLevelSilver;
         AllText["TxtGold"].text =
-            Hot.DataPanelResTable_.NowGold + " / " +
-            Hot.DataPanelResTable_.NowLevelGold * Hot.DataPanelResTable_.LevelStepGold + " - " +
-            Hot.DataPanelResTable_.NowLevelGold;
+            Hot.DataPanelResTable.NowGold + " / " +
+            Hot.DataPanelResTable.NowLevelGold * Hot.DataPanelResTable.LevelStepGold + " - " +
+            Hot.DataPanelResTable.NowLevelGold;
         AllText["TxtPlatinum"].text =
-            Hot.DataPanelResTable_.NowPlatinum + " / " +
-            Hot.DataPanelResTable_.NowLevelPlatinum * Hot.DataPanelResTable_.LevelStepPlatinum + " - " +
-            Hot.DataPanelResTable_.NowLevelPlatinum;
+            Hot.DataPanelResTable.NowPlatinum + " / " +
+            Hot.DataPanelResTable.NowLevelPlatinum * Hot.DataPanelResTable.LevelStepPlatinum + " - " +
+            Hot.DataPanelResTable.NowLevelPlatinum;
     }
 
     public void Subtraction(InfoContainer_Cost cost)
     {        
-        Hot.DataPanelResTable_.NowCopper -= cost.Copper;
-        Hot.DataPanelResTable_.NowSilver -= cost.Silver;
-        Hot.DataPanelResTable_.NowGold -= cost.Gold;
-        Hot.DataPanelResTable_.NowPlatinum -= cost.Platinum;
+        Hot.DataPanelResTable.NowCopper -= cost.Copper;
+        Hot.DataPanelResTable.NowSilver -= cost.Silver;
+        Hot.DataPanelResTable.NowGold -= cost.Gold;
+        Hot.DataPanelResTable.NowPlatinum -= cost.Platinum;
 
-        Hot.DataPanelResTable_.NowStatue -= cost.Statue;
-        Hot.DataPanelResTable_.NowDeed -= cost.Deed;
-        Hot.DataPanelResTable_.NowPicture -= cost.Picture;
-        Hot.DataPanelResTable_.NowBadge -= cost.Badge;
-        Hot.DataPanelResTable_.NowCrystal -= cost.Crystal;
+        Hot.DataPanelResTable.NowStatue -= cost.Statue;
+        Hot.DataPanelResTable.NowDeed -= cost.Deed;
+        Hot.DataPanelResTable.NowPicture -= cost.Picture;
+        Hot.DataPanelResTable.NowBadge -= cost.Badge;
+        Hot.DataPanelResTable.NowCrystal -= cost.Crystal;
 
         UpdateInfo();
     }
 
     public void Add(InfoContainer_Cost cost)
     {
-        Hot.DataPanelResTable_.NowCopper += cost.Copper;
-        Hot.DataPanelResTable_.NowSilver += cost.Silver;
-        Hot.DataPanelResTable_.NowGold += cost.Gold;
-        Hot.DataPanelResTable_.NowPlatinum += cost.Platinum;
+        Hot.DataPanelResTable.NowCopper += cost.Copper;
+        Hot.DataPanelResTable.NowSilver += cost.Silver;
+        Hot.DataPanelResTable.NowGold += cost.Gold;
+        Hot.DataPanelResTable.NowPlatinum += cost.Platinum;
 
-        Hot.DataPanelResTable_.NowStatue += cost.Statue;
-        Hot.DataPanelResTable_.NowDeed += cost.Deed;
-        Hot.DataPanelResTable_.NowPicture += cost.Picture;
-        Hot.DataPanelResTable_.NowBadge += cost.Badge;
-        Hot.DataPanelResTable_.NowCrystal += cost.Crystal;
+        Hot.DataPanelResTable.NowStatue += cost.Statue;
+        Hot.DataPanelResTable.NowDeed += cost.Deed;
+        Hot.DataPanelResTable.NowPicture += cost.Picture;
+        Hot.DataPanelResTable.NowBadge += cost.Badge;
+        Hot.DataPanelResTable.NowCrystal += cost.Crystal;
 
         UpdateInfo();
     }

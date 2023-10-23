@@ -46,9 +46,12 @@ public static class Hot
 
     #region Panel
 
-    public static DataContainer_PanelResTable DataPanelResTable
+    /// <summary>
+    /// 所有城镇箱子面板
+    /// </summary>
+    public static PanelTownStore PanelTownStore_
     {
-        get { return DataNowCellGameArchive.PanelResTable; }
+        get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
     }
     public static PanelOhterResTable PanelOtherResTable_
     {
@@ -68,24 +71,8 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
     }
-    public static DataContainer_PanelResTable DataPanelResTable_
-    {
-        get { return DataNowCellGameArchive.PanelResTable; }
-    }
 
     #endregion
-
-    /// <summary>
-    /// 现在读取的存档Data
-    /// </summary>
-    public static DataContainer_PanelCellGameArchive DataNowCellGameArchive
-    {
-        get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }        
-    }
-    /// <summary>
-    /// 现在读取的存档的Index
-    /// </summary>
-    public static int NowIndexCellGameArchive = -1;
 
     #region 城镇商店
 
@@ -127,13 +114,35 @@ public static class Hot
 
     #endregion
 
-    /// <summary>
-    /// 所有城镇箱子面板
-    /// </summary>
-    public static PanelTownStore PanelTownStore_
+    #region Data
+
+    public static DataContainer_PanelResTable DataPanelResTable
     {
-        get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
-    }    
+        get { return DataNowCellGameArchive.PanelResTable; }
+    }
+    public static DataContainer_PanelCellTownStore DataNowPanelStore
+    {
+        get
+        {
+            if (NowPanelItem != null && NowPanelItem is PanelTownItem)
+            {
+                return DataNowCellGameArchive.ListCellStore[(NowPanelItem as PanelTownItem).FatherPanelCellTownStore.Index];
+            }
+            return null;
+        }
+    }
+    /// <summary>
+    /// 现在读取的存档Data
+    /// </summary>
+    public static DataContainer_PanelCellGameArchive DataNowCellGameArchive
+    {
+        get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
+    }
+
+    #endregion
+
+    #region Now
+
     /// <summary>
     /// 拖拽的物品
     /// </summary>
@@ -149,25 +158,17 @@ public static class Hot
     /// <summary>
     /// 光标所在地区
     /// </summary>
-
-    #region Data
-    
-    public static DataContainer_PanelCellTownStore DataNowPanelStore
-    {
-        get
-        {
-            if (NowPanelItem != null && NowPanelItem is PanelTownItem)
-            {
-                return DataNowCellGameArchive.ListCellStore[(NowPanelItem as PanelTownItem).FatherPanelCellTownStore.Index];
-            }
-            return null;
-        }
-    }
-
-    #endregion
-
-    #region Now
+    /// <summary>
+    /// 现在读取的存档的Index
+    /// </summary>
+    public static int NowIndexCellGameArchive = -1;
+    /// <summary>
+    /// 光标现在区域的类型
+    /// </summary>
     public static E_Location e_NowPointerLocation = E_Location.None;
+    /// <summary>
+    /// 现在进入的PanelItem
+    /// </summary>
     public static PanelBaseItem NowPanelItem;
 
     #endregion

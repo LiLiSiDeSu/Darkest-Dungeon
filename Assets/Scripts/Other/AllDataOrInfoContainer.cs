@@ -91,6 +91,24 @@ public class DataContainer_PanelResTable
     public int LevelMaxPicture = 100;
     public int LevelMaxCrystal = 100;
 
+    //Ancestral Property
+    //  Badge 1 --Standard
+    //  Statue 2
+    //  Picture 4
+    //  Deed 8
+    //  Crystal 16
+    //--
+    public int RateStatueToDeed = 4;
+    public int RateStatueToPicture = 2;
+    public int RateStatueToBadge = 2;
+    public int RateStatueToCrystal = 8;
+    public int RateDeedToPicture = 2;
+    public int RateDeedToBadge = 8;
+    public int RateDeedToCrystal = 2;
+    public int RatePictureToBadge = 4;
+    public int RatePictureToCrystal = 4;
+    public int RateBadgeToCrystal = 16;
+
     #endregion
 
     #region Coin
