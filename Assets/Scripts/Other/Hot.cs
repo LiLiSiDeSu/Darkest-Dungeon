@@ -149,11 +149,11 @@ public static class Hot
     /// <summary>
     /// 在TranslateNum的基础上添加的倍率
     /// </summary>
-    public static int AddTranslateNum = 4;
+    public static int AddTranslateRate = 4;
     /// <summary>
     /// 现在的转换倍率
     /// </summary>
-    public static int TranslateNum = 1;
+    public static int NowTranslateRate = 1;
     /// <summary>
     /// 拖拽的物品
     /// </summary>

@@ -38,50 +38,49 @@ public class PanelTranslateCoinCoin : PanelBase
         switch (controlname)
         {
             case "BtnCopperSilver":
-                if (Hot.DataPanelResTable.NowSilver >= Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowSilver >= Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowSilver -= Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateCopperToSilver * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowSilver -= Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowCopper += Hot.DataPanelResTable.RateCopperToSilver * Hot.NowTranslateRate;
                 }
                 break;
             case "BtnSilverCopper":
-                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateCopperToSilver * Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowCopper >= Hot.DataPanelResTable.RateCopperToSilver * Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowSilver += Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateCopperToSilver * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowSilver += Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowCopper -= Hot.DataPanelResTable.RateCopperToSilver * Hot.NowTranslateRate;
                 }                
                 break;
             case "BtnSilverGold":
-                if (Hot.DataPanelResTable.NowGold >= Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowGold >= Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowGold -= Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateSilverToGold * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowGold -= Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowSilver += Hot.DataPanelResTable.RateSilverToGold * Hot.NowTranslateRate;
                 }
                 break;
             case "BtnGoldSilver":
-                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateSilverToGold * Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowSilver >= Hot.DataPanelResTable.RateSilverToGold * Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowGold += Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateSilverToGold * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowGold += Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowSilver -= Hot.DataPanelResTable.RateSilverToGold * Hot.NowTranslateRate;
                 }
                 break;
             case "BtnGoldPlatinum":
-                if (Hot.DataPanelResTable.NowPlatinum >= Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowPlatinum >= Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowPlatinum -= Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateGoldToPlatinum * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowPlatinum -= Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowGold += Hot.DataPanelResTable.RateGoldToPlatinum * Hot.NowTranslateRate;
                 }
                 break;
             case "BtnPlatinumGold":
-                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateGoldToPlatinum * Hot.TranslateNum)
+                if (Hot.DataPanelResTable.NowGold >= Hot.DataPanelResTable.RateGoldToPlatinum * Hot.NowTranslateRate)
                 {
-                    Hot.DataPanelResTable.NowPlatinum += Hot.TranslateNum;
-                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateGoldToPlatinum * Hot.TranslateNum;
+                    Hot.DataPanelResTable.NowPlatinum += Hot.NowTranslateRate;
+                    Hot.DataPanelResTable.NowGold -= Hot.DataPanelResTable.RateGoldToPlatinum * Hot.NowTranslateRate;
                 }
                 break;
         }
 
-        Hot.PanelOtherResTable_.UpdateInfo();
-        Hot.Data_.Save();
+        Hot.PanelOtherResTable_.UpdateInfo();        
     }
 }

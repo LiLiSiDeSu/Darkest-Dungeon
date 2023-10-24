@@ -7,25 +7,20 @@ using UnityEngine;
 public class LayoutForPanelNews : MonoBehaviour
 {
     public string String_PoolEsc = "PoolEsc";
-    public Rect Rect_PoolEsc = new Rect(0, 20, 0 ,0);
+    public Rect Rect_PoolEsc = new Rect(0, 0, 0 ,0);
     public GUIStyle Style_PoolEsc = new GUIStyle();
 
     public string String_PoolNowPanel = "PoolNowPanel";
-    public Rect Rect_PoolNowPanel = new Rect(270, 20, 0, 0);
+    public Rect Rect_PoolNowPanel = new Rect(270, 0, 0, 0);
     public GUIStyle Style_PoolNowPanel = new GUIStyle();
 
     public string String_PoolBuffer = "PoolBuffer";
-    public Rect Rect_PoolBuffer = new Rect(540, 20, 0, 0);
+    public Rect Rect_PoolBuffer = new Rect(540, 0, 0, 0);
     public GUIStyle Style_PoolBuffer = new GUIStyle();
 
     public string String_MgrUI = "MgrUI";
-    public Rect Rect_MgrUI = new Rect(810, 20, 0, 0);
+    public Rect Rect_MgrUI = new Rect(810, 0, 0, 0);
     public GUIStyle Style_MgrUI = new GUIStyle();
-
-    public bool Bool_IsAlwaysRefresh = true;
-    public string String_IsAlwaysRefresh = "IsAlwaysRefresh";
-    public Rect Rect_IsAlwaysRefresh = new Rect(0, 0, 110, 20);
-    public GUIStyle Style_IsAlwaysRefresh = new GUIStyle();
 
     public void Refresh()
     {

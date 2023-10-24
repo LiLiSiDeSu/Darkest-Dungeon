@@ -10,7 +10,7 @@ public class BatchRename : BaseEditorGUIExtension<LayoutForBatchRename>
     private string BaseName = "None";
     private string StartIndex = "0";
 
-    [MenuItem("Tools/Batch Rename", false, priority:10)]
+    //[MenuItem("Tools/Batch Rename", false, priority:10)]
     private static void OpenWindow()
     {
         BatchRename window = GetWindow<BatchRename>();

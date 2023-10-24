@@ -9,7 +9,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 {                          
     private static int DefaultGameArchiveDataCount = 10;
 
-    [MenuItem("Tools/Generate/DefaultGameArchiveData", false, 1)]
+    [MenuItem("-Tools-/Generate/DefaultGameArchiveData #&%_1", false, 1)]
     private static void Generate()
     {
         MgrJson.GetInstance().filePath = Application.persistentDataPath + "/Data/JsonData";
@@ -22,7 +22,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             GameArchiveDataCellList.Add(new DataContainer_PanelCellGameArchive());
         }
 
-        #region ≤‚ ‘ ˝æ›
+        #region TestData
 
         GameArchiveDataCellList[0].ListCellStore = new List<DataContainer_PanelCellTownStore>()
         {
@@ -73,9 +73,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
             new DataContainer_PanelCellItem(E_Location.PanelTownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
-        };
-
-        GameArchiveDataCellList[0].PanelResTable = new DataContainer_PanelResTable(100, 100, 100, 100, 100, 100, 100, 100, 100);        
+        };            
 
         #endregion
 
@@ -84,7 +82,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             MgrJson.GetInstance().Save(GameArchiveDataCellList[i], Data.GetInstance().PathGameArchiveData + i);
         }
 
-        DestroyImmediate(Data.GetInstance().gameObject);
-        DestroyImmediate(MgrJson.GetInstance().gameObject);
+        DestroyImmediate(Hot.Data_.gameObject);
+        DestroyImmediate(Hot.MgrJson_.gameObject);
     }
 }

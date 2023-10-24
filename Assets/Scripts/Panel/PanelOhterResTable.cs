@@ -36,14 +36,14 @@ public class PanelOhterResTable : PanelBase
         {
             if (key == Hot.MgrInput_.UpAdd)
             {
-                Hot.TranslateNum += Hot.AddTranslateNum;                
+                Hot.NowTranslateRate += Hot.AddTranslateRate;                
             }
         });
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyUp", (key) =>
         {
             if (key == Hot.MgrInput_.UpAdd)
             {
-                Hot.TranslateNum = 1;                
+                Hot.NowTranslateRate = 1;                
             }
         });
 
@@ -84,30 +84,88 @@ public class PanelOhterResTable : PanelBase
 
         switch (controlname)
         {
-            case "BtnStatue":
+            case "BtnStatue":           
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedStatue && 
+                    Hot.DataPanelResTable.NowLevelStatue < Hot.DataPanelResTable.LevelMaxStatue)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedStatue;
+                    Hot.DataPanelResTable.NowLevelStatue += 1;
+                }
                 break;
             case "BtnDeed":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedDeed &&
+                    Hot.DataPanelResTable.NowLevelDeed < Hot.DataPanelResTable.LevelMaxDeed)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedDeed;
+                    Hot.DataPanelResTable.NowLevelDeed += 1;
+                }
                 break;
             case "BtnCrystal":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedCrystal &&
+                    Hot.DataPanelResTable.NowLevelCrystal < Hot.DataPanelResTable.LevelMaxCrystal)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedCrystal;
+                    Hot.DataPanelResTable.NowLevelCrystal += 1;
+                }
                 break;
             case "BtnBadge":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedBadge &&
+                    Hot.DataPanelResTable.NowLevelBadge < Hot.DataPanelResTable.LevelMaxBadge)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedBadge;
+                    Hot.DataPanelResTable.NowLevelBadge += 1;
+                }
                 break;
             case "BtnPicture":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedPicture &&
+                    Hot.DataPanelResTable.NowLevelPicture < Hot.DataPanelResTable.LevelMaxPicture)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedPicture;
+                    Hot.DataPanelResTable.NowLevelPicture += 1;
+                }
                 break;
             case "BtnCopper":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedCopper &&
+                    Hot.DataPanelResTable.NowLevelCopper < Hot.DataPanelResTable.LevelMaxCopper)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedCopper;
+                    Hot.DataPanelResTable.NowLevelCopper += 1;
+                }
                 break;
             case "BtnSilver":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedSilver &&
+                    Hot.DataPanelResTable.NowLevelSilver < Hot.DataPanelResTable.LevelMaxSilver)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedSilver;
+                    Hot.DataPanelResTable.NowLevelSilver += 1;
+                }
                 break;
             case "BtnGold":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedGold &&
+                    Hot.DataPanelResTable.NowLevelGold < Hot.DataPanelResTable.LevelMaxGold)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedGold;
+                    Hot.DataPanelResTable.NowLevelGold += 1;
+                }
                 break;
             case "BtnPlatinum":
+                if (Hot.DataPanelResTable.NowStoreDebris >= Hot.DataPanelResTable.LevelUpNeedPlatinum &&
+                    Hot.DataPanelResTable.NowLevelPlatinum < Hot.DataPanelResTable.LevelMaxPlatinum)
+                {
+                    Hot.DataPanelResTable.NowStoreDebris -= Hot.DataPanelResTable.LevelUpNeedPlatinum;
+                    Hot.DataPanelResTable.NowLevelPlatinum += 1;
+                }
                 break;
         }
+
+        UpdateInfo();
     }
     
     public void UpdateInfo()
     {
-        AllText["TxtStoreDebris"].text = Hot.DataPanelResTable.StoreDebris.ToString();
+        ClampData();
+
+        AllText["TxtStoreDebris"].text = Hot.DataPanelResTable.NowStoreDebris.ToString();
 
         AllText["TxtStatue"].text =
             Hot.DataPanelResTable.NowStatue + " / " +
@@ -146,6 +204,38 @@ public class PanelOhterResTable : PanelBase
             Hot.DataPanelResTable.NowPlatinum + " / " +
             Hot.DataPanelResTable.NowLevelPlatinum * Hot.DataPanelResTable.LevelStepPlatinum + " - " +
             Hot.DataPanelResTable.NowLevelPlatinum;
+
+        Hot.Data_.Save();
+    }
+
+    public void ClampData()
+    {
+        if (Hot.DataPanelResTable.NowCopper > Hot.DataPanelResTable.LevelStepCopper * Hot.DataPanelResTable.NowLevelCopper)
+            Hot.DataPanelResTable.NowCopper = Hot.DataPanelResTable.LevelStepCopper * Hot.DataPanelResTable.NowLevelCopper;
+
+        if (Hot.DataPanelResTable.NowSilver > Hot.DataPanelResTable.LevelStepSilver * Hot.DataPanelResTable.NowLevelSilver)
+            Hot.DataPanelResTable.NowSilver = Hot.DataPanelResTable.LevelStepSilver * Hot.DataPanelResTable.NowLevelSilver;
+
+        if (Hot.DataPanelResTable.NowGold > Hot.DataPanelResTable.LevelStepGold * Hot.DataPanelResTable.NowLevelGold)
+            Hot.DataPanelResTable.NowGold = Hot.DataPanelResTable.LevelStepGold * Hot.DataPanelResTable.NowLevelGold;
+
+        if (Hot.DataPanelResTable.NowPlatinum > Hot.DataPanelResTable.LevelStepPlatinum * Hot.DataPanelResTable.NowLevelPlatinum)
+            Hot.DataPanelResTable.NowPlatinum = Hot.DataPanelResTable.LevelStepPlatinum * Hot.DataPanelResTable.NowLevelPlatinum;
+
+        if (Hot.DataPanelResTable.NowStatue > Hot.DataPanelResTable.LevelStepStatue * Hot.DataPanelResTable.NowLevelStatue)
+            Hot.DataPanelResTable.NowStatue = Hot.DataPanelResTable.LevelStepStatue * Hot.DataPanelResTable.NowLevelStatue;
+
+        if (Hot.DataPanelResTable.NowDeed > Hot.DataPanelResTable.LevelStepDeed * Hot.DataPanelResTable.NowLevelDeed)
+            Hot.DataPanelResTable.NowDeed = Hot.DataPanelResTable.LevelStepDeed * Hot.DataPanelResTable.NowLevelDeed;
+
+        if (Hot.DataPanelResTable.NowPicture > Hot.DataPanelResTable.LevelStepPicture * Hot.DataPanelResTable.NowLevelPicture)
+            Hot.DataPanelResTable.NowPicture = Hot.DataPanelResTable.LevelStepPicture * Hot.DataPanelResTable.NowLevelPicture;
+
+        if (Hot.DataPanelResTable.NowBadge > Hot.DataPanelResTable.LevelStepBadge * Hot.DataPanelResTable.NowLevelBadge)
+            Hot.DataPanelResTable.NowBadge = Hot.DataPanelResTable.LevelStepBadge * Hot.DataPanelResTable.NowLevelBadge;
+
+        if (Hot.DataPanelResTable.NowCrystal > Hot.DataPanelResTable.LevelStepCrystal * Hot.DataPanelResTable.NowLevelCrystal)
+            Hot.DataPanelResTable.NowCrystal = Hot.DataPanelResTable.LevelStepCrystal * Hot.DataPanelResTable.NowLevelCrystal;
     }
 
     public void Subtraction(InfoContainer_Cost cost)

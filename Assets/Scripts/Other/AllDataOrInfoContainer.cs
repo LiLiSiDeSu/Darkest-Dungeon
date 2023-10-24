@@ -63,7 +63,7 @@ public class DataContainer_PanelCellItem
 
 public class DataContainer_PanelResTable
 {
-    public int StoreDebris = 0;
+    public int NowStoreDebris = 0;
 
     #region AncestralProperty
 
@@ -78,6 +78,12 @@ public class DataContainer_PanelResTable
     public int NowLevelBadge = 1;
     public int NowLevelPicture = 1;
     public int NowLevelCrystal = 1;
+
+    public int LevelUpNeedBadge = 10;
+    public int LevelUpNeedStatue = 20;
+    public int LevelUpNeedPicture = 40;
+    public int LevelUpNeedDeed = 80;
+    public int LevelUpNeedCrystal = 160;
 
     public int LevelStepStatue = 10;
     public int LevelStepDeed = 10;
@@ -123,6 +129,11 @@ public class DataContainer_PanelResTable
     public int NowLevelGold = 1;
     public int NowLevelPlatinum = 1;
 
+    public int LevelUpNeedCopper = 1;
+    public int LevelUpNeedSilver = 10;
+    public int LevelUpNeedGold = 50;
+    public int LevelUpNeedPlatinum = 100;
+
     public int LevelStepCopper = 1000;
     public int LevelStepSilver = 50;
     public int LevelStepGold = 10;
@@ -162,20 +173,6 @@ public class DataContainer_PanelResTable
     #endregion
 
     public DataContainer_PanelResTable() { }
-    public DataContainer_PanelResTable
-    (int NowCopper, int NowSilver, int NowGold, int NowPlatinum, 
-     int NowStatue, int NowDeed, int NowBadge, int NowPicture, int NowCrystal) 
-    { 
-        this.NowCopper = NowCopper;
-        this.NowSilver = NowSilver;
-        this.NowGold = NowGold;
-        this.NowPlatinum = NowPlatinum;
-        this.NowStatue = NowStatue;
-        this.NowDeed = NowDeed;
-        this.NowBadge = NowBadge;
-        this.NowPicture = NowPicture;
-        this.NowCrystal = NowCrystal;
-    }
 }
 
 //特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他

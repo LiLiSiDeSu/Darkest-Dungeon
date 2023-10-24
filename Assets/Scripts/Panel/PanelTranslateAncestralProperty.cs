@@ -80,32 +80,32 @@ public class PanelTranslateAncestralProperty : PanelBase
                 switch (ListBtnStatus[index])
                 {
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
-                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToDeed * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToDeed * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToDeed * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToDeed * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowDeed += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
-                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToPicture * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToPicture * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToPicture * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowPicture += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToPicture * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowPicture += Hot.NowTranslateRate;
 
                         }
                         break;                    
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
-                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToCrystal * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowStatue >= Hot.DataPanelResTable.RateStatueToCrystal * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToCrystal * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowStatue -= Hot.DataPanelResTable.RateStatueToCrystal * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowCrystal += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
-                        if (Hot.DataPanelResTable.NowStatue >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowStatue >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowStatue -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateStatueToBadge * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowStatue -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateStatueToBadge * Hot.NowTranslateRate;
                         }
                         break;
                 }
@@ -114,31 +114,31 @@ public class PanelTranslateAncestralProperty : PanelBase
                 switch (ListBtnStatus[index])
                 {
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
-                        if (Hot.DataPanelResTable.NowDeed >= Hot.DataPanelResTable.RateDeedToCrystal * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowDeed >= Hot.DataPanelResTable.RateDeedToCrystal * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowDeed -= Hot.DataPanelResTable.RateDeedToCrystal * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowDeed -= Hot.DataPanelResTable.RateDeedToCrystal * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowCrystal += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
-                        if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowDeed >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToDeed * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowDeed -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToDeed * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
-                        if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowDeed >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowPicture += Hot.DataPanelResTable.RateDeedToPicture * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowDeed -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowPicture += Hot.DataPanelResTable.RateDeedToPicture * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
-                        if (Hot.DataPanelResTable.NowDeed >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowDeed >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowDeed -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateDeedToBadge * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowDeed -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateDeedToBadge * Hot.NowTranslateRate;
                         }
                         break;
                 }
@@ -147,31 +147,31 @@ public class PanelTranslateAncestralProperty : PanelBase
                 switch (ListBtnStatus[index])
                 {
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
-                        if (Hot.DataPanelResTable.NowPicture >= Hot.DataPanelResTable.RateDeedToPicture * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowPicture >= Hot.DataPanelResTable.RateDeedToPicture * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowPicture -= Hot.DataPanelResTable.RateDeedToPicture * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowPicture -= Hot.DataPanelResTable.RateDeedToPicture * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowDeed += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
-                        if (Hot.DataPanelResTable.NowPicture >= Hot.DataPanelResTable.RatePictureToCrystal * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowPicture >= Hot.DataPanelResTable.RatePictureToCrystal * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowPicture -= Hot.DataPanelResTable.RatePictureToCrystal * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowPicture -= Hot.DataPanelResTable.RatePictureToCrystal * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowCrystal += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
-                        if (Hot.DataPanelResTable.NowPicture >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowPicture >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowPicture -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToPicture * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowPicture -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToPicture * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
-                        if (Hot.DataPanelResTable.NowPicture >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowPicture >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowPicture -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RatePictureToBadge * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowPicture -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RatePictureToBadge * Hot.NowTranslateRate;
                         }
                         break;
                 }
@@ -180,31 +180,31 @@ public class PanelTranslateAncestralProperty : PanelBase
                 switch (ListBtnStatus[index])
                 {
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
-                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateStatueToBadge * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateStatueToBadge * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateStatueToBadge * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowStatue += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateStatueToBadge * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowStatue += Hot.NowTranslateRate;
                         }                        
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
-                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateDeedToBadge * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateDeedToBadge * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateDeedToBadge * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowDeed += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateDeedToBadge * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowDeed += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
-                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RatePictureToBadge * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RatePictureToBadge * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RatePictureToBadge * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowPicture += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RatePictureToBadge * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowPicture += Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
-                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateBadgeToCrystal * Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowBadge >= Hot.DataPanelResTable.RateBadgeToCrystal * Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateBadgeToCrystal * Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowCrystal += Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowBadge -= Hot.DataPanelResTable.RateBadgeToCrystal * Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowCrystal += Hot.NowTranslateRate;
                         }
                         break;
                 }
@@ -213,39 +213,38 @@ public class PanelTranslateAncestralProperty : PanelBase
                 switch (ListBtnStatus[index])
                 {
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
-                        if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowCrystal >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToCrystal * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowCrystal -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowStatue += Hot.DataPanelResTable.RateStatueToCrystal * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
-                        if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowCrystal >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowDeed += Hot.DataPanelResTable.RateDeedToCrystal * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowCrystal -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowDeed += Hot.DataPanelResTable.RateDeedToCrystal * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
-                        if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowCrystal >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowPicture += Hot.DataPanelResTable.RatePictureToCrystal * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowCrystal -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowPicture += Hot.DataPanelResTable.RatePictureToCrystal * Hot.NowTranslateRate;
                         }
                         break;
                     case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
-                        if (Hot.DataPanelResTable.NowCrystal >= Hot.TranslateNum)
+                        if (Hot.DataPanelResTable.NowCrystal >= Hot.NowTranslateRate)
                         {
-                            Hot.DataPanelResTable.NowCrystal -= Hot.TranslateNum;
-                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateBadgeToCrystal * Hot.TranslateNum;
+                            Hot.DataPanelResTable.NowCrystal -= Hot.NowTranslateRate;
+                            Hot.DataPanelResTable.NowBadge += Hot.DataPanelResTable.RateBadgeToCrystal * Hot.NowTranslateRate;
                         }
                         break;
                 }
                 break;
         }
 
-        Hot.PanelOtherResTable_.UpdateInfo();
-        Hot.Data_.Save();
+        Hot.PanelOtherResTable_.UpdateInfo();        
     }
 
     private void UpDateBtnStatus(E_ArrowDirection e_ArrowDirection)
