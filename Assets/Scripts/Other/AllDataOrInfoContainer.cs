@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public sealed class AllDataOrInfoContainer { }
 
 public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
-    public List<DataContainer_PanelCellTownStore> ListCellStore = new List<DataContainer_PanelCellTownStore>();
-    public DataContainer_PanelResTable PanelResTable = new DataContainer_PanelResTable();
-    public List<DataContainer_PanelCellItem> ListCellShopItem = new List<DataContainer_PanelCellItem>();
+    public DataContainer_ResTable PanelResTable = new DataContainer_ResTable();
+    public List<DataContainer_CellTownStore> ListCellStore = new List<DataContainer_CellTownStore>();    
+    public List<DataContainer_CellItem> ListCellShopItem = new List<DataContainer_CellItem>();
+    public List<DataContainer_CellRole> ListCellRole = new List<DataContainer_CellRole>();
 
     public string GameArchiveName = "---";
     public string Location = "---";
@@ -21,7 +21,7 @@ public class DataContainer_PanelCellGameArchive
     public DataContainer_PanelCellGameArchive() { }
     public DataContainer_PanelCellGameArchive
     (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, string Location, string Week, string Time, 
-    List<DataContainer_PanelCellTownStore> ListCellStore)
+    List<DataContainer_CellTownStore> ListCellStore)
     {
         this.GameArchiveName = GameArchiveName;
         this.e_GameArchiveLevel = e_GameArchiveLevel;
@@ -32,28 +32,58 @@ public class DataContainer_PanelCellGameArchive
     }
 }
 
-public class DataContainer_PanelCellTownStore
+public class DataContainer_CellRole
+{
+    public E_SpriteNamePortraitRole e_SpriteNamePortraitRole = E_SpriteNamePortraitRole.PortraitNone;
+    public string Name = "---";
+    public int NowLevel = 0;    
+    //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
+    public int MaxLevel = 0;
+    public int NowExperience = 0;
+    public int NowSanity = 0;
+    public int MaxSanity = 0;    
+    public int SanityExplosionLimit = 0;
+
+    public DataContainer_CellRole() { }
+    public DataContainer_CellRole
+    (E_SpriteNamePortraitRole e_SpriteNamePortraitRole,
+     string Name,
+     int NowLevel, int MaxLevel, int NowExperience,
+     int NowSanity, int MaxSanity, int SanityExplosionLimit)
+    {
+        this.e_SpriteNamePortraitRole = e_SpriteNamePortraitRole;
+        this.Name = Name;
+        this.NowLevel = NowLevel;
+        this.MaxLevel = MaxLevel;
+        this.NowExperience = NowExperience;
+        this.NowSanity = NowSanity;
+        this.MaxSanity = MaxSanity;
+        this.SanityExplosionLimit = SanityExplosionLimit;
+    }
+}
+
+public class DataContainer_CellTownStore
 {
     public E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore = E_SpriteNamePanelCellTownStore.StoreWood;
-    public List<DataContainer_PanelCellItem> ListCellStoreItem = new List<DataContainer_PanelCellItem>();    
+    public List<DataContainer_CellItem> ListCellStoreItem = new List<DataContainer_CellItem>();    
     public int NowWeight = 0;    
     public int NowCapacity = 0;    
 
-    public DataContainer_PanelCellTownStore() { }
-    public DataContainer_PanelCellTownStore
+    public DataContainer_CellTownStore() { }
+    public DataContainer_CellTownStore
     (E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore)
     {        
         this.e_SpriteNamePanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
 }
 
-public class DataContainer_PanelCellItem
+public class DataContainer_CellItem
 {
     public E_Location e_Location = E_Location.PanelTownItem;
     public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.ItemFoodCookie;   
 
-    public DataContainer_PanelCellItem() { }
-    public DataContainer_PanelCellItem
+    public DataContainer_CellItem() { }
+    public DataContainer_CellItem
     (E_Location e_Location, E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
     {     
         this.e_Location = e_Location;
@@ -61,7 +91,7 @@ public class DataContainer_PanelCellItem
     }
 }
 
-public class DataContainer_PanelResTable
+public class DataContainer_ResTable
 {
     public int NowStoreDebris = 0;
 
@@ -172,11 +202,8 @@ public class DataContainer_PanelResTable
 
     #endregion
 
-    public DataContainer_PanelResTable() { }
+    public DataContainer_ResTable() { }
 }
-
-//特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他
-//......
 
 public class InfoContainer_Cost
 {
@@ -207,3 +234,7 @@ public class InfoContainer_Cost
         Crystal = crystal;
     }   
 }
+
+
+//特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他
+//......

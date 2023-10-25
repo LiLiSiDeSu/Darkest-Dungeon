@@ -65,7 +65,7 @@ public class PanelTownItem : PanelBaseItem,
         Show();
     }
 
-    public void UpdateContent()
+    public void InitContent()
     {
         NowIndex = 0;
 
@@ -91,7 +91,7 @@ public class PanelTownItem : PanelBaseItem,
 
     public override void SortContent()
     {
-        List<DataContainer_PanelCellItem> data = new List<DataContainer_PanelCellItem>();
+        List<DataContainer_CellItem> data = new List<DataContainer_CellItem>();
         PanelCellTownItem[] all = transform.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
         {

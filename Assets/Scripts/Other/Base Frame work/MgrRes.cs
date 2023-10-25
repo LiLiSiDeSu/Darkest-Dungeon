@@ -8,7 +8,10 @@ public class MgrRes : InstanceBaseAuto_Mono<MgrRes>
     public T Load<T>(string path) where T : Object
     {
         T res = Resources.Load<T>(path);
-        
+
+        if (res == null)
+            Debug.Log(path);
+
         if (res is GameObject)
             return Instantiate(res);
         else

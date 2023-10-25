@@ -19,9 +19,8 @@ public class PanelTownStore : PanelBase,
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == Hot.MgrInput_.PanelTownStore)
+            if (key == Hot.MgrInput_.PanelTownStore && Hot.NowIndexCellGameArchive != -1)
             {
-
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
                 {
                     Hot.MgrUI_.HidePanel
@@ -49,7 +48,7 @@ public class PanelTownStore : PanelBase,
 
     #endregion
 
-    public void UpdateContent()
+    public void InitContent()
     {
         NowIndex = 0;
 
@@ -61,8 +60,9 @@ public class PanelTownStore : PanelBase,
                              (true, "/PanelCellTownStore", false, false, "PanelCellTownStore" + tempi,
             (PanelCellTownStore_) =>
             {
+                PanelCellTownStore_.Index = NowIndex;
                 PanelCellTownStore_.gameObject.name += tempi;
-                PanelCellTownStore_.transform.SetParent(Content, false);
+                PanelCellTownStore_.transform.SetParent(Content, false);                
 
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
                                  (true, "/PanelTownItem", true, true, "PanelTownItem" + tempi,
@@ -72,10 +72,9 @@ public class PanelTownStore : PanelBase,
                     PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
                     PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;                    
-                    PanelTownItem_.UpdateContent();
+                    PanelTownItem_.InitContent();
                 });
-
-                PanelCellTownStore_.Index = NowIndex;
+                
                 NowIndex++;
             });
         }

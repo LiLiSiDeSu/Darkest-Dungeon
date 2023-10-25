@@ -7,11 +7,9 @@ using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 using static UnityEditor.FilePathAttribute;
 
-public class PanelCellTownStore : PanelBase,
+public class PanelCellTownStore : PanelBaseCell,
              IBeginDragHandler, IDragHandler, IEndDragHandler
-{
-    public int Index;
-
+{    
     public int MaxWeight;
     public int MaxCapacity;
 

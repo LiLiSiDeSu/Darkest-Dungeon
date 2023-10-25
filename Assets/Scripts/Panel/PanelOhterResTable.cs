@@ -13,6 +13,22 @@ public class PanelOhterResTable : PanelBase
     {
         base.Awake();
 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        {
+            if (key == Hot.MgrInput_.PanelResTable && Hot.NowIndexCellGameArchive != -1)
+            {
+                if (Hot.NowIndexCellGameArchive != -1)
+                {
+                    if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOhterResTable"))
+                    {
+                        Hot.MgrUI_.HidePanel
+                            (false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");
+                    }
+                    Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
+                }
+            }
+        });
+
         RootRes = transform.FindSonSonSon("RootRes");
         RootTranslate = transform.FindSonSonSon("RootTranslate");
 
@@ -34,37 +50,18 @@ public class PanelOhterResTable : PanelBase
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
         {
-            if (key == Hot.MgrInput_.UpAdd)
+            if (key == Hot.MgrInput_.AddNowTranslateRate)
             {
                 Hot.NowTranslateRate += Hot.AddTranslateRate;                
             }
         });
         Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyUp", (key) =>
         {
-            if (key == Hot.MgrInput_.UpAdd)
+            if (key == Hot.MgrInput_.AddNowTranslateRate)
             {
                 Hot.NowTranslateRate = 1;                
             }
-        });
-
-        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
-        {
-            if (key == Hot.MgrInput_.PanelResTable)
-            {
-                if (Hot.NowIndexCellGameArchive != -1)
-                {
-                    if (Hot.NowIndexCellGameArchive != -1)
-                    {
-                        if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOhterResTable"))
-                        {
-                            Hot.MgrUI_.HidePanel
-                                (false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");                            
-                        }
-                        Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
-                    }
-                }
-            }
-        });
+        });        
 
         Text[] texts = RootRes.GetComponentsInChildren<Text>();
         for (int i = 0; i < texts.Length; i++)

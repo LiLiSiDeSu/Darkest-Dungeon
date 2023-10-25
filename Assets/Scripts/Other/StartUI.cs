@@ -33,7 +33,10 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
             (true, "/PanelTownStore", true, true, "PanelTownStore");        
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOhterResTable>
-            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");                    
+            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoleList>
+            (true, "/PanelRoleList", true, false, "PanelRoleList");
 
         Destroy(gameObject);
     }

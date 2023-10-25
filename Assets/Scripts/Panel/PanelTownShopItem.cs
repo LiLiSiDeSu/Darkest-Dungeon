@@ -36,7 +36,7 @@ public class PanelTownShopItem : PanelBaseItem,
 
     #endregion
 
-    public void UpdateContent()
+    public void InitContent()
     {
         NowIndex = 0;
 
@@ -48,11 +48,11 @@ public class PanelTownShopItem : PanelBaseItem,
             (false, "/PanelCellTownItem", callback:
             (panel) =>
             {
+                panel.Index = NowIndex;
                 panel.transform.SetParent(Content, false);
                 panel.MemberOf = this;
                 panel.e_Location = E_Location.PanelTownShopItem;
-                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;
-                panel.Index = NowIndex;
+                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;                
                 NowIndex++;
             });
         }
@@ -67,7 +67,7 @@ public class PanelTownShopItem : PanelBaseItem,
 
     public override void SortContent()
     {
-        List<DataContainer_PanelCellItem> data = new List<DataContainer_PanelCellItem>();
+        List<DataContainer_CellItem> data = new List<DataContainer_CellItem>();
         PanelCellTownItem[] all = transform.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
         {

@@ -40,6 +40,28 @@ public enum E_SpriteNameCoin
     ResCoinPlatinum
 }
 
+public enum E_SpriteNamePortraitRole
+{
+    PortraitNone,
+    PortraitPlagueDoctor,
+    PortraitAbomination,
+    PortraitAntiquarian,
+    PortraitArbalest,
+    PortraitBountyHunter,
+    PortraitCrusader,
+    PortraitGraveRobber,
+    PortraitHellion,
+    PortraitHighwayman,
+    PortraitHoundmaster,
+    PortraitJester,
+    PortraitLeper,
+    PortraitManAtArms,
+    PortraitMusketeer,
+    PortraitOccultist,    
+    PortraitShieldbreaker,
+    PortraitVestal
+}
+
 public enum E_SpriteNameAncestralProperty
 {
     ResAncestralPropertyStatue,

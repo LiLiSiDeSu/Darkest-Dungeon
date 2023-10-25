@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellGameArchive : PanelBase
-{
-    public int Index;
-
+public class PanelCellGameArchive : PanelBaseCell
+{    
     public Image ImgEnvelope;
     private InputField IptGameArchiveInput;
     public Image ImgGameArchiveLevel;
@@ -43,8 +41,9 @@ public class PanelCellGameArchive : PanelBase
                 Hot.NowIndexCellGameArchive = Index;
                 Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
                 Hot.PanelOtherResTable_.UpdateInfo();
-                Hot.PanelTownStore_.UpdateContent();
-                Hot.PanelTownShopItem_.UpdateContent();
+                Hot.PanelTownStore_.InitContent();
+                Hot.PanelTownShopItem_.InitContent();
+                Hot.PanelRole_.InitContent();
 
                 #endregion
                 break;

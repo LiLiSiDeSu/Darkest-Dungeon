@@ -10,12 +10,12 @@ public class PanelRooms : PanelBase
     public bool IsShow = false;
 
     private Transform ImgCurrentChoice;
-    private float PosOffsetForImgCurrentChoice = 85f;
+    private float PosOffsetForImgCurrentChoice = 80f;
     private Dictionary<string, Transform> PosBtnRoom = new Dictionary<string, Transform>();
 
     public PanelBase CurrentPanel;
-    public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();    
-
+    public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
+ 
     protected override void Start()
     {
         base.Start();
@@ -46,26 +46,18 @@ public class PanelRooms : PanelBase
 
         switch (Controlname)
         {
-            case "BtnRoomRecruit":                
-                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomRecruit"], "BtnRoomRecruit");                
-                break;
-
             case "BtnRoomMercenaryaAssociation":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomMercenaryaAssociation"], "BtnRoomMercenaryaAssociation");                
                 break;
-
             case "BtnRoomGraveyard":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomGraveyard"], "BtnRoomGraveyard");                
                 break;
-
             case "BtnRoomTownShop":                               
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomTownShop"], "BtnRoomTownShop");                
                 break;
-
             case "BtnRoomSmithy":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomSmithy"], "BtnRoomSmithy");                
                 break;
-
             case "BtnRoomWineHouse":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomWineHouse"], "BtnRoomWineHouse");                
                 break;
@@ -76,7 +68,7 @@ public class PanelRooms : PanelBase
     {        
         ImgCurrentChoice.gameObject.SetActive(true);
         ImgCurrentChoice.position = new Vector3
-                         (PosBtnRoom[Key].position.x - PosOffsetForImgCurrentChoice, PosBtnRoom[Key].position.y, 0);
+                         (PosBtnRoom[Key].position.x + PosOffsetForImgCurrentChoice, PosBtnRoom[Key].position.y, 0);
     }
 
     public void HideBeforePanelAndShowNewPanel(PanelBase NewPanel, string BtnNameToChangeImgCurrentChoicePos)

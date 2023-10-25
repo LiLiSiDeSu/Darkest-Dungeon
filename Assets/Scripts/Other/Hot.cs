@@ -6,6 +6,21 @@ using UnityEngine;
 
 public static class Hot
 {
+    #region 配置
+
+    public static int StepSanity = 10;
+
+    public static List<int> ListNeedExperienceToUpLevel = new List<int>()
+    {
+        50,
+        55,
+        60,
+        90,
+        100,
+        130
+    };
+
+    #endregion
 
     #region 快捷得到BaseFrameWork里的脚本
 
@@ -46,6 +61,13 @@ public static class Hot
 
     #region Panel
 
+    /// <summary>
+    /// 角色清单面板
+    /// </summary>
+    public static PanelRoleList PanelRole_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
+    }
     /// <summary>
     /// 所有城镇箱子面板
     /// </summary>
@@ -89,7 +111,7 @@ public static class Hot
     /// <summary>
     /// 城镇商店面板在存档里的Data
     /// </summary>
-    public static List<DataContainer_PanelCellItem> DataPanelTownShopItem
+    public static List<DataContainer_CellItem> DataPanelTownShopItem
     {
         get { return DataNowCellGameArchive.ListCellShopItem; }
     }
@@ -119,11 +141,11 @@ public static class Hot
 
     #region Data
 
-    public static DataContainer_PanelResTable DataPanelResTable
+    public static DataContainer_ResTable DataPanelResTable
     {
         get { return DataNowCellGameArchive.PanelResTable; }
     }
-    public static DataContainer_PanelCellTownStore DataNowPanelStore
+    public static DataContainer_CellTownStore DataNowPanelStore
     {
         get
         {
@@ -197,14 +219,14 @@ public static class Hot
                 DragingItem.e_Location = E_Location.PanelTownItem;
                 DragingItem.Index = NowPanelItem.NowIndex++;
                 DataNowPanelStore.ListCellStoreItem.Add
-                    (new DataContainer_PanelCellItem(E_Location.PanelTownItem, DragingItem.e_SpriteNamePanelCellItem));                
+                    (new DataContainer_CellItem(E_Location.PanelTownItem, DragingItem.e_SpriteNamePanelCellItem));                
                 break;
             case E_Location.PanelTownShopItem:
                 DragingItem.transform.SetParent(PanelTownShopItem_.Content, false);
                 DragingItem.e_Location = E_Location.PanelTownShopItem;
                 DragingItem.Index = PanelTownShopItem_.NowIndex++;
                 DataPanelTownShopItem.Add
-                    (new DataContainer_PanelCellItem(E_Location.PanelTownShopItem, DragingItem.e_SpriteNamePanelCellItem));                
+                    (new DataContainer_CellItem(E_Location.PanelTownShopItem, DragingItem.e_SpriteNamePanelCellItem));                
                 break;
         }                      
     }

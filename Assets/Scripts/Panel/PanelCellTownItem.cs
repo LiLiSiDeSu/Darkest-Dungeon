@@ -5,11 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellTownItem : PanelBase, 
+public class PanelCellTownItem : PanelBaseCell, 
              IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
-{    
-    public int Index;
-
+{        
     public int Weight;
     public int Capacity;
 

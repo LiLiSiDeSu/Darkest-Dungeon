@@ -36,11 +36,8 @@ public class GameTools : BaseEditorGUIExtension<LatoutForGameTools>
 
     private void OnGUI()
     {
-        if (!Application.isPlaying || Hot.NowIndexCellGameArchive == -1)
-        {
+        if (!Application.isPlaying)
             Close();
-            DestroyImmediate(Hot.MgrUI_.gameObject);
-        }
 
         GUI.DrawTexture(layout.Rect_Pic1, layout.Texture_Pic1);
         GUI.DrawTexture(layout.Rect_Pic2, layout.Texture_Pic2);

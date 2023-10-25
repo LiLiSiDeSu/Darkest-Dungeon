@@ -8,8 +8,7 @@ public class PanelTown : PanelBase
     protected override void Start()
     {
         base.Start();
-
-        transform.FindSonSonSon("ImgRecruit").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        
         transform.FindSonSonSon("ImgWineHouse").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
@@ -23,26 +22,18 @@ public class PanelTown : PanelBase
 
         switch (controlname)
         {
-            case "BtnRecruit":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomRecruit");               
-                break;
-
             case "BtnWineHouse":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomWineHouse");              
                 break;
-
             case "BtnGraveyard":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGraveyard");              
                 break;
-
             case "BtnTownShop":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTownShop");
                 break;
-
             case "BtnSmithy":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomSmithy");              
                 break;
-
             case "BtnMercenaryaAssociation":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomMercenaryaAssociation");           
                 break;

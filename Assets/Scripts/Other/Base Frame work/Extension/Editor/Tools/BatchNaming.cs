@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class BatchRename : BaseEditorGUIExtension<LayoutForBatchRename>
 {
-    private string BaseName = "None";
+    private string BaseName = "PortraitNone";
     private string StartIndex = "0";
 
     //[MenuItem("Tools/Batch Rename", false, priority:10)]

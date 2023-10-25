@@ -15,10 +15,11 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode UpArrow = KeyCode.UpArrow;
     public KeyCode DownArrow = KeyCode.DownArrow;
     public KeyCode Esc = KeyCode.Escape;
-    public KeyCode Setting = KeyCode.I;
+    public KeyCode Setting = KeyCode.I;    
+    public KeyCode AddNowTranslateRate = KeyCode.LeftControl;
     public KeyCode PanelTownStore = KeyCode.Tab;
     public KeyCode PanelResTable = KeyCode.CapsLock;
-    public KeyCode UpAdd = KeyCode.LeftControl;
+    public KeyCode PanelRole = KeyCode.R;
 
     #endregion
 
@@ -71,10 +72,11 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(UpArrow);
         CheckKeyCode(DownArrow);
         CheckKeyCode(Esc);
-        CheckKeyCode(Setting);
+        CheckKeyCode(Setting);        
+        CheckKeyCode(AddNowTranslateRate);
         CheckKeyCode(PanelTownStore);
         CheckKeyCode(PanelResTable);
-        CheckKeyCode(UpAdd);
+        CheckKeyCode(PanelRole);
     }
 
     #endregion 

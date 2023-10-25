@@ -56,7 +56,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         {
             //调试用 一般这边报错了就是Prefabs名字和类名不一样
             if (obj == null)
-                Debug.Log(panelname);
+                Debug.Log("Path: Prefabs" + panelname + "---注意\"/\"");
 
             obj.name = obj.name.Replace("(Clone)", "");
 
