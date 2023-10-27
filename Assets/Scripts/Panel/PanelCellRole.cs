@@ -28,7 +28,23 @@ public class PanelCellRole : PanelBaseCell
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
         TxtRoleLevel = transform.FindSonSonSon("TxtRoleLevel").GetComponent<Text>();
 
-        RootSanityValueBar = transform.FindSonSonSon("RootSanityValueBar");        
+        RootSanityValueBar = transform.FindSonSonSon("RootSanityValueBar");
+
+        ImgPortrait.alphaHitTestMinimumThreshold = 0.2f;
+    }
+
+    protected override void Button_OnClick(string controlname)
+    {
+        base.Button_OnClick(controlname);
+
+        switch (controlname)
+        {
+            case "BtnPortrait":
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");
+                Hot.PanelRoleDetails_.Index = Index;                
+                Hot.PanelRoleDetails_.UpdateInfo();
+                break;
+        }
     }
 
     public void InitInfo()
@@ -51,26 +67,26 @@ public class PanelCellRole : PanelBaseCell
     /// </summary>
     public void ChangeSanityExplosionLimit()
     {
-        if (ListImgCellSanity.Count < Hot.DataNowCellGameArchive.ListCellRole[Index].SanityExplosionLimit)
+        if (ListImgCellSanity.Count < Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion)
         {
+            int v1 = Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion - ListImgCellSanity.Count;
+
             for 
-            (int i = 0; 
-             i < Hot.DataNowCellGameArchive.ListCellRole[Index].SanityExplosionLimit - ListImgCellSanity.Count;
-             i++)
+            (int i = 0; i < v1; i++)
             {
                 ListImgCellSanity.Add(Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ImgCellSanity"));
                 ListImgCellSanity[i].transform.SetParent(RootSanityValueBar, false);
                 ListImgCellSanity[i].GetComponent<Image>().sprite = 
-                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanValueNone");
+                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
             }
         }
 
-        if (ListImgCellSanity.Count > Hot.DataNowCellGameArchive.ListCellRole[Index].SanityExplosionLimit)
+        if (ListImgCellSanity.Count > Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion)
         {
+            int v1 = ListImgCellSanity.Count - Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion;
+
             for
-            (int i = 0;
-             i < ListImgCellSanity.Count - Hot.DataNowCellGameArchive.ListCellRole[Index].SanityExplosionLimit;
-             i++)
+            (int i = 0; i < v1; i++)
             {
                 ListImgCellSanity.RemoveAt(ListImgCellSanity.Count - 1);
             }
@@ -117,11 +133,11 @@ public class PanelCellRole : PanelBaseCell
             (i < Hot.DataNowCellGameArchive.ListCellRole[Index].NowSanity / Hot.StepSanity)
             {
                 ListImgCellSanity[i].GetComponent<Image>().sprite =
-                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanValueHave");
+                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueHave");
             }
             else
                 ListImgCellSanity[i].GetComponent<Image>().sprite =
-                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanValueNone");
+                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
         }
     }    
 

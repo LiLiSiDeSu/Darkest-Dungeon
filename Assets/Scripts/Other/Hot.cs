@@ -61,6 +61,10 @@ public static class Hot
 
     #region Panel
 
+    public static PanelRoleDetails PanelRoleDetails_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
+    }
     /// <summary>
     /// 角色清单面板
     /// </summary>

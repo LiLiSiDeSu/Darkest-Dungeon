@@ -46,8 +46,8 @@ public class PanelRooms : PanelBase
 
         switch (Controlname)
         {
-            case "BtnRoomMercenaryaAssociation":                                
-                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomMercenaryaAssociation"], "BtnRoomMercenaryaAssociation");                
+            case "BtnRoomGuild":                                
+                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomGuild"], "BtnRoomGuild");                
                 break;
             case "BtnRoomGraveyard":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomGraveyard"], "BtnRoomGraveyard");                
@@ -58,8 +58,17 @@ public class PanelRooms : PanelBase
             case "BtnRoomSmithy":                                
                 HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomSmithy"], "BtnRoomSmithy");                
                 break;
-            case "BtnRoomWineHouse":                                
-                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomWineHouse"], "BtnRoomWineHouse");                
+            case "BtnRoomTavern":                                
+                HideBeforePanelAndShowNewPanel(AllPanel["PanelRoomTavern"], "BtnRoomTavern");                
+                break;
+            case "BtnRoomAbbey":
+                Debug.Log("Abbey");
+                break;
+            case "BtnRoomSanitarium":
+                Debug.Log("Sanitarium");
+                break;
+            case "BtnRoomSurvivorMaster":
+                Debug.Log("SurvivorMaster");
                 break;
         }
     }

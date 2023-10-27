@@ -121,14 +121,12 @@ public class PanelRoleList : PanelBase
     private void ChangePosImgDecorateFrameBottom()
     {
         if (IsOpen && ListContentStep.Count > 0)
-            ImgDecorateFrameBottom.transform.position =
-                new Vector3(ImgDecorateFrameBottom.transform.position.x, 
-                ListContentStep[ListContentStep.Count - 1].transform.position.y - 70, 
-                0);
+            ImgDecorateFrameBottom.transform.localPosition =
+                new Vector3(ImgDecorateFrameBottom.transform.localPosition.x, -367, 0);
         else
             ImgDecorateFrameBottom.transform.position =
                 new Vector3(ImgDecorateFrameBottom.transform.position.x,
-                ImgDecorateFrameTop.position.y - 21,
+                ImgDecorateFrameTop.position.y - 40,
                 0);
     }
 }

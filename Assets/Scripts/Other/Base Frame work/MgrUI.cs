@@ -118,7 +118,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="PushObjName">给添加到缓存池的对象取个可爱的名字</param>
     /// <param name="callback">回调函数</param>
     public void CreatePanelAndPush<T>
-    (bool isAddDicPanel, string panelname, bool isPush = false, bool Active = false, string PushObjName = "", UnityAction<T> callback = null)
+    (bool isAddDicPanel, string panelname, 
+     bool isPush = false, bool Active = false, string PushObjName = "", UnityAction<T> callback = null)
     where T : PanelBase
     {        
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>

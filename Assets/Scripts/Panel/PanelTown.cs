@@ -8,12 +8,15 @@ public class PanelTown : PanelBase
     protected override void Start()
     {
         base.Start();
-        
-        transform.FindSonSonSon("ImgWineHouse").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+
+        transform.FindSonSonSon("ImgAbbey").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgSanitarium").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgSurvivorMaster").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgTavern").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgMercenaryaAssociation").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
+        transform.FindSonSonSon("ImgGuild").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
     }  
 
     protected override void Button_OnClick(string controlname)
@@ -22,20 +25,30 @@ public class PanelTown : PanelBase
 
         switch (controlname)
         {
-            case "BtnWineHouse":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomWineHouse");              
+            case "BtnAbbey":
+                Debug.Log("Abbey");
+                break;
+            case "BtnSanitarium":
+                Debug.Log("Sanitarium");
+                break;
+            case "BtnSurvivorMaster":
+                Debug.Log("SurvivorMaster");
+                break;
+            case "BtnTavern":
+                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTavern");              
                 break;
             case "BtnGraveyard":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGraveyard");              
                 break;
             case "BtnTownShop":
+                Debug.Log("TownShop");
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTownShop");
                 break;
             case "BtnSmithy":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomSmithy");              
                 break;
-            case "BtnMercenaryaAssociation":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomMercenaryaAssociation");           
+            case "BtnGuild":
+                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGuild");           
                 break;
         }
     }   

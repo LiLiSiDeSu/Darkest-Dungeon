@@ -38,6 +38,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleList>
             (true, "/PanelRoleList", true, false, "PanelRoleList");
 
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
+            (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
+
         Destroy(gameObject);
     }
 }

@@ -67,7 +67,8 @@ public class PanelOtherSetting : PanelBase
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
                     Hot.PanelTownStore_.ClearContent();
-                    Hot.PanelRoomTownShop_.PanelTownShopItem_.ClearContent();                    
+                    Hot.PanelRoomTownShop_.PanelTownShopItem_.ClearContent();
+                    Hot.PanelRole_.ClearContent();
 
                     Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject,
                     Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject.name);

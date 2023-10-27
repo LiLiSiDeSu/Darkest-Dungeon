@@ -8,13 +8,13 @@ public sealed class AllDataOrInfoContainer { }
 public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
-    public DataContainer_ResTable PanelResTable = new DataContainer_ResTable();
-    public List<DataContainer_CellTownStore> ListCellStore = new List<DataContainer_CellTownStore>();    
-    public List<DataContainer_CellItem> ListCellShopItem = new List<DataContainer_CellItem>();
-    public List<DataContainer_CellRole> ListCellRole = new List<DataContainer_CellRole>();
+    public DataContainer_ResTable PanelResTable = new();
+    public List<DataContainer_CellTownStore> ListCellStore = new();    
+    public List<DataContainer_CellItem> ListCellShopItem = new();
+    public List<DataContainer_CellRole> ListCellRole = new();
 
-    public string GameArchiveName = "---";
-    public string Location = "---";
+    public string GameArchiveName = "";
+    public string Location = "None";
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";    
 
@@ -35,14 +35,14 @@ public class DataContainer_PanelCellGameArchive
 public class DataContainer_CellRole
 {
     public E_SpriteNamePortraitRole e_SpriteNamePortraitRole = E_SpriteNamePortraitRole.PortraitNone;
-    public string Name = "---";
+    public string Name = "None";
     public int NowLevel = 0;    
     //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
     public int MaxLevel = 0;
     public int NowExperience = 0;
     public int NowSanity = 0;
     public int MaxSanity = 0;    
-    public int SanityExplosionLimit = 0;
+    public int LimitToSanityExplosion = 0;
 
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
@@ -58,7 +58,7 @@ public class DataContainer_CellRole
         this.NowExperience = NowExperience;
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
-        this.SanityExplosionLimit = SanityExplosionLimit;
+        this.LimitToSanityExplosion = SanityExplosionLimit;
     }
 }
 

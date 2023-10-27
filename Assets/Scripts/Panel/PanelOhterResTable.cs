@@ -32,17 +32,17 @@ public class PanelOhterResTable : PanelBase
         RootRes = transform.FindSonSonSon("RootRes");
         RootTranslate = transform.FindSonSonSon("RootTranslate");
 
-        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateAncestralProperty>(true, "/PanelTranslateAncestralProperty", 
+        Hot.MgrUI_.CreatePanel<PanelTranslateAncestralProperty>("/PanelTranslateAncestralProperty", 
         callback : (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);                        
         });
-        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateCoinAncestralProperty>(true, "/PanelTranslateCoinAncestralProperty",
+        Hot.MgrUI_.CreatePanel<PanelTranslateCoinAncestralProperty>("/PanelTranslateCoinAncestralProperty",
         callback: (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
         });
-        Hot.MgrUI_.CreatePanelAndShow<PanelTranslateCoinCoin>(true, "/PanelTranslateCoinCoin",
+        Hot.MgrUI_.CreatePanel<PanelTranslateCoinCoin>("/PanelTranslateCoinCoin",
         callback: (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
