@@ -11,10 +11,8 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
     private Dictionary<string, GameObject> RootDicItem;
     public Dictionary<string, List<GameObject>> DicPool;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         RootPool = transform;
         RootDicItem = new Dictionary<string, GameObject>();
         DicPool = new Dictionary<string, List<GameObject>>();

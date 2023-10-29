@@ -18,23 +18,4 @@ public class InstanceBaseAuto_Mono<T> : MonoBehaviour where T : MonoBehaviour
 
         return instance;
     }
-
-    #region LifeFunction
-
-    protected virtual void Awake()
-    {
-
-    }
-
-    protected virtual void Start()
-    {
-
-    }
-    
-    protected virtual void Update()
-    {
-
-    }
-
-    #endregion
 }

@@ -8,7 +8,7 @@ public class PanelRoleList : PanelBase
     private bool IsOpen = true;
 
     public int NowIndex;    
-    public List<GameObject> ListContentStep = new List<GameObject>();
+    public List<GameObject> ListContentStep = new();
 
     public GameObject ScrollView_;
     public GameObject BtnPackUp;
@@ -32,7 +32,7 @@ public class PanelRoleList : PanelBase
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelRoleList"))
                 {
                     Hot.MgrUI_.HidePanel
-                        (false, Hot.PanelRole_.gameObject, "PanelRoleList");
+                        (false, Hot.PanelRoleList_.gameObject, "PanelRoleList");
                 }
                 Hot.MgrUI_.ShowPanel<PanelRoleList>(true, "PanelRoleList");
             }
@@ -111,6 +111,11 @@ public class PanelRoleList : PanelBase
     public void SortContent()
     {
 
+    }
+
+    public PanelCellRole GetCellRole()
+    {
+        return null;
     }
 
     public void ChangePosPanelCellRole(int Sourece, int Replace)

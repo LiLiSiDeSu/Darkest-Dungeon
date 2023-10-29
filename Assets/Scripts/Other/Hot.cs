@@ -61,6 +61,18 @@ public static class Hot
 
     #region Panel
 
+    public static PanelOtherSetting PanelOtherSetting_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }
+    }
+    public static PanelBarExpedition PanelBarExpedition_
+    {
+        get { return MgrUI_.GetPanel<PanelBarExpedition>("PanelBarExpedition"); }
+    }
+    public static PanelBarTown PanelBarTown_
+    {
+        get { return MgrUI_.GetPanel<PanelBarTown>("PanelBarTown"); }
+    }
     public static PanelRoleDetails PanelRoleDetails_
     {
         get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
@@ -68,7 +80,7 @@ public static class Hot
     /// <summary>
     /// 角色清单面板
     /// </summary>
-    public static PanelRoleList PanelRole_
+    public static PanelRoleList PanelRoleList_
     {
         get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
     }
@@ -100,6 +112,11 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
     }
+
+    #endregion
+
+    #region Bool    
+
 
     #endregion
 
@@ -173,6 +190,18 @@ public static class Hot
     #region Now
 
     /// <summary>
+    /// 现在进入的角色远征格子
+    /// </summary>
+    public static GameObject NowRootExpeditionRole;
+    /// <summary>
+    /// 替换的觉得肖像
+    /// </summary>
+    public static GameObject ReplaceRolePortrait;
+    /// <summary>
+    /// 拖曳的角色肖像
+    /// </summary>
+    public static GameObject DragingRolePortrait;
+    /// <summary>
     /// 在TranslateNum的基础上添加的倍率
     /// </summary>
     public static int AddTranslateRate = 4;
@@ -193,20 +222,21 @@ public static class Hot
     /// </summary>
     public static PanelCellTownStore DragingTownStore;
     /// <summary>
-    /// 光标所在地区
-    /// </summary>
-    /// <summary>
-    /// 现在读取的存档的Index
-    /// </summary>
-    public static int NowIndexCellGameArchive = -1;
-    /// <summary>
-    /// 光标现在区域的类型
-    /// </summary>
-    public static E_Location e_NowPointerLocation = E_Location.None;
-    /// <summary>
     /// 现在进入的PanelItem
     /// </summary>
     public static PanelBaseItem NowPanelItem;
+    /// <summary>
+    /// 当前存档的Index
+    /// </summary>
+    public static int NowIndexCellGameArchive = -1;    
+    /// <summary>
+    /// 现在鼠标所在的区域
+    /// </summary>
+    public static E_NowPointerLocation e_NowPointerLocation = E_NowPointerLocation.None;  
+    /// <summary>
+    /// 现在玩家所在的区域(从开发者视角来看)
+    /// </summary>
+    public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;    
 
     #endregion
 

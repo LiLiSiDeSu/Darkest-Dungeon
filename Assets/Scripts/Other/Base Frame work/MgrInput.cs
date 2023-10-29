@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
-{
-    #region CustomKey
-
-    //自定义键
+{        
     //每个都要在下面添加检测哦
     public KeyCode W = KeyCode.N;
     public KeyCode A = KeyCode.A;
@@ -19,24 +16,44 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode AddNowTranslateRate = KeyCode.LeftControl;
     public KeyCode PanelTownStore = KeyCode.Tab;
     public KeyCode PanelResTable = KeyCode.CapsLock;
-    public KeyCode PanelRole = KeyCode.R;
+    public KeyCode PanelRole = KeyCode.R;    
+    public KeyCode PanelBar = KeyCode.F;
 
-    #endregion
+    private void Update()
+    {        
+        //没有开启输入检测 就不去检测 直接return
+        if (!IsOpen)
+            return;
 
-    #region 开启关闭输入检测
-
-    private bool isStart = true;
+        //在这里添加需要检测的键
+        CheckKeyCode(W);
+        CheckKeyCode(S);
+        CheckKeyCode(A);
+        CheckKeyCode(D);
+        CheckKeyCode(UpArrow);
+        CheckKeyCode(DownArrow);
+        CheckKeyCode(Esc);
+        CheckKeyCode(Setting);
+        CheckKeyCode(AddNowTranslateRate);
+        CheckKeyCode(PanelTownStore);
+        CheckKeyCode(PanelResTable);
+        CheckKeyCode(PanelRole);
+        CheckKeyCode(PanelBar);
+    }
 
     /// <summary>
-    /// 是否开启或关闭 输入检测
+    /// 是否输入检测
+    /// </summary>
+    private bool IsOpen = true;
+
+    /// <summary>
+    /// 是否开启或关闭输入检测
     /// </summary>
     /// <param name="isOpen">---</param>
     public void OpenOrCloseCheck(bool isOpen)
     {
-        isStart = isOpen;
-    }
-
-    #endregion
+        IsOpen = isOpen;
+    }    
 
     /// <summary>
     /// 用来检测按键抬起按下 分发事件
@@ -53,31 +70,4 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         if (Input.GetKeyDown(key))
             CenterEvent.GetInstance().EventTrigger<KeyCode>("CertainKeyDown", key);        
     }
-
-    #region LifeFun
-
-    protected override void Update()
-    {
-        base.Update();
-
-        //没有开启输入检测 就不去检测 直接return
-        if (!isStart)
-            return;
-
-        //在这里添加需要检测的键
-        CheckKeyCode(W);
-        CheckKeyCode(S);
-        CheckKeyCode(A);
-        CheckKeyCode(D);
-        CheckKeyCode(UpArrow);
-        CheckKeyCode(DownArrow);
-        CheckKeyCode(Esc);
-        CheckKeyCode(Setting);        
-        CheckKeyCode(AddNowTranslateRate);
-        CheckKeyCode(PanelTownStore);
-        CheckKeyCode(PanelResTable);
-        CheckKeyCode(PanelRole);
-    }
-
-    #endregion 
 }

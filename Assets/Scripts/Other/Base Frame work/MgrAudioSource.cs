@@ -10,17 +10,15 @@ public class MgrAudioSource : InstanceBaseAuto_Mono<MgrAudioSource>
 
     private AudioSource BkMusic = null;    
     private GameObject ObjSound = null;
-    private List<AudioSource> ListSound = new List<AudioSource>();   
+    private List<AudioSource> ListSound = new();   
 
-    protected override void Update()
-    {
-        base.Update();
-
+    private void Update()
+    {        
         for (int i = ListSound.Count - 1; i >= 0; i--)
         {
             if (!ListSound[i].isPlaying)
             {
-                GameObject.Destroy(ListSound[i]);
+                Destroy(ListSound[i]);
                 ListSound.Remove(ListSound[i]);
             }
         }

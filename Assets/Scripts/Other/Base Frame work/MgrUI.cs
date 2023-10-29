@@ -8,14 +8,12 @@ using UnityEngine.Rendering;
 
 public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 {        
-    public Dictionary<string, PanelBase> DicPanel = new Dictionary<string, PanelBase>();
+    public Dictionary<string, PanelBase> DicPanel = new();
 
     public RectTransform UIBaseCanvas;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         GameObject UI = new GameObject("UI");
         UI.transform.parent = InstanceMgr.Instance.Gaming.transform;
 
@@ -176,6 +174,19 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             PoolEsc.GetInstance().ListEsc.Remove(panelname);
     }
 
+    /// <summary>
+    /// 隐藏所有面板
+    /// </summary>
+    public void HideAllPanel()
+    {
+        PoolEsc.GetInstance().HideAll();
+        for (int i = 0; i < Hot.PoolNowPanel_.ListNowPanel.Count; i++)
+        {
+            Hot.MgrUI_.HidePanel
+            (false, GetPanel<PanelTown>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, Hot.PoolNowPanel_.ListNowPanel[i]);
+        }
+    }
+
     public void DestroyPanel(string panelname, UnityAction callback = null)
     {
         Destroy(DicPanel[panelname].gameObject);
@@ -203,11 +214,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="control">控件对象</param>
     /// <param name="type">事件类型</param>
     /// <param name="callback">事件的回调函数</param>
-    public void AddCustomEventListener(
-                                       GameObject control, 
-                                       EventTriggerType type, 
-                                       UnityAction<BaseEventData> callback = null                                       
-                                      )
+    public void AddCustomEventListener(GameObject control, EventTriggerType type, UnityAction<BaseEventData> callback)
     {
         EventTrigger trigger = control.AddComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();

@@ -40,10 +40,14 @@ public class PanelCellGameArchive : PanelBaseCell
 
                 Hot.NowIndexCellGameArchive = Index;
                 Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+
                 Hot.PanelOtherResTable_.UpdateInfo();
                 Hot.PanelTownStore_.InitContent();
                 Hot.PanelTownShopItem_.InitContent();
-                Hot.PanelRole_.InitContent();
+                Hot.PanelRoleList_.InitContent();
+                Hot.PanelBarExpedition_.InitContent();
+
+                Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
 
                 #endregion
                 break;

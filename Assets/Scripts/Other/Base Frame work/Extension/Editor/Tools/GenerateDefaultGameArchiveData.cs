@@ -77,16 +77,16 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].ListCellRole = new List<DataContainer_CellRole>()
         {
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitPlagueDoctor, "cao1", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitCrusader, "cao2", 3, 99, 30, 29, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitHighwayman, "cao3", 4, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitVestal, "cao4", 4, 99, 1, 46, 200, 1),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitManAtArms, "cao5", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitLeper, "cao6", 3, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitJester, "cao7", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitMusketeer, "cao8", 1, 99, 40, 50, 200, 3),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitShieldbreaker, "cao9", 0, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitBountyHunter, "cao10", 2, 99, 40, 10, 200, 2),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitPlagueDoctor, E_SpriteNameRoleStatus.RoleStatusNone, "cao1", 2, 99, 40, 46, 200, 10, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitCrusader, E_SpriteNameRoleStatus.RoleStatusNone, "cao2", 3, 99, 30, 29, 200, 10, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitHighwayman, E_SpriteNameRoleStatus.RoleStatusNone, "cao3", 4, 99, 40, 46, 200, 10, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitVestal, E_SpriteNameRoleStatus.RoleStatusNone, "cao4", 4, 99, 1, 46, 200, 1, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitManAtArms, E_SpriteNameRoleStatus.RoleStatusNone, "cao5", 2, 99, 40, 46, 200, 10, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitLeper, E_SpriteNameRoleStatus.RoleStatusNone, "cao6", 3, 99, 40, 46, 200, 10, -1),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitJester, E_SpriteNameRoleStatus.RoleStatusExpedition, "cao7", 2, 99, 40, 46, 200, 10, 3),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitMusketeer, E_SpriteNameRoleStatus.RoleStatusExpedition, "cao8", 1, 99, 40, 50, 200, 3, 2),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitShieldbreaker, E_SpriteNameRoleStatus.RoleStatusExpedition, "cao9", 0, 99, 40, 46, 200, 10, 0),
+            new DataContainer_CellRole(E_SpriteNamePortraitRole.PortraitBountyHunter, E_SpriteNameRoleStatus.RoleStatusExpedition, "cao10", 2, 99, 40, 10, 200, 2, 1),
         };
 
         #endregion

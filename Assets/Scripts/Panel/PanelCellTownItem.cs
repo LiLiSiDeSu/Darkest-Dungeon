@@ -91,10 +91,10 @@ public class PanelCellTownItem : PanelBaseCell,
 
             switch (Hot.e_NowPointerLocation)
             {
-                case E_Location.None:
+                case E_NowPointerLocation.None:
                     transform.SetParent(MemberOf.Content, false);
                     break;
-                case E_Location.PanelTownItem:
+                case E_NowPointerLocation.PanelTownItem:
                     switch (e_Location)
                     {
                         case E_Location.PanelTownItem:
@@ -109,7 +109,7 @@ public class PanelCellTownItem : PanelBaseCell,
                             break;
                     }
                     break;
-                case E_Location.PanelTownShopItem:
+                case E_NowPointerLocation.PanelTownShopItem:
                     switch (e_Location)
                     {
                         //ÂôÎïÆ·

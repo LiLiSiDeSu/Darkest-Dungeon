@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
             (true, "/PanelOtherStart");
 
@@ -40,6 +38,15 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
             (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarTown>
+            (true, "/PanelBarTown", true, false, "PanelBarTown");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarExpedition>
+            (true, "/PanelBarExpedition", true, false, "PanelBarExpedition");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelExpedition>
+            (true, "/PanelExpedition", true, false, "PanelExpedition");
 
         Destroy(gameObject);
     }

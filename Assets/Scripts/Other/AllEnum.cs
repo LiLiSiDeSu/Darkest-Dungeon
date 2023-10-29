@@ -40,6 +40,13 @@ public enum E_SpriteNameCoin
     ResCoinPlatinum
 }
 
+public enum E_SpriteNameRoleStatus
+{
+    RoleStatusNone,
+    RoleStatusExpedition,
+    RoleStatusPrepareExpedition
+}
+
 public enum E_SpriteNamePortraitRole
 {
     PortraitNone,
@@ -75,6 +82,23 @@ public enum E_StatusItemGrid
 {
     None,
     Have
+}
+
+public enum E_PlayerLocation
+{
+    None,
+    Town,
+    PrepareExpedition,
+    OnExpedition
+}
+
+public enum E_NowPointerLocation
+{
+    None,
+    PanelTownItem,
+    PanelTownShopItem,
+    TownPrepareExpedition,
+    TownExpedition
 }
 
 public enum E_Location

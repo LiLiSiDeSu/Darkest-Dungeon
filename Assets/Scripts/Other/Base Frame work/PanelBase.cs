@@ -26,22 +26,7 @@ public class PanelBase : MonoBehaviour
     protected virtual void Start()
     {
 
-    }
-
-    protected virtual void Update()
-    {
-
-    }
-
-    protected virtual void OnEnable()
-    {
-
-    }
-    
-    protected virtual void OnDisable()
-    {
-
-    }
+    }    
 
     #endregion
 
@@ -150,16 +135,5 @@ public class PanelBase : MonoBehaviour
 
     }
 
-
-
     #endregion
-
-    #region ScrollView
-
-    protected virtual void ScrollView(string controlname, Vector2 EventParam)
-    {
-
-    }
-
-    #endregion    
 }

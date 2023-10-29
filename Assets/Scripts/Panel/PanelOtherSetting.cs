@@ -19,7 +19,7 @@ public class PanelOtherSetting : PanelBase
             if (key == Hot.MgrInput_.Setting)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOtherSetting"))
-                    Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelOtherSetting>("PanelOtherSetting").gameObject, "PanelOtherSetting");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherSetting_.gameObject, "PanelOtherSetting");
                 Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
             }
         });
@@ -42,7 +42,8 @@ public class PanelOtherSetting : PanelBase
             {
                 ImgCurrentChoice.gameObject.SetActive(true);      
                 ImgCurrentChoice.position = new Vector3
-                    ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
+                    ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, 
+                      pos[tempi].position.y, 0);
             });
             Hot.MgrUI_.AddCustomEventListener
             (btns[i].gameObject, EventTriggerType.PointerExit, (param) =>
@@ -68,11 +69,13 @@ public class PanelOtherSetting : PanelBase
                 {
                     Hot.PanelTownStore_.ClearContent();
                     Hot.PanelRoomTownShop_.PanelTownShopItem_.ClearContent();
-                    Hot.PanelRole_.ClearContent();
+                    Hot.PanelRoleList_.ClearContent();
+                    Hot.PanelBarExpedition_.Clear();
 
-                    Hot.MgrUI_.HidePanel(false, Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject,
-                    Hot.MgrUI_.GetPanel<PanelTown>("PanelTown").gameObject.name);
-                    PoolEsc.GetInstance().HideAll();
+                    Hot.MgrUI_.HideAllPanel();
+
+                    Hot.e_NowPlayerLocation = E_PlayerLocation.None;
+
                     Hot.MgrUI_.ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
 
                     Hot.NowIndexCellGameArchive = -1;

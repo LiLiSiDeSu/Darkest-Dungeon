@@ -20,7 +20,7 @@ public class PanelTownShopItem : PanelBaseItem,
     public void OnPointerEnter(PointerEventData eventData)
     {
         Hot.NowPanelItem = this;
-        Hot.e_NowPointerLocation = E_Location.PanelTownShopItem;
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownShopItem;
 
         if (Hot.DragingItem != null)
         {
@@ -31,7 +31,7 @@ public class PanelTownShopItem : PanelBaseItem,
     public void OnPointerExit(PointerEventData eventData)
     {
         Hot.NowPanelItem = null;
-        Hot.e_NowPointerLocation = E_Location.None;
+        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
     }
 
     #endregion

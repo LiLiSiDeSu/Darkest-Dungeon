@@ -9,12 +9,10 @@ public class MgrJson : InstanceBaseAuto_Mono<MgrJson>
     /// <summary>
     /// 这个路径只到文件夹路径
     /// </summary>
-    public string filePath;
+    public string filePath = "";
 
-    protected override void Awake()
-    {
-        base.Awake();
-
+    private void Awake()
+    {        
         filePath = Application.persistentDataPath + "/Data/JsonData";
     }
 

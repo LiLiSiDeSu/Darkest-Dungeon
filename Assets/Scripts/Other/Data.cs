@@ -5,15 +5,13 @@ using System.IO;
 using UnityEngine;
 
 public class Data : InstanceBaseAuto_Mono<Data>
-{    
-    public string PathGameArchiveData;    
+{
+    public string PathGameArchiveData = "";
     
-    public List<DataContainer_PanelCellGameArchive> DataListCellGameArchive = new List<DataContainer_PanelCellGameArchive>();
+    public List<DataContainer_PanelCellGameArchive> DataListCellGameArchive = new();
 
-    protected override void Start()
-    {
-        base.Start();
-
+    private void Start()
+    {        
         PathGameArchiveData = "/GameArchiveData";
 
         if (!File.Exists(MgrJson.GetInstance().filePath))

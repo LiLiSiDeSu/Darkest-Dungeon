@@ -13,6 +13,7 @@ public class DataContainer_PanelCellGameArchive
     public List<DataContainer_CellItem> ListCellShopItem = new();
     public List<DataContainer_CellRole> ListCellRole = new();
 
+
     public string GameArchiveName = "";
     public string Location = "None";
     public string Week = "0";
@@ -35,6 +36,9 @@ public class DataContainer_PanelCellGameArchive
 public class DataContainer_CellRole
 {
     public E_SpriteNamePortraitRole e_SpriteNamePortraitRole = E_SpriteNamePortraitRole.PortraitNone;
+    public E_SpriteNameRoleStatus e_SpriteNameRoleStatus = E_SpriteNameRoleStatus.RoleStatusNone;
+    public int IndexExpedition = -1;
+    public int IndexPrepareExpedition = -1;
     public string Name = "None";
     public int NowLevel = 0;    
     //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
@@ -47,11 +51,14 @@ public class DataContainer_CellRole
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
     (E_SpriteNamePortraitRole e_SpriteNamePortraitRole,
+     E_SpriteNameRoleStatus e_SpriteNameRoleStatus,
      string Name,
      int NowLevel, int MaxLevel, int NowExperience,
-     int NowSanity, int MaxSanity, int SanityExplosionLimit)
+     int NowSanity, int MaxSanity, int SanityExplosionLimit,
+     int IndexExpedition)
     {
         this.e_SpriteNamePortraitRole = e_SpriteNamePortraitRole;
+        this.e_SpriteNameRoleStatus= e_SpriteNameRoleStatus;
         this.Name = Name;
         this.NowLevel = NowLevel;
         this.MaxLevel = MaxLevel;
@@ -59,6 +66,7 @@ public class DataContainer_CellRole
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
         this.LimitToSanityExplosion = SanityExplosionLimit;
+        this.IndexExpedition = IndexExpedition;
     }
 }
 
