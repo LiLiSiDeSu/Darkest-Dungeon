@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b359dcfceb2dd4fb53e455dce62720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RootExpeditionRole: {fileID: 0}
   PanelCellRole_: {fileID: 0}
 --- !u!222 &1443986997024342862
 CanvasRenderer:
@@ -102,7 +103,7 @@ GameObject:
   - component: {fileID: 7584057836266732556}
   - component: {fileID: 8614972107337142929}
   m_Layer: 5
-  m_Name: ImgRolePortrait
+  m_Name: ImgRolePortraitCanDrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +177,7 @@ GameObject:
   - component: {fileID: 6061255392880031296}
   - component: {fileID: 5028652198201035559}
   m_Layer: 5
-  m_Name: BtnRolePortrait
+  m_Name: BtnRolePortraitCanDrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -151,13 +151,11 @@ public class PanelBarExpedition : PanelBase
                     Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
                     (panel) =>
                     {
-                        panel.Father = RootExpeditionRole0.transform;
-                        Hot.DragingRolePortrait = panel.gameObject;
+                        panel.RootExpeditionRole = RootExpeditionRole0.transform;                        
                         panel.transform.SetParent(RootExpeditionRole0.transform, false);
 
-                        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>().sprite =
-                        Hot.PanelRoleList_.ListContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgPortrait.sprite;
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
@@ -166,13 +164,11 @@ public class PanelBarExpedition : PanelBase
                     Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
                     (panel) =>
                     {
-                        panel.Father = RootExpeditionRole1.transform;
-                        Hot.DragingRolePortrait = panel.gameObject;
+                        panel.RootExpeditionRole = RootExpeditionRole1.transform;
                         panel.transform.SetParent(RootExpeditionRole1.transform, false);
 
-                        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>().sprite =
-                        Hot.PanelRoleList_.ListContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgPortrait.sprite;
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
@@ -181,13 +177,11 @@ public class PanelBarExpedition : PanelBase
                     Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
                     (panel) =>
                     {
-                        panel.Father = RootExpeditionRole2.transform;
-                        Hot.DragingRolePortrait = panel.gameObject;
+                        panel.RootExpeditionRole = RootExpeditionRole2.transform;
                         panel.transform.SetParent(RootExpeditionRole2.transform, false);
 
-                        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>().sprite =
-                        Hot.PanelRoleList_.ListContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgPortrait.sprite;
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
@@ -196,15 +190,14 @@ public class PanelBarExpedition : PanelBase
                     Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
                     (panel) =>
                     {
-                        panel.Father = RootExpeditionRole3.transform;
-                        Hot.DragingRolePortrait = panel.gameObject;
+                        panel.RootExpeditionRole = RootExpeditionRole3.transform;
                         panel.transform.SetParent(RootExpeditionRole3.transform, false);
 
-                        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>().sprite =
-                        Hot.PanelRoleList_.ListContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgPortrait.sprite;
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                        panel.InitSprite();
                     });
                     break;
             }

@@ -6,27 +6,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRole : PanelBaseCell,
-             IDragHandler, IBeginDragHandler, IEndDragHandler
+public class PanelCellRole : PanelBaseCell             
 {
-    public Image ImgPortrait;
+    public Image ImgRolePortrait;
     public Image ImgProgress;
     public Image ImgRoleLevelBk;
     public Image ImgRoleStatus;
     public Text TxtRoleName;
-    public Text TxtRoleLevel;
-
-    private Vector2 DragOffSet;
-
+    public Text TxtRoleLevel;    
+    
+    public Transform RootPortrait;
     public Transform RootSanityValueBar;
 
-    public List<GameObject> ListImgCellSanity = new List<GameObject>();
+    public List<GameObject> ListImgCellSanity = new List<GameObject>();   
 
     protected override void Awake()
     {
         base.Awake();
 
-        ImgPortrait = transform.FindSonSonSon("ImgPortrait").GetComponent<Image>();
+        ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
         ImgProgress = transform.FindSonSonSon("ImgProgress").GetComponent<Image>();
         ImgRoleLevelBk = transform.FindSonSonSon("ImgRoleLevelBk").GetComponent<Image>();
         ImgRoleStatus = transform.FindSonSonSon("ImgRoleStatus").GetComponent<Image>();
@@ -34,41 +32,11 @@ public class PanelCellRole : PanelBaseCell,
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
         TxtRoleLevel = transform.FindSonSonSon("TxtRoleLevel").GetComponent<Text>();
 
+        RootPortrait = transform.FindSonSonSon("RootPortrait");
         RootSanityValueBar = transform.FindSonSonSon("RootSanityValueBar");
 
-        ImgPortrait.alphaHitTestMinimumThreshold = 0.2f;
+        ImgRolePortrait.alphaHitTestMinimumThreshold = 0.2f;
     }
-
-    #region EventSystem接口实现
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {        
-        DragOffSet =
-            new Vector2(ImgPortrait.transform.position.x, ImgPortrait.transform.position.y) - eventData.position;
-        Hot.DragingRolePortrait = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PanelCellRoleCanDrag");
-        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").
-            GetComponent<Image>().sprite = ImgPortrait.sprite;
-        Hot.DragingRolePortrait.transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").
-            GetComponent<Image>().raycastTarget = false;
-
-        Hot.DragingRolePortrait.GetComponent<PanelCellRoleCanDrag>().PanelCellRole_ = this;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {        
-        Hot.DragingRolePortrait.transform.position = eventData.position + DragOffSet;
-    }    
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Hot.DragingRolePortrait.transform.FindSonSonSon("ImgRolePortrait").
-            GetComponent<Image>().raycastTarget = true;
-        Destroy(Hot.DragingRolePortrait);
-        Hot.DragingRolePortrait = null;
-    }
-
-    #endregion
 
     protected override void Button_OnClick(string controlname)
     {
@@ -76,7 +44,7 @@ public class PanelCellRole : PanelBaseCell,
 
         switch (controlname)
         {
-            case "BtnPortrait":
+            case "BtnRolePortrait":
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");
                 Hot.PanelRoleDetails_.Index = Index;                
                 Hot.PanelRoleDetails_.UpdateInfo();
@@ -84,10 +52,26 @@ public class PanelCellRole : PanelBaseCell,
         }
     }
 
+    public void CreatePanelCellRoleCanDrag()
+    {
+        if (Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNameRoleStatus == E_SpriteNameRoleStatus.RoleStatusNone)
+        {
+            Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+            (panel) =>
+            {
+                panel.transform.SetParent(RootPortrait, false);
+                panel.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
+                panel.PanelCellRole_ = this;
+                panel.InitSprite();
+            });
+        }
+    }
+
     public void InitInfo()
     {
-        ImgPortrait.sprite =
-            Hot.MgrRes_.Load<Sprite>("Art/" + Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNamePortraitRole);
+        ImgRolePortrait.sprite =
+            Hot.MgrRes_.Load<Sprite>("Art/" + Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNamePortraitRole);        
+
         TxtRoleName.text = Hot.DataNowCellGameArchive.ListCellRole[Index].Name;
         TxtRoleLevel.text = Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel.ToString();
 

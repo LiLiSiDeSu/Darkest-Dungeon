@@ -54,8 +54,7 @@ public class DataContainer_CellRole
      E_SpriteNameRoleStatus e_SpriteNameRoleStatus,
      string Name,
      int NowLevel, int MaxLevel, int NowExperience,
-     int NowSanity, int MaxSanity, int SanityExplosionLimit,
-     int IndexExpedition)
+     int NowSanity, int MaxSanity, int SanityExplosionLimit)
     {
         this.e_SpriteNamePortraitRole = e_SpriteNamePortraitRole;
         this.e_SpriteNameRoleStatus= e_SpriteNameRoleStatus;
@@ -65,8 +64,7 @@ public class DataContainer_CellRole
         this.NowExperience = NowExperience;
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
-        this.LimitToSanityExplosion = SanityExplosionLimit;
-        this.IndexExpedition = IndexExpedition;
+        this.LimitToSanityExplosion = SanityExplosionLimit;        
     }
 }
 

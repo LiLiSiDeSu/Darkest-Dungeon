@@ -88,6 +88,7 @@ public class PanelRoleList : PanelBase
             (panel) =>
             {
                 panel.Index = NowIndex;
+                panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
