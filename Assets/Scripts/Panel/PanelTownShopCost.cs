@@ -54,19 +54,6 @@ public class PanelTownShopCost : PanelBase
         TxtCostCrystal.text = cost.Crystal.ToString();
     }
 
-    public void InitTextColor()
-    {
-        TxtCostCopper.color = Color.white;
-        TxtCostSilver.color = Color.white;
-        TxtCostGold.color = Color.white;
-        TxtCostPlatinum.color = Color.white;
-        TxtCostStatue.color = Color.white;
-        TxtCostDeed.color = Color.white;
-        TxtCostBadge.color = Color.white;
-        TxtCostPicture.color = Color.white;
-        TxtCostCrystal.color = Color.white;
-}
-
     public void ChangeTextColorAndJudgeCanBug()
     {
         if (Hot.NowItem.Cost.Copper > Hot.DataPanelResTable.NowCopper)
@@ -117,10 +104,21 @@ public class PanelTownShopCost : PanelBase
         }
     }
 
-    public void Clear()
+    public void InitTextColor()
     {
-        InitTextColor();
+        TxtCostCopper.color = Color.white;
+        TxtCostSilver.color = Color.white;
+        TxtCostGold.color = Color.white;
+        TxtCostPlatinum.color = Color.white;
+        TxtCostStatue.color = Color.white;
+        TxtCostDeed.color = Color.white;
+        TxtCostBadge.color = Color.white;
+        TxtCostPicture.color = Color.white;
+        TxtCostCrystal.color = Color.white;
+    }
 
+    public void InitText()
+    {
         TxtCostCopper.text = "0";
         TxtCostSilver.text = "0";
         TxtCostGold.text = "0";
@@ -130,6 +128,12 @@ public class PanelTownShopCost : PanelBase
         TxtCostDeed.text = "0";
         TxtCostBadge.text = "0";
         TxtCostPicture.text = "0";
-        TxtCostCrystal.text = "0";        
+        TxtCostCrystal.text = "0";
+    }
+
+    public void Clear()
+    {
+        InitTextColor();
+        InitText();
     }
 }

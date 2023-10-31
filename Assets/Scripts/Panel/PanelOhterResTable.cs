@@ -20,11 +20,9 @@ public class PanelOhterResTable : PanelBase
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
                     if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOhterResTable"))
-                    {
-                        Hot.MgrUI_.HidePanel
-                            (false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");
-                    }
-                    Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
+                        Hot.MgrUI_.HidePanel(false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");
+                    else
+                        Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
                 }
             }
         });
@@ -32,18 +30,21 @@ public class PanelOhterResTable : PanelBase
         RootRes = transform.FindSonSonSon("RootRes");
         RootTranslate = transform.FindSonSonSon("RootTranslate");
 
-        Hot.MgrUI_.CreatePanel<PanelTranslateAncestralProperty>("/PanelTranslateAncestralProperty", 
-        callback : (panel) =>
+        Hot.MgrUI_.CreatePanel<PanelTranslateAncestralProperty>
+        (false, "/PanelTranslateAncestralProperty", 
+        (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);                        
         });
-        Hot.MgrUI_.CreatePanel<PanelTranslateCoinAncestralProperty>("/PanelTranslateCoinAncestralProperty",
-        callback: (panel) =>
+        Hot.MgrUI_.CreatePanel<PanelTranslateCoinAncestralProperty>
+        (false, "/PanelTranslateCoinAncestralProperty",
+        (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
         });
-        Hot.MgrUI_.CreatePanel<PanelTranslateCoinCoin>("/PanelTranslateCoinCoin",
-        callback: (panel) =>
+        Hot.MgrUI_.CreatePanel<PanelTranslateCoinCoin>
+        (false, "/PanelTranslateCoinCoin",
+        (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
         });

@@ -16,9 +16,9 @@ public class PanelRooms : PanelBase
     public PanelBase CurrentPanel;
     public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
  
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
 
@@ -33,11 +33,16 @@ public class PanelRooms : PanelBase
         {            
             AllPanel.Add(temppanel[i].gameObject.name, temppanel[i]);
             MgrUI.GetInstance().AddDicPanel(temppanel[i].gameObject.name, temppanel[i]);
-        }
-
-        HideAllRooms();
+        }        
 
         gameObject.SetActive(false);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        HideAllRooms();
     }
 
     protected override void Button_OnClick(string Controlname)

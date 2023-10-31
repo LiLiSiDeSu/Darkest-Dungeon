@@ -8,11 +8,11 @@ public sealed class AllDataOrInfoContainer { }
 public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
-    public DataContainer_ResTable PanelResTable = new();
+    public DataContainer_ResTable ResTable = new();
     public List<DataContainer_CellTownStore> ListCellStore = new();    
     public List<DataContainer_CellItem> ListCellShopItem = new();
     public List<DataContainer_CellRole> ListCellRole = new();
-
+    public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
 
     public string GameArchiveName = "";
     public string Location = "None";
@@ -54,7 +54,7 @@ public class DataContainer_CellRole
      E_SpriteNameRoleStatus e_SpriteNameRoleStatus,
      string Name,
      int NowLevel, int MaxLevel, int NowExperience,
-     int NowSanity, int MaxSanity, int SanityExplosionLimit)
+     int NowSanity, int MaxSanity, int LimitToSanityExplosion)
     {
         this.e_SpriteNamePortraitRole = e_SpriteNamePortraitRole;
         this.e_SpriteNameRoleStatus= e_SpriteNameRoleStatus;
@@ -64,7 +64,21 @@ public class DataContainer_CellRole
         this.NowExperience = NowExperience;
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
-        this.LimitToSanityExplosion = SanityExplosionLimit;        
+        this.LimitToSanityExplosion = LimitToSanityExplosion;        
+    }
+}
+
+public class DataContainer_CellRoleRecruit
+{
+    public DataContainer_CellRole Role = new DataContainer_CellRole();
+    public DataContainer_CoinCost Cost = new DataContainer_CoinCost();
+
+    public DataContainer_CellRoleRecruit() { }
+    public DataContainer_CellRoleRecruit
+    (DataContainer_CellRole Role, DataContainer_CoinCost Cost) 
+    {
+        this.Role = Role;
+        this.Cost = Cost;
     }
 }
 
@@ -209,6 +223,36 @@ public class DataContainer_ResTable
     #endregion
 
     public DataContainer_ResTable() { }
+    public DataContainer_ResTable
+    (int NowCopper, int NowSilver, int NowGold, int NowPlatinum ,
+     int NowLevelCopper, int NowLevelSilver, int NowLevelGold, int NowLevelPlatinum) 
+    {
+        this.NowCopper = NowCopper;
+        this.NowSilver = NowSilver;
+        this.NowGold = NowGold;
+        this.NowPlatinum = NowPlatinum;
+        this.NowLevelCopper = NowLevelCopper;
+        this.NowLevelSilver = NowLevelSilver;
+        this.NowLevelGold = NowLevelGold;
+        this.NowLevelPlatinum = NowLevelPlatinum;
+    }
+}
+
+public class DataContainer_CoinCost
+{
+    public int Copper;
+    public int Silver;
+    public int Gold;
+    public int Platinum;
+    public DataContainer_CoinCost() { }
+    public DataContainer_CoinCost
+    (int Copper, int Silver, int Gold, int Platinum) 
+    {
+        this.Copper = Copper;
+        this.Silver = Silver;
+        this.Gold = Gold;
+        this.Platinum = Platinum;
+    }
 }
 
 public class InfoContainer_Cost

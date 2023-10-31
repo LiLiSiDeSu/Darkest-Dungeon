@@ -30,7 +30,7 @@ public class GameTools : BaseEditorGUIExtension<LatoutForGameTools>
 
         layout.Texture_Pic1 = Hot.MgrRes_.Load<Texture>("Art/Editor/" + "ToolsGameToolsBk1");
         layout.Texture_Pic2 = Hot.MgrRes_.Load<Texture>("Art/Editor/" + "ToolsGameToolsBk2");
-        layout.Texture_Pic3 = Hot.MgrRes_.Load<Texture>("Art/PanelBkChooseArcheiveLevelDescribes");
+        layout.Texture_Pic3 = Hot.MgrRes_.Load<Texture>("Art/BarBlack2");
         DestroyImmediate(Hot.MgrRes_.gameObject);
     }
 

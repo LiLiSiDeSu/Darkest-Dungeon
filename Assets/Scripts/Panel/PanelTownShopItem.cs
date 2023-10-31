@@ -12,7 +12,7 @@ public class PanelTownShopItem : PanelBaseItem,
     {
         base.Awake();
 
-        Content = transform.FindSonSonSon("Content");        
+        base.Content = transform.FindSonSonSon("Content");        
     }
 
     #region EventSystem接口实现
@@ -49,18 +49,18 @@ public class PanelTownShopItem : PanelBaseItem,
             (panel) =>
             {
                 panel.Index = NowIndex;
-                panel.transform.SetParent(Content, false);
+                panel.transform.SetParent(base.Content, false);
                 panel.MemberOf = this;
                 panel.e_Location = E_Location.PanelTownShopItem;
-                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;                
+                panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;
                 NowIndex++;
             });
         }
     }
 
-    public void ClearContent()
+    public void Clear()
     {
-        PanelCellTownItem[] all = Content.GetComponentsInChildren<PanelCellTownItem>();
+        PanelCellTownItem[] all = base.Content.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
             DestroyImmediate(all[i].gameObject);
     }
@@ -70,10 +70,12 @@ public class PanelTownShopItem : PanelBaseItem,
         List<DataContainer_CellItem> data = new List<DataContainer_CellItem>();
         PanelCellTownItem[] all = transform.GetComponentsInChildren<PanelCellTownItem>();
         for (int i = 0; i < all.Length; i++)
-        {
+        {            
             data.Add(Hot.DataNowCellGameArchive.ListCellShopItem[all[i].Index]);
-            all[i].Index = i;            
+            all[i].Index = i;
         }
         Hot.DataNowCellGameArchive.ListCellShopItem = data;
+
+        Hot.Data_.Save();
     }
 }

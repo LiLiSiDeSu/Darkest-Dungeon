@@ -30,11 +30,11 @@ public class LayoutForNowNews : MonoBehaviour
     public GUIStyle Style_NowRootExpeditionRole = new GUIStyle();
 
     public string String_DragingRolePortrait = "DragingRolePortrait: ";
-    public Rect Rect_DragingRolePortrait = new Rect(0, 140, 0, 0);
+    public Rect Rect_DragingRolePortrait = new Rect(0, 120, 0, 0);
     public GUIStyle Style_DragingRolePortrait = new GUIStyle();
 
     public string String_PanelTownItemStatus = "---PanelTownItemStatus---";
-    public Rect Rect_PanelTownItemStatus = new Rect(0, 160, 0, 0);
+    public Rect Rect_PanelTownItemStatus = new Rect(0, 140, 0, 0);
     public GUIStyle Style_PanelTownItemStatus = new GUIStyle();
 
     public void Refresh()

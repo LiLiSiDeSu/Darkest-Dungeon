@@ -22,11 +22,9 @@ public class PanelTownStore : PanelBase,
             if (key == Hot.MgrInput_.PanelTownStore && Hot.NowIndexCellGameArchive != -1)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
-                {
-                    Hot.MgrUI_.HidePanel
-                        (false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
-                }
-                Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
+                else
+                    Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
             }
         });
 
@@ -58,11 +56,11 @@ public class PanelTownStore : PanelBase,
 
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
                              (true, "/PanelCellTownStore", false, false, "PanelCellTownStore" + tempi,
-            (PanelCellTownStore_) =>
+            (UnityEngine.Events.UnityAction<PanelCellTownStore>)((PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.Index = NowIndex;
                 PanelCellTownStore_.gameObject.name += tempi;
-                PanelCellTownStore_.transform.SetParent(Content, false);                
+                PanelCellTownStore_.transform.SetParent((Transform)this.Content, false);
 
                 MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
                                  (true, "/PanelTownItem", true, true, "PanelTownItem" + tempi,
@@ -74,16 +72,16 @@ public class PanelTownStore : PanelBase,
                     PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;                    
                     PanelTownItem_.InitContent();
                 });
-                
+
                 NowIndex++;
-            });
+            }));
         }
     }
 
     /// <summary>
     /// 删除Content下的物体 用于重新读档
     /// </summary>
-    public void ClearContent()
+    public void Clear()
     {        
         PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
@@ -99,11 +97,16 @@ public class PanelTownStore : PanelBase,
 
     public void SortContent()
     {
+        List<DataContainer_CellTownStore> data = new List<DataContainer_CellTownStore>();
         PanelCellTownStore[] all = transform.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
-        {
+        {           
+            data.Add(Hot.DataNowCellGameArchive.ListCellStore[all[i].Index]);
             all[i].gameObject.name += i;
             all[i].Index = i;
         }
+        Hot.DataNowCellGameArchive.ListCellStore = data;
+
+        Hot.Data_.Save();
     }
 }

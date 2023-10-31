@@ -11,9 +11,10 @@ public class PanelCellRoleCanDrag : PanelBase,
     public Image ImgRolePortraitCanDrag;
 
     public RectTransform RectRolePortraitCanDrag;
-    public Transform RootExpeditionRole;
+    public Transform RootExpeditionRole;    
+    private Vector2 DragOffSet;
+
     public PanelCellRole PanelCellRole_;
-    private Vector2 DragOffSet;    
 
     protected override void Awake()
     {
@@ -33,7 +34,7 @@ public class PanelCellRoleCanDrag : PanelBase,
             case "BtnRolePortraitCanDrag":
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");
                 Hot.PanelRoleDetails_.Index = PanelCellRole_.Index;
-                Hot.PanelRoleDetails_.UpdateInfo();
+                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index]);
                 break;
         }
     }    
@@ -46,14 +47,13 @@ public class PanelCellRoleCanDrag : PanelBase,
 
         RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
         transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        ImgRolePortraitCanDrag.raycastTarget = false;        
-        transform.SetParent(Hot.PanelBarExpedition_.transform, false);
+        ImgRolePortraitCanDrag.raycastTarget = false;                
         Hot.DragingRolePortrait = gameObject;        
     }
 
     public void OnDrag(PointerEventData eventData)
     {        
-        gameObject.transform.position = eventData.position + DragOffSet;
+        transform.position = eventData.position + DragOffSet;
     }
 
     public void OnEndDrag(PointerEventData eventData)

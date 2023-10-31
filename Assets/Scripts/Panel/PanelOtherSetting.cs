@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,8 +20,14 @@ public class PanelOtherSetting : PanelBase
             if (key == Hot.MgrInput_.Setting)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOtherSetting"))
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherSetting_.gameObject, "PanelOtherSetting");
-                Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
+                {
+                    PoolBuffer.GetInstance().Push(false, gameObject, "PanelOtherSetting");
+                    PoolNowPanel.GetInstance().ListNowPanel.Remove("PanelOtherSetting");
+                    if (PoolEsc.GetInstance().ListEsc.Contains("PanelOtherSetting"))
+                        PoolEsc.GetInstance().ListEsc.Remove("PanelOtherSetting");
+                }
+                else
+                    Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
             }
         });
 
@@ -67,10 +74,11 @@ public class PanelOtherSetting : PanelBase
             case "BtnBackStart":
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
-                    Hot.PanelTownStore_.ClearContent();
-                    Hot.PanelRoomTownShop_.PanelTownShopItem_.ClearContent();
-                    Hot.PanelRoleList_.ClearContent();
+                    Hot.PanelTownStore_.Clear();
+                    Hot.PanelTownShopItem_.Clear();
+                    Hot.PanelRoleList_.Clear();
                     Hot.PanelBarExpedition_.Clear();
+                    Hot.PanelRoleGuildRecruit_.Clear();
 
                     Hot.MgrUI_.HideAllPanel();
 

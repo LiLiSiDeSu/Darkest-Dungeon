@@ -65,7 +65,7 @@ public class PanelCellTownItem : PanelBaseCell,
                     transform.parent = Hot.NowPanelItem.transform;
                     break;
                 case E_Location.PanelTownShopItem:
-                    transform.parent = Hot.PanelRoomTownShop_.PanelTownShopItem_.transform;
+                    transform.parent = Hot.PanelTownShopItem_.transform;
                     break;
             }
 
@@ -132,8 +132,7 @@ public class PanelCellTownItem : PanelBaseCell,
             
             Hot.DragingItem = null;
             Hot.NowItem = null;
-            Hot.PanelShopCost_.Clear();
-            Hot.Data_.Save();
+            Hot.PanelShopCost_.Clear();            
         }
     }
 

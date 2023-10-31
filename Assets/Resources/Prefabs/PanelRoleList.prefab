@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 774.4, y: -367}
+  m_AnchoredPosition: {x: 774.4, y: -445}
   m_SizeDelta: {x: 383, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5576404561790882673
@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1154114615340251522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 22.8, z: 0}
+  m_LocalPosition: {x: 0, y: -14.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -221,8 +221,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 763.7, y: 56.1}
-  m_SizeDelta: {x: 400, y: 800}
+  m_AnchoredPosition: {x: 739.2, y: 59.45}
+  m_SizeDelta: {x: 430, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3747711085464710950
 CanvasRenderer:
@@ -275,13 +275,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 5100612155795674346}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 100
   m_Viewport: {fileID: 5952342035345879427}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 2059549347466353099}
   - component: {fileID: 4306725510206048606}
   m_Layer: 5
-  m_Name: Content
+  m_Name: RoleContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 489.12378, y: 415.54346}
+  m_AnchoredPosition: {x: 0.0000024147073, y: -0.0000032349508}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2059549347466353099
@@ -577,7 +577,7 @@ MonoBehaviour:
   ImgDecorateFrameBottom: {fileID: 0}
   ImgPackUp: {fileID: 0}
   ImgOpen: {fileID: 0}
-  Content: {fileID: 0}
+  RoleContent: {fileID: 0}
 --- !u!1 &4365571075461585509
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.000015259}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5084941156625659151
 CanvasRenderer:

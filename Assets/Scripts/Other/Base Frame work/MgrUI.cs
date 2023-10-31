@@ -36,25 +36,27 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="panel">面板对象</param>
     public void AddDicPanel(string panelname, PanelBase panel)
     {
-        DicPanel.Add(panelname, panel);
+        if (!DicPanel.ContainsKey(panelname))
+            DicPanel.Add(panelname, panel);
     }
 
     /// <summary>
     /// 就是简单的创建一个面板 
     /// </summary>
+    /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   
     /// <typeparam name="T">面板类型</typeparam>
     /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
     ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>    
     /// <param name="callback">回调函数</param>
     public void CreatePanel<T>
-    (string panelname, UnityAction<T> callback = null)
+    (bool isAddDicPanel, string panelname, UnityAction<T> callback = null)
     where T : PanelBase
     {
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
             //调试用 一般这边报错了就是Prefabs名字和类名不一样
             if (obj == null)
-                Debug.Log("Path: Prefabs" + panelname + "---注意\"/\"");
+                Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
 
             obj.name = obj.name.Replace("(Clone)", "");
 
@@ -65,6 +67,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             T panel = obj.GetComponent<T>();
             
             callback?.Invoke(panel);
+
+            if (isAddDicPanel) DicPanel.Add(obj.name, panel);
         });
     }
 
@@ -78,14 +82,14 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
     /// <param name="callback">回调函数</param>
     public void CreatePanelAndShow<T>
-    (bool isAddDicPanel, string panelname, bool isAddpoolEsc = false, UnityAction<T> callback = null) 
+    (bool isAddDicPanel, string panelname, UnityAction<T> callback = null) 
     where T : PanelBase
     {                  
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
             //调试用 一般这边报错了就是Prefabs名字和类名不一样
             if (obj == null)
-                Debug.Log(panelname);
+                Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
 
             obj.name = obj.name.Replace("(Clone)", "");            
 
@@ -97,8 +101,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 
             callback?.Invoke(panel);            
 
-            if (isAddDicPanel) DicPanel.Add(obj.name, panel);
-            if (isAddpoolEsc) PoolEsc.GetInstance().ListEsc.Add(obj.name);
+            if (isAddDicPanel) DicPanel.Add(obj.name, panel);            
 
             PoolNowPanel.GetInstance().ListNowPanel.Add(obj.name);
         });        
@@ -123,8 +126,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
             //调试用
-            if (obj == null)            
-                Debug.Log(panelname);            
+            if (obj == null)
+                Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
             obj.name = obj.name.Replace("(Clone)", "");
 
             T panel = obj.GetComponent<T>();
@@ -183,7 +186,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         for (int i = 0; i < Hot.PoolNowPanel_.ListNowPanel.Count; i++)
         {
             Hot.MgrUI_.HidePanel
-            (false, GetPanel<PanelTown>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, Hot.PoolNowPanel_.ListNowPanel[i]);
+            (false, GetPanel<PanelBase>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, Hot.PoolNowPanel_.ListNowPanel[i]);
         }
     }
 

@@ -61,6 +61,14 @@ public static class Hot
 
     #region Panel
 
+    public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>("PanelRoleGuildRecruit"); }
+    }
+    public static PanelRoleGuildRecruitCost PanelRoleGuildRecruitCost_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruitCost>("PanelRoleGuildRecruitCost"); }
+    }
     public static PanelOtherSetting PanelOtherSetting_
     {
         get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }
@@ -77,9 +85,6 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
     }
-    /// <summary>
-    /// 角色清单面板
-    /// </summary>
     public static PanelRoleList PanelRoleList_
     {
         get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
@@ -90,24 +95,15 @@ public static class Hot
     public static PanelTownStore PanelTownStore_
     {
         get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
-    }
-    /// <summary>
-    /// 资源面板
-    /// </summary>
+    }    
     public static PanelOhterResTable PanelOtherResTable_
     {
         get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
-    }
-    /// <summary>
-    /// 存档选择面板
-    /// </summary>
+    }    
     public static PanelGameArchiveChoose PanelGameArchiveChoose_
     {
         get { return MgrUI_.GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose"); }
-    }
-    /// <summary>
-    /// 删除存档提示面板
-    /// </summary>
+    }    
     public static PanelOtherDestroyArchiveHint PanelOtherDestroyArchiveHint_
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
@@ -141,21 +137,21 @@ public static class Hot
     /// </summary>
     public static PanelTownShopCost PanelShopCost_
     {
-        get { return PanelRoomTownShop_.PanelShopCost_; }
+        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
     }
     /// <summary>
     /// 城镇商店面板娘PoPoCat
     /// </summary>
     public static PanelMinistrantPoPoCat PanelMinistrantPoPoCat_
     {
-        get { return PanelRoomTownShop_.PanelMinistrantPoPoCat_; }
+        get { return MgrUI_.GetPanel<PanelMinistrantPoPoCat>("PanelMinistrantPoPoCat"); }
     }
     /// <summary>
     /// 城镇商店面板
     /// </summary>
     public static PanelTownShopItem PanelTownShopItem_
     {
-        get { return PanelRoomTownShop_.PanelTownShopItem_; }
+        get { return MgrUI_.GetPanel<PanelTownShopItem>("PanelTownShopItem"); }
     }
 
     #endregion
@@ -164,7 +160,7 @@ public static class Hot
 
     public static DataContainer_ResTable DataPanelResTable
     {
-        get { return DataNowCellGameArchive.PanelResTable; }
+        get { return DataNowCellGameArchive.ResTable; }
     }
     public static DataContainer_CellTownStore DataNowPanelStore
     {
@@ -190,25 +186,21 @@ public static class Hot
     #region Now
 
     /// <summary>
+    /// 现在拖动的角色招募PanelCell
+    /// </summary>
+    public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;
+    /// <summary>
     /// 现在进入的角色远征格子
     /// </summary>
     public static GameObject NowRootExpeditionRole;
     /// <summary>
-    /// 替换的觉得肖像
+    /// 替换的角色肖像
     /// </summary>
     public static GameObject ReplaceRolePortrait;
     /// <summary>
     /// 拖曳的角色肖像
     /// </summary>
-    public static GameObject DragingRolePortrait;
-    /// <summary>
-    /// 在TranslateNum的基础上添加的倍率
-    /// </summary>
-    public static int AddTranslateRate = 4;
-    /// <summary>
-    /// 现在的转换倍率
-    /// </summary>
-    public static int NowTranslateRate = 1;
+    public static GameObject DragingRolePortrait;    
     /// <summary>
     /// 拖拽的物品
     /// </summary>
@@ -228,7 +220,15 @@ public static class Hot
     /// <summary>
     /// 当前存档的Index
     /// </summary>
-    public static int NowIndexCellGameArchive = -1;    
+    public static int NowIndexCellGameArchive = -1;
+    /// <summary>
+    /// 在TranslateNum的基础上添加的倍率
+    /// </summary>
+    public static int AddTranslateRate = 4;
+    /// <summary>
+    /// 现在的转换倍率
+    /// </summary>
+    public static int NowTranslateRate = 1;
     /// <summary>
     /// 现在鼠标所在的区域
     /// </summary>

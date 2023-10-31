@@ -6,15 +6,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRole : PanelBaseCell             
+public class PanelCellRole : PanelBaseCell,
+             IPointerEnterHandler, IPointerExitHandler
 {
     public Image ImgRolePortrait;
     public Image ImgProgress;
     public Image ImgRoleLevelBk;
     public Image ImgRoleStatus;
     public Text TxtRoleName;
-    public Text TxtRoleLevel;    
-    
+    public Text TxtRoleLevel;
+
+    public Transform Root;
     public Transform RootPortrait;
     public Transform RootSanityValueBar;
 
@@ -32,11 +34,26 @@ public class PanelCellRole : PanelBaseCell
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
         TxtRoleLevel = transform.FindSonSonSon("TxtRoleLevel").GetComponent<Text>();
 
+        Root = transform.FindSonSonSon("Root");
         RootPortrait = transform.FindSonSonSon("RootPortrait");
         RootSanityValueBar = transform.FindSonSonSon("RootSanityValueBar");
 
         ImgRolePortrait.alphaHitTestMinimumThreshold = 0.2f;
     }
+
+    #region EventSystem
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Root.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Root.localPosition = new Vector3(30, 0, 0);
+    }
+
+    #endregion
 
     protected override void Button_OnClick(string controlname)
     {
@@ -45,9 +62,9 @@ public class PanelCellRole : PanelBaseCell
         switch (controlname)
         {
             case "BtnRolePortrait":
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");
-                Hot.PanelRoleDetails_.Index = Index;                
-                Hot.PanelRoleDetails_.UpdateInfo();
+                Hot.PanelRoleDetails_.Index = Index;
+                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Index]);
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");                
                 break;
         }
     }
@@ -56,7 +73,7 @@ public class PanelCellRole : PanelBaseCell
     {
         if (Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNameRoleStatus == E_SpriteNameRoleStatus.RoleStatusNone)
         {
-            Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+            Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>(false, "/PanelCellRoleCanDrag",
             (panel) =>
             {
                 panel.transform.SetParent(RootPortrait, false);
@@ -182,5 +199,5 @@ public class PanelCellRole : PanelBaseCell
             new Vector2(ImgProgress.GetComponent<RectTransform>().sizeDelta.x, 
                         49.3f * ((float)Hot.DataNowCellGameArchive.ListCellRole[Index].NowExperience /
                         Hot.ListNeedExperienceToUpLevel[Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel])); 
-    }
+    }    
 }

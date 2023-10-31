@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelRoleList : PanelBase
+public class PanelRoleList : PanelBase,
+             IPointerEnterHandler, IPointerExitHandler
 {
     private bool IsOpen = true;
 
@@ -18,7 +20,7 @@ public class PanelRoleList : PanelBase
     public Image ImgPackUp;
     public Image ImgOpen;
 
-    public Transform Content;    
+    public Transform RoleContent;    
 
     protected override void Awake()
     {
@@ -30,11 +32,9 @@ public class PanelRoleList : PanelBase
             {
 
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelRoleList"))
-                {
-                    Hot.MgrUI_.HidePanel
-                        (false, Hot.PanelRoleList_.gameObject, "PanelRoleList");
-                }
-                Hot.MgrUI_.ShowPanel<PanelRoleList>(true, "PanelRoleList");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelRoleList_.gameObject, "PanelRoleList");
+                else
+                    Hot.MgrUI_.ShowPanel<PanelRoleList>(true, "PanelRoleList");
             }
         });
 
@@ -48,10 +48,24 @@ public class PanelRoleList : PanelBase
         ImgPackUp.alphaHitTestMinimumThreshold = 0.2f;
         ImgOpen.alphaHitTestMinimumThreshold = 0.2f;
 
-        Content = transform.FindSonSonSon("Content");
+        RoleContent = transform.FindSonSonSon("RoleContent");
 
         BtnOpen.SetActive(false);
     }
+
+    #region EventSystem接口实现、
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
+    }
+
+    #endregion
 
     protected override void Button_OnClick(string controlname)
     {
@@ -84,14 +98,15 @@ public class PanelRoleList : PanelBase
         {
             int tempi = i;
 
-            Hot.MgrUI_.CreatePanel<PanelCellRole>("/PanelCellRole", 
+            Hot.MgrUI_.CreatePanel<PanelCellRole>
+            (false, "/PanelCellRole", 
             (panel) =>
             {
                 panel.Index = NowIndex;
                 panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
                 obj.name = tempi.ToString();
-                obj.transform.SetParent(Content, false);
+                obj.transform.SetParent(RoleContent, false);
                 panel.transform.SetParent(obj.transform, false);
                 ListContentStep.Add(obj);
                 panel.InitInfo();                
@@ -100,9 +115,9 @@ public class PanelRoleList : PanelBase
         }
     }
 
-    public void ClearContent()
+    public void Clear()
     {
-        ContentStep[] all = Content.GetComponentsInChildren<ContentStep>();
+        ContentStep[] all = RoleContent.GetComponentsInChildren<ContentStep>();
         for (int i = 0; i < all.Length; i++)
         {
             DestroyImmediate(all[i].gameObject);
@@ -119,7 +134,7 @@ public class PanelRoleList : PanelBase
         return null;
     }
 
-    public void ChangePosPanelCellRole(int Sourece, int Replace)
+    public void ChangePosPanelCellRole(int sourece, int replace)
     {
         
     }
@@ -128,11 +143,38 @@ public class PanelRoleList : PanelBase
     {
         if (IsOpen && ListContentStep.Count > 0)
             ImgDecorateFrameBottom.transform.localPosition =
-                new Vector3(ImgDecorateFrameBottom.transform.localPosition.x, -367, 0);
+                new Vector3(ImgDecorateFrameBottom.transform.localPosition.x, -445, 0);
         else
             ImgDecorateFrameBottom.transform.position =
                 new Vector3(ImgDecorateFrameBottom.transform.position.x,
                 ImgDecorateFrameTop.position.y - 40,
                 0);
+    }    
+
+    public void AddRole(DataContainer_CellRole role)
+    {
+        Hot.DataNowCellGameArchive.ListCellRole.Add(role);
+
+        Hot.MgrUI_.CreatePanel<PanelCellRole>
+            (false, "/PanelCellRole",
+            (panel) =>
+            {
+                panel.Index = NowIndex;
+                panel.CreatePanelCellRoleCanDrag();
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
+                obj.name = NowIndex.ToString();
+                obj.transform.SetParent(RoleContent, false);
+                panel.transform.SetParent(obj.transform, false);
+                ListContentStep.Add(obj);
+                panel.InitInfo();
+                NowIndex++;
+            });        
+
+        Hot.Data_.Save();
+    }
+
+    public void RemoveRole(int index, GameObject obj)
+    {
+
     }
 }

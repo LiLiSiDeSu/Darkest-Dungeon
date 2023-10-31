@@ -56,13 +56,10 @@ public class PanelTownItem : PanelBaseItem,
 
     public void ShowForBtn()
     {
-        if (PoolNowPanel.GetInstance().ListNowPanel.Contains(gameObject.name))
-        {
+        if (PoolNowPanel.GetInstance().ListNowPanel.Contains(gameObject.name)) 
             Hide();
+        else 
             Show();
-            return;
-        }
-        Show();
     }
 
     public void InitContent()

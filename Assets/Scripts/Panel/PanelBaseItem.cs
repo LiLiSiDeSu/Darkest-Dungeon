@@ -7,8 +7,5 @@ public class PanelBaseItem : PanelBase
     public int NowIndex;
     public Transform Content;
 
-    public virtual void SortContent()
-    {
-
-    }
+    public virtual void SortContent() { }
 }

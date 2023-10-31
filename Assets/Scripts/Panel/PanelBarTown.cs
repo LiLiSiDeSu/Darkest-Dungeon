@@ -19,19 +19,15 @@ public class PanelBarTown : PanelBase
                         break;
                     case E_PlayerLocation.Town:
                         if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarTown"))
-                        {
-                            Hot.MgrUI_.HidePanel
-                                (false, Hot.PanelBarTown_.gameObject, "PanelBarTown");
-                        }
-                        Hot.MgrUI_.ShowPanel<PanelBarTown>(true, "PanelBarTown");
+                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarTown_.gameObject, "PanelBarTown");
+                        else
+                            Hot.MgrUI_.ShowPanel<PanelBarTown>(true, "PanelBarTown");
                         break;
                     case E_PlayerLocation.PrepareExpedition:
                         if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarExpedition"))
-                        {
-                            Hot.MgrUI_.HidePanel
-                                (false, Hot.PanelBarExpedition_.gameObject, "PanelBarExpedition");
-                        }
-                        Hot.MgrUI_.ShowPanel<PanelBarExpedition>(true, "PanelBarExpedition");
+                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarExpedition_.gameObject, "PanelBarExpedition");
+                        else
+                            Hot.MgrUI_.ShowPanel<PanelBarExpedition>(true, "PanelBarExpedition");
                         break;
                     case E_PlayerLocation.OnExpedition:
                         break;

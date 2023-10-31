@@ -40,8 +40,7 @@ public class PanelTown : PanelBase
             case "BtnGraveyard":
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGraveyard");              
                 break;
-            case "BtnTownShop":
-                Debug.Log("TownShop");
+            case "BtnTownShop":                
                 MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTownShop");
                 break;
             case "BtnSmithy":

@@ -9,13 +9,13 @@ public class PanelGameArchiveChoose : PanelBase
 {       
     public int NowIndex = 0;    
 
-    public Transform Content;    
+    public Transform GameArchiveContent;    
 
     protected override void Start()
     {
         base.Start();
 
-        Content = transform.FindSonSonSon("Content");
+        GameArchiveContent = transform.FindSonSonSon("GameArchiveContent");
         transform.FindSonSonSon("ImgBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgAddpanelGameArchivCell").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
@@ -42,7 +42,7 @@ public class PanelGameArchiveChoose : PanelBase
                 (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
                 (panel) =>
                 {
-                    panel.transform.SetParent(Content, false);
+                    panel.transform.SetParent(GameArchiveContent, false);
                     panel.Index = NowIndex;
                     NowIndex += 1;
                     Data.GetInstance().DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
@@ -61,7 +61,7 @@ public class PanelGameArchiveChoose : PanelBase
                              (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive", 
             (panel) =>
             {
-                panel.transform.SetParent(Content, false);                
+                panel.transform.SetParent(GameArchiveContent, false);                
                 panel.Index = NowIndex;
                 NowIndex += 1;
             });
@@ -70,7 +70,7 @@ public class PanelGameArchiveChoose : PanelBase
 
     public void SortCellGameArchive()
     {
-        PanelCellGameArchive[] all = Content.GetComponentsInChildren<PanelCellGameArchive>();
+        PanelCellGameArchive[] all = GameArchiveContent.GetComponentsInChildren<PanelCellGameArchive>();
         for (int i = 0; i < all.Length; i++)
         {
             all[i].Index = i;            

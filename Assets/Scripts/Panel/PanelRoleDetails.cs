@@ -46,40 +46,37 @@ public class PanelRoleDetails : PanelBase
         }
     }
 
-    public void UpdateInfo()
+    public void UpdateInfo(DataContainer_CellRole Role)
     {
         //ImgRoleShow
 
-        TxtRoleName.text = Hot.DataNowCellGameArchive.ListCellRole[Index].Name;
-        TxtRoleLevel.text = Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel.ToString();
+        TxtRoleName.text = Role.Name;
+        TxtRoleLevel.text = Role.NowLevel.ToString();
+        TxtSanityDetails.text = Role.NowSanity + " / " + Role.MaxSanity;
 
-        TxtSanityDetails.text =
-            Hot.DataNowCellGameArchive.ListCellRole[Index].NowSanity + " / " + 
-            Hot.DataNowCellGameArchive.ListCellRole[Index].MaxSanity;
-
-        ChangeSanityExplosionLimit();
-        UpdateLevelInfo();
-        UpdateSanityInfo();
-        UpdateExperience();
+        ChangeSanityExplosionLimit(Role);
+        UpdateLevelInfo(Role);
+        UpdateSanityInfo(Role);
+        UpdateExperience(Role);
     }
 
-    public void ChangeSanityExplosionLimit()
+    public void ChangeSanityExplosionLimit(DataContainer_CellRole Role)
     {
-        if (NumActiveObj > Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion)
+        if (NumActiveObj > Role.LimitToSanityExplosion)
         {
-            int v1 = NumActiveObj - Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion;
+            int v1 = NumActiveObj - Role.LimitToSanityExplosion;
 
             for (int i = 0; i < v1; i++)
             {
-                ListImgCellSanity[Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion + i].SetActive(false);
+                ListImgCellSanity[Role.LimitToSanityExplosion + i].SetActive(false);
                 NumActiveObj--;
             }
         }
 
-        if (NumActiveObj < Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion)
+        if (NumActiveObj < Role.LimitToSanityExplosion)
         {
             int tempNumActiveObj = NumActiveObj;
-            int v1 = Hot.DataNowCellGameArchive.ListCellRole[Index].LimitToSanityExplosion - NumActiveObj;
+            int v1 = Role.LimitToSanityExplosion - NumActiveObj;
 
             for (int i = 0; i < v1; i++)
             {
@@ -97,36 +94,35 @@ public class PanelRoleDetails : PanelBase
         Hot.Data_.Save();
     }
 
-    public void ChangeSanity(int ValueToChange)
+    public void ChangeSanity(DataContainer_CellRole Role, int ValueToChange)
     {
-        Hot.DataNowCellGameArchive.ListCellRole[Index].NowSanity += ValueToChange;
+        Role.NowSanity += ValueToChange;
 
-        UpdateSanityInfo();
+        UpdateSanityInfo(Role);
         Hot.Data_.Save();
     }
 
-    public void ChangeExperience()
+    public void ChangeExperience(DataContainer_CellRole Role)
     {
         Hot.Data_.Save();
     }
 
-    public void ChangeLevel(int ValueToChange)
+    public void ChangeLevel(DataContainer_CellRole Role, int ValueToChange)
     {
-        Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel += ValueToChange;
-        if
-        (Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel > Hot.DataNowCellGameArchive.ListCellRole[Index].MaxLevel)
-            Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel = Hot.DataNowCellGameArchive.ListCellRole[Index].MaxLevel;
+        Role.NowLevel += ValueToChange;
+        if (Role.NowLevel > Role.MaxLevel)
+            Role.NowLevel = Role.MaxLevel;
 
-        UpdateLevelInfo();
+        UpdateLevelInfo(Role);
         Hot.Data_.Save();
     }
 
-    public void UpdateSanityInfo()
+    public void UpdateSanityInfo(DataContainer_CellRole Role)
     {
         for (int i = 0; i < ListImgCellSanity.Count; i++)
         {
             if
-            (i < Hot.DataNowCellGameArchive.ListCellRole[Index].NowSanity / Hot.StepSanity)
+            (i < Role.NowSanity / Hot.StepSanity)
             {
                 ListImgCellSanity[i].GetComponent<Image>().sprite =
                     Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueHave");
@@ -137,18 +133,17 @@ public class PanelRoleDetails : PanelBase
         }
     }
 
-    public void UpdateLevelInfo()
+    public void UpdateLevelInfo(DataContainer_CellRole Role)
     {
         //等级的底图改变逻辑
 
-        TxtRoleLevel.text = Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel.ToString();
+        TxtRoleLevel.text = Role.NowLevel.ToString();
     }
 
-    public void UpdateExperience()
+    public void UpdateExperience(DataContainer_CellRole Role)
     {
         ImgProgress.GetComponent<RectTransform>().sizeDelta =
             new Vector2(ImgProgress.GetComponent<RectTransform>().sizeDelta.x,
-                        49.3f * ((float)Hot.DataNowCellGameArchive.ListCellRole[Index].NowExperience /
-                        Hot.ListNeedExperienceToUpLevel[Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel]));
+                        49.3f * ((float)Role.NowExperience / Hot.ListNeedExperienceToUpLevel[Role.NowLevel]));
     }
 }

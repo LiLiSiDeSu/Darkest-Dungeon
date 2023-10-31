@@ -97,6 +97,7 @@ public enum E_NowPointerLocation
     None,
     PanelTownItem,
     PanelTownShopItem,
+    PanelRoleList,
     TownPrepareExpedition,
     TownExpedition
 }

@@ -148,7 +148,8 @@ public class PanelBarExpedition : PanelBase
             switch (Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpedition)
             {
                 case 0:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
+                    (false, "/PanelCellRoleCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole0.transform;                        
@@ -161,7 +162,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 1:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
+                    (false, "/PanelCellRoleCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole1.transform;
@@ -174,7 +176,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 2:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
+                    (false, "/PanelCellRoleCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole2.transform;
@@ -187,7 +190,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 3:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>("/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
+                    (false, "/PanelCellRoleCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole3.transform;
@@ -212,10 +216,14 @@ public class PanelBarExpedition : PanelBase
 
     public void ClearRootExpeditionRole()
     {
-        Destroy(RootExpeditionRole0.GetComponentInChildren<PanelCellRoleCanDrag>().gameObject);
-        Destroy(RootExpeditionRole1.GetComponentInChildren<PanelCellRoleCanDrag>().gameObject);
-        Destroy(RootExpeditionRole2.GetComponentInChildren<PanelCellRoleCanDrag>().gameObject);
-        Destroy(RootExpeditionRole3.GetComponentInChildren<PanelCellRoleCanDrag>().gameObject);
+        if (RootExpeditionRole0.transform.childCount > 0)
+            Destroy(RootExpeditionRole0.transform.GetChild(0).gameObject);
+        if (RootExpeditionRole1.transform.childCount > 0)
+            Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
+        if (RootExpeditionRole2.transform.childCount > 0)
+            Destroy(RootExpeditionRole2.transform.GetChild(0).gameObject);
+        if (RootExpeditionRole1.transform.childCount > 0)
+            Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
     }
 
     public void ClearContent()
