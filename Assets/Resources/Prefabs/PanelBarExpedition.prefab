@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 8470634798855994277}
   - component: {fileID: 8119800456435797921}
   m_Layer: 5
-  m_Name: Content
+  m_Name: PrepareExpeditionContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

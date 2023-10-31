@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PanelBarExpedition : PanelBase
 {
     public int NowIndex;
-    public Transform Content;
+    public Transform PrepareExpeditionContent;
     public GameObject ScrollView_;
 
     public GameObject RootExpeditionRole0;
@@ -31,7 +31,7 @@ public class PanelBarExpedition : PanelBase
         BtnOpen.SetActive(false);
 
         ScrollView_ = transform.FindSonSonSon("ScrollView_").gameObject;
-        Content = transform.FindSonSonSon("Content");
+        PrepareExpeditionContent = transform.FindSonSonSon("PrepareExpeditionContent");
 
         RootExpeditionRole0 = transform.FindSonSonSon("RootExpeditionRole0").gameObject;
         RootExpeditionRole1 = transform.FindSonSonSon("RootExpeditionRole1").gameObject;
@@ -155,10 +155,10 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole0.transform;                        
                         panel.transform.SetParent(RootExpeditionRole0.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
                         transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
-                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
                     break;
                 case 1:
@@ -169,10 +169,10 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole1.transform;
                         panel.transform.SetParent(RootExpeditionRole1.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
                         transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
-                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
                     break;
                 case 2:
@@ -183,10 +183,10 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole2.transform;
                         panel.transform.SetParent(RootExpeditionRole2.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
                         transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
-                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     });
                     break;
                 case 3:
@@ -197,10 +197,10 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole3.transform;
                         panel.transform.SetParent(RootExpeditionRole3.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListContentStep[tempi].
+                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
                         transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
 
-                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                        panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                         panel.InitSprite();
                     });
                     break;
@@ -211,7 +211,7 @@ public class PanelBarExpedition : PanelBase
     public void Clear()
     {
         ClearRootExpeditionRole();
-        ClearContent();
+        CleaPrepareExpeditionContent();
     }
 
     public void ClearRootExpeditionRole()
@@ -226,7 +226,7 @@ public class PanelBarExpedition : PanelBase
             Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
     }
 
-    public void ClearContent()
+    public void CleaPrepareExpeditionContent()
     {
 
     }

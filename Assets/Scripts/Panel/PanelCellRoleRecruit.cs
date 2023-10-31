@@ -36,6 +36,8 @@ public class PanelCellRoleRecruit : PanelBaseCell,
         Bk.raycastTarget = false;
         ImgRolePortrait.raycastTarget = false;
 
+        Hot.PanelRoleList_.EnableDetection();
+
         Hot.DragingPanelCellRoleRecruit = this;
 
         if (Hot.PanelRoleGuildRecruitCost_.CanBuy)
@@ -60,6 +62,8 @@ public class PanelCellRoleRecruit : PanelBaseCell,
     {
         Bk.raycastTarget = true;
         ImgRolePortrait.raycastTarget = true;
+
+        Hot.PanelRoleList_.DisableDetection();
 
         if (Hot.DragingPanelCellRoleRecruit != null)
         {
@@ -87,10 +91,13 @@ public class PanelCellRoleRecruit : PanelBaseCell,
 
         switch (controlname)
         {
-            case "BtnRolePortrait":
-                Hot.PanelRoleDetails_.Index = Index;
-                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");                
+            case "BtnRolePortrait":                
+                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);                
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails", 
+                (panel) =>
+                {
+                    panel.BtnDismiss.SetActive(false);
+                });                
                 break;
         }
     }

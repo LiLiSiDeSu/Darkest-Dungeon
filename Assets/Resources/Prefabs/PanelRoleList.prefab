@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 774.4, y: -445}
+  m_AnchoredPosition: {x: 762.6999, y: -361.35}
   m_SizeDelta: {x: 383, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5576404561790882673
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NowIndex: 0
-  ListContentStep: []
+  ListDynamicContentStep: []
   ScrollView_: {fileID: 0}
   BtnPackUp: {fileID: 0}
   BtnOpen: {fileID: 0}

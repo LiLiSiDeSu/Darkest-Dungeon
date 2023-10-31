@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class PanelRoleDetails : PanelBase
 {
-    public int Index;
+    public PanelCellRole NowRole;
 
     public Image ImgRoleShow;
     public Image ImgBkRoleLevel;    
     public Image ImgProgress;
     public Image ImgRoleLevelBk;
+
+    public GameObject BtnDismiss;
 
     public Text TxtRoleName;
     public Text TxtRoleLevel;
@@ -24,6 +26,8 @@ public class PanelRoleDetails : PanelBase
     protected override void Awake()
     {
         base.Awake();
+
+        BtnDismiss = transform.FindSonSonSon("BtnDismiss").gameObject;
 
         ImgRoleShow = transform.FindSonSonSon("ImgRoleShow").GetComponent<Image>();
         ImgBkRoleLevel = transform.FindSonSonSon("ImgBkRoleLevel").GetComponent<Image>();
@@ -43,6 +47,19 @@ public class PanelRoleDetails : PanelBase
             ListImgCellSanity[i].GetComponent<Image>().sprite =
                 Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
             ListImgCellSanity[i].SetActive(false);
+        }
+    }
+
+    protected override void Button_OnClick(string controlname)
+    {
+        base.Button_OnClick(controlname);
+
+        switch (controlname)
+        {
+            case "BtnDismiss":
+                Hot.PanelRoleList_.RemoveRole(NowRole);
+                Hot.MgrUI_.HidePanel(false, gameObject, "PanelRoleDetails");
+                break;
         }
     }
 
@@ -86,9 +103,9 @@ public class PanelRoleDetails : PanelBase
         }
     }
 
-    public void ChangeName(string NameToChange)
+    public void ChangeName(DataContainer_CellRole Role, string NameToChange)
     {
-        Hot.DataNowCellGameArchive.ListCellRole[Index].Name = NameToChange;
+        Role.Name = NameToChange;
 
         TxtRoleName.text = NameToChange;
         Hot.Data_.Save();

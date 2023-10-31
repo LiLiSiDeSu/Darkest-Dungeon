@@ -7,18 +7,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PanelCellRole : PanelBaseCell,
-             IPointerEnterHandler, IPointerExitHandler
+             IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Image ImgRolePortrait;
     public Image ImgProgress;
     public Image ImgRoleLevelBk;
     public Image ImgRoleStatus;
+    public Image ImgPanelBk;
     public Text TxtRoleName;
     public Text TxtRoleLevel;
 
     public Transform Root;
     public Transform RootPortrait;
-    public Transform RootSanityValueBar;
+    public Transform RootSanityValueBar;    
+
+    public Vector2 DragOffSet;
+
+    public PanelCellRoleCanDrag PanelCellRoleCanDrag_;
 
     public List<GameObject> ListImgCellSanity = new List<GameObject>();   
 
@@ -30,6 +35,7 @@ public class PanelCellRole : PanelBaseCell,
         ImgProgress = transform.FindSonSonSon("ImgProgress").GetComponent<Image>();
         ImgRoleLevelBk = transform.FindSonSonSon("ImgRoleLevelBk").GetComponent<Image>();
         ImgRoleStatus = transform.FindSonSonSon("ImgRoleStatus").GetComponent<Image>();
+        ImgPanelBk = transform.FindSonSonSon("ImgPanelBk").GetComponent<Image>();
 
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
         TxtRoleLevel = transform.FindSonSonSon("TxtRoleLevel").GetComponent<Text>();
@@ -45,14 +51,43 @@ public class PanelCellRole : PanelBaseCell,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Root.localPosition = new Vector3(0, 0, 0);
+        Root.localPosition = new Vector3(0, 0, 0);        
     }
 
     public void OnPointerExit(PointerEventData eventData)
-    {
-        Root.localPosition = new Vector3(30, 0, 0);
+    {    
+        Root.localPosition = new Vector3(30, 0, 0);        
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        ImgPanelBk.raycastTarget = false;
+        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+
+        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+        Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(false);
+
+        Hot.PaddingContentStep_ = 
+            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PaddingContentStep").GetComponent<PaddingContentStep>();        
+
+        Hot.PanelRoleList_.EnableDetection();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = eventData.position + DragOffSet;
+    }    
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        ImgPanelBk.raycastTarget = true;
+        Hot.PanelRoleList_.DisableDetection();
+
+        Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
+        transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].RootPanelCellRole, false);
+        transform.localPosition = Vector3.zero;
+    }
+    
     #endregion
 
     protected override void Button_OnClick(string controlname)
@@ -61,10 +96,14 @@ public class PanelCellRole : PanelBaseCell,
 
         switch (controlname)
         {
-            case "BtnRolePortrait":
-                Hot.PanelRoleDetails_.Index = Index;
+            case "BtnRolePortrait":                
                 Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Index]);
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");                
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
+                (panel) =>
+                {
+                    panel.NowRole = this;
+                    panel.BtnDismiss.SetActive(true);
+                });                
                 break;
         }
     }
@@ -79,6 +118,7 @@ public class PanelCellRole : PanelBaseCell,
                 panel.transform.SetParent(RootPortrait, false);
                 panel.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
                 panel.PanelCellRole_ = this;
+                PanelCellRoleCanDrag_ = panel;
                 panel.InitSprite();
             });
         }

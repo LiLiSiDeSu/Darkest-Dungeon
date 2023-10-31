@@ -31,10 +31,14 @@ public class PanelCellRoleCanDrag : PanelBase,
 
         switch (controlname)
         {
-            case "BtnRolePortraitCanDrag":
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails");
-                Hot.PanelRoleDetails_.Index = PanelCellRole_.Index;
+            case "BtnRolePortraitCanDrag":                
                 Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index]);
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
+                (panel) =>
+                {
+                    panel.NowRole = PanelCellRole_;
+                    panel.BtnDismiss.SetActive(true);
+                });
                 break;
         }
     }    
@@ -43,11 +47,11 @@ public class PanelCellRoleCanDrag : PanelBase,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+        ImgRolePortraitCanDrag.raycastTarget = false;
+        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;        
 
         RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
-        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        ImgRolePortraitCanDrag.raycastTarget = false;                
+        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);                     
         Hot.DragingRolePortrait = gameObject;        
     }
 

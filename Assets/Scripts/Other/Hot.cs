@@ -109,12 +109,7 @@ public static class Hot
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
     }
 
-    #endregion
-
-    #region Bool    
-
-
-    #endregion
+    #endregion    
 
     #region 城镇商店
 
@@ -183,8 +178,15 @@ public static class Hot
 
     #endregion
 
-    #region Now
+    #region Bool    
 
+    public static bool CanPadding;
+
+    #endregion
+
+    #region Now    
+
+    public static PaddingContentStep PaddingContentStep_;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>
