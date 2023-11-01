@@ -90,27 +90,6 @@ public class PanelCellRole : PanelBaseCell,
             Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
             transform.SetParent(Hot.PaddingContentStep_.RootPanelCellRole, false);
             transform.localPosition = Vector3.zero;
-
-            //switch (Hot.e_PaddingArrowDirection)
-            //{
-            //    case E_ArrowDirection.Up:
-            //        for (int i = Hot.IndexPaddingContentStep; i < Hot.PanelRoleList_.ListDynamicContentStep.Count; i++)
-            //        {
-            //            Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-            //            Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
-            //        }
-            //        break;
-            //    case E_ArrowDirection.Down:
-            //        if (Hot.IndexPaddingContentStep + 1 != Hot.PanelRoleList_.ListDynamicContentStep.Count)
-            //        {
-            //            for (int i = Hot.IndexPaddingContentStep + 1; i < Hot.PanelRoleList_.ListDynamicContentStep.Count; i++)
-            //            {
-            //                Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-            //                Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
-            //            }
-            //        }
-            //        break;
-            //}
             
             DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);            
             Hot.PanelRoleList_.SortContent();
@@ -120,6 +99,7 @@ public class PanelCellRole : PanelBaseCell,
             Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
             transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].RootPanelCellRole, false);
             transform.localPosition = Vector3.zero;
+
             DestroyImmediate(Hot.PaddingContentStep_.gameObject);
             Hot.PaddingContentStep_ = null;
         }                        
@@ -161,20 +141,19 @@ public class PanelCellRole : PanelBaseCell,
         }
     }
 
-    public void InitInfo()
+    public void InitInfo(DataContainer_CellRole Role)
     {
-        ImgRolePortrait.sprite =
-            Hot.MgrRes_.Load<Sprite>("Art/" + Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNamePortraitRole);        
+        ImgRolePortrait.sprite =Hot.MgrRes_.Load<Sprite>("Art/" + Role.e_SpriteNamePortraitRole);        
 
-        TxtRoleName.text = Hot.DataNowCellGameArchive.ListCellRole[Index].Name;
-        TxtRoleLevel.text = Hot.DataNowCellGameArchive.ListCellRole[Index].NowLevel.ToString();
+        TxtRoleName.text = Role.Name;
+        TxtRoleLevel.text = Role.NowLevel.ToString();
 
-        TxtRoleName.text = Hot.DataNowCellGameArchive.ListCellRole[Index].Name;        
+        TxtRoleName.text = Role.Name;        
         ChangeSanityExplosionLimit();
         UpdateLevelInfo();
         UpdateSanityInfo();
         UpdateExperience();
-        ChangeRoleStatus(Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNameRoleStatus);
+        ChangeRoleStatus(Role.e_SpriteNameRoleStatus);
     }
 
     /// <summary>

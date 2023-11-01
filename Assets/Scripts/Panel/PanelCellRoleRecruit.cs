@@ -32,22 +32,27 @@ public class PanelCellRoleRecruit : PanelBaseCell,
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {
-        Bk.raycastTarget = false;
-        ImgRolePortrait.raycastTarget = false;
-
-        Hot.PanelRoleList_.EnableDetection();
-
-        Hot.DragingPanelCellRoleRecruit = this;
-
+    {        
         if (Hot.PanelRoleGuildRecruitCost_.CanBuy)
         {
             DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
 
+            Bk.raycastTarget = false;
+            ImgRolePortrait.raycastTarget = false;
+
+            Hot.DragingPanelCellRoleRecruit = this;
+
+            Hot.PaddingContentStep_ =
+                Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep").GetComponent<DynamicContentStep>();
+            Hot.PaddingContentStep_.Init(-1);
+            Hot.PanelRoleList_.EnableDetection();
+
             transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
         }
         else
+        {
             Hot.DragingPanelCellRoleRecruit = null;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -67,20 +72,24 @@ public class PanelCellRoleRecruit : PanelBaseCell,
 
         if (Hot.DragingPanelCellRoleRecruit != null)
         {
-            if (Hot.e_NowPointerLocation != E_NowPointerLocation.PanelRoleList)
+            if (Hot.CanPadding)
             {
-                transform.SetParent(Hot.PanelRoleGuildRecruit_.RecruitContent, false);
+                Hot.PanelRoleList_.AddRole(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role, Hot.PaddingContentStep_);
+
+                Hot.PanelRoleGuildRecruit_.RemoveRole(Hot.DragingPanelCellRoleRecruit.gameObject);                                
             }
             else
-            {                
-                Hot.PanelRoleList_.AddRole(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
-                Hot.PanelRoleGuildRecruit_.RemoveRole(Hot.DragingPanelCellRoleRecruit.gameObject);
+            {
+                DestroyImmediate(Hot.PaddingContentStep_.gameObject);
+                Hot.PaddingContentStep_ = null;
+
+                transform.SetParent(Hot.PanelRoleGuildRecruit_.RecruitContent, false);                
             }
-        }
+        }        
 
         Hot.DragingPanelCellRoleRecruit = null;
 
-        Hot.PanelRoleGuildRecruit_.SortContent();        
+        Hot.PanelRoleGuildRecruit_.SortContent();
     }
 
     #endregion

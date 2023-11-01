@@ -171,7 +171,7 @@ public class PanelRoleList : PanelBase,
                 obj.GetComponent<DynamicContentStep>().Init(tempi);
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().RootPanelCellRole, false);
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
-                panel.InitInfo();           
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi]);           
             });
 
             NowIndex++;
@@ -190,20 +190,23 @@ public class PanelRoleList : PanelBase,
     public void SortContent()
     {
         DynamicContentStep[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStep>();
+        List<DynamicContentStep> tempList = new List<DynamicContentStep>();
         for (int i = 0; i < allDynamicContentStep.Length; i++)
         {
-            ListDynamicContentStep[i] = allDynamicContentStep[i];
-            ListDynamicContentStep[i].SetIndex(i);
+            tempList.Add(allDynamicContentStep[i]);
+            tempList[i].SetIndex(i);
+            tempList[i].gameObject.name = i.ToString();
         }
-
-        List<DataContainer_CellRole> data = new List<DataContainer_CellRole>();
+        ListDynamicContentStep = tempList;
+        
         PanelCellRole[] all = transform.GetComponentsInChildren<PanelCellRole>();
+        List<DataContainer_CellRole> tempData = new List<DataContainer_CellRole>();
         for (int i = 0; i < all.Length; i++)
         {
-            data.Add(Hot.DataNowCellGameArchive.ListCellRole[all[i].Index]);
+            tempData.Add(Hot.DataNowCellGameArchive.ListCellRole[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.ListCellRole = data;
+        Hot.DataNowCellGameArchive.ListCellRole = tempData;
 
         Hot.Data_.Save();
     }        
@@ -230,22 +233,23 @@ public class PanelRoleList : PanelBase,
                 0);
     }    
 
-    public void AddRole(DataContainer_CellRole role)
+    public void AddRole(DataContainer_CellRole role, DynamicContentStep dynamicContentStep)
     {
         Hot.DataNowCellGameArchive.ListCellRole.Add(role);
 
         Hot.MgrUI_.CreatePanel<PanelCellRole>
         (false, "/PanelCellRole",
         (panel) =>
-        {
-            panel.Index = NowIndex;
+        {            
+            panel.Index = Hot.DataNowCellGameArchive.ListCellRole.Count - 1;
+
             panel.CreatePanelCellRoleCanDrag();
-            GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj.name = NowIndex.ToString();
-            obj.transform.SetParent(RoleContent, false);
-            panel.transform.SetParent(obj.transform, false);
-            ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
-            panel.InitInfo();
+
+            panel.transform.SetParent(dynamicContentStep.RootPanelCellRole, false);
+            SortContent();
+
+            panel.InitInfo(role);
+
             NowIndex++;
         });        
 
@@ -255,7 +259,7 @@ public class PanelRoleList : PanelBase,
     public void RemoveRole(PanelCellRole roleToRemove)
     {
         DestroyImmediate(roleToRemove.PanelCellRoleCanDrag_.gameObject);
-        DestroyImmediate(roleToRemove.transform.parent.gameObject);
+        DestroyImmediate(ListDynamicContentStep[roleToRemove.Index].gameObject);
         SortContent();
         
         Hot.Data_.Save();

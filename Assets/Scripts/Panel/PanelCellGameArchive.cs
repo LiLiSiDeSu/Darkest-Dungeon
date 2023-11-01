@@ -45,7 +45,7 @@ public class PanelCellGameArchive : PanelBaseCell
                 Hot.PanelTownStore_.InitContent();
                 Hot.PanelTownShopItem_.InitContent();
                 Hot.PanelRoleList_.InitContent();
-                Hot.PanelBarExpedition_.InitContent();
+                Hot.PanelBarExpedition_.InitContent();                
                 Hot.PanelRoleGuildRecruit_.InitContent();
 
                 Hot.e_NowPlayerLocation = E_PlayerLocation.Town;

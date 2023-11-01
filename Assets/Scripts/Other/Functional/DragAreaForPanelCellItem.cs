@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragAreaForPanelCellTownStore : MonoBehaviour,
+public class DragAreaForPanelCellItem : MonoBehaviour,
              IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector2 DragOffSet;

@@ -155,10 +155,11 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole0.transform;                        
                         panel.transform.SetParent(RootExpeditionRole0.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
-
+                        Hot.PanelRoleList_.ListDynamicContentStep[tempi].
+                            GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+
+                        panel.InitSprite();
                     });
                     break;
                 case 1:
@@ -169,10 +170,11 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole1.transform;
                         panel.transform.SetParent(RootExpeditionRole1.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
-
+                        Hot.PanelRoleList_.ListDynamicContentStep[tempi].
+                            GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;  
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+
+                        panel.InitSprite();
                     });
                     break;
                 case 2:
@@ -183,10 +185,11 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole2.transform;
                         panel.transform.SetParent(RootExpeditionRole2.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
-
+                        Hot.PanelRoleList_.ListDynamicContentStep[tempi].
+                            GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+
+                        panel.InitSprite();
                     });
                     break;
                 case 3:
@@ -197,10 +200,10 @@ public class PanelBarExpedition : PanelBase
                         panel.RootExpeditionRole = RootExpeditionRole3.transform;
                         panel.transform.SetParent(RootExpeditionRole3.transform, false);
 
-                        panel.ImgRolePortraitCanDrag.sprite = Hot.PanelRoleList_.ListDynamicContentStep[tempi].
-                        transform.FindSonSonSon("PanelCellRole").GetComponent<PanelCellRole>().ImgRolePortrait.sprite;
-
+                        Hot.PanelRoleList_.ListDynamicContentStep[tempi].
+                            GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+
                         panel.InitSprite();
                     });
                     break;
