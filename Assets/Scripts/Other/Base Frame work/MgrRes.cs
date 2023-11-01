@@ -10,7 +10,7 @@ public class MgrRes : InstanceBaseAuto_Mono<MgrRes>
         T res = Resources.Load<T>(path);
 
         if (res == null)
-            Debug.Log(path + " is null");
+            Debug.Log(path + " is null");        
 
         if (res is GameObject)
             return Instantiate(res);

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -67,9 +68,9 @@ public class PanelCellRole : PanelBaseCell,
         transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
         Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(false);
 
-        Hot.PaddingContentStep_ = 
-            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PaddingContentStep").GetComponent<PaddingContentStep>();        
-
+        Hot.PaddingContentStep_ =
+            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep").GetComponent<DynamicContentStep>();
+        Hot.PaddingContentStep_.Init(-1);
         Hot.PanelRoleList_.EnableDetection();
     }
 
@@ -81,11 +82,47 @@ public class PanelCellRole : PanelBaseCell,
     public void OnEndDrag(PointerEventData eventData)
     {
         ImgPanelBk.raycastTarget = true;
-        Hot.PanelRoleList_.DisableDetection();
 
-        Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
-        transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].RootPanelCellRole, false);
-        transform.localPosition = Vector3.zero;
+        Hot.PanelRoleList_.DisableDetection();        
+
+        if (Hot.CanPadding)
+        {
+            Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
+            transform.SetParent(Hot.PaddingContentStep_.RootPanelCellRole, false);
+            transform.localPosition = Vector3.zero;
+
+            //switch (Hot.e_PaddingArrowDirection)
+            //{
+            //    case E_ArrowDirection.Up:
+            //        for (int i = Hot.IndexPaddingContentStep; i < Hot.PanelRoleList_.ListDynamicContentStep.Count; i++)
+            //        {
+            //            Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+            //            Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
+            //        }
+            //        break;
+            //    case E_ArrowDirection.Down:
+            //        if (Hot.IndexPaddingContentStep + 1 != Hot.PanelRoleList_.ListDynamicContentStep.Count)
+            //        {
+            //            for (int i = Hot.IndexPaddingContentStep + 1; i < Hot.PanelRoleList_.ListDynamicContentStep.Count; i++)
+            //            {
+            //                Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+            //                Hot.PanelRoleList_.ListDynamicContentStep[i].transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
+            //            }
+            //        }
+            //        break;
+            //}
+            
+            DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);            
+            Hot.PanelRoleList_.SortContent();
+        }
+        else
+        {
+            Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
+            transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].RootPanelCellRole, false);
+            transform.localPosition = Vector3.zero;
+            DestroyImmediate(Hot.PaddingContentStep_.gameObject);
+            Hot.PaddingContentStep_ = null;
+        }                        
     }
     
     #endregion

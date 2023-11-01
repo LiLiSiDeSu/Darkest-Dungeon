@@ -186,7 +186,9 @@ public static class Hot
 
     #region Now    
 
-    public static PaddingContentStep PaddingContentStep_;
+    public static int IndexPaddingContentStep;
+    public static E_ArrowDirection e_PaddingArrowDirection;
+    public static DynamicContentStep PaddingContentStep_;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

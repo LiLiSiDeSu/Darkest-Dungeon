@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -51,27 +52,28 @@ public class PanelRoleList : PanelBase,
                 Hot.PaddingContentStep_.transform.SetParent(RoleContent, false);
                 Hot.PaddingContentStep_.gameObject.SetActive(true);
 
-                if (index < ListDynamicContentStep.Count - 1)
-                {                    
-                    switch (arrow)
-                    {
-                        case E_ArrowDirection.Up:
-                            Debug.Log(index + " - " + arrow);                            
-                            for (int i = index; i < ListDynamicContentStep.Count; i++)
-                            {
-                                ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                                ListDynamicContentStep[i].transform.SetParent(RoleContent, false);                                
-                            }                            
-                            break;
-                        case E_ArrowDirection.Down:
-                            Debug.Log(index + " - " + arrow);                                                        
-                            for (int i = index + 1; i < ListDynamicContentStep.Count; i++)
-                            {
-                                ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                                ListDynamicContentStep[i].transform.SetParent(RoleContent, false);
-                            }
-                            break;
-                    }
+                Hot.IndexPaddingContentStep = index;
+
+                switch (arrow)
+                {
+                    case E_ArrowDirection.Up:
+                        Debug.Log(index + " - " + arrow);
+                        Hot.e_PaddingArrowDirection = E_ArrowDirection.Up;
+                        for (int i = index; i < ListDynamicContentStep.Count; i++)
+                        {
+                            ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+                            ListDynamicContentStep[i].transform.SetParent(RoleContent, false);
+                        }
+                        break;
+                    case E_ArrowDirection.Down:
+                        Debug.Log(index + " - " + arrow);
+                        Hot.e_PaddingArrowDirection = E_ArrowDirection.Down;
+                        for (int i = index + 1; i < ListDynamicContentStep.Count; i++)
+                        {
+                            ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+                            ListDynamicContentStep[i].transform.SetParent(RoleContent, false);
+                        }
+                        break;
                 }
             }            
         });
@@ -96,14 +98,16 @@ public class PanelRoleList : PanelBase,
     public void OnPointerEnter(PointerEventData eventData)
     {
         Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;
+
+        Hot.CanPadding = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Hot.e_NowPointerLocation = E_NowPointerLocation.None;
 
-        Hot.PaddingContentStep_.transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        Hot.PaddingContentStep_.gameObject.SetActive(false);
+        Hot.CanPadding = false;
+
     }
 
     #endregion
@@ -185,6 +189,13 @@ public class PanelRoleList : PanelBase,
 
     public void SortContent()
     {
+        DynamicContentStep[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStep>();
+        for (int i = 0; i < allDynamicContentStep.Length; i++)
+        {
+            ListDynamicContentStep[i] = allDynamicContentStep[i];
+            ListDynamicContentStep[i].SetIndex(i);
+        }
+
         List<DataContainer_CellRole> data = new List<DataContainer_CellRole>();
         PanelCellRole[] all = transform.GetComponentsInChildren<PanelCellRole>();
         for (int i = 0; i < all.Length; i++)
@@ -195,7 +206,7 @@ public class PanelRoleList : PanelBase,
         Hot.DataNowCellGameArchive.ListCellRole = data;
 
         Hot.Data_.Save();
-    }
+    }        
 
     public PanelCellRole GetCellRole()
     {
