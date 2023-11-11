@@ -9,6 +9,7 @@ public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public DataContainer_ResTable ResTable = new();
+    public DataContainer_Expedition Expedition = new();
     public List<DataContainer_CellTownStore> ListCellStore = new();    
     public List<DataContainer_CellItem> ListCellShopItem = new();
     public List<DataContainer_CellRole> ListCellRole = new();
@@ -35,8 +36,8 @@ public class DataContainer_PanelCellGameArchive
 
 public class DataContainer_CellRole
 {
-    public E_SpriteNamePortraitRole e_SpriteNamePortraitRole = E_SpriteNamePortraitRole.PortraitNone;
-    public E_SpriteNameRoleStatus e_SpriteNameRoleStatus = E_SpriteNameRoleStatus.RoleStatusNone;
+    public E_RoleName e_RoleName = E_RoleName.Crusader;
+    public E_RoleStatus e_RoleStatus = E_RoleStatus.None;
     public int IndexExpedition = -1;
     public int IndexPrepareExpedition = -1;
     public string Name = "None";
@@ -50,14 +51,14 @@ public class DataContainer_CellRole
 
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
-    (E_SpriteNamePortraitRole e_SpriteNamePortraitRole,
-     E_SpriteNameRoleStatus e_SpriteNameRoleStatus,
+    (E_RoleName e_RoleName,
+     E_RoleStatus e_RoleStatus,
      string Name,
      int NowLevel, int MaxLevel, int NowExperience,
      int NowSanity, int MaxSanity, int LimitToSanityExplosion)
     {
-        this.e_SpriteNamePortraitRole = e_SpriteNamePortraitRole;
-        this.e_SpriteNameRoleStatus= e_SpriteNameRoleStatus;
+        this.e_RoleName = e_RoleName;
+        this.e_RoleStatus= e_RoleStatus;
         this.Name = Name;
         this.NowLevel = NowLevel;
         this.MaxLevel = MaxLevel;
@@ -68,10 +69,98 @@ public class DataContainer_CellRole
     }
 }
 
+public class DataContainer_Expedition
+{
+    public List<DataContainer_Map> BloodCourtyard = new();
+    public List<DataContainer_Map> Lair = new();
+    public List<DataContainer_Map> Farm = new();
+    public List<DataContainer_Map> Wilds = new();
+    public List<DataContainer_Map> Ruins = new();
+    public List<DataContainer_Map> Sea = new();
+    public List<DataContainer_Map> Darkest = new();
+
+    public List<DataContainer_Map> this[E_ExpeditionLocation e_ExpeditionLocation]
+    {
+        get
+        {
+            return e_ExpeditionLocation switch
+            {
+                E_ExpeditionLocation.BloodCourtyard => BloodCourtyard,
+                E_ExpeditionLocation.Lair => Lair,
+                E_ExpeditionLocation.Farm => Farm,
+                E_ExpeditionLocation.Wilds => Wilds,
+                E_ExpeditionLocation.Ruins => Ruins,
+                E_ExpeditionLocation.Darkest => Darkest,
+                E_ExpeditionLocation.Sed => Sea,
+                _ => null,
+            };
+        }
+
+        set
+        {
+            switch (e_ExpeditionLocation)
+            {
+                case E_ExpeditionLocation.BloodCourtyard:
+                    BloodCourtyard = value;
+                    break;
+                case E_ExpeditionLocation.Lair:
+                    Lair = value;
+                    break;
+                case E_ExpeditionLocation.Farm:
+                    Farm = value;
+                    break;
+                case E_ExpeditionLocation.Wilds:
+                    Wilds = value;
+                    break;
+                case E_ExpeditionLocation.Ruins:
+                    Ruins = value;
+                    break;
+                case E_ExpeditionLocation.Darkest:
+                    Darkest = value;
+                    break;
+                case E_ExpeditionLocation.Sed:
+                    Sea = value;
+                    break;                
+            }
+        }
+    }
+
+    public DataContainer_Expedition() { }
+    public DataContainer_Expedition
+    (List<DataContainer_Map> bloodCourtyard, List<DataContainer_Map> lair, List<DataContainer_Map> farm, 
+     List<DataContainer_Map> wilds, List<DataContainer_Map> ruins, List<DataContainer_Map> sed, 
+     List<DataContainer_Map> darkest)
+    {
+        BloodCourtyard = bloodCourtyard;
+        Lair = lair;
+        Farm = farm;
+        Wilds = wilds;
+        Ruins = ruins;
+        Sea = sed;
+        Darkest = darkest;
+    }
+}
+
+public class DataContainer_Map
+{
+    public E_DungeonLevel e_dungeonLevel = E_DungeonLevel.Zero;
+    public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
+    public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
+
+    public DataContainer_Map() { }
+    public DataContainer_Map(E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
+                             E_ExpeditionEvent e_ExpeditionEvent)
+    {
+        this.e_dungeonLevel = e_dungeonLevel;
+        this.e_dungeonSize = e_dungeonSize;
+        this.e_ExpeditionEvent = e_ExpeditionEvent;
+    }
+}
+
 public class DataContainer_CellRoleRecruit
 {
-    public DataContainer_CellRole Role = new DataContainer_CellRole();
-    public DataContainer_CoinCost Cost = new DataContainer_CoinCost();
+    public DataContainer_CellRole Role = new();
+    public DataContainer_CoinCost Cost = new();
 
     public DataContainer_CellRoleRecruit() { }
     public DataContainer_CellRoleRecruit
@@ -84,14 +173,14 @@ public class DataContainer_CellRoleRecruit
 
 public class DataContainer_CellTownStore
 {
-    public E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore = E_SpriteNamePanelCellTownStore.StoreWood;
-    public List<DataContainer_CellItem> ListCellStoreItem = new List<DataContainer_CellItem>();    
+    public E_PanelCellTownStore e_SpriteNamePanelCellTownStore = E_PanelCellTownStore.StoreWood;
+    public List<DataContainer_CellItem> ListCellStoreItem = new();    
     public int NowWeight = 0;    
     public int NowCapacity = 0;    
 
     public DataContainer_CellTownStore() { }
     public DataContainer_CellTownStore
-    (E_SpriteNamePanelCellTownStore e_SpriteNamePanelCellTownStore)
+    (E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
     {        
         this.e_SpriteNamePanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
@@ -99,12 +188,12 @@ public class DataContainer_CellTownStore
 
 public class DataContainer_CellItem
 {
-    public E_Location e_Location = E_Location.PanelTownItem;
-    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.ItemFoodCookie;   
+    public E_Location e_Location = E_Location.TownItem;
+    public E_PanelCellItem e_SpriteNamePanelCellItem = E_PanelCellItem.ItemFoodCookie;   
 
     public DataContainer_CellItem() { }
     public DataContainer_CellItem
-    (E_Location e_Location, E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    (E_Location e_Location, E_PanelCellItem e_SpriteNamePanelCellItem)
     {     
         this.e_Location = e_Location;
         this.e_SpriteNamePanelCellItem = e_SpriteNamePanelCellItem;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -35,20 +36,24 @@ public class PanelCellGameArchive : PanelBaseCell
             case "BtnGameArchiveChoosed":
                 #region ChoosedGameArchive
 
-                Hot.MgrUI_.HidePanel
-                (false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
+                if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" && 
+                    Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
+                {
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 
-                Hot.NowIndexCellGameArchive = Index;
-                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+                    Hot.NowIndexCellGameArchive = Index;
+                    Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
-                Hot.PanelOtherResTable_.UpdateInfo();
-                Hot.PanelTownStore_.InitContent();
-                Hot.PanelTownShopItem_.InitContent();
-                Hot.PanelRoleList_.InitContent();
-                Hot.PanelBarExpedition_.InitContent();                
-                Hot.PanelRoleGuildRecruit_.InitContent();
+                    Hot.PanelOtherResTable_.UpdateInfo();
+                    Hot.PanelTownStore_.InitContent();
+                    Hot.PanelTownShopItem_.InitContent();
+                    Hot.PanelRoleList_.InitContent();
+                    Hot.PanelBarExpedition_.InitContent();
+                    Hot.PanelRoleGuildRecruit_.InitContent();
+                    Hot.PanelExpedition_.InitContent();
 
-                Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                    Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                }
 
                 #endregion
                 break;

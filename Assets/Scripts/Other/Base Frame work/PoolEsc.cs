@@ -10,18 +10,16 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 
     private void Start()
     {
-        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
             if (key == Hot.MgrInput_.Esc)            
                 HideTop();
         });
-    }
+    }    
 
-    public void RemoveListNoInMgrUI(GameObject obj)
-    {
-       ListEsc.Remove(obj.name);       
-    }
-
+    /// <summary>
+    /// 隐藏所有加入PoolEsc的面板
+    /// </summary>
     public void HideAll()
     {
         int tempCount = ListEsc.Count;
@@ -29,18 +27,21 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
             HideTop();
     }
 
+    /// <summary>
+    /// 隐藏在PoolEsc顶端的面板
+    /// </summary>
     public void HideTop()
     {
         if (ListEsc.Count > 0)
         {
-            Hot.CenterEvent_.EventTrigger("Esc" + ListEsc[ListEsc.Count - 1]);
+            Hot.CenterEvent_.EventTrigger("Esc" + ListEsc[^1]);
 
             PoolBuffer.GetInstance().Push
-                (false, MgrUI.GetInstance().GetPanel(ListEsc[ListEsc.Count - 1]).gameObject, ListEsc[ListEsc.Count - 1]);
+                (false, MgrUI.GetInstance().GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
 
-            PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[ListEsc.Count - 1]);
+            PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[^1]);
 
-            ListEsc.RemoveAt(ListEsc.Count - 1);
+            ListEsc.Remove(ListEsc[^1]);
         }               
     }
 }

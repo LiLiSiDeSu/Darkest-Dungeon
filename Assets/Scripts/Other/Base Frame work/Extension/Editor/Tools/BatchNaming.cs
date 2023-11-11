@@ -6,42 +6,48 @@ using UnityEditor;
 using Unity.VisualScripting;
 
 public class BatchRename : BaseEditorGUIExtension<LayoutForBatchRename>
-{
-    private string BaseName = "PortraitNone";
-    private string StartIndex = "0";
-
-    //[MenuItem("Tools/Batch Rename", false, priority:10)]
+{    
+    [MenuItem("-Tools-/GameTools/Batch Rename", false, 2)]
     private static void OpenWindow()
     {
         BatchRename window = GetWindow<BatchRename>();
         window.Show();
+
+        layout.Style_BtnRename.normal.textColor = Color.white;
+        layout.Style_InputBaseNameTitle.fontSize = 20;
+        layout.Style_InputBaseName.fontSize = 20;
+        layout.Style_StartIndexTitle.fontSize = 20;
+        layout.Style_InputStartIndex.fontSize = 20;
+        layout.Style_BtnRename.fontSize = 20;
     }      
 
     private void OnGUI()
     {
-        GUI.Label(layout.Rect_Label_Title, "Batch Rename Setting");
+        GUI.Label(layout.Rect_InputBaseNameTitle, layout.String_InputBaseNameTitle, layout.Style_InputBaseName);
+        layout.String_InputBaseName = 
+            GUI.TextField(layout.Rect_InputBaseName, layout.String_InputBaseName, layout.Style_InputBaseName);
 
-        GUI.Label(layout.Rect_Label_BaseName, layout.Label_BaseName);
-        GUI.Label(layout.Rect_Label_StartIndex, layout.Label_StartIndex);
-        BaseName = GUI.TextField(layout.Rect_TextField_BaseName, BaseName);
-        StartIndex = GUI.TextField(layout.Rect_TextField_StartIndex, StartIndex);
+        GUI.Label(layout.Rect_StartIndexTitle, layout.String_StartIndexTitle, layout.Style_StartIndexTitle);
+        layout.String_InputStartIndex =
+            GUI.TextField(layout.Rect_InputStartIndex, layout.String_InputStartIndex, layout.Style_InputStartIndex);
 
-        if (GUI.Button(new Rect(new Vector2(50, 100), new Vector2(200, 100)), "Rename"))
+        if (GUI.Button(layout.Rect_BtnRename, layout.String_BtnRenameTitle, layout.Style_BtnRename))
         {
-            RenameObjects();
+            Rename();
         }
+
+        Repaint();
     }
 
-    private void RenameObjects()
+    private void Rename()
     {
         GameObject[] selectedObjects = Selection.gameObjects;
 
         for (int i = 0; i < selectedObjects.Length; i++)
         {            
-            GameObject obj = selectedObjects[i];
-            Undo.RecordObject(obj, "Rename Object");
+            GameObject obj = selectedObjects[i];            
 
-            obj.name = BaseName + (int.Parse(StartIndex) + i);
+            obj.name = layout.String_InputBaseName + (int.Parse(layout.String_InputStartIndex) + i);
         }
     }
 }

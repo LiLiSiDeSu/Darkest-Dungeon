@@ -28,8 +28,7 @@ public class PanelRoleList : PanelBase,
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>
-        ("CertainKeyDown", 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
         (key) =>
         {
             if (key == Hot.MgrInput_.PanelRole && Hot.NowIndexCellGameArchive != -1)
@@ -97,16 +96,12 @@ public class PanelRoleList : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;
-
-        Hot.CanPadding = true;
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Hot.e_NowPointerLocation = E_NowPointerLocation.None;
-
-        Hot.CanPadding = false;
 
     }
 

@@ -64,11 +64,11 @@ public class PanelCellRoleCanDrag : PanelBase,
     {
         ImgRolePortraitCanDrag.raycastTarget = true;
         
-        if (Hot.e_NowPointerLocation != E_NowPointerLocation.TownExpedition)
+        if (Hot.e_NowPointerLocation != E_NowPointerLocation.PanelTownExpedition)
         {
-            Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_SpriteNameRoleStatus = E_SpriteNameRoleStatus.RoleStatusNone;
+            Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus = E_RoleStatus.None;
             Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition = -1;
-            PanelCellRole_.ChangeRoleStatus(E_SpriteNameRoleStatus.RoleStatusNone);
+            PanelCellRole_.ChangeRoleStatus(E_RoleStatus.None);
             transform.SetParent(PanelCellRole_.RootPortrait, false);
             RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
             RootExpeditionRole = null;
@@ -95,17 +95,17 @@ public class PanelCellRoleCanDrag : PanelBase,
                     {
                         Hot.DataNowCellGameArchive.ListCellRole
                             [Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRoleCanDrag>().PanelCellRole_.Index].
-                            e_SpriteNameRoleStatus = E_SpriteNameRoleStatus.RoleStatusNone;
+                            e_RoleStatus = E_RoleStatus.None;
                         Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRoleCanDrag>().PanelCellRole_.
-                            ChangeRoleStatus(E_SpriteNameRoleStatus.RoleStatusNone);
+                            ChangeRoleStatus(E_RoleStatus.None);
                         Hot.DataNowCellGameArchive.ListCellRole
                             [Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRoleCanDrag>().PanelCellRole_.Index].
                             IndexExpedition = -1;
                         Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRoleCanDrag>().RootExpeditionRole = null;
 
-                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_SpriteNameRoleStatus =
-                            E_SpriteNameRoleStatus.RoleStatusExpedition;
-                        PanelCellRole_.ChangeRoleStatus(E_SpriteNameRoleStatus.RoleStatusExpedition);
+                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus =
+                            E_RoleStatus.Expedition;
+                        PanelCellRole_.ChangeRoleStatus(E_RoleStatus.Expedition);
                         Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition = 
                             int.Parse(Hot.NowRootExpeditionRole.name.Replace("RootExpeditionRole", ""));
 
@@ -123,9 +123,9 @@ public class PanelCellRoleCanDrag : PanelBase,
                 {                    
                     if (RootExpeditionRole == null)
                     {
-                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_SpriteNameRoleStatus = 
-                            E_SpriteNameRoleStatus.RoleStatusExpedition;
-                        PanelCellRole_.ChangeRoleStatus(E_SpriteNameRoleStatus.RoleStatusExpedition);
+                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus = 
+                            E_RoleStatus.Expedition;
+                        PanelCellRole_.ChangeRoleStatus(E_RoleStatus.Expedition);
                         RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
                     }
                     Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition =

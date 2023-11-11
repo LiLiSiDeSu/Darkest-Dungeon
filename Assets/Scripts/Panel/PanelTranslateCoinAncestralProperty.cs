@@ -6,20 +6,20 @@ using UnityEngine.UI;
 
 public class PanelTranslateCoinAncestralProperty : PanelBase
 {
-    private List<E_SpriteNameCoin> ListBtnCoinStatus = new List<E_SpriteNameCoin>()
+    private List<E_Coin> ListBtnCoinStatus = new List<E_Coin>()
     { 
-        E_SpriteNameCoin.ResCoinCopper,
-        E_SpriteNameCoin.ResCoinSilver,
-        E_SpriteNameCoin.ResCoinGold        
+        E_Coin.Copper,
+        E_Coin.Silver,
+        E_Coin.Gold        
     };
 
-    private List<E_SpriteNameAncestralProperty> ListBtnAncestralPropertyStatus = new List<E_SpriteNameAncestralProperty>()
+    private List<E_AncestralProperty> ListBtnAncestralPropertyStatus = new List<E_AncestralProperty>()
     {
-        E_SpriteNameAncestralProperty.ResAncestralPropertyStatue,
-        E_SpriteNameAncestralProperty.ResAncestralPropertyDeed,
-        E_SpriteNameAncestralProperty.ResAncestralPropertyPicture,
-        E_SpriteNameAncestralProperty.ResAncestralPropertyBadge,
-        E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal
+        E_AncestralProperty.Statue,
+        E_AncestralProperty.Deed,
+        E_AncestralProperty.Picture,
+        E_AncestralProperty.Badge,
+        E_AncestralProperty.Crystal
     };
 
     private int NowIndexCoin = 0;
@@ -76,10 +76,10 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
     {
         switch (ListBtnCoinStatus[NowIndexCoin])
         {
-            case E_SpriteNameCoin.ResCoinCopper:
+            case E_Coin.Copper:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
+                    case E_AncestralProperty.Statue:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -98,7 +98,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
+                    case E_AncestralProperty.Deed:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -117,7 +117,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
+                    case E_AncestralProperty.Picture:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -136,7 +136,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
+                    case E_AncestralProperty.Badge:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -155,7 +155,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
+                    case E_AncestralProperty.Crystal:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -176,10 +176,10 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         break;
                 }
                 break;
-            case E_SpriteNameCoin.ResCoinSilver:
+            case E_Coin.Silver:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
+                    case E_AncestralProperty.Statue:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -198,7 +198,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
+                    case E_AncestralProperty.Deed:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -217,7 +217,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
+                    case E_AncestralProperty.Picture:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -236,7 +236,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
+                    case E_AncestralProperty.Badge:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -255,7 +255,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
+                    case E_AncestralProperty.Crystal:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -276,10 +276,10 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         break;
                 }
                 break;
-            case E_SpriteNameCoin.ResCoinGold:
+            case E_Coin.Gold:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyStatue:
+                    case E_AncestralProperty.Statue:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -298,7 +298,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyDeed:
+                    case E_AncestralProperty.Deed:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -317,7 +317,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyPicture:
+                    case E_AncestralProperty.Picture:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -336,7 +336,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyBadge:
+                    case E_AncestralProperty.Badge:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -355,7 +355,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                                 break;
                         }
                         break;
-                    case E_SpriteNameAncestralProperty.ResAncestralPropertyCrystal:
+                    case E_AncestralProperty.Crystal:
                         switch (e_ArrowDirection)
                         {
                             case E_ArrowDirection.Left:
@@ -417,8 +417,8 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
 
     private void UpdateImg()
     {
-        ImgCoin.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + ListBtnCoinStatus[NowIndexCoin].ToString());
+        ImgCoin.sprite = Hot.MgrRes_.Load<Sprite>("Art/ResCoin" + ListBtnCoinStatus[NowIndexCoin].ToString());
         ImgAncestralProperty.sprite = 
-            Hot.MgrRes_.Load<Sprite>("Art/" + ListBtnAncestralPropertyStatus[NowIndexAncestralProperty].ToString());
+            Hot.MgrRes_.Load<Sprite>("Art/ResAncestralProperty" + ListBtnAncestralPropertyStatus[NowIndexAncestralProperty].ToString());
     }
 }

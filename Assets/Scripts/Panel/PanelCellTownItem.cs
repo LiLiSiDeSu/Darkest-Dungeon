@@ -12,7 +12,7 @@ public class PanelCellTownItem : PanelBaseCell,
     public int Capacity;
 
     public E_Location e_Location;
-    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem;
+    public E_PanelCellItem e_SpriteNamePanelCellItem;
     public Image ImgItem;
     public InfoContainer_Cost Cost;    
     private Vector2 DragOffSet;
@@ -55,16 +55,16 @@ public class PanelCellTownItem : PanelBaseCell,
     {
         Hot.DragingItem = this;
 
-        if (Hot.PanelShopCost_.CanBuy || Hot.DragingItem.e_Location == E_Location.PanelTownItem)
+        if (Hot.PanelShopCost_.CanBuy || Hot.DragingItem.e_Location == E_Location.TownItem)
         {            
             ImgItem.raycastTarget = false;
 
             switch (e_Location)
             {
-                case E_Location.PanelTownItem:
+                case E_Location.TownItem:
                     transform.parent = Hot.NowPanelItem.transform;
                     break;
-                case E_Location.PanelTownShopItem:
+                case E_Location.TownShopItem:
                     transform.parent = Hot.PanelTownShopItem_.transform;
                     break;
             }
@@ -97,15 +97,15 @@ public class PanelCellTownItem : PanelBaseCell,
                 case E_NowPointerLocation.PanelTownItem:
                     switch (e_Location)
                     {
-                        case E_Location.PanelTownItem:
+                        case E_Location.TownItem:
                             MemberOf.NowIndex--;
-                            Hot.AddItem(E_Location.PanelTownItem);
+                            Hot.AddItem(E_Location.TownItem);
                             break;
                         //买物品
-                        case E_Location.PanelTownShopItem:
+                        case E_Location.TownShopItem:
                             MemberOf.NowIndex--;
                             Hot.PanelOtherResTable_.Subtraction(Cost);
-                            Hot.AddItem(E_Location.PanelTownItem);
+                            Hot.AddItem(E_Location.TownItem);
                             break;
                     }
                     break;
@@ -113,12 +113,12 @@ public class PanelCellTownItem : PanelBaseCell,
                     switch (e_Location)
                     {
                         //卖物品
-                        case E_Location.PanelTownItem:
+                        case E_Location.TownItem:
                             MemberOf.NowIndex--;
                             Hot.PanelOtherResTable_.Add(Cost);
-                            Hot.AddItem(E_Location.PanelTownShopItem);
+                            Hot.AddItem(E_Location.TownShopItem);
                             break;
-                        case E_Location.PanelTownShopItem:
+                        case E_Location.TownShopItem:
                             transform.SetParent(Hot.PanelTownShopItem_.Content, false);
                             break;
                     }                    
@@ -142,27 +142,27 @@ public class PanelCellTownItem : PanelBaseCell,
     {
         switch (e_SpriteNamePanelCellItem)
         {
-            case E_SpriteNamePanelCellItem.ItemFoodCookie:                
+            case E_PanelCellItem.ItemFoodCookie:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodApple:                
+            case E_PanelCellItem.ItemFoodApple:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodBread:
+            case E_PanelCellItem.ItemFoodBread:
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodRawBeef:                
+            case E_PanelCellItem.ItemFoodRawBeef:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodRawChicken:                
+            case E_PanelCellItem.ItemFoodRawChicken:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodRawMutton:
+            case E_PanelCellItem.ItemFoodRawMutton:
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodRawPotato:                
+            case E_PanelCellItem.ItemFoodRawPotato:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodCookedBeef:                
+            case E_PanelCellItem.ItemFoodCookedBeef:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodCoodedChicken:                
+            case E_PanelCellItem.ItemFoodCoodedChicken:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodCoodedMutton:                
+            case E_PanelCellItem.ItemFoodCoodedMutton:                
                 break;
-            case E_SpriteNamePanelCellItem.ItemFoodCookedPotato:                
+            case E_PanelCellItem.ItemFoodCookedPotato:                
                 break;
         }
 

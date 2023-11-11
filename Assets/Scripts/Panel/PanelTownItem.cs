@@ -76,7 +76,7 @@ public class PanelTownItem : PanelBaseItem,
             {
                 panel.transform.SetParent(Content, false);
                 panel.MemberOf = this;                
-                panel.e_Location = E_Location.PanelTownItem;
+                panel.e_Location = E_Location.TownItem;
                 panel.e_SpriteNamePanelCellItem = 
                     Hot.DataNowCellGameArchive.ListCellStore[FatherPanelCellTownStore.Index].
                     ListCellStoreItem[tempi].e_SpriteNamePanelCellItem;

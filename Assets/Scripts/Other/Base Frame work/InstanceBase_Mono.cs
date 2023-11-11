@@ -5,25 +5,11 @@ using UnityEngine;
 public class InstanceBase_Mono<T> : MonoBehaviour where T : MonoBehaviour
 {    
     private static T instance;
-    public static T Instance { get { return instance; } }    
-
-    #region Life Function
+    public static T Instance { get { return instance; } }
 
     protected virtual void Awake()
-    {        
+    {
         instance = this as T;
-        gameObject.name = typeof(T).ToString() + "_Instance";        
-    }     
-
-    protected virtual void Start()
-    {
-
+        gameObject.name = typeof(T).ToString() + "_Instance";
     }
-
-    protected virtual void Update()
-    {
-        
-    }
-
-    #endregion    
 }

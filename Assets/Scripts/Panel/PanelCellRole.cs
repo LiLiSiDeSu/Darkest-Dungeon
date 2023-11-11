@@ -63,6 +63,7 @@ public class PanelCellRole : PanelBaseCell,
     public void OnBeginDrag(PointerEventData eventData)
     {
         ImgPanelBk.raycastTarget = false;
+        ImgRolePortrait.raycastTarget = false;
         DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
 
         transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
@@ -82,10 +83,11 @@ public class PanelCellRole : PanelBaseCell,
     public void OnEndDrag(PointerEventData eventData)
     {
         ImgPanelBk.raycastTarget = true;
+        ImgRolePortrait.raycastTarget = true;
 
         Hot.PanelRoleList_.DisableDetection();        
 
-        if (Hot.CanPadding)
+        if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelRoleList)
         {
             Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
             transform.SetParent(Hot.PaddingContentStep_.RootPanelCellRole, false);
@@ -127,7 +129,7 @@ public class PanelCellRole : PanelBaseCell,
 
     public void CreatePanelCellRoleCanDrag()
     {
-        if (Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNameRoleStatus == E_SpriteNameRoleStatus.RoleStatusNone)
+        if (Hot.DataNowCellGameArchive.ListCellRole[Index].e_RoleStatus == E_RoleStatus.None)
         {
             Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>(false, "/PanelCellRoleCanDrag",
             (panel) =>
@@ -143,7 +145,7 @@ public class PanelCellRole : PanelBaseCell,
 
     public void InitInfo(DataContainer_CellRole Role)
     {
-        ImgRolePortrait.sprite =Hot.MgrRes_.Load<Sprite>("Art/" + Role.e_SpriteNamePortraitRole);        
+        ImgRolePortrait.sprite =Hot.MgrRes_.Load<Sprite>("Art/Portrait" + Role.e_RoleName);        
 
         TxtRoleName.text = Role.Name;
         TxtRoleLevel.text = Role.NowLevel.ToString();
@@ -153,7 +155,7 @@ public class PanelCellRole : PanelBaseCell,
         UpdateLevelInfo();
         UpdateSanityInfo();
         UpdateExperience();
-        ChangeRoleStatus(Role.e_SpriteNameRoleStatus);
+        ChangeRoleStatus(Role.e_RoleStatus);
     }
 
     /// <summary>
@@ -220,10 +222,10 @@ public class PanelCellRole : PanelBaseCell,
         Hot.Data_.Save();
     }
 
-    public void ChangeRoleStatus(E_SpriteNameRoleStatus ToChange)
+    public void ChangeRoleStatus(E_RoleStatus ToChange)
     {
-        Hot.DataNowCellGameArchive.ListCellRole[Index].e_SpriteNameRoleStatus = ToChange;
-        ImgRoleStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + ToChange.ToString());
+        Hot.DataNowCellGameArchive.ListCellRole[Index].e_RoleStatus = ToChange;
+        ImgRoleStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/RoleStatus" + ToChange.ToString());
     }
 
     public void UpdateSanityInfo()

@@ -10,14 +10,14 @@ public enum E_GameArchiveLevel
     Bloodmoon
 }
 
-public enum E_SpriteNamePanelCellTownStore
+public enum E_PanelCellTownStore
 {
     StoreWood,
     StoreIron,
     StoreGold
 }
 
-public enum E_SpriteNamePanelCellItem
+public enum E_PanelCellItem
 {
     ItemFoodCookie,
     ItemFoodApple,
@@ -32,56 +32,91 @@ public enum E_SpriteNamePanelCellItem
     ItemFoodCookedPotato,
 }
 
-public enum E_SpriteNameCoin
+public enum E_Coin
 {
-    ResCoinCopper,
-    ResCoinSilver,
-    ResCoinGold,
-    ResCoinPlatinum
+    Copper,
+    Silver,
+    Gold,
+    Platinum
 }
 
-public enum E_SpriteNameRoleStatus
-{
-    RoleStatusNone,
-    RoleStatusExpedition,
-    RoleStatusPrepareExpedition
-}
-
-public enum E_SpriteNamePortraitRole
-{
-    PortraitNone,
-    PortraitPlagueDoctor,
-    PortraitAbomination,
-    PortraitAntiquarian,
-    PortraitArbalest,
-    PortraitBountyHunter,
-    PortraitCrusader,
-    PortraitGraveRobber,
-    PortraitHellion,
-    PortraitHighwayman,
-    PortraitHoundmaster,
-    PortraitJester,
-    PortraitLeper,
-    PortraitManAtArms,
-    PortraitMusketeer,
-    PortraitOccultist,    
-    PortraitShieldbreaker,
-    PortraitVestal
-}
-
-public enum E_SpriteNameAncestralProperty
-{
-    ResAncestralPropertyStatue,
-    ResAncestralPropertyDeed,
-    ResAncestralPropertyPicture,
-    ResAncestralPropertyBadge,
-    ResAncestralPropertyCrystal
-}
-
-public enum E_StatusItemGrid
+public enum E_RoleStatus
 {
     None,
-    Have
+    Expedition,
+    PrepareExpedition
+}
+
+public enum E_DungeonSize
+{
+    Small,
+    Middle,
+    Large
+}
+
+public enum E_DungeonLevel
+{
+    Zero,
+    One,
+    Blood
+}
+
+public enum E_ExpeditionEvent
+{
+    Boss0,
+    Boss1,
+    Boss2,
+    BossCrystal,
+    BossDarkest,
+
+    Gather0,
+    Gather1,
+    Gather2,
+
+    Cleanse0,
+    Cleanse1,
+    Cleanse2,
+    CleanseCrystal,
+
+    Explore0,
+    Explore1,
+    Explore2,
+
+    Shrieker0,
+    Shrieker1,
+    Shrieker2
+}
+
+public enum E_RoleAction
+{
+    Await,
+    Charge,
+}
+
+public enum E_RoleName
+{        
+    Crusader,
+    LiLiSi,
+}
+
+public enum E_AncestralProperty
+{
+    Statue,
+    Deed,
+    Picture,
+    Badge,
+    Crystal
+}
+
+public enum E_ExpeditionLocation
+{
+    BloodCourtyard,
+    Lair,
+    Farm,
+    Wilds,
+    Ruins,
+    Darkest,
+    Sed
 }
 
 public enum E_PlayerLocation
@@ -98,15 +133,15 @@ public enum E_NowPointerLocation
     PanelTownItem,
     PanelTownShopItem,
     PanelRoleList,
-    TownPrepareExpedition,
-    TownExpedition
+    PanelTownPrepareExpedition,
+    PanelTownExpedition
 }
 
 public enum E_Location
 {    
     None,
-    PanelTownItem,
-    PanelTownShopItem
+    TownItem,
+    TownShopItem
 }
 
 public enum E_ArrowDirection

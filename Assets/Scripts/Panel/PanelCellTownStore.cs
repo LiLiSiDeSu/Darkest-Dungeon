@@ -88,17 +88,17 @@ public class PanelCellTownStore : PanelBaseCell,
     {
         switch (Hot.DataNowCellGameArchive.ListCellStore[Index].e_SpriteNamePanelCellTownStore)
         {
-            case E_SpriteNamePanelCellTownStore.StoreWood:
+            case E_PanelCellTownStore.StoreWood:
                 MaxWeight = 50;
                 MaxCapacity = 100;
                 break;
 
-            case E_SpriteNamePanelCellTownStore.StoreIron:
+            case E_PanelCellTownStore.StoreIron:
                 MaxWeight = 200;
                 MaxCapacity = 250;                
                 break;
 
-            case E_SpriteNamePanelCellTownStore.StoreGold:
+            case E_PanelCellTownStore.StoreGold:
                 MaxWeight = 70;
                 MaxCapacity = 400;                
                 break;        

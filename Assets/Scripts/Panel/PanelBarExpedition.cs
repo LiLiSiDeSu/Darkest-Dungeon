@@ -44,7 +44,7 @@ public class PanelBarExpedition : PanelBase
         (ScrollView_, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.e_NowPointerLocation = E_NowPointerLocation.TownPrepareExpedition;
+            Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownPrepareExpedition;
         });
         Hot.MgrUI_.AddCustomEventListener
         (ScrollView_, UnityEngine.EventSystems.EventTriggerType.PointerExit,
@@ -56,7 +56,7 @@ public class PanelBarExpedition : PanelBase
         (transform.FindSonSonSon("RootExpedition").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.e_NowPointerLocation = E_NowPointerLocation.TownExpedition;
+            Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownExpedition;
         });
         Hot.MgrUI_.AddCustomEventListener
         (transform.FindSonSonSon("RootExpedition").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
@@ -134,7 +134,9 @@ public class PanelBarExpedition : PanelBase
                 ScrollView_.SetActive(false);
                 break;
             case "BtnExpedition":
-                Debug.Log("Expedition");
+                Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
+                Hot.MgrUI_.HideAllPanel();
+                Hot.MgrUI_.ShowPanel<PanelExpeditionMapRoom>(false, "PanelExpeditionMapRoom");
                 break;
         }
     }
@@ -214,7 +216,7 @@ public class PanelBarExpedition : PanelBase
     public void Clear()
     {
         ClearRootExpeditionRole();
-        CleaPrepareExpeditionContent();
+        ClearPrepareExpeditionContent();
     }
 
     public void ClearRootExpeditionRole()
@@ -229,7 +231,7 @@ public class PanelBarExpedition : PanelBase
             Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
     }
 
-    public void CleaPrepareExpeditionContent()
+    public void ClearPrepareExpeditionContent()
     {
 
     }

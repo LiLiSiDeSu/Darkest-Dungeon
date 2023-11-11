@@ -12,9 +12,7 @@ public class PanelBase : MonoBehaviour
     #region LifeFunction
 
     protected virtual void Awake()
-    {
-        GetChildrenControl<Text>();
-        GetChildrenControl<Image>();
+    {        
         GetChildrenControl<Button>();
         GetChildrenControl<Toggle>();
         GetChildrenControl<Slider>();

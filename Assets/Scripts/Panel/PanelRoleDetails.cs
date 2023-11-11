@@ -11,17 +11,24 @@ public class PanelRoleDetails : PanelBase
     public Image ImgRoleShow;
     public Image ImgBkRoleLevel;    
     public Image ImgProgress;
-    public Image ImgRoleLevelBk;
-
-    public GameObject BtnDismiss;
+    public Image ImgRoleLevelBk;    
 
     public Text TxtRoleName;
     public Text TxtRoleLevel;
     public Text TxtSanityDetails;
 
-    public Transform RootSanityValueBar;
-    public int NumActiveObj;
+    /// <summary>
+    /// 解雇角色
+    /// </summary>
+    public GameObject BtnDismiss;
+    public Transform RootSanityValueBar;    
+
     public List<GameObject> ListImgCellSanity = new();
+
+    /// <summary>
+    /// 压力极限前的压力图标 在Awake里面会提前创建
+    /// </summary>
+    public int NumActiveObj;
 
     protected override void Awake()
     {
@@ -64,8 +71,9 @@ public class PanelRoleDetails : PanelBase
     }
 
     public void UpdateInfo(DataContainer_CellRole Role)
-    {
-        //ImgRoleShow
+    {        
+        ImgRoleShow.sprite =
+            Hot.MgrRes_.Load<Sprite>("Art/Role" + Role.e_RoleName + "Await");
 
         TxtRoleName.text = Role.Name;
         TxtRoleLevel.text = Role.NowLevel.ToString();

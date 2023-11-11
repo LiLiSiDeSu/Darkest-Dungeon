@@ -18,6 +18,9 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode PanelResTable = KeyCode.CapsLock;
     public KeyCode PanelRole = KeyCode.R;    
     public KeyCode PanelBar = KeyCode.F;
+    public KeyCode AddMapSize = KeyCode.K;
+    public KeyCode ReduceMapSize = KeyCode.L;
+    public KeyCode ExpeditionMiniMap = KeyCode.M;
 
     private void Update()
     {        
@@ -39,6 +42,9 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(PanelResTable);
         CheckKeyCode(PanelRole);
         CheckKeyCode(PanelBar);
+        CheckKeyCode(AddMapSize);
+        CheckKeyCode(ReduceMapSize);
+        CheckKeyCode(ExpeditionMiniMap);
     }
 
     /// <summary>
@@ -63,11 +69,14 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     {
         //可以添加其他的输入事件
 
-        //事件中心模块 统一触发按下抬起事件
+        //事件中心模块 统一触发抬起事件
         if (Input.GetKeyUp(key))
-            CenterEvent.GetInstance().EventTrigger<KeyCode>("CertainKeyUp", key);
-        //事件中心模块 统一触发按下抬起事件
+            CenterEvent.GetInstance().EventTrigger<KeyCode>("KeyUp", key);
+        //事件中心模块 统一触发按下事件
         if (Input.GetKeyDown(key))
-            CenterEvent.GetInstance().EventTrigger<KeyCode>("CertainKeyDown", key);        
+            CenterEvent.GetInstance().EventTrigger<KeyCode>("KeyDown", key);
+        //事件中心模块 统一触发按住事件
+        if (Input.GetKey(key))
+            CenterEvent.GetInstance().EventTrigger<KeyCode>("KeyHold", key);
     }
 }

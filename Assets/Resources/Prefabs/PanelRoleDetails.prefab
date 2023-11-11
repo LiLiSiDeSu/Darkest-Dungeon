@@ -1142,8 +1142,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -810.247, y: -262.355}
-  m_SizeDelta: {x: 260.237, y: 470.379}
+  m_AnchoredPosition: {x: -742, y: -242}
+  m_SizeDelta: {x: 350.439, y: 525.659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2221435085183247116
 CanvasRenderer:
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abac725b1d77ad449c366bf9e348b9a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1897,6 +1897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167c6e93f6319c4498c3c0c3f4ccf237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NowRole: {fileID: 0}
   ImgRoleShow: {fileID: 0}
   ImgBkRoleLevel: {fileID: 0}
   ImgProgress: {fileID: 0}
@@ -1904,9 +1905,10 @@ MonoBehaviour:
   TxtRoleName: {fileID: 0}
   TxtRoleLevel: {fileID: 0}
   TxtSanityDetails: {fileID: 0}
+  BtnDismiss: {fileID: 0}
   RootSanityValueBar: {fileID: 0}
-  NumActiveObj: 0
   ListImgCellSanity: []
+  NumActiveObj: 0
 --- !u!1 &9118384664996568802
 GameObject:
   m_ObjectHideFlags: 0

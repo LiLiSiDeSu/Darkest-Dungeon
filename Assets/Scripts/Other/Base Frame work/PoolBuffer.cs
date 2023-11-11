@@ -64,7 +64,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
         Transform[] all = RootDicItem[name].GetComponentsInChildren<Transform>();
         for (int i = 0; i < all.Length; i++)
         {
-            Destroy(all[i]);
+            Destroy(all[i].gameObject);
         }
     }    
 
@@ -73,7 +73,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
         Transform[] all = RootPool.GetComponentsInChildren<Transform>();
         for (int i = 0; i < all.Length; i++)
         {
-            Destroy(all[i]);
+            Destroy(all[i].gameObject);
         }
         RootDicItem.Clear();
         DicPool.Clear();

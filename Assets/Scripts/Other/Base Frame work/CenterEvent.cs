@@ -126,24 +126,32 @@ public class CenterEvent : InstanceBaseAuto_Mono<CenterEvent>
     {
         if (EventDic.ContainsKey(name))
             (EventDic[name] as EventInfo).actions?.Invoke();
+        else
+            Debug.Log("--- CenterEvent: " + name + " is null ---");
     }
 
     public void EventTrigger<T>(string name, T info)
     {
         if (EventDic.ContainsKey(name))
             (EventDic[name] as EventInfo<T>).actions?.Invoke(info);
+        else
+            Debug.Log("--- CenterEvent: " + name + " is null ---");
     }
 
     public void EventTrigger<T0, T1>(string name, T0 info0, T1 info1)
     {
         if (EventDic.ContainsKey(name))
             (EventDic[name] as EventInfo<T0, T1>).actions?.Invoke(info0, info1);
+        else
+            Debug.Log("--- CenterEvent: " + name + " is null ---");
     }
 
     public void EventTrigger<T0, T1, T2>(string name, T0 info0, T1 info1, T2 info2)
     {
         if (EventDic.ContainsKey(name))
             (EventDic[name] as EventInfo<T0, T1, T2>).actions?.Invoke(info0, info1, info2);
+        else
+            Debug.Log("--- CenterEvent: " + name + " is null ---");
     }
 
     #endregion

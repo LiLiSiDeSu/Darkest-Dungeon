@@ -6,10 +6,27 @@ using UnityEngine;
 
 public static class Hot
 {
-    #region 配置
+    #region Config
 
-    public static int StepSanity = 10;
+    public static int StepSanity = 10;    
 
+    /// <summary>
+    /// 在TranslateNum的基础上添加的倍率
+    /// </summary>
+    public static int AddTranslateRate = 4;
+    /// <summary>
+    /// 现在的转换倍率
+    /// </summary>
+    public static int NowTranslateRate = 1;
+
+    /// <summary>
+    /// AddMapSize 和 ReduceMapSize按下一次增加或减少的值
+    /// </summary>
+    public static float ValueChangeMapSize = 0.2f;
+
+    /// <summary>
+    /// 各个等级升级所需的经验
+    /// </summary>
     public static List<int> ListNeedExperienceToUpLevel = new List<int>()
     {
         50,
@@ -60,7 +77,15 @@ public static class Hot
     #endregion
 
     #region Panel
-
+    
+    public static PanelExpeditionMiniMap PanelExpeditionMiniMap_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
+    }
+    public static PanelExpeditionPrePare PanelExpedition_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionPrePare>("PanelExpeditionPrePare"); }
+    }
     public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
     {
         get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>("PanelRoleGuildRecruit"); }
@@ -176,13 +201,7 @@ public static class Hot
         get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
     }
 
-    #endregion
-
-    #region Bool    
-
-    public static bool CanPadding;
-
-    #endregion
+    #endregion    
 
     #region Now    
 
@@ -224,15 +243,7 @@ public static class Hot
     /// <summary>
     /// 当前存档的Index
     /// </summary>
-    public static int NowIndexCellGameArchive = -1;
-    /// <summary>
-    /// 在TranslateNum的基础上添加的倍率
-    /// </summary>
-    public static int AddTranslateRate = 4;
-    /// <summary>
-    /// 现在的转换倍率
-    /// </summary>
-    public static int NowTranslateRate = 1;
+    public static int NowIndexCellGameArchive = -1;    
     /// <summary>
     /// 现在鼠标所在的区域
     /// </summary>
@@ -252,19 +263,19 @@ public static class Hot
     {
         switch (e_AddLocation)
         {
-            case E_Location.PanelTownItem:
+            case E_Location.TownItem:
                 DragingItem.transform.SetParent(NowPanelItem.Content, false);
-                DragingItem.e_Location = E_Location.PanelTownItem;
+                DragingItem.e_Location = E_Location.TownItem;
                 DragingItem.Index = NowPanelItem.NowIndex++;
                 DataNowPanelStore.ListCellStoreItem.Add
-                    (new DataContainer_CellItem(E_Location.PanelTownItem, DragingItem.e_SpriteNamePanelCellItem));                
+                    (new DataContainer_CellItem(E_Location.TownItem, DragingItem.e_SpriteNamePanelCellItem));                
                 break;
-            case E_Location.PanelTownShopItem:
+            case E_Location.TownShopItem:
                 DragingItem.transform.SetParent(PanelTownShopItem_.Content, false);
-                DragingItem.e_Location = E_Location.PanelTownShopItem;
+                DragingItem.e_Location = E_Location.TownShopItem;
                 DragingItem.Index = PanelTownShopItem_.NowIndex++;
                 DataPanelTownShopItem.Add
-                    (new DataContainer_CellItem(E_Location.PanelTownShopItem, DragingItem.e_SpriteNamePanelCellItem));                
+                    (new DataContainer_CellItem(E_Location.TownShopItem, DragingItem.e_SpriteNamePanelCellItem));                
                 break;
         }                      
     }

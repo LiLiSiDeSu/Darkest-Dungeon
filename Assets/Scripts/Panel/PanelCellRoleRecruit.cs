@@ -8,14 +8,14 @@ public class PanelCellRoleRecruit : PanelBaseCell,
              IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private Vector2 DragOffSet;
-    private Image Bk;
+    private Image ImgBk;
     private Image ImgRolePortrait;
 
     protected override void Awake()
     {
         base.Awake();
 
-        Bk = transform.FindSonSonSon("Bk").GetComponent<Image>();
+        ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
         ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
     }
 
@@ -37,7 +37,7 @@ public class PanelCellRoleRecruit : PanelBaseCell,
         {
             DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
 
-            Bk.raycastTarget = false;
+            ImgBk.raycastTarget = false;
             ImgRolePortrait.raycastTarget = false;
 
             Hot.DragingPanelCellRoleRecruit = this;
@@ -65,14 +65,14 @@ public class PanelCellRoleRecruit : PanelBaseCell,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Bk.raycastTarget = true;
+        ImgBk.raycastTarget = true;
         ImgRolePortrait.raycastTarget = true;
 
         Hot.PanelRoleList_.DisableDetection();
 
         if (Hot.DragingPanelCellRoleRecruit != null)
         {
-            if (Hot.CanPadding)
+            if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelRoleList)
             {
                 Hot.PanelRoleList_.AddRole(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role, Hot.PaddingContentStep_);
 
@@ -115,6 +115,6 @@ public class PanelCellRoleRecruit : PanelBaseCell,
     {
         transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>().sprite =
             Hot.MgrRes_.Load<Sprite>
-            ("Art/" + Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role.e_SpriteNamePortraitRole);
+            ("Art/Portrait" + Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role.e_RoleName);
     }
 }

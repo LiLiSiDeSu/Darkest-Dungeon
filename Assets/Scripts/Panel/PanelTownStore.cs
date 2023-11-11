@@ -17,9 +17,9 @@ public class PanelTownStore : PanelBase,
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (key == Hot.MgrInput_.PanelTownStore && Hot.NowIndexCellGameArchive != -1)
+            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.PanelTownStore)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
                     Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");

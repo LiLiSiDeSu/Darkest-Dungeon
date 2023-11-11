@@ -51,7 +51,7 @@ public class PanelTownShopItem : PanelBaseItem,
                 panel.Index = NowIndex;
                 panel.transform.SetParent(base.Content, false);
                 panel.MemberOf = this;
-                panel.e_Location = E_Location.PanelTownShopItem;
+                panel.e_Location = E_Location.TownShopItem;
                 panel.e_SpriteNamePanelCellItem = Hot.DataNowCellGameArchive.ListCellShopItem[tempi].e_SpriteNamePanelCellItem;
                 NowIndex++;
             });

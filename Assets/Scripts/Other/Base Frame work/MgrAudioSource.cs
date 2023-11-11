@@ -49,7 +49,7 @@ public class MgrAudioSource : InstanceBaseAuto_Mono<MgrAudioSource>
             BkMusic = obj.AddComponent<AudioSource>();
         }
 
-        MgrRes.GetInstance().LoadAsync<AudioClip>("Music/Bk/" + name, (clip) =>
+        MgrRes.GetInstance().LoadAsync<AudioClip>("Music/ImgBk/" + name, (clip) =>
         {
             BkMusic.loop = true;
             BkMusic.clip = clip;

@@ -15,7 +15,7 @@ public class PanelOtherSetting : PanelBase
     {
         base.Awake();
 
-        CenterEvent.GetInstance().AddEventListener<KeyCode>("CertainKeyDown", (key) =>
+        CenterEvent.GetInstance().AddEventListener<KeyCode>("KeyDown", (key) =>
         {
             if (key == Hot.MgrInput_.Setting)
             {
