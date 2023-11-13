@@ -29,10 +29,15 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         UIBaseEventSystem.transform.parent = UI.transform;
     }
 
+    public bool ContainPanel(string panelName)
+    {
+        return DicPanel.ContainsKey(panelName);
+    }
+
     /// <summary>
     /// 给DicPanel添加panel
     /// </summary>
-    /// <param name="panelname">面板名 最好就是gameObject.name</param>
+    /// <param name="panelname">面板名</param>
     /// <param name="panel">面板对象</param>
     public void AddDicPanel(string panelname, PanelBase panel)
     {
@@ -182,7 +187,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     public void HideAllPanel()
     {
-        PoolEsc.GetInstance().HideAll();
+        PoolEsc.GetInstance().HideAllOnly();
         for (int i = 0; i < Hot.PoolNowPanel_.ListNowPanel.Count; i++)
         {
             Hot.MgrUI_.HidePanel
@@ -201,6 +206,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     {
         if (DicPanel.ContainsKey(panelname))
             return DicPanel[panelname] as T;
+        else
+            Debug.Log("--- MgrUI: " + panelname + " is null ---");
         return null;
     }
 

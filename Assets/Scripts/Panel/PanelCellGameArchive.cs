@@ -49,8 +49,8 @@ public class PanelCellGameArchive : PanelBaseCell
                     Hot.PanelTownShopItem_.InitContent();
                     Hot.PanelRoleList_.InitContent();
                     Hot.PanelBarExpedition_.InitContent();
-                    Hot.PanelRoleGuildRecruit_.InitContent();
-                    Hot.PanelExpedition_.InitContent();
+                    Hot.PanelExpeditionPrepare_.InitContent();
+                    Hot.PanelRoleGuildRecruit_.InitContent();                    
 
                     Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
                 }
@@ -137,7 +137,7 @@ public class PanelCellGameArchive : PanelBaseCell
 
         ChangeImgGameArchiveLevel(data.e_GameArchiveLevel);
 
-        TxtLocation.text = data.Location;
+        TxtLocation.text = data.e_ExpeditionLocation.ToString();
         TxtWeek.text = data.Week;
         TxtTime.text = data.Time;
     }

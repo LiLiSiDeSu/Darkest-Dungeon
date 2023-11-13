@@ -16,7 +16,9 @@ public class PanelExpeditionMapHall : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.AddMapSize && HallMapContent.localScale.x < 2f)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMapHall") &&
+                !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") &&
+                key == Hot.MgrInput_.AddMapSize && HallMapContent.localScale.x < 2f)
             {
                 HallMapContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }
@@ -25,7 +27,9 @@ public class PanelExpeditionMapHall : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.ReduceMapSize && HallMapContent.localScale.x > 1f)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMapHall") &&
+                !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") &&
+                key == Hot.MgrInput_.ReduceMapSize && HallMapContent.localScale.x > 1f)
             {
                 HallMapContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }

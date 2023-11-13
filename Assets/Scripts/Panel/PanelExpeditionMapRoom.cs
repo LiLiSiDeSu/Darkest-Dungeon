@@ -19,7 +19,9 @@ public class PanelExpeditionMapRoom : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold", 
         (key) =>
         {            
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.AddMapSize && RoomMapContent.localScale.x < 2f)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMapRoom") && 
+                !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") &&
+                key == Hot.MgrInput_.AddMapSize && RoomMapContent.localScale.x < 2f)
             {
                 RoomMapContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }            
@@ -28,7 +30,9 @@ public class PanelExpeditionMapRoom : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.ReduceMapSize && RoomMapContent.localScale.x > 1f)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMapRoom") &&
+                !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") &&
+                key == Hot.MgrInput_.ReduceMapSize && RoomMapContent.localScale.x > 1f)
             {
                 RoomMapContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }            

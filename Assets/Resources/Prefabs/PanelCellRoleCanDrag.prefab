@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b359dcfceb2dd4fb53e455dce62720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ImgRolePortraitCanDrag: {fileID: 0}
+  RectRolePortraitCanDrag: {fileID: 0}
   RootExpeditionRole: {fileID: 0}
   PanelCellRole_: {fileID: 0}
 --- !u!222 &1443986997024342862

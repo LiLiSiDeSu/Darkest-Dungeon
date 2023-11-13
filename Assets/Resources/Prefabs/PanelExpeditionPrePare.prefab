@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 8274346118831311979}
   - component: {fileID: 5702200611975518386}
   m_Layer: 0
-  m_Name: PanelExpeditionPrePare
+  m_Name: PanelExpeditionPrepare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -45,7 +45,7 @@ public class PanelBarTown : PanelBase
         switch (controlname)
         {
             case "BtnExpedition":                
-                Hot.MgrUI_.ShowPanel<PanelExpeditionPrePare>(true, "PanelExpeditionPrePare");
+                Hot.MgrUI_.ShowPanel<PanelExpeditionPrepare>(true, "PanelExpeditionPrepare");
                 Hot.e_NowPlayerLocation = E_PlayerLocation.PrepareExpedition;
                 break;
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PanelExpeditionMiniMap : PanelBase
 {
-    public Transform ExpeditionMap;
+    public Transform ExpeditionMiniMapContent;
 
     protected override void Awake()
     {
@@ -22,6 +22,26 @@ public class PanelExpeditionMiniMap : PanelBase
             }
         });
 
-        ExpeditionMap = transform.FindSonSonSon("ExpeditionMiniMap");
-    }
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        (key) =>
+        {
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && 
+                key == Hot.MgrInput_.AddMapSize && ExpeditionMiniMapContent.localScale.x < 2f)
+            {
+                ExpeditionMiniMapContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+            }
+        });
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        (key) =>
+        {
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && 
+                key == Hot.MgrInput_.ReduceMapSize && ExpeditionMiniMapContent.localScale.x > 1f)
+            {
+                ExpeditionMiniMapContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+            }
+        });
+
+        ExpeditionMiniMapContent = transform.FindSonSonSon("ExpeditionMiniMapContent");
+    }    
 }

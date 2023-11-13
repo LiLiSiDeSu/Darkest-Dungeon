@@ -11,6 +11,7 @@ public class PanelOtherStart : PanelBase
         base.Start();
 
         transform.FindSonSonSon("ImgStart").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgMapEditor").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)
@@ -20,12 +21,11 @@ public class PanelOtherStart : PanelBase
         switch (controlname)
         {
             case "BtnStart":
-                MgrUI.GetInstance().HidePanel(false, gameObject, "PanelOtherStart");
-                MgrUI.GetInstance().ShowPanel<PanelGameArchiveChoose>
-                (false, "PanelGameArchiveChoose", (panel) =>
-                {
-                    
-                });
+                Hot.MgrUI_.HidePanel(false, gameObject, "PanelOtherStart");
+                Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, "PanelGameArchiveChoose");
+                break;
+            case "BtnMapEditor":
+                Hot.MgrUI_.ShowPanel<PanelMapEditor>(true, "PanelMapEditor");
                 break;
         }
     }    

@@ -31,7 +31,7 @@ public class PanelRoleList : PanelBase,
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
         (key) =>
         {
-            if (key == Hot.MgrInput_.PanelRole && Hot.NowIndexCellGameArchive != -1)
+            if (Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.PanelRole)
             {
 
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelRoleList"))

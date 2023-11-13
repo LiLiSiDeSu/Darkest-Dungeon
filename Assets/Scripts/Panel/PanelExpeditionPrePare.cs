@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelExpeditionPrePare : PanelBase
+public class PanelExpeditionPrepare : PanelBase
 {    
     public Transform BloodCourtyardContent;
     public Transform LairContent;
@@ -16,7 +16,7 @@ public class PanelExpeditionPrePare : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelExpeditionPrePare",
+        Hot.CenterEvent_.AddEventListener("Esc" + "PanelExpeditionPrepare",
         () =>
         {
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
@@ -33,7 +33,7 @@ public class PanelExpeditionPrePare : PanelBase
 
     public void InitContent()
     {
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Lair.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Lair.Count; i++)
         {
             int tempi = i;
 
@@ -44,7 +44,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(LairContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Wilds.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Wilds.Count; i++)
         {
             int tempi = i;
 
@@ -55,7 +55,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(WildsContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Darkest.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.Count; i++)
         {
             int tempi = i;
 
@@ -66,7 +66,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(DarkestContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Ruins.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Ruins.Count; i++)
         {
             int tempi = i;
 
@@ -77,7 +77,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(RuinsContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Sea.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Sea.Count; i++)
         {
             int tempi = i;
 
@@ -88,7 +88,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(SeaContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.Farm.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Farm.Count; i++)
         {
             int tempi = i;
 
@@ -99,7 +99,7 @@ public class PanelExpeditionPrePare : PanelBase
                 panel.transform.SetParent(FarmContent, false);
             });
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.Expedition.BloodCourtyard.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.BloodCourtyard.Count; i++)
         {
             int tempi = i;
 

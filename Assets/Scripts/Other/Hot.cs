@@ -22,7 +22,7 @@ public static class Hot
     /// <summary>
     /// AddMapSize 和 ReduceMapSize按下一次增加或减少的值
     /// </summary>
-    public static float ValueChangeMapSize = 0.2f;
+    public static float ValueChangeMapSize = 0.4f;
 
     /// <summary>
     /// 各个等级升级所需的经验
@@ -82,9 +82,9 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
     }
-    public static PanelExpeditionPrePare PanelExpedition_
+    public static PanelExpeditionPrepare PanelExpeditionPrepare_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionPrePare>("PanelExpeditionPrePare"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionPrepare>("PanelExpeditionPrepare"); }
     }
     public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
     {

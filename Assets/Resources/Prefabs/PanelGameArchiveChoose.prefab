@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NowIndex: 0
-  Content: {fileID: 0}
+  GameArchiveContent: {fileID: 0}
 --- !u!1 &3737342544352982764
 GameObject:
   m_ObjectHideFlags: 0

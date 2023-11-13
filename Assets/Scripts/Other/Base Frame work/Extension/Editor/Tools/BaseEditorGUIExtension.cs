@@ -8,6 +8,7 @@ public class BaseEditorGUIExtension<T> : EditorWindow where T : Component
 {
     protected EditorGUILayout EditorGUILayoutObj;
     protected static T layout;
+
     private void Awake()
     {
         EditorGUILayoutObj = FindAnyObjectByType<EditorGUILayout>();

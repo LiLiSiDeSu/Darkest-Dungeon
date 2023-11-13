@@ -23,7 +23,8 @@ public class Data : InstanceBaseAuto_Mono<Data>
         
         for (int i = 0; i < AllPathGameArchive.Length; i++)
         {
-            DataListCellGameArchive.Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>(PathGameArchiveData + i));
+            DataListCellGameArchive.
+                Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>("", PathGameArchiveData + i));
         }
     }
 
@@ -33,7 +34,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// <param name="index">要被保存的存档的Index</param>
     public void Save(int index)
     {
-        MgrJson.GetInstance().Save(DataListCellGameArchive[index], PathGameArchiveData + index);
+        MgrJson.GetInstance().Save(DataListCellGameArchive[index], "", PathGameArchiveData + index);
     }
 
     /// <summary>

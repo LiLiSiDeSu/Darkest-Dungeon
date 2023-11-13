@@ -40,40 +40,40 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].ListCellStore[0].ListCellStoreItem = new List<DataContainer_CellItem>()
         {
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodRawPotato),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodRawChicken),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodRawPotato),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodRawChicken),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
         GameArchiveDataCellList[0].ListCellStore[1].ListCellStoreItem = new List<DataContainer_CellItem>()
         {
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
         GameArchiveDataCellList[0].ListCellStore[2].ListCellStoreItem = new List<DataContainer_CellItem>()
         {
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
         };
 
         GameArchiveDataCellList[0].ListCellShopItem = new List<DataContainer_CellItem>()
         {
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodRawPotato),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodRawChicken),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodApple),
-            new DataContainer_CellItem(E_Location.TownItem, E_PanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodRawPotato),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodRawChicken),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodApple),
+            new DataContainer_CellItem(E_Location.TownItem, E_SpriteNamePanelCellItem.ItemFoodCookie),
         };
 
         GameArchiveDataCellList[0].ListCellRole = new List<DataContainer_CellRole>()
@@ -127,7 +127,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
              new DataContainer_CoinCost(22, 31, 42, 523))
         };
 
-        GameArchiveDataCellList[0].Expedition = new DataContainer_Expedition(
+        GameArchiveDataCellList[0].ExpeditionPrepare = new DataContainer_ExpeditionPrepare(
         new List<DataContainer_Map>()
         {
             new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
@@ -199,7 +199,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
         {            
-            MgrJson.GetInstance().Save(GameArchiveDataCellList[i], Data.GetInstance().PathGameArchiveData + i);
+            MgrJson.GetInstance().Save(GameArchiveDataCellList[i], "", Data.GetInstance().PathGameArchiveData + i);
         }
 
         DestroyImmediate(Hot.Data_.gameObject);

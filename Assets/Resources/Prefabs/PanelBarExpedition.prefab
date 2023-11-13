@@ -1924,7 +1924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NowIndex: 0
-  Content: {fileID: 0}
+  PrepareExpeditionContent: {fileID: 0}
   ScrollView_: {fileID: 0}
   RootExpeditionRole0: {fileID: 0}
   RootExpeditionRole1: {fileID: 0}

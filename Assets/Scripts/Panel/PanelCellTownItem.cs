@@ -12,7 +12,7 @@ public class PanelCellTownItem : PanelBaseCell,
     public int Capacity;
 
     public E_Location e_Location;
-    public E_PanelCellItem e_SpriteNamePanelCellItem;
+    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem;
     public Image ImgItem;
     public InfoContainer_Cost Cost;    
     private Vector2 DragOffSet;
@@ -132,7 +132,9 @@ public class PanelCellTownItem : PanelBaseCell,
             
             Hot.DragingItem = null;
             Hot.NowItem = null;
-            Hot.PanelShopCost_.Clear();            
+            Hot.PanelShopCost_.Clear();
+
+            Hot.Data_.Save();
         }
     }
 
@@ -142,27 +144,27 @@ public class PanelCellTownItem : PanelBaseCell,
     {
         switch (e_SpriteNamePanelCellItem)
         {
-            case E_PanelCellItem.ItemFoodCookie:                
+            case E_SpriteNamePanelCellItem.ItemFoodCookie:                
                 break;
-            case E_PanelCellItem.ItemFoodApple:                
+            case E_SpriteNamePanelCellItem.ItemFoodApple:                
                 break;
-            case E_PanelCellItem.ItemFoodBread:
+            case E_SpriteNamePanelCellItem.ItemFoodBread:
                 break;
-            case E_PanelCellItem.ItemFoodRawBeef:                
+            case E_SpriteNamePanelCellItem.ItemFoodRawBeef:                
                 break;
-            case E_PanelCellItem.ItemFoodRawChicken:                
+            case E_SpriteNamePanelCellItem.ItemFoodRawChicken:                
                 break;
-            case E_PanelCellItem.ItemFoodRawMutton:
+            case E_SpriteNamePanelCellItem.ItemFoodRawMutton:
                 break;
-            case E_PanelCellItem.ItemFoodRawPotato:                
+            case E_SpriteNamePanelCellItem.ItemFoodRawPotato:                
                 break;
-            case E_PanelCellItem.ItemFoodCookedBeef:                
+            case E_SpriteNamePanelCellItem.ItemFoodCookedBeef:                
                 break;
-            case E_PanelCellItem.ItemFoodCoodedChicken:                
+            case E_SpriteNamePanelCellItem.ItemFoodCoodedChicken:                
                 break;
-            case E_PanelCellItem.ItemFoodCoodedMutton:                
+            case E_SpriteNamePanelCellItem.ItemFoodCoodedMutton:                
                 break;
-            case E_PanelCellItem.ItemFoodCookedPotato:                
+            case E_SpriteNamePanelCellItem.ItemFoodCookedPotato:                
                 break;
         }
 

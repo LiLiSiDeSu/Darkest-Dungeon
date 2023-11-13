@@ -19,7 +19,10 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
     }
 
     public GameObject TakeAndGet(string name)
-    {        
+    {
+        if (DicPool[name][0] == null)
+            Debug.Log("--- PoolBuffer: " + name + " is null ---");
+
         DicPool[name][0].SetActive(true);
         DicPool[name][0].transform.parent = null;
         GameObject obj = DicPool[name][0];

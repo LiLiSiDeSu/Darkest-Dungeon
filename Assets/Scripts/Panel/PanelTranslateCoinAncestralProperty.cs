@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class PanelTranslateCoinAncestralProperty : PanelBase
 {
-    private List<E_Coin> ListBtnCoinStatus = new List<E_Coin>()
+    private List<E_SpriteNameCoin> ListBtnCoinStatus = new List<E_SpriteNameCoin>()
     { 
-        E_Coin.Copper,
-        E_Coin.Silver,
-        E_Coin.Gold        
+        E_SpriteNameCoin.Copper,
+        E_SpriteNameCoin.Silver,
+        E_SpriteNameCoin.Gold        
     };
 
     private List<E_AncestralProperty> ListBtnAncestralPropertyStatus = new List<E_AncestralProperty>()
@@ -76,7 +76,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
     {
         switch (ListBtnCoinStatus[NowIndexCoin])
         {
-            case E_Coin.Copper:
+            case E_SpriteNameCoin.Copper:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
                     case E_AncestralProperty.Statue:
@@ -176,7 +176,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         break;
                 }
                 break;
-            case E_Coin.Silver:
+            case E_SpriteNameCoin.Silver:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
                     case E_AncestralProperty.Statue:
@@ -276,7 +276,7 @@ public class PanelTranslateCoinAncestralProperty : PanelBase
                         break;
                 }
                 break;
-            case E_Coin.Gold:
+            case E_SpriteNameCoin.Gold:
                 switch (ListBtnAncestralPropertyStatus[NowIndexAncestralProperty])
                 {
                     case E_AncestralProperty.Statue:

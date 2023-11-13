@@ -2,6 +2,27 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
+public enum E_CellExpeditionMapType
+{
+    Room,
+    Hall,
+}
+
+/// <summary>
+/// 用于加载Sprite时要加CellMap做前缀
+/// </summary>
+public enum E_CellExpeditionMiniMap
+{
+    NowLocation,
+    HallLight,
+    HallDim,
+    HallDark,   
+    RoomBoss,
+    RoomEmpty,
+    RoomEntrance,
+    RoomLocked,
+}
+
 public enum E_GameArchiveLevel
 {
     None,
@@ -17,7 +38,7 @@ public enum E_PanelCellTownStore
     StoreGold
 }
 
-public enum E_PanelCellItem
+public enum E_SpriteNamePanelCellItem
 {
     ItemFoodCookie,
     ItemFoodApple,
@@ -32,7 +53,22 @@ public enum E_PanelCellItem
     ItemFoodCookedPotato,
 }
 
-public enum E_Coin
+/// <summary>
+/// 用于加载Sprite时要加ResAncestralProperty做前缀
+/// </summary>
+public enum E_AncestralProperty
+{
+    Statue,
+    Deed,
+    Picture,
+    Badge,
+    Crystal
+}
+
+/// <summary>
+/// 用于加载Sprite时要加ResCoin做前缀
+/// </summary>
+public enum E_SpriteNameCoin
 {
     Copper,
     Silver,
@@ -99,17 +135,12 @@ public enum E_RoleName
     LiLiSi,
 }
 
-public enum E_AncestralProperty
-{
-    Statue,
-    Deed,
-    Picture,
-    Badge,
-    Crystal
-}
-
 public enum E_ExpeditionLocation
 {
+    /// <summary>
+    /// 怎么可能在城镇远征呢 哈哈
+    /// </summary>
+    Town,
     BloodCourtyard,
     Lair,
     Farm,

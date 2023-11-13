@@ -24,9 +24,9 @@ public class PanelCellExpeditionEvent : PanelBaseCell
         switch (controlname)
         {
             case "BtnExpeditionEvent":
-                Debug.Log(Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_dungeonSize + " - " +
-                          Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_dungeonLevel + " - " +
-                          Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_ExpeditionEvent);                
+                Debug.Log(Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonSize + " - " +
+                          Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonLevel + " - " +
+                          Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_ExpeditionEvent);                
                 break;
         }
     }
@@ -38,11 +38,11 @@ public class PanelCellExpeditionEvent : PanelBaseCell
 
         ImgBorderExpeditionEvent.sprite =
                     Hot.MgrRes_.Load<Sprite>
-                    ("Art/" + "BorderExpedition" + Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_dungeonSize +
-                    "Level" + Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_dungeonLevel);
+                    ("Art/" + "BorderExpedition" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonSize +
+                    "Level" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonLevel);
 
         ImgExpeditionEvent.sprite =
                     Hot.MgrRes_.Load<Sprite>
-                    ("Art/ExpeditionEvent" + Hot.DataNowCellGameArchive.Expedition[e_ExpeditionLocation][Index].e_ExpeditionEvent);
+                    ("Art/ExpeditionEvent" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_ExpeditionEvent);
     }
 }

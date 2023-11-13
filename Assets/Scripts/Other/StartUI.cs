@@ -45,8 +45,8 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelBarExpedition>
             (true, "/PanelBarExpedition", true, false, "PanelBarExpedition");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrePare>
-            (true, "/PanelExpeditionPrePare", true, false, "PanelExpeditionPrePare");
+        Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrepare>
+            (true, "/PanelExpeditionPrepare", true, false, "PanelExpeditionPrepare");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMapRoom>
             (true, "/PanelExpeditionMapRoom", true, false, "PanelExpeditionMapRoom");
@@ -56,6 +56,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMiniMap>
             (true, "/PanelExpeditionMiniMap", true, false, "PanelExpeditionMiniMap");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelMapEditor>
+            (true, "/PanelMapEditor", true, false, "PanelMapEditor");
 
         Destroy(gameObject);
     }

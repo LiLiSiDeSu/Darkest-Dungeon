@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -8,31 +9,35 @@ public sealed class AllDataOrInfoContainer { }
 public class DataContainer_PanelCellGameArchive
 {    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
-    public DataContainer_ResTable ResTable = new();
-    public DataContainer_Expedition Expedition = new();
+    public DataContainer_ResTable ResTable = new();    
     public List<DataContainer_CellTownStore> ListCellStore = new();    
     public List<DataContainer_CellItem> ListCellShopItem = new();
     public List<DataContainer_CellRole> ListCellRole = new();
     public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
 
+    public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
+
     public string GameArchiveName = "";
-    public string Location = "None";
+    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
+    public int IndexExpeditionLocation = -1;
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";    
 
     public DataContainer_PanelCellGameArchive() { }
     public DataContainer_PanelCellGameArchive
-    (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, string Location, string Week, string Time, 
+    (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, E_ExpeditionLocation e_ExpeditionLocation, string Week, string Time, 
     List<DataContainer_CellTownStore> ListCellStore)
     {
         this.GameArchiveName = GameArchiveName;
         this.e_GameArchiveLevel = e_GameArchiveLevel;
-        this.Location = Location;
+        this.e_ExpeditionLocation = e_ExpeditionLocation;
         this.Week = Week;
         this.Time = Time;
         this.ListCellStore = ListCellStore;
     }
 }
+
+#region Role
 
 public class DataContainer_CellRole
 {
@@ -40,13 +45,13 @@ public class DataContainer_CellRole
     public E_RoleStatus e_RoleStatus = E_RoleStatus.None;
     public int IndexExpedition = -1;
     public int IndexPrepareExpedition = -1;
-    public string Name = "None";
-    public int NowLevel = 0;    
+    public string Name = "Town";
+    public int NowLevel = 0;
     //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
     public int MaxLevel = 0;
     public int NowExperience = 0;
     public int NowSanity = 0;
-    public int MaxSanity = 0;    
+    public int MaxSanity = 0;
     public int LimitToSanityExplosion = 0;
 
     public DataContainer_CellRole() { }
@@ -58,18 +63,36 @@ public class DataContainer_CellRole
      int NowSanity, int MaxSanity, int LimitToSanityExplosion)
     {
         this.e_RoleName = e_RoleName;
-        this.e_RoleStatus= e_RoleStatus;
+        this.e_RoleStatus = e_RoleStatus;
         this.Name = Name;
         this.NowLevel = NowLevel;
         this.MaxLevel = MaxLevel;
         this.NowExperience = NowExperience;
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
-        this.LimitToSanityExplosion = LimitToSanityExplosion;        
+        this.LimitToSanityExplosion = LimitToSanityExplosion;
     }
 }
 
-public class DataContainer_Expedition
+public class DataContainer_CellRoleRecruit
+{
+    public DataContainer_CellRole Role = new();
+    public DataContainer_CoinCost Cost = new();
+
+    public DataContainer_CellRoleRecruit() { }
+    public DataContainer_CellRoleRecruit
+    (DataContainer_CellRole Role, DataContainer_CoinCost Cost)
+    {
+        this.Role = Role;
+        this.Cost = Cost;
+    }
+}
+
+#endregion
+
+#region Expedition
+
+public class DataContainer_ExpeditionPrepare
 {
     public List<DataContainer_Map> BloodCourtyard = new();
     public List<DataContainer_Map> Lair = new();
@@ -120,15 +143,15 @@ public class DataContainer_Expedition
                     break;
                 case E_ExpeditionLocation.Sed:
                     Sea = value;
-                    break;                
+                    break;
             }
         }
     }
 
-    public DataContainer_Expedition() { }
-    public DataContainer_Expedition
-    (List<DataContainer_Map> bloodCourtyard, List<DataContainer_Map> lair, List<DataContainer_Map> farm, 
-     List<DataContainer_Map> wilds, List<DataContainer_Map> ruins, List<DataContainer_Map> sed, 
+    public DataContainer_ExpeditionPrepare() { }
+    public DataContainer_ExpeditionPrepare
+    (List<DataContainer_Map> bloodCourtyard, List<DataContainer_Map> lair, List<DataContainer_Map> farm,
+     List<DataContainer_Map> wilds, List<DataContainer_Map> ruins, List<DataContainer_Map> sed,
      List<DataContainer_Map> darkest)
     {
         BloodCourtyard = bloodCourtyard;
@@ -141,15 +164,25 @@ public class DataContainer_Expedition
     }
 }
 
+public class DataContainer_CellExpeditionObject
+{
+
+}
+
+#region Map
+
 public class DataContainer_Map
 {
     public E_DungeonLevel e_dungeonLevel = E_DungeonLevel.Zero;
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
+    public List<List<DataContainer_CellExpeditionMap>> CellMap = new();
+
     public DataContainer_Map() { }
-    public DataContainer_Map(E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
-                             E_ExpeditionEvent e_ExpeditionEvent)
+    public DataContainer_Map
+    (E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
+     E_ExpeditionEvent e_ExpeditionEvent)
     {
         this.e_dungeonLevel = e_dungeonLevel;
         this.e_dungeonSize = e_dungeonSize;
@@ -157,19 +190,27 @@ public class DataContainer_Map
     }
 }
 
-public class DataContainer_CellRoleRecruit
+public class DataContainer_CellExpeditionMap
 {
-    public DataContainer_CellRole Role = new();
-    public DataContainer_CoinCost Cost = new();
+    public E_CellExpeditionMapType e_CellExpeditionMapType = E_CellExpeditionMapType.Room;
+    public E_CellExpeditionMiniMap e_CellExpeditionMiniMap = E_CellExpeditionMiniMap.HallLight;
 
-    public DataContainer_CellRoleRecruit() { }
-    public DataContainer_CellRoleRecruit
-    (DataContainer_CellRole Role, DataContainer_CoinCost Cost) 
-    {
-        this.Role = Role;
-        this.Cost = Cost;
-    }
+    public List<List<DataContainer_CellExpeditionMapGrid>> Map = new();
 }
+
+public class DataContainer_CellExpeditionMapGrid
+{
+    //当前远征地图格子所拥有的角色
+    public DataContainer_CellRole Role = new();
+
+    //当前远征地图格子所拥有的物体
+    public DataContainer_CellExpeditionObject Object = new();
+}
+
+#endregion
+
+#endregion
+
 
 public class DataContainer_CellTownStore
 {
@@ -189,11 +230,11 @@ public class DataContainer_CellTownStore
 public class DataContainer_CellItem
 {
     public E_Location e_Location = E_Location.TownItem;
-    public E_PanelCellItem e_SpriteNamePanelCellItem = E_PanelCellItem.ItemFoodCookie;   
+    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.ItemFoodCookie;   
 
     public DataContainer_CellItem() { }
     public DataContainer_CellItem
-    (E_Location e_Location, E_PanelCellItem e_SpriteNamePanelCellItem)
+    (E_Location e_Location, E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
     {     
         this.e_Location = e_Location;
         this.e_SpriteNamePanelCellItem = e_SpriteNamePanelCellItem;

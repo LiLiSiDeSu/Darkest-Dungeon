@@ -136,7 +136,7 @@ public class PanelBarExpedition : PanelBase
             case "BtnExpedition":
                 Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                 Hot.MgrUI_.HideAllPanel();
-                Hot.MgrUI_.ShowPanel<PanelExpeditionMapRoom>(false, "PanelExpeditionMapRoom");
+                Hot.MgrUI_.ShowPanel<PanelExpeditionMapHall>(false, "PanelExpeditionMapHall");
                 break;
         }
     }

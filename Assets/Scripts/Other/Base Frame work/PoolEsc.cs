@@ -15,16 +15,39 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
             if (key == Hot.MgrInput_.Esc)            
                 HideTop();
         });
-    }    
+    }
 
     /// <summary>
-    /// 隐藏所有加入PoolEsc的面板
+    /// 隐藏所有加入PoolEsc的面板并执行面板对应的Esc事件
     /// </summary>
-    public void HideAll()
+    public void HideAllAndInvokeEvent()
     {
         int tempCount = ListEsc.Count;
         for (int i = 0; i < tempCount; i++)
             HideTop();
+    }
+
+    /// <summary>
+    /// 只是隐藏所有加入PoolEsc的面板但不执行面板对应的Esc事件
+    /// </summary>
+    public void HideAllOnly()
+    {
+        int tempCount = ListEsc.Count;
+        for (int i = 0; i < tempCount; i++)
+        {
+            if (ListEsc.Count > 0)
+            {
+                //这里的判断是为了防止加入了PoolEsc但没有加入MgrUI的DicPanel中的面板
+                //在执行下面Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject的逻辑时的空引用报错
+                if (Hot.MgrUI_.ContainPanel(ListEsc[^1]))
+                    PoolBuffer.GetInstance().
+                        Push(false, Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
+
+                PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[^1]);
+
+                ListEsc.Remove(ListEsc[^1]);
+            }
+        }
     }
 
     /// <summary>
@@ -36,8 +59,11 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
         {
             Hot.CenterEvent_.EventTrigger("Esc" + ListEsc[^1]);
 
-            PoolBuffer.GetInstance().Push
-                (false, MgrUI.GetInstance().GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
+            //这里的判断是为了防止加入了PoolEsc但没有加入MgrUI的DicPanel中的面板
+            //在执行下面Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject的逻辑时的空引用报错
+            if (Hot.MgrUI_.ContainPanel(ListEsc[^1]))
+                PoolBuffer.GetInstance().
+                        Push(false, Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
 
             PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[^1]);
 
