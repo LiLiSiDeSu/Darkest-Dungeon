@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellExpeditionMap : PanelBase,
+public class PanelCellExpeditionMapGrid : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
 {
     public int h;
@@ -29,7 +29,7 @@ public class PanelCellExpeditionMap : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ImgClick.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgGreen");        
+        ImgClick.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderChoosedGreen");        
     }
 
     public void OnPointerExit(PointerEventData eventData)

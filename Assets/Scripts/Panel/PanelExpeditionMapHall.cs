@@ -7,7 +7,7 @@ public class PanelExpeditionMapHall : PanelBase
 {
     public Transform HallMapContent;
     public Transform RootHallMap;    
-    public Dictionary<int, List<PanelCellExpeditionMap>> DicMap = new();    
+    public Dictionary<int, List<PanelCellExpeditionMapGrid>> DicMap = new();    
 
     protected override void Awake()
     {
@@ -48,14 +48,14 @@ public class PanelExpeditionMapHall : PanelBase
             GameObject objH = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PanelCellExpeditionMapH");
             objH.transform.SetParent(RootHallMap, false);
             objH.name = "H" + i1;
-            DicMap.Add(i1, new List<PanelCellExpeditionMap>());
+            DicMap.Add(i1, new List<PanelCellExpeditionMapGrid>());
 
             for (int i2 = 0; i2 < 25; i2++)
             {
                 GameObject objW = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PanelCellExpeditionMapW");
                 objW.transform.SetParent(objH.transform, false);
                 objW.name = "W" + i2;
-                DicMap[i1].Add(objW.GetComponent<PanelCellExpeditionMap>());
+                DicMap[i1].Add(objW.GetComponent<PanelCellExpeditionMapGrid>());
                 DicMap[i1][i2].h = i1;
                 DicMap[i1][i2].w = i2;
             }

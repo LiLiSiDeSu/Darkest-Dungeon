@@ -57,8 +57,8 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMiniMap>
             (true, "/PanelExpeditionMiniMap", true, false, "PanelExpeditionMiniMap");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelMapEditor>
-            (true, "/PanelMapEditor", true, false, "PanelMapEditor");
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherMapEditor>
+            (true, "/PanelOtherMapEditor", true, false, "PanelOtherMapEditor");
 
         Destroy(gameObject);
     }

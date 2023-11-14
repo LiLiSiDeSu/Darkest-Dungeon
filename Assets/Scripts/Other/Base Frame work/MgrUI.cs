@@ -46,7 +46,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     }
 
     /// <summary>
-    /// 就是简单的创建一个面板 
+    /// 就是简单的创建一个面板 不会加入到PoolNowPanel
     /// </summary>
     /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   
     /// <typeparam name="T">面板类型</typeparam>
@@ -78,7 +78,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     }
 
     /// <summary>
-    /// 创建面板并显示面板 主要用于需要创建并需要显示的面板
+    /// 创建面板并显示面板 主要用于需要创建并直接显示的面板加入PoolNowPanel
     /// </summary>
     /// <typeparam name="T">面板类型</typeparam>   
     /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   

@@ -78,6 +78,10 @@ public static class Hot
 
     #region Panel
     
+    public static PanelOtherMapEditor PanelOtherMapEditor_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherMapEditor>("PanelOtherMapEditor"); }
+    }
     public static PanelExpeditionMiniMap PanelExpeditionMiniMap_
     {
         get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
@@ -133,11 +137,6 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
     }
-
-    #endregion    
-
-    #region 城镇商店
-
     /// <summary>
     /// 城镇商店
     /// </summary>
@@ -174,7 +173,7 @@ public static class Hot
         get { return MgrUI_.GetPanel<PanelTownShopItem>("PanelTownShopItem"); }
     }
 
-    #endregion
+    #endregion    
 
     #region Data
 
@@ -207,7 +206,7 @@ public static class Hot
 
     public static int IndexPaddingContentStep;
     public static E_ArrowDirection e_PaddingArrowDirection;
-    public static DynamicContentStep PaddingContentStep_;
+    public static DynamicContentStep PaddingContentStep_;    
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

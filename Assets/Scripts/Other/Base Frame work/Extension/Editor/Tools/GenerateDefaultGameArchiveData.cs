@@ -128,71 +128,71 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         };
 
         GameArchiveDataCellList[0].ExpeditionPrepare = new DataContainer_ExpeditionPrepare(
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
         },
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Boss2),
         },
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Boss0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Boss0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Boss0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Boss0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Boss0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Boss0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Boss1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Boss1),
         },
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Gather2),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Shrieker1),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker0),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.Shrieker1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Gather2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Shrieker1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.Shrieker1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.Shrieker2),
         },
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
-            new DataContainer_Map(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Large, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Middle, E_ExpeditionEvent.BossDarkest),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Zero, E_DungeonSize.Small, E_ExpeditionEvent.BossDarkest),
         },
-        new List<DataContainer_Map>()
+        new List<DataContainer_ExpeditionMiniMap>()
         {
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.CleanseCrystal),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Gather1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Gather0),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.CleanseCrystal),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Gather1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Gather1),
-            new DataContainer_Map(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.CleanseCrystal),
-        }, new List<DataContainer_Map>()
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.CleanseCrystal),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Gather1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Gather0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.CleanseCrystal),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Large, E_ExpeditionEvent.Gather1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Middle, E_ExpeditionEvent.Gather1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.One, E_DungeonSize.Small, E_ExpeditionEvent.CleanseCrystal),
+        }, new List<DataContainer_ExpeditionMiniMap>()
         {            
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Cleanse0),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Cleanse1),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Cleanse2),
-            new DataContainer_Map(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Cleanse1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Cleanse0),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Large, E_ExpeditionEvent.Cleanse1),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Middle, E_ExpeditionEvent.Cleanse2),
+            new DataContainer_ExpeditionMiniMap(E_DungeonLevel.Blood, E_DungeonSize.Small, E_ExpeditionEvent.Cleanse1),
         });
 
         #endregion

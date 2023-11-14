@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public sealed class AllDataOrInfoContainer { }
@@ -94,15 +96,15 @@ public class DataContainer_CellRoleRecruit
 
 public class DataContainer_ExpeditionPrepare
 {
-    public List<DataContainer_Map> BloodCourtyard = new();
-    public List<DataContainer_Map> Lair = new();
-    public List<DataContainer_Map> Farm = new();
-    public List<DataContainer_Map> Wilds = new();
-    public List<DataContainer_Map> Ruins = new();
-    public List<DataContainer_Map> Sea = new();
-    public List<DataContainer_Map> Darkest = new();
+    public List<DataContainer_ExpeditionMiniMap> BloodCourtyard = new();
+    public List<DataContainer_ExpeditionMiniMap> Lair = new();
+    public List<DataContainer_ExpeditionMiniMap> Farm = new();
+    public List<DataContainer_ExpeditionMiniMap> Wilds = new();
+    public List<DataContainer_ExpeditionMiniMap> Ruins = new();
+    public List<DataContainer_ExpeditionMiniMap> Sea = new();
+    public List<DataContainer_ExpeditionMiniMap> Darkest = new();
 
-    public List<DataContainer_Map> this[E_ExpeditionLocation e_ExpeditionLocation]
+    public List<DataContainer_ExpeditionMiniMap> this[E_ExpeditionLocation e_ExpeditionLocation]
     {
         get
         {
@@ -150,9 +152,9 @@ public class DataContainer_ExpeditionPrepare
 
     public DataContainer_ExpeditionPrepare() { }
     public DataContainer_ExpeditionPrepare
-    (List<DataContainer_Map> bloodCourtyard, List<DataContainer_Map> lair, List<DataContainer_Map> farm,
-     List<DataContainer_Map> wilds, List<DataContainer_Map> ruins, List<DataContainer_Map> sed,
-     List<DataContainer_Map> darkest)
+    (List<DataContainer_ExpeditionMiniMap> bloodCourtyard, List<DataContainer_ExpeditionMiniMap> lair, List<DataContainer_ExpeditionMiniMap> farm,
+     List<DataContainer_ExpeditionMiniMap> wilds, List<DataContainer_ExpeditionMiniMap> ruins, List<DataContainer_ExpeditionMiniMap> sed,
+     List<DataContainer_ExpeditionMiniMap> darkest)
     {
         BloodCourtyard = bloodCourtyard;
         Lair = lair;
@@ -171,16 +173,16 @@ public class DataContainer_CellExpeditionObject
 
 #region Map
 
-public class DataContainer_Map
+public class DataContainer_ExpeditionMiniMap
 {
     public E_DungeonLevel e_dungeonLevel = E_DungeonLevel.Zero;
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
-    public List<List<DataContainer_CellExpeditionMap>> CellMap = new();
+    public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
-    public DataContainer_Map() { }
-    public DataContainer_Map
+    public DataContainer_ExpeditionMiniMap() { }
+    public DataContainer_ExpeditionMiniMap
     (E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
      E_ExpeditionEvent e_ExpeditionEvent)
     {
@@ -190,10 +192,11 @@ public class DataContainer_Map
     }
 }
 
-public class DataContainer_CellExpeditionMap
+public class DataContainer_CellExpeditionMiniMap
 {
-    public E_CellExpeditionMapType e_CellExpeditionMapType = E_CellExpeditionMapType.Room;
-    public E_CellExpeditionMiniMap e_CellExpeditionMiniMap = E_CellExpeditionMiniMap.HallLight;
+    public bool IsHave = false;
+    public E_CellExpeditionMiniMapHall e_CellExpeditionMiniMapHall = E_CellExpeditionMiniMapHall.None;
+    public E_CellExpeditionMiniMapRoom e_CellExpeditionMiniMapRoom = E_CellExpeditionMiniMapRoom.None;            
 
     public List<List<DataContainer_CellExpeditionMapGrid>> Map = new();
 }

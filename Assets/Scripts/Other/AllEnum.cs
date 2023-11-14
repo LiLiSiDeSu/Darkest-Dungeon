@@ -2,21 +2,23 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
-public enum E_CellExpeditionMapType
+/// <summary>
+/// 所有的过道Hall 用于加载Sprite时要加CellMap做前缀
+/// </summary>
+public enum E_CellExpeditionMiniMapHall
 {
-    Room,
-    Hall,
+    None,
+    HallLight,
+    HallDim,
+    HallDark,       
 }
 
 /// <summary>
-/// 用于加载Sprite时要加CellMap做前缀
+/// 所有的过道Room 用于加载Sprite时要加CellMap做前缀
 /// </summary>
-public enum E_CellExpeditionMiniMap
-{
-    NowLocation,
-    HallLight,
-    HallDim,
-    HallDark,   
+public enum E_CellExpeditionMiniMapRoom
+{    
+    None,
     RoomBoss,
     RoomEmpty,
     RoomEntrance,
