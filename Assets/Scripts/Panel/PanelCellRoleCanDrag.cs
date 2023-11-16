@@ -64,7 +64,7 @@ public class PanelCellRoleCanDrag : PanelBase,
     {
         ImgRolePortraitCanDrag.raycastTarget = true;
         
-        if (Hot.e_NowPointerLocation != E_NowPointerLocation.PanelTownExpedition)
+        if (Hot.e_NowPointerLocation != E_NowPointerLocation.PanelTownExpeditionRole)
         {
             Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus = E_RoleStatus.None;
             Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition = -1;

@@ -19,12 +19,12 @@ public class Data : InstanceBaseAuto_Mono<Data>
             Directory.CreateDirectory(MgrJson.GetInstance().filePath);
         }
 
-        string[] AllPathGameArchive = Directory.GetFiles(MgrJson.GetInstance().filePath);        
+        string[] AllPathGameArchive = Directory.GetFiles(MgrJson.GetInstance().filePath + "/GameArchiveData");
         
         for (int i = 0; i < AllPathGameArchive.Length; i++)
         {
             DataListCellGameArchive.
-                Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>("", PathGameArchiveData + i));
+                Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>("/GameArchiveData", PathGameArchiveData + i));
         }
     }
 
@@ -34,7 +34,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// <param name="index">要被保存的存档的Index</param>
     public void Save(int index)
     {
-        MgrJson.GetInstance().Save(DataListCellGameArchive[index], "", PathGameArchiveData + index);
+        MgrJson.GetInstance().Save(DataListCellGameArchive[index], "/GameArchiveData", PathGameArchiveData + index);
     }
 
     /// <summary>

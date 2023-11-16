@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2815668929162411138}
   - component: {fileID: 565156153961850404}
   m_Layer: 0
-  m_Name: PanelCellExpeditionMiniMapGridH
+  m_Name: PanelCellMapEditorGridH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

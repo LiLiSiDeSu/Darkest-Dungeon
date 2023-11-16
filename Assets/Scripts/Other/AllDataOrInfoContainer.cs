@@ -9,7 +9,13 @@ using UnityEngine;
 public sealed class AllDataOrInfoContainer { }
 
 public class DataContainer_PanelCellGameArchive
-{    
+{
+    public string GameArchiveName = "";
+    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
+    public int IndexExpeditionLocation = -1;
+    public string Week = "0";
+    public string Time = "0000/00/00 00:00:00";
+
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public DataContainer_ResTable ResTable = new();    
     public List<DataContainer_CellTownStore> ListCellStore = new();    
@@ -17,13 +23,7 @@ public class DataContainer_PanelCellGameArchive
     public List<DataContainer_CellRole> ListCellRole = new();
     public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
 
-    public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
-
-    public string GameArchiveName = "";
-    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
-    public int IndexExpeditionLocation = -1;
-    public string Week = "0";
-    public string Time = "0000/00/00 00:00:00";    
+    public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();    
 
     public DataContainer_PanelCellGameArchive() { }
     public DataContainer_PanelCellGameArchive

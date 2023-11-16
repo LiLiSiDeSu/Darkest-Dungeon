@@ -53,13 +53,13 @@ public class PanelBarExpedition : PanelBase
             Hot.e_NowPointerLocation = E_NowPointerLocation.None;
         });
         Hot.MgrUI_.AddCustomEventListener
-        (transform.FindSonSonSon("RootExpedition").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
+        (transform.FindSonSonSon("ExpeditionRoleRoot").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownExpedition;
+            Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownExpeditionRole;
         });
         Hot.MgrUI_.AddCustomEventListener
-        (transform.FindSonSonSon("RootExpedition").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
+        (transform.FindSonSonSon("ExpeditionRoleRoot").gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
         (param) =>
         {
             Hot.e_NowPointerLocation = E_NowPointerLocation.None;

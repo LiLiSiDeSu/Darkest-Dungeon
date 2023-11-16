@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellExpeditionMiniMapChooseHall : PanelBase             
+public class PanelCellMapEditorChooseHall : PanelBase             
 {
     public E_CellExpeditionMiniMapHall e_CellExpeditionMiniMapHall = E_CellExpeditionMiniMapHall.None;
-    public Image ImgCellExpeditionMiniMapChooseHall;
+    public Image ImgCellMapEditorChooseHall;
 
     protected override void Awake()
     {
         base.Awake();
 
-        ImgCellExpeditionMiniMapChooseHall = transform.FindSonSonSon("ImgCellExpeditionMiniMapChooseHall").GetComponent<Image>();
+        ImgCellMapEditorChooseHall = transform.FindSonSonSon("ImgCellMapEditorChooseHall").GetComponent<Image>();
     }
 
     protected override void Button_OnClick(string controlname)
@@ -22,9 +22,10 @@ public class PanelCellExpeditionMiniMapChooseHall : PanelBase
 
         switch (controlname)
         {
-            case "BtnCellExpeditionMiniMapChooseHall":
+            case "BtnCellMapEditorChooseHall":
                 Hot.PanelOtherMapEditor_.ImgCurrentChooseHall.sprite = 
                     Hot.MgrRes_.Load<Sprite>("Art/CellMap" + e_CellExpeditionMiniMapHall.ToString());
+                Hot.e_NowChooseHall = e_CellExpeditionMiniMapHall;               
                 break;
         }
     }
@@ -32,6 +33,6 @@ public class PanelCellExpeditionMiniMapChooseHall : PanelBase
     public void Init(E_CellExpeditionMiniMapHall e_CellExpeditionMiniMapHall)
     {
         this.e_CellExpeditionMiniMapHall = e_CellExpeditionMiniMapHall;
-        ImgCellExpeditionMiniMapChooseHall.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMap" + e_CellExpeditionMiniMapHall.ToString());
+        ImgCellMapEditorChooseHall.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMap" + e_CellExpeditionMiniMapHall.ToString());
     }    
 }

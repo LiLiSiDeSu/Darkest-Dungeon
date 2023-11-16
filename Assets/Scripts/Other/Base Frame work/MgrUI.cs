@@ -52,7 +52,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <typeparam name="T">面板类型</typeparam>
     /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
     ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>    
-    /// <param name="callback">回调函数</param>
+    /// <param name="callback">回调委托</param>
     public void CreatePanel<T>
     (bool isAddDicPanel, string panelname, UnityAction<T> callback = null)
     where T : PanelBase
@@ -85,7 +85,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
     ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>        
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
-    /// <param name="callback">回调函数</param>
+    /// <param name="callback">回调委托</param>
     public void CreatePanelAndShow<T>
     (bool isAddDicPanel, string panelname, UnityAction<T> callback = null) 
     where T : PanelBase
@@ -122,7 +122,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="isPush">是否要添加到对象池</param>
     /// <param name="Active">添加到缓存池后的状态</param>
     /// <param name="PushObjName">给添加到缓存池的对象取个可爱的名字</param>
-    /// <param name="callback">回调函数</param>
+    /// <param name="callback">回调委托</param>
     public void CreatePanelAndPush<T>
     (bool isAddDicPanel, string panelname, 
      bool isPush = false, bool Active = false, string PushObjName = "", UnityAction<T> callback = null)
@@ -151,8 +151,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <typeparam name="T">面板类型</typeparam>
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
     /// <param name="panelname">面板名</param>    
-    /// <param name="callback">回调函数</param>
-    /// <param name="CallBackForPoolEsc">PoolEsc的回调函数</param>
+    /// <param name="callback">回调委托</param>
+    /// <param name="CallBackForPoolEsc">PoolEsc的回调委托</param>
     public void ShowPanel<T>
     (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null) 
     where T : PanelBase
@@ -223,7 +223,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     /// <param name="control">控件对象</param>
     /// <param name="type">事件类型</param>
-    /// <param name="callback">事件的回调函数</param>
+    /// <param name="callback">回调委托</param>
     public void AddCustomEventListener(GameObject control, EventTriggerType type, UnityAction<BaseEventData> callback)
     {
         EventTrigger trigger = control.AddComponent<EventTrigger>();

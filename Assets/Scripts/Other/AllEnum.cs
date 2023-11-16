@@ -8,9 +8,9 @@ public sealed class AllEnum : MonoBehaviour { }
 public enum E_CellExpeditionMiniMapHall
 {
     None,
-    HallLight,
-    HallDim,
-    HallDark,       
+    HallBattle,
+    HallTrap,
+    HallSecret
 }
 
 /// <summary>
@@ -22,7 +22,7 @@ public enum E_CellExpeditionMiniMapRoom
     RoomBoss,
     RoomEmpty,
     RoomEntrance,
-    RoomLocked,
+    RoomLocked,    
 }
 
 public enum E_GameArchiveLevel
@@ -167,7 +167,7 @@ public enum E_NowPointerLocation
     PanelTownShopItem,
     PanelRoleList,
     PanelTownPrepareExpedition,
-    PanelTownExpedition
+    PanelTownExpeditionRole
 }
 
 public enum E_Location

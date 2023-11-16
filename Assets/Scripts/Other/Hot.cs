@@ -205,6 +205,8 @@ public static class Hot
     #region Now    
 
     public static int IndexPaddingContentStep;
+    public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
+    public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
     public static DynamicContentStep PaddingContentStep_;    
     /// <summary>

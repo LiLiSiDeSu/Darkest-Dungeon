@@ -199,7 +199,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
         {            
-            MgrJson.GetInstance().Save(GameArchiveDataCellList[i], "", Data.GetInstance().PathGameArchiveData + i);
+            MgrJson.GetInstance().Save(GameArchiveDataCellList[i], "/GameArchiveData", Data.GetInstance().PathGameArchiveData + i);
         }
 
         DestroyImmediate(Hot.Data_.gameObject);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 711552434412542722}
   - component: {fileID: 4474890730753792097}
   m_Layer: 0
-  m_Name: ImgCellExpeditionMiniMapChooseHall
+  m_Name: ImgCellMapEditorChooseHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0ee5223f7bbbee46b554e224ce58799, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f6e3e58d04ae1c468b58df23ac600d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 638712493045546075}
   - component: {fileID: 7704126957471120978}
   m_Layer: 0
-  m_Name: BtnCellExpeditionMiniMapChooseHall
+  m_Name: BtnCellMapEditorChooseHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 5813771062577210266}
   - component: {fileID: 5217263467891103419}
   m_Layer: 0
-  m_Name: PanelCellExpeditionMiniMapChooseHall
+  m_Name: PanelCellMapEditorChooseHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,3 +254,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7853a89cabe56e946a9a1afaa60581be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e_CellExpeditionMiniMapHall: 0
+  ImgCellExpeditionMiniMapChooseHall: {fileID: 0}
