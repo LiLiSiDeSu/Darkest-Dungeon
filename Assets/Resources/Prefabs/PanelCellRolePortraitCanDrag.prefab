@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1443986997024342862}
   - component: {fileID: 7137156766174995290}
   m_Layer: 5
-  m_Name: PanelCellRoleCanDrag
+  m_Name: PanelCellRolePortraitCanDrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2510075749684600840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b359dcfceb2dd4fb53e455dce62720, type: 3}
+  m_Script: {fileID: 11500000, guid: c62aa59e5c11a8b4ca3cae57a45fd9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ImgRolePortraitCanDrag: {fileID: 0}

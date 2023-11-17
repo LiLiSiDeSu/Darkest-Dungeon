@@ -12,7 +12,7 @@ public class PanelRoleList : PanelBase,
     private bool IsOpen = true;
 
     public int NowIndex;    
-    public List<DynamicContentStep> ListDynamicContentStep = new();
+    public List<DynamicContentStepForPanelCellRole> ListDynamicContentStep = new();
 
     public GameObject ScrollView_;
     public GameObject BtnPackUp;
@@ -39,43 +39,7 @@ public class PanelRoleList : PanelBase,
                 else
                     Hot.MgrUI_.ShowPanel<PanelRoleList>(true, "PanelRoleList");
             }
-        });        
-
-        Hot.CenterEvent_.AddEventListener<bool, int, E_ArrowDirection>
-        ("DynamicContentStep", 
-        (isInside, index, arrow) => 
-        {
-            if (isInside)
-            {
-                Hot.PaddingContentStep_.transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                Hot.PaddingContentStep_.transform.SetParent(RoleContent, false);
-                Hot.PaddingContentStep_.gameObject.SetActive(true);
-
-                Hot.IndexPaddingContentStep = index;
-
-                switch (arrow)
-                {
-                    case E_ArrowDirection.Up:
-                        Debug.Log(index + " - " + arrow);
-                        Hot.e_PaddingArrowDirection = E_ArrowDirection.Up;
-                        for (int i = index; i < ListDynamicContentStep.Count; i++)
-                        {
-                            ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                            ListDynamicContentStep[i].transform.SetParent(RoleContent, false);
-                        }
-                        break;
-                    case E_ArrowDirection.Down:
-                        Debug.Log(index + " - " + arrow);
-                        Hot.e_PaddingArrowDirection = E_ArrowDirection.Down;
-                        for (int i = index + 1; i < ListDynamicContentStep.Count; i++)
-                        {
-                            ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                            ListDynamicContentStep[i].transform.SetParent(RoleContent, false);
-                        }
-                        break;
-                }
-            }            
-        });
+        });                
 
         ScrollView_ = transform.FindSonSonSon("ScrollView_").gameObject;
         BtnPackUp = transform.FindSonSonSon("BtnPackUp").gameObject;
@@ -130,22 +94,6 @@ public class PanelRoleList : PanelBase,
         }
     }
 
-    public void EnableDetection()
-    {
-        for (int i = 0; i < ListDynamicContentStep.Count; i++)
-        {
-            ListDynamicContentStep[i].SetRootDetectionAreaActive(true);
-        }
-    }
-
-    public void DisableDetection()
-    {
-        for (int i = 0; i < ListDynamicContentStep.Count; i++)
-        {
-            ListDynamicContentStep[i].SetRootDetectionAreaActive(false);
-        }
-    }
-
     public void InitContent()
     {
         NowIndex = 0;
@@ -160,12 +108,12 @@ public class PanelRoleList : PanelBase,
             {
                 panel.Index = tempi;
                 panel.CreatePanelCellRoleCanDrag();
-                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep");
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellRole");
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(RoleContent, false);
-                obj.GetComponent<DynamicContentStep>().Init(tempi);
-                panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().RootPanelCellRole, false);
-                ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
+                obj.GetComponent<DynamicContentStepForPanelCellRole>().Init(tempi);
+                panel.transform.SetParent(obj.GetComponent<DynamicContentStepForPanelCellRole>().DependentObjRoot, false);
+                ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStepForPanelCellRole>());
                 panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi]);           
             });
 
@@ -173,7 +121,7 @@ public class PanelRoleList : PanelBase,
         }        
     }
 
-    public void Clear()
+    public void ClearContent()
     {
         ContentStep[] all = RoleContent.GetComponentsInChildren<ContentStep>();
         for (int i = 0; i < all.Length; i++)
@@ -184,8 +132,8 @@ public class PanelRoleList : PanelBase,
 
     public void SortContent()
     {
-        DynamicContentStep[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStep>();
-        List<DynamicContentStep> tempList = new List<DynamicContentStep>();
+        DynamicContentStepForPanelCellRole[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStepForPanelCellRole>();
+        List<DynamicContentStepForPanelCellRole> tempList = new();
         for (int i = 0; i < allDynamicContentStep.Length; i++)
         {
             tempList.Add(allDynamicContentStep[i]);
@@ -204,17 +152,7 @@ public class PanelRoleList : PanelBase,
         Hot.DataNowCellGameArchive.ListCellRole = tempData;
 
         Hot.Data_.Save();
-    }        
-
-    public PanelCellRole GetCellRole()
-    {
-        return null;
-    }
-
-    public void ChangePosPanelCellRole(int sourece, int replace)
-    {
-        
-    }
+    }            
 
     private void ChangePosImgDecorateFrameBottom()
     {
@@ -226,9 +164,25 @@ public class PanelRoleList : PanelBase,
                 new Vector3(ImgDecorateFrameBottom.transform.position.x,
                 ImgDecorateFrameTop.position.y - 40,
                 0);
-    }    
+    }
 
-    public void AddRole(DataContainer_CellRole role, DynamicContentStep dynamicContentStep)
+    public void EnableDetection()
+    {
+        for (int i = 0; i < ListDynamicContentStep.Count; i++)
+        {
+            ListDynamicContentStep[i].SetRootDetectionAreaActive(true);
+        }
+    }
+
+    public void DisableDetection()
+    {
+        for (int i = 0; i < ListDynamicContentStep.Count; i++)
+        {
+            ListDynamicContentStep[i].SetRootDetectionAreaActive(false);
+        }
+    }
+
+    public void AddRole(DataContainer_CellRole role, DynamicContentStepForPanelCellRole dynamicContentStep)
     {
         Hot.DataNowCellGameArchive.ListCellRole.Add(role);
 
@@ -240,7 +194,7 @@ public class PanelRoleList : PanelBase,
 
             panel.CreatePanelCellRoleCanDrag();
 
-            panel.transform.SetParent(dynamicContentStep.RootPanelCellRole, false);
+            panel.transform.SetParent(dynamicContentStep.DependentObjRoot, false);
             SortContent();
 
             panel.InitInfo(role);

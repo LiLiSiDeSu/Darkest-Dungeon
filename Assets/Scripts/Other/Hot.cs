@@ -208,7 +208,7 @@ public static class Hot
     public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
     public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
-    public static DynamicContentStep PaddingContentStep_;    
+    public static DynamicContentStepForPanelCellRole PaddingContentStep_;    
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

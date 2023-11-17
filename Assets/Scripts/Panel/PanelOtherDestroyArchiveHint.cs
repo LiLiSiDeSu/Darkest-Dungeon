@@ -7,15 +7,7 @@ using UnityEngine.UI;
 public class PanelOtherDestroyArchiveHint : PanelBase
 {
     public UnityAction<GameObject> DelConfirm;
-    public UnityAction<GameObject> DelCancel;
-
-    protected override void Start()
-    {
-        base.Start();
-
-        transform.FindSonSonSon("ImgConfirm").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgCancel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-    }
+    public UnityAction<GameObject> DelCancel;    
 
     protected override void Button_OnClick(string controlname)
     {

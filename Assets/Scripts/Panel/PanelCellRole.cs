@@ -24,7 +24,7 @@ public class PanelCellRole : PanelBaseCell,
 
     public Vector2 DragOffSet;
 
-    public PanelCellRoleCanDrag PanelCellRoleCanDrag_;
+    public PanelCellRolePortraitCanDrag PanelCellRoleCanDrag_;
 
     public List<GameObject> ListImgCellSanity = new List<GameObject>();   
 
@@ -48,7 +48,7 @@ public class PanelCellRole : PanelBaseCell,
         ImgRolePortrait.alphaHitTestMinimumThreshold = 0.2f;
     }
 
-    #region EventSystem
+    #region EventSystem接口实现
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -70,7 +70,7 @@ public class PanelCellRole : PanelBaseCell,
         Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(false);
 
         Hot.PaddingContentStep_ =
-            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep").GetComponent<DynamicContentStep>();
+            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellRole").GetComponent<DynamicContentStepForPanelCellRole>();
         Hot.PaddingContentStep_.Init(-1);
         Hot.PanelRoleList_.EnableDetection();
     }
@@ -90,7 +90,7 @@ public class PanelCellRole : PanelBaseCell,
         if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelRoleList)
         {
             Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
-            transform.SetParent(Hot.PaddingContentStep_.RootPanelCellRole, false);
+            transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
             transform.localPosition = Vector3.zero;
             
             DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);            
@@ -99,7 +99,7 @@ public class PanelCellRole : PanelBaseCell,
         else
         {
             Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
-            transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].RootPanelCellRole, false);
+            transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].DependentObjRoot, false);
             transform.localPosition = Vector3.zero;
 
             DestroyImmediate(Hot.PaddingContentStep_.gameObject);
@@ -131,7 +131,7 @@ public class PanelCellRole : PanelBaseCell,
     {
         if (Hot.DataNowCellGameArchive.ListCellRole[Index].e_RoleStatus == E_RoleStatus.None)
         {
-            Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>(false, "/PanelCellRoleCanDrag",
+            Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>(false, "/PanelCellRolePortraitCanDrag",
             (panel) =>
             {
                 panel.transform.SetParent(RootPortrait, false);

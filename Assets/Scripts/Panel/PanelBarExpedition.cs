@@ -150,8 +150,8 @@ public class PanelBarExpedition : PanelBase
             switch (Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpedition)
             {
                 case 0:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
-                    (false, "/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
+                    (false, "/PanelCellRolePortraitCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole0.transform;                        
@@ -165,8 +165,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 1:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
-                    (false, "/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
+                    (false, "/PanelCellRolePortraitCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole1.transform;
@@ -180,8 +180,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 2:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
-                    (false, "/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
+                    (false, "/PanelCellRolePortraitCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole2.transform;
@@ -195,8 +195,8 @@ public class PanelBarExpedition : PanelBase
                     });
                     break;
                 case 3:
-                    Hot.MgrUI_.CreatePanel<PanelCellRoleCanDrag>
-                    (false, "/PanelCellRoleCanDrag",
+                    Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
+                    (false, "/PanelCellRolePortraitCanDrag",
                     (panel) =>
                     {
                         panel.RootExpeditionRole = RootExpeditionRole3.transform;

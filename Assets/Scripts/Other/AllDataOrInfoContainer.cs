@@ -11,8 +11,7 @@ public sealed class AllDataOrInfoContainer { }
 public class DataContainer_PanelCellGameArchive
 {
     public string GameArchiveName = "";
-    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
-    public int IndexExpeditionLocation = -1;
+    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;    
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 

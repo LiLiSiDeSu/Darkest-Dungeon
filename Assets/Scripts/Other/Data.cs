@@ -58,17 +58,23 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// 删除指定存档
     /// </summary>
     /// <param name="index">要被删除的存档的Index</param>
-    public void Destroy(int index)
+    /// <param name="IsRemoveDataListCellGameArchive">是否要移除DataListCellGameArchive里的数据</param>
+    public void Remove(int index, bool IsRemoveDataListCellGameArchive = true)
     {                
         for (int i = index; i < DataListCellGameArchive.Count - 1; i++)
         {
-            File.Copy(MgrJson.GetInstance().filePath + PathGameArchiveData + (i + 1) + ".json",
-                      MgrJson.GetInstance().filePath + PathGameArchiveData + i + ".json", true);            
+            File.Copy(Hot.MgrJson_.filePath + PathGameArchiveData + PathGameArchiveData + (i + 1) + ".json",
+                      Hot.MgrJson_.filePath + PathGameArchiveData + PathGameArchiveData + i + ".json", true);            
         }
             
 
-        File.Delete(MgrJson.GetInstance().filePath + PathGameArchiveData + (DataListCellGameArchive.Count - 1) + ".json");
-        DataListCellGameArchive.RemoveAt(index);
+        File.Delete(Hot.MgrJson_.filePath + PathGameArchiveData + PathGameArchiveData + 
+            (DataListCellGameArchive.Count - 1) + ".json");
+
+        if (IsRemoveDataListCellGameArchive)
+        {
+            DataListCellGameArchive.RemoveAt(index);
+        }
     }
 }
 

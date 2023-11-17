@@ -5,27 +5,95 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellGameArchive : PanelBaseCell
-{    
-    public Image ImgEnvelope;
+public class PanelCellGameArchive : PanelBaseCell,
+             IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+{
+    public Transform Root;
+
     private InputField IptGameArchiveInput;
-    public Image ImgGameArchiveLevel;
+    public Image ImgGameArchiveChoosed;
+    public Image ImgEnvelope;
+    public Image ImgGameArchiveLevel;    
     private Text TxtLocation;
     private Text TxtWeek;
-    private Text TxtTime;    
+    private Text TxtTime;
 
-    protected override void Start()
+    public Vector2 DragOffSet;
+
+    protected override void Awake()
     {
-        base.Start();
-        
+        base.Awake();
+
+        Root = transform.FindSonSonSon("Root");
+
+        ImgGameArchiveChoosed = transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>();
         transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
-        InitGameArchiveCellControl();
-        InitGameArchiveCellData(Data.GetInstance().DataListCellGameArchive[Index]);
+        InitGameArchiveCellControl();        
 
         ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
     }
+
+    #region EventSystem接口实现
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Root.localPosition = new Vector3(-50, 0, 0);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Root.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        ImgGameArchiveChoosed.raycastTarget = false;
+
+        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+
+        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+        Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject.SetActive(false);
+
+        Hot.PaddingContentStep_ =
+            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellGameArchive").GetComponent<DynamicContentStepForPanelCellRole>();
+        Hot.PaddingContentStep_.Init(-1);
+        Hot.PanelGameArchiveChoose_.EnableDetection();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = eventData.position + DragOffSet;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        ImgGameArchiveChoosed.raycastTarget = true;
+
+        Hot.PanelGameArchiveChoose_.DisableDetection();
+
+        if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelGameArchiveChoose)
+        {
+            Hot.PaddingContentStep_.transform.SetParent(Hot.PanelGameArchiveChoose_.GameArchiveContent, false);
+            transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
+            transform.localPosition = Vector3.zero;
+
+            DestroyImmediate(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject);
+            Hot.PanelGameArchiveChoose_.SortContent();
+        }
+        else
+        {
+            Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject.SetActive(true);
+            transform.SetParent(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].DependentObjRoot, false);
+            transform.localPosition = Vector3.zero;
+
+            DestroyImmediate(Hot.PaddingContentStep_.gameObject);
+            Hot.PaddingContentStep_ = null;
+        }
+    }
+
+    #endregion
 
     protected override void Button_OnClick(string controlname)
     {
@@ -64,14 +132,16 @@ public class PanelCellGameArchive : PanelBaseCell
                 Hot.MgrUI_.ShowPanel<PanelOtherDestroyArchiveHint>(true, "PanelOtherDestroyArchiveHint", (panel1) =>
                 {
                     Hot.PanelOtherDestroyArchiveHint_.DelConfirm += (panel2) =>
-                    {
-                        DestroyImmediate(gameObject);
-                        Hot.PanelGameArchiveChoose_.NowIndex -= 1;
-                        Hot.PanelGameArchiveChoose_.SortCellGameArchive();
+                    {                        
+                        Hot.PanelGameArchiveChoose_.NowIndex -= 1;                        
+                        
+                        DestroyImmediate(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject);
 
-                        Hot.Data_.Destroy(Index);
+                        Hot.Data_.Remove(Hot.Data_.DataListCellGameArchive.Count - 1, false);
 
-                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");
+                        Hot.PanelGameArchiveChoose_.SortContent();                        
+
+                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");                        
                     };
                     Hot.PanelOtherDestroyArchiveHint_.DelCancel += (panel2) =>
                     {
@@ -131,7 +201,7 @@ public class PanelCellGameArchive : PanelBaseCell
         TxtTime = transform.FindSonSonSon("TxtTime").GetComponent<Text>();
     }    
 
-    public void InitGameArchiveCellData(DataContainer_PanelCellGameArchive data)
+    public void Init(DataContainer_PanelCellGameArchive data)
     {
         IptGameArchiveInput.text = data.GameArchiveName;
 

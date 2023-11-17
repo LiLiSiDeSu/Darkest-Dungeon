@@ -59,7 +59,7 @@ public class LayoutForNowNews : MonoBehaviour
             String_DragingRolePortrait =
                 "DragingRolePortrait: " +
                 Hot.DataNowCellGameArchive.ListCellRole
-                [Hot.DragingRolePortrait.GetComponent<PanelCellRoleCanDrag>().PanelCellRole_.Index].Name;
+                [Hot.DragingRolePortrait.GetComponent<PanelCellRolePortraitCanDrag>().PanelCellRole_.Index].Name;
         else
             String_DragingRolePortrait = "DragingRolePortrait: null";
 

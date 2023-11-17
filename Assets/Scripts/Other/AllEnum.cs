@@ -167,7 +167,8 @@ public enum E_NowPointerLocation
     PanelTownShopItem,
     PanelRoleList,
     PanelTownPrepareExpedition,
-    PanelTownExpeditionRole
+    PanelTownExpeditionRole,
+    PanelGameArchiveChoose
 }
 
 public enum E_Location
