@@ -216,10 +216,11 @@ public class DataContainer_CellExpeditionMapGrid
 
 public class DataContainer_CellTownStore
 {
+    public string Name = "Ã»ÓÐÃû×Ö";
+    public int NowWeight = 0;
+    public int NowCapacity = 0;
     public E_PanelCellTownStore e_SpriteNamePanelCellTownStore = E_PanelCellTownStore.StoreWood;
-    public List<DataContainer_CellItem> ListCellStoreItem = new();    
-    public int NowWeight = 0;    
-    public int NowCapacity = 0;    
+    public List<DataContainer_CellItem> ListCellStoreItem = new();        
 
     public DataContainer_CellTownStore() { }
     public DataContainer_CellTownStore

@@ -191,7 +191,8 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         for (int i = 0; i < Hot.PoolNowPanel_.ListNowPanel.Count; i++)
         {
             Hot.MgrUI_.HidePanel
-                (false, GetPanel<PanelBase>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, Hot.PoolNowPanel_.ListNowPanel[i]);
+            (false, GetPanel<PanelBase>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, 
+             Hot.PoolNowPanel_.ListNowPanel[i]);
         }
     }
 

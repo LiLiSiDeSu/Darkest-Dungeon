@@ -1,111 +1,88 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class PanelTownStore : PanelBase, 
-             IPointerEnterHandler, IPointerExitHandler
-{
-    public int NowIndex = 0;        
-    public Transform RootPanelTownItem;
-    public Transform Content;      
+public class PanelTownStore : PanelBaseDynamicScrollView
+{    
+    public Transform RootPanelTownItem;    
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake();        
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
             if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.PanelTownStore)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore2_.gameObject, "PanelTownStore");
                 else
                     Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
             }
         });
 
-        Content = transform.FindSonSonSon("Content");
-        RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");        
+        RootPanelTownItem = transform.FindSonSonSon("RootPanelTownItem");
+        Content = transform.FindSonSonSon("TownStoreContent");
     }
 
-    #region EventSystem接口实现
-
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void InitContent()
     {
-        
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        
-    }
-
-    #endregion
-
-    public void InitContent()
-    {
-        NowIndex = 0;
-
-        for (int i = 0;  i < Hot.DataNowCellGameArchive.ListCellStore.Count; i++)
+        for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.ListCellStore.Count; i1++)
         {
-            int tempi = i;
+            int tempi = i1;
 
-            MgrUI.GetInstance().CreatePanelAndPush<PanelCellTownStore>
-                             (true, "/PanelCellTownStore", false, false, "PanelCellTownStore" + tempi,
-            (UnityEngine.Events.UnityAction<PanelCellTownStore>)((PanelCellTownStore_) =>
+            Hot.MgrUI_.CreatePanel<PanelCellTownStore>
+            (false, "/PanelCellTownStore", 
+            (panel) =>
             {
-                PanelCellTownStore_.Index = NowIndex;
-                PanelCellTownStore_.gameObject.name += tempi;
-                PanelCellTownStore_.transform.SetParent((Transform)this.Content, false);
+                panel.Index = tempi;
+                GameObject obj =
+                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + panel.PrefabsDynamicContentStepSuffix);
+                obj.name = tempi.ToString();
+                obj.transform.SetParent(Content, false);
+                obj.GetComponent<DynamicContentStep>().Init(tempi);
+                panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);                
+                ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                MgrUI.GetInstance().CreatePanelAndPush<PanelTownItem>
-                                 (true, "/PanelTownItem", true, true, "PanelTownItem" + tempi,
-                (PanelTownItem_) =>
-                {
-                    PanelTownItem_.gameObject.name += tempi;
-                    PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
-                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
-                    PanelTownItem_.FatherPanelCellTownStore = PanelCellTownStore_;                    
-                    PanelTownItem_.InitContent();
-                });
-
-                NowIndex++;
-            }));
-        }
+                panel.Init();
+            });
+        }        
     }
 
-    /// <summary>
-    /// 删除Content下的物体 用于重新读档
-    /// </summary>
-    public void Clear()
-    {        
+    public override void Clear()
+    {
         PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
         for (int i = 0; i < all.Length; i++)
-        {            
+        {
             Hot.MgrUI_.DicPanel.Remove(all[i].PanelCellItem_.gameObject.name);
-            if (Hot.PoolBuffer_.ContainKey(all[i].PanelCellItem_.gameObject.name))
-                Hot.PoolBuffer_.DicPool.Remove(all[i].PanelCellItem_.gameObject.name);
-            Hot.MgrUI_.DicPanel.Remove(all[i].gameObject.name);
+            Hot.PoolBuffer_.DicPool.Remove(all[i].PanelCellItem_.gameObject.name);            
             DestroyImmediate(all[i].PanelCellItem_.gameObject);
             DestroyImmediate(all[i].gameObject);
         }
     }
 
-    public void SortContent()
+    public override void SortContent()
     {
-        List<DataContainer_CellTownStore> data = new List<DataContainer_CellTownStore>();
+        DynamicContentStep[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStep>();
+        List<DynamicContentStep> tempList = new();
+        for (int i = 0; i < allDynamicContentStep.Length; i++)
+        {
+            tempList.Add(allDynamicContentStep[i]);
+            tempList[i].SetIndex(i);
+            tempList[i].gameObject.name = i.ToString();
+        }
+        ListDynamicContentStep = tempList;
+
         PanelCellTownStore[] all = transform.GetComponentsInChildren<PanelCellTownStore>();
+        List<DataContainer_CellTownStore> tempData = new();
         for (int i = 0; i < all.Length; i++)
-        {           
-            data.Add(Hot.DataNowCellGameArchive.ListCellStore[all[i].Index]);
-            all[i].gameObject.name += i;
+        {
+            tempData.Add(Hot.DataNowCellGameArchive.ListCellStore[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.ListCellStore = data;
+        Hot.DataNowCellGameArchive.ListCellStore = tempData;
 
         Hot.Data_.Save();
     }

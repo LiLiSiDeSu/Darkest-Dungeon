@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartUI : InstanceBaseAuto_Mono<StartUI>
-{
+{    
     private void Start()
     {
         Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
@@ -59,6 +59,39 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherMapEditor>
             (true, "/PanelOtherMapEditor", true, false, "PanelOtherMapEditor");
+
+        Hot.CenterEvent_.AddEventListener<int, E_ArrowDirection>
+        ("DynamicContentStep",
+        (index, arrow) =>
+        {
+            Hot.PaddingContentStep_.transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+            Hot.PaddingContentStep_.transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
+            Hot.PaddingContentStep_.gameObject.SetActive(true);            
+
+            switch (arrow)
+            {
+                case E_ArrowDirection.Up:
+                    Debug.Log(index + " - " + arrow);
+                    for (int i = index; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
+                    {
+                        Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
+                            SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+                        Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
+                            SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
+                    }
+                    break;
+                case E_ArrowDirection.Down:
+                    Debug.Log(index + " - " + arrow);
+                    for (int i = index + 1; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
+                    {
+                        Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
+                            SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+                        Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
+                            SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
+                    }
+                    break;
+            }
+        });
 
         Destroy(gameObject);
     }

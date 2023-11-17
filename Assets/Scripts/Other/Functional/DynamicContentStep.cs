@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DynamicContentStepForPanelCellRole : ContentStep
+public class DynamicContentStep : ContentStep
 {
-    public Transform DependentObjRoot;
-    public GameObject RootDetectionArea;
     public int Index;
+
+    public Transform DependentObjRoot;
+    public GameObject RootDetectionArea;    
 
     public void Init(int index)
     {

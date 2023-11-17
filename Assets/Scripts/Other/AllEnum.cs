@@ -163,6 +163,7 @@ public enum E_PlayerLocation
 public enum E_NowPointerLocation
 {
     None,
+    PanelTownStore,
     PanelTownItem,
     PanelTownShopItem,
     PanelRoleList,

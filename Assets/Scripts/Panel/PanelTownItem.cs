@@ -50,7 +50,7 @@ public class PanelTownItem : PanelBaseItem,
         Hot.MgrUI_.ShowPanel<PanelTownItem>(true, gameObject.name,
             (panel) =>
             {
-                panel.transform.SetParent(Hot.PanelTownStore_.RootPanelTownItem, false);
+                panel.transform.SetParent(Hot.PanelTownStore2_.RootPanelTownItem, false);
             });
     }     
 

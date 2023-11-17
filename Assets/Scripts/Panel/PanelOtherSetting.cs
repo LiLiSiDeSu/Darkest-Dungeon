@@ -74,13 +74,13 @@ public class PanelOtherSetting : PanelBase
             case "BtnBackStart":
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
-                    Hot.PanelTownStore_.Clear();
+                    Hot.MgrUI_.HideAllPanel();
+
+                    Hot.PanelTownStore2_.Clear();
                     Hot.PanelTownShopItem_.Clear();
                     Hot.PanelRoleList_.ClearContent();
                     Hot.PanelBarExpedition_.Clear();
-                    Hot.PanelRoleGuildRecruit_.Clear();
-
-                    Hot.MgrUI_.HideAllPanel();
+                    Hot.PanelRoleGuildRecruit_.Clear();                    
 
                     Hot.e_NowPlayerLocation = E_PlayerLocation.None;
 

@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRole : PanelBaseCell,
-             IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class PanelCellRole : PanelBaseCellDynamicScrollView,
+             IPointerEnterHandler, IPointerExitHandler
 {
     public Image ImgRolePortrait;
     public Image ImgProgress;
@@ -20,9 +20,7 @@ public class PanelCellRole : PanelBaseCell,
 
     public Transform Root;
     public Transform RootPortrait;
-    public Transform RootSanityValueBar;    
-
-    public Vector2 DragOffSet;
+    public Transform RootSanityValueBar;        
 
     public PanelCellRolePortraitCanDrag PanelCellRoleCanDrag_;
 
@@ -31,6 +29,8 @@ public class PanelCellRole : PanelBaseCell,
     protected override void Awake()
     {
         base.Awake();
+
+        PrefabsDynamicContentStepSuffix = "ForPanelCellRole";
 
         ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
         ImgProgress = transform.FindSonSonSon("ImgProgress").GetComponent<Image>();
@@ -60,51 +60,18 @@ public class PanelCellRole : PanelBaseCell,
         Root.localPosition = new Vector3(30, 0, 0);        
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        ImgPanelBk.raycastTarget = false;
-        ImgRolePortrait.raycastTarget = false;
-        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+        base.OnBeginDrag(eventData);
 
-        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(false);
-
-        Hot.PaddingContentStep_ =
-            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellRole").GetComponent<DynamicContentStepForPanelCellRole>();
-        Hot.PaddingContentStep_.Init(-1);
-        Hot.PanelRoleList_.EnableDetection();
+        ImgPanelBk.raycastTarget = false;        
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position + DragOffSet;
-    }    
+        base.OnEndDrag(eventData);
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        ImgPanelBk.raycastTarget = true;
-        ImgRolePortrait.raycastTarget = true;
-
-        Hot.PanelRoleList_.DisableDetection();        
-
-        if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelRoleList)
-        {
-            Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.RoleContent, false);
-            transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
-            
-            DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);            
-            Hot.PanelRoleList_.SortContent();
-        }
-        else
-        {
-            Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject.SetActive(true);
-            transform.SetParent(Hot.PanelRoleList_.ListDynamicContentStep[Index].DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
-
-            DestroyImmediate(Hot.PaddingContentStep_.gameObject);
-            Hot.PaddingContentStep_ = null;
-        }                        
+        ImgPanelBk.raycastTarget = true;        
     }
     
     #endregion

@@ -43,7 +43,7 @@ public class PanelCellRoleRecruit : PanelBaseCell,
             Hot.DragingPanelCellRoleRecruit = this;
 
             Hot.PaddingContentStep_ =
-                Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellRole").GetComponent<DynamicContentStepForPanelCellRole>();
+                Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep").GetComponent<DynamicContentStep>();
             Hot.PaddingContentStep_.Init(-1);
             Hot.PanelRoleList_.EnableDetection();
 

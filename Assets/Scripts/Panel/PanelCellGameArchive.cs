@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellGameArchive : PanelBaseCell,
-             IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
+             IPointerEnterHandler, IPointerExitHandler
 {
     public Transform Root;
 
@@ -16,13 +16,13 @@ public class PanelCellGameArchive : PanelBaseCell,
     public Image ImgGameArchiveLevel;    
     private Text TxtLocation;
     private Text TxtWeek;
-    private Text TxtTime;
-
-    public Vector2 DragOffSet;
+    private Text TxtTime;    
 
     protected override void Awake()
     {
         base.Awake();
+
+        PrefabsDynamicContentStepSuffix = "ForPanelCellGameArchive";
 
         Root = transform.FindSonSonSon("Root");
 
@@ -47,50 +47,18 @@ public class PanelCellGameArchive : PanelBaseCell,
         Root.localPosition = new Vector3(0, 0, 0);
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        ImgGameArchiveChoosed.raycastTarget = false;
+        base.OnBeginDrag(eventData);
 
-        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+        ImgGameArchiveChoosed.raycastTarget = false;        
+    }    
 
-        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-        Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject.SetActive(false);
-
-        Hot.PaddingContentStep_ =
-            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepForPanelCellGameArchive").GetComponent<DynamicContentStepForPanelCellRole>();
-        Hot.PaddingContentStep_.Init(-1);
-        Hot.PanelGameArchiveChoose_.EnableDetection();
-    }
-
-    public void OnDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position + DragOffSet;
-    }
+        base.OnEndDrag(eventData);
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
         ImgGameArchiveChoosed.raycastTarget = true;
-
-        Hot.PanelGameArchiveChoose_.DisableDetection();
-
-        if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelGameArchiveChoose)
-        {
-            Hot.PaddingContentStep_.transform.SetParent(Hot.PanelGameArchiveChoose_.GameArchiveContent, false);
-            transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
-
-            DestroyImmediate(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject);
-            Hot.PanelGameArchiveChoose_.SortContent();
-        }
-        else
-        {
-            Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject.SetActive(true);
-            transform.SetParent(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
-
-            DestroyImmediate(Hot.PaddingContentStep_.gameObject);
-            Hot.PaddingContentStep_ = null;
-        }
     }
 
     #endregion
@@ -113,7 +81,7 @@ public class PanelCellGameArchive : PanelBaseCell,
                     Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
                     Hot.PanelOtherResTable_.UpdateInfo();
-                    Hot.PanelTownStore_.InitContent();
+                    Hot.PanelTownStore2_.InitContent();
                     Hot.PanelTownShopItem_.InitContent();
                     Hot.PanelRoleList_.InitContent();
                     Hot.PanelBarExpedition_.InitContent();

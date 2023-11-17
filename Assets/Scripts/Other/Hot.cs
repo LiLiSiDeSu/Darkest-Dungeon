@@ -121,7 +121,7 @@ public static class Hot
     /// <summary>
     /// 所有城镇箱子面板
     /// </summary>
-    public static PanelTownStore PanelTownStore_
+    public static PanelTownStore PanelTownStore2_
     {
         get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
     }    
@@ -203,12 +203,12 @@ public static class Hot
     #endregion    
 
     #region Now    
-
-    public static int IndexPaddingContentStep;
+    
     public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
     public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
-    public static DynamicContentStepForPanelCellRole PaddingContentStep_;    
+    public static DynamicContentStep PaddingContentStep_;    
+    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

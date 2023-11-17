@@ -1,73 +1,70 @@
-using Palmmedia.ReportGenerator.Core.Reporting.Builders.Rendering;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
-using static UnityEditor.FilePathAttribute;
+using UnityEngine.UIElements.Experimental;
 
-public class PanelCellTownStore : PanelBaseCell,
-             IBeginDragHandler, IDragHandler, IEndDragHandler
-{    
+public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
+             IPointerEnterHandler, IPointerExitHandler
+{
     public int MaxWeight;
     public int MaxCapacity;
 
-    public Transform Push;
+    public PanelTownItem PanelCellItem_ = new();    
 
-    public Vector2 DragOffSet;
+    public Text TxtWeight;
+    public Text TxtCapacity;
+    public Text TxtName;
 
-    public Text TxtMaxWeight;    
-    public Text TxtMaxCapacity;
-    public Text TxtNowWeight;
-    public Text TxtNowCapacity;
+    public Image ImgPanelBk;
     public Image ImgStore;
-    
-    public PanelTownItem PanelCellItem_ = new PanelTownItem();    
 
-    protected override void Start()
+    public Transform Root;
+
+    protected override void Awake()
     {
-        base.Start();        
+        base.Awake();
 
-        TxtMaxWeight = transform.FindSonSonSon("TxtMaxWeight").GetComponent<Text>();        
-        TxtMaxCapacity = transform.FindSonSonSon("TxtMaxCapacity").GetComponent<Text>();
-        TxtNowWeight = transform.FindSonSonSon("TxtNowWeight").GetComponent<Text>();
-        TxtNowCapacity = transform.FindSonSonSon("TxtNowCapacity").GetComponent<Text>();
+        PrefabsDynamicContentStepSuffix = "ForPanelCellTownStore";
+
+        TxtWeight = transform.FindSonSonSon("TxtWeight").GetComponent<Text>();
+        TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
+        TxtName = transform.FindSonSonSon("TxtName").GetComponent<Text>();
+
+        ImgPanelBk = transform.FindSonSonSon("ImgPanelBk").GetComponent<Image>();
         ImgStore = transform.FindSonSonSon("ImgStore").GetComponent<Image>();
 
-        Push = transform.FindSonSonSon("Push");
-
-        InitDataInfo();
+        Root = transform.FindSonSonSon("Root");
 
         ImgStore.alphaHitTestMinimumThreshold = 0.2f;
-
-        TxtMaxWeight.text = MaxWeight.ToString();        
-        TxtMaxCapacity.text = MaxCapacity.ToString();
-        TxtNowWeight.text = Hot.DataNowCellGameArchive.ListCellStore[Index].NowWeight.ToString();
-        TxtNowCapacity.text = Hot.DataNowCellGameArchive.ListCellStore[Index].NowCapacity.ToString();
     }
 
     #region EventSystem接口实现
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.parent = Hot.PanelTownStore_.transform;
-        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
-        Hot.DragingTownStore = this;
+        Root.transform.localPosition = new Vector3(50, 0 , 0);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        transform.position = eventData.position + DragOffSet;
+        Root.transform.localPosition = new Vector3(0, 0, 0);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        transform.SetParent(Hot.PanelTownStore_.Content, false);
+        base.OnBeginDrag(eventData);
 
-        Hot.PanelTownStore_.SortContent();
+        ImgPanelBk.raycastTarget = false;
+    }
 
-        Hot.DragingTownStore = null;
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        base.OnEndDrag(eventData);
+
+        ImgPanelBk.raycastTarget = true;
     }
 
     #endregion
@@ -78,13 +75,12 @@ public class PanelCellTownStore : PanelBaseCell,
 
         switch (controlname)
         {
-            case "BtnCellTownStore":                
-                PanelCellItem_.ShowForBtn();                
+            case "BtnCellTownStore":
                 break;
         }
     }
 
-    public void InitDataInfo()
+    public void Init()
     {
         switch (Hot.DataNowCellGameArchive.ListCellStore[Index].e_SpriteNamePanelCellTownStore)
         {
@@ -95,16 +91,20 @@ public class PanelCellTownStore : PanelBaseCell,
 
             case E_PanelCellTownStore.StoreIron:
                 MaxWeight = 200;
-                MaxCapacity = 250;                
+                MaxCapacity = 250;
                 break;
 
             case E_PanelCellTownStore.StoreGold:
                 MaxWeight = 70;
-                MaxCapacity = 400;                
-                break;        
+                MaxCapacity = 400;
+                break;
         }
 
         ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>
         ("Art/" + Hot.DataNowCellGameArchive.ListCellStore[Index].e_SpriteNamePanelCellTownStore.ToString());
+
+        TxtWeight.text = Hot.DataNowCellGameArchive.ListCellStore[Index].NowWeight + " / " + MaxWeight;
+        TxtCapacity.text = Hot.DataNowCellGameArchive.ListCellStore[Index].NowCapacity + " / " + MaxCapacity;
+        TxtName.text = Hot.DataNowCellGameArchive.ListCellStore[Index].Name;
     }
 }

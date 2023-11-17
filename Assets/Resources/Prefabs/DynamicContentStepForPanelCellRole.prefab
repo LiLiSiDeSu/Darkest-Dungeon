@@ -124,12 +124,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622099415815935293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 914cd097674c47c499999b44b1e0b23a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4faa8a2d9717e8940be948e34b954666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Index: 0
   DependentObjRoot: {fileID: 0}
   RootDetectionArea: {fileID: 0}
-  Index: 0
 --- !u!1 &4520376733453214699
 GameObject:
   m_ObjectHideFlags: 0
