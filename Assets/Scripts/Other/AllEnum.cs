@@ -42,14 +42,18 @@ public enum E_PanelCellTownStore
 
 public enum E_SpriteNamePanelCellItem
 {
+    None,
+
     ItemFoodCookie,
     ItemFoodApple,
     ItemFoodBread,
     ItemFoodRawBeef,
+
     ItemFoodRawChicken,
     ItemFoodRawMutton,
     ItemFoodRawPotato,    
     ItemFoodCookedBeef,
+
     ItemFoodCoodedChicken,
     ItemFoodCoodedMutton,
     ItemFoodCookedPotato,

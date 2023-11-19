@@ -11,7 +11,7 @@ public class PanelOtherMapEditor : PanelBase
 {
     public string PathFolder;
 
-    public List<List<PanelCellMapEditorGridW>> Map = new();
+    public List<List<PanelCellMapEditorGrid>> Map = new();
     public List<List<Transform>> DependentObj = new();
 
     public Image ImgCurrentChooseRoom;
@@ -205,7 +205,7 @@ public class PanelOtherMapEditor : PanelBase
                 DependentObj[tempi1].Add(Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep").transform);
                 DependentObj[tempi1][tempi2].SetParent(obj2.transform, false);
 
-                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGridW>(false, "/PanelCellMapEditorGridW",
+                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGrid>(false, "/PanelCellMapEditorGrid",
                 (panel) =>
                 {
                     panel.transform.SetParent(obj1.transform, false);
@@ -222,21 +222,25 @@ public class PanelOtherMapEditor : PanelBase
         for (int i1 = 0; i1 < MapData.ListCellMiniMap.Count; i1++)
         {
             int tempi1 = i1;
+
             Map.Add(new());
-            DependentObj.Add(new());
             GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PanelCellMapEditorGridH");
             obj1.transform.SetParent(MapEditorContent, false);
+
+            DependentObj.Add(new());            
             GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "PanelCellMapEditorGridH");
             obj2.transform.SetParent(DependentObjContent, false);
 
             for (int i2 = 0; i2 < MapData.ListCellMiniMap[i1].Count; i2++)
             {
                 int tempi2 = i2;
+
                 Map[tempi1].Add(new());
+
                 DependentObj[tempi1].Add(Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep").transform);
                 DependentObj[tempi1][tempi2].SetParent(obj2.transform, false);
 
-                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGridW>(false, "/PanelCellMapEditorGridW",
+                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGrid>(false, "/PanelCellMapEditorGrid",
                 (panel) =>
                 {
                     panel.transform.SetParent(obj1.transform, false);
@@ -293,8 +297,7 @@ public class PanelOtherMapEditor : PanelBase
     {
         ClearMap();
 
-        GenerateByLoad
-        (Hot.MgrJson_.Load<DataContainer_ExpeditionMiniMap>(PathFolder, "/" + fileName, 
+        GenerateByLoad(Hot.MgrJson_.Load<DataContainer_ExpeditionMiniMap>(PathFolder, "/" + fileName,
         (data) =>
         {
             IptFileName.text = IptLoad.text;           

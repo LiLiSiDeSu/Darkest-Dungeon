@@ -216,30 +216,28 @@ public class DataContainer_CellExpeditionMapGrid
 
 public class DataContainer_CellTownStore
 {
-    public string Name = "没有名字";
-    public int NowWeight = 0;
-    public int NowCapacity = 0;
+    public string Name = "没有名字";    
     public E_PanelCellTownStore e_SpriteNamePanelCellTownStore = E_PanelCellTownStore.StoreWood;
-    public List<DataContainer_CellItem> ListCellStoreItem = new();        
+    public List<List<DataContainer_CellItem>> ListItem = new();       
 
     public DataContainer_CellTownStore() { }
     public DataContainer_CellTownStore
-    (E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
-    {        
+    (string name,
+     E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
+    {
+        Name = name;
         this.e_SpriteNamePanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
 }
 
 public class DataContainer_CellItem
-{
-    public E_Location e_Location = E_Location.TownItem;
-    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.ItemFoodCookie;   
+{    
+    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;   
 
     public DataContainer_CellItem() { }
     public DataContainer_CellItem
-    (E_Location e_Location, E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
-    {     
-        this.e_Location = e_Location;
+    (E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    {             
         this.e_SpriteNamePanelCellItem = e_SpriteNamePanelCellItem;
     }
 }

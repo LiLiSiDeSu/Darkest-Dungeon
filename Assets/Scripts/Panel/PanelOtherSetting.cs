@@ -76,7 +76,7 @@ public class PanelOtherSetting : PanelBase
                 {
                     Hot.MgrUI_.HideAllPanel();
 
-                    Hot.PanelTownStore2_.Clear();
+                    Hot.PanelTownStore_.Clear();
                     Hot.PanelTownShopItem_.Clear();
                     Hot.PanelRoleList_.ClearContent();
                     Hot.PanelBarExpedition_.Clear();

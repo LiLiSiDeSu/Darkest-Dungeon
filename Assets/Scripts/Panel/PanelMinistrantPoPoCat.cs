@@ -61,11 +61,7 @@ public class PanelMinistrantPoPoCat : PanelBase, IPointerEnterHandler, IPointerE
             case E_PoPoCatStatus.Close:                
                 BtnClose.SetActive(true);
                 break;
-        }
-
-
-        if (Hot.DragingItem != null)
-            Hot.DragingItem.transform.SetParent(transform, false);
+        }        
     }
 
     public void OnPointerExit(PointerEventData eventData)

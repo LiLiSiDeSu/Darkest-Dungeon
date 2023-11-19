@@ -205,10 +205,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 0
+  DragOffSet: {x: 0, y: 0}
+  PrefabsDynamicContentStepSuffix: 
   Root: {fileID: 0}
+  ImgGameArchiveChoosed: {fileID: 0}
   ImgEnvelope: {fileID: 0}
   ImgGameArchiveLevel: {fileID: 0}
-  DragOffSet: {x: 0, y: 0}
 --- !u!1 &1730202695166631656
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +942,7 @@ GameObject:
   - component: {fileID: 3685405492059459516}
   - component: {fileID: 5666321160773922525}
   m_Layer: 5
-  m_Name: IptGameArchiveInput
+  m_Name: IptGameArchiveName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1246,7 @@ GameObject:
   - component: {fileID: 7968492285547540384}
   - component: {fileID: 209948776453528907}
   m_Layer: 5
-  m_Name: TxtInputGameAchiveName
+  m_Name: TxtGameAchiveName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

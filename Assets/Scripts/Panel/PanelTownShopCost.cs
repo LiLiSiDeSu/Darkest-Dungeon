@@ -56,52 +56,52 @@ public class PanelTownShopCost : PanelBase
 
     public void ChangeTextColorAndJudgeCanBug()
     {
-        if (Hot.NowItem.Cost.Copper > Hot.DataPanelResTable.NowCopper)
-        {
-            TxtCostCopper.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Silver > Hot.DataPanelResTable.NowSilver)
-        {
-            TxtCostSilver.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Gold > Hot.DataPanelResTable.NowGold)
-        {
-            TxtCostGold.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Platinum > Hot.DataPanelResTable.NowPlatinum)
-        {
-            TxtCostPlatinum.color = Color.red;
-            CanBuy = false;
-        }
+        //if (Hot.NowItem.Cost.Copper > Hot.DataPanelResTable.NowCopper)
+        //{
+        //    TxtCostCopper.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Silver > Hot.DataPanelResTable.NowSilver)
+        //{
+        //    TxtCostSilver.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Gold > Hot.DataPanelResTable.NowGold)
+        //{
+        //    TxtCostGold.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Platinum > Hot.DataPanelResTable.NowPlatinum)
+        //{
+        //    TxtCostPlatinum.color = Color.red;
+        //    CanBuy = false;
+        //}
 
-        if (Hot.NowItem.Cost.Statue > Hot.DataPanelResTable.NowStatue)
-        {
-            TxtCostStatue.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Deed > Hot.DataPanelResTable.NowDeed)
-        {
-            TxtCostDeed.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Badge > Hot.DataPanelResTable.NowBadge)
-        {
-            TxtCostBadge.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Picture > Hot.DataPanelResTable.NowPicture)
-        {
-            TxtCostPicture.color = Color.red;
-            CanBuy = false;
-        }
-        if (Hot.NowItem.Cost.Crystal > Hot.DataPanelResTable.NowCrystal)
-        {
-            TxtCostCrystal.color = Color.red;
-            CanBuy = false;
-        }
+        //if (Hot.NowItem.Cost.Statue > Hot.DataPanelResTable.NowStatue)
+        //{
+        //    TxtCostStatue.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Deed > Hot.DataPanelResTable.NowDeed)
+        //{
+        //    TxtCostDeed.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Badge > Hot.DataPanelResTable.NowBadge)
+        //{
+        //    TxtCostBadge.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Picture > Hot.DataPanelResTable.NowPicture)
+        //{
+        //    TxtCostPicture.color = Color.red;
+        //    CanBuy = false;
+        //}
+        //if (Hot.NowItem.Cost.Crystal > Hot.DataPanelResTable.NowCrystal)
+        //{
+        //    TxtCostCrystal.color = Color.red;
+        //    CanBuy = false;
+        //}
     }
 
     public void InitTextColor()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LayoutForNowNews : MonoBehaviour
 {
-    public string String_NowItemContent = "NowPanelItem: ";
+    public string String_NowItemContent = "NowPanelTownItem: ";
     public Rect Rect_NowItemContent = new Rect(0, 0, 0, 0);
     public GUIStyle Style_NowItemContent = new GUIStyle();
 
@@ -39,10 +39,10 @@ public class LayoutForNowNews : MonoBehaviour
 
     public void Refresh()
     {        
-        if (Hot.NowPanelItem == null) String_NowItemContent = "NowPanelItem: null";
+        if (Hot.NowPanelTownItem == null) String_NowItemContent = "NowPanelTownItem: null";
         else
         {
-            String_NowItemContent = "NowPanelItem: " + Hot.NowPanelItem.gameObject.name;
+            String_NowItemContent = "NowPanelTownItem: " + Hot.NowPanelTownItem.gameObject.name;
         }
 
         String_NowPointerLocation = "NowPointerLocation: " + Hot.e_NowPointerLocation;
@@ -69,8 +69,7 @@ public class LayoutForNowNews : MonoBehaviour
             String_PanelTownItemStatus = "---PanelTownItemStatus---\n";
             for (int i = 0; i < Hot.DataNowCellGameArchive.ListCellStore.Count; i++)
             {
-                String_PanelTownItemStatus += Hot.MgrUI_.GetPanel<PanelTownItem>("PanelTownItem" + i).gameObject.name + "-NowIndex: "
-                    + Hot.MgrUI_.GetPanel<PanelTownItem>("PanelTownItem" + i).NowIndex + "\n";
+                String_PanelTownItemStatus += Hot.MgrUI_.GetPanel<PanelTownItem>("PanelTownItem" + i).gameObject.name;                   
             }
         }
     }

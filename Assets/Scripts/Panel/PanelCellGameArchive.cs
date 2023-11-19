@@ -10,10 +10,12 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 {
     public Transform Root;
 
-    private InputField IptGameArchiveInput;
+    private InputField IptGameArchiveName;
+
     public Image ImgGameArchiveChoosed;
     public Image ImgEnvelope;
     public Image ImgGameArchiveLevel;    
+
     private Text TxtLocation;
     private Text TxtWeek;
     private Text TxtTime;    
@@ -25,12 +27,19 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
         PrefabsDynamicContentStepSuffix = "ForPanelCellGameArchive";
 
         Root = transform.FindSonSonSon("Root");
+        
+        IptGameArchiveName = transform.FindSonSonSon("IptGameArchiveName").GetComponent<InputField>();
 
+        ImgGameArchiveLevel = transform.FindSonSonSon("ImgGameArchiveLevel").GetComponent<Image>();
+        ImgEnvelope = transform.FindSonSonSon("ImgEnvelope").GetComponent<Image>();
         ImgGameArchiveChoosed = transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>();
-        transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
 
-        InitGameArchiveCellControl();        
+        TxtLocation = transform.FindSonSonSon("TxtLocation").GetComponent<Text>();
+        TxtWeek = transform.FindSonSonSon("TxtWeek").GetComponent<Text>();
+        TxtTime = transform.FindSonSonSon("TxtTime").GetComponent<Text>();
+        
+        transform.FindSonSonSon("ImgGameArchiveChoosed").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgGameArchiveDestroy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;                
 
         ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
     }
@@ -81,7 +90,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
                     Hot.PanelOtherResTable_.UpdateInfo();
-                    Hot.PanelTownStore2_.InitContent();
+                    Hot.PanelTownStore_.InitContent();
                     Hot.PanelTownShopItem_.InitContent();
                     Hot.PanelRoleList_.InitContent();
                     Hot.PanelBarExpedition_.InitContent();
@@ -128,7 +137,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 
         switch (controlname)
         {
-            case "IptGameArchiveInput":
+            case "IptGameArchiveName":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeOpen");                
                 break;
         }        
@@ -140,10 +149,10 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
         
         switch (controlname)
         {
-            case "IptGameArchiveInput":
+            case "IptGameArchiveName":
                 ImgEnvelope.sprite = MgrRes.GetInstance().Load<Sprite>("Art/EnvelopeClose");
-                Data.GetInstance().DataListCellGameArchive[Index].GameArchiveName = EventParam;
-                Data.GetInstance().Save(Index);
+                Hot.Data_.DataListCellGameArchive[Index].GameArchiveName = EventParam;
+                Hot.Data_.Save(Index);
 
                 if (Data.GetInstance().DataListCellGameArchive[Index].e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
@@ -157,21 +166,11 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                 }                
                 break;
         }
-    }
-
-    private void InitGameArchiveCellControl()
-    {
-        ImgEnvelope = transform.FindSonSonSon("ImgEnvelope").GetComponent<Image>();
-        IptGameArchiveInput = transform.FindSonSonSon("IptGameArchiveInput").GetComponent<InputField>();
-        ImgGameArchiveLevel = transform.FindSonSonSon("ImgGameArchiveLevel").GetComponent<Image>();
-        TxtLocation = transform.FindSonSonSon("TxtLocation").GetComponent<Text>();
-        TxtWeek = transform.FindSonSonSon("TxtWeek").GetComponent<Text>();
-        TxtTime = transform.FindSonSonSon("TxtTime").GetComponent<Text>();
-    }    
+    }     
 
     public void Init(DataContainer_PanelCellGameArchive data)
     {
-        IptGameArchiveInput.text = data.GameArchiveName;
+        IptGameArchiveName.text = data.GameArchiveName;
 
         ChangeImgGameArchiveLevel(data.e_GameArchiveLevel);
 

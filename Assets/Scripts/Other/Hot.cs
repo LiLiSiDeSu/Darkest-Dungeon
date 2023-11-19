@@ -37,6 +37,25 @@ public static class Hot
         130
     };
 
+    public static Vector2 SizeCellItemBody = new(30, 30);
+
+    public static Dictionary<E_SpriteNamePanelCellItem, Vector2> DicItemBody = new()
+    {
+        { E_SpriteNamePanelCellItem.ItemFoodCookie, new Vector2(1, 1) },
+        { E_SpriteNamePanelCellItem.ItemFoodApple, new Vector2(3, 3) },
+        { E_SpriteNamePanelCellItem.ItemFoodBread, new Vector2(1, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new Vector2(2, 2) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new Vector2(2, 2) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new Vector2(2, 2) },        
+    };
+
     #endregion
 
     #region 快捷得到BaseFrameWork里的脚本
@@ -100,7 +119,7 @@ public static class Hot
     }
     public static PanelOtherSetting PanelOtherSetting_
     {
-        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }
+        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }        
     }
     public static PanelBarExpedition PanelBarExpedition_
     {
@@ -121,7 +140,7 @@ public static class Hot
     /// <summary>
     /// 所有城镇箱子面板
     /// </summary>
-    public static PanelTownStore PanelTownStore2_
+    public static PanelTownStore PanelTownStore_
     {
         get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
     }    
@@ -181,17 +200,6 @@ public static class Hot
     {
         get { return DataNowCellGameArchive.ResTable; }
     }
-    public static DataContainer_CellTownStore DataNowPanelStore
-    {
-        get
-        {
-            if (NowPanelItem != null && NowPanelItem is PanelTownItem)
-            {
-                return DataNowCellGameArchive.ListCellStore[(NowPanelItem as PanelTownItem).FatherPanelCellTownStore.Index];
-            }
-            return null;
-        }
-    }
     /// <summary>
     /// 现在读取的存档Data
     /// </summary>
@@ -208,7 +216,7 @@ public static class Hot
     public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
     public static DynamicContentStep PaddingContentStep_;    
-    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
+    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;    
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>
@@ -224,15 +232,7 @@ public static class Hot
     /// <summary>
     /// 拖曳的角色肖像
     /// </summary>
-    public static GameObject DragingRolePortrait;    
-    /// <summary>
-    /// 拖拽的物品
-    /// </summary>
-    public static PanelCellTownItem DragingItem;
-    /// <summary>
-    /// 光标进入的物品
-    /// </summary>
-    public static PanelCellTownItem NowItem;
+    public static GameObject DragingRolePortrait;        
     /// <summary>
     /// 拖拽的箱子
     /// </summary>
@@ -240,11 +240,11 @@ public static class Hot
     /// <summary>
     /// 现在进入的PanelItem
     /// </summary>
-    public static PanelBaseItem NowPanelItem;
+    public static PanelTownItem NowPanelTownItem;
     /// <summary>
     /// 当前存档的Index
     /// </summary>
-    public static int NowIndexCellGameArchive = -1;    
+    public static int NowIndexCellGameArchive = -1;
     /// <summary>
     /// 现在鼠标所在的区域
     /// </summary>
@@ -255,29 +255,4 @@ public static class Hot
     public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;    
 
     #endregion
-
-    /// <summary>
-    /// 添加Item到指定Cotent
-    /// </summary>
-    /// <param name="e_AddLocation">添加到哪里</param>
-    public static void AddItem(E_Location e_AddLocation)
-    {
-        switch (e_AddLocation)
-        {
-            case E_Location.TownItem:
-                DragingItem.transform.SetParent(NowPanelItem.Content, false);
-                DragingItem.e_Location = E_Location.TownItem;
-                DragingItem.Index = NowPanelItem.NowIndex++;
-                DataNowPanelStore.ListCellStoreItem.Add
-                    (new DataContainer_CellItem(E_Location.TownItem, DragingItem.e_SpriteNamePanelCellItem));                
-                break;
-            case E_Location.TownShopItem:
-                DragingItem.transform.SetParent(PanelTownShopItem_.Content, false);
-                DragingItem.e_Location = E_Location.TownShopItem;
-                DragingItem.Index = PanelTownShopItem_.NowIndex++;
-                DataPanelTownShopItem.Add
-                    (new DataContainer_CellItem(E_Location.TownShopItem, DragingItem.e_SpriteNamePanelCellItem));                
-                break;
-        }                      
-    }
 }

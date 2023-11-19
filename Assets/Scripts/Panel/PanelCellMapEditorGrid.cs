@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellMapEditorGridW : PanelBase,
+public class PanelCellMapEditorGrid : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
 {
     public int W;

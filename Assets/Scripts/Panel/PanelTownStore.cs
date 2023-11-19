@@ -10,14 +10,34 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
     protected override void Awake()
     {
-        base.Awake();        
+        base.Awake();
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        (key) =>
+        {
+            if (Hot.NowPanelTownItem != null && key == Hot.MgrInput_.AddMapSize && Hot.NowPanelTownItem.AllContent.localScale.x < 2f)
+            {
+                Hot.NowPanelTownItem.AllContent.localScale +=
+                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+            }
+        });
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        (key) =>
+        {
+            if (Hot.NowPanelTownItem != null && key == Hot.MgrInput_.ReduceMapSize && Hot.NowPanelTownItem.AllContent.localScale.x > 1f)
+            {
+                Hot.NowPanelTownItem.AllContent.localScale -=
+                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);                
+            }
+        });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
             if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.PanelTownStore)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore2_.gameObject, "PanelTownStore");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
                 else
                     Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
             }
@@ -35,18 +55,32 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
             Hot.MgrUI_.CreatePanel<PanelCellTownStore>
             (false, "/PanelCellTownStore", 
-            (panel) =>
+            (PanelCellTownStore_) =>
             {
-                panel.Index = tempi;
+                PanelCellTownStore_.Index = tempi;
                 GameObject obj =
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + panel.PrefabsDynamicContentStepSuffix);
+                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + PanelCellTownStore_.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);
-                panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);                
+                PanelCellTownStore_.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);                
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                panel.Init();
+                PanelCellTownStore_.Init();
+
+                Hot.MgrUI_.CreatePanelAndPush<PanelTownItem>
+                (true, "/PanelTownItem", true, false, "PanelTownItem" + tempi,
+                (PanelTownItem_) =>
+                {
+                    PanelTownItem_.gameObject.name = "PanelTownItem" + tempi;
+                    PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
+                    PanelTownItem_.gameObject.SetActive(false);
+
+                    PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
+                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
+
+                    PanelTownItem_.InitContent();                    
+                });
             });
         }        
     }
@@ -62,7 +96,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             DestroyImmediate(all[i].gameObject);
         }
     }
-
+    
     public override void SortContent()
     {
         DynamicContentStep[] allDynamicContentStep = transform.GetComponentsInChildren<DynamicContentStep>();
@@ -70,6 +104,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         for (int i = 0; i < allDynamicContentStep.Length; i++)
         {
             tempList.Add(allDynamicContentStep[i]);
+            tempList[i].SetIndex(i);
             tempList[i].SetIndex(i);
             tempList[i].gameObject.name = i.ToString();
         }
