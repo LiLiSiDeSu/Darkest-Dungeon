@@ -7,18 +7,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelTownItem : PanelBase,
+public class PanelTownItem : PanelBaseVector2Store,
              IPointerEnterHandler, IPointerExitHandler
-{
-    public Transform AllContent;
-    public Transform ImgBkContent;
-    public Transform ImgStatusContent;
-    public Transform ImgItemContent;
-    public Transform ComponentRoot;
-
-    public InputField IptName;    
-
-    public List<List<Transform>> DependentObj = new();
+{    
+    public InputField IptName;        
 
     public PanelCellTownStore PanelCellTownStore_;
 
@@ -50,12 +42,12 @@ public class PanelTownItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.NowPanelTownItem = this;
+        Hot.NowPanelCanStoreItem = this;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Hot.NowPanelTownItem = null;
+        Hot.NowPanelCanStoreItem = null;
     }
 
     #endregion
@@ -98,14 +90,19 @@ public class PanelTownItem : PanelBase,
     {
         IptName.text = Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].Name;
 
-        (AllContent as RectTransform).sizeDelta = new Vector2(PanelCellTownStore_.Width * 20f, PanelCellTownStore_.Height * 20f);
+        (AllContent as RectTransform).sizeDelta = 
+            new Vector2(Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x * Hot.SizeCellItemBody.x, 
+                        Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].y * Hot.SizeCellItemBody.y); 
 
-        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = PanelCellTownStore_.Width;
-        transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = PanelCellTownStore_.Width;
+        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = (int)Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x;
+        transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = (int)Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x;
 
-        for (int i1 = 0; i1 < PanelCellTownStore_.Height; i1++)
+        for (int i1 = 0; i1 < Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].y; i1++)
         {
             int tempi1 = i1;
+
+            Grids.Add(new());
+            ItemRoot.Add(new());
 
             GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
             obj1.transform.SetParent(ImgItemContent, false);
@@ -115,46 +112,75 @@ public class PanelTownItem : PanelBase,
             glg.childAlignment = TextAnchor.MiddleCenter;
             glg.cellSize = new Vector2(20, 20);
 
-            for (int i2 = 0; i2 < PanelCellTownStore_.Width; i2++)
+            for (int i2 = 0; i2 < Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x; i2++)
             {
                 int tempi2 = i2;
+
+                Grids[tempi1].Add(new());                
 
                 GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
                 obj2.transform.SetParent(obj1.transform, false);
 
+                ItemRoot[tempi1].Add(obj2.transform);
+
                 Hot.MgrUI_.CreatePanel<PanelCellTownItemGrid>(false, "/PanelCellTownItemGrid",
                 (PanelCellTownItemGrid_) =>
                 {
+                    Grids[tempi1][tempi2] = PanelCellTownItemGrid_;
+
                     PanelCellTownItemGrid_.transform.SetParent(ComponentRoot, false);
                     PanelCellTownItemGrid_.ImgBk.transform.SetParent(ImgBkContent, false);
                     PanelCellTownItemGrid_.ImgStatus.transform.SetParent(ImgStatusContent, false);
 
-                    PanelCellTownItemGrid_.W = tempi1;
-                    PanelCellTownItemGrid_.H = tempi2;
-                    
-                    if (Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
-                    {
-                        Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
-                        (PanelCellItem_) =>
-                        {                            
-                            PanelCellItem_.transform.SetParent(obj2.transform, false);
-                            PanelCellItem_.transform.localPosition = Vector3.zero;
-
-                            PanelCellItem_.RootGrid = PanelCellTownItemGrid_;
-                            PanelCellItem_.PanelTownItem_ = this;
-                            PanelCellItem_.e_Location = E_Location.TownItem;
-                            PanelCellItem_.e_SpriteNamePanelCellItem =
-                                Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
-
-                            PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
-                            PanelCellItem_.ChangeItemBody();
-                            PanelCellItem_.ChangeSize();
-                        });
-                    }
+                    PanelCellTownItemGrid_.W = tempi2;
+                    PanelCellTownItemGrid_.H = tempi1;
                 });
             }
         }
+
+        LoadData();
     }    
+
+    public void LoadData()
+    {
+        for (int i1 = 0; i1 < Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].y; i1++)
+        {
+            int tempi1 = i1;
+
+            for (int i2 = 0; i2 < Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x; i2++)
+            {
+                int tempi2 = i2;
+
+                if (Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                {
+                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
+                    (PanelCellItem_) =>
+                    {
+                        PanelCellItem_.transform.SetParent(ItemRoot[tempi1][tempi2], false);
+                        PanelCellItem_.transform.localPosition = Vector3.zero;
+
+                        PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
+                        PanelCellItem_.PanelTownItem_ = this;
+                        PanelCellItem_.e_Location = E_Location.TownItem;
+                        PanelCellItem_.e_SpriteNamePanelCellItem =
+                            Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
+
+                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
+                        PanelCellItem_.ChangeItemBody();
+                        PanelCellItem_.ChangeSize();
+
+                        for (int i1 = 0; i1 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].x; i2++)
+                            {                                
+                                Grids[tempi1 + i1][tempi2 + i2].Item = PanelCellItem_;
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
 
     public void EnableDetection()
     {

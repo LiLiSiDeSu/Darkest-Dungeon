@@ -217,7 +217,7 @@ public class DataContainer_CellExpeditionMapGrid
 public class DataContainer_CellTownStore
 {
     public string Name = "Ã»ÓÐÃû×Ö";    
-    public E_PanelCellTownStore e_SpriteNamePanelCellTownStore = E_PanelCellTownStore.StoreWood;
+    public E_PanelCellTownStore e_PanelCellTownStore = E_PanelCellTownStore.StoreWood;
     public List<List<DataContainer_CellItem>> ListItem = new();       
 
     public DataContainer_CellTownStore() { }
@@ -226,7 +226,7 @@ public class DataContainer_CellTownStore
      E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
     {
         Name = name;
-        this.e_SpriteNamePanelCellTownStore = e_SpriteNamePanelCellTownStore;        
+        this.e_PanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
 }
 

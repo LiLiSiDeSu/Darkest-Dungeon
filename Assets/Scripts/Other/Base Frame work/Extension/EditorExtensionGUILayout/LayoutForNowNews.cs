@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LayoutForNowNews : MonoBehaviour
 {
-    public string String_NowItemContent = "NowPanelTownItem: ";
+    public string String_NowItemContent = "NowPanelCanStoreItem: ";
     public Rect Rect_NowItemContent = new Rect(0, 0, 0, 0);
     public GUIStyle Style_NowItemContent = new GUIStyle();
 
@@ -39,10 +39,10 @@ public class LayoutForNowNews : MonoBehaviour
 
     public void Refresh()
     {        
-        if (Hot.NowPanelTownItem == null) String_NowItemContent = "NowPanelTownItem: null";
+        if (Hot.NowPanelCanStoreItem == null) String_NowItemContent = "NowPanelCanStoreItem: null";
         else
         {
-            String_NowItemContent = "NowPanelTownItem: " + Hot.NowPanelTownItem.gameObject.name;
+            String_NowItemContent = "NowPanelCanStoreItem: " + Hot.NowPanelCanStoreItem.gameObject.name;
         }
 
         String_NowPointerLocation = "NowPointerLocation: " + Hot.e_NowPointerLocation;

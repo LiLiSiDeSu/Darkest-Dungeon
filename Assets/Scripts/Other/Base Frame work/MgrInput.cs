@@ -21,6 +21,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode AddMapSize = KeyCode.K;
     public KeyCode ReduceMapSize = KeyCode.L;
     public KeyCode ExpeditionMiniMap = KeyCode.M;
+    public KeyCode Cancel = KeyCode.Mouse1;
 
     private void Update()
     {        
@@ -45,6 +46,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(AddMapSize);
         CheckKeyCode(ReduceMapSize);
         CheckKeyCode(ExpeditionMiniMap);
+        CheckKeyCode(Cancel);
     }
 
     /// <summary>

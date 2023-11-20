@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class PanelCellItem : PanelBase
 {
     public PanelCellTownItemGrid RootGrid = new();
-    public PanelBase PanelTownItem_;
+    public PanelBaseVector2Store PanelTownItem_;
 
     public InfoContainer_Cost Cost;
 
     public Image ImgItem;
-    public Image ImgStatus;
+    public Image ImgStatus;          
 
     public E_Location e_Location = E_Location.None;
 
@@ -21,9 +21,20 @@ public class PanelCellItem : PanelBase
     {
         base.Awake();
 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
+        (key) =>
+        {
+            if (Hot.NowCellItem != null && key == Hot.MgrInput_.Cancel)
+            {
+                Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                Hot.NowCellItem.ImgItem.raycastTarget = true;
+                Hot.NowCellItem = null;                
+            }
+        });
+
         ImgItem = transform.FindSonSonSon("ImgItem").GetComponent<Image>();
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-    }
+    }    
 
     protected override void Button_OnClick(string controlname)
     {
@@ -32,7 +43,20 @@ public class PanelCellItem : PanelBase
         switch (controlname)
         {
             case "BtnItem":
-                Debug.Log(e_SpriteNamePanelCellItem);
+                if (Hot.NowCellItem == null)
+                {
+                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                    Hot.NowCellItem = this;
+                }
+                else if (Hot.NowCellItem != this)
+                {
+                    Hot.NowCellItem.ImgItem.raycastTarget = true;
+                    Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                    Hot.NowCellItem = this;
+                }
+
+                Hot.NowCellItem.ImgItem.raycastTarget = false;
                 break;
         }
     }
@@ -90,9 +114,6 @@ public class PanelCellItem : PanelBase
 
         Cost = new InfoContainer_Cost
                     (Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3),
-                     Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
-
-        //DependentObj.GetComponentInChildren<Image>().sprite = 
-        //    Hot.MgrRes_.Load<Sprite>("Art/" + e_SpriteNamePanelCellItem.ToString());
+                     Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));        
     }
 }

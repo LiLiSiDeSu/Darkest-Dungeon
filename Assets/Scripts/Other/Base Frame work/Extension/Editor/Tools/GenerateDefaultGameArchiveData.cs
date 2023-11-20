@@ -81,6 +81,10 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
              new DataContainer_CoinCost(22, 31, 42, 523))
         };
 
+        #region Store
+
+        #region 0
+
         GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
         GameArchiveDataCellList[0].ListCellStore[0].ListItem.Add(
                 new List<DataContainer_CellItem>
@@ -153,10 +157,12 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
         });
 
+        #endregion
+
+        #region 1
+
         GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
-        for (int i = 0; i < 5; i++)
-        {
-            GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
+        GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
                 new List<DataContainer_CellItem>
                 {
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
@@ -165,16 +171,74 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
                 });
-        }
-        GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
-        for (int i = 0; i < 5; i++)
+        GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
+                new List<DataContainer_CellItem>
+                {
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+                });
+        GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
+        new List<DataContainer_CellItem>
         {
-            GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+        });
+        GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
+        new List<DataContainer_CellItem>
+        {
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodRawMutton),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+        });
+        GameArchiveDataCellList[0].ListCellStore[1].ListItem.Add(
+        new List<DataContainer_CellItem>
+        {
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+        });
+
+        #endregion
+
+        #region 2
+
+        GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
+        GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
                 new List<DataContainer_CellItem>
                 {
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
@@ -183,48 +247,71 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
                 });
-        }
-        GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
-        for (int i = 0; i < 5; i++)
-        {
-            GameArchiveDataCellList[0].ListCellStore[3].ListItem.Add(
+        GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
                 new List<DataContainer_CellItem>
                 {
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
                 });
-        }
-        GameArchiveDataCellList[0].ListCellStore.Add(new DataContainer_CellTownStore("Test", E_PanelCellTownStore.StoreWood));
-        for (int i = 0; i < 5; i++)
+        GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
+        new List<DataContainer_CellItem>
         {
-            GameArchiveDataCellList[0].ListCellStore[4].ListItem.Add(
-                new List<DataContainer_CellItem>
-                {
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookedBeef),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
                 new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
-                });
-        }
+        });
+        GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
+        new List<DataContainer_CellItem>
+        {
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodRawMutton),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+        });
+        GameArchiveDataCellList[0].ListCellStore[2].ListItem.Add(
+        new List<DataContainer_CellItem>
+        {
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+                new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie),
+        });
+
+        #endregion
+
+        #endregion
 
         GameArchiveDataCellList[0].ExpeditionPrepare = new DataContainer_ExpeditionPrepare(
         new List<DataContainer_ExpeditionMiniMap>()

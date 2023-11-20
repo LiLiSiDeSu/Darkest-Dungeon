@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class InstanceBase<T> where T : class, new()
 {
-    private static T instance = new T();
+    private static T instance = new();
     public static T Instance { get { return instance; } }    
 }

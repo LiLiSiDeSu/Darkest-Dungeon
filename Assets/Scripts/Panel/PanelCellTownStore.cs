@@ -9,8 +9,7 @@ using UnityEngine.UI;
 public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public int Width;
-    public int Height;
+    public E_PanelCellTownStore e_PanelCellTownStore;
 
     public PanelTownItem PanelCellItem_ = new();    
 
@@ -119,37 +118,22 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
     public void Rename(string name)
     {
         Hot.DataNowCellGameArchive.ListCellStore[Index].Name = name;
+        IptName.text = name;
+        PanelCellItem_.IptName.text = name;
         Hot.Data_.Save();
     }
 
     public void Init()
     {
         IptName.text = Hot.DataNowCellGameArchive.ListCellStore[Index].Name;
-
+        e_PanelCellTownStore = Hot.DataNowCellGameArchive.ListCellStore[Index].e_PanelCellTownStore;
+        
         InitInfo();
     }
 
     public void InitInfo()
     {
-        switch (Hot.DataNowCellGameArchive.ListCellStore[Index].e_SpriteNamePanelCellTownStore)
-        {
-            case E_PanelCellTownStore.StoreWood:
-                Width = 10;
-                Height = 5;
-                break;
-
-            case E_PanelCellTownStore.StoreIron:
-                Width = 12;
-                Height = 10;
-                break;
-
-            case E_PanelCellTownStore.StoreGold:
-                Width = 15;
-                Height = 13;
-                break;
-        }
-
         ImgStore.sprite = MgrRes.GetInstance().Load<Sprite>
-        ("Art/" + Hot.DataNowCellGameArchive.ListCellStore[Index].e_SpriteNamePanelCellTownStore.ToString());
+        ("Art/" + e_PanelCellTownStore.ToString());
     }
 }

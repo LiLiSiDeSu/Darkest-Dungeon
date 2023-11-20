@@ -15,9 +15,9 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelTownItem != null && key == Hot.MgrInput_.AddMapSize && Hot.NowPanelTownItem.AllContent.localScale.x < 2f)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.AddMapSize && Hot.NowPanelCanStoreItem.AllContent.localScale.x < 2f)
             {
-                Hot.NowPanelTownItem.AllContent.localScale +=
+                Hot.NowPanelCanStoreItem.AllContent.localScale +=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }
         });
@@ -25,9 +25,9 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelTownItem != null && key == Hot.MgrInput_.ReduceMapSize && Hot.NowPanelTownItem.AllContent.localScale.x > 1f)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.ReduceMapSize && Hot.NowPanelCanStoreItem.AllContent.localScale.x > 1f)
             {
-                Hot.NowPanelTownItem.AllContent.localScale -=
+                Hot.NowPanelCanStoreItem.AllContent.localScale -=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);                
             }
         });

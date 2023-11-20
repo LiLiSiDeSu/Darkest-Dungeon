@@ -37,22 +37,31 @@ public static class Hot
         130
     };
 
-    public static Vector2 SizeCellItemBody = new(30, 30);
+    public static Vector2 SizeCellItemBody = new(40, 40);
+
+    public static Dictionary<E_PanelCellTownStore, Vector2> DicStoreBody = new()
+    {
+        { E_PanelCellTownStore.StoreWood, new Vector2(10, 5) },
+        { E_PanelCellTownStore.StoreIron, new Vector2(12, 10) },
+        { E_PanelCellTownStore.StoreGold, new Vector2(15, 13) },
+    };
 
     public static Dictionary<E_SpriteNamePanelCellItem, Vector2> DicItemBody = new()
     {
         { E_SpriteNamePanelCellItem.ItemFoodCookie, new Vector2(1, 1) },
         { E_SpriteNamePanelCellItem.ItemFoodApple, new Vector2(3, 3) },
         { E_SpriteNamePanelCellItem.ItemFoodBread, new Vector2(1, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new Vector2(2, 2) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new Vector2(2, 3) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new Vector2(2, 3) },
 
         { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new Vector2(2, 2) },
-
         { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },               
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new Vector2(2, 2) },     
         { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new Vector2(2, 2) },        
     };
 
@@ -215,8 +224,15 @@ public static class Hot
     public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
     public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
-    public static DynamicContentStep PaddingContentStep_;    
-    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;    
+    public static DynamicContentStep PaddingContentStep_;
+    /// <summary>
+    /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
+    /// </summary>
+    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
+    /// <summary>
+    /// 现在选中的物品
+    /// </summary>
+    public static PanelCellItem NowCellItem = null;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>
@@ -238,9 +254,9 @@ public static class Hot
     /// </summary>
     public static PanelCellTownStore DragingTownStore;
     /// <summary>
-    /// 现在进入的PanelItem
+    /// 现在进入的可以存储Item的面板
     /// </summary>
-    public static PanelTownItem NowPanelTownItem;
+    public static PanelBaseVector2Store NowPanelCanStoreItem;
     /// <summary>
     /// 当前存档的Index
     /// </summary>
