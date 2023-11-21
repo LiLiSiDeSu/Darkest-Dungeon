@@ -6,16 +6,25 @@ using UnityEngine.EventSystems;
 
 public class PanelTownStore : PanelBaseDynamicScrollView
 {    
-    public Transform RootPanelTownItem;    
+    public Transform RootPanelTownItem;
 
     protected override void Awake()
     {
         base.Awake();
 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        (key) =>
+        {
+            if (Hot.NowCellItem != null && key == Hot.MgrInput_.Cancel)
+            {
+                CancelNowChoosedItem();
+            }
+        });
+
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.AddMapSize && Hot.NowPanelCanStoreItem.AllContent.localScale.x < 2f)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.AddMapSize)
             {
                 Hot.NowPanelCanStoreItem.AllContent.localScale +=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
@@ -25,7 +34,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.ReduceMapSize && Hot.NowPanelCanStoreItem.AllContent.localScale.x > 1f)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.ReduceMapSize)
             {
                 Hot.NowPanelCanStoreItem.AllContent.localScale -=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);                
@@ -76,6 +85,15 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
                     PanelTownItem_.gameObject.SetActive(false);
 
+                    Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,
+                    () =>
+                    {
+                        if (Hot.NowCellItem != null && Hot.NowCellItem.e_Location == E_ItemLocation.TownItem)
+                        {
+                            Hot.PanelTownStore_.CancelNowChoosedItem();
+                        }
+                    });
+
                     PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
                     PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
 
@@ -83,6 +101,25 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                 });
             });
         }        
+    }
+
+    public void CancelNowChoosedItem()
+    {
+        if (Hot.NowItemGrid != null)
+        {
+            for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+            {
+                for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                {
+                    Hot.NowPanelCanStoreItem.Grids[Hot.NowItemGrid.H + i1][Hot.NowItemGrid.W + i2].ImgStatus.sprite =
+                        Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                }
+            }
+        }
+        Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+        Hot.NowCellItem.ImgItem.raycastTarget = true;
+        Hot.NowCellItem = null;
+        Hot.CanBuy = false;        
     }
 
     public override void Clear()

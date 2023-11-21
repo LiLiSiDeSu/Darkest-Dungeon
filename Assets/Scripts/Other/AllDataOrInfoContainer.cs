@@ -17,10 +17,11 @@ public class DataContainer_PanelCellGameArchive
 
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public DataContainer_ResTable ResTable = new();    
-    public List<DataContainer_CellTownStore> ListCellStore = new();    
-    public List<DataContainer_CellItem> ListCellShopItem = new();
+    public List<DataContainer_CellTownStore> ListCellStore = new();        
     public List<DataContainer_CellRole> ListCellRole = new();
     public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
+
+    public DataContainer_TownShop TownShop = new();
 
     public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();    
 
@@ -230,6 +231,14 @@ public class DataContainer_CellTownStore
     }
 }
 
+public class DataContainer_TownShop
+{
+    public int X;
+    public int Y;
+
+    public List<List<DataContainer_CellItem>> ListItem = new();
+}
+
 public class DataContainer_CellItem
 {    
     public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;   
@@ -408,6 +417,7 @@ public class InfoContainer_Cost
         Silver = silver;
         Gold = gold;
         Platinum = platinum;
+
         Statue = statue;
         Deed = deed;
         Badge = badge;

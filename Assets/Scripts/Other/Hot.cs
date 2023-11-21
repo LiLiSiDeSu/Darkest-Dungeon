@@ -46,6 +46,25 @@ public static class Hot
         { E_PanelCellTownStore.StoreGold, new Vector2(15, 13) },
     };
 
+    public static Dictionary<E_SpriteNamePanelCellItem, InfoContainer_Cost> DicItemCost = new()
+    {
+        { E_SpriteNamePanelCellItem.ItemFoodCookie, new InfoContainer_Cost(1, 1, 1, 1, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodApple, new InfoContainer_Cost(2, 2, 2, 2, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodBread, new InfoContainer_Cost(1, 2, 1, 2, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new InfoContainer_Cost(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new InfoContainer_Cost(11, 11, 13, 12, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new InfoContainer_Cost(21, 13, 122, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new InfoContainer_Cost(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new InfoContainer_Cost(11, 11, 21, 21, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new InfoContainer_Cost(41, 31, 31, 31, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new InfoContainer_Cost(22, 22, 22, 22, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new InfoContainer_Cost(12, 22, 11, 11, 0, 0, 0, 0, 0) },
+    };
+
     public static Dictionary<E_SpriteNamePanelCellItem, Vector2> DicItemBody = new()
     {
         { E_SpriteNamePanelCellItem.ItemFoodCookie, new Vector2(1, 1) },
@@ -59,7 +78,7 @@ public static class Hot
         { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new Vector2(2, 2) },
 
         { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },               
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },
 
         { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new Vector2(2, 2) },     
         { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new Vector2(2, 2) },        
@@ -106,6 +125,10 @@ public static class Hot
 
     #region Panel
     
+    public static PanelTownShopCost PanelTownShopCost_
+    {
+        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
+    }
     public static PanelOtherMapEditor PanelOtherMapEditor_
     {
         get { return MgrUI_.GetPanel<PanelOtherMapEditor>("PanelOtherMapEditor"); }
@@ -171,14 +194,7 @@ public static class Hot
     public static PanelRoomTownShop PanelRoomTownShop_
     {
         get { return MgrUI_.GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomTownShop"] as PanelRoomTownShop; }
-    }
-    /// <summary>
-    /// 城镇商店面板在存档里的Data
-    /// </summary>
-    public static List<DataContainer_CellItem> DataPanelTownShopItem
-    {
-        get { return DataNowCellGameArchive.ListCellShopItem; }
-    }
+    }    
     /// <summary>
     /// 城镇商店花费面板
     /// </summary>
@@ -217,26 +233,26 @@ public static class Hot
         get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
     }
 
-    #endregion    
+    #endregion
 
     #region Now    
-    
+    public static bool CanBuy = false;
+    /// <summary>
+    /// 当前存档的Index
+    /// </summary>
+    public static int NowIndexCellGameArchive = -1;
+    /// <summary>
+    /// 现在鼠标所在的区域
+    /// </summary>
+    public static E_NowPointerLocation e_NowPointerLocation = E_NowPointerLocation.None;
+    /// <summary>
+    /// 现在玩家所在的区域(从开发者视角来看)
+    /// </summary>
+    public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;
     public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
     public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
     public static E_ArrowDirection e_PaddingArrowDirection;
     public static DynamicContentStep PaddingContentStep_;
-    /// <summary>
-    /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
-    /// </summary>
-    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
-    /// <summary>
-    /// 现在选中的物品
-    /// </summary>
-    public static PanelCellItem NowCellItem = null;
-    /// <summary>
-    /// 现在拖动的角色招募PanelCell
-    /// </summary>
-    public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;
     /// <summary>
     /// 现在进入的角色远征格子
     /// </summary>
@@ -248,7 +264,23 @@ public static class Hot
     /// <summary>
     /// 拖曳的角色肖像
     /// </summary>
-    public static GameObject DragingRolePortrait;        
+    public static GameObject DragingRolePortrait;
+    /// <summary>
+    /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
+    /// </summary>
+    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
+    /// <summary>
+    /// 现在选中的物品
+    /// </summary>
+    public static PanelCellItem NowCellItem = null;
+    /// <summary>
+    /// 现在进入的物品背景格子
+    /// </summary>
+    public static PanelCellTownItemGrid NowItemGrid = null;
+    /// <summary>
+    /// 现在拖动的角色招募PanelCell
+    /// </summary>
+    public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;       
     /// <summary>
     /// 拖拽的箱子
     /// </summary>
@@ -256,19 +288,7 @@ public static class Hot
     /// <summary>
     /// 现在进入的可以存储Item的面板
     /// </summary>
-    public static PanelBaseVector2Store NowPanelCanStoreItem;
-    /// <summary>
-    /// 当前存档的Index
-    /// </summary>
-    public static int NowIndexCellGameArchive = -1;
-    /// <summary>
-    /// 现在鼠标所在的区域
-    /// </summary>
-    public static E_NowPointerLocation e_NowPointerLocation = E_NowPointerLocation.None;  
-    /// <summary>
-    /// 现在玩家所在的区域(从开发者视角来看)
-    /// </summary>
-    public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;    
+    public static PanelBaseVector2Store NowPanelCanStoreItem;     
 
-    #endregion
+    #endregion    
 }

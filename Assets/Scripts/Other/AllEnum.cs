@@ -176,7 +176,7 @@ public enum E_NowPointerLocation
     PanelGameArchiveChoose
 }
 
-public enum E_Location
+public enum E_ItemLocation
 {    
     None,
     TownItem,

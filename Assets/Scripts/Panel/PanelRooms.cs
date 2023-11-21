@@ -6,19 +6,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelRooms : PanelBase
-{
-    public bool IsShow = false;
-
-    private Transform ImgCurrentChoice;
+{    
     private float PosOffsetForImgCurrentChoice = 80f;
-    private Dictionary<string, Transform> PosBtnRoom = new Dictionary<string, Transform>();
+
+    private Transform ImgCurrentChoice;    
 
     public PanelBase CurrentPanel;
-    public Dictionary<string, PanelBase> AllPanel = new Dictionary<string, PanelBase>();
+
+    private Dictionary<string, Transform> PosBtnRoom = new();
+    public Dictionary<string, PanelBase> AllPanel = new();
  
     protected override void Awake()
     {
         base.Awake();
+
+        Hot.CenterEvent_.AddEventListener("Esc" + "PanelRooms",
+        () =>
+        {
+            if (Hot.NowCellItem != null && Hot.NowCellItem.e_Location == E_ItemLocation.TownShopItem)
+            {
+                Hot.PanelTownStore_.CancelNowChoosedItem();
+            }
+        });
 
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
 

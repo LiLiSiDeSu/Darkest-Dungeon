@@ -20,8 +20,8 @@ public class PanelTownItem : PanelBaseVector2Store,
 
         AllContent = transform.FindSonSonSon("AllContent");
         ImgBkContent = transform.FindSonSonSon("ImgBkContent");
-        ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");
         ImgItemContent = transform.FindSonSonSon("ImgItemContent");
+        ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");        
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
         IptName = transform.FindSonSonSon("IptName").GetComponent<InputField>();
@@ -43,11 +43,13 @@ public class PanelTownItem : PanelBaseVector2Store,
     public void OnPointerEnter(PointerEventData eventData)
     {
         Hot.NowPanelCanStoreItem = this;
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownItem;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Hot.NowPanelCanStoreItem = null;
+        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
     }
 
     #endregion
@@ -94,7 +96,7 @@ public class PanelTownItem : PanelBaseVector2Store,
             new Vector2(Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x * Hot.SizeCellItemBody.x, 
                         Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].y * Hot.SizeCellItemBody.y); 
 
-        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = (int)Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x;
+        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = (int)Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x;        
         transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = (int)Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].x;
 
         for (int i1 = 0; i1 < Hot.DicStoreBody[PanelCellTownStore_.e_PanelCellTownStore].y; i1++)
@@ -139,6 +141,8 @@ public class PanelTownItem : PanelBaseVector2Store,
         }
 
         LoadData();
+
+        ChangeSize();
     }    
 
     public void LoadData()
@@ -160,14 +164,14 @@ public class PanelTownItem : PanelBaseVector2Store,
                         PanelCellItem_.transform.localPosition = Vector3.zero;
 
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
-                        PanelCellItem_.PanelTownItem_ = this;
-                        PanelCellItem_.e_Location = E_Location.TownItem;
+                        PanelCellItem_.MemberOf = this;
+                        PanelCellItem_.e_Location = E_ItemLocation.TownItem;
                         PanelCellItem_.e_SpriteNamePanelCellItem =
                             Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
 
-                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
-                        PanelCellItem_.ChangeItemBody();
-                        PanelCellItem_.ChangeSize();
+                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);                        
+                        
+                        PanelCellItem_.Init();
 
                         for (int i1 = 0; i1 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].y; i1++)
                         {
@@ -180,31 +184,5 @@ public class PanelTownItem : PanelBaseVector2Store,
                 }
             }
         }
-    }
-
-    public void EnableDetection()
-    {
-        foreach (Image item in ImgBkContent.GetComponentsInChildren<Image>())
-        {
-            item.raycastTarget = true;
-        }
-    }
-
-    public void DisableDetection()
-    {
-        foreach (Image item in ImgBkContent.GetComponentsInChildren<Image>())
-        {
-            item.raycastTarget = false;
-        }
-    }
-
-    public void Add()
-    {
-
-    }
-
-    public void Reomve()
-    {
-
-    }    
+    }        
 }

@@ -20,7 +20,7 @@ public class PanelExpeditionPrepare : PanelBase
         () =>
         {
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
-        });        
+        });
 
         BloodCourtyardContent = transform.FindSonSonSon("BloodCourtyardContent");
         LairContent = transform.FindSonSonSon("LairContent");

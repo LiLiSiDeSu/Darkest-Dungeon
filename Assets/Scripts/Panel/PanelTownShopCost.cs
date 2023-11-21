@@ -14,9 +14,7 @@ public class PanelTownShopCost : PanelBase
     public Text TxtCostDeed;
     public Text TxtCostBadge;
     public Text TxtCostPicture;
-    public Text TxtCostCrystal;
-
-    public bool CanBuy = false;
+    public Text TxtCostCrystal;    
 
     protected override void Awake()
     {
@@ -38,9 +36,9 @@ public class PanelTownShopCost : PanelBase
     {
         //这里可以加上存储在数据里的OffSet值
 
-        CanBuy = true;
+        Hot.CanBuy = true;
 
-        ChangeTextColorAndJudgeCanBug();
+        ChangeTextColorAndJudgeCanBug(cost);
 
         TxtCostCopper.text = cost.Copper.ToString();
         TxtCostSilver.text = cost.Silver.ToString();
@@ -54,54 +52,55 @@ public class PanelTownShopCost : PanelBase
         TxtCostCrystal.text = cost.Crystal.ToString();
     }
 
-    public void ChangeTextColorAndJudgeCanBug()
+    public void ChangeTextColorAndJudgeCanBug(InfoContainer_Cost cost)
     {
-        //if (Hot.NowItem.Cost.Copper > Hot.DataPanelResTable.NowCopper)
-        //{
-        //    TxtCostCopper.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Silver > Hot.DataPanelResTable.NowSilver)
-        //{
-        //    TxtCostSilver.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Gold > Hot.DataPanelResTable.NowGold)
-        //{
-        //    TxtCostGold.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Platinum > Hot.DataPanelResTable.NowPlatinum)
-        //{
-        //    TxtCostPlatinum.color = Color.red;
-        //    CanBuy = false;
-        //}
+        //感觉这里可以优化
+        if (cost.Copper > Hot.DataPanelResTable.NowCopper)
+        {
+            TxtCostCopper.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Silver > Hot.DataPanelResTable.NowSilver)
+        {
+            TxtCostSilver.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Gold > Hot.DataPanelResTable.NowGold)
+        {
+            TxtCostGold.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Platinum > Hot.DataPanelResTable.NowPlatinum)
+        {
+            TxtCostPlatinum.color = Color.red;
+            Hot.CanBuy = false;
+        }
 
-        //if (Hot.NowItem.Cost.Statue > Hot.DataPanelResTable.NowStatue)
-        //{
-        //    TxtCostStatue.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Deed > Hot.DataPanelResTable.NowDeed)
-        //{
-        //    TxtCostDeed.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Badge > Hot.DataPanelResTable.NowBadge)
-        //{
-        //    TxtCostBadge.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Picture > Hot.DataPanelResTable.NowPicture)
-        //{
-        //    TxtCostPicture.color = Color.red;
-        //    CanBuy = false;
-        //}
-        //if (Hot.NowItem.Cost.Crystal > Hot.DataPanelResTable.NowCrystal)
-        //{
-        //    TxtCostCrystal.color = Color.red;
-        //    CanBuy = false;
-        //}
+        if (cost.Statue > Hot.DataPanelResTable.NowStatue)
+        {
+            TxtCostStatue.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Deed > Hot.DataPanelResTable.NowDeed)
+        {
+            TxtCostDeed.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Badge > Hot.DataPanelResTable.NowBadge)
+        {
+            TxtCostBadge.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Picture > Hot.DataPanelResTable.NowPicture)
+        {
+            TxtCostPicture.color = Color.red;
+            Hot.CanBuy = false;
+        }
+        if (cost.Crystal > Hot.DataPanelResTable.NowCrystal)
+        {
+            TxtCostCrystal.color = Color.red;
+            Hot.CanBuy = false;
+        }
     }
 
     public void InitTextColor()
@@ -132,7 +131,7 @@ public class PanelTownShopCost : PanelBase
     }
 
     public void Clear()
-    {
+    {        
         InitTextColor();
         InitText();
     }
