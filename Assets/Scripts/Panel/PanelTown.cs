@@ -9,46 +9,22 @@ public class PanelTown : PanelBase
     {
         base.Start();
 
-        transform.FindSonSonSon("ImgAbbey").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgSanitarium").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgSurvivorMaster").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgTavern").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgGuild").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
+        transform.FindSonSonSon("ImgRoomAbbey").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomSanitarium").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomSurvivorMaster").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomTavern").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgRoomGuild").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
     }  
 
     protected override void Button_OnClick(string controlname)
     {
         base.Button_OnClick(controlname);
 
-        switch (controlname)
-        {
-            case "BtnAbbey":
-                Debug.Log("Abbey");
-                break;
-            case "BtnSanitarium":
-                Debug.Log("Sanitarium");
-                break;
-            case "BtnSurvivorMaster":
-                Debug.Log("SurvivorMaster");
-                break;
-            case "BtnTavern":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTavern");              
-                break;
-            case "BtnGraveyard":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGraveyard");              
-                break;
-            case "BtnTownShop":                
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomTownShop");
-                break;
-            case "BtnSmithy":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomSmithy");              
-                break;
-            case "BtnGuild":
-                MgrUI.GetInstance().GetPanel<PanelRooms>("PanelRooms").StartByTown("PanelRoomGuild");           
-                break;
-        }
+        Hot.MgrUI_.ShowPanel<PanelTownRooms>(true, "PanelTownRooms");
+        Hot.PanelTownRooms_.ChangeImgCurrentChoicePos(controlname);
+        Hot.PanelTownRooms_.ShowRoom(controlname);
     }   
 }

@@ -3,26 +3,29 @@ using UnityEngine;
 public sealed class AllEnum : MonoBehaviour { }
 
 /// <summary>
-/// 所有的过道Hall 用于加载Sprite时要加CellMap做前缀
+/// 所有的过道Hall 用于加载Sprite时要加CellMapHall做前缀
 /// </summary>
 public enum E_CellExpeditionMiniMapHall
 {
     None,
-    HallBattle,
-    HallTrap,
-    HallSecret
+    Dark,
+    Dim,
+    Light,
+    Battle,
+    Trap,
+    Secret
 }
 
 /// <summary>
-/// 所有的过道Room 用于加载Sprite时要加CellMap做前缀
+/// 所有的过道Room 用于加载Sprite时要加CellMapRoom做前缀
 /// </summary>
 public enum E_CellExpeditionMiniMapRoom
 {    
     None,
-    RoomBoss,
-    RoomEmpty,
-    RoomEntrance,
-    RoomLocked,    
+    Boss,
+    Empty,
+    Entrance,
+    Locked,    
 }
 
 public enum E_GameArchiveLevel
@@ -173,7 +176,8 @@ public enum E_NowPointerLocation
     PanelRoleList,
     PanelTownPrepareExpedition,
     PanelTownExpeditionRole,
-    PanelGameArchiveChoose
+    PanelGameArchiveChoose,
+    PanelRoleGuildRecruit,
 }
 
 public enum E_ItemLocation

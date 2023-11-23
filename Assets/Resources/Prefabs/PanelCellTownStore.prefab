@@ -110,7 +110,6 @@ RectTransform:
   - {fileID: 6558056195170150497}
   - {fileID: 216972914350569796}
   - {fileID: 3643086643640026906}
-  - {fileID: 9119259595481665444}
   - {fileID: 8008921416798811493}
   m_Father: {fileID: 6690014079074663710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -500,85 +499,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &3075496321057652373
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9119259595481665444}
-  - component: {fileID: 1975733148587245306}
-  - component: {fileID: 2482470160984856176}
-  m_Layer: 0
-  m_Name: TxtWeight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &9119259595481665444
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075496321057652373}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 57960903059115003}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.79, y: -1.57}
-  m_SizeDelta: {x: 113.74, y: 29.318}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1975733148587245306
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075496321057652373}
-  m_CullTransparentMesh: 1
---- !u!114 &2482470160984856176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075496321057652373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 9750e58f1afdcaa4dbe1f7df77b7df31, type: 3}
-    m_FontSize: 22
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 5
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: New Text
 --- !u!1 &5797978399707530107
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,8 +533,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.79001, y: -30.888}
-  m_SizeDelta: {x: 113.74, y: 29.318}
+  m_AnchoredPosition: {x: 102.79001, y: -27.166199}
+  m_SizeDelta: {x: 113.74, y: 36.7616}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1632596717286359269
 CanvasRenderer:
@@ -637,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.39354917, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -646,7 +566,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9750e58f1afdcaa4dbe1f7df77b7df31, type: 3}
-    m_FontSize: 22
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -785,12 +705,10 @@ MonoBehaviour:
   Index: 0
   DragOffSet: {x: 0, y: 0}
   PrefabsDynamicContentStepSuffix: 
-  MaxWeight: 0
-  MaxCapacity: 0
+  e_PanelCellTownStore: 0
   PanelCellItem_: {fileID: 0}
-  TxtWeight: {fileID: 0}
+  IptName: {fileID: 0}
   TxtCapacity: {fileID: 0}
-  TxtName: {fileID: 0}
   ImgPanelBk: {fileID: 0}
   ImgStore: {fileID: 0}
   Root: {fileID: 0}

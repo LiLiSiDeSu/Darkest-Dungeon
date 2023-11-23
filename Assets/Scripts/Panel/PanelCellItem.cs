@@ -62,12 +62,7 @@ public class PanelCellItem : PanelBase,
                 Hot.NowCellItem.ImgItem.raycastTarget = false;
                 break;
         }
-    }    
-
-    public void Init()
-    {
-        ChangeSize();        
-    }
+    }        
 
     public void ChangeSize()
     {
@@ -75,5 +70,5 @@ public class PanelCellItem : PanelBase,
             new(Hot.DicItemBody[e_SpriteNamePanelCellItem].x * Hot.SizeCellItemBody.x, Hot.DicItemBody[e_SpriteNamePanelCellItem].y * Hot.SizeCellItemBody.y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
             new(Hot.DicItemBody[e_SpriteNamePanelCellItem].x * Hot.SizeCellItemBody.x, Hot.DicItemBody[e_SpriteNamePanelCellItem].y * Hot.SizeCellItemBody.y);
-    }    
+    }
 }

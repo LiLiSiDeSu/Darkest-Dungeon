@@ -23,9 +23,12 @@ public class PanelCellMapEditorChooseRoom : PanelBase
         switch (controlname)
         {
             case "BtnCellMapEditorChooseRoom":
-                Hot.PanelOtherMapEditor_.ImgCurrentChooseRoom.sprite =
-                    Hot.MgrRes_.Load<Sprite>("Art/CellMap" + e_CellExpeditionMiniMapRoom.ToString());
+                Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite =
+                    Hot.MgrRes_.Load<Sprite>("Art/CellMapRoom" + e_CellExpeditionMiniMapRoom.ToString());
+                Hot.PanelOtherMapEditor_.ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 60);
+
                 Hot.e_NowChooseRoom = e_CellExpeditionMiniMapRoom;
+                Hot.e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
                 break;
         }
     }
@@ -33,6 +36,6 @@ public class PanelCellMapEditorChooseRoom : PanelBase
     public void Init(E_CellExpeditionMiniMapRoom e_CellExpeditionMiniMapRoom)
     {        
         this.e_CellExpeditionMiniMapRoom = e_CellExpeditionMiniMapRoom;
-        ImgCellMapEditorChooseRoom.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMap" + e_CellExpeditionMiniMapRoom.ToString());
+        ImgCellMapEditorChooseRoom.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMapRoom" + e_CellExpeditionMiniMapRoom.ToString());
     }
 }

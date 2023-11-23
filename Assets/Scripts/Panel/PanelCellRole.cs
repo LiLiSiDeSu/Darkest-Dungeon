@@ -30,7 +30,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
     {
         base.Awake();
 
-        PrefabsDynamicContentStepSuffix = "ForPanelCellRole";
+        PrefabsDynamicContentStepSuffix = "PanelCellRole";
 
         ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
         ImgProgress = transform.FindSonSonSon("ImgProgress").GetComponent<Image>();
@@ -62,6 +62,8 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        Root.localPosition = new Vector3(30, 0, 0);
+
         base.OnBeginDrag(eventData);
 
         ImgPanelBk.raycastTarget = false;        
@@ -73,7 +75,15 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
         ImgPanelBk.raycastTarget = true;        
     }
-    
+
+    public override void EndDrag()
+    {
+        transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
+        transform.localPosition = Vector3.zero;
+        DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);
+        Hot.PanelRoleList_.SortContent();
+    }
+
     #endregion
 
     protected override void Button_OnClick(string controlname)

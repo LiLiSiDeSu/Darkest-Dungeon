@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,10 +23,7 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
             (true, "/PanelGameArchiveChooseLevel", true, false, "PanelGameArchiveChooseLevel");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelTown>
-            (true, "/PanelTown", true, false, "PanelTown");
-
-        Hot.MgrUI_.CreatePanelAndPush<PanelRooms>
-            (true, "/PanelRooms", true, true, "PanelRooms");
+            (true, "/PanelTown", true, false, "PanelTown");        
 
         Hot.MgrUI_.CreatePanelAndPush<PanelTownStore>
             (true, "/PanelTownStore", true, true, "PanelTownStore");        
@@ -60,18 +58,43 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherMapEditor>
             (true, "/PanelOtherMapEditor", true, false, "PanelOtherMapEditor");
 
+        #region PanelTownRooms
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelTownRooms>
+            (true, "/PanelTownRooms", true, true, "PanelTownRooms");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomGuild>
+            (true, "/PanelRoomGuild", true, false, "PanelRoomGuild");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomGraveyard>
+            (true, "/PanelRoomGraveyard", true, false, "PanelRoomGraveyard");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomTownShop>
+            (true, "/PanelRoomTownShop", true, false, "PanelRoomTownShop");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomSmithy>
+            (true, "/PanelRoomSmithy", true, false, "PanelRoomSmithy");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomTavern>
+            (true, "/PanelRoomTavern", true, false, "PanelRoomTavern");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomSurvivorMaster>
+            (true, "/PanelRoomSurvivorMaster", true, false, "PanelRoomSurvivorMaster");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomAbbey>
+            (true, "/PanelRoomAbbey", true, false, "PanelRoomAbbey");
+        Hot.MgrUI_.CreatePanelAndPush<PanelRoomSanitarium>
+            (true, "/PanelRoomSanitarium", true, false, "PanelRoomSanitarium");
+
+        #endregion
+
+        #region DynamicContentStep的事件注册        
+
         Hot.CenterEvent_.AddEventListener<int, E_ArrowDirection>
         ("DynamicContentStep",
         (index, arrow) =>
         {
             Hot.PaddingContentStep_.transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
             Hot.PaddingContentStep_.transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
-            Hot.PaddingContentStep_.gameObject.SetActive(true);            
+            Hot.PaddingContentStep_.gameObject.SetActive(true);
 
             switch (arrow)
             {
-                case E_ArrowDirection.Up:
-                    Debug.Log(index + " - " + arrow);
+                case E_ArrowDirection.Up:                    
                     for (int i = index; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                     {
                         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
@@ -80,18 +103,19 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
                             SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
                     }
                     break;
-                case E_ArrowDirection.Down:
-                    Debug.Log(index + " - " + arrow);
+                case E_ArrowDirection.Down:                                
                     for (int i = index + 1; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                     {
                         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
                             SetParent(Hot.MgrUI_.UIBaseCanvas, false);
                         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
                             SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
-                    }
+                    }                    
                     break;
             }
         });
+
+        #endregion       
 
         Destroy(gameObject);
     }

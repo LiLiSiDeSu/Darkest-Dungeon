@@ -48,7 +48,30 @@ public class PanelRoleList : PanelBaseDynamicScrollView
         Content = transform.FindSonSonSon("RoleContent");
 
         BtnOpen.SetActive(false);
-    }       
+    }
+
+    #region EventSystem接口实现
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);        
+
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+
+        if (Hot.DragingPanelCellRoleRecruit != null)
+        {
+            Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleGuildRecruit_.Content, false);
+        }
+
+        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
+    }
+
+    #endregion
 
     protected override void Button_OnClick(string controlname)
     {
@@ -88,7 +111,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 panel.Index = tempi;
                 panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = 
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + panel.PrefabsDynamicContentStepSuffix);
+                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);
@@ -99,7 +122,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
             });
 
             NowIndex++;
-        }        
+        }
     }
 
     public void ClearContent()
@@ -147,33 +170,11 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 0);
     }
 
-    public void AddRole(DataContainer_CellRole role, DynamicContentStep dynamicContentStep)
+    public void RemoveRole(PanelCellRole toRemove)
     {
-        Hot.DataNowCellGameArchive.ListCellRole.Add(role);
-
-        Hot.MgrUI_.CreatePanel<PanelCellRole>
-        (false, "/PanelCellRole",
-        (panel) =>
-        {            
-            panel.Index = Hot.DataNowCellGameArchive.ListCellRole.Count - 1;
-
-            panel.CreatePanelCellRoleCanDrag();
-
-            panel.transform.SetParent(dynamicContentStep.DependentObjRoot, false);
-            SortContent();
-
-            panel.InitInfo(role);
-
-            NowIndex++;
-        });        
-
-        Hot.Data_.Save();
-    }
-
-    public void RemoveRole(PanelCellRole roleToRemove)
-    {
-        DestroyImmediate(roleToRemove.PanelCellRoleCanDrag_.gameObject);
-        DestroyImmediate(ListDynamicContentStep[roleToRemove.Index].gameObject);
+        NowIndex--;
+        DestroyImmediate(toRemove.PanelCellRoleCanDrag_.gameObject);
+        DestroyImmediate(ListDynamicContentStep[toRemove.Index].gameObject);
         SortContent();
         
         Hot.Data_.Save();

@@ -23,6 +23,9 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             GameArchiveDataCellList.Add(new DataContainer_PanelCellGameArchive());
         }
 
+        GameArchiveDataCellList[0].GameArchiveName = "Test";
+        GameArchiveDataCellList[0].e_GameArchiveLevel = E_GameArchiveLevel.Bloodmoon;
+
         #region TestData
 
         #region TownShop
@@ -150,10 +153,11 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
             new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao5", 2, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao6", 3, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao7", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao8", 1, 99, 40, 50, 200, 3),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao9", 0, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao10", 2, 99, 40, 10, 200, 2),
+            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao5", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao3", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao2", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao1", 2, 99, 40, 46, 200, 10),
         };
 
         GameArchiveDataCellList[0].ResTable = new DataContainer_ResTable(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);

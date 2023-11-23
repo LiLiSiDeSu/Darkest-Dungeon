@@ -24,7 +24,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
     {
         base.Awake();
 
-        PrefabsDynamicContentStepSuffix = "ForPanelCellGameArchive";
+        PrefabsDynamicContentStepSuffix = "PanelCellGameArchive";
 
         Root = transform.FindSonSonSon("Root");
         
@@ -47,17 +47,19 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
     #region EventSystem接口实现
 
     public void OnPointerEnter(PointerEventData eventData)
-    {
+    {        
         Root.localPosition = new Vector3(-50, 0, 0);
     }
 
     public void OnPointerExit(PointerEventData eventData)
-    {
+    {        
         Root.localPosition = new Vector3(0, 0, 0);
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        Root.transform.localPosition = new Vector3(0, 0, 0);
+
         base.OnBeginDrag(eventData);
 
         ImgGameArchiveChoosed.raycastTarget = false;        
@@ -68,6 +70,14 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
         base.OnEndDrag(eventData);
 
         ImgGameArchiveChoosed.raycastTarget = true;
+    }
+
+    public override void EndDrag()
+    {
+        transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
+        transform.localPosition = Vector3.zero;
+        DestroyImmediate(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject);
+        Hot.PanelGameArchiveChoose_.SortContent();
     }
 
     #endregion
@@ -95,7 +105,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     Hot.PanelRoleList_.InitContent();
                     Hot.PanelBarExpedition_.InitContent();
                     Hot.PanelExpeditionPrepare_.InitContent();
-                    Hot.PanelRoleGuildRecruit_.InitContent();                    
+                    Hot.PanelRoleGuildRecruit_.InitContent();
 
                     Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
                 }

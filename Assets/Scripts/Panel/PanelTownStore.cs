@@ -56,6 +56,24 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Content = transform.FindSonSonSon("TownStoreContent");
     }
 
+    #region EventSystem接口实现
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+
+        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownStore;
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+
+        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
+    }
+
+    #endregion
+
     public override void InitContent()
     {
         for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.ListCellStore.Count; i1++)
@@ -68,13 +86,12 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             {
                 PanelCellTownStore_.Index = tempi;
                 GameObject obj =
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + PanelCellTownStore_.PrefabsDynamicContentStepSuffix);
+                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + PanelCellTownStore_.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);
-                PanelCellTownStore_.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);                
+                PanelCellTownStore_.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
-
                 PanelCellTownStore_.Init();
 
                 Hot.MgrUI_.CreatePanelAndPush<PanelTownItem>
@@ -85,6 +102,12 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     PanelTownItem_.transform.SetParent(RootPanelTownItem, false);
                     PanelTownItem_.gameObject.SetActive(false);
 
+                    PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
+                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;                    
+
+                    PanelTownItem_.InitInfo();
+                    PanelTownItem_.InitContent();
+
                     Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,
                     () =>
                     {
@@ -93,15 +116,10 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                             Hot.PanelTownStore_.CancelNowChoosedItem();
                         }
                     });
-
-                    PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
-                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
-
-                    PanelTownItem_.InitContent();                    
                 });
             });
         }        
-    }
+    }    
 
     public void CancelNowChoosedItem()
     {
@@ -111,11 +129,12 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             {
                 for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
                 {
-                    Hot.NowPanelCanStoreItem.Grids[Hot.NowItemGrid.H + i1][Hot.NowItemGrid.W + i2].ImgStatus.sprite =
+                    Hot.NowPanelCanStoreItem.Grids[Hot.NowItemGrid.Y + i1][Hot.NowItemGrid.X + i2].ImgStatus.sprite =
                         Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 }
             }
         }
+
         Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
         Hot.NowCellItem.ImgItem.raycastTarget = true;
         Hot.NowCellItem = null;

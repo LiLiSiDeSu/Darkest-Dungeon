@@ -8,7 +8,7 @@ public static class Hot
 {
     #region Config
 
-    public static int StepSanity = 10;    
+    public static int StepSanity = 10;
 
     /// <summary>
     /// 在TranslateNum的基础上添加的倍率
@@ -38,50 +38,68 @@ public static class Hot
     };
 
     public static Vector2 SizeCellItemBody = new(40, 40);
+    public static Vector2 SizeCellMinimapBody = new(40, 40);
+
+    public static Dictionary<E_CellExpeditionMiniMapHall, Vector2> DicHallBody = new()
+    {
+        { E_CellExpeditionMiniMapHall.Dark, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.Dim, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.Light, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.Battle, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.Trap, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.Secret, new(1, 1) },
+    };
+    public static Dictionary<E_CellExpeditionMiniMapRoom, Vector2> DicRoomBody = new()
+    {
+        { E_CellExpeditionMiniMapRoom.Boss, new(4, 4) },
+        { E_CellExpeditionMiniMapRoom.Locked, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.Empty, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.Entrance, new(3, 3) },
+    };
 
     public static Dictionary<E_PanelCellTownStore, Vector2> DicStoreBody = new()
     {
-        { E_PanelCellTownStore.StoreWood, new Vector2(10, 5) },
-        { E_PanelCellTownStore.StoreIron, new Vector2(12, 10) },
-        { E_PanelCellTownStore.StoreGold, new Vector2(15, 13) },
+        { E_PanelCellTownStore.StoreWood, new(10, 5) },
+        { E_PanelCellTownStore.StoreIron, new(12, 10) },
+        { E_PanelCellTownStore.StoreGold, new(15, 13) },
     };
 
     public static Dictionary<E_SpriteNamePanelCellItem, InfoContainer_Cost> DicItemCost = new()
     {
-        { E_SpriteNamePanelCellItem.ItemFoodCookie, new InfoContainer_Cost(1, 1, 1, 1, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodApple, new InfoContainer_Cost(2, 2, 2, 2, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodBread, new InfoContainer_Cost(1, 2, 1, 2, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1, 1, 1, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodApple, new(2, 2, 2, 2, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2, 1, 2, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new InfoContainer_Cost(11, 11, 11, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new InfoContainer_Cost(11, 11, 13, 12, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(11, 11, 13, 12, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new InfoContainer_Cost(21, 13, 122, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new InfoContainer_Cost(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(21, 13, 122, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new InfoContainer_Cost(11, 11, 21, 21, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new InfoContainer_Cost(41, 31, 31, 31, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(11, 11, 21, 21, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(41, 31, 31, 31, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new InfoContainer_Cost(22, 22, 22, 22, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new InfoContainer_Cost(12, 22, 11, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(22, 22, 22, 22, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
     };
 
     public static Dictionary<E_SpriteNamePanelCellItem, Vector2> DicItemBody = new()
     {
-        { E_SpriteNamePanelCellItem.ItemFoodCookie, new Vector2(1, 1) },
-        { E_SpriteNamePanelCellItem.ItemFoodApple, new Vector2(3, 3) },
-        { E_SpriteNamePanelCellItem.ItemFoodBread, new Vector2(1, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1) },
+        { E_SpriteNamePanelCellItem.ItemFoodApple, new(3, 3) },
+        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new Vector2(2, 3) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new Vector2(2, 3) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(2, 3) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(2, 3) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(2, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new Vector2(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new Vector2(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(2, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new Vector2(2, 2) },     
-        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new Vector2(2, 2) },        
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(2, 2) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(2, 2) },
     };
 
     #endregion
@@ -95,7 +113,7 @@ public static class Hot
     public static Data Data_
     {
         get { return Data.GetInstance(); }
-    }    
+    }
     public static PoolNowPanel PoolNowPanel_
     {
         get { return PoolNowPanel.GetInstance(); }
@@ -124,7 +142,49 @@ public static class Hot
     #endregion
 
     #region Panel
-    
+
+    #region PanelTownRooms
+
+    public static PanelTownRooms PanelTownRooms_
+    {
+        get { return MgrUI_.GetPanel<PanelTownRooms>("PanelTownRooms"); }
+    }
+    //---
+    public static PanelRoomGuild PanelRoomGuild_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomGuild>("PanelRoomGuild"); }
+    }
+    public static PanelRoomGraveyard PanelRoomGraveyard_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomGraveyard>("PanelRoomGraveyard"); }
+    }
+    public static PanelRoomTownShop PanelRoomTownShop_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomTownShop>("PanelRoomTownShop"); }
+    }
+    public static PanelRoomSmithy PanelRoomSmithy_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomSmithy>("PanelRoomSmithy"); }
+    }
+    public static PanelRoomTavern PanelRoomTavern_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomTavern>("PanelRoomTavern"); }
+    }
+    public static PanelRoomAbbey PanelRoomAbbey_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomAbbey>("PanelRoomAbbey"); }
+    }
+    public static PanelRoomSanitarium PanelRoomSanitarium_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomSanitarium>("PanelRoomSanitarium"); }
+    }
+    public static PanelRoomSurvivorMaster PanelRoomSurvivorMaster_
+    {
+        get { return MgrUI_.GetPanel<PanelRoomSurvivorMaster>("PanelRoomSurvivorMaster"); }
+    }
+
+    #endregion
+
     public static PanelTownShopCost PanelTownShopCost_
     {
         get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
@@ -187,13 +247,6 @@ public static class Hot
     public static PanelOtherDestroyArchiveHint PanelOtherDestroyArchiveHint_
     {
         get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
-    }
-    /// <summary>
-    /// 城镇商店
-    /// </summary>
-    public static PanelRoomTownShop PanelRoomTownShop_
-    {
-        get { return MgrUI_.GetPanel<PanelRooms>("PanelRooms").AllPanel["PanelRoomTownShop"] as PanelRoomTownShop; }
     }    
     /// <summary>
     /// 城镇商店花费面板
@@ -236,6 +289,19 @@ public static class Hot
     #endregion
 
     #region Now    
+
+    public static int PaddingIndex
+    {
+        get
+        {
+            if (PaddingContentStep_ == null)
+            {
+                return 0;
+            }
+
+            return PaddingContentStep_.GetComponent<RectTransform>().GetSiblingIndex();
+        }
+    }
     public static bool CanBuy = false;
     /// <summary>
     /// 当前存档的Index
@@ -272,11 +338,19 @@ public static class Hot
     /// <summary>
     /// 现在选中的物品
     /// </summary>
-    public static PanelCellItem NowCellItem = null;
+    public static PanelCellItem NowCellItem = null;        
     /// <summary>
     /// 现在进入的物品背景格子
     /// </summary>
     public static PanelCellTownItemGrid NowItemGrid = null;
+    /// <summary>
+    /// 现在进入的地图编辑器背景格子
+    /// </summary>
+    public static PanelCellMapEditorGrid NowMapEditorGrid = null;
+    /// <summary>
+    /// 现在选中的地图编辑器Cell      
+    /// </summary>
+    public static PanelCellMapEditor NowCellMapEditor = null;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

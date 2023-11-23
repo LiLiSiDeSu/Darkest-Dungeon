@@ -9,18 +9,28 @@ public class PanelBaseCellDynamicScrollView : PanelBaseCell,
     public Vector2 DragOffSet;
     public string PrefabsDynamicContentStepSuffix = "";
 
+    public PanelBaseDynamicScrollView Father;    
+
+    protected override void Start()
+    {
+        base.Start();
+
+        Father = GetComponentInParent<PanelBaseDynamicScrollView>();
+    }
+
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        Father.EnableDetection();
+
         DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
         transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
 
         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[Index].gameObject.SetActive(false);
+        Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[Index].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
 
         Hot.PaddingContentStep_ =
-            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStep" + PrefabsDynamicContentStepSuffix).
-            GetComponent<DynamicContentStep>();
-        Hot.PaddingContentStep_.Init(-1);
-        Hot.NowPanelBaseDynamicScrollView_.EnableDetection();
+            Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + PrefabsDynamicContentStepSuffix).GetComponent<DynamicContentStep>();
+        Hot.PaddingContentStep_.Init(-1);        
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -30,24 +40,13 @@ public class PanelBaseCellDynamicScrollView : PanelBaseCell,
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        Hot.NowPanelBaseDynamicScrollView_.DisableDetection();
+        Father.DisableDetection();
 
-        if (Hot.NowPanelBaseDynamicScrollView_ != null)
-        {
-            Hot.PaddingContentStep_.transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
-            transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
-            DestroyImmediate(Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[Index].gameObject);
-            Hot.NowPanelBaseDynamicScrollView_.SortContent();
-        }
-        else
-        {
-            Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[Index].gameObject.SetActive(true);
-            transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[Index].DependentObjRoot, false);
-            transform.localPosition = Vector3.zero;
+        EndDrag();
+    }    
 
-            DestroyImmediate(Hot.PaddingContentStep_.gameObject);
-            Hot.PaddingContentStep_ = null;
-        }        
-    }
+    public virtual void EndDrag()
+    {
+        
+    }    
 }

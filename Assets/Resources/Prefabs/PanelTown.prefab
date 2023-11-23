@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9073886139505032067}
   - component: {fileID: 3313096375858599942}
   m_Layer: 5
-  m_Name: BtnGuild
+  m_Name: BtnRoomGuild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 8968853889836649104}
   - component: {fileID: 6198564263556141415}
   m_Layer: 5
-  m_Name: BtnAbbey
+  m_Name: BtnRoomAbbey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 4891650965331028783}
   - component: {fileID: 3983782759349312805}
   m_Layer: 5
-  m_Name: ImgTownShop
+  m_Name: ImgRoomTownShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 3605608708100219}
   - component: {fileID: 3531901941633488582}
   m_Layer: 5
-  m_Name: ImgSurvivorMaster
+  m_Name: ImgRoomSurvivorMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 7231157818519341930}
   - component: {fileID: 7066511457789211112}
   m_Layer: 5
-  m_Name: ImgSmithy
+  m_Name: ImgRoomSmithy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 7817150984548904095}
   - component: {fileID: 7322180636822286839}
   m_Layer: 5
-  m_Name: BtnSurvivorMaster
+  m_Name: BtnRoomSurvivorMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 5472786964828308858}
   - component: {fileID: 410503036422240521}
   m_Layer: 5
-  m_Name: BtnSanitarium
+  m_Name: BtnRoomSanitarium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 3498433270020778831}
   - component: {fileID: 5826524659109430765}
   m_Layer: 5
-  m_Name: ImgGuild
+  m_Name: ImgRoomGuild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 432156161028615029}
   - component: {fileID: 1290211476784981543}
   m_Layer: 5
-  m_Name: BtnTavern
+  m_Name: BtnRoomTavern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1395,7 +1395,7 @@ GameObject:
   - component: {fileID: 5654914943379690584}
   - component: {fileID: 3893956948449860795}
   m_Layer: 5
-  m_Name: BtnSmithy
+  m_Name: BtnRoomSmithy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1485,7 @@ GameObject:
   - component: {fileID: 5110122828248737550}
   - component: {fileID: 9048511363858967191}
   m_Layer: 5
-  m_Name: ImgTavern
+  m_Name: ImgRoomTavern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 5684713314070295733}
   - component: {fileID: 7696107172922417692}
   m_Layer: 5
-  m_Name: ImgSanitarium
+  m_Name: ImgRoomSanitarium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 3327073625645352753}
   - component: {fileID: 679022183943947487}
   m_Layer: 5
-  m_Name: ImgGraveyard
+  m_Name: ImgRoomGraveyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1996,7 +1996,7 @@ GameObject:
   - component: {fileID: 7333290669821808580}
   - component: {fileID: 4280735361087814034}
   m_Layer: 5
-  m_Name: ImgAbbey
+  m_Name: ImgRoomAbbey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2071,7 +2071,7 @@ GameObject:
   - component: {fileID: 104988623287479793}
   - component: {fileID: 9035004431946439825}
   m_Layer: 5
-  m_Name: BtnGraveyard
+  m_Name: BtnRoomGraveyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2161,7 +2161,7 @@ GameObject:
   - component: {fileID: 7801364085529237792}
   - component: {fileID: 3865320922343350603}
   m_Layer: 5
-  m_Name: BtnTownShop
+  m_Name: BtnRoomTownShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -193,12 +193,21 @@ public class DataContainer_ExpeditionMiniMap
 }
 
 public class DataContainer_CellExpeditionMiniMap
-{
-    public bool IsHave = false;
-    public E_CellExpeditionMiniMapHall e_CellExpeditionMiniMapHall = E_CellExpeditionMiniMapHall.None;
-    public E_CellExpeditionMiniMapRoom e_CellExpeditionMiniMapRoom = E_CellExpeditionMiniMapRoom.None;            
+{    
+    public E_CellExpeditionMiniMapHall e_Hall = E_CellExpeditionMiniMapHall.None;
+    public E_CellExpeditionMiniMapRoom e_Room = E_CellExpeditionMiniMapRoom.None;            
 
     public List<List<DataContainer_CellExpeditionMapGrid>> Map = new();
+
+    public DataContainer_CellExpeditionMiniMap() { }
+    public DataContainer_CellExpeditionMiniMap
+    (E_CellExpeditionMiniMapHall e_Hall, E_CellExpeditionMiniMapRoom e_Room,
+     List<List<DataContainer_CellExpeditionMapGrid>> map)
+    {
+        this.e_Hall = e_Hall;
+        this.e_Room = e_Room;
+        Map = map;
+    }
 }
 
 public class DataContainer_CellExpeditionMapGrid
@@ -227,7 +236,7 @@ public class DataContainer_CellTownStore
      E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
     {
         Name = name;
-        this.e_PanelCellTownStore = e_SpriteNamePanelCellTownStore;        
+        e_PanelCellTownStore = e_SpriteNamePanelCellTownStore;        
     }
 }
 
@@ -425,7 +434,6 @@ public class InfoContainer_Cost
         Crystal = crystal;
     }   
 }
-
 
 //特殊的类 用于PanelCellItem 记录打折信息 PriceOffSet 或者其他
 //......
