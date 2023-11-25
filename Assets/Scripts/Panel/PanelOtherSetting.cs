@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -80,7 +79,8 @@ public class PanelOtherSetting : PanelBase
                     Hot.PanelTownShopItem_.Clear();
                     Hot.PanelRoleList_.ClearContent();
                     Hot.PanelBarExpedition_.Clear();
-                    Hot.PanelRoleGuildRecruit_.Clear();                    
+                    Hot.PanelRoleGuildRecruit_.Clear();
+                    Hot.PanelExpeditionPrepare_.Clear();
 
                     Hot.e_NowPlayerLocation = E_PlayerLocation.None;
 

@@ -24,11 +24,11 @@ public class PanelCellMapEditorChooseHall : PanelBase
         {
             case "BtnCellMapEditorChooseHall":
                 Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = 
-                    Hot.MgrRes_.Load<Sprite>("Art/CellMapHall" + e_CellExpeditionMiniMapHall.ToString());
+                    Hot.MgrRes_.Load<Sprite>("Art/" + e_CellExpeditionMiniMapHall.ToString());
                 Hot.PanelOtherMapEditor_.ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
 
-                Hot.e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
-                Hot.e_NowChooseHall = e_CellExpeditionMiniMapHall;
+                Hot.e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;
+                Hot.e_ChoseHall = e_CellExpeditionMiniMapHall;
                 break;
         }
     }
@@ -36,6 +36,6 @@ public class PanelCellMapEditorChooseHall : PanelBase
     public void Init(E_CellExpeditionMiniMapHall e_CellExpeditionMiniMapHall)
     {
         this.e_CellExpeditionMiniMapHall = e_CellExpeditionMiniMapHall;
-        ImgCellMapEditorChooseHall.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMapHall" + e_CellExpeditionMiniMapHall.ToString());
+        ImgCellMapEditorChooseHall.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_CellExpeditionMiniMapHall.ToString());
     }    
 }

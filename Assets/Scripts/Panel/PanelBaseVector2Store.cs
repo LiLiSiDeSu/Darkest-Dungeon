@@ -18,13 +18,13 @@ public class PanelBaseVector2Store : PanelBase
 
     public void ChangeSize()
     {
-        ImgBkContent.GetComponent<GridLayoutGroup>().cellSize = Hot.SizeCellItemBody;
-        ItemContent.GetComponent<GridLayoutGroup>().cellSize = Hot.SizeCellItemBody;
-        ImgStatusContent.GetComponent<GridLayoutGroup>().cellSize = Hot.SizeCellItemBody;
+        ImgBkContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
+        ItemContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
+        ImgStatusContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
 
         foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
         {
-            item.cellSize = Hot.SizeCellItemBody;
+            item.cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
         }
 
         foreach (List<Transform> listItem in ItemRoot)
@@ -43,5 +43,11 @@ public class PanelBaseVector2Store : PanelBase
 
     public virtual void UpdateInfoByAdd(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem) { }    
 
-    public virtual void UpdateInfoBySubtract(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem) { }    
+    public virtual void UpdateInfoBySubtract(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem) { }
+
+    public virtual void ClearList()
+    {
+        Grids.Clear();
+        ItemRoot.Clear();
+    }
 }

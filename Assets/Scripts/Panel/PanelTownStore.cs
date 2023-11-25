@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -125,9 +124,9 @@ public class PanelTownStore : PanelBaseDynamicScrollView
     {
         if (Hot.NowItemGrid != null)
         {
-            for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+            for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
             {
-                for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
                 {
                     Hot.NowPanelCanStoreItem.Grids[Hot.NowItemGrid.Y + i1][Hot.NowItemGrid.X + i2].ImgStatus.sprite =
                         Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
@@ -143,14 +142,13 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
     public override void Clear()
     {
-        PanelCellTownStore[] all = Content.GetComponentsInChildren<PanelCellTownStore>();
-        for (int i = 0; i < all.Length; i++)
-        {
-            Hot.MgrUI_.DicPanel.Remove(all[i].PanelCellItem_.gameObject.name);
-            Hot.PoolBuffer_.DicPool.Remove(all[i].PanelCellItem_.gameObject.name);            
-            DestroyImmediate(all[i].PanelCellItem_.gameObject);
-            DestroyImmediate(all[i].gameObject);
-        }
+        foreach (DynamicContentStep item in Content.GetComponentsInChildren<DynamicContentStep>())
+        {            
+            Hot.MgrUI_.DicPanel.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject.name);
+            Hot.PoolBuffer_.DicPool.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject.name);
+            DestroyImmediate(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject);
+            DestroyImmediate(item.gameObject);
+        }                
     }
     
     public override void SortContent()

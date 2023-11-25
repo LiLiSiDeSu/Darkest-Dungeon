@@ -37,27 +37,28 @@ public static class Hot
         130
     };
 
-    public static Vector2 SizeCellItemBody = new(40, 40);
-    public static Vector2 SizeCellMinimapBody = new(40, 40);
+    public static m_Vector2 SizeCellItemBody = new(40, 40);
+    public static m_Vector2 SizeCellMinimapBody = new(40, 40);
 
-    public static Dictionary<E_CellExpeditionMiniMapHall, Vector2> DicHallBody = new()
+    public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> DicHallBody = new()
     {
-        { E_CellExpeditionMiniMapHall.Dark, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.Dim, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.Light, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.Battle, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.Trap, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.Secret, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallDark, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallDim, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallLight, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallBattle, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallTrap, new(1, 1) },
+        { E_CellExpeditionMiniMapHall.CellMapHallSecret, new(1, 1) },
     };
-    public static Dictionary<E_CellExpeditionMiniMapRoom, Vector2> DicRoomBody = new()
+    public static Dictionary<E_CellExpeditionMiniMapRoom, m_Vector2> DicRoomBody = new()
     {
-        { E_CellExpeditionMiniMapRoom.Boss, new(4, 4) },
-        { E_CellExpeditionMiniMapRoom.Locked, new(3, 3) },
-        { E_CellExpeditionMiniMapRoom.Empty, new(3, 3) },
-        { E_CellExpeditionMiniMapRoom.Entrance, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.CellMapRoomBoss, new(4, 4) },
+        { E_CellExpeditionMiniMapRoom.CellMapRoomLocked, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.CellMapRoomEmpty, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.CellMapRoomEntrance, new(3, 3) },
+        { E_CellExpeditionMiniMapRoom.CellMapRoomUnkown, new(3, 3) },
     };
 
-    public static Dictionary<E_PanelCellTownStore, Vector2> DicStoreBody = new()
+    public static Dictionary<E_PanelCellTownStore, m_Vector2> DicStoreBody = new()
     {
         { E_PanelCellTownStore.StoreWood, new(10, 5) },
         { E_PanelCellTownStore.StoreIron, new(12, 10) },
@@ -83,7 +84,7 @@ public static class Hot
         { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
     };
 
-    public static Dictionary<E_SpriteNamePanelCellItem, Vector2> DicItemBody = new()
+    public static Dictionary<E_SpriteNamePanelCellItem, m_Vector2> DicItemBody = new()
     {
         { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1) },
         { E_SpriteNamePanelCellItem.ItemFoodApple, new(3, 3) },
@@ -141,7 +142,125 @@ public static class Hot
 
     #endregion
 
-    #region Panel
+    #region Panel    
+
+    #region Expedition
+
+    public static PanelExpeditionDetails PanelExpeditionDetails_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionDetails>("PanelExpeditionDetails"); }
+    }
+    public static PanelExpeditionMiniMap PanelExpeditionMiniMap_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
+    }
+    public static PanelExpeditionPrepare PanelExpeditionPrepare_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionPrepare>("PanelExpeditionPrepare"); }
+    }
+
+    #endregion
+
+    #region Bar
+
+    public static PanelBarExpedition PanelBarExpedition_
+    {
+        get { return MgrUI_.GetPanel<PanelBarExpedition>("PanelBarExpedition"); }
+    }
+    public static PanelBarTown PanelBarTown_
+    {
+        get { return MgrUI_.GetPanel<PanelBarTown>("PanelBarTown"); }
+    }
+
+    #endregion
+
+    #region Other
+
+    public static PanelOhterResTable PanelOtherResTable_
+    {
+        get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
+    }
+    public static PanelOtherMapEditor PanelOtherMapEditor_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherMapEditor>("PanelOtherMapEditor"); }
+    }
+    public static PanelOtherSetting PanelOtherSetting_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }
+    }
+
+    #endregion
+
+    #region Role
+
+    public static PanelRoleDetails PanelRoleDetails_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
+    }
+    public static PanelRoleList PanelRoleList_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
+    }
+    public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>("PanelRoleGuildRecruit"); }
+    }
+    public static PanelRoleGuildRecruitCost PanelRoleGuildRecruitCost_
+    {
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruitCost>("PanelRoleGuildRecruitCost"); }
+    }
+
+    #endregion
+
+    #region GameArchive
+
+    public static PanelGameArchiveChoose PanelGameArchiveChoose_
+    {
+        get { return MgrUI_.GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose"); }
+    }
+    public static PanelOtherDestroyArchiveHint PanelOtherDestroyArchiveHint_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
+    }
+
+    #endregion
+
+    #region Town    
+    /// <summary>
+    /// 所有城镇箱子面板
+    /// </summary>
+    public static PanelTownStore PanelTownStore_
+    {
+        get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
+    }
+
+    #region TownShop
+
+    /// <summary>
+    /// 城镇商店花费面板
+    /// </summary>
+    public static PanelTownShopCost PanelTownShopCost_
+    {
+        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
+    }
+    /// <summary>
+    /// 城镇商店面板娘PoPoCat
+    /// </summary>
+    public static PanelMinistrantPoPoCat PanelMinistrantPoPoCat_
+    {
+        get { return MgrUI_.GetPanel<PanelMinistrantPoPoCat>("PanelMinistrantPoPoCat"); }
+    }
+    /// <summary>
+    /// 城镇商店面板
+    /// </summary>
+    public static PanelTownShopItem PanelTownShopItem_
+    {
+        get { return MgrUI_.GetPanel<PanelTownShopItem>("PanelTownShopItem"); }
+    }
+
+    #endregion
+
+    #endregion
 
     #region PanelTownRooms
 
@@ -185,92 +304,7 @@ public static class Hot
 
     #endregion
 
-    public static PanelTownShopCost PanelTownShopCost_
-    {
-        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
-    }
-    public static PanelOtherMapEditor PanelOtherMapEditor_
-    {
-        get { return MgrUI_.GetPanel<PanelOtherMapEditor>("PanelOtherMapEditor"); }
-    }
-    public static PanelExpeditionMiniMap PanelExpeditionMiniMap_
-    {
-        get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
-    }
-    public static PanelExpeditionPrepare PanelExpeditionPrepare_
-    {
-        get { return MgrUI_.GetPanel<PanelExpeditionPrepare>("PanelExpeditionPrepare"); }
-    }
-    public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
-    {
-        get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>("PanelRoleGuildRecruit"); }
-    }
-    public static PanelRoleGuildRecruitCost PanelRoleGuildRecruitCost_
-    {
-        get { return MgrUI_.GetPanel<PanelRoleGuildRecruitCost>("PanelRoleGuildRecruitCost"); }
-    }
-    public static PanelOtherSetting PanelOtherSetting_
-    {
-        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }        
-    }
-    public static PanelBarExpedition PanelBarExpedition_
-    {
-        get { return MgrUI_.GetPanel<PanelBarExpedition>("PanelBarExpedition"); }
-    }
-    public static PanelBarTown PanelBarTown_
-    {
-        get { return MgrUI_.GetPanel<PanelBarTown>("PanelBarTown"); }
-    }
-    public static PanelRoleDetails PanelRoleDetails_
-    {
-        get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
-    }
-    public static PanelRoleList PanelRoleList_
-    {
-        get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
-    }
-    /// <summary>
-    /// 所有城镇箱子面板
-    /// </summary>
-    public static PanelTownStore PanelTownStore_
-    {
-        get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
-    }    
-    public static PanelOhterResTable PanelOtherResTable_
-    {
-        get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
-    }    
-    public static PanelGameArchiveChoose PanelGameArchiveChoose_
-    {
-        get { return MgrUI_.GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose"); }
-    }    
-    public static PanelOtherDestroyArchiveHint PanelOtherDestroyArchiveHint_
-    {
-        get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
-    }    
-    /// <summary>
-    /// 城镇商店花费面板
-    /// </summary>
-    public static PanelTownShopCost PanelShopCost_
-    {
-        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
-    }
-    /// <summary>
-    /// 城镇商店面板娘PoPoCat
-    /// </summary>
-    public static PanelMinistrantPoPoCat PanelMinistrantPoPoCat_
-    {
-        get { return MgrUI_.GetPanel<PanelMinistrantPoPoCat>("PanelMinistrantPoPoCat"); }
-    }
-    /// <summary>
-    /// 城镇商店面板
-    /// </summary>
-    public static PanelTownShopItem PanelTownShopItem_
-    {
-        get { return MgrUI_.GetPanel<PanelTownShopItem>("PanelTownShopItem"); }
-    }
-
-    #endregion    
+    #endregion
 
     #region Data
 
@@ -290,23 +324,9 @@ public static class Hot
 
     #region Now    
 
-    public static int PaddingIndex
-    {
-        get
-        {
-            if (PaddingContentStep_ == null)
-            {
-                return 0;
-            }
+    #region Other
 
-            return PaddingContentStep_.GetComponent<RectTransform>().GetSiblingIndex();
-        }
-    }
     public static bool CanBuy = false;
-    /// <summary>
-    /// 当前存档的Index
-    /// </summary>
-    public static int NowIndexCellGameArchive = -1;
     /// <summary>
     /// 现在鼠标所在的区域
     /// </summary>
@@ -315,10 +335,66 @@ public static class Hot
     /// 现在玩家所在的区域(从开发者视角来看)
     /// </summary>
     public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;
-    public static E_CellExpeditionMiniMapHall e_NowChooseHall = E_CellExpeditionMiniMapHall.None;
-    public static E_CellExpeditionMiniMapRoom e_NowChooseRoom = E_CellExpeditionMiniMapRoom.None;
+
+    #endregion
+
+    #region Dynamic
+
+    public static int PaddingIndex
+    {
+        get
+        {
+            if (PaddingContentStep_ == null)
+                return 0;
+
+            return PaddingContentStep_.GetComponent<RectTransform>().GetSiblingIndex();
+        }
+    }
     public static E_ArrowDirection e_PaddingArrowDirection;
     public static DynamicContentStep PaddingContentStep_;
+    /// <summary>
+    /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
+    /// </summary>
+    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
+
+    #endregion
+
+    #region GameArchive
+
+    /// <summary>
+    /// 当前存档的Index
+    /// </summary>
+    public static int NowIndexCellGameArchive = -1;
+
+    #endregion
+
+    #region MapEditor
+        
+    public static E_CellExpeditionMiniMapHall e_ChoseHall = E_CellExpeditionMiniMapHall.None;
+    public static E_CellExpeditionMiniMapRoom e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;    
+    /// <summary>
+    /// 现在进入的地图编辑器背景Grid
+    /// </summary>
+    public static PanelCellMapEditorGrid NowMapEditorGrid = null;
+    /// <summary>
+    /// 现在进入的地图编辑器Cell      
+    /// </summary>
+    public static PanelCellMapEditor NowCellMapEditor = null;
+    /// <summary>
+    /// 现在选择的地图编辑器Cell
+    /// </summary>
+    public static PanelCellMapEditor ChoseMapEditor = null;
+
+    #endregion
+
+    #region Expedition
+
+    public static PanelCellExpeditionEvent ChoseExpeditionEvent = null;
+
+    #endregion
+
+    #region Role
+
     /// <summary>
     /// 现在进入的角色远征格子
     /// </summary>
@@ -332,29 +408,14 @@ public static class Hot
     /// </summary>
     public static GameObject DragingRolePortrait;
     /// <summary>
-    /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
-    /// </summary>
-    public static PanelBaseDynamicScrollView NowPanelBaseDynamicScrollView_ = null;
-    /// <summary>
-    /// 现在选中的物品
-    /// </summary>
-    public static PanelCellItem NowCellItem = null;        
-    /// <summary>
-    /// 现在进入的物品背景格子
-    /// </summary>
-    public static PanelCellTownItemGrid NowItemGrid = null;
-    /// <summary>
-    /// 现在进入的地图编辑器背景格子
-    /// </summary>
-    public static PanelCellMapEditorGrid NowMapEditorGrid = null;
-    /// <summary>
-    /// 现在选中的地图编辑器Cell      
-    /// </summary>
-    public static PanelCellMapEditor NowCellMapEditor = null;
-    /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>
-    public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;       
+    public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;
+
+    #endregion
+
+    #region Item
+
     /// <summary>
     /// 拖拽的箱子
     /// </summary>
@@ -362,7 +423,17 @@ public static class Hot
     /// <summary>
     /// 现在进入的可以存储Item的面板
     /// </summary>
-    public static PanelBaseVector2Store NowPanelCanStoreItem;     
+    public static PanelBaseVector2Store NowPanelCanStoreItem;
+    /// <summary>
+    /// 现在选中的物品
+    /// </summary>
+    public static PanelCellItem NowCellItem = null;
+    /// <summary>
+    /// 现在进入的物品背景格子
+    /// </summary>
+    public static PanelCellTownItemGrid NowItemGrid = null;
+
+    #endregion    
 
     #endregion    
 }

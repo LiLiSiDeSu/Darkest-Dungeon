@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class PanelExpeditionPrepare : PanelBase
@@ -10,7 +12,32 @@ public class PanelExpeditionPrepare : PanelBase
     public Transform WildsContent;
     public Transform RuinsContent;
     public Transform SeaContent;
-    public Transform DarkestContent;    
+    public Transform DarkestContent;
+
+    public Transform this[E_ExpeditionLocation e_ExpeditionLocation]
+    {
+        get
+        {
+            switch (e_ExpeditionLocation)
+            {                
+                case E_ExpeditionLocation.BloodCourtyard:
+                    return BloodCourtyardContent;                    
+                case E_ExpeditionLocation.Lair:
+                    return LairContent;
+                case E_ExpeditionLocation.Farm:
+                    return FarmContent;
+                case E_ExpeditionLocation.Wilds:
+                    return WildsContent;
+                case E_ExpeditionLocation.Ruins:
+                    return RuinsContent;
+                case E_ExpeditionLocation.Darkest:
+                    return DarkestContent;
+                case E_ExpeditionLocation.Sea:
+                    return SeaContent;
+            }
+            return null;
+        }
+    }
 
     protected override void Awake()
     {
@@ -20,6 +47,12 @@ public class PanelExpeditionPrepare : PanelBase
         () =>
         {
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+        });
+
+        Hot.MgrUI_.CreatePanelAndShow<PanelExpeditionDetails>(true, "/PanelExpeditionDetails",
+        (panel) =>
+        {
+            panel.transform.SetParent(transform, false);
         });
 
         BloodCourtyardContent = transform.FindSonSonSon("BloodCourtyardContent");
@@ -32,83 +65,45 @@ public class PanelExpeditionPrepare : PanelBase
     }
 
     public void InitContent()
+    {        
+        Refresh();
+
+        foreach (E_ExpeditionLocation e_ExpeditionLocation in Enum.GetValues(typeof(E_ExpeditionLocation)))
+        {
+            if (e_ExpeditionLocation == E_ExpeditionLocation.Town)
+            {
+                ;
+            }
+            else
+            {
+                for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation].Count; i++)
+                {
+                    int tempi = i;
+
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
+                    (panel) =>
+                    {
+                        panel.transform.SetParent(this[e_ExpeditionLocation], false);
+                        panel.Init(tempi, e_ExpeditionLocation);
+                    });
+                }
+            }            
+        }        
+    }
+
+    public void Clear()
     {
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Lair.Count; i++)
+        foreach (PanelCellExpeditionEvent item in transform.GetComponentsInChildren<PanelCellExpeditionEvent>())
         {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Lair);
-                panel.transform.SetParent(LairContent, false);
-            });
+            Destroy(item.gameObject);
         }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Wilds.Count; i++)
-        {
-            int tempi = i;
+    }
 
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Wilds);
-                panel.transform.SetParent(WildsContent, false);
-            });
-        }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.Count; i++)
-        {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Darkest);
-                panel.transform.SetParent(DarkestContent, false);
-            });
-        }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Ruins.Count; i++)
-        {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Ruins);
-                panel.transform.SetParent(RuinsContent, false);
-            });
-        }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Sea.Count; i++)
-        {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Sed);
-                panel.transform.SetParent(SeaContent, false);
-            });
-        }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.Farm.Count; i++)
-        {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.Farm);
-                panel.transform.SetParent(FarmContent, false);
-            });
-        }
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare.BloodCourtyard.Count; i++)
-        {
-            int tempi = i;
-
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
-            (panel) =>
-            {
-                panel.Init(tempi, E_ExpeditionLocation.BloodCourtyard);
-                panel.transform.SetParent(BloodCourtyardContent, false);
-            });
-        }
+    public void Refresh()
+    {
+        Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.
+            Add(Hot.MgrJson_.Load<DataContainer_Expedition>(Hot.PanelOtherMapEditor_.PathFolder + "/Default", "/Map0"));
+        Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.
+            Add(Hot.MgrJson_.Load<DataContainer_Expedition>(Hot.PanelOtherMapEditor_.PathFolder + "/Default", "/Map1"));
     }
 }

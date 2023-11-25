@@ -1,20 +1,30 @@
 ﻿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {    
     private void Start()
     {
+        #region Other
+
         Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
             (true, "/PanelOtherStart");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherDestroyArchiveHint>
             (true, "/PanelOtherDestroyArchiveHint", true, false, "PanelOtherDestroyArchiveHint");
 
+        Hot.MgrUI_.CreatePanelAndPush<PanelOhterResTable>
+            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");
+
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherSetting>
             (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
+
+        #endregion
+
+        #region GameArchive
 
         Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChoose>
             (true, "/PanelGameArchiveChoose", true, true, "PanelGameArchiveChoose");
@@ -22,14 +32,19 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChooseLevel>
             (true, "/PanelGameArchiveChooseLevel", true, false, "PanelGameArchiveChooseLevel");
 
+        #endregion
+
+        #region Town
+
         Hot.MgrUI_.CreatePanelAndPush<PanelTown>
-            (true, "/PanelTown", true, false, "PanelTown");        
+            (true, "/PanelTown", true, false, "PanelTown");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelTownStore>
-            (true, "/PanelTownStore", true, true, "PanelTownStore");        
+            (true, "/PanelTownStore", true, true, "PanelTownStore");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelOhterResTable>
-            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");
+        #endregion
+
+        #region Role
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleList>
             (true, "/PanelRoleList", true, false, "PanelRoleList");
@@ -37,11 +52,19 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
             (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
 
+        #endregion
+
+        #region Bar
+
         Hot.MgrUI_.CreatePanelAndPush<PanelBarTown>
             (true, "/PanelBarTown", true, false, "PanelBarTown");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarExpedition>
             (true, "/PanelBarExpedition", true, false, "PanelBarExpedition");
+
+        #endregion
+
+        #region Expedition
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrepare>
             (true, "/PanelExpeditionPrepare", true, false, "PanelExpeditionPrepare");
@@ -57,6 +80,8 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherMapEditor>
             (true, "/PanelOtherMapEditor", true, false, "PanelOtherMapEditor");
+
+        #endregion
 
         #region PanelTownRooms
 
@@ -116,6 +141,11 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         });
 
         #endregion       
+
+        if (!File.Exists(Application.persistentDataPath + "/Data/JsonData" + "/MapTemplet" + "/Default"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Data/JsonData" + "/MapTemplet" + "/Default");
+        }
 
         Destroy(gameObject);
     }

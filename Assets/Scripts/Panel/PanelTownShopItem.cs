@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -43,8 +42,8 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         InitInfo();
 
-        (AllContent as RectTransform).sizeDelta = new Vector2(Hot.DataNowCellGameArchive.TownShop.X * Hot.SizeCellItemBody.x, 
-                                                              Hot.DataNowCellGameArchive.TownShop.Y * Hot.SizeCellItemBody.y);
+        (AllContent as RectTransform).sizeDelta = new Vector2(Hot.DataNowCellGameArchive.TownShop.X * Hot.SizeCellItemBody.X, 
+                                                              Hot.DataNowCellGameArchive.TownShop.Y * Hot.SizeCellItemBody.Y);
 
         transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = Hot.DataNowCellGameArchive.TownShop.X;        
         transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = Hot.DataNowCellGameArchive.TownShop.X;
@@ -121,9 +120,9 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
                         PanelCellItem_.ChangeSize();
 
-                        for (int i1 = 0; i1 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].y; i1++)
+                        for (int i1 = 0; i1 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].x; i2++)
+                            for (int i2 = 0; i2 < Hot.DicItemBody[PanelCellItem_.e_SpriteNamePanelCellItem].X; i2++)
                             {
                                 Grids[tempi1 + i1][tempi2 + i2].Item = PanelCellItem_;
                             }
@@ -138,7 +137,21 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
     public void Clear()
     {
+        foreach (List<PanelCellTownItemGrid> list in Grids)
+        {
+            foreach (PanelCellTownItemGrid item in list)
+            {
+                Destroy(item.ImgBk.gameObject);
+                Destroy(item.ImgStatus.gameObject);
+                Destroy(item.gameObject);
+                if (item.Item != null)
+                {
+                    Destroy(item.Item.gameObject);
+                }
+            }
+        }
 
+        ClearList();
     }
 
     public override void InitInfo()
@@ -149,7 +162,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
             {
                 if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
                 {
-                    NowCapacity += (int)Hot.DicItemBody[item.e_SpriteNamePanelCellItem].x * (int)Hot.DicItemBody[item.e_SpriteNamePanelCellItem].y;                    
+                    NowCapacity += (int)Hot.DicItemBody[item.e_SpriteNamePanelCellItem].X * (int)Hot.DicItemBody[item.e_SpriteNamePanelCellItem].Y;                    
                 }
             }
         }
@@ -161,7 +174,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         base.UpdateInfoByAdd(e_SpriteNamePanelCellItem);
 
-        NowCapacity += (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].x * (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].y;
+        NowCapacity += (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].X * (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].Y;
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 
@@ -169,7 +182,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         base.UpdateInfoBySubtract(e_SpriteNamePanelCellItem);
 
-        NowCapacity -= (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].x * (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].y;        
+        NowCapacity -= (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].X * (int)Hot.DicItemBody[e_SpriteNamePanelCellItem].Y;        
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 }

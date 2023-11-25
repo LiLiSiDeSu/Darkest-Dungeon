@@ -134,9 +134,17 @@ public class PanelBarExpedition : PanelBase
                 ScrollView_.SetActive(false);
                 break;
             case "BtnExpedition":
-                Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
-                Hot.MgrUI_.HideAllPanel();
-                Hot.MgrUI_.ShowPanel<PanelExpeditionMapHall>(false, "PanelExpeditionMapHall");
+                if (Hot.ChoseExpeditionEvent != null)
+                {
+                    //Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
+                    //Hot.MgrUI_.HideAllPanel();
+                    //Hot.MgrUI_.ShowPanel<PanelExpeditionMapRoom>(false, "PanelExpeditionMapRoom");
+                    Debug.Log("远征");
+                }
+                else
+                {
+                    Debug.Log("没有选中远征事件");
+                }
                 break;
         }
     }

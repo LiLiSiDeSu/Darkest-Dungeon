@@ -21,12 +21,6 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
         Root = transform.FindSonSonSon("Root");
         ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
         ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
-    }
-
-    private void Update()
-    {
-        Debug.Log(Hot.PaddingIndex);
-        Debug.Log(Hot.DragingPanelCellRoleRecruit);
     }    
 
     #region EventSystem接口实现

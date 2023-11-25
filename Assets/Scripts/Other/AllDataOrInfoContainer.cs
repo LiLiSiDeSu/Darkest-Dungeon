@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Unity.Collections.LowLevel.Unsafe;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public sealed class AllDataOrInfoContainer { }
@@ -96,15 +95,15 @@ public class DataContainer_CellRoleRecruit
 
 public class DataContainer_ExpeditionPrepare
 {
-    public List<DataContainer_ExpeditionMiniMap> BloodCourtyard = new();
-    public List<DataContainer_ExpeditionMiniMap> Lair = new();
-    public List<DataContainer_ExpeditionMiniMap> Farm = new();
-    public List<DataContainer_ExpeditionMiniMap> Wilds = new();
-    public List<DataContainer_ExpeditionMiniMap> Ruins = new();
-    public List<DataContainer_ExpeditionMiniMap> Sea = new();
-    public List<DataContainer_ExpeditionMiniMap> Darkest = new();
+    public List<DataContainer_Expedition> BloodCourtyard = new();
+    public List<DataContainer_Expedition> Lair = new();
+    public List<DataContainer_Expedition> Farm = new();
+    public List<DataContainer_Expedition> Wilds = new();
+    public List<DataContainer_Expedition> Ruins = new();
+    public List<DataContainer_Expedition> Sea = new();
+    public List<DataContainer_Expedition> Darkest = new();
 
-    public List<DataContainer_ExpeditionMiniMap> this[E_ExpeditionLocation e_ExpeditionLocation]
+    public List<DataContainer_Expedition> this[E_ExpeditionLocation e_ExpeditionLocation]
     {
         get
         {
@@ -116,7 +115,7 @@ public class DataContainer_ExpeditionPrepare
                 E_ExpeditionLocation.Wilds => Wilds,
                 E_ExpeditionLocation.Ruins => Ruins,
                 E_ExpeditionLocation.Darkest => Darkest,
-                E_ExpeditionLocation.Sed => Sea,
+                E_ExpeditionLocation.Sea => Sea,
                 _ => null,
             };
         }
@@ -143,7 +142,7 @@ public class DataContainer_ExpeditionPrepare
                 case E_ExpeditionLocation.Darkest:
                     Darkest = value;
                     break;
-                case E_ExpeditionLocation.Sed:
+                case E_ExpeditionLocation.Sea:
                     Sea = value;
                     break;
             }
@@ -152,9 +151,9 @@ public class DataContainer_ExpeditionPrepare
 
     public DataContainer_ExpeditionPrepare() { }
     public DataContainer_ExpeditionPrepare
-    (List<DataContainer_ExpeditionMiniMap> bloodCourtyard, List<DataContainer_ExpeditionMiniMap> lair, List<DataContainer_ExpeditionMiniMap> farm,
-     List<DataContainer_ExpeditionMiniMap> wilds, List<DataContainer_ExpeditionMiniMap> ruins, List<DataContainer_ExpeditionMiniMap> sed,
-     List<DataContainer_ExpeditionMiniMap> darkest)
+    (List<DataContainer_Expedition> bloodCourtyard, List<DataContainer_Expedition> lair, List<DataContainer_Expedition> farm,
+     List<DataContainer_Expedition> wilds, List<DataContainer_Expedition> ruins, List<DataContainer_Expedition> sed,
+     List<DataContainer_Expedition> darkest)
     {
         BloodCourtyard = bloodCourtyard;
         Lair = lair;
@@ -173,16 +172,18 @@ public class DataContainer_CellExpeditionObject
 
 #region Map
 
-public class DataContainer_ExpeditionMiniMap
+public class DataContainer_Expedition
 {
     public E_DungeonLevel e_dungeonLevel = E_DungeonLevel.Zero;
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
+    public m_Vector2 EntrancePos = new(-1, -1);
+
     public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
-    public DataContainer_ExpeditionMiniMap() { }
-    public DataContainer_ExpeditionMiniMap
+    public DataContainer_Expedition() { }
+    public DataContainer_Expedition
     (E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
      E_ExpeditionEvent e_ExpeditionEvent)
     {

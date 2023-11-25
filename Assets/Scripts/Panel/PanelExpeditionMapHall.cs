@@ -7,7 +7,7 @@ public class PanelExpeditionMapHall : PanelBase
 {
     public Transform HallMapContent;
     public Transform RootHallMap;    
-    public Dictionary<int, List<PanelCellExpeditionMapGrid>> DicMap = new();    
+    public Dictionary<int, List<PanelCellExpeditionMapGrid>> DicMap = new();        
 
     protected override void Awake()
     {

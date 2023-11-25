@@ -29,12 +29,12 @@ public class PanelCellItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.PanelShopCost_.UpdateInfo(Hot.DicItemCost[e_SpriteNamePanelCellItem]);
+        Hot.PanelTownShopCost_.UpdateInfo(Hot.DicItemCost[e_SpriteNamePanelCellItem]);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Hot.PanelShopCost_.Clear();
+        Hot.PanelTownShopCost_.Clear();
     }
 
     #endregion    
@@ -67,8 +67,8 @@ public class PanelCellItem : PanelBase,
     public void ChangeSize()
     {
         ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].x * Hot.SizeCellItemBody.x, Hot.DicItemBody[e_SpriteNamePanelCellItem].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].X * Hot.SizeCellItemBody.X, Hot.DicItemBody[e_SpriteNamePanelCellItem].Y * Hot.SizeCellItemBody.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].x * Hot.SizeCellItemBody.x, Hot.DicItemBody[e_SpriteNamePanelCellItem].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].X * Hot.SizeCellItemBody.X, Hot.DicItemBody[e_SpriteNamePanelCellItem].Y * Hot.SizeCellItemBody.Y);
     }
 }

@@ -8,12 +8,12 @@ public sealed class AllEnum : MonoBehaviour { }
 public enum E_CellExpeditionMiniMapHall
 {
     None,
-    Dark,
-    Dim,
-    Light,
-    Battle,
-    Trap,
-    Secret
+    CellMapHallDark,
+    CellMapHallDim,
+    CellMapHallLight,
+    CellMapHallBattle,
+    CellMapHallTrap,
+    CellMapHallSecret,
 }
 
 /// <summary>
@@ -22,10 +22,11 @@ public enum E_CellExpeditionMiniMapHall
 public enum E_CellExpeditionMiniMapRoom
 {    
     None,
-    Boss,
-    Empty,
-    Entrance,
-    Locked,    
+    CellMapRoomBoss,
+    CellMapRoomEmpty,
+    CellMapRoomEntrance,
+    CellMapRoomLocked,
+    CellMapRoomUnkown,
 }
 
 public enum E_GameArchiveLevel
@@ -156,7 +157,7 @@ public enum E_ExpeditionLocation
     Wilds,
     Ruins,
     Darkest,
-    Sed
+    Sea
 }
 
 public enum E_PlayerLocation

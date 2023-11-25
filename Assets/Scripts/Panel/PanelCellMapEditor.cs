@@ -29,7 +29,32 @@ public class PanelCellMapEditor : PanelBase,
 
         switch (controlname)
         {
-            case "BtnCellMapEditor":
+            case "BtnCellMapEditor":                                
+                if (Hot.ChoseMapEditor == null)
+                {
+                    Hot.ChoseMapEditor = this;
+                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                }
+                else if (Hot.ChoseMapEditor != this)
+                {
+                    Hot.ChoseMapEditor.ImgCellMapEditor.raycastTarget = true;
+                    Hot.ChoseMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                    Hot.ChoseMapEditor = this;
+                }
+
+                if (Hot.ChoseMapEditor.e_Hall != E_CellExpeditionMiniMapHall.None)
+                {
+                    Hot.e_ChoseHall = Hot.ChoseMapEditor.e_Hall;
+                    Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
+                }
+                if (Hot.ChoseMapEditor.e_Room != E_CellExpeditionMiniMapRoom.None)
+                {
+                    Hot.e_ChoseRoom = Hot.ChoseMapEditor.e_Room;
+                    Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
+                }
+
+                Hot.ChoseMapEditor.ImgCellMapEditor.raycastTarget = false;
                 break;
         }
     }
@@ -54,7 +79,7 @@ public class PanelCellMapEditor : PanelBase,
         {
             this.e_Room = e_Room;
             e_Hall = E_CellExpeditionMiniMapHall.None;
-            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMapRoom" + e_Room);
+            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
             ChangeRoomSize();
         }
 
@@ -62,7 +87,7 @@ public class PanelCellMapEditor : PanelBase,
         {
             this.e_Hall = e_Hall;
             e_Room = E_CellExpeditionMiniMapRoom.None;
-            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/CellMapHall" + e_Hall);
+            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
             ChangeHallSize();
         }
     }
@@ -70,16 +95,16 @@ public class PanelCellMapEditor : PanelBase,
     public void ChangeHallSize()
     {
         ImgCellMapEditor.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicHallBody[e_Hall].x * Hot.SizeCellItemBody.x, Hot.DicHallBody[e_Hall].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicHallBody[e_Hall].X * Hot.SizeCellItemBody.X, Hot.DicHallBody[e_Hall].Y * Hot.SizeCellItemBody.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicHallBody[e_Hall].x * Hot.SizeCellItemBody.x, Hot.DicHallBody[e_Hall].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicHallBody[e_Hall].X * Hot.SizeCellItemBody.X, Hot.DicHallBody[e_Hall].Y * Hot.SizeCellItemBody.Y);
     }
 
     public void ChangeRoomSize()
     {
         ImgCellMapEditor.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicRoomBody[e_Room].x * Hot.SizeCellItemBody.x, Hot.DicRoomBody[e_Room].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicRoomBody[e_Room].X * Hot.SizeCellItemBody.X, Hot.DicRoomBody[e_Room].Y * Hot.SizeCellItemBody.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicRoomBody[e_Room].x * Hot.SizeCellItemBody.x, Hot.DicRoomBody[e_Room].y * Hot.SizeCellItemBody.y);
+            new(Hot.DicRoomBody[e_Room].X * Hot.SizeCellItemBody.X, Hot.DicRoomBody[e_Room].Y * Hot.SizeCellItemBody.Y);
     }    
 }

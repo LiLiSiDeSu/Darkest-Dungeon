@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +8,10 @@ using UnityEngine.UI;
 public class PanelCellExpeditionEvent : PanelBaseCell
 {
     public E_ExpeditionLocation e_ExpeditionLocation;
+
     public Image ImgBorderExpeditionEvent;
     public Image ImgExpeditionEvent;
+    public Image ImgCurrentChoose;    
 
     protected override void Awake()
     {
@@ -15,6 +19,9 @@ public class PanelCellExpeditionEvent : PanelBaseCell
 
         ImgBorderExpeditionEvent = transform.FindSonSonSon("ImgBorderExpeditionEvent").GetComponent<Image>();
         ImgExpeditionEvent = transform.FindSonSonSon("ImgExpeditionEvent").GetComponent<Image>();
+        ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
+
+        ImgCurrentChoose.gameObject.SetActive(false);
     }
 
     protected override void Button_OnClick(string controlname)
@@ -23,7 +30,28 @@ public class PanelCellExpeditionEvent : PanelBaseCell
 
         switch (controlname)
         {
-            case "BtnExpeditionEvent":
+            case "BtnExpeditionEvent":               
+                if (Hot.ChoseExpeditionEvent == this)
+                {
+                    ImgCurrentChoose.gameObject.SetActive(false);
+                    Hot.ChoseExpeditionEvent = null;
+                    Hot.PanelExpeditionDetails_.Clear();
+                    return;
+                }
+                
+                if (Hot.ChoseExpeditionEvent == null)
+                {
+                    Hot.ChoseExpeditionEvent = this;
+                }
+                if (Hot.ChoseExpeditionEvent != this)
+                {
+                    Hot.ChoseExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
+                    Hot.ChoseExpeditionEvent = this;
+                }                
+                ImgCurrentChoose.gameObject.SetActive(true);
+
+                Hot.PanelExpeditionDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index]);
+
                 Debug.Log(Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonSize + " - " +
                           Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonLevel + " - " +
                           Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_ExpeditionEvent);                

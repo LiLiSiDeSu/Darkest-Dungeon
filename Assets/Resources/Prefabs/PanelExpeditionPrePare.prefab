@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2121922742019466471}
   - component: {fileID: 3182984913711012430}
   m_Layer: 0
-  m_Name: RuinsView
+  m_Name: RuinsScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 4701201526857123739}
   - component: {fileID: 6952745483309626492}
   m_Layer: 0
-  m_Name: DarkestView
+  m_Name: DarkestScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1550,7 +1550,7 @@ GameObject:
   - component: {fileID: 6747546314690142885}
   - component: {fileID: 5337157117618539956}
   m_Layer: 0
-  m_Name: WildsView
+  m_Name: WildsScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 6594119721487614199}
   - component: {fileID: 2996125818771601200}
   m_Layer: 0
-  m_Name: SeaView
+  m_Name: SeaScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

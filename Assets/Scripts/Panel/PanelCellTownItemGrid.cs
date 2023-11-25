@@ -30,9 +30,9 @@ public class PanelCellTownItemGrid : PanelBase
 
             if (Hot.NowCellItem != null && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+                for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                    for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
                     {
                         Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctRed");
                     }
@@ -50,9 +50,9 @@ public class PanelCellTownItemGrid : PanelBase
 
             if (Hot.NowCellItem != null && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+                for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                    for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
                     {
                         Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                     }
@@ -78,17 +78,17 @@ public class PanelCellTownItemGrid : PanelBase
                    (Hot.NowCellItem.e_Location == E_ItemLocation.TownShopItem && Hot.e_NowPointerLocation == E_NowPointerLocation.PanelTownShopItem)) &&                     
                     JudgeCanPut())
                 {                    
-                    for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+                    for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
                     {
-                        for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                        for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
                         {
                             Hot.NowCellItem.MemberOf.Grids[Hot.NowCellItem.RootGrid.Y + i1][Hot.NowCellItem.RootGrid.X + i2].Item = null;
                         }
                     }
 
-                    for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+                    for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
                     {
-                        for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+                        for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
                         {                            
                             Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item = Hot.NowCellItem;
                         }
@@ -158,10 +158,10 @@ public class PanelCellTownItemGrid : PanelBase
     {        
         if (Hot.NowPanelCanStoreItem is PanelTownItem)
         {
-            if (Y + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y >
-                    Hot.DicStoreBody[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].y ||
-                X + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x >
-                    Hot.DicStoreBody[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].x)
+            if (Y + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y >
+                    Hot.DicStoreBody[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].Y ||
+                X + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X >
+                    Hot.DicStoreBody[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].X)
 
             {
                 return false;
@@ -170,18 +170,18 @@ public class PanelCellTownItemGrid : PanelBase
 
         if (Hot.NowPanelCanStoreItem is PanelTownShopItem)
         {
-            if (Y + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y >
+            if (Y + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y >
                     Hot.DataNowCellGameArchive.TownShop.Y ||
-                X + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x >
+                X + Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X >
                     Hot.DataNowCellGameArchive.TownShop.X)
             {
                 return false;
             }
         }
 
-        for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].y; i1++)
+        for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
         {
-            for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].x; i2++)
+            for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
             {
                 if (Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item == null || Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item == Hot.NowCellItem)
                 {
