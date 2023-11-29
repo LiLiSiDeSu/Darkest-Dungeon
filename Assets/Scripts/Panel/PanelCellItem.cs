@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class PanelCellItem : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public PanelCellTownItemGrid RootGrid = new();
-    public PanelBaseVector2Store MemberOf = new();    
+    public PanelCellGridTownItem RootGrid = new();
+    public PanelBaseVector2Store MemberOf = new();
 
     public Image ImgItem;
-    public Image ImgStatus;          
+    public Image ImgStatus;
 
     public E_ItemLocation e_Location = E_ItemLocation.None;
 

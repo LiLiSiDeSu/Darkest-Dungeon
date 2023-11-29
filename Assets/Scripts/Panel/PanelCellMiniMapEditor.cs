@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellMapEditor : PanelBase,
-       IPointerEnterHandler, IPointerExitHandler
+public class PanelCellMiniMapEditor : PanelBase,
+             IPointerEnterHandler, IPointerExitHandler
 {
-    public PanelCellMapEditorGrid RootGrid = new();    
+    public PanelCellGridMiniMapEditor RootGrid = new();    
 
-    public Image ImgCellMapEditor;
+    public Image ImgCellMiniMapEditor;
     public Image ImgStatus;    
 
     public E_CellExpeditionMiniMapHall e_Hall = E_CellExpeditionMiniMapHall.None;
@@ -19,7 +19,7 @@ public class PanelCellMapEditor : PanelBase,
     {
         base.Awake();
 
-        ImgCellMapEditor = transform.FindSonSonSon("ImgCellMapEditor").GetComponent<Image>();
+        ImgCellMiniMapEditor = transform.FindSonSonSon("ImgCellRoomEditor").GetComponent<Image>();
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
     }
 
@@ -37,7 +37,7 @@ public class PanelCellMapEditor : PanelBase,
                 }
                 else if (Hot.ChoseMapEditor != this)
                 {
-                    Hot.ChoseMapEditor.ImgCellMapEditor.raycastTarget = true;
+                    Hot.ChoseMapEditor.ImgCellMiniMapEditor.raycastTarget = true;
                     Hot.ChoseMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                     ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
                     Hot.ChoseMapEditor = this;
@@ -54,7 +54,7 @@ public class PanelCellMapEditor : PanelBase,
                     Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
                 }
 
-                Hot.ChoseMapEditor.ImgCellMapEditor.raycastTarget = false;
+                Hot.ChoseMapEditor.ImgCellMiniMapEditor.raycastTarget = false;
                 break;
         }
     }
@@ -63,12 +63,12 @@ public class PanelCellMapEditor : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.NowCellMapEditor = this;
+        Hot.NowEnterCellMapEditor = this;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Hot.NowCellMapEditor = null;
+        Hot.NowEnterCellMapEditor = null;
     }
 
     #endregion
@@ -79,7 +79,7 @@ public class PanelCellMapEditor : PanelBase,
         {
             this.e_Room = e_Room;
             e_Hall = E_CellExpeditionMiniMapHall.None;
-            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
+            ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
             ChangeRoomSize();
         }
 
@@ -87,14 +87,14 @@ public class PanelCellMapEditor : PanelBase,
         {
             this.e_Hall = e_Hall;
             e_Room = E_CellExpeditionMiniMapRoom.None;
-            ImgCellMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
+            ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
             ChangeHallSize();
         }
     }
 
     public void ChangeHallSize()
     {
-        ImgCellMapEditor.GetComponent<RectTransform>().sizeDelta =
+        ImgCellMiniMapEditor.GetComponent<RectTransform>().sizeDelta =
             new(Hot.DicHallBody[e_Hall].X * Hot.SizeCellItemBody.X, Hot.DicHallBody[e_Hall].Y * Hot.SizeCellItemBody.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
             new(Hot.DicHallBody[e_Hall].X * Hot.SizeCellItemBody.X, Hot.DicHallBody[e_Hall].Y * Hot.SizeCellItemBody.Y);
@@ -102,7 +102,7 @@ public class PanelCellMapEditor : PanelBase,
 
     public void ChangeRoomSize()
     {
-        ImgCellMapEditor.GetComponent<RectTransform>().sizeDelta =
+        ImgCellMiniMapEditor.GetComponent<RectTransform>().sizeDelta =
             new(Hot.DicRoomBody[e_Room].X * Hot.SizeCellItemBody.X, Hot.DicRoomBody[e_Room].Y * Hot.SizeCellItemBody.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
             new(Hot.DicRoomBody[e_Room].X * Hot.SizeCellItemBody.X, Hot.DicRoomBody[e_Room].Y * Hot.SizeCellItemBody.Y);

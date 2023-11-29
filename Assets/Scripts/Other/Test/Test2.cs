@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test2 : MonoBehaviour
+public class Test2
 {
-    Image cao;
-    private void Start()
-    {
-        
-    }
+
 }

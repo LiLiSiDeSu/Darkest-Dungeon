@@ -13,10 +13,11 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 
     private void Awake()
     {
-        GameObject UI = new GameObject("UI");
-        UI.transform.parent = MgrInstance.Instance.Gaming.transform;
+        GameObject UI = new("UI");
+        UI.transform.SetParent(MgrInstance.Instance.Gaming.transform, false);
 
-        MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + "/UIBaseCanvas", callback : (obj) =>
+        MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + "/UIBaseCanvas", 
+        (obj) =>
         {            
             UIBaseCanvas = obj.transform as RectTransform;
             UIBaseCanvas.gameObject.name = "UIBaseCanvas";

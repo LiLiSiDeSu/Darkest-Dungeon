@@ -156,7 +156,7 @@ public class PanelTownItem : PanelBaseVector2Store,
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellTownItemGrid>(false, "/PanelCellTownItemGrid",
+                Hot.MgrUI_.CreatePanel<PanelCellGridTownItem>(false, "/PanelCellGridTownItem",
                 (PanelCellTownItemGrid_) =>
                 {
                     Grids[tempi1][tempi2] = PanelCellTownItemGrid_;

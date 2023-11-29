@@ -23,7 +23,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.AddMapSize)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.Add)
             {
                 Hot.NowPanelCanStoreItem.AllContent.localScale +=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
@@ -33,7 +33,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.ReduceMapSize)
+            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.Reduce)
             {
                 Hot.NowPanelCanStoreItem.AllContent.localScale -=
                     new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);                

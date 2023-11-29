@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellTownItemGrid : PanelBase             
+public class PanelCellGridTownItem : PanelBase             
 {
     public int X;
     public int Y;   

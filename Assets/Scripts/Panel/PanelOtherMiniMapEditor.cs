@@ -7,13 +7,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOtherMapEditor : PanelBase
+public class PanelOtherMiniMapEditor : PanelBase
 {
     public string PathFolder;
 
     public m_Vector2 EntrancePos = new(-1, -1);    
 
-    public List<List<PanelCellMapEditorGrid>> Grids = new();
+    public List<List<PanelCellGridMiniMapEditor>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
 
     public Image ImgCurrentChoose;
@@ -32,7 +32,7 @@ public class PanelOtherMapEditor : PanelBase
     public Transform ImgBkContent;
     public Transform ImgStatusContent;
     public Transform ItemContent;
-    public Transform ComponentRoot;    
+    public Transform ComponentRoot;
 
     protected override void Awake()
     {
@@ -40,50 +40,69 @@ public class PanelOtherMapEditor : PanelBase
 
         PathFolder = "/MapTemplet";
 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        (key) =>
+        {
+            if (Hot.NowEnterCellMapEditor != null && key == Hot.MgrInput_.Map)
+            {
+                if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor"))
+                {
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherRoomEditor_.gameObject, "PanelOtherRoomEditor");
+                }
+                else
+                {
+                    Hot.MgrUI_.ShowPanel<PanelOtherRoomEditor>(true, "PanelOtherRoomEditor");
+                }
+            }
+        });
+
         //这里可以用PoolInvoke来优化
         //但以后再说吧
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMapEditor") && key == Hot.MgrInput_.Cancel)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Cancel)
             {                
-                if (Hot.NowCellMapEditor != null || Hot.ChoseMapEditor != null)
+                if (Hot.NowEnterCellMapEditor != null || Hot.ChoseMapEditor != null)
                 {
                     if (Hot.ChoseMapEditor == null)
                     {
-                        if (Hot.NowCellMapEditor.e_Hall != E_CellExpeditionMiniMapHall.None)
+                        if (Hot.NowEnterCellMapEditor.e_Hall != E_CellExpeditionMiniMapHall.None)
                         {
-                            for (int i1 = 0; i1 < Hot.DicHallBody[Hot.NowCellMapEditor.e_Hall].Y; i1++)
+                            for (int i1 = 0; i1 < Hot.DicHallBody[Hot.NowEnterCellMapEditor.e_Hall].Y; i1++)
                             {
-                                for (int i2 = 0; i2 < Hot.DicHallBody[Hot.NowCellMapEditor.e_Hall].X; i2++)
+                                for (int i2 = 0; i2 < Hot.DicHallBody[Hot.NowEnterCellMapEditor.e_Hall].X; i2++)
                                 {
-                                    Hot.PanelOtherMapEditor_.Grids[Hot.NowCellMapEditor.RootGrid.Y + i1][Hot.NowCellMapEditor.RootGrid.X + i2].CellMapEditor = null;
+                                    Hot.PanelOtherMapEditor_.Grids[Hot.NowEnterCellMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
                                 }
                             }
                         }
 
-                        if (Hot.NowCellMapEditor.e_Room != E_CellExpeditionMiniMapRoom.None)
+                        if (Hot.NowEnterCellMapEditor.e_Room != E_CellExpeditionMiniMapRoom.None)
                         {
-                            for (int i1 = 0; i1 < Hot.DicRoomBody[Hot.NowCellMapEditor.e_Room].Y; i1++)
+                            for (int i1 = 0; i1 < Hot.DicRoomBody[Hot.NowEnterCellMapEditor.e_Room].Y; i1++)
                             {
-                                for (int i2 = 0; i2 < Hot.DicRoomBody[Hot.NowCellMapEditor.e_Room].X; i2++)
+                                for (int i2 = 0; i2 < Hot.DicRoomBody[Hot.NowEnterCellMapEditor.e_Room].X; i2++)
                                 {
-                                    Hot.PanelOtherMapEditor_.Grids[Hot.NowCellMapEditor.RootGrid.Y + i1][Hot.NowCellMapEditor.RootGrid.X + i2].CellMapEditor = null;
+                                    Hot.PanelOtherMapEditor_.Grids[Hot.NowEnterCellMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
                                 }
                             }
                         }
 
-                        if (Hot.NowCellMapEditor.e_Room == E_CellExpeditionMiniMapRoom.CellMapRoomEntrance)
+                        if (Hot.NowEnterCellMapEditor.e_Room == E_CellExpeditionMiniMapRoom.CellMapRoomEntrance)
                         {
                             EntrancePos = new(-1, -1);
                         }
 
-                        Destroy(Hot.NowCellMapEditor.gameObject);
+                        Destroy(Hot.NowEnterCellMapEditor.gameObject);
                     }
                     else
                     {
                         Hot.ChoseMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-                        Hot.ChoseMapEditor = null;                        
+                        Hot.ChoseMapEditor.ImgCellMiniMapEditor.raycastTarget = true;
+                        Hot.ChoseMapEditor = null;
+
+                        ClearGridsImgStatus();
                     }
                 }
                 else
@@ -92,13 +111,7 @@ public class PanelOtherMapEditor : PanelBase
                     Hot.e_ChoseHall = E_CellExpeditionMiniMapHall.None;
                     Hot.e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;
 
-                    foreach (List<PanelCellMapEditorGrid> list in Grids)
-                    {
-                        foreach (PanelCellMapEditorGrid item in list)
-                        {
-                            item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-                        }
-                    }
+                    ClearGridsImgStatus();
                 }
             }
         });
@@ -106,25 +119,24 @@ public class PanelOtherMapEditor : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMapEditor") && key == Hot.MgrInput_.AddMapSize)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor"))
             {
-                AllContent.localScale += 
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                AllContent.localScale += 
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-            }
-        });
+                if (key == Hot.MgrInput_.Add)
+                {
+                    AllContent.localScale +=
+                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale +=
+                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                }
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMapEditor") && key == Hot.MgrInput_.ReduceMapSize)
-            {
-                AllContent.localScale -= 
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                AllContent.localScale -= 
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-            }
+                if (key == Hot.MgrInput_.Reduce)
+                {
+                    AllContent.localScale -=
+                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                    AllContent.localScale -=
+                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
+            }            
         });
 
         ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
@@ -185,7 +197,8 @@ public class PanelOtherMapEditor : PanelBase
                 ClearMap();
                 IptFileName.text = "";
                 IptWidth.text = "";
-                IptHeight.text = "";                
+                IptHeight.text = "";
+                EntrancePos = new();
                 break;
             case "BtnChooseCellRoom":
                 if (CellRoomScrollView.gameObject.activeSelf)
@@ -284,7 +297,7 @@ public class PanelOtherMapEditor : PanelBase
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGrid>(false, "/PanelCellMapEditorGrid",
+                Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
                 (PanelCellMapEditorGrid_) =>
                 {
                     Grids[tempi1][tempi2] = PanelCellMapEditorGrid_;
@@ -340,7 +353,7 @@ public class PanelOtherMapEditor : PanelBase
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellMapEditorGrid>(false, "/PanelCellMapEditorGrid",
+                Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
                 (PanelCellMapEditorGrid_) =>
                 {
                     Grids[tempi1][tempi2] = PanelCellMapEditorGrid_;
@@ -372,7 +385,7 @@ public class PanelOtherMapEditor : PanelBase
 
                 if (MapData.ListCellMiniMap[tempi1][tempi2].e_Hall != E_CellExpeditionMiniMapHall.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellMapEditor>(false, "/PanelCellMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
                     (panel) =>
                     {
                         panel.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
@@ -383,7 +396,7 @@ public class PanelOtherMapEditor : PanelBase
                         {
                             for (int i22 = 0; i22 < Hot.DicHallBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Hall].X; i22++)
                             {
-                                Grids[tempi1 + i11][tempi2 + i22].CellMapEditor = panel;
+                                Grids[tempi1 + i11][tempi2 + i22].CellMiniMapEditor = panel;
                             }
                         }                        
 
@@ -394,7 +407,7 @@ public class PanelOtherMapEditor : PanelBase
 
                 if (MapData.ListCellMiniMap[tempi1][tempi2].e_Room != E_CellExpeditionMiniMapRoom.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellMapEditor>(false, "/PanelCellMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
                     (panel) =>
                     {
                         panel.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
@@ -405,7 +418,7 @@ public class PanelOtherMapEditor : PanelBase
                         {
                             for (int i22 = 0; i22 < Hot.DicRoomBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].X; i22++)
                             {
-                                Grids[tempi1 + i11][tempi2 + i22].CellMapEditor = panel;
+                                Grids[tempi1 + i11][tempi2 + i22].CellMiniMapEditor = panel;
                             }
                         }
 
@@ -416,11 +429,22 @@ public class PanelOtherMapEditor : PanelBase
         }
     }
 
+    public void ClearGridsImgStatus()
+    {
+        foreach (List<PanelCellGridMiniMapEditor> list in Grids)
+        {
+            foreach (PanelCellGridMiniMapEditor item in list)
+            {
+                item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+            }
+        }
+    }
+
     public void ClearMap()
     {
-        foreach (List<PanelCellMapEditorGrid> list in Grids)
+        foreach (List<PanelCellGridMiniMapEditor> list in Grids)
         {
-            foreach (PanelCellMapEditorGrid item in list)
+            foreach (PanelCellGridMiniMapEditor item in list)
             {
                 Destroy(item.ImgBk.gameObject);
                 Destroy(item.ImgStatus.gameObject);
@@ -456,8 +480,8 @@ public class PanelOtherMapEditor : PanelBase
                 else
                 {
                     MapData.ListCellMiniMap[i1].
-                        Add(new(ItemRoot[i1][i2].GetComponentInChildren<PanelCellMapEditor>().e_Hall, 
-                                ItemRoot[i1][i2].GetComponentInChildren<PanelCellMapEditor>().e_Room, new()));
+                        Add(new(ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Hall, 
+                                ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Room, new()));
                 }
             }
         }

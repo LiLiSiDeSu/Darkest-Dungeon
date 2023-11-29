@@ -18,9 +18,9 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode PanelResTable = KeyCode.CapsLock;
     public KeyCode PanelRole = KeyCode.R;    
     public KeyCode PanelBar = KeyCode.F;
-    public KeyCode AddMapSize = KeyCode.K;
-    public KeyCode ReduceMapSize = KeyCode.L;
-    public KeyCode ExpeditionMiniMap = KeyCode.M;
+    public KeyCode Add = KeyCode.K;
+    public KeyCode Reduce = KeyCode.L;
+    public KeyCode Map = KeyCode.M;
     public KeyCode Cancel = KeyCode.Mouse1;
 
     private void Update()
@@ -43,9 +43,9 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(PanelResTable);
         CheckKeyCode(PanelRole);
         CheckKeyCode(PanelBar);
-        CheckKeyCode(AddMapSize);
-        CheckKeyCode(ReduceMapSize);
-        CheckKeyCode(ExpeditionMiniMap);
+        CheckKeyCode(Add);
+        CheckKeyCode(Reduce);
+        CheckKeyCode(Map);
         CheckKeyCode(Cancel);
     }
 

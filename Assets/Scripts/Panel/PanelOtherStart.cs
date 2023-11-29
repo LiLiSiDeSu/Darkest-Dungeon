@@ -25,7 +25,7 @@ public class PanelOtherStart : PanelBase
                 Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, "PanelGameArchiveChoose");
                 break;
             case "BtnMapEditor":
-                Hot.MgrUI_.ShowPanel<PanelOtherMapEditor>(true, "PanelOtherMapEditor");
+                Hot.MgrUI_.ShowPanel<PanelOtherMiniMapEditor>(true, "PanelOtherMiniMapEditor");
                 break;
         }
     }    

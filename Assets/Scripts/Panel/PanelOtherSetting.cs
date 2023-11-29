@@ -20,13 +20,12 @@ public class PanelOtherSetting : PanelBase
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOtherSetting"))
                 {
-                    PoolBuffer.GetInstance().Push(false, gameObject, "PanelOtherSetting");
-                    PoolNowPanel.GetInstance().ListNowPanel.Remove("PanelOtherSetting");
-                    if (PoolEsc.GetInstance().ListEsc.Contains("PanelOtherSetting"))
-                        PoolEsc.GetInstance().ListEsc.Remove("PanelOtherSetting");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherSetting_.gameObject, "PanelOtherSetting");
                 }
                 else
+                {
                     Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
+                }
             }
         });
 

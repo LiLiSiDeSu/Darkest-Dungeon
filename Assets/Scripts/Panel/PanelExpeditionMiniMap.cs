@@ -13,7 +13,7 @@ public class PanelExpeditionMiniMap : PanelBase
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.ExpeditionMiniMap)
+            if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Map)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelExpeditionMiniMap"))
                     Hot.MgrUI_.HidePanel(false, Hot.PanelExpeditionMiniMap_.gameObject, "PanelExpeditionMiniMap");
@@ -26,7 +26,7 @@ public class PanelExpeditionMiniMap : PanelBase
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && 
-                key == Hot.MgrInput_.AddMapSize && ExpeditionMiniMapContent.localScale.x < 2f)
+                key == Hot.MgrInput_.Add && ExpeditionMiniMapContent.localScale.x < 2f)
             {
                 ExpeditionMiniMapContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }
@@ -36,7 +36,7 @@ public class PanelExpeditionMiniMap : PanelBase
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && 
-                key == Hot.MgrInput_.ReduceMapSize && ExpeditionMiniMapContent.localScale.x > 1f)
+                key == Hot.MgrInput_.Reduce && ExpeditionMiniMapContent.localScale.x > 1f)
             {
                 ExpeditionMiniMapContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
             }

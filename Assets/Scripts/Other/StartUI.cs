@@ -22,6 +22,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherSetting>
             (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
 
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherRoomEditor>
+            (true, "/PanelOtherRoomEditor", true, false, "PanelOtherRoomEditor");
+
         #endregion
 
         #region GameArchive
@@ -69,17 +72,11 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrepare>
             (true, "/PanelExpeditionPrepare", true, false, "PanelExpeditionPrepare");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMapRoom>
-            (true, "/PanelExpeditionMapRoom", true, false, "PanelExpeditionMapRoom");
-
-        Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMapHall>
-            (true, "/PanelExpeditionMapHall", true, false, "PanelExpeditionMapHall");
-
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMiniMap>
             (true, "/PanelExpeditionMiniMap", true, false, "PanelExpeditionMiniMap");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelOtherMapEditor>
-            (true, "/PanelOtherMapEditor", true, false, "PanelOtherMapEditor");
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherMiniMapEditor>
+            (true, "/PanelOtherMiniMapEditor", true, false, "PanelOtherMiniMapEditor");
 
         #endregion
 

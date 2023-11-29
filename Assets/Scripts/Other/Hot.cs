@@ -20,7 +20,7 @@ public static class Hot
     public static int NowTranslateRate = 1;
 
     /// <summary>
-    /// AddMapSize 和 ReduceMapSize按下一次增加或减少的值
+    /// Add 和 Reduce按下一次增加或减少的值
     /// </summary>
     public static float ValueChangeMapSize = 0.4f;
 
@@ -180,13 +180,17 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
     }
-    public static PanelOtherMapEditor PanelOtherMapEditor_
+    public static PanelOtherMiniMapEditor PanelOtherMapEditor_
     {
-        get { return MgrUI_.GetPanel<PanelOtherMapEditor>("PanelOtherMapEditor"); }
+        get { return MgrUI_.GetPanel<PanelOtherMiniMapEditor>("PanelOtherMiniMapEditor"); }
     }
     public static PanelOtherSetting PanelOtherSetting_
     {
-        get { return MgrUI_.GetPanel<PanelOtherSetting>(""); }
+        get { return MgrUI_.GetPanel<PanelOtherSetting>("PanelOtherSetting"); }
+    }
+    public static PanelOtherRoomEditor PanelOtherRoomEditor_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherRoomEditor>("PanelOtherRoomEditor"); }
     }
 
     #endregion
@@ -375,15 +379,15 @@ public static class Hot
     /// <summary>
     /// 现在进入的地图编辑器背景Grid
     /// </summary>
-    public static PanelCellMapEditorGrid NowMapEditorGrid = null;
+    public static PanelCellGridMiniMapEditor NowMapEditorGrid = null;
     /// <summary>
     /// 现在进入的地图编辑器Cell      
     /// </summary>
-    public static PanelCellMapEditor NowCellMapEditor = null;
+    public static PanelCellMiniMapEditor NowEnterCellMapEditor = null;
     /// <summary>
     /// 现在选择的地图编辑器Cell
     /// </summary>
-    public static PanelCellMapEditor ChoseMapEditor = null;
+    public static PanelCellMiniMapEditor ChoseMapEditor = null;
 
     #endregion
 
@@ -431,7 +435,7 @@ public static class Hot
     /// <summary>
     /// 现在进入的物品背景格子
     /// </summary>
-    public static PanelCellTownItemGrid NowItemGrid = null;
+    public static PanelCellGridTownItem NowItemGrid = null;
 
     #endregion    
 
