@@ -37,9 +37,17 @@ public static class Hot
         130
     };
 
+    public static m_Vector2 SizeExpeditionRoomBody = new(48, 18);
+
     public static m_Vector2 SizeCellItemBody = new(40, 40);
     public static m_Vector2 SizeCellMinimapBody = new(40, 40);
 
+    public static Dictionary<E_MapObject, m_Vector2> DicMapObjectBody = new()
+    {
+        { E_MapObject.MapObjectGridSoil, new(1, 1) },
+        { E_MapObject.MapObjectGridStone, new(1, 1) },
+        { E_MapObject.MapObjectGravestoneRect2, new(2, 2) },
+    };
     public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> DicHallBody = new()
     {
         { E_CellExpeditionMiniMapHall.CellMapHallDark, new(1, 1) },

@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class PanelCellMiniMapEditor : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
-{
-    public PanelCellGridMiniMapEditor RootGrid = new();    
-
+{    
     public Image ImgCellMiniMapEditor;
-    public Image ImgStatus;    
+    public Image ImgStatus;
+
+    public PanelCellGridMiniMapEditor RootGrid = new();
+
+    public List<List<PanelCellGridRoomEditor>> Map = new();
 
     public E_CellExpeditionMiniMapHall e_Hall = E_CellExpeditionMiniMapHall.None;
     public E_CellExpeditionMiniMapRoom e_Room = E_CellExpeditionMiniMapRoom.None;
@@ -81,6 +83,7 @@ public class PanelCellMiniMapEditor : PanelBase,
             e_Hall = E_CellExpeditionMiniMapHall.None;
             ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
             ChangeRoomSize();
+            InitRoomMap();
         }
 
         if (e_Hall != E_CellExpeditionMiniMapHall.None)
@@ -89,7 +92,26 @@ public class PanelCellMiniMapEditor : PanelBase,
             e_Room = E_CellExpeditionMiniMapRoom.None;
             ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
             ChangeHallSize();
+            InitHallMap();
         }
+    }
+
+    public void InitRoomMap()
+    {
+        for (int i5 = 0; i5 < Hot.SizeExpeditionRoomBody.Y; i5++)
+        {
+            Map.Add(new());
+
+            for (int i6 = 0; i6 < Hot.SizeExpeditionRoomBody.X; i6++)
+            {
+                Map[i5].Add(new());
+            }
+        }
+    }
+
+    public void InitHallMap()
+    {
+
     }
 
     public void ChangeHallSize()

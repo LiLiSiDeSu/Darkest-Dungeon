@@ -51,12 +51,12 @@ public class PanelOtherRoomEditor : PanelBase
             }
         });
 
-        Init();
+        InitGrid();
     }
 
-    public void Init()
-    {        
-        for (int i1 = 0; i1 < 18; i1++)
+    public void InitGrid()
+    {
+        for (int i1 = 0; i1 < Hot.SizeExpeditionRoomBody.Y; i1++)
         {
             int tempi1 = i1;
 
@@ -70,7 +70,7 @@ public class PanelOtherRoomEditor : PanelBase
             glg.constraintCount = 1;
             glg.childAlignment = TextAnchor.MiddleCenter;
 
-            for (int i2 = 0; i2 < 48; i2++)
+            for (int i2 = 0; i2 < Hot.SizeExpeditionRoomBody.X; i2++)
             {
                 int tempi2 = i2;
 
@@ -94,6 +94,11 @@ public class PanelOtherRoomEditor : PanelBase
                     panel.Y = tempi1;
                 });
             }
-        }        
+        }
+    }
+
+    public void GenerateByData(List<List<PanelCellGridRoomEditor>> map)
+    {        
+        
     }        
 }

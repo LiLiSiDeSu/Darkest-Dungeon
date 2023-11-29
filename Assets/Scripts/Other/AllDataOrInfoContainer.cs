@@ -165,11 +165,6 @@ public class DataContainer_ExpeditionPrepare
     }
 }
 
-public class DataContainer_CellExpeditionObject
-{
-
-}
-
 #region Map
 
 public class DataContainer_Expedition
@@ -211,13 +206,25 @@ public class DataContainer_CellExpeditionMiniMap
     }
 }
 
+public class DataContainer_CellExpeditionMapObject
+{
+    public E_MapObject e_Obj = E_MapObject.None;
+}
+
+public class DataContainer_CellOtherRole
+{
+
+}
+
 public class DataContainer_CellExpeditionMapGrid
 {
-    //当前远征地图格子所拥有的角色
-    public DataContainer_CellRole Role = new();
+    public int IndexRoleListRole = -1;
+
+    //当前远征地图格子所拥有的角色(不是RoleList里面的的角色)
+    public DataContainer_CellOtherRole OtherRole = new();
 
     //当前远征地图格子所拥有的物体
-    public DataContainer_CellExpeditionObject Object = new();
+    public DataContainer_CellExpeditionMapObject Obj = new();
 }
 
 #endregion

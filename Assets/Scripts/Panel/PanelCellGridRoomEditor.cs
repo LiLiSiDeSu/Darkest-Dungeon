@@ -22,4 +22,11 @@ public class PanelCellGridRoomEditor : PanelBase
 
         ImgBk.alphaHitTestMinimumThreshold = 0.2f;
     }
+
+    public void Init(int x, int y, PanelCellRoomEditor cellRoomEditor)
+    {
+        X = x; 
+        Y = y;
+        CellRoomEditor = cellRoomEditor;
+    }
 }

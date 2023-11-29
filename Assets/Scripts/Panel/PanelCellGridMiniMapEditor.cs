@@ -1,4 +1,5 @@
 using Palmmedia.ReportGenerator.Core.Reporting.Builders;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -106,7 +107,7 @@ public class PanelCellGridMiniMapEditor : PanelBase
             case "ImgBk":
                 if ((Hot.e_ChoseHall != E_CellExpeditionMiniMapHall.None || Hot.e_ChoseRoom != E_CellExpeditionMiniMapRoom.None) && JudgeCanPut())
                 {
-                    if (Hot.ChoseMapEditor == null)
+                    if (Hot.ChoseMapEditor == null)    //创建
                     {
                         if (Hot.e_ChoseHall != E_CellExpeditionMiniMapHall.None)
                         {
@@ -116,10 +117,8 @@ public class PanelCellGridMiniMapEditor : PanelBase
                                 panel.transform.SetParent(Hot.PanelOtherMapEditor_.ItemRoot[Y][X], false);
                                 panel.transform.transform.localPosition = new Vector3(-20, 20);
                                 panel.RootGrid = this;
-                                panel.e_Hall = Hot.e_ChoseHall;
 
-                                panel.ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + panel.e_Hall);
-                                panel.ChangeHallSize();
+                                panel.Init(E_CellExpeditionMiniMapRoom.None, Hot.e_ChoseHall);
 
                                 for (int i1 = 0; i1 < Hot.DicHallBody[Hot.e_ChoseHall].Y; i1++)
                                 {
@@ -139,10 +138,8 @@ public class PanelCellGridMiniMapEditor : PanelBase
                                 panel.transform.SetParent(Hot.PanelOtherMapEditor_.ItemRoot[Y][X], false);
                                 panel.transform.transform.localPosition = new Vector3(-20, 20);
                                 panel.RootGrid = this;
-                                panel.e_Room = Hot.e_ChoseRoom;
 
-                                panel.ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + panel.e_Room);
-                                panel.ChangeRoomSize();
+                                panel.Init(Hot.e_ChoseRoom, E_CellExpeditionMiniMapHall.None);
 
                                 for (int i1 = 0; i1 < Hot.DicRoomBody[Hot.e_ChoseRoom].Y; i1++)
                                 {
@@ -164,7 +161,7 @@ public class PanelCellGridMiniMapEditor : PanelBase
                             });
                         }
                     }
-                    else
+                    else //移动
                     {
                         if (Hot.e_ChoseHall != E_CellExpeditionMiniMapHall.None)
                         {
@@ -209,6 +206,8 @@ public class PanelCellGridMiniMapEditor : PanelBase
                         Hot.ChoseMapEditor.RootGrid = this;
                     }
 
+                    #region 清空status
+
                     if (Hot.e_ChoseHall != E_CellExpeditionMiniMapHall.None)
                     {
                         for (int i1 = 0; i1 < Hot.DicHallBody[Hot.e_ChoseHall].Y; i1++)
@@ -229,7 +228,9 @@ public class PanelCellGridMiniMapEditor : PanelBase
                                 Hot.PanelOtherMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                             }
                         }
-                    }                    
+                    }
+
+                    #endregion
                 }
                 break;
         }

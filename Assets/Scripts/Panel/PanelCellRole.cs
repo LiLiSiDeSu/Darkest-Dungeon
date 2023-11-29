@@ -24,7 +24,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public PanelCellRolePortraitCanDrag PanelCellRoleCanDrag_;
 
-    public List<GameObject> ListImgCellSanity = new List<GameObject>();   
+    public List<GameObject> ListImgCellSanity = new();   
 
     protected override void Awake()
     {

@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
+using System.Runtime.CompilerServices;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class PanelOtherMiniMapEditor : PanelBase
 {
     public string PathFolder;
 
-    public m_Vector2 EntrancePos = new(-1, -1);    
+    public m_Vector2 EntrancePos = new(-1, -1);
 
     public List<List<PanelCellGridMiniMapEditor>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
@@ -386,21 +389,22 @@ public class PanelOtherMiniMapEditor : PanelBase
                 if (MapData.ListCellMiniMap[tempi1][tempi2].e_Hall != E_CellExpeditionMiniMapHall.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
-                    (panel) =>
+                    (PanelCellMiniMapEditor_) =>
                     {
-                        panel.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
-                        panel.transform.localPosition = new Vector3(-20, 20);
+                        PanelCellMiniMapEditor_.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
+                        PanelCellMiniMapEditor_.transform.localPosition = new Vector3(-20, 20);
 
-                        panel.RootGrid = Grids[tempi1][tempi2];                        
-                        for (int i11 = 0; i11 < Hot.DicHallBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Hall].Y; i11++)
+                        PanelCellMiniMapEditor_.RootGrid = Grids[tempi1][tempi2];            
+                        
+                        for (int i3 = 0; i3 < Hot.DicHallBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Hall].Y; i3++)
                         {
-                            for (int i22 = 0; i22 < Hot.DicHallBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Hall].X; i22++)
+                            for (int i4 = 0; i4 < Hot.DicHallBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Hall].X; i4++)
                             {
-                                Grids[tempi1 + i11][tempi2 + i22].CellMiniMapEditor = panel;
+                                Grids[tempi1 + i3][tempi2 + i4].CellMiniMapEditor = PanelCellMiniMapEditor_;
                             }
                         }                        
 
-                        panel.Init(E_CellExpeditionMiniMapRoom.None, MapData.ListCellMiniMap[tempi1][tempi2].e_Hall);                        
+                        PanelCellMiniMapEditor_.Init(E_CellExpeditionMiniMapRoom.None, MapData.ListCellMiniMap[tempi1][tempi2].e_Hall);
                     });
                 }
 
@@ -408,25 +412,71 @@ public class PanelOtherMiniMapEditor : PanelBase
                 if (MapData.ListCellMiniMap[tempi1][tempi2].e_Room != E_CellExpeditionMiniMapRoom.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
-                    (panel) =>
+                    (PanelCellMiniMapEditor_) =>
                     {
-                        panel.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
-                        panel.transform.localPosition = new Vector3(-20, 20);
+                        PanelCellMiniMapEditor_.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
+                        PanelCellMiniMapEditor_.transform.localPosition = new Vector3(-20, 20);
 
-                        panel.RootGrid = Grids[tempi1][tempi2];
-                        for (int i11 = 0; i11 < Hot.DicRoomBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].Y; i11++)
+                        PanelCellMiniMapEditor_.RootGrid = Grids[tempi1][tempi2];
+
+                        for (int i3 = 0; i3 < Hot.DicRoomBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].Y; i3++)
                         {
-                            for (int i22 = 0; i22 < Hot.DicRoomBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].X; i22++)
+                            for (int i4 = 0; i4 < Hot.DicRoomBody[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].X; i4++)
                             {
-                                Grids[tempi1 + i11][tempi2 + i22].CellMiniMapEditor = panel;
+                                Grids[tempi1 + i3][tempi2 + i4].CellMiniMapEditor = PanelCellMiniMapEditor_;
                             }
                         }
 
-                        panel.Init(MapData.ListCellMiniMap[tempi1][tempi2].e_Room, E_CellExpeditionMiniMapHall.None);
+                        PanelCellMiniMapEditor_.Init(MapData.ListCellMiniMap[tempi1][tempi2].e_Room, E_CellExpeditionMiniMapHall.None);
+
+                        for (int i5 = 0; i5 < Hot.SizeExpeditionRoomBody.Y; i5++)
+                        {
+                            int tempi5 = i5;
+
+                            for (int i6 = 0; i6 < Hot.SizeExpeditionRoomBody.X; i6++)
+                            {
+                                int tempi6 = i6;
+
+                                Hot.MgrUI_.CreatePanel<PanelCellGridRoomEditor>(false, "/PanelCellGridRoomEditor",
+                                (PanelCellGridRoomEditor_) =>
+                                {
+                                    PanelCellMiniMapEditor_.Map[tempi5][tempi6] = PanelCellGridRoomEditor_;
+
+                                    if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj != null)
+                                    {
+                                        Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                                        (PanelCellRoomEditor_) =>
+                                        {
+                                            PanelCellRoomEditor_.Init(MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj, PanelCellGridRoomEditor_);
+                                            
+                                            for (int j1 = 0; j1 < Hot.DicMapObjectBody[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].Y; j1++)
+                                            {
+                                                for (int j2 = 0; j2 < Hot.DicMapObjectBody[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].X; j2++)
+                                                {
+                                                    PanelCellMiniMapEditor_.Map[j1][j2].CellRoomEditor = PanelCellRoomEditor_;
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
                     });
                 }
             }
         }
+    }
+
+    public void Load(string fileName)
+    {
+        GenerateGridByLoadData(Hot.MgrJson_.Load<DataContainer_Expedition>(PathFolder, "/" + fileName,
+        (data) =>
+        {
+            IptFileName.text = IptLoad.text;
+            IptLoad.text = "";
+            IptWidth.text = data.ListCellMiniMap[0].Count.ToString();
+            IptHeight.text = data.ListCellMiniMap.Count.ToString();
+        }));
     }
 
     public void ClearGridsImgStatus()
@@ -482,24 +532,26 @@ public class PanelOtherMiniMapEditor : PanelBase
                     MapData.ListCellMiniMap[i1].
                         Add(new(ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Hall, 
                                 ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Room, new()));
+
+                    for (int i3 = 0; i3 < ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map.Count; i3++)
+                    {
+                        for (int i4 = 0; i4 < ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3].Count; i4++)
+                        {
+                            if (ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3][i4].CellRoomEditor.e_Obj != E_MapObject.None)
+                            {
+                                MapData.ListCellMiniMap[i1][i2].Map[i3][i4].Obj = new()
+                                { 
+                                    e_Obj = ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3][i4].CellRoomEditor.e_Obj,
+                                };
+                            }
+                        }
+                    }
                 }
             }
         }
 
         Hot.MgrJson_.Save(MapData, PathFolder, "/" + IptFileName.text);
-    }
-
-    public void Load(string fileName)
-    {        
-        GenerateGridByLoadData(Hot.MgrJson_.Load<DataContainer_Expedition>(PathFolder, "/" + fileName,
-        (data) =>
-        {
-            IptFileName.text = IptLoad.text;           
-            IptWidth.text = data.ListCellMiniMap[0].Count.ToString();
-            IptHeight.text = data.ListCellMiniMap.Count.ToString();
-            IptLoad.text = "";
-        }));
-    }
+    }    
 
     public void ChangeSize()
     {

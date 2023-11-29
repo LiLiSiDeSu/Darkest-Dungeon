@@ -2,8 +2,16 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
+public enum E_MapObject
+{
+    None,
+    MapObjectGridSoil,
+    MapObjectGridStone,
+    MapObjectGravestoneRect2,
+}
+
 /// <summary>
-/// 所有的过道Hall 用于加载Sprite时要加CellMapHall做前缀
+/// 所有的过道Hall
 /// </summary>
 public enum E_CellExpeditionMiniMapHall
 {
@@ -17,7 +25,7 @@ public enum E_CellExpeditionMiniMapHall
 }
 
 /// <summary>
-/// 所有的过道Room 用于加载Sprite时要加CellMapRoom做前缀
+/// 所有的过道Room
 /// </summary>
 public enum E_CellExpeditionMiniMapRoom
 {    

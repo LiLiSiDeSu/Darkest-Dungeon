@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class OtherClass { }
 
+[Serializable]
 public class m_Vector2
 {
     public int X;
