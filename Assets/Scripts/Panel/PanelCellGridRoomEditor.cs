@@ -21,6 +21,47 @@ public class PanelCellGridRoomEditor : PanelBase
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
 
         ImgBk.alphaHitTestMinimumThreshold = 0.2f;
+
+        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
+        (param) =>
+        {
+            Hot.NowEnterCellGridRoomEditor = this;
+
+            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+            {
+                for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                {
+                    for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                    {
+                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctRed");
+                    }
+                }
+            }
+            else
+            {
+                ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+            }
+        });
+        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
+        (param) =>
+        {
+            Hot.NowEnterCellGridRoomEditor = null;
+
+            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+            {
+                for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                {
+                    for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                    {
+                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    }
+                }
+            }
+            else
+            {
+                ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+            }
+        });
     }
 
     public void Init(int x, int y, PanelCellRoomEditor cellRoomEditor)
@@ -28,5 +69,35 @@ public class PanelCellGridRoomEditor : PanelBase
         X = x; 
         Y = y;
         CellRoomEditor = cellRoomEditor;
+    }
+
+    public bool JudgeCanPut()
+    {
+        if (Hot.e_ChoseObj != E_MapObject.None)
+        {
+            if (Y + Hot.BodyDicMapObject[Hot.e_ChoseObj].Y > Hot.BodyExpeditionRoom.Y ||
+                X + Hot.BodyDicMapObject[Hot.e_ChoseObj].X > Hot.BodyExpeditionRoom.X)
+
+            {
+                return false;
+            }
+
+            for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+            {
+                for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                {
+                    if (Hot.NowEditorDependency.Map[i1 + Y][i2 + X].CellRoomEditor == null)
+                    {
+                        ;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }

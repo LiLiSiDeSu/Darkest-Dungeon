@@ -18,7 +18,7 @@ public class PanelTownRooms : PanelBase
         Hot.CenterEvent_.AddEventListener("Esc" + "PanelTownRooms",
         () =>
         {
-            if (Hot.NowCellItem != null && Hot.NowCellItem.e_Location == E_ItemLocation.TownShopItem)
+            if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.TownShopItem)
             {
                 Hot.PanelTownStore_.CancelNowChoosedItem();
             }

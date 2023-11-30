@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class PanelCellRoomEditor : PanelBase
 {
-    public PanelCellGridRoomEditor RootGrid = new();
+    public PanelCellGridRoomEditorConfig RootGrid = new();
 
     public Image ImgCellRoomEditor;
     public Image ImgStatus;
 
     public E_MapObject e_Obj = E_MapObject.None;
-    public int IndexRoleListRole = -1;
-    public bool HaveOtherRole = false;
 
     protected override void Awake()
     {
@@ -22,7 +20,7 @@ public class PanelCellRoomEditor : PanelBase
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
     }
 
-    public void Init(E_MapObject e_Obj, PanelCellGridRoomEditor RootGrid)
+    public void Init(E_MapObject e_Obj, PanelCellGridRoomEditorConfig RootGrid)
     {
         this.e_Obj = e_Obj;
         this.RootGrid = RootGrid;

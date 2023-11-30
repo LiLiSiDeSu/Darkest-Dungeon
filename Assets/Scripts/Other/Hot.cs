@@ -37,18 +37,23 @@ public static class Hot
         130
     };
 
-    public static m_Vector2 SizeExpeditionRoomBody = new(48, 18);
+    #region Body
 
-    public static m_Vector2 SizeCellItemBody = new(40, 40);
-    public static m_Vector2 SizeCellMinimapBody = new(40, 40);
+    public static m_Vector2 BodyExpeditionRoom = new(48, 18);
+    public static m_Vector2 BodyCellGridExpeditionMap = new(40, 40);
 
-    public static Dictionary<E_MapObject, m_Vector2> DicMapObjectBody = new()
+    public static m_Vector2 BodySizeCellItem = new(40, 40);
+    public static m_Vector2 BodySizeCellMinimap = new(40, 40);
+
+    public static Dictionary<E_MapObject, m_Vector2> BodyDicMapObject = new()
     {
         { E_MapObject.MapObjectGridSoil, new(1, 1) },
         { E_MapObject.MapObjectGridStone, new(1, 1) },
+
         { E_MapObject.MapObjectGravestoneRect2, new(2, 2) },
+        { E_MapObject.MapObjectGravestoneRectLong, new(1, 3) },
     };
-    public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> DicHallBody = new()
+    public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> BodyDicHall = new()
     {
         { E_CellExpeditionMiniMapHall.CellMapHallDark, new(1, 1) },
         { E_CellExpeditionMiniMapHall.CellMapHallDim, new(1, 1) },
@@ -57,7 +62,7 @@ public static class Hot
         { E_CellExpeditionMiniMapHall.CellMapHallTrap, new(1, 1) },
         { E_CellExpeditionMiniMapHall.CellMapHallSecret, new(1, 1) },
     };
-    public static Dictionary<E_CellExpeditionMiniMapRoom, m_Vector2> DicRoomBody = new()
+    public static Dictionary<E_CellExpeditionMiniMapRoom, m_Vector2> BodyDicRoom = new()
     {
         { E_CellExpeditionMiniMapRoom.CellMapRoomBoss, new(4, 4) },
         { E_CellExpeditionMiniMapRoom.CellMapRoomLocked, new(3, 3) },
@@ -66,33 +71,14 @@ public static class Hot
         { E_CellExpeditionMiniMapRoom.CellMapRoomUnkown, new(3, 3) },
     };
 
-    public static Dictionary<E_PanelCellTownStore, m_Vector2> DicStoreBody = new()
+    public static Dictionary<E_PanelCellTownStore, m_Vector2> BodyDicStore = new()
     {
         { E_PanelCellTownStore.StoreWood, new(10, 5) },
         { E_PanelCellTownStore.StoreIron, new(12, 10) },
         { E_PanelCellTownStore.StoreGold, new(15, 13) },
     };
 
-    public static Dictionary<E_SpriteNamePanelCellItem, InfoContainer_Cost> DicItemCost = new()
-    {
-        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1, 1, 1, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodApple, new(2, 2, 2, 2, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2, 1, 2, 0, 0, 0, 0, 0) },
-
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(11, 11, 13, 12, 0, 0, 0, 0, 0) },
-
-        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(21, 13, 122, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
-
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(11, 11, 21, 21, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(41, 31, 31, 31, 0, 0, 0, 0, 0) },
-
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(22, 22, 22, 22, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
-    };
-
-    public static Dictionary<E_SpriteNamePanelCellItem, m_Vector2> DicItemBody = new()
+    public static Dictionary<E_SpriteNamePanelCellItem, m_Vector2> BodyDicItem = new()
     {
         { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1) },
         { E_SpriteNamePanelCellItem.ItemFoodApple, new(3, 3) },
@@ -109,6 +95,27 @@ public static class Hot
 
         { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(2, 2) },
         { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(2, 2) },
+    };
+
+    #endregion
+
+    public static Dictionary<E_SpriteNamePanelCellItem, InfoContainer_Cost> CostDicItem = new()
+    {
+        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1, 1, 1, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodApple, new(2, 2, 2, 2, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2, 1, 2, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(11, 11, 13, 12, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(21, 13, 122, 11, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(11, 11, 21, 21, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(41, 31, 31, 31, 0, 0, 0, 0, 0) },
+
+        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(22, 22, 22, 22, 0, 0, 0, 0, 0) },
+        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
     };
 
     #endregion
@@ -380,22 +387,39 @@ public static class Hot
 
     #endregion
 
-    #region MapEditor
-        
+    #region Editor
+
+    public static E_MapObject e_ChoseObj = E_MapObject.None;
     public static E_CellExpeditionMiniMapHall e_ChoseHall = E_CellExpeditionMiniMapHall.None;
-    public static E_CellExpeditionMiniMapRoom e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;    
+    public static E_CellExpeditionMiniMapRoom e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;
+    /// <summary>
+    /// 现在进入的RoomEditor背景Grid
+    /// </summary>
+    public static PanelCellGridRoomEditor NowEnterCellGridRoomEditor;
+    /// <summary>
+    /// 现在进入的 RoomEditor Cell
+    /// </summary>
+    public static PanelCellRoomEditor NowEnterCellRoomEditor;
+    /// <summary>
+    /// 现在选择的 RoomEditor Cell
+    /// </summary>
+    public static PanelCellRoomEditor ChoseCellRoomEditor;
+    /// <summary>
+    /// 现在的编辑器属于哪个 MiniMap Cell
+    /// </summary>
+    public static PanelCellMiniMapEditor NowEditorDependency = null;
     /// <summary>
     /// 现在进入的地图编辑器背景Grid
     /// </summary>
-    public static PanelCellGridMiniMapEditor NowMapEditorGrid = null;
+    public static PanelCellGridMiniMapEditor NowEnterCellGridMiniMapEditor = null;
     /// <summary>
-    /// 现在进入的地图编辑器Cell      
+    /// 现在进入的Mini地图编辑器Cell      
     /// </summary>
-    public static PanelCellMiniMapEditor NowEnterCellMapEditor = null;
+    public static PanelCellMiniMapEditor NowEnterCellMiniMapEditor = null;
     /// <summary>
     /// 现在选择的地图编辑器Cell
     /// </summary>
-    public static PanelCellMiniMapEditor ChoseMapEditor = null;
+    public static PanelCellMiniMapEditor ChoseCellMapEditor = null;
 
     #endregion
 
@@ -439,11 +463,11 @@ public static class Hot
     /// <summary>
     /// 现在选中的物品
     /// </summary>
-    public static PanelCellItem NowCellItem = null;
+    public static PanelCellItem ChoseCellItem = null;
     /// <summary>
     /// 现在进入的物品背景格子
     /// </summary>
-    public static PanelCellGridTownItem NowItemGrid = null;
+    public static PanelCellGridTownItem NowEnterCellGridItem = null;
 
     #endregion    
 

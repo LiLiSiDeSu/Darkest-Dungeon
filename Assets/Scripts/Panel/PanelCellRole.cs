@@ -62,11 +62,12 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        Root.localPosition = new Vector3(30, 0, 0);
-
         base.OnBeginDrag(eventData);
 
-        ImgPanelBk.raycastTarget = false;        
+        Root.localPosition = new Vector3(30, 0, 0);
+        ImgPanelBk.raycastTarget = false;
+
+        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleList_.Content, false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -82,6 +83,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
         transform.localPosition = Vector3.zero;
         DestroyImmediate(Hot.PanelRoleList_.ListDynamicContentStep[Index].gameObject);
         Hot.PanelRoleList_.SortContent();
+        Hot.PaddingContentStep_ = null;
     }
 
     #endregion

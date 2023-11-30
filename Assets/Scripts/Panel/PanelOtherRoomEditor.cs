@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PanelOtherRoomEditor : PanelBase
     public List<List<PanelCellGridRoomEditor>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
 
+    public Image ImgCurrentChoose;
+
     public Transform ImgRoomBk;
 
     public Transform CellRoomContent;
@@ -15,6 +18,9 @@ public class PanelOtherRoomEditor : PanelBase
     public Transform ImgStatusContent;
     public Transform ItemContent;
     public Transform ComponentRoot;
+
+    public Transform ChooseGridContent;
+    public Transform ChooseOtherContent;
 
     protected override void Awake()
     {
@@ -28,6 +34,21 @@ public class PanelOtherRoomEditor : PanelBase
         ItemContent = transform.FindSonSonSon("ItemContent");
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
+        ChooseGridContent = transform.FindSonSonSon("ChooseGridContent");
+        ChooseOtherContent = transform.FindSonSonSon("ChooseOtherContent");
+
+        ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        (key) =>
+        {
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.Cancel)
+            {
+                Hot.e_ChoseObj = E_MapObject.None;
+                Hot.PanelOtherRoomEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+            }
+        });
+
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
@@ -35,28 +56,54 @@ public class PanelOtherRoomEditor : PanelBase
             {
                 if (key == Hot.MgrInput_.Add)
                 {
-                    CellRoomContent.localScale += 
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                     ImgRoomBk.localScale +=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
 
-                if (CellRoomContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
+                if (ImgRoomBk.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
-                    CellRoomContent.localScale -=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                     ImgRoomBk.localScale -=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
             }
         });
 
+        Init();
+    }
+
+    public void Init()
+    {
         InitGrid();
+        InitContent();
+    }
+
+    public void InitContent()
+    {
+        foreach (E_MapObject e_Obj in Enum.GetValues(typeof(E_MapObject)))
+        {
+            if (e_Obj != E_MapObject.None)
+            {
+                Hot.MgrUI_.CreatePanel<PanelCellRoomEditorChoose>(false, "/PanelCellRoomEditorChoose",
+                (panel) =>
+                {
+                    if (e_Obj.ToString().Contains("Grid"))
+                    {
+                        panel.transform.SetParent(ChooseGridContent, false);
+                    }
+                    else
+                    {
+                        panel.transform.SetParent(ChooseOtherContent, false);
+                    }
+
+                    panel.Init(e_Obj);
+                });
+            }
+        }
     }
 
     public void InitGrid()
     {
-        for (int i1 = 0; i1 < Hot.SizeExpeditionRoomBody.Y; i1++)
+        for (int i1 = 0; i1 < Hot.BodyExpeditionRoom.Y; i1++)
         {
             int tempi1 = i1;
 
@@ -70,7 +117,7 @@ public class PanelOtherRoomEditor : PanelBase
             glg.constraintCount = 1;
             glg.childAlignment = TextAnchor.MiddleCenter;
 
-            for (int i2 = 0; i2 < Hot.SizeExpeditionRoomBody.X; i2++)
+            for (int i2 = 0; i2 < Hot.BodyExpeditionRoom.X; i2++)
             {
                 int tempi2 = i2;
 
@@ -101,4 +148,9 @@ public class PanelOtherRoomEditor : PanelBase
     {        
         
     }        
+
+    public void Clear()
+    {
+
+    }
 }

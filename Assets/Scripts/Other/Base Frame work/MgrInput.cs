@@ -22,6 +22,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode Reduce = KeyCode.L;
     public KeyCode Map = KeyCode.M;
     public KeyCode Cancel = KeyCode.Mouse1;
+    public KeyCode Enter = KeyCode.Return;
 
     private void Update()
     {        
@@ -47,6 +48,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(Reduce);
         CheckKeyCode(Map);
         CheckKeyCode(Cancel);
+        CheckKeyCode(Enter);
     }
 
     /// <summary>

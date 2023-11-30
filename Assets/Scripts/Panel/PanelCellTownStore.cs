@@ -66,12 +66,14 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
 
     public override void OnBeginDrag(PointerEventData eventData)
     {        
-        Root.transform.localPosition = new Vector3(0, 0, 0);
-
         base.OnBeginDrag(eventData);
+
+        Root.transform.localPosition = new Vector3(0, 0, 0);
 
         ImgPanelBk.raycastTarget = false;
         ImgStore.raycastTarget = false;
+
+        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelTownStore_.Content, false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -88,6 +90,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
         transform.localPosition = Vector3.zero;
         DestroyImmediate(Hot.PanelTownStore_.ListDynamicContentStep[Index].gameObject);
         Hot.PanelTownStore_.SortContent();
+        Hot.PaddingContentStep_ = null;
     }
 
     #endregion

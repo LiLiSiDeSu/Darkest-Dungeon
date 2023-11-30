@@ -57,11 +57,12 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        Root.transform.localPosition = new Vector3(0, 0, 0);
-
         base.OnBeginDrag(eventData);
 
-        ImgGameArchiveChoosed.raycastTarget = false;        
+        Root.transform.localPosition = new Vector3(0, 0, 0);
+        ImgGameArchiveChoosed.raycastTarget = false;
+
+        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelGameArchiveChoose_.Content, false);
     }    
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -77,6 +78,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
         transform.localPosition = Vector3.zero;
         DestroyImmediate(Hot.PanelGameArchiveChoose_.ListDynamicContentStep[Index].gameObject);
         Hot.PanelGameArchiveChoose_.SortContent();
+        Hot.PaddingContentStep_ = null;
     }
 
     #endregion

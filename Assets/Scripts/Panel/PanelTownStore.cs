@@ -14,7 +14,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
-            if (Hot.NowCellItem != null && key == Hot.MgrInput_.Cancel)
+            if (Hot.ChoseCellItem != null && key == Hot.MgrInput_.Cancel)
             {
                 CancelNowChoosedItem();
             }
@@ -55,24 +55,6 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Content = transform.FindSonSonSon("TownStoreContent");
     }
 
-    #region EventSystem接口实现
-
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        base.OnPointerEnter(eventData);
-
-        Hot.e_NowPointerLocation = E_NowPointerLocation.PanelTownStore;
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-
-        Hot.e_NowPointerLocation = E_NowPointerLocation.None;
-    }
-
-    #endregion
-
     public override void InitContent()
     {
         for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.ListCellStore.Count; i1++)
@@ -110,7 +92,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,
                     () =>
                     {
-                        if (Hot.NowCellItem != null && Hot.NowCellItem.e_Location == E_ItemLocation.TownItem)
+                        if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.TownItem)
                         {
                             Hot.PanelTownStore_.CancelNowChoosedItem();
                         }
@@ -122,21 +104,21 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
     public void CancelNowChoosedItem()
     {
-        if (Hot.NowItemGrid != null)
+        if (Hot.NowEnterCellGridItem != null)
         {
-            for (int i1 = 0; i1 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+            for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
             {
-                for (int i2 = 0; i2 < Hot.DicItemBody[Hot.NowCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
                 {
-                    Hot.NowPanelCanStoreItem.Grids[Hot.NowItemGrid.Y + i1][Hot.NowItemGrid.X + i2].ImgStatus.sprite =
+                    Hot.NowPanelCanStoreItem.Grids[Hot.NowEnterCellGridItem.Y + i1][Hot.NowEnterCellGridItem.X + i2].ImgStatus.sprite =
                         Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 }
             }
         }
 
-        Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-        Hot.NowCellItem.ImgItem.raycastTarget = true;
-        Hot.NowCellItem = null;
+        Hot.ChoseCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+        Hot.ChoseCellItem.ImgItem.raycastTarget = true;
+        Hot.ChoseCellItem = null;
         Hot.CanBuy = false;        
     }
 

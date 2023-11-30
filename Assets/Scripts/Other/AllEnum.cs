@@ -5,9 +5,12 @@ public sealed class AllEnum : MonoBehaviour { }
 public enum E_MapObject
 {
     None,
+
     MapObjectGridSoil,
     MapObjectGridStone,
+
     MapObjectGravestoneRect2,
+    MapObjectGravestoneRectLong,
 }
 
 /// <summary>

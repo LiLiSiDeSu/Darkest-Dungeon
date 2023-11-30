@@ -18,13 +18,13 @@ public class PanelBaseVector2Store : PanelBase
 
     public void ChangeSize()
     {
-        ImgBkContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
-        ItemContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
-        ImgStatusContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
+        ImgBkContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+        ItemContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+        ImgStatusContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
 
         foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
         {
-            item.cellSize = new(Hot.SizeCellItemBody.X, Hot.SizeCellItemBody.Y);
+            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
         }
 
         foreach (List<Transform> listItem in ItemRoot)

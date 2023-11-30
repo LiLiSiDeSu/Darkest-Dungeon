@@ -39,15 +39,16 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        Root.localPosition = new(0, 0, 0);
-
         base.OnBeginDrag(eventData);
 
         ImgBk.raycastTarget = false;
 
-        Hot.PanelRoleList_.EnableDetection();
+        Root.localPosition = new(0, 0, 0);
 
+        Hot.PanelRoleList_.EnableDetection();
         Hot.DragingPanelCellRoleRecruit = this;
+
+        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleGuildRecruit_.Content, false);
     }    
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -109,6 +110,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
         transform.localPosition = Vector3.zero;
         DestroyImmediate(Hot.PanelRoleGuildRecruit_.ListDynamicContentStep[Index].gameObject);
         Hot.PanelRoleGuildRecruit_.SortContent();
+        Hot.PaddingContentStep_ = null;
     }
 
     #endregion

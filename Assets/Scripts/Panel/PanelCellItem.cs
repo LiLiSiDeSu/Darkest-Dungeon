@@ -29,7 +29,7 @@ public class PanelCellItem : PanelBase,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.PanelTownShopCost_.UpdateInfo(Hot.DicItemCost[e_SpriteNamePanelCellItem]);
+        Hot.PanelTownShopCost_.UpdateInfo(Hot.CostDicItem[e_SpriteNamePanelCellItem]);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -46,20 +46,20 @@ public class PanelCellItem : PanelBase,
         switch (controlname)
         {
             case "BtnItem":
-                if (Hot.NowCellItem == null)
+                if (Hot.ChoseCellItem == null)
                 {
                     ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
-                    Hot.NowCellItem = this;
+                    Hot.ChoseCellItem = this;
                 }
-                else if (Hot.NowCellItem != this)
+                else if (Hot.ChoseCellItem != this)
                 {
-                    Hot.NowCellItem.ImgItem.raycastTarget = true;
-                    Hot.NowCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    Hot.ChoseCellItem.ImgItem.raycastTarget = true;
+                    Hot.ChoseCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                     ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
-                    Hot.NowCellItem = this;
+                    Hot.ChoseCellItem = this;
                 }
 
-                Hot.NowCellItem.ImgItem.raycastTarget = false;
+                Hot.ChoseCellItem.ImgItem.raycastTarget = false;
                 break;
         }
     }        
@@ -67,8 +67,8 @@ public class PanelCellItem : PanelBase,
     public void ChangeSize()
     {
         ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].X * Hot.SizeCellItemBody.X, Hot.DicItemBody[e_SpriteNamePanelCellItem].Y * Hot.SizeCellItemBody.Y);
+            new(Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodySizeCellItem.X, Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y * Hot.BodySizeCellItem.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.DicItemBody[e_SpriteNamePanelCellItem].X * Hot.SizeCellItemBody.X, Hot.DicItemBody[e_SpriteNamePanelCellItem].Y * Hot.SizeCellItemBody.Y);
+            new(Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodySizeCellItem.X, Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y * Hot.BodySizeCellItem.Y);
     }
 }
