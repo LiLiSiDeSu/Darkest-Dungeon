@@ -11,8 +11,6 @@ public class PanelCellGridRoomEditor : PanelBase
     public Image ImgBk;
     public Image ImgStatus;
 
-    public PanelCellRoomEditor CellRoomEditor;
-
     protected override void Awake()
     {
         base.Awake();
@@ -25,9 +23,9 @@ public class PanelCellGridRoomEditor : PanelBase
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.NowEnterCellGridRoomEditor = this;
+            Hot.NowEnterCellGridRoomEditor = this; 
 
-            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+             if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
             {
                 for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
                 {
@@ -64,11 +62,39 @@ public class PanelCellGridRoomEditor : PanelBase
         });
     }
 
-    public void Init(int x, int y, PanelCellRoomEditor cellRoomEditor)
+    protected override void Button_OnClick(string controlname)
+    {
+        base.Button_OnClick(controlname);
+
+        switch (controlname)
+        {
+            case "ImgBk":
+                if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+                {
+                    Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                    (panel) =>
+                    {
+                        panel.Init(Hot.e_ChoseObj, this);
+                        panel.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
+                        panel.transform.localPosition = new(-20, 20);
+
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                            {
+                                Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.e_ChoseObj;
+                            }
+                        }
+                    });
+                }
+                break;
+        }
+    }
+
+    public void Init(int x, int y)
     {
         X = x; 
         Y = y;
-        CellRoomEditor = cellRoomEditor;
     }
 
     public bool JudgeCanPut()
@@ -86,7 +112,7 @@ public class PanelCellGridRoomEditor : PanelBase
             {
                 for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
                 {
-                    if (Hot.NowEditorDependency.Map[i1 + Y][i2 + X].CellRoomEditor == null)
+                    if (Hot.NowEditorDependency.Map[i1 + Y][i2 + X].e_Obj == E_MapObject.None)
                     {
                         ;
                     }

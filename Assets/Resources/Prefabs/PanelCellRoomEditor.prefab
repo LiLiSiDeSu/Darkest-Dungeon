@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2392567180594145458}
+  - component: {fileID: 1145407074483146988}
   m_Layer: 0
   m_Name: PanelCellRoomEditor
   m_TagString: Untagged
@@ -37,6 +38,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1145407074483146988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399516463639322413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a5d4535efdb9b4494f934870c69f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RootGrid: {fileID: 0}
+  ImgCellRoomEditor: {fileID: 0}
+  ImgStatus: {fileID: 0}
+  e_Obj: 0
 --- !u!1 &5137756226077117307
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +66,7 @@ GameObject:
   - component: {fileID: 7108930024997607949}
   - component: {fileID: 3023879615471396034}
   m_Layer: 0
-  m_Name: ImgItem
+  m_Name: ImgCellRoomEditor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +140,7 @@ GameObject:
   - component: {fileID: 2088548217009225564}
   - component: {fileID: 2479961113246062249}
   m_Layer: 0
-  m_Name: BtnItem
+  m_Name: BtnCellRoomEditor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

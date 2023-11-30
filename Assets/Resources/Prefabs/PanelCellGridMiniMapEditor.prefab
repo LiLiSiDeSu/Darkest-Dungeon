@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1493761336447346588}
   - component: {fileID: 7101241085441111330}
   - component: {fileID: 7573183905703036123}
-  - component: {fileID: 4702009483061104857}
+  - component: {fileID: 8440838139027778239}
   m_Layer: 0
   m_Name: ImgBk
   m_TagString: Untagged
@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4455819054454118519}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4702009483061104857
+--- !u!114 &8440838139027778239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,4 +258,4 @@ MonoBehaviour:
   Y: 0
   ImgBk: {fileID: 0}
   ImgStatus: {fileID: 0}
-  CellMapEditor: {fileID: 0}
+  CellMiniMapEditor: {fileID: 0}

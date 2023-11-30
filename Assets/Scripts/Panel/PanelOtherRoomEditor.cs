@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class PanelOtherRoomEditor : PanelBase
     public Transform CellRoomContent;
     public Transform ImgBkContent;
     public Transform ImgStatusContent;
-    public Transform ItemContent;
+    private Transform ItemContent;
     public Transform ComponentRoot;
 
     public Transform ChooseGridContent;
@@ -114,6 +115,7 @@ public class PanelOtherRoomEditor : PanelBase
             obj1.transform.SetParent(ItemContent, false);
             GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
             glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            glg.cellSize = new(Hot.BodyCellGridExpeditionMap.X, Hot.BodyCellGridExpeditionMap.Y);
             glg.constraintCount = 1;
             glg.childAlignment = TextAnchor.MiddleCenter;
 
@@ -137,20 +139,28 @@ public class PanelOtherRoomEditor : PanelBase
                     panel.ImgBk.transform.SetParent(ImgBkContent, false);
                     panel.ImgStatus.transform.SetParent(ImgStatusContent, false);
 
-                    panel.X = tempi2;
-                    panel.Y = tempi1;
+                    panel.Init(tempi2, tempi1);
                 });
             }
         }
     }
 
-    public void GenerateByData(List<List<PanelCellGridRoomEditor>> map)
+    public void GenerateByData(List<List<PanelCellGridRoomEditorConfig>> map)
     {        
         
     }        
 
     public void Clear()
     {
-
+        foreach (List<Transform> list in ItemRoot)
+        {
+            foreach (Transform item in list)
+            {
+                if (item.childCount > 0)
+                {
+                    Destroy(item.GetChild(0).gameObject);
+                }
+            }
+        }
     }
 }

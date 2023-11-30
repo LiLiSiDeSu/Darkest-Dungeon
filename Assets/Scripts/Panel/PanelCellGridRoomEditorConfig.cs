@@ -7,7 +7,7 @@ public class PanelCellGridRoomEditorConfig
     public int X;
     public int Y;
 
-    public PanelCellRoomEditor CellRoomEditor;
+    public E_MapObject e_Obj = E_MapObject.None;
 
     public void Init(int x, int y)
     {

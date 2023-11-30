@@ -41,7 +41,6 @@ public static class Hot
 
     public static m_Vector2 BodyExpeditionRoom = new(48, 18);
     public static m_Vector2 BodyCellGridExpeditionMap = new(40, 40);
-
     public static m_Vector2 BodySizeCellItem = new(40, 40);
     public static m_Vector2 BodySizeCellMinimap = new(40, 40);
 
