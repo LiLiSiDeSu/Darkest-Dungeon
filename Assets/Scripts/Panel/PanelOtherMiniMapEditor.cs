@@ -400,6 +400,31 @@ public class PanelOtherMiniMapEditor : PanelBase
                         }                        
 
                         PanelCellMiniMapEditor_.Init(E_CellExpeditionMiniMapRoom.None, MapData.ListCellMiniMap[tempi1][tempi2].e_Hall);
+
+                        for (int i5 = 0; i5 < Hot.BodyExpeditionRoom.Y; i5++)
+                        {
+                            int tempi5 = i5;
+
+                            for (int i6 = 0; i6 < Hot.BodyExpeditionRoom.X; i6++)
+                            {
+                                int tempi6 = i6;
+
+                                PanelCellMiniMapEditor_.Map[tempi5][tempi6].Init(tempi5, tempi6);
+
+                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj != E_MapObject.None)
+                                {
+                                    PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
+
+                                    for (int j1 = 0; j1 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].Y; j1++)
+                                    {
+                                        for (int j2 = 0; j2 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].X; j2++)
+                                        {
+                                            PanelCellMiniMapEditor_.Map[tempi5 + j1][tempi6 + j2].e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     });
                 }
 
@@ -437,8 +462,6 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                                 if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj != E_MapObject.None)
                                 {
-                                    Debug.Log("Y: " + tempi5 + " / H: " + tempi6 + " --- " + MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj);
-
                                     PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
 
                                     for (int j1 = 0; j1 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].Y; j1++)

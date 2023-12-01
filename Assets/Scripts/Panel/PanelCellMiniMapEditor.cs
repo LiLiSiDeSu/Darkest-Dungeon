@@ -83,7 +83,6 @@ public class PanelCellMiniMapEditor : PanelBase,
             e_Hall = E_CellExpeditionMiniMapHall.None;
             ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
             ChangeRoomSize();
-            InitRoomMap();
         }
 
         if (e_Hall != E_CellExpeditionMiniMapHall.None)
@@ -92,14 +91,10 @@ public class PanelCellMiniMapEditor : PanelBase,
             e_Room = E_CellExpeditionMiniMapRoom.None;
             ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Hall);
             ChangeHallSize();
-            InitHallMap();
         }
+
+        InitRoomMap();
     }    
-
-    public void InitHallMap()
-    {
-
-    }
 
     public void InitRoomMap()
     {

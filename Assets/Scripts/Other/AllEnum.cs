@@ -11,6 +11,23 @@ public enum E_MapObject
 
     MapObjectGravestoneRect2,
     MapObjectGravestoneRectLong,
+
+    MapObjectWall1,
+    MapObjectWall2,
+
+    MapObjectStoreWood,
+    MapObjectStoreIron,
+    MapObjectStoreGold,
+
+    MapObjectStore0,
+    MapObjectStore1,
+    MapObjectStore4,
+
+    MapObjectStoreWide0,
+    MapObjectStoreWide1,
+    MapObjectStoreWide2,
+
+    MapObjectPlatform0,
 }
 
 /// <summary>

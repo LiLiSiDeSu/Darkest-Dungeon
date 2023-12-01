@@ -51,6 +51,23 @@ public static class Hot
 
         { E_MapObject.MapObjectGravestoneRect2, new(2, 2) },
         { E_MapObject.MapObjectGravestoneRectLong, new(1, 3) },
+
+        { E_MapObject.MapObjectWall1, new(3, 3) },
+        { E_MapObject.MapObjectWall2, new(3, 3) },
+
+        { E_MapObject.MapObjectPlatform0, new(2, 1) },
+
+        { E_MapObject.MapObjectStoreWide0, new(2, 1) },
+        { E_MapObject.MapObjectStoreWide1, new(2, 1) },
+        { E_MapObject.MapObjectStoreWide2, new(2, 1) },
+
+        { E_MapObject.MapObjectStoreWood, new(2, 2) },
+        { E_MapObject.MapObjectStoreIron, new(2, 2) },
+        { E_MapObject.MapObjectStoreGold, new(2, 2) },
+
+        { E_MapObject.MapObjectStore0, new(2, 2) },
+        { E_MapObject.MapObjectStore1, new(2, 2) },
+        { E_MapObject.MapObjectStore4, new(2, 2) },
     };
     public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> BodyDicHall = new()
     {
