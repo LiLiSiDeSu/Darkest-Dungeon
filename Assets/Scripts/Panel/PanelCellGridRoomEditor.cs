@@ -11,6 +11,8 @@ public class PanelCellGridRoomEditor : PanelBase
     public Image ImgBk;
     public Image ImgStatus;
 
+    public PanelCellRoomEditor CellRoomEditor;
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,7 +27,7 @@ public class PanelCellGridRoomEditor : PanelBase
         {
             Hot.NowEnterCellGridRoomEditor = this; 
 
-             if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
             {
                 for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
                 {
@@ -71,21 +73,54 @@ public class PanelCellGridRoomEditor : PanelBase
             case "ImgBk":
                 if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
-                    (panel) =>
+                    if (Hot.ChoseCellRoomEditor == null)
                     {
-                        panel.Init(Hot.e_ChoseObj, this);
-                        panel.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
-                        panel.transform.localPosition = new(-20, 20);
-
-                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                        Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                        (panel) =>
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                            panel.Init(Hot.e_ChoseObj);
+                            panel.RootGrid = this;
+                            panel.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
+                            panel.transform.localPosition = new(-20, 20);
+                            Hot.NowEditorDependency.Map[Y][X].IsHave = true;
+
+                            for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
                             {
-                                Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.e_ChoseObj;
+                                for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                                {
+                                    Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.e_ChoseObj;
+                                    Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].CellRoomEditor = panel;
+                                }
+                            }
+                        });
+                    }
+
+                    if (Hot.ChoseCellRoomEditor != null)
+                    {
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].X; i2++)
+                            {
+                                Hot.NowEditorDependency.Map[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
+                                Hot.PanelOtherRoomEditor_.Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].CellRoomEditor = null;
+                                Hot.PanelOtherRoomEditor_.Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
+                                    Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                             }
                         }
-                    });
+
+                        Hot.ChoseCellRoomEditor.RootGrid = this;
+                        Hot.ChoseCellRoomEditor.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
+                        Hot.ChoseCellRoomEditor.transform.localPosition = new(-20, 20);
+
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].X; i2++)
+                            {
+                                Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.e_ChoseObj;
+                                Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].CellRoomEditor = Hot.ChoseCellRoomEditor;
+                            }
+                        }
+                    }
                 }
                 break;
         }

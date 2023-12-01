@@ -24,10 +24,12 @@ public class PanelCellRoomEditorChoose : PanelBase
         switch (controlname)
         {
             case "BtnChoose":
-                Hot.e_ChoseObj = e_MapObject;
-                Hot.PanelOtherRoomEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
-                Hot.PanelOtherRoomEditor_.ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta = 
-                    new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodyCellGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodyCellGridExpeditionMap.Y);
+                Hot.PanelOtherRoomEditor_.ChangeCurrentChoose(e_MapObject);
+                if (Hot.ChoseCellRoomEditor != null)
+                {
+                    Hot.ChoseCellRoomEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    Hot.ChoseCellRoomEditor = null;
+                }
                 break;
         }
     }

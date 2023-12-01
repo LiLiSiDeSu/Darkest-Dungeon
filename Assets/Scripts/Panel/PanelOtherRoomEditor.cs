@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,13 +41,68 @@ public class PanelOtherRoomEditor : PanelBase
 
         ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
 
+        Hot.CenterEvent_.AddEventListener("Esc" + "PanelOtherRoomEditor",
+        () =>
+        {
+            Hot.NowEditorDependency = null;
+            Hot.NowEnterCellGridRoomEditor = null;
+            Hot.ChoseCellRoomEditor = null;
+            Hot.NowEnterCellRoomEditor = null;
+            ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+            Hot.e_ChoseObj = E_MapObject.None;
+            Hot.PanelOtherRoomEditor_.Clear();
+        });
+
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.Cancel)
             {
-                Hot.e_ChoseObj = E_MapObject.None;
-                Hot.PanelOtherRoomEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                if (Hot.ChoseCellRoomEditor != null)
+                {
+                    Hot.ChoseCellRoomEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    Hot.ChoseCellRoomEditor = null;
+
+                    return;
+                }
+
+                if (Hot.NowEnterCellRoomEditor != null)
+                {
+                    Hot.NowEditorDependency.Map[Hot.NowEnterCellRoomEditor.RootGrid.Y][Hot.NowEnterCellRoomEditor.RootGrid.X].IsHave = false;
+
+                    for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.NowEnterCellRoomEditor.e_Obj].Y; i1++)
+                    {
+                        for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.NowEnterCellRoomEditor.e_Obj].X; i2++)
+                        {
+                            Hot.NowEditorDependency.Map[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
+                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].CellRoomEditor = null;
+                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
+                                Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                        }
+                    }
+
+                    Destroy(Hot.NowEnterCellRoomEditor.gameObject);
+
+                    return;
+                }
+
+                if (Hot.e_ChoseObj != E_MapObject.None)
+                {
+                    if(Hot.NowEnterCellGridRoomEditor != null)
+                    {
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                            {
+                                Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellGridRoomEditor.Y + i1][Hot.NowEnterCellGridRoomEditor.X + i2].ImgStatus.sprite =
+                                    Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                            }
+                        }
+                    }
+
+                    Hot.e_ChoseObj = E_MapObject.None;
+                    Hot.PanelOtherRoomEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                }
             }
         });
 
@@ -145,9 +201,45 @@ public class PanelOtherRoomEditor : PanelBase
         }
     }
 
-    public void GenerateByData(List<List<PanelCellGridRoomEditorConfig>> map)
+    public void ChangeCurrentChoose(E_MapObject e_MapObject)
+    {
+        Hot.e_ChoseObj = e_MapObject;
+        ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
+        ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta =
+            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodyCellGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodyCellGridExpeditionMap.Y);
+    }
+
+    public void LoadRoomConfig(List<List<PanelCellGridRoomEditorConfig>> map)
     {        
-        
+        for (int i1 = 0; i1 < map.Count; i1++)
+        {
+            int tempi1 = i1;
+
+            for (int i2 = 0; i2 < map[i1].Count; i2++)
+            {
+                int tempi2 = i2;
+
+                if (map[tempi1][tempi2].IsHave)
+                {
+                    Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                    (panel) =>
+                    {
+                        panel.Init(map[tempi1][tempi2].e_Obj);
+                        panel.RootGrid = Grids[tempi1][tempi2];
+                        panel.transform.SetParent(ItemRoot[tempi1][tempi2], false);
+                        panel.transform.localPosition = new(-20, 20);
+
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[map[tempi1][tempi2].e_Obj].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[map[tempi1][tempi2].e_Obj].X; i2++)
+                            {
+                                Grids[tempi1 + i1][tempi2 + i2].CellRoomEditor = panel;
+                            }
+                        }
+                    });
+                }
+            }
+        }
     }        
 
     public void Clear()
@@ -160,6 +252,15 @@ public class PanelOtherRoomEditor : PanelBase
                 {
                     Destroy(item.GetChild(0).gameObject);
                 }
+            }
+        }
+
+        foreach (List<PanelCellGridRoomEditor> list in Grids)
+        {
+            foreach (PanelCellGridRoomEditor item in list)
+            {
+                item.CellRoomEditor = null;
+                item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
             }
         }
     }

@@ -42,26 +42,14 @@ public class PanelOtherMiniMapEditor : PanelBase
 
         PathFolder = "/MapTemplet";
 
-        //打开/关闭RoomEditor
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
             if (Hot.NowEnterCellMiniMapEditor != null && key == Hot.MgrInput_.Enter)
             {
-                //关
-                if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor"))
-                {
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherRoomEditor_.gameObject, "PanelOtherRoomEditor");
-                    Hot.NowEditorDependency = null;
-                    Hot.PanelOtherRoomEditor_.Clear();
-                }
-                //开
-                else
-                {
-                    Hot.MgrUI_.ShowPanel<PanelOtherRoomEditor>(true, "PanelOtherRoomEditor");
-                    Hot.NowEditorDependency = Hot.NowEnterCellMiniMapEditor;
-                    Hot.PanelOtherRoomEditor_.GenerateByData(Hot.NowEditorDependency.Map);
-                }
+                Hot.MgrUI_.ShowPanel<PanelOtherRoomEditor>(true, "PanelOtherRoomEditor");
+                Hot.NowEditorDependency = Hot.NowEnterCellMiniMapEditor;
+                Hot.PanelOtherRoomEditor_.LoadRoomConfig(Hot.NowEditorDependency.Map);
             }
         });
 
@@ -71,8 +59,9 @@ public class PanelOtherMiniMapEditor : PanelBase
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Cancel)
-            {                
-                if (Hot.NowEnterCellMiniMapEditor != null || Hot.ChoseCellMapEditor != null) //删除创建的MiniMapCell
+            {
+                //删除创建的MiniMapCell
+                if (Hot.NowEnterCellMiniMapEditor != null || Hot.ChoseCellMapEditor != null) 
                 {
                     if (Hot.ChoseCellMapEditor == null)
                     {
@@ -444,19 +433,19 @@ public class PanelOtherMiniMapEditor : PanelBase
                             {
                                 int tempi6 = i6;
 
-                                PanelCellGridRoomEditorConfig temp = new();
-                                PanelCellMiniMapEditor_.Map[tempi5][tempi6] = temp;
-                                temp.Init(tempi5, tempi6);
+                                PanelCellMiniMapEditor_.Map[tempi5][tempi6].Init(tempi5, tempi6);
 
-                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj != null)
+                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj != E_MapObject.None)
                                 {
-                                    temp.e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                    Debug.Log("Y: " + tempi5 + " / H: " + tempi6 + " --- " + MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj);
+
+                                    PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
 
                                     for (int j1 = 0; j1 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].Y; j1++)
                                     {
                                         for (int j2 = 0; j2 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].X; j2++)
                                         {
-                                            PanelCellMiniMapEditor_.Map[j1][j2].e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                            PanelCellMiniMapEditor_.Map[tempi5 + j1][tempi6 + j2].e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
                                         }
                                     }
                                 }
@@ -534,16 +523,23 @@ public class PanelOtherMiniMapEditor : PanelBase
                         Add(new(ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Hall, 
                                 ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Room, new()));
 
-                    //保存Map
-                    for (int i3 = 0; i3 < ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map.Count; i3++)
+                    //保存Map 
+                    for (int i3 = 0; i3 < ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map.Count; i3++)
                     {
-                        for (int i4 = 0; i4 < ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3].Count; i4++)
+                        MapData.ListCellMiniMap[i1][i2].Map.Add(new());
+
+                        for (int i4 = 0; i4 < ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map[i3].Count; i4++)
                         {
-                            if (ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3][i4].e_Obj != E_MapObject.None)
+                            MapData.ListCellMiniMap[i1][i2].Map[i3].Add(new());
+
+                            if (ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map[i3][i4].IsHave)
                             {
-                                MapData.ListCellMiniMap[i1][i2].Map[i3][i4].Obj = new()
-                                { 
-                                    e_Obj = ItemRoot[i1][i2].GetComponent<PanelCellMiniMapEditor>().Map[i3][i4].e_Obj,
+                                MapData.ListCellMiniMap[i1][i2].Map[i3][i4] = new()
+                                {
+                                    Obj = new()
+                                    {
+                                        e_Obj = ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map[i3][i4].e_Obj,
+                                    }
                                 };
                             }
                         }
