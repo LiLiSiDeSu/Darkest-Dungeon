@@ -189,21 +189,10 @@ public class DataContainer_Expedition
 }
 
 public class DataContainer_CellExpeditionMiniMap
-{    
-    public E_CellExpeditionMiniMapHall e_Hall = E_CellExpeditionMiniMapHall.None;
-    public E_CellExpeditionMiniMapRoom e_Room = E_CellExpeditionMiniMapRoom.None;            
+{
+    public E_CellMiniMapRoom e_Room = E_CellMiniMapRoom.None;
 
     public List<List<DataContainer_CellExpeditionMapGrid>> Map = new();
-
-    public DataContainer_CellExpeditionMiniMap() { }
-    public DataContainer_CellExpeditionMiniMap
-    (E_CellExpeditionMiniMapHall e_Hall, E_CellExpeditionMiniMapRoom e_Room,
-     List<List<DataContainer_CellExpeditionMapGrid>> map)
-    {
-        this.e_Hall = e_Hall;
-        this.e_Room = e_Room;
-        Map = map;
-    }
 }
 
 public class DataContainer_CellExpeditionMapObject

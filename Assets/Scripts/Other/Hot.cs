@@ -69,22 +69,21 @@ public static class Hot
         { E_MapObject.MapObjectStore1, new(2, 2) },
         { E_MapObject.MapObjectStore4, new(2, 2) },
     };
-    public static Dictionary<E_CellExpeditionMiniMapHall, m_Vector2> BodyDicHall = new()
+    
+    public static Dictionary<E_CellMiniMapRoom, m_Vector2> BodyDicRoom = new()
     {
-        { E_CellExpeditionMiniMapHall.CellMapHallDark, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.CellMapHallDim, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.CellMapHallLight, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.CellMapHallBattle, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.CellMapHallTrap, new(1, 1) },
-        { E_CellExpeditionMiniMapHall.CellMapHallSecret, new(1, 1) },
-    };
-    public static Dictionary<E_CellExpeditionMiniMapRoom, m_Vector2> BodyDicRoom = new()
-    {
-        { E_CellExpeditionMiniMapRoom.CellMapRoomBoss, new(4, 4) },
-        { E_CellExpeditionMiniMapRoom.CellMapRoomLocked, new(3, 3) },
-        { E_CellExpeditionMiniMapRoom.CellMapRoomEmpty, new(3, 3) },
-        { E_CellExpeditionMiniMapRoom.CellMapRoomEntrance, new(3, 3) },
-        { E_CellExpeditionMiniMapRoom.CellMapRoomUnkown, new(3, 3) },
+        { E_CellMiniMapRoom.CellMapRoomBoss, new(4, 4) },
+        { E_CellMiniMapRoom.CellMapRoomLocked, new(3, 3) },
+        { E_CellMiniMapRoom.CellMapRoomEmpty, new(3, 3) },
+        { E_CellMiniMapRoom.CellMapRoomEntrance, new(3, 3) },
+        { E_CellMiniMapRoom.CellMapRoomUnkown, new(3, 3) },
+
+        { E_CellMiniMapRoom.CellMapHallDark, new(1, 1) },
+        { E_CellMiniMapRoom.CellMapHallDim, new(1, 1) },
+        { E_CellMiniMapRoom.CellMapHallLight, new(1, 1) },
+        { E_CellMiniMapRoom.CellMapHallBattle, new(1, 1) },
+        { E_CellMiniMapRoom.CellMapHallTrap, new(1, 1) },
+        { E_CellMiniMapRoom.CellMapHallSecret, new(1, 1) },
     };
 
     public static Dictionary<E_PanelCellTownStore, m_Vector2> BodyDicStore = new()
@@ -406,8 +405,7 @@ public static class Hot
     #region Editor
 
     public static E_MapObject e_ChoseObj = E_MapObject.None;
-    public static E_CellExpeditionMiniMapHall e_ChoseHall = E_CellExpeditionMiniMapHall.None;
-    public static E_CellExpeditionMiniMapRoom e_ChoseRoom = E_CellExpeditionMiniMapRoom.None;
+    public static E_CellMiniMapRoom e_ChoseRoom = E_CellMiniMapRoom.None;
     /// <summary>
     /// 现在进入的RoomEditor背景Grid
     /// </summary>
@@ -425,17 +423,17 @@ public static class Hot
     /// </summary>
     public static PanelCellMiniMapEditor NowEditorDependency = null;
     /// <summary>
-    /// 现在进入的地图编辑器背景Grid
+    /// 现在进入的MiniMap编辑器背景Grid
     /// </summary>
     public static PanelCellGridMiniMapEditor NowEnterCellGridMiniMapEditor = null;
     /// <summary>
-    /// 现在进入的Mini地图编辑器Cell      
+    /// 现在进入的MiniMap编辑器Cell      
     /// </summary>
     public static PanelCellMiniMapEditor NowEnterCellMiniMapEditor = null;
     /// <summary>
-    /// 现在选择的地图编辑器Cell
+    /// 现在选择的MiniMap编辑器Cell
     /// </summary>
-    public static PanelCellMiniMapEditor ChoseCellMapEditor = null;
+    public static PanelCellMiniMapEditor ChoseCellMiniMapEditor = null;
 
     #endregion
 
