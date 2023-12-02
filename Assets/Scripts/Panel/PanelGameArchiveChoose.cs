@@ -49,8 +49,7 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
             (panel) =>
             {                                                                
                 panel.Index = tempi;                
-                GameObject obj = 
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);

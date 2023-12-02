@@ -73,7 +73,7 @@ public class PanelRoleDetails : PanelBase
     public void UpdateInfo(DataContainer_CellRole Role)
     {        
         ImgRoleShow.sprite =
-            Hot.MgrRes_.Load<Sprite>("Art/IndexRoleListRole" + Role.e_RoleName + "Await");
+            Hot.MgrRes_.Load<Sprite>("Art/Role" + Role.e_RoleName + "Await");
 
         TxtRoleName.text = Role.Name;
         TxtRoleLevel.text = Role.NowLevel.ToString();

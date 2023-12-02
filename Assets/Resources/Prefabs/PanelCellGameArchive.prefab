@@ -207,6 +207,7 @@ MonoBehaviour:
   Index: 0
   DragOffSet: {x: 0, y: 0}
   PrefabsDynamicContentStepSuffix: 
+  Father: {fileID: 0}
   Root: {fileID: 0}
   ImgGameArchiveChoosed: {fileID: 0}
   ImgEnvelope: {fileID: 0}
