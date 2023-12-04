@@ -39,12 +39,12 @@ public static class Hot
 
     #region Body
 
-    public static m_Vector2 BodyExpeditionRoom = new(48, 18);
-    public static m_Vector2 BodyCellGridExpeditionMap = new(40, 40);
-    public static m_Vector2 BodySizeCellItem = new(40, 40);
-    public static m_Vector2 BodySizeCellMinimap = new(40, 40);
+    public static my_Vector2 BodyExpeditionRoom = new(48, 18);
+    public static my_Vector2 BodyCellGridExpeditionMap = new(40, 40);
+    public static my_Vector2 BodySizeCellItem = new(40, 40);
+    public static my_Vector2 BodySizeCellMinimap = new(40, 40);
 
-    public static Dictionary<E_MapObject, m_Vector2> BodyDicMapObject = new()
+    public static Dictionary<E_MapObject, my_Vector2> BodyDicMapObject = new()
     {
         { E_MapObject.MapObjectGridSoil, new(1, 1) },
         { E_MapObject.MapObjectGridStone, new(1, 1) },
@@ -70,7 +70,7 @@ public static class Hot
         { E_MapObject.MapObjectStore4, new(2, 2) },
     };
     
-    public static Dictionary<E_CellMiniMapRoom, m_Vector2> BodyDicRoom = new()
+    public static Dictionary<E_CellMiniMapRoom, my_Vector2> BodyDicRoom = new()
     {
         { E_CellMiniMapRoom.CellMapRoomBoss, new(4, 4) },
         { E_CellMiniMapRoom.CellMapRoomLocked, new(3, 3) },
@@ -86,14 +86,14 @@ public static class Hot
         { E_CellMiniMapRoom.CellMapHallSecret, new(1, 1) },
     };
 
-    public static Dictionary<E_PanelCellTownStore, m_Vector2> BodyDicStore = new()
+    public static Dictionary<E_PanelCellTownStore, my_Vector2> BodyDicStore = new()
     {
         { E_PanelCellTownStore.StoreWood, new(10, 5) },
         { E_PanelCellTownStore.StoreIron, new(12, 10) },
         { E_PanelCellTownStore.StoreGold, new(15, 13) },
     };
 
-    public static Dictionary<E_SpriteNamePanelCellItem, m_Vector2> BodyDicItem = new()
+    public static Dictionary<E_SpriteNamePanelCellItem, my_Vector2> BodyDicItem = new()
     {
         { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1) },
         { E_SpriteNamePanelCellItem.ItemFoodApple, new(3, 3) },
@@ -210,7 +210,7 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
     }
-    public static PanelOtherMiniMapEditor PanelOtherMapEditor_
+    public static PanelOtherMiniMapEditor PanelOtherMiniMapEditor_
     {
         get { return MgrUI_.GetPanel<PanelOtherMiniMapEditor>("PanelOtherMiniMapEditor"); }
     }
@@ -439,7 +439,7 @@ public static class Hot
 
     #region Expedition
 
-    public static PanelCellExpeditionEvent ChoseExpeditionEvent = null;
+    public static PanelCellExpeditionEvent NowExpeditionEvent = null;
 
     #endregion
 

@@ -117,7 +117,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
                 panel.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
                 panel.PanelCellRole_ = this;
                 PanelCellRoleCanDrag_ = panel;
-                panel.InitSprite();
+                panel.Init();
             });
         }
     }

@@ -11,7 +11,9 @@ public class PanelCellExpeditionEvent : PanelBaseCell
 
     public Image ImgBorderExpeditionEvent;
     public Image ImgExpeditionEvent;
-    public Image ImgCurrentChoose;    
+    public Image ImgCurrentChoose;
+
+    public DataContainer_Expedition DataExpedition => Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index];
 
     protected override void Awake()
     {
@@ -30,31 +32,31 @@ public class PanelCellExpeditionEvent : PanelBaseCell
 
         switch (controlname)
         {
-            case "BtnExpeditionEvent":               
-                if (Hot.ChoseExpeditionEvent == this)
+            case "BtnExpeditionEvent":
+                if (Hot.NowExpeditionEvent == null)
                 {
-                    ImgCurrentChoose.gameObject.SetActive(false);
-                    Hot.ChoseExpeditionEvent = null;
+                    Hot.NowExpeditionEvent = this;
+                    Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
+                    Hot.PanelExpeditionDetails_.UpdateInfo(DataExpedition);
+                    Debug.Log(DataExpedition.e_dungeonSize + " - " + DataExpedition.e_dungeonLevel + " - " + DataExpedition.e_ExpeditionEvent);
+                    return;
+                }
+                if (Hot.NowExpeditionEvent == this)
+                {
+                    Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
+                    Hot.NowExpeditionEvent = null;
                     Hot.PanelExpeditionDetails_.Clear();
                     return;
                 }
-                
-                if (Hot.ChoseExpeditionEvent == null)
+                if (Hot.NowExpeditionEvent != this)
                 {
-                    Hot.ChoseExpeditionEvent = this;
-                }
-                if (Hot.ChoseExpeditionEvent != this)
-                {
-                    Hot.ChoseExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
-                    Hot.ChoseExpeditionEvent = this;
+                    Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
+                    Hot.NowExpeditionEvent = this;
+                    Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
+                    Hot.PanelExpeditionDetails_.UpdateInfo(DataExpedition);
+                    Debug.Log(DataExpedition.e_dungeonSize + " - " + DataExpedition.e_dungeonLevel + " - " + DataExpedition.e_ExpeditionEvent);
+                    return;
                 }                
-                ImgCurrentChoose.gameObject.SetActive(true);
-
-                Hot.PanelExpeditionDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index]);
-
-                Debug.Log(Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonSize + " - " +
-                          Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonLevel + " - " +
-                          Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_ExpeditionEvent);                
                 break;
         }
     }
@@ -64,13 +66,8 @@ public class PanelCellExpeditionEvent : PanelBaseCell
         Index = index;
         e_ExpeditionLocation = e_expeditionLocation;
 
-        ImgBorderExpeditionEvent.sprite =
-                    Hot.MgrRes_.Load<Sprite>
-                    ("Art/" + "BorderExpedition" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonSize +
-                    "Level" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_dungeonLevel);
+        ImgBorderExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderExpedition" + DataExpedition.e_dungeonSize + "Level" + DataExpedition.e_dungeonLevel);
 
-        ImgExpeditionEvent.sprite =
-                    Hot.MgrRes_.Load<Sprite>
-                    ("Art/ExpeditionEvent" + Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index].e_ExpeditionEvent);
+        ImgExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/ExpeditionEvent" + DataExpedition.e_ExpeditionEvent);
     }
 }

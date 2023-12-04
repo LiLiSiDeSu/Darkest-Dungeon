@@ -56,7 +56,7 @@ public class PanelOtherRoomEditor : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.Cancel)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.Mouse1)
             {
                 if (Hot.ChoseCellRoomEditor != null)
                 {

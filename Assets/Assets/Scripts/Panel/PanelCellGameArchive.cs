@@ -92,8 +92,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
             case "BtnGameArchiveChoosed":
                 #region ChoosedGameArchive
 
-                if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" && 
-                    Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
+                if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" && Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
                 {
                     Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 

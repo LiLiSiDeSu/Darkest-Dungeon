@@ -1,11 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +10,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 {
     public string PathFolder;
 
-    public m_Vector2 EntrancePos = new(-1, -1);
+    public my_Vector2 EntrancePos = my_Vector2.m_One;
 
     public List<List<PanelCellGridMiniMapEditor>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
@@ -36,6 +33,10 @@ public class PanelOtherMiniMapEditor : PanelBase
     public Transform ItemContent;
     public Transform ComponentRoot;
 
+    public Transform RootPanelChangeMapSize;
+    public InputField IptX;
+    public InputField IptY;
+
     protected override void Awake()
     {
         base.Awake();
@@ -45,7 +46,7 @@ public class PanelOtherMiniMapEditor : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
-            if (Hot.NowEnterCellMiniMapEditor != null && key == Hot.MgrInput_.Enter)
+            if (Hot.NowEnterCellMiniMapEditor != null && key == Hot.MgrInput_.Return)
             {
                 Hot.MgrUI_.ShowPanel<PanelOtherRoomEditor>(true, "PanelOtherRoomEditor");
                 Hot.NowEditorDependency = Hot.NowEnterCellMiniMapEditor;
@@ -58,7 +59,7 @@ public class PanelOtherMiniMapEditor : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Cancel)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Mouse1)
             {
                 //取消现在选择的CellMapEditor
                 if (Hot.ChoseCellMiniMapEditor != null)
@@ -79,13 +80,13 @@ public class PanelOtherMiniMapEditor : PanelBase
                     {
                         for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.NowEnterCellMiniMapEditor.e_Room].X; i2++)
                         {
-                            Hot.PanelOtherMapEditor_.Grids[Hot.NowEnterCellMiniMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMiniMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
+                            Hot.PanelOtherMiniMapEditor_.Grids[Hot.NowEnterCellMiniMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMiniMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
                         }
                     }
 
                     if (Hot.NowEnterCellMiniMapEditor.e_Room == E_CellMiniMapRoom.CellMapRoomEntrance)
                     {
-                        EntrancePos = new(-1, -1);
+                        EntrancePos = my_Vector2.m_One;
                     }
 
                     Destroy(Hot.NowEnterCellMiniMapEditor.gameObject);
@@ -111,8 +112,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                     AllContent.localScale +=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
-
-                if (key == Hot.MgrInput_.Reduce)
+                else if (key == Hot.MgrInput_.Reduce)
                 {
                     AllContent.localScale -=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
@@ -146,10 +146,16 @@ public class PanelOtherMiniMapEditor : PanelBase
         ItemContent = transform.FindSonSonSon("ItemContent");
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
+        RootPanelChangeMapSize = transform.FindSonSonSon("RootPanelChangeMapSize");
+        IptX = transform.FindSonSonSon("IptX").GetComponent<InputField>();
+        IptY = transform.FindSonSonSon("IptY").GetComponent<InputField>();
+        transform.FindSonSonSon("ImgChangeMapSize").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+
         InitChooseContent();        
 
         CellHallScrollView.gameObject.SetActive(false);
         CellRoomScrollView.gameObject.SetActive(false);
+        RootPanelChangeMapSize.gameObject.SetActive(false);
     }
 
     protected override void Button_OnClick(string controlname)
@@ -158,8 +164,25 @@ public class PanelOtherMiniMapEditor : PanelBase
 
         switch (controlname)
         {
+            case "BtnChangeMapSize":
+                if (RootPanelChangeMapSize.gameObject.activeSelf)
+                {
+                    if (ItemRoot.Count > 0 && IptX.text != "" && IptY.text != "")
+                    {
+                        ChangeMapSize();
+                    }
+                    else
+                    {
+                        RootPanelChangeMapSize.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    RootPanelChangeMapSize.gameObject.SetActive(true);
+                }
+                break;
             case "BtnGenerate":
-                if (IptFileName.text != "" && IptWidth.text != "" && IptHeight.text != "")
+                if (IptFileName.text != "" && IptWidth.text != "" && IptHeight.text != "" && int.Parse(IptWidth.text) > 0 && int.Parse(IptHeight.text) > 0)
                 {
                     GenerateGrid();
                 }
@@ -171,7 +194,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                 }
                 break;
             case "BtnLoad":
-                if (File.Exists(Hot.MgrJson_.filePath + PathFolder + "/" + IptLoad.text + ".json"))
+                if (File.Exists(Hot.MgrJson_.filePath + PathFolder + "/Editor" + "/" + IptLoad.text + ".json"))
                 {
                     Load(IptLoad.text);
                 }
@@ -181,7 +204,6 @@ public class PanelOtherMiniMapEditor : PanelBase
                 IptFileName.text = "";
                 IptWidth.text = "";
                 IptHeight.text = "";
-                EntrancePos = new();
                 break;
             case "BtnChooseCellRoom":
                 if (CellRoomScrollView.gameObject.activeSelf)
@@ -193,7 +215,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                     CellRoomScrollView.gameObject.SetActive(true);
                 }
                 Hot.e_ChoseRoom = E_CellMiniMapRoom.None;
-                Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 CellHallScrollView.gameObject.SetActive(false);                
                 break;
             case "BtnChooseCellHall":
@@ -206,7 +228,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                     CellHallScrollView.gameObject.SetActive(true);
                 }
                 Hot.e_ChoseRoom = E_CellMiniMapRoom.None;
-                Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 CellRoomScrollView.gameObject.SetActive(false);                
                 break;
         }
@@ -237,6 +259,95 @@ public class PanelOtherMiniMapEditor : PanelBase
         }
     }
 
+    public void ChangeMapSize()
+    {
+        if (!JudegeCanReduceMapSize())
+        {
+            return;
+        }
+
+        if (int.Parse(IptY.text) > 0)
+        {
+            int tempCount = Grids[0].Count;
+
+            for (int i1 = 0; i1 < int.Parse(IptY.text); i1++)
+            {
+                Grids.Add(new());
+                ItemRoot.Add(new());
+
+                GameObject ItemY = CreateContentStepY(Grids.Count - 1, ItemContent);
+                ItemY.transform.SetParent(ItemContent, false);
+                GameObject ImgBkY = CreateContentStepY(Grids.Count - 1, ImgBkContent);
+                ImgBkY.transform.SetParent(ImgBkContent, false);
+                GameObject ImgStatusY = CreateContentStepY(Grids.Count - 1, ImgStatusContent);
+                ImgStatusY.transform.SetParent(ImgStatusContent, false);
+
+                for (int i2 = 0; i2 < tempCount; i2++)
+                {
+                    int tempi2 = i2;
+
+                    GameObject objX = CreateContentStepX(tempi2, ItemY.transform);
+                    ItemRoot[i1].Add(objX.transform);
+
+                    Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                    (panel) =>
+                    {
+                        panel.Init(tempi2, Grids.Count - 1, ComponentRoot);
+                        Grids[^1].Add(panel);
+
+                        panel.ImgBk.transform.SetParent(ImgBkY.transform, false);
+                        panel.ImgStatus.transform.SetParent(ImgStatusY.transform, false);
+                    });
+                }
+            }
+        }
+        else if (int.Parse(IptY.text) < 0)
+        {
+
+        }
+        else if (int.Parse(IptY.text) == 0)
+        {
+            ;
+        }
+
+        if (int.Parse(IptX.text) > 0)
+        {
+            for (int iY = 0; iY < Grids.Count; iY++)
+            {
+                int tempY = iY;
+
+                for (int iX = 0; iX < int.Parse(IptX.text); iX++)
+                {
+                    GameObject itemX = CreateContentStepX(iX, ItemContent.Find(tempY.ToString()));
+                    ItemRoot[tempY].Add(itemX.transform);
+
+                    Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                    (panel) =>
+                    {
+                        Grids[tempY].Add(panel);
+                        panel.Init(Grids[tempY].Count - 1, tempY, ComponentRoot);
+
+                        panel.ImgBk.transform.SetParent(ImgBkContent.Find(tempY.ToString()), false);
+                        panel.ImgStatus.transform.SetParent(ImgStatusContent.Find(tempY.ToString()), false);
+                    });
+                }
+            }
+        }
+        else if (int.Parse(IptX.text) < 0)
+        {
+
+        }
+        else if (int.Parse(IptX.text) == 0)
+        {
+            ;
+        }
+    }
+
+    public bool JudegeCanReduceMapSize()
+    {
+        return true;
+    }
+
     public void GenerateGrid()
     {        
         ClearMap();
@@ -245,50 +356,64 @@ public class PanelOtherMiniMapEditor : PanelBase
             new(int.Parse(IptWidth.text) * Hot.BodySizeCellMinimap.X,
                 int.Parse(IptHeight.text) * Hot.BodySizeCellMinimap.Y);
 
-        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = int.Parse(IptWidth.text);
-        transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = int.Parse(IptWidth.text);
-
-        for (int i1 = 0; i1 < int.Parse(IptHeight.text); i1++)
+        for (int iY = 0; iY < int.Parse(IptHeight.text); iY++)
         {
-            int tempi1 = i1;
+            int tempiY = iY;
 
             Grids.Add(new());
             ItemRoot.Add(new());
 
-            GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj1.transform.SetParent(ItemContent, false);
-            GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
-            glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.constraintCount = 1;
-            glg.childAlignment = TextAnchor.MiddleCenter;            
+            GameObject ImgBkY = CreateContentStepY(tempiY, ImgBkContent);
+            GameObject ImgStatusY = CreateContentStepY(tempiY, ImgStatusContent);
+            GameObject ItemY = CreateContentStepY(tempiY, ItemContent);
 
-            for (int i2 = 0; i2 < int.Parse(IptWidth.text); i2++)
+            for (int iX = 0; iX < int.Parse(IptWidth.text); iX++)
             {
-                int tempi2 = i2;
+                int tempiX = iX;
 
-                Grids[tempi1].Add(new());
+                Grids[tempiY].Add(new());
 
-                GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-                obj2.transform.SetParent(obj1.transform, false);
+                GameObject ItemX = CreateContentStepX(tempiX, ItemY.transform);
 
-                ItemRoot[tempi1].Add(obj2.transform);
+                ItemRoot[tempiY].Add(ItemX.transform);
 
                 Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
                 (PanelCellMapEditorGrid_) =>
                 {
-                    Grids[tempi1][tempi2] = PanelCellMapEditorGrid_;
+                    Grids[tempiY][tempiX] = PanelCellMapEditorGrid_;
 
-                    PanelCellMapEditorGrid_.transform.SetParent(ComponentRoot, false);
-                    PanelCellMapEditorGrid_.ImgBk.transform.SetParent(ImgBkContent, false);
-                    PanelCellMapEditorGrid_.ImgStatus.transform.SetParent(ImgStatusContent, false);
+                    PanelCellMapEditorGrid_.Init(tempiX, tempiY, ComponentRoot);
 
-                    PanelCellMapEditorGrid_.X = tempi2;
-                    PanelCellMapEditorGrid_.Y = tempi1;
+                    PanelCellMapEditorGrid_.ImgBk.transform.SetParent(ImgBkY.transform, false);
+                    PanelCellMapEditorGrid_.ImgStatus.transform.SetParent(ImgStatusY.transform, false);
                 });
             }
         }
 
-        ChangeSize();
+        ChangeCellSize();
+    }
+
+    public GameObject CreateContentStepY(int p_index, Transform father)
+    {
+        GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
+        obj.transform.SetParent(father, false);
+        obj.name = p_index.ToString();
+        GridLayoutGroup glg = obj.AddComponent<GridLayoutGroup>();
+        glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+        glg.constraintCount = 1;
+        glg.childAlignment = TextAnchor.MiddleCenter;
+        glg.cellSize = new(Hot.BodyCellGridExpeditionMap.X, Hot.BodyCellGridExpeditionMap.Y);
+
+        return obj;
+    }
+
+    public GameObject CreateContentStepX(int p_index, Transform father)
+    {
+        GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
+        obj.transform.SetParent(father.transform, false);
+        obj.name = p_index.ToString();
+
+        return obj;
     }
 
     public void GenerateGridByLoadData(DataContainer_Expedition MapData)
@@ -311,12 +436,7 @@ public class PanelOtherMiniMapEditor : PanelBase
             Grids.Add(new());
             ItemRoot.Add(new());
 
-            GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj1.transform.SetParent(ItemContent, false);
-            GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
-            glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.constraintCount = 1;
-            glg.childAlignment = TextAnchor.MiddleCenter;            
+            GameObject obj1 = CreateContentStepY(tempi1, ItemContent);
 
             for (int i2 = 0; i2 < MapData.ListCellMiniMap[tempi1].Count; i2++)
             {
@@ -324,8 +444,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                 Grids[tempi1].Add(new());
 
-                GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-                obj2.transform.SetParent(obj1.transform, false);
+                GameObject obj2 = CreateContentStepX(tempi2, obj1.transform);
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
@@ -346,7 +465,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
         GenerateItemByLoad(MapData);
 
-        ChangeSize();
+        ChangeCellSize();
     }
 
     public void GenerateItemByLoad(DataContainer_Expedition MapData)
@@ -412,7 +531,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public void Load(string fileName)
     {
-        GenerateGridByLoadData(Hot.MgrJson_.Load<DataContainer_Expedition>(PathFolder, "/" + fileName,
+        GenerateGridByLoadData(Hot.MgrJson_.Load<DataContainer_Expedition>(PathFolder + "/Editor", "/" + fileName,
         (data) =>
         {
             IptFileName.text = IptLoad.text;
@@ -435,6 +554,8 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public void ClearMap()
     {
+        EntrancePos = my_Vector2.m_One;
+
         foreach (List<PanelCellGridMiniMapEditor> list in Grids)
         {
             foreach (PanelCellGridMiniMapEditor item in list)
@@ -456,9 +577,10 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public void Save()
     {
-        DataContainer_Expedition MapData = new();
-
-        MapData.EntrancePos = EntrancePos;
+        DataContainer_Expedition MapData = new()
+        {
+            EntrancePos = EntrancePos
+        };
 
         for (int i1 = 0; i1 < ItemRoot.Count; i1++)
         {
@@ -503,16 +625,20 @@ public class PanelOtherMiniMapEditor : PanelBase
             }
         }
 
-        Hot.MgrJson_.Save(MapData, PathFolder, "/" + IptFileName.text);
+        Hot.MgrJson_.Save(MapData, PathFolder + "/Editor", "/" + IptFileName.text);
     }    
 
-    public void ChangeSize()
+    public void ChangeCellSize()
     {
-        ImgBkContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
-        ItemContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
-        ImgStatusContent.GetComponent<GridLayoutGroup>().cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
-
         foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
+        {
+            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+        }
+        foreach (GridLayoutGroup item in ImgBkContent.GetComponentsInChildren<GridLayoutGroup>())
+        {
+            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+        }
+        foreach (GridLayoutGroup item in ImgStatusContent.GetComponentsInChildren<GridLayoutGroup>())
         {
             item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
         }

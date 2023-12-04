@@ -9,20 +9,22 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     public KeyCode A = KeyCode.A;
     public KeyCode S = KeyCode.S;
     public KeyCode D = KeyCode.D;
+
     public KeyCode UpArrow = KeyCode.UpArrow;
     public KeyCode DownArrow = KeyCode.DownArrow;
-    public KeyCode Esc = KeyCode.Escape;
     public KeyCode Setting = KeyCode.I;    
-    public KeyCode AddNowTranslateRate = KeyCode.LeftControl;
-    public KeyCode PanelTownStore = KeyCode.Tab;
-    public KeyCode PanelResTable = KeyCode.CapsLock;
     public KeyCode PanelRole = KeyCode.R;    
     public KeyCode PanelBar = KeyCode.F;
     public KeyCode Add = KeyCode.K;
     public KeyCode Reduce = KeyCode.L;
     public KeyCode Map = KeyCode.M;
-    public KeyCode Cancel = KeyCode.Mouse1;
-    public KeyCode Enter = KeyCode.Return;
+
+    public KeyCode Esc = KeyCode.Escape;
+    public KeyCode LeftControl = KeyCode.LeftControl;
+    public KeyCode Tab = KeyCode.Tab;
+    public KeyCode CapsLock = KeyCode.CapsLock;
+    public KeyCode Mouse1 = KeyCode.Mouse1;
+    public KeyCode Return = KeyCode.Return;
 
     private void Update()
     {        
@@ -35,20 +37,22 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(S);
         CheckKeyCode(A);
         CheckKeyCode(D);
+
         CheckKeyCode(UpArrow);
         CheckKeyCode(DownArrow);
-        CheckKeyCode(Esc);
         CheckKeyCode(Setting);
-        CheckKeyCode(AddNowTranslateRate);
-        CheckKeyCode(PanelTownStore);
-        CheckKeyCode(PanelResTable);
         CheckKeyCode(PanelRole);
         CheckKeyCode(PanelBar);
         CheckKeyCode(Add);
         CheckKeyCode(Reduce);
         CheckKeyCode(Map);
-        CheckKeyCode(Cancel);
-        CheckKeyCode(Enter);
+
+        CheckKeyCode(Mouse1);
+        CheckKeyCode(Esc);
+        CheckKeyCode(Return);
+        CheckKeyCode(LeftControl);
+        CheckKeyCode(Tab);
+        CheckKeyCode(CapsLock);
     }
 
     /// <summary>

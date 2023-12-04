@@ -46,9 +46,7 @@ public class PanelOtherSetting : PanelBase
             (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(true);      
-                ImgCurrentChoice.position = new Vector3
-                    ((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, 
-                      pos[tempi].position.y, 0);
+                ImgCurrentChoice.position = new((pos[tempi].position.x - pos[tempi].rect.width / 2) - PosOffsetForImgCurrentChoice, pos[tempi].position.y, 0);
             });
             Hot.MgrUI_.AddCustomEventListener
             (btns[i].gameObject, EventTriggerType.PointerExit, (param) =>
@@ -74,9 +72,10 @@ public class PanelOtherSetting : PanelBase
                 {
                     Hot.MgrUI_.HideAllPanel();
 
+                    //清理数据
                     Hot.PanelTownStore_.Clear();
                     Hot.PanelTownShopItem_.Clear();
-                    Hot.PanelRoleList_.ClearContent();
+                    Hot.PanelRoleList_.Clear();
                     Hot.PanelBarExpedition_.Clear();
                     Hot.PanelRoleGuildRecruit_.Clear();
                     Hot.PanelExpeditionPrepare_.Clear();

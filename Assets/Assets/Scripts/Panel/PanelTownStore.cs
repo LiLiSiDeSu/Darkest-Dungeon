@@ -14,7 +14,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
-            if (Hot.ChoseCellItem != null && key == Hot.MgrInput_.Cancel)
+            if (Hot.ChoseCellItem != null && key == Hot.MgrInput_.Mouse1)
             {
                 CancelNowChoosedItem();
             }
@@ -42,7 +42,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.PanelTownStore)
+            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.Tab)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
                     Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");

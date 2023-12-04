@@ -15,7 +15,7 @@ public class PanelOhterResTable : PanelBase
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (key == Hot.MgrInput_.PanelResTable && Hot.NowIndexCellGameArchive != -1)
+            if (key == Hot.MgrInput_.CapsLock && Hot.NowIndexCellGameArchive != -1)
             {
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
@@ -51,14 +51,14 @@ public class PanelOhterResTable : PanelBase
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (key == Hot.MgrInput_.AddNowTranslateRate)
+            if (key == Hot.MgrInput_.Add)
             {
                 Hot.NowTranslateRate += Hot.AddTranslateRate;                
             }
         });
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyUp", (key) =>
         {
-            if (key == Hot.MgrInput_.AddNowTranslateRate)
+            if (key == Hot.MgrInput_.Add)
             {
                 Hot.NowTranslateRate = 1;                
             }

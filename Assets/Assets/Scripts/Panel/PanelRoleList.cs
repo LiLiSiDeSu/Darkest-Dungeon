@@ -124,7 +124,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
         }
     }
 
-    public void ClearContent()
+    public override void Clear()
     {
         ContentStep[] all = Content.GetComponentsInChildren<ContentStep>();
         for (int i = 0; i < all.Length; i++)

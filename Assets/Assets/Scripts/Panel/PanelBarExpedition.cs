@@ -134,7 +134,7 @@ public class PanelBarExpedition : PanelBase
                 ScrollView_.SetActive(false);
                 break;
             case "BtnExpedition":
-                if (Hot.ChoseExpeditionEvent != null)
+                if (Hot.NowExpeditionEvent != null)
                 {
                     //Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                     //Hot.MgrUI_.HideAllPanel();
@@ -169,7 +169,7 @@ public class PanelBarExpedition : PanelBase
                             GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
 
-                        panel.InitSprite();
+                        panel.Init();
                     });
                     break;
                 case 1:
@@ -184,7 +184,7 @@ public class PanelBarExpedition : PanelBase
                             GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;  
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
 
-                        panel.InitSprite();
+                        panel.Init();
                     });
                     break;
                 case 2:
@@ -199,7 +199,7 @@ public class PanelBarExpedition : PanelBase
                             GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
 
-                        panel.InitSprite();
+                        panel.Init();
                     });
                     break;
                 case 3:
@@ -214,7 +214,7 @@ public class PanelBarExpedition : PanelBase
                             GetComponentInChildren<PanelCellRole>().PanelCellRoleCanDrag_ = panel;
                         panel.PanelCellRole_ = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
 
-                        panel.InitSprite();
+                        panel.Init();
                     });
                     break;
             }
@@ -235,7 +235,7 @@ public class PanelBarExpedition : PanelBase
             Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
         if (RootExpeditionRole2.transform.childCount > 0)
             Destroy(RootExpeditionRole2.transform.GetChild(0).gameObject);
-        if (RootExpeditionRole1.transform.childCount > 0)
+        if (RootExpeditionRole3.transform.childCount > 0)
             Destroy(RootExpeditionRole1.transform.GetChild(0).gameObject);
     }
 

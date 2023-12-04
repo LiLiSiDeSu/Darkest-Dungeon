@@ -25,15 +25,15 @@ public class PanelCellMiniMapEditorChoose : PanelBase
             case "BtnCellMiniMapEditorChoose":
                 Hot.e_ChoseRoom = e_CellExpeditionMiniMap;
 
-                if (Hot.PanelOtherMapEditor_.EntrancePos.X != -1 && Hot.e_ChoseRoom == E_CellMiniMapRoom.CellMapRoomEntrance)
+                if (Hot.PanelOtherMiniMapEditor_.EntrancePos.X != -1 && Hot.e_ChoseRoom == E_CellMiniMapRoom.CellMapRoomEntrance)
                 {
                     Hot.e_ChoseRoom = E_CellMiniMapRoom.None;
                     return;
                 }
 
-                Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite =
+                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite =
                     Hot.MgrRes_.Load<Sprite>("Art/" + e_CellExpeditionMiniMap.ToString());
-                Hot.PanelOtherMapEditor_.ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta = new(60, 60);                
+                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta = new(60, 60);                
                 break;
         }
     }

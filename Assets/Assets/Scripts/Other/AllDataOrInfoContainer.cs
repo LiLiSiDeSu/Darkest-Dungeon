@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine;
 
 public sealed class AllDataOrInfoContainer { }
 
@@ -107,44 +102,24 @@ public class DataContainer_ExpeditionPrepare
     {
         get
         {
-            return e_ExpeditionLocation switch
-            {
-                E_ExpeditionLocation.BloodCourtyard => BloodCourtyard,
-                E_ExpeditionLocation.Lair => Lair,
-                E_ExpeditionLocation.Farm => Farm,
-                E_ExpeditionLocation.Wilds => Wilds,
-                E_ExpeditionLocation.Ruins => Ruins,
-                E_ExpeditionLocation.Darkest => Darkest,
-                E_ExpeditionLocation.Sea => Sea,
-                _ => null,
-            };
-        }
-
-        set
-        {
             switch (e_ExpeditionLocation)
             {
                 case E_ExpeditionLocation.BloodCourtyard:
-                    BloodCourtyard = value;
-                    break;
+                    return BloodCourtyard;
                 case E_ExpeditionLocation.Lair:
-                    Lair = value;
-                    break;
+                    return Lair;
                 case E_ExpeditionLocation.Farm:
-                    Farm = value;
-                    break;
+                    return Farm;
                 case E_ExpeditionLocation.Wilds:
-                    Wilds = value;
-                    break;
+                    return Wilds;
                 case E_ExpeditionLocation.Ruins:
-                    Ruins = value;
-                    break;
+                    return Ruins;
                 case E_ExpeditionLocation.Darkest:
-                    Darkest = value;
-                    break;
+                    return Darkest;
                 case E_ExpeditionLocation.Sea:
-                    Sea = value;
-                    break;
+                    return Sea;
+                default: 
+                    return null;
             }
         }
     }
@@ -173,7 +148,7 @@ public class DataContainer_Expedition
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
-    public m_Vector2 EntrancePos = new(-1, -1);
+    public my_Vector2 EntrancePos = my_Vector2.m_One;
 
     public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
@@ -219,7 +194,6 @@ public class DataContainer_CellExpeditionMapGrid
 #endregion
 
 #endregion
-
 
 public class DataContainer_CellTownStore
 {

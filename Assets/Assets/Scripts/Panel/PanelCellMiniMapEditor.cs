@@ -31,9 +31,9 @@ public class PanelCellMiniMapEditor : PanelBase,
         switch (controlname)
         {
             case "BtnCellMiniMapEditor":
-                if (Hot.ChoseCellMiniMapEditor == this)
+                if (Hot.ChoseCellMiniMapEditor == null)
                 {
-                    return;
+                    Hot.ChoseCellMiniMapEditor = this;
                 }
 
                 if (Hot.ChoseCellMiniMapEditor != this)
@@ -46,7 +46,7 @@ public class PanelCellMiniMapEditor : PanelBase,
                 if (Hot.ChoseCellMiniMapEditor != null)
                 {
                     Hot.e_ChoseRoom = Hot.ChoseCellMiniMapEditor.e_Room;
-                    Hot.PanelOtherMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + Hot.ChoseCellMiniMapEditor.e_Room);
+                    Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + Hot.ChoseCellMiniMapEditor.e_Room);
                 }
 
                 Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolNowPanel : InstanceBaseAuto_Mono<PoolNowPanel>
 {
-    public List<string> ListNowPanel = new List<string>();
+    public List<string> ListNowPanel = new();
 
     public bool ContainPanel(string panelName)
     {

@@ -137,6 +137,8 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
     public void Clear()
     {
+        TxtCapacity.text = ""; 
+
         foreach (List<PanelCellGridTownItem> list in Grids)
         {
             foreach (PanelCellGridTownItem item in list)

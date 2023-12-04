@@ -20,7 +20,7 @@ public class PoolBuffer : InstanceBaseAuto_Mono<PoolBuffer>
 
     public GameObject TakeAndGet(string name)
     {
-        if (DicPool[name][0] == null)
+        if (DicPool[name].Count == 0)
             Debug.Log("--- PoolBuffer: " + name + " is null ---");
 
         DicPool[name][0].SetActive(true);

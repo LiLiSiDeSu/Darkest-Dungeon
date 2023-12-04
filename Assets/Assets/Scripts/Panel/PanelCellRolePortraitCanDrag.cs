@@ -160,7 +160,7 @@ public class PanelCellRolePortraitCanDrag : PanelBase,
 
     #endregion
 
-    public void InitSprite()
+    public void Init()
     {
         transform.FindSonSonSon("ImgRolePortraitCanDrag").GetComponent<Image>().sprite = PanelCellRole_.ImgRolePortrait.sprite;
     }

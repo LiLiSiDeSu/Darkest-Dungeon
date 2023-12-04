@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -188,11 +189,12 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     public void HideAllPanel()
     {
         PoolEsc.GetInstance().HideAllOnly();
-        for (int i = 0; i < Hot.PoolNowPanel_.ListNowPanel.Count; i++)
+
+        List<string> tempNameList = Hot.PoolNowPanel_.ListNowPanel.ToList<string>();
+
+        foreach (string name in tempNameList)
         {
-            Hot.MgrUI_.HidePanel
-            (false, GetPanel<PanelBase>(Hot.PoolNowPanel_.ListNowPanel[i]).gameObject, 
-             Hot.PoolNowPanel_.ListNowPanel[i]);
+            Hot.MgrUI_.HidePanel(false, GetPanel<PanelBase>(name).gameObject, name);
         }
     }
 
