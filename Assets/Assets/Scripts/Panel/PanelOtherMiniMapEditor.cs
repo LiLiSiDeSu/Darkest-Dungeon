@@ -34,8 +34,8 @@ public class PanelOtherMiniMapEditor : PanelBase
     public Transform ComponentRoot;
 
     public Transform RootPanelChangeMapSize;
-    public InputField IptX;
-    public InputField IptY;
+    public InputField IptChangeX;
+    public InputField IptChangeY;
 
     protected override void Awake()
     {
@@ -147,8 +147,8 @@ public class PanelOtherMiniMapEditor : PanelBase
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
         RootPanelChangeMapSize = transform.FindSonSonSon("RootPanelChangeMapSize");
-        IptX = transform.FindSonSonSon("IptX").GetComponent<InputField>();
-        IptY = transform.FindSonSonSon("IptY").GetComponent<InputField>();
+        IptChangeX = transform.FindSonSonSon("IptChangeX").GetComponent<InputField>();
+        IptChangeY = transform.FindSonSonSon("IptChangeY").GetComponent<InputField>();
         transform.FindSonSonSon("ImgChangeMapSize").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
 
         InitChooseContent();        
@@ -156,6 +156,8 @@ public class PanelOtherMiniMapEditor : PanelBase
         CellHallScrollView.gameObject.SetActive(false);
         CellRoomScrollView.gameObject.SetActive(false);
         RootPanelChangeMapSize.gameObject.SetActive(false);
+        IptChangeX.text = "0";
+        IptChangeY.text = "0";
     }
 
     protected override void Button_OnClick(string controlname)
@@ -167,11 +169,11 @@ public class PanelOtherMiniMapEditor : PanelBase
             case "BtnChangeMapSize":
                 if (RootPanelChangeMapSize.gameObject.activeSelf)
                 {
-                    if (ItemRoot.Count > 0 && IptX.text != "" && IptY.text != "")
+                    if (ItemRoot.Count > 0)
                     {
                         ChangeMapSize();
                     }
-                    else
+                    if (int.Parse(IptChangeX.text) == 0 && int.Parse(IptChangeY.text) == 0)
                     {
                         RootPanelChangeMapSize.gameObject.SetActive(false);
                     }
@@ -261,16 +263,11 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public void ChangeMapSize()
     {
-        if (!JudegeCanReduceMapSize())
-        {
-            return;
-        }
-
-        if (int.Parse(IptY.text) > 0)
+        if (int.Parse(IptChangeY.text) > 0)
         {
             int tempCount = Grids[0].Count;
 
-            for (int i1 = 0; i1 < int.Parse(IptY.text); i1++)
+            for (int i1 = 0; i1 < int.Parse(IptChangeY.text); i1++)
             {
                 Grids.Add(new());
                 ItemRoot.Add(new());
@@ -300,23 +297,40 @@ public class PanelOtherMiniMapEditor : PanelBase
                     });
                 }
             }
-        }
-        else if (int.Parse(IptY.text) < 0)
-        {
 
+            IptHeight.text = (int.Parse(IptHeight.text) + int.Parse(IptChangeY.text)).ToString();
         }
-        else if (int.Parse(IptY.text) == 0)
+        else if (int.Parse(IptChangeY.text) < 0 && (int.Parse(IptChangeY.text) + int.Parse(IptHeight.text)) > 0)
         {
-            ;
+            for (int i = 0; i < -int.Parse(IptChangeY.text); i++)
+            {
+                if (JudgeCanReduceY())
+                {
+                    DestroyImmediate(ImgBkContent.GetChild(ImgBkContent.childCount - 1).gameObject);
+                    DestroyImmediate(ImgStatusContent.GetChild(ImgStatusContent.childCount - 1).gameObject);
+                    DestroyImmediate(ItemContent.GetChild(ItemContent.childCount - 1).gameObject);
+                    ItemRoot.RemoveAt(ItemRoot.Count - 1);
+                    for (int c = 0; c < Grids[^1].Count; c++)
+                    {
+                        DestroyImmediate(Grids[^1][c].gameObject);
+                    }
+                    Grids.RemoveAt(Grids.Count - 1);
+                    IptHeight.text = (int.Parse(IptHeight.text) - 1).ToString();
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
-        if (int.Parse(IptX.text) > 0)
+        if (int.Parse(IptChangeX.text) > 0)
         {
             for (int iY = 0; iY < Grids.Count; iY++)
             {
                 int tempY = iY;
 
-                for (int iX = 0; iX < int.Parse(IptX.text); iX++)
+                for (int iX = 0; iX < int.Parse(IptChangeX.text); iX++)
                 {
                     GameObject itemX = CreateContentStepX(iX, ItemContent.Find(tempY.ToString()));
                     ItemRoot[tempY].Add(itemX.transform);
@@ -332,19 +346,58 @@ public class PanelOtherMiniMapEditor : PanelBase
                     });
                 }
             }
-        }
-        else if (int.Parse(IptX.text) < 0)
-        {
 
+            IptWidth.text = (int.Parse(IptWidth.text) + int.Parse(IptChangeX.text)).ToString();
         }
-        else if (int.Parse(IptX.text) == 0)
+        else if (int.Parse(IptChangeX.text) < 0 && (int.Parse(IptChangeX.text) + int.Parse(IptWidth.text)) > 0)
         {
-            ;
+            for (int i = 0; i < -int.Parse(IptChangeX.text); i++)
+            {
+                if (JudgeCanReduceX())
+                {
+                    for (int y = 0; y < Grids.Count; y++)
+                    {
+                        DestroyImmediate(Grids[y][^1].ImgBk.gameObject);
+                        DestroyImmediate(Grids[y][^1].ImgStatus.gameObject);
+                        DestroyImmediate(ItemContent.Find(y.ToString()).GetChild(ItemContent.Find(y.ToString()).childCount - 1).gameObject);
+                        ItemRoot[y].RemoveAt(ItemRoot[y].Count - 1);
+                        DestroyImmediate(Grids[y][^1].gameObject);
+                        Grids[y].RemoveAt(Grids[y].Count - 1);
+                    }
+
+                    IptWidth.text = (int.Parse(IptWidth.text) - 1).ToString();
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
     }
 
-    public bool JudegeCanReduceMapSize()
+    public bool JudgeCanReduceY()
     {
+        for (int i = 0; i < Grids[^1].Count; i++)
+        {
+            if (Grids[^1][i].CellMiniMapEditor != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool JudgeCanReduceX()
+    {
+        for (int i = 0; i < Grids.Count; i++)
+        {
+            if (Grids[i][^1].CellMiniMapEditor != null)
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -560,12 +613,17 @@ public class PanelOtherMiniMapEditor : PanelBase
         {
             foreach (PanelCellGridMiniMapEditor item in list)
             {
-                Destroy(item.ImgBk.gameObject);
-                Destroy(item.ImgStatus.gameObject);
                 Destroy(item.gameObject);                
             }
         }
-
+        foreach (ContentStep item in ImgBkContent.GetComponentsInChildren<ContentStep>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (ContentStep item in ImgStatusContent.GetComponentsInChildren<ContentStep>())
+        {
+            Destroy(item.gameObject);
+        }
         foreach (ContentStep item in ItemContent.GetComponentsInChildren<ContentStep>())
         {
             Destroy(item.gameObject);

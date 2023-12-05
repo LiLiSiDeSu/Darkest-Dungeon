@@ -289,8 +289,8 @@ MonoBehaviour:
   ItemContent: {fileID: 0}
   ComponentRoot: {fileID: 0}
   RootPanelChangeMapSize: {fileID: 0}
-  IptX: {fileID: 0}
-  IptY: {fileID: 0}
+  IptChangeX: {fileID: 0}
+  IptChangeY: {fileID: 0}
 --- !u!1 &254102490386632222
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 3554531441863957837}
   - component: {fileID: 8042606795075515587}
   m_Layer: 0
-  m_Name: TxtTitleY
+  m_Name: TxtTitleChangeY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1634,7 +1634,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ---
+  m_Text: 0
 --- !u!1 &2339800828671685024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ GameObject:
   - component: {fileID: 5018631021788535616}
   - component: {fileID: 4471736525310193045}
   m_Layer: 0
-  m_Name: TxtTitleX
+  m_Name: TxtTitleChangeX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3070,7 +3070,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ---
+  m_Text: 0
 --- !u!1 &4772201023642284060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,7 +3599,7 @@ GameObject:
   - component: {fileID: 3040670835202482666}
   - component: {fileID: 1697297732910219828}
   m_Layer: 0
-  m_Name: IptY
+  m_Name: IptChangeY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 4324948949238264540}
   - component: {fileID: 4302845635435179129}
   m_Layer: 0
-  m_Name: IptX
+  m_Name: IptChangeX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
