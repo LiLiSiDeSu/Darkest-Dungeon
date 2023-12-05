@@ -26,7 +26,7 @@ public class PanelCellGridMiniMapEditor : PanelBase
         {
             Hot.NowEnterCellGridMiniMapEditor = this;
 
-            Debug.Log(Y + " - " + X);
+            Debug.Log(Hot.PanelOtherMiniMapEditor_.Grids[Y][X].Y + " - " + Hot.PanelOtherMiniMapEditor_.Grids[Y][X].X);
 
             if (Hot.e_ChoseRoom != E_CellMiniMapRoom.None && JudgeCanPut())
             {
