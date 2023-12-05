@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class PanelCellRoomEditor : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public PanelCellGridRoomEditor RootGrid = new();
-
     public Image ImgCellRoomEditor;
     public Image ImgStatus;
+
+    public PanelGridRoomEditor RootGrid = new();
 
     public E_MapObject e_Obj = E_MapObject.None;
 

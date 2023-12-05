@@ -74,7 +74,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellGridTownItem>(false, "/PanelCellGridTownItem",
+                Hot.MgrUI_.CreatePanel<PanelGridTownItem>(false, "/PanelGridTownItem",
                 (PanelCellTownItemGrid_) =>
                 {
                     Grids[tempi1][tempi2] = PanelCellTownItemGrid_;
@@ -139,9 +139,9 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         TxtCapacity.text = ""; 
 
-        foreach (List<PanelCellGridTownItem> list in Grids)
+        foreach (List<PanelGridTownItem> list in Grids)
         {
-            foreach (PanelCellGridTownItem item in list)
+            foreach (PanelGridTownItem item in list)
             {
                 Destroy(item.ImgBk.gameObject);
                 Destroy(item.ImgStatus.gameObject);

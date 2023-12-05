@@ -136,14 +136,9 @@ public class PanelBarExpedition : PanelBase
             case "BtnExpedition":
                 if (Hot.NowExpeditionEvent != null)
                 {
-                    //Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
-                    //Hot.MgrUI_.HideAllPanel();
-                    //Hot.MgrUI_.ShowPanel<PanelExpeditionMapRoom>(false, "PanelExpeditionMapRoom");
-                    Debug.Log("远征");
-                }
-                else
-                {
-                    Debug.Log("没有选中远征事件");
+                    Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
+                    Hot.MgrUI_.HideAllPanel();
+                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                 }
                 break;
         }

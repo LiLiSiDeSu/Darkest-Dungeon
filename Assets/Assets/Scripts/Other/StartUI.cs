@@ -1,10 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-
-public class StartUI : InstanceBaseAuto_Mono<StartUI>
+﻿public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {    
     private void Start()
     {
@@ -78,6 +72,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherMiniMapEditor>
             (true, "/PanelOtherMiniMapEditor", true, false, "PanelOtherMiniMapEditor");
 
+        Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionRoom>
+            (true, "/PanelExpeditionRoom", true, false, "PanelExpeditionRoom");
+
         #endregion
 
         #region PanelTownRooms
@@ -138,11 +135,6 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         });
 
         #endregion       
-
-        if (!File.Exists(Application.persistentDataPath + "/Data/JsonData" + "/MapTemplet" + "/Default"))
-        {
-            Directory.CreateDirectory(Application.persistentDataPath + "/Data/JsonData" + "/MapTemplet" + "/Default");
-        }
 
         Destroy(gameObject);
     }

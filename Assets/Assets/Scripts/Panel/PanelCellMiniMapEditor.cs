@@ -10,7 +10,7 @@ public class PanelCellMiniMapEditor : PanelBase,
     public Image ImgCellMiniMapEditor;
     public Image ImgStatus;
 
-    public PanelCellGridMiniMapEditor RootGrid = new();
+    public PanelGridMiniMapEditor RootGrid = new();
 
     public List<List<PanelCellGridRoomEditorConfig>> Map = new();
 

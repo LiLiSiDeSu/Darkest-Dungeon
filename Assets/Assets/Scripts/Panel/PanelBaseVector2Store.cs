@@ -13,7 +13,7 @@ public class PanelBaseVector2Store : PanelBase
     public Transform ItemContent;
     public Transform ComponentRoot;
 
-    public List<List<PanelCellGridTownItem>> Grids = new();
+    public List<List<PanelGridTownItem>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
 
     public void ChangeSize()

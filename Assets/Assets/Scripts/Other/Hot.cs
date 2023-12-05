@@ -407,25 +407,25 @@ public static class Hot
     public static E_MapObject e_ChoseObj = E_MapObject.None;
     public static E_CellMiniMapRoom e_ChoseRoom = E_CellMiniMapRoom.None;
     /// <summary>
-    /// 现在进入的RoomEditor背景Grid
+    /// 现在进入的RoomEditor Grid
     /// </summary>
-    public static PanelCellGridRoomEditor NowEnterCellGridRoomEditor;
+    public static PanelGridRoomEditor NowEnterGridRoomEditor;
     /// <summary>
-    /// 现在进入的 RoomEditor Cell
+    /// 现在进入的RoomEditor Cell
     /// </summary>
     public static PanelCellRoomEditor NowEnterCellRoomEditor;
     /// <summary>
-    /// 现在选择的 RoomEditor Cell
+    /// 现在选择的RoomEditor Cell
     /// </summary>
     public static PanelCellRoomEditor ChoseCellRoomEditor;
     /// <summary>
-    /// 现在的编辑器属于哪个 MiniMap Cell
+    /// 现在的编辑器属于哪个MiniMap Cell
     /// </summary>
     public static PanelCellMiniMapEditor NowEditorDependency = null;
     /// <summary>
     /// 现在进入的MiniMap编辑器背景Grid
     /// </summary>
-    public static PanelCellGridMiniMapEditor NowEnterCellGridMiniMapEditor = null;
+    public static PanelGridMiniMapEditor NowEnterGridMiniMapEditor = null;
     /// <summary>
     /// 现在进入的MiniMap编辑器Cell      
     /// </summary>
@@ -440,6 +440,14 @@ public static class Hot
     #region Expedition
 
     public static PanelCellExpeditionEvent NowExpeditionEvent = null;
+    /// <summary>
+    /// 现在进入的ExpeditionRoom Grid
+    /// </summary>
+    public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
+    /// <summary>
+    /// 现在进入的ExpeditionRoom Cell
+    /// </summary>
+    public static PanelCellExpeditionRoom NowEnterCellExpeditionRoom;
 
     #endregion
 
@@ -481,7 +489,7 @@ public static class Hot
     /// <summary>
     /// 现在进入的物品背景格子
     /// </summary>
-    public static PanelCellGridTownItem NowEnterCellGridItem = null;
+    public static PanelGridTownItem NowEnterCellGridItem = null;
 
     #endregion    
 

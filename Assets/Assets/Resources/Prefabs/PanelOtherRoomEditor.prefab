@@ -135,7 +135,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1611898043265009747}
+  - {fileID: 9171383280280534014}
+  - {fileID: 3576988813950291873}
   - {fileID: 5778611097905409293}
   m_Father: {fileID: 3790536071946492883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -322,6 +323,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1611898043265009747}
   - {fileID: 3866060158212624929}
   - {fileID: 4727806233295373527}
   - {fileID: 3938894561817220654}
@@ -694,14 +696,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9171383280280534014}
-  - {fileID: 3576988813950291873}
-  m_Father: {fileID: 1805240889096444323}
+  m_Children: []
+  m_Father: {fileID: 5881167143861923950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 180}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9105251178090053619
@@ -796,6 +796,7 @@ MonoBehaviour:
   CellRoomContent: {fileID: 0}
   ImgBkContent: {fileID: 0}
   ImgStatusContent: {fileID: 0}
+  ItemContent: {fileID: 0}
   ComponentRoot: {fileID: 0}
   ChooseGridContent: {fileID: 0}
   ChooseOtherContent: {fileID: 0}
@@ -827,11 +828,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1611898043265009747}
+  m_Father: {fileID: 1805240889096444323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5759441970511121723
@@ -926,11 +927,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1244170563989862463}
-  m_Father: {fileID: 1611898043265009747}
+  m_Father: {fileID: 1805240889096444323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 180}
   m_SizeDelta: {x: 1920, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &590297673442779443

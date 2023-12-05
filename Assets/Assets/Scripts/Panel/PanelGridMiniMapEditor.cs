@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellGridMiniMapEditor : PanelBase
+public class PanelGridMiniMapEditor : PanelBase
 {
     public int X;
     public int Y;
@@ -24,7 +24,7 @@ public class PanelCellGridMiniMapEditor : PanelBase
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.NowEnterCellGridMiniMapEditor = this;
+            Hot.NowEnterGridMiniMapEditor = this;
 
             Debug.Log(Hot.PanelOtherMiniMapEditor_.Grids[Y][X].Y + " - " + Hot.PanelOtherMiniMapEditor_.Grids[Y][X].X);
 
@@ -47,7 +47,7 @@ public class PanelCellGridMiniMapEditor : PanelBase
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, EventTriggerType.PointerExit,
         (param) =>
         {
-            Hot.NowEnterCellGridMiniMapEditor = null;
+            Hot.NowEnterGridMiniMapEditor = null;
 
             if (Hot.e_ChoseRoom != E_CellMiniMapRoom.None && JudgeCanPut())
             {
@@ -106,26 +106,28 @@ public class PanelCellGridMiniMapEditor : PanelBase
                         });
                     }
 
-                    //移动PanelCellMiniMapEditor
+                    //移动存在的PanelCellMiniMapEditor
                     if (Hot.ChoseCellMiniMapEditor != null)
                     {
-                        if (Hot.e_ChoseRoom != E_CellMiniMapRoom.None)
+                        for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
                         {
-                            for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                            for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
                             {
-                                for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
-                                {
-                                    Hot.PanelOtherMiniMapEditor_.Grids[Hot.ChoseCellMiniMapEditor.RootGrid.Y + i1][Hot.ChoseCellMiniMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
-                                }
+                                Hot.PanelOtherMiniMapEditor_.Grids[Hot.ChoseCellMiniMapEditor.RootGrid.Y + i1][Hot.ChoseCellMiniMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
                             }
+                        }
 
-                            for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                        {
+                            for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
                             {
-                                for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
-                                {
-                                    Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].CellMiniMapEditor = Hot.ChoseCellMiniMapEditor;
-                                }
+                                Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].CellMiniMapEditor = Hot.ChoseCellMiniMapEditor;
                             }
+                        }
+
+                        if (Hot.ChoseCellMiniMapEditor.e_Room == E_CellMiniMapRoom.CellMapRoomEntrance)
+                        {
+                            Hot.PanelOtherMiniMapEditor_.EntrancePos = new(X, Y);
                         }
 
                         Hot.ChoseCellMiniMapEditor.transform.SetParent(Hot.PanelOtherMiniMapEditor_.ItemRoot[Y][X], false);

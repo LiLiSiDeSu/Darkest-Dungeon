@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelCellGridRoomEditor : PanelBase
+public class PanelGridRoomEditor : PanelBase
 {
     public int X;
     public int Y;
@@ -20,12 +20,10 @@ public class PanelCellGridRoomEditor : PanelBase
         ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
 
-        ImgBk.alphaHitTestMinimumThreshold = 0.2f;
-
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
-            Hot.NowEnterCellGridRoomEditor = this; 
+            Hot.NowEnterGridRoomEditor = this; 
 
             if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
             {
@@ -45,7 +43,7 @@ public class PanelCellGridRoomEditor : PanelBase
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
         (param) =>
         {
-            Hot.NowEnterCellGridRoomEditor = null;
+            Hot.NowEnterGridRoomEditor = null;
 
             if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
             {

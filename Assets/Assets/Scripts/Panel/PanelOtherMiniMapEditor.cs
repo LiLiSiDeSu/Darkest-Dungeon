@@ -12,7 +12,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public my_Vector2 EntrancePos = my_Vector2.m_One;
 
-    public List<List<PanelCellGridMiniMapEditor>> Grids = new();
+    public List<List<PanelGridMiniMapEditor>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
 
     public Image ImgCurrentChoose;
@@ -286,7 +286,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                     GameObject objX = CreateContentStepX(tempi2, ItemY.transform);
                     ItemRoot[GridsCount].Add(objX.transform);
 
-                    Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
                     (panel) =>
                     {
                         panel.Init(tempi2, GridsCount, ComponentRoot);
@@ -335,7 +335,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                     GameObject itemX = CreateContentStepX(Grids.Count, ItemContent.Find(tempY.ToString()));
                     ItemRoot[tempY].Add(itemX.transform);
 
-                    Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
                     (panel) =>
                     {
                         Grids[tempY].Add(panel);
@@ -404,7 +404,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
                 (PanelCellMapEditorGrid_) =>
                 {
                     Grids[tempiY][tempiX] = PanelCellMapEditorGrid_;
@@ -498,7 +498,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelCellGridMiniMapEditor>(false, "/PanelCellGridMiniMapEditor",
+                Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
                 (PanelCellMapEditorGrid_) =>
                 {
                     Grids[tempiY][tempiX] = PanelCellMapEditorGrid_;
@@ -591,9 +591,9 @@ public class PanelOtherMiniMapEditor : PanelBase
 
     public void ClearGridsImgStatus()
     {
-        foreach (List<PanelCellGridMiniMapEditor> list in Grids)
+        foreach (List<PanelGridMiniMapEditor> list in Grids)
         {
-            foreach (PanelCellGridMiniMapEditor item in list)
+            foreach (PanelGridMiniMapEditor item in list)
             {
                 item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
             }
@@ -604,9 +604,9 @@ public class PanelOtherMiniMapEditor : PanelBase
     {
         EntrancePos = my_Vector2.m_One;
 
-        foreach (List<PanelCellGridMiniMapEditor> list in Grids)
+        foreach (List<PanelGridMiniMapEditor> list in Grids)
         {
-            foreach (PanelCellGridMiniMapEditor item in list)
+            foreach (PanelGridMiniMapEditor item in list)
             {
                 Destroy(item.gameObject);
             }
