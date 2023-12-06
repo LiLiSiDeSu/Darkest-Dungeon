@@ -76,8 +76,7 @@ public class PanelGridRoomEditor : PanelBase
                         Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
                         (panel) =>
                         {
-                            panel.Init(Hot.e_ChoseObj);
-                            panel.RootGrid = this;
+                            panel.Init(Hot.e_ChoseObj, this);
                             panel.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
                             panel.transform.localPosition = new(-20, 20);
                             Hot.NowEditorDependency.Map[Y][X].IsHave = true;

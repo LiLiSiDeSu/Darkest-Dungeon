@@ -272,18 +272,18 @@ public class PanelOtherMiniMapEditor : PanelBase
                 Grids.Add(new());
                 ItemRoot.Add(new());
 
-                GameObject ItemY = CreateContentStepY(Grids.Count - 1, ItemContent);
+                GameObject ItemY = Hot.CreateContentStepY(Grids.Count - 1, ItemContent);
                 ItemY.transform.SetParent(ItemContent, false);
-                GameObject ImgBkY = CreateContentStepY(Grids.Count - 1, ImgBkContent);
+                GameObject ImgBkY = Hot.CreateContentStepY(Grids.Count - 1, ImgBkContent);
                 ImgBkY.transform.SetParent(ImgBkContent, false);
-                GameObject ImgStatusY = CreateContentStepY(Grids.Count - 1, ImgStatusContent);
+                GameObject ImgStatusY = Hot.CreateContentStepY(Grids.Count - 1, ImgStatusContent);
                 ImgStatusY.transform.SetParent(ImgStatusContent, false);
 
                 for (int i2 = 0; i2 < Grids[0].Count; i2++)
                 {
                     int tempi2 = i2;
 
-                    GameObject objX = CreateContentStepX(tempi2, ItemY.transform);
+                    GameObject objX = Hot.CreateContentStepX(tempi2, ItemY.transform);
                     ItemRoot[GridsCount].Add(objX.transform);
 
                     Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
@@ -332,7 +332,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                 {
                     int tempY = iY;
 
-                    GameObject itemX = CreateContentStepX(Grids.Count, ItemContent.Find(tempY.ToString()));
+                    GameObject itemX = Hot.CreateContentStepX(Grids.Count, ItemContent.Find(tempY.ToString()));
                     ItemRoot[tempY].Add(itemX.transform);
 
                     Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
@@ -390,9 +390,9 @@ public class PanelOtherMiniMapEditor : PanelBase
             Grids.Add(new());
             ItemRoot.Add(new());
 
-            GameObject ImgBkY = CreateContentStepY(tempiY, ImgBkContent);
-            GameObject ImgStatusY = CreateContentStepY(tempiY, ImgStatusContent);
-            GameObject ItemY = CreateContentStepY(tempiY, ItemContent);
+            GameObject ImgBkY = Hot.CreateContentStepY(tempiY, ImgBkContent);
+            GameObject ImgStatusY = Hot.CreateContentStepY(tempiY, ImgStatusContent);
+            GameObject ItemY = Hot.CreateContentStepY(tempiY, ItemContent);
 
             for (int iX = 0; iX < int.Parse(IptWidth.text); iX++)
             {
@@ -400,7 +400,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                 Grids[tempiY].Add(new());
 
-                GameObject ItemX = CreateContentStepX(tempiX, ItemY.transform);
+                GameObject ItemX = Hot.CreateContentStepX(tempiX, ItemY.transform);
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
@@ -446,29 +446,6 @@ public class PanelOtherMiniMapEditor : PanelBase
         return true;
     }
 
-    public GameObject CreateContentStepY(int p_index, Transform father)
-    {
-        GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-        obj.transform.SetParent(father, false);
-        obj.name = p_index.ToString();
-        GridLayoutGroup glg = obj.AddComponent<GridLayoutGroup>();
-        glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-        glg.constraintCount = 1;
-        glg.childAlignment = TextAnchor.MiddleCenter;
-        glg.cellSize = new(Hot.BodyCellGridExpeditionMap.X, Hot.BodyCellGridExpeditionMap.Y);
-
-        return obj;
-    }
-
-    public GameObject CreateContentStepX(int p_index, Transform father)
-    {
-        GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-        obj.transform.SetParent(father.transform, false);
-        obj.name = p_index.ToString();
-
-        return obj;
-    }
-
     public void GenerateGridByLoadData(DataContainer_Expedition MapData)
     {
         ClearMap();
@@ -484,9 +461,9 @@ public class PanelOtherMiniMapEditor : PanelBase
             Grids.Add(new());
             ItemRoot.Add(new());
 
-            GameObject ImgBkY = CreateContentStepY(tempiY, ImgBkContent);
-            GameObject ImgStatusY = CreateContentStepY(tempiY, ImgStatusContent);
-            GameObject ItemY = CreateContentStepY(tempiY, ItemContent);
+            GameObject ImgBkY = Hot.CreateContentStepY(tempiY, ImgBkContent);
+            GameObject ImgStatusY = Hot.CreateContentStepY(tempiY, ImgStatusContent);
+            GameObject ItemY = Hot.CreateContentStepY(tempiY, ItemContent);
 
             for (int iX = 0; iX < MapData.ListCellMiniMap[iY].Count; iX++)
             {
@@ -494,7 +471,7 @@ public class PanelOtherMiniMapEditor : PanelBase
 
                 Grids[tempiY].Add(new());
 
-                GameObject ItemX = CreateContentStepX(tempiX, ItemY.transform);
+                GameObject ItemX = Hot.CreateContentStepX(tempiX, ItemY.transform);
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
@@ -544,7 +521,7 @@ public class PanelOtherMiniMapEditor : PanelBase
                             }
                         }
 
-                        //Init Map
+                        //Init DataIndexMap
                         PanelCellMiniMapEditor_.Init(MapData.ListCellMiniMap[tempi1][tempi2].e_Room);
 
                         for (int i5 = 0; i5 < Hot.BodyExpeditionRoom.Y; i5++)
@@ -685,15 +662,15 @@ public class PanelOtherMiniMapEditor : PanelBase
     {
         foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
         {
-            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
         }
         foreach (GridLayoutGroup item in ImgBkContent.GetComponentsInChildren<GridLayoutGroup>())
         {
-            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
         }
         foreach (GridLayoutGroup item in ImgStatusContent.GetComponentsInChildren<GridLayoutGroup>())
         {
-            item.cellSize = new(Hot.BodySizeCellItem.X, Hot.BodySizeCellItem.Y);
+            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
         }
 
         foreach (List<Transform> listItem in ItemRoot)

@@ -11,7 +11,7 @@ public class PanelGridExpeditionRoom : PanelBase
     public Image ImgBk;
     public Image ImgStatus;
 
-    public PanelCellExpeditionRoom CellRoomEditor;
+    public PanelCellExpeditionRoom CellExpeditionRoom;
 
     protected override void Awake()
     {

@@ -73,15 +73,16 @@ public class PanelCellRoomEditor : PanelBase,
         }
     }
 
-    public void Init(E_MapObject e_Obj)
+    public void Init(E_MapObject p_e_Obj, PanelGridRoomEditor p_rootGrid)
     {
-        this.e_Obj = e_Obj;
+        e_Obj = p_e_Obj;
+        RootGrid = p_rootGrid;
 
-        ImgCellRoomEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Obj);
+        ImgCellRoomEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);
 
         ImgCellRoomEditor.GetComponent<RectTransform>().sizeDelta = 
-            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodyCellGridExpeditionMap.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodyCellGridExpeditionMap.Y);
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodyCellGridExpeditionMap.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodyCellGridExpeditionMap.Y);
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
     }
 }

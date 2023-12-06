@@ -95,8 +95,8 @@ public class PanelCellMiniMapEditor : PanelBase,
     public void ChangeRoomSize()
     {
         ImgCellMiniMapEditor.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellItem.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellItem.Y);
+            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellItem.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellItem.Y);
+            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);
     }    
 }

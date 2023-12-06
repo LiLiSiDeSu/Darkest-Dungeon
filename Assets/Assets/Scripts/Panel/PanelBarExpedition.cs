@@ -139,6 +139,7 @@ public class PanelBarExpedition : PanelBase
                     Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                     Hot.MgrUI_.HideAllPanel();
                     Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
+                    Hot.PanelExpeditionMiniMap_.Init();
                 }
                 break;
         }

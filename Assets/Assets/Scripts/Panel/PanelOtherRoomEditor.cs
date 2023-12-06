@@ -189,7 +189,7 @@ public class PanelOtherRoomEditor : PanelBase
             obj1.transform.SetParent(ItemContent, false);
             GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
             glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.cellSize = new(Hot.BodyCellGridExpeditionMap.X, Hot.BodyCellGridExpeditionMap.Y);
+            glg.cellSize = new(Hot.BodySizeGridExpeditionMap.X, Hot.BodySizeGridExpeditionMap.Y);
             glg.constraintCount = 1;
             glg.childAlignment = TextAnchor.MiddleCenter;
 
@@ -224,34 +224,33 @@ public class PanelOtherRoomEditor : PanelBase
         Hot.e_ChoseObj = e_MapObject;
         ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
         ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodyCellGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodyCellGridExpeditionMap.Y);
+            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodySizeGridExpeditionMap.Y);
     }
 
     public void LoadRoomConfig(List<List<PanelCellGridRoomEditorConfig>> map)
     {        
-        for (int i1 = 0; i1 < map.Count; i1++)
+        for (int Y = 0; Y < map.Count; Y++)
         {
-            int tempi1 = i1;
+            int tempiY = Y;
 
-            for (int i2 = 0; i2 < map[i1].Count; i2++)
+            for (int iX = 0; iX < map[Y].Count; iX++)
             {
-                int tempi2 = i2;
+                int tempiX = iX;
 
-                if (map[tempi1][tempi2].IsHave)
+                if (map[tempiY][tempiX].IsHave)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
                     (panel) =>
                     {
-                        panel.Init(map[tempi1][tempi2].e_Obj);
-                        panel.RootGrid = Grids[tempi1][tempi2];
-                        panel.transform.SetParent(ItemRoot[tempi1][tempi2], false);
+                        panel.Init(map[tempiY][tempiX].e_Obj, Grids[tempiY][tempiX]);
+                        panel.transform.SetParent(ItemRoot[tempiY][tempiX], false);
                         panel.transform.localPosition = new(-20, 20);
 
-                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[map[tempi1][tempi2].e_Obj].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicMapObject[map[tempiY][tempiX].e_Obj].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[map[tempi1][tempi2].e_Obj].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicMapObject[map[tempiY][tempiX].e_Obj].X; i2++)
                             {
-                                Grids[tempi1 + i1][tempi2 + i2].CellRoomEditor = panel;
+                                Grids[tempiY + i1][tempiX + i2].CellRoomEditor = panel;
                             }
                         }
                     });

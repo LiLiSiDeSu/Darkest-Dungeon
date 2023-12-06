@@ -46,4 +46,18 @@ public class PanelCellExpeditionRoom : PanelBase,
     }
 
     #endregion
+
+    public void Init(E_MapObject p_e_Obj, PanelGridExpeditionRoom p_rootGrid)
+    {
+        e_Obj = p_e_Obj;
+        RootGrid = p_rootGrid;
+        transform.SetParent(p_rootGrid.transform, false);
+
+        ImgCellRoomEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);
+
+        ImgCellRoomEditor.GetComponent<RectTransform>().sizeDelta =
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta =
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
+    }
 }

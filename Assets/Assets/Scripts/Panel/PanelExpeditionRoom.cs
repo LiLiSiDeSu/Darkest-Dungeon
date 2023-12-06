@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,7 +84,7 @@ public class PanelExpeditionRoom : PanelBase
             obj1.transform.SetParent(ItemContent, false);
             GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
             glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.cellSize = new(Hot.BodyCellGridExpeditionMap.X, Hot.BodyCellGridExpeditionMap.Y);
+            glg.cellSize = new(Hot.BodySizeGridExpeditionMap.X, Hot.BodySizeGridExpeditionMap.Y);
             glg.constraintCount = 1;
             glg.childAlignment = TextAnchor.MiddleCenter;
 
@@ -112,8 +114,54 @@ public class PanelExpeditionRoom : PanelBase
         }
     }
 
-    public void LoadRoom()
+    public void LoadRoomData(int p_x, int p_y)
     {
+        ClearRoom();
 
+        List<List<DataContainer_CellExpeditionMapGrid>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
+
+        for (int Y = 0; Y < Map.Count; Y++)
+        {
+            int tempY = Y;
+
+            for (int X = 0; X < Map[Y].Count; X++)
+            {
+                int tempX = X;
+
+                if (Map[tempY][tempX].Obj.e_Obj != E_MapObject.None)
+                {
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
+                    (panel) =>
+                    {
+                        panel.Init(Map[tempY][tempX].Obj.e_Obj, Grids[tempY][tempX]);
+                        panel.transform.SetParent(ItemRoot[tempY][tempX], false);
+                        panel.transform.localPosition = new(-20, 20);
+
+                        for (int Y = 0; Y < Hot.BodyDicMapObject[panel.e_Obj].Y; Y++)
+                        {
+                            for (int X = 0; X < Hot.BodyDicMapObject[panel.e_Obj].X; X++)
+                            {
+                                Grids[tempY + Y][tempX + X].CellExpeditionRoom = panel;
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    public void ClearRoom()
+    {
+        foreach (List<PanelGridExpeditionRoom> list in Grids)
+        {
+            foreach (PanelGridExpeditionRoom item in list)
+            {
+                if (item.CellExpeditionRoom != null)
+                {
+                    Destroy(item.CellExpeditionRoom.gameObject);
+                    item.CellExpeditionRoom = null;
+                }
+            }
+        }
     }
 }

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Hot
 {
@@ -40,7 +42,7 @@ public static class Hot
     #region Body
 
     public static my_Vector2 BodyExpeditionRoom = new(48, 18);
-    public static my_Vector2 BodyCellGridExpeditionMap = new(40, 40);
+    public static my_Vector2 BodySizeGridExpeditionMap = new(40, 40);
     public static my_Vector2 BodySizeCellItem = new(40, 40);
     public static my_Vector2 BodySizeCellMinimap = new(40, 40);
 
@@ -176,6 +178,10 @@ public static class Hot
 
     #region Expedition
 
+    public static PanelExpeditionRoom PanelExpeditionRoom_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionRoom>("PanelExpeditionRoom"); }
+    }
     public static PanelExpeditionDetails PanelExpeditionDetails_
     {
         get { return MgrUI_.GetPanel<PanelExpeditionDetails>("PanelExpeditionDetails"); }
@@ -491,7 +497,34 @@ public static class Hot
     /// </summary>
     public static PanelGridTownItem NowEnterCellGridItem = null;
 
-    #endregion    
+    #endregion
 
-    #endregion    
+    #endregion
+
+    #region Function
+
+    public static GameObject CreateContentStepY(int p_index, Transform father)
+    {
+        GameObject obj = MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
+        obj.transform.SetParent(father, false);
+        obj.name = p_index.ToString();
+        GridLayoutGroup glg = obj.AddComponent<GridLayoutGroup>();
+        glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+        glg.constraintCount = 1;
+        glg.childAlignment = TextAnchor.MiddleCenter;
+        glg.cellSize = new(BodySizeGridExpeditionMap.X, BodySizeGridExpeditionMap.Y);
+
+        return obj;
+    }
+
+    public static GameObject CreateContentStepX(int p_index, Transform father)
+    {
+        GameObject obj = MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
+        obj.transform.SetParent(father.transform, false);
+        obj.name = p_index.ToString();
+
+        return obj;
+    }
+
+    #endregion
 }
