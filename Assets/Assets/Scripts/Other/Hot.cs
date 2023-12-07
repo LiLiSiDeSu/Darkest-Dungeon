@@ -459,18 +459,9 @@ public static class Hot
 
     #region Role
 
-    /// <summary>
-    /// 现在进入的角色远征格子
-    /// </summary>
-    public static GameObject NowRootExpeditionRole;
-    /// <summary>
-    /// 替换的角色肖像
-    /// </summary>
-    public static GameObject ReplaceRolePortrait;
-    /// <summary>
-    /// 拖曳的角色肖像
-    /// </summary>
-    public static GameObject DragingRolePortrait;
+    public static PanelCellExpeditionRolePrepareRoot NowEnterExpeditionRolePrepareRoot;
+    public static PanelCellRolePortraitCanDrag ReplaceRolePortraitCanDrag;
+    public static PanelCellRolePortraitCanDrag DragingRolePortraitCanDrag;
     /// <summary>
     /// 现在拖动的角色招募PanelCell
     /// </summary>

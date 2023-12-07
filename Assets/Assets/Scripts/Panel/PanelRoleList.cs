@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelRoleList : PanelBaseDynamicScrollView             
+public class PanelRoleList : PanelBaseDynamicScrollView
 {
-    private bool IsOpen = true;        
+    private bool IsOpen = true;
 
     public GameObject ScrollView_;
     public GameObject BtnPackUp;
@@ -15,13 +15,13 @@ public class PanelRoleList : PanelBaseDynamicScrollView
     public Transform ImgDecorateFrameTop;
     public Transform ImgDecorateFrameBottom;
     public Image ImgPackUp;
-    public Image ImgOpen;    
+    public Image ImgOpen;
 
     protected override void Awake()
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", 
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
         {
             if (Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.PanelRole)
@@ -32,7 +32,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 else
                     Hot.MgrUI_.ShowPanel<PanelRoleList>(true, "PanelRoleList");
             }
-        });                
+        });
 
         ScrollView_ = transform.FindSonSonSon("ScrollView_").gameObject;
         BtnPackUp = transform.FindSonSonSon("BtnPackUp").gameObject;
@@ -53,7 +53,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        base.OnPointerEnter(eventData);        
+        base.OnPointerEnter(eventData);
 
         Hot.e_NowPointerLocation = E_NowPointerLocation.PanelRoleList;
     }
@@ -79,7 +79,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
         switch (controlname)
         {
             case "BtnPackUp":
-                IsOpen = false;                
+                IsOpen = false;
                 BtnPackUp.SetActive(false);
                 BtnOpen.SetActive(true);
                 ScrollView_.SetActive(false);
@@ -104,12 +104,12 @@ public class PanelRoleList : PanelBaseDynamicScrollView
             int tempi = i;
 
             Hot.MgrUI_.CreatePanel<PanelCellRole>
-            (false, "/PanelCellRole", 
+            (false, "/PanelCellRole",
             (panel) =>
             {
                 panel.Index = tempi;
                 panel.CreatePanelCellRoleCanDrag();
-                GameObject obj = 
+                GameObject obj =
                     Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
@@ -117,7 +117,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi]);           
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi]);
             });
 
             NowIndex++;
@@ -126,11 +126,13 @@ public class PanelRoleList : PanelBaseDynamicScrollView
 
     public override void Clear()
     {
+        base.Clear();
+
         ContentStep[] all = Content.GetComponentsInChildren<ContentStep>();
         for (int i = 0; i < all.Length; i++)
         {
             DestroyImmediate(all[i].gameObject);
-        }        
+        }
     }
 
     public override void SortContent()
@@ -144,7 +146,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
             tempList[i].gameObject.name = i.ToString();
         }
         ListDynamicContentStep = tempList;
-        
+
         PanelCellRole[] all = transform.GetComponentsInChildren<PanelCellRole>();
         List<DataContainer_CellRole> tempData = new();
         for (int i = 0; i < all.Length; i++)
@@ -153,9 +155,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
             all[i].Index = i;
         }
         Hot.DataNowCellGameArchive.ListCellRole = tempData;
-
-        Hot.Data_.Save();
-    }            
+    }
 
     private void ChangePosImgDecorateFrameBottom()
     {
@@ -172,10 +172,8 @@ public class PanelRoleList : PanelBaseDynamicScrollView
     public void RemoveRole(PanelCellRole toRemove)
     {
         NowIndex--;
-        DestroyImmediate(toRemove.PanelCellRoleCanDrag_.gameObject);
+        DestroyImmediate(toRemove.RolePortraitCanDrag.gameObject);
         DestroyImmediate(ListDynamicContentStep[toRemove.Index].gameObject);
         SortContent();
-        
-        Hot.Data_.Save();
     }
 }

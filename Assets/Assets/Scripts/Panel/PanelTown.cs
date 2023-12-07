@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PanelTown : PanelBase
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         transform.FindSonSonSon("ImgRoomAbbey").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgRoomSanitarium").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
@@ -16,8 +16,8 @@ public class PanelTown : PanelBase
         transform.FindSonSonSon("ImgRoomGraveyard").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgRoomTownShop").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgRoomSmithy").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgRoomGuild").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;        
-    }  
+        transform.FindSonSonSon("ImgRoomGuild").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+    }
 
     protected override void Button_OnClick(string controlname)
     {

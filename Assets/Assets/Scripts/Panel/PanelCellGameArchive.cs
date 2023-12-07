@@ -103,7 +103,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     Hot.PanelTownStore_.InitContent();
                     Hot.PanelTownShopItem_.InitContent();
                     Hot.PanelRoleList_.InitContent();
-                    Hot.PanelBarExpedition_.InitContent();
+                    Hot.PanelBarExpedition_.Init();
                     Hot.PanelExpeditionPrepare_.InitContent();
                     Hot.PanelRoleGuildRecruit_.InitContent();
 

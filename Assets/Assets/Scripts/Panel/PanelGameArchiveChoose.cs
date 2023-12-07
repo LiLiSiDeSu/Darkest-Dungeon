@@ -10,10 +10,8 @@ using UnityEngine.UI;
 
 public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
 {                   
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();        
-
         Content = transform.FindSonSonSon("GameArchiveContent");
 
         transform.FindSonSonSon("ImgBackStartPanel").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
@@ -84,8 +82,6 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
         }
 
         Hot.Data_.DataListCellGameArchive = allData;
-
-        Hot.Data_.SaveAll();
     }
 
     public void AddGameArchive()

@@ -136,7 +136,6 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
         Hot.DataNowCellGameArchive.ListCellStore[Index].Name = name;
         IptName.text = name;
         PanelCellItem_.IptName.text = name;
-        Hot.Data_.Save();
     }
 
     public void Init()

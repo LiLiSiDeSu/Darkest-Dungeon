@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PanelOtherSetting : PanelBase
 {
     private Transform ImgCurrentChoice;
-    private float PosOffsetForImgCurrentChoice = 10f;    
+    private float PosOffsetForImgCurrentChoice = 10f;  
 
     protected override void Awake()
     {

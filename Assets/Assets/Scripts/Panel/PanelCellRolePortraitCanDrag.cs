@@ -5,23 +5,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRolePortraitCanDrag : PanelBase, 
-             IDragHandler, IBeginDragHandler, IEndDragHandler
+public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
+             IPointerEnterHandler, IPointerExitHandler
 {
     public Image ImgRolePortraitCanDrag;
 
+    public PanelCellExpeditionRolePrepareRoot ExpeditionRolePrepareRoot;
     public RectTransform RectRolePortraitCanDrag;
-    public Transform RootExpeditionRole;    
-    private Vector2 DragOffSet;
-
-    public PanelCellRole PanelCellRole_;
+    public PanelCellRole Role;
 
     protected override void Awake()
     {
         base.Awake();
 
-        PanelCellRole_ = transform.GetComponentInParent<PanelCellRole>();
         ImgRolePortraitCanDrag = transform.FindSonSonSon("ImgRolePortraitCanDrag").GetComponent<Image>();
+
         RectRolePortraitCanDrag = ImgRolePortraitCanDrag.GetComponent<RectTransform>();
     }
 
@@ -32,136 +30,123 @@ public class PanelCellRolePortraitCanDrag : PanelBase,
         switch (controlname)
         {
             case "BtnRolePortraitCanDrag":                
-                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index]);
+                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Role.Index]);
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
                 (panel) =>
                 {
-                    panel.NowRole = PanelCellRole_;
+                    panel.NowRole = Role;
                     panel.BtnDismiss.SetActive(true);
                 });
                 break;
         }
-    }    
+    }
 
-    #region EventSystem接口实现
+    #region EventSystem
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        ImgRolePortraitCanDrag.raycastTarget = false;
-        DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;        
+        if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelBarExpedition && Hot.DragingRolePortraitCanDrag != null)
+        {
+            Hot.ReplaceRolePortraitCanDrag = this;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Hot.ReplaceRolePortraitCanDrag = null;
+    }
+
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        base.OnBeginDrag(eventData);
 
         RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
-        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);                     
-        Hot.DragingRolePortrait = gameObject;        
+        transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+
+        ImgRolePortraitCanDrag.raycastTarget = false;
+        Hot.DragingRolePortraitCanDrag = this;
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {        
-        transform.position = eventData.position + DragOffSet;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        ImgRolePortraitCanDrag.raycastTarget = true;
-        
-        if (Hot.e_NowPointerLocation != E_NowPointerLocation.PanelTownExpeditionRole)
+        //回到RoleList
+        if (Hot.NowEnterExpeditionRolePrepareRoot == null)
         {
-            Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus = E_RoleStatus.None;
-            Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition = -1;
-            PanelCellRole_.ChangeRoleStatus(E_RoleStatus.None);
-            transform.SetParent(PanelCellRole_.RootPortrait, false);
+            Debug.Log("回到RoleList");
+            ExpeditionRolePrepareRoot = null;
             RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
-            RootExpeditionRole = null;
-        }        
+            transform.SetParent(Role.RootPortrait, false);
+            transform.localPosition = Vector3.zero;
+            Hot.DataNowCellGameArchive.ListCellRole[Role.Index].IndexExpedition = -1;
+        }
         else
         {
-            if (Hot.NowRootExpeditionRole != null)
+            if (ExpeditionRolePrepareRoot != null)
             {
-                if (Hot.NowRootExpeditionRole.transform.childCount != 0)
+                //从RootContent和RootContent里的替换
+                if (Hot.NowEnterExpeditionRolePrepareRoot.transform.childCount > 0)
                 {
-                    Hot.ReplaceRolePortrait = Hot.NowRootExpeditionRole.GetComponentInChildren<PanelCellRolePortraitCanDrag>().gameObject;
-
-                    if (RootExpeditionRole != null)
-                    {
-                        Hot.ReplaceRolePortrait.transform.SetParent(RootExpeditionRole);
-                        Hot.ReplaceRolePortrait.transform.localPosition = Vector3.zero;
-                        Hot.DataNowCellGameArchive.ListCellRole
-                            [Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().PanelCellRole_.Index].IndexExpedition =
-                            int.Parse((RootExpeditionRole.name.Replace("RootExpeditionRole", "")));
-
-                        Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().RootExpeditionRole = RootExpeditionRole;
-                    }
-                    else
-                    {
-                        Hot.DataNowCellGameArchive.ListCellRole
-                            [Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().PanelCellRole_.Index].
-                            e_RoleStatus = E_RoleStatus.None;
-                        Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().PanelCellRole_.
-                            ChangeRoleStatus(E_RoleStatus.None);
-                        Hot.DataNowCellGameArchive.ListCellRole
-                            [Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().PanelCellRole_.Index].
-                            IndexExpedition = -1;
-                        Hot.ReplaceRolePortrait.GetComponentInChildren<PanelCellRolePortraitCanDrag>().RootExpeditionRole = null;
-
-                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus =
-                            E_RoleStatus.Expedition;
-                        PanelCellRole_.ChangeRoleStatus(E_RoleStatus.Expedition);
-                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition = 
-                            int.Parse(Hot.NowRootExpeditionRole.name.Replace("RootExpeditionRole", ""));
-
-                        Hot.ReplaceRolePortrait.transform.
-                            SetParent(Hot.ReplaceRolePortrait.GetComponent<PanelCellRolePortraitCanDrag>().PanelCellRole_.RootPortrait, false);                        
-                        Hot.ReplaceRolePortrait.GetComponent<PanelCellRolePortraitCanDrag>().RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
-                        Hot.ReplaceRolePortrait.transform.localPosition = Vector3.zero;                        
-                    }
-
-                    transform.SetParent(Hot.NowRootExpeditionRole.transform, false);                                      
-                    Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition =
-                        int.Parse((Hot.NowRootExpeditionRole.name.Replace("RootExpeditionRole", "")));                                  
+                    Debug.Log("从RootContent和RootContent里的替换");
+                    PanelCellRolePortraitCanDrag beReplace = Hot.NowEnterExpeditionRolePrepareRoot.transform.GetComponentInChildren<PanelCellRolePortraitCanDrag>();
+                    beReplace.transform.SetParent(Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot.transform, false);
+                    beReplace.ExpeditionRolePrepareRoot = Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot;
+                    beReplace.transform.localPosition = Vector3.zero;
+                    Hot.DataNowCellGameArchive.ListCellRole[beReplace.Role.Index].IndexExpedition = beReplace.ExpeditionRolePrepareRoot.Index;
                 }
+                //从RootContent拖到RootContent里空的Root下
                 else
-                {                    
-                    if (RootExpeditionRole == null)
-                    {
-                        Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].e_RoleStatus = 
-                            E_RoleStatus.Expedition;
-                        PanelCellRole_.ChangeRoleStatus(E_RoleStatus.Expedition);
-                        RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
-                    }
-                    Hot.DataNowCellGameArchive.ListCellRole[PanelCellRole_.Index].IndexExpedition =
-                        int.Parse((Hot.NowRootExpeditionRole.name.Replace("RootExpeditionRole", "")));                    
-                    transform.SetParent(Hot.NowRootExpeditionRole.transform, false);                    
+                {
+                    Debug.Log("从RootContent拖到RootContent里空的Root下");
+                    ;
                 }
 
-                RootExpeditionRole = Hot.NowRootExpeditionRole.transform;
+                transform.SetParent(Hot.NowEnterExpeditionRolePrepareRoot.transform, false);
+                transform.localPosition = Vector3.zero;
+                ExpeditionRolePrepareRoot = Hot.NowEnterExpeditionRolePrepareRoot;
+                Hot.DataNowCellGameArchive.ListCellRole[Role.Index].IndexExpedition = ExpeditionRolePrepareRoot.Index;
             }
             else
             {
-                if (RootExpeditionRole == null)
+                //从RoleList和RootContent里的替换
+                if (Hot.NowEnterExpeditionRolePrepareRoot.transform.childCount > 0)
                 {
-                    transform.SetParent(PanelCellRole_.RootPortrait, false);
-                    RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
+                    Debug.Log("从RoleList和RootContent里的替换");
+                    PanelCellRolePortraitCanDrag beReplace = Hot.NowEnterExpeditionRolePrepareRoot.transform.GetComponentInChildren<PanelCellRolePortraitCanDrag>();
+                    beReplace.ExpeditionRolePrepareRoot = null;
+                    beReplace.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
+                    beReplace.transform.SetParent(beReplace.Role.RootPortrait, false);
+                    beReplace.transform.localPosition = Vector3.zero;
+                    beReplace.Role.ChangeRoleStatus(-1);
+                    Hot.DataNowCellGameArchive.ListCellRole[beReplace.Role.Index].IndexExpedition = -1;
                 }
+                //从RoleList拖到空的ExpeditionRolePrepareRoot
                 else
                 {
-                    transform.SetParent(RootExpeditionRole, false);                    
+                    Debug.Log("从RoleList拖到空的ExpeditionRolePrepareRoot");
+                    ;
                 }
+
+                RectRolePortraitCanDrag.sizeDelta = new Vector2(100, 100);
+                transform.SetParent(Hot.NowEnterExpeditionRolePrepareRoot.transform, false);
+                transform.localPosition = Vector3.zero;
+                ExpeditionRolePrepareRoot = Hot.NowEnterExpeditionRolePrepareRoot;
+                Hot.DataNowCellGameArchive.ListCellRole[Role.Index].IndexExpedition = ExpeditionRolePrepareRoot.Index;
             }
         }
 
-        transform.localPosition = Vector3.zero;
-
-        Hot.DragingRolePortrait = null;
-        Hot.ReplaceRolePortrait = null;
-        Hot.NowRootExpeditionRole = null;                
-        
-        Hot.Data_.Save();
+        Role.ChangeRoleStatus(Hot.DataNowCellGameArchive.ListCellRole[Role.Index].IndexExpedition);
+        ImgRolePortraitCanDrag.raycastTarget = true;
+        Hot.DragingRolePortraitCanDrag = null;
     }
 
     #endregion
 
-    public void Init()
+    public void Init(PanelCellRole p_Role, Transform p_father, Vector2 p_size)
     {
-        transform.FindSonSonSon("ImgRolePortraitCanDrag").GetComponent<Image>().sprite = PanelCellRole_.ImgRolePortrait.sprite;
+        Role = p_Role;
+        transform.SetParent(p_father, false);
+        transform.localPosition = Vector2.zero;
+        ImgRolePortraitCanDrag.sprite = Role.ImgRolePortrait.sprite;
+        RectRolePortraitCanDrag.sizeDelta = p_size;
     }
 }

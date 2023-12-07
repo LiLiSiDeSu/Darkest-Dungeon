@@ -9,12 +9,10 @@ public class PanelBaseCellDynamicScrollView : PanelBaseCell,
     public Vector2 DragOffSet;
     public string PrefabsDynamicContentStepSuffix = "";
 
-    public PanelBaseDynamicScrollView Father;    
+    public PanelBaseDynamicScrollView Father;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         Father = GetComponentInParent<PanelBaseDynamicScrollView>();
     }
 

@@ -202,8 +202,6 @@ public class PanelOhterResTable : PanelBase
             Hot.DataPanelResTable.NowPlatinum + " / " +
             Hot.DataPanelResTable.NowLevelPlatinum * Hot.DataPanelResTable.LevelStepPlatinum + " - " +
             Hot.DataPanelResTable.NowLevelPlatinum;
-
-        Hot.Data_.Save();
     }
 
     public void ClampData()

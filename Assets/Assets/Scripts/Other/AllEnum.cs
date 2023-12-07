@@ -48,33 +48,6 @@ public enum E_CellMiniMapRoom
     CellMapRoomUnkown,
 }
 
-///// <summary>
-///// 所有的过道Hall
-///// </summary>
-//public enum E_CellExpeditionMiniMapHall
-//{
-//    None,
-//    CellMapHallDark,
-//    CellMapHallDim,
-//    CellMapHallLight,
-//    CellMapHallBattle,
-//    CellMapHallTrap,
-//    CellMapHallSecret,
-//}
-
-///// <summary>
-///// 所有的过道Room
-///// </summary>
-//public enum E_CellExpeditionMiniMapRoom
-//{    
-//    None,
-//    CellMapRoomBoss,
-//    CellMapRoomEmpty,
-//    CellMapRoomEntrance,
-//    CellMapRoomLocked,
-//    CellMapRoomUnkown,
-//}
-
 public enum E_GameArchiveLevel
 {
     None,
@@ -130,13 +103,6 @@ public enum E_SpriteNameCoin
     Silver,
     Gold,
     Platinum
-}
-
-public enum E_RoleStatus
-{
-    None,
-    Expedition,
-    PrepareExpedition
 }
 
 public enum E_DungeonSize
@@ -220,9 +186,8 @@ public enum E_NowPointerLocation
     PanelTownStore,
     PanelTownItem,
     PanelTownShopItem,
+    PanelBarExpedition,
     PanelRoleList,
-    PanelTownPrepareExpedition,
-    PanelTownExpeditionRole,
     PanelGameArchiveChoose,
     PanelRoleGuildRecruit,
 }

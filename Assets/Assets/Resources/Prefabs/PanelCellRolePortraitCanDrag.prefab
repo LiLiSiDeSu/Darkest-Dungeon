@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3632596617677811597}
   - component: {fileID: 3352822578099416614}
   - component: {fileID: 1443986997024342862}
-  - component: {fileID: 7137156766174995290}
   m_Layer: 5
   m_Name: PanelCellRolePortraitCanDrag
   m_TagString: Untagged
@@ -52,9 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImgRolePortraitCanDrag: {fileID: 0}
+  ExpeditionRolePrepareRoot: {fileID: 0}
   RectRolePortraitCanDrag: {fileID: 0}
-  RootExpeditionRole: {fileID: 0}
-  PanelCellRole_: {fileID: 0}
+  Role: {fileID: 0}
 --- !u!222 &1443986997024342862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -63,36 +62,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2510075749684600840}
   m_CullTransparentMesh: 1
---- !u!114 &7137156766174995290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2510075749684600840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4600739976477267951
 GameObject:
   m_ObjectHideFlags: 0

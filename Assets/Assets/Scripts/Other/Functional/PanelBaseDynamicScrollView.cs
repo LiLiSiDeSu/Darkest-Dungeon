@@ -43,6 +43,9 @@ public abstract class PanelBaseDynamicScrollView : PanelBase,
     }
 
     public abstract void InitContent();
-    public virtual void Clear() { }    
+    public virtual void Clear() 
+    {
+        ListDynamicContentStep.Clear();
+    }    
     public abstract void SortContent();    
 }

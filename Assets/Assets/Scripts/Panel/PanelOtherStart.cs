@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class PanelOtherStart : PanelBase
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         transform.FindSonSonSon("ImgStart").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
         transform.FindSonSonSon("ImgMapEditor").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;

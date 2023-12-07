@@ -116,7 +116,6 @@ public class PanelRoleDetails : PanelBase
         Role.Name = NameToChange;
 
         TxtRoleName.text = NameToChange;
-        Hot.Data_.Save();
     }
 
     public void ChangeSanity(DataContainer_CellRole Role, int ValueToChange)
@@ -124,12 +123,11 @@ public class PanelRoleDetails : PanelBase
         Role.NowSanity += ValueToChange;
 
         UpdateSanityInfo(Role);
-        Hot.Data_.Save();
     }
 
     public void ChangeExperience(DataContainer_CellRole Role)
     {
-        Hot.Data_.Save();
+
     }
 
     public void ChangeLevel(DataContainer_CellRole Role, int ValueToChange)
@@ -139,7 +137,6 @@ public class PanelRoleDetails : PanelBase
             Role.NowLevel = Role.MaxLevel;
 
         UpdateLevelInfo(Role);
-        Hot.Data_.Save();
     }
 
     public void UpdateSanityInfo(DataContainer_CellRole Role)

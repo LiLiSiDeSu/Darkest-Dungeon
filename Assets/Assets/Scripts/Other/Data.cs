@@ -10,6 +10,28 @@ public class Data : InstanceBaseAuto_Mono<Data>
     
     public List<DataContainer_PanelCellGameArchive> DataListCellGameArchive = new();
 
+    private void Awake()
+    {
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        (key) =>
+        {
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.S))
+            {
+                if (Hot.NowIndexCellGameArchive != -1)
+                {
+                    Hot.Data_.Save();
+                    Debug.Log("Save");
+                }
+                else
+                {
+                    Hot.Data_.SaveAll();
+                    Debug.Log("SaveAll");
+                }
+                //后面搞个进度条
+            }
+        });
+    }
+
     private void Start()
     {        
         PathGameArchiveData = "/GameArchiveData";

@@ -1,4 +1,6 @@
-﻿public class StartUI : InstanceBaseAuto_Mono<StartUI>
+﻿using UnityEngine;
+
+public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {    
     private void Start()
     {

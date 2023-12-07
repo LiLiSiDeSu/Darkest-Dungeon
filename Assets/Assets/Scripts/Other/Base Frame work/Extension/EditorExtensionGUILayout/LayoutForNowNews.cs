@@ -29,7 +29,7 @@ public class LayoutForNowNews : MonoBehaviour
     public Rect Rect_NowRootExpeditionRole = new Rect(0, 100, 0, 0);
     public GUIStyle Style_NowRootExpeditionRole = new GUIStyle();
 
-    public string String_DragingRolePortrait = "DragingRolePortrait: ";
+    public string String_DragingRolePortrait = "DragingRolePortraitCanDrag: ";
     public Rect Rect_DragingRolePortrait = new Rect(0, 120, 0, 0);
     public GUIStyle Style_DragingRolePortrait = new GUIStyle();
 
@@ -49,19 +49,6 @@ public class LayoutForNowNews : MonoBehaviour
         String_NowPlayerLocation = "NowPlayerLocation: " + Hot.e_NowPlayerLocation;
         String_NowTranslateRate = "NowTranslateRate: " + Hot.NowTranslateRate;
         String_NowIndexGameArchive = "NowIndexGameArchive: " + Hot.NowIndexCellGameArchive;
-
-        if (Hot.NowRootExpeditionRole != null)
-            String_NowRootExpeditionRole = "NowRootExpeditionRole: " + Hot.NowRootExpeditionRole.name;
-        else
-            String_NowRootExpeditionRole = "NowRootExpeditionRole: null";
-
-        if (Hot.DragingRolePortrait != null)
-            String_DragingRolePortrait =
-                "DragingRolePortrait: " +
-                Hot.DataNowCellGameArchive.ListCellRole
-                [Hot.DragingRolePortrait.GetComponent<PanelCellRolePortraitCanDrag>().PanelCellRole_.Index].Name;
-        else
-            String_DragingRolePortrait = "DragingRolePortrait: null";
 
 
         if (Hot.NowIndexCellGameArchive != -1)

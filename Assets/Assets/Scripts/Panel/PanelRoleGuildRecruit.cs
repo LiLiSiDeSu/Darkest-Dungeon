@@ -89,7 +89,5 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
             all[i].Index = i;
         }
         Hot.DataNowCellGameArchive.ListCellRoleRecruit = tempData;
-
-        Hot.Data_.Save();
     }
 }

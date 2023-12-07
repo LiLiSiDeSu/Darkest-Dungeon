@@ -21,11 +21,6 @@ public class PanelBase : MonoBehaviour
         GetChildrenControl<ScrollRect>();
     }
 
-    protected virtual void Start()
-    {
-
-    }    
-
     #endregion
 
     protected void GetChildrenControl<T>() where T : UIBehaviour

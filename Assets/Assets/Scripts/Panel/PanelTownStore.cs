@@ -154,7 +154,5 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             all[i].Index = i;
         }
         Hot.DataNowCellGameArchive.ListCellStore = tempData;
-
-        Hot.Data_.Save();
     }
 }

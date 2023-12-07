@@ -38,9 +38,7 @@ public class DataContainer_PanelCellGameArchive
 public class DataContainer_CellRole
 {
     public E_RoleName e_RoleName = E_RoleName.Crusader;
-    public E_RoleStatus e_RoleStatus = E_RoleStatus.None;
     public int IndexExpedition = -1;
-    public int IndexPrepareExpedition = -1;
     public string Name = "Town";
     public int NowLevel = 0;
     //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
@@ -53,13 +51,11 @@ public class DataContainer_CellRole
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
     (E_RoleName e_RoleName,
-     E_RoleStatus e_RoleStatus,
      string Name,
      int NowLevel, int MaxLevel, int NowExperience,
      int NowSanity, int MaxSanity, int LimitToSanityExplosion)
     {
         this.e_RoleName = e_RoleName;
-        this.e_RoleStatus = e_RoleStatus;
         this.Name = Name;
         this.NowLevel = NowLevel;
         this.MaxLevel = MaxLevel;

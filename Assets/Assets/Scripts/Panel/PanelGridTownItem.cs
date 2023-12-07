@@ -145,8 +145,6 @@ public class PanelGridTownItem : PanelBase
                             break;
                     }
 
-                    Hot.Data_.Save();
-
                     Hot.ChoseCellItem.RootGrid = this;
                     Hot.ChoseCellItem.MemberOf = Hot.NowPanelCanStoreItem;
                 }

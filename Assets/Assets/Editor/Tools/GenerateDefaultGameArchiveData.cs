@@ -146,17 +146,17 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].ListCellRole = new List<DataContainer_CellRole>()
         {
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao1", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao2", 3, 99, 30, 29, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao3", 4, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao5", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao6", 3, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao5", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao3", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao2", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao1", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao2", 3, 99, 30, 29, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 4, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 4, 99, 1, 46, 200, 1),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao5", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao6", 3, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao5", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao2", 2, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao1", 2, 99, 40, 46, 200, 10),
         };
 
         GameArchiveDataCellList[0].ResTable = new DataContainer_ResTable(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);
@@ -164,35 +164,35 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         GameArchiveDataCellList[0].ListCellRoleRecruit = new List<DataContainer_CellRoleRecruit>()
         {
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao1", 2, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
              new DataContainer_CoinCost(2, 3, 4, 5)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao10", 2, 99, 40, 10, 200, 2),
+            (new DataContainer_CellRole(E_RoleName.LiLiSi, "cao10", 2, 99, 40, 10, 200, 2),
              new DataContainer_CoinCost(22, 3, 34, 51)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao5", 2, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao5", 2, 99, 40, 46, 200, 10),
              new DataContainer_CoinCost(232, 332, 411, 55)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 4, 99, 1, 46, 200, 1),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao3", 4, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 4, 99, 40, 46, 200, 10),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.LiLiSi, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 4, 99, 1, 46, 200, 1),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao4", 4, 99, 1, 46, 200, 1),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, E_RoleStatus.None, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao4", 4, 99, 1, 46, 200, 1),
              new DataContainer_CoinCost(22, 31, 42, 523))
         };
 

@@ -19,9 +19,9 @@ public class PanelGameArchiveChooseLevel : PanelBase
         "(霍 还真敢来 劝你还是别血月无光了把 这样你可能连老路都过不了 就算是高光你也撑不过几周 赶紧卸载游戏吧 啊哈哈哈哈~~~)"
     };
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start(); 
+        base.Awake();
 
         ImgCurrentChoice = transform.FindSonSonSon("ImgCurrentChoice");
         ImgCurrentChoice.gameObject.SetActive(false);
@@ -30,7 +30,7 @@ public class PanelGameArchiveChooseLevel : PanelBase
 
         #region 添加光标进入离开事件        
 
-        string[] controlnames = 
+        string[] controlnames =
         {
             "BtnGameArchiveChooseLevelBright",
             "BtnGameArchiveChooseLevelDarkness",
@@ -56,8 +56,8 @@ public class PanelGameArchiveChooseLevel : PanelBase
             EventTriggerType.PointerEnter, (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(true);
-                ImgCurrentChoice.localPosition = new Vector3(ImgCurrentChoice.localPosition.x, pos[tempi], 0);                
-                ImgGameArchiveDecorateLevel.sprite = 
+                ImgCurrentChoice.localPosition = new Vector3(ImgCurrentChoice.localPosition.x, pos[tempi], 0);
+                ImgGameArchiveDecorateLevel.sprite =
                                    MgrRes.GetInstance().Load<Sprite>(decorate[tempi]);
                 TxtDescribes.text = Describes[tempi];
             });
