@@ -2,22 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelGridMiniMapEditor : PanelBase
+public class PanelGridMiniMapEditor : PanelBaseGrid
 {
-    public int X;
-    public int Y;
-
-    public Image ImgBk;
-    public Image ImgStatus;
-
     public PanelCellMiniMapEditor CellMiniMapEditor;
 
     protected override void Awake()
     {
         base.Awake();
-
-        ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
 
         ImgBk.alphaHitTestMinimumThreshold = 0.2f;
 
@@ -148,15 +139,6 @@ public class PanelGridMiniMapEditor : PanelBase
                 break;
         }
     }    
-
-    public void Init(int p_X, int p_Y, Transform father)
-    {
-        X = p_X; 
-        Y = p_Y;
-
-        transform.SetParent(father, false);
-        gameObject.name = p_Y.ToString();
-    }
 
     public bool JudgeCanPut()
     {

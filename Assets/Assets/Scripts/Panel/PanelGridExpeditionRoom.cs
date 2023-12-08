@@ -3,22 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelGridExpeditionRoom : PanelBase
+public class PanelGridExpeditionRoom : PanelBaseGrid
 {
-    public int X;
-    public int Y;
-
-    public Image ImgBk;
-    public Image ImgStatus;
-
     public PanelCellExpeditionRoom CellExpeditionRoom;
 
     protected override void Awake()
     {
         base.Awake();
-
-        ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
 
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
@@ -46,11 +37,5 @@ public class PanelGridExpeditionRoom : PanelBase
                 Debug.Log(Y + " - " + X);
                 break;
         }
-    }
-
-    public void Init(int x, int y)
-    {
-        X = x;
-        Y = y;
     }
 }

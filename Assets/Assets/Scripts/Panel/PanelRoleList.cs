@@ -169,11 +169,11 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 0);
     }
 
-    public void RemoveRole(PanelCellRole toRemove)
+    public void RemoveRole(int p_index)
     {
         NowIndex--;
-        DestroyImmediate(toRemove.RolePortraitCanDrag.gameObject);
-        DestroyImmediate(ListDynamicContentStep[toRemove.Index].gameObject);
+        DestroyImmediate(ListDynamicContentStep[p_index].GetComponentInChildren<PanelCellRole>().RolePortraitCanDrag.gameObject);
+        DestroyImmediate(ListDynamicContentStep[p_index].gameObject);
         SortContent();
     }
 }

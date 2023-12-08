@@ -1,6 +1,37 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-public sealed class AllDataOrInfoContainer { }
+public sealed class AllDataOrInfoContainerOrOtherClass { }
+
+[Serializable]
+public class my_Vector2
+{
+    public int X;
+    public int Y;
+
+    public static my_Vector2 m_One
+    {
+        get { return new(-1, -1); }
+    }
+
+    public my_Vector2()
+    {
+        X = -1;
+        Y = -1;
+    }
+    public my_Vector2(int X, int Y)
+    {
+        this.X = X;
+        this.Y = Y;
+    }
+}
+
+public class RoleConfig
+{
+    public Vector2Int StoreSize;
+}
 
 public class DataContainer_PanelCellGameArchive
 {
@@ -39,7 +70,7 @@ public class DataContainer_CellRole
 {
     public E_RoleName e_RoleName = E_RoleName.Crusader;
     public int IndexExpedition = -1;
-    public string Name = "Town";
+    public string Name = "LuoLiKong";
     public int NowLevel = 0;
     //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
     public int MaxLevel = 0;
@@ -47,6 +78,7 @@ public class DataContainer_CellRole
     public int NowSanity = 0;
     public int MaxSanity = 0;
     public int LimitToSanityExplosion = 0;
+    public List<List<DataContainer_CellItem>> ListItem = new();
 
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
@@ -63,6 +95,16 @@ public class DataContainer_CellRole
         this.NowSanity = NowSanity;
         this.MaxSanity = MaxSanity;
         this.LimitToSanityExplosion = LimitToSanityExplosion;
+
+        for (int Y = 0; Y < Hot.DicRoleConfig[e_RoleName].StoreSize.y; Y++)
+        {
+            ListItem.Add(new());
+
+            for (int X = 0; X < Hot.DicRoleConfig[e_RoleName].StoreSize.x; X++)
+            {
+                ListItem[Y].Add(new());
+            }
+        }
     }
 }
 
@@ -195,15 +237,24 @@ public class DataContainer_CellTownStore
 {
     public string Name = "没有名字";    
     public E_PanelCellTownStore e_PanelCellTownStore = E_PanelCellTownStore.StoreWood;
-    public List<List<DataContainer_CellItem>> ListItem = new();       
+    public List<List<DataContainer_CellItem>> ListItem = new(); 
 
     public DataContainer_CellTownStore() { }
     public DataContainer_CellTownStore
-    (string name,
-     E_PanelCellTownStore e_SpriteNamePanelCellTownStore)
+    (string p_name, E_PanelCellTownStore p_e_PanelCellTownStore)
     {
-        Name = name;
-        e_PanelCellTownStore = e_SpriteNamePanelCellTownStore;        
+        Name = p_name;
+        e_PanelCellTownStore = p_e_PanelCellTownStore;
+
+        for (int i1 = 0; i1 < Hot.BodyDicStore[e_PanelCellTownStore].Y; i1++)
+        {
+            ListItem.Add(new());
+
+            for (int i2 = 0; i2 < Hot.BodyDicStore[e_PanelCellTownStore].X; i2++)
+            {
+                ListItem[i1].Add(new());
+            }
+        }
     }
 }
 

@@ -40,7 +40,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
     public void InitContent()
     {
-        InitInfo();
+        InitStore();
 
         (AllContent as RectTransform).sizeDelta = new Vector2(Hot.DataNowCellGameArchive.TownShop.X * Hot.BodySizeCellItem.X, 
                                                               Hot.DataNowCellGameArchive.TownShop.Y * Hot.BodySizeCellItem.Y);
@@ -132,7 +132,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
             }
         }
 
-        ChangeSize();
+        ChangeCellSize();
     }    
 
     public void Clear()
@@ -156,7 +156,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         ClearList();
     }
 
-    public override void InitInfo()
+    public void InitStore()
     {
         foreach (List<DataContainer_CellItem> listItem2 in Hot.DataNowCellGameArchive.TownShop.ListItem)
         {
@@ -164,7 +164,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
             {
                 if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
                 {
-                    NowCapacity += (int)Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * (int)Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;                    
+                    NowCapacity += Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;                    
                 }
             }
         }
@@ -176,7 +176,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         base.UpdateInfoByAdd(e_SpriteNamePanelCellItem);
 
-        NowCapacity += (int)Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * (int)Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;
+        NowCapacity += Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 
@@ -184,7 +184,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         base.UpdateInfoBySubtract(e_SpriteNamePanelCellItem);
 
-        NowCapacity -= (int)Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * (int)Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;        
+        NowCapacity -= Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;        
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 }

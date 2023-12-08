@@ -47,7 +47,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     }
 
     /// <summary>
-    /// 就是简单的创建一个面板 不会加入到PoolNowPanel
+    /// 就是简单的创建一个面板 不会加入到PoolNowPanel和PoolEsc
     /// </summary>
     /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   
     /// <typeparam name="T">面板类型</typeparam>
@@ -230,7 +230,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     public void AddCustomEventListener(GameObject control, EventTriggerType type, UnityAction<BaseEventData> callback)
     {
         EventTrigger trigger = control.AddComponent<EventTrigger>();
-        EventTrigger.Entry entry = new EventTrigger.Entry();
+        EventTrigger.Entry entry = new();
         entry.eventID = type;
         entry.callback.AddListener(callback);
         trigger.triggers.Add(entry);

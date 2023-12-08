@@ -6,20 +6,11 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOtherRoomEditor : PanelBase
+public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
 {    
-    public List<List<PanelGridRoomEditor>> Grids = new();
-    public List<List<Transform>> ItemRoot = new();
-
     public Image ImgCurrentChoose;
 
     public Transform ImgRoomBk;
-
-    public Transform CellRoomContent;
-    public Transform ImgBkContent;
-    public Transform ImgStatusContent;
-    public Transform ItemContent;
-    public Transform ComponentRoot;
 
     public Transform ChooseGridContent;
     public Transform ChooseOtherContent;
@@ -29,12 +20,6 @@ public class PanelOtherRoomEditor : PanelBase
         base.Awake();
 
         ImgRoomBk = transform.FindSonSonSon("ImgRoomBk");
-
-        CellRoomContent = transform.FindSonSonSon("CellRoomContent");
-        ImgBkContent = transform.FindSonSonSon("ImgBkContent");
-        ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");
-        ItemContent = transform.FindSonSonSon("ItemContent");
-        ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
         ChooseGridContent = transform.FindSonSonSon("ChooseGridContent");
         ChooseOtherContent = transform.FindSonSonSon("ChooseOtherContent");
@@ -50,7 +35,7 @@ public class PanelOtherRoomEditor : PanelBase
             Hot.NowEnterCellRoomEditor = null;
             ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
             Hot.e_ChoseObj = E_MapObject.None;
-            Hot.PanelOtherRoomEditor_.Clear();
+            Hot.PanelOtherRoomEditor_.ClearList();
         });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
@@ -131,13 +116,13 @@ public class PanelOtherRoomEditor : PanelBase
             {
                 if (key == Hot.MgrInput_.Add)
                 {
-                    CellRoomContent.localScale +=
+                    AllContent.localScale +=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
 
-                if (CellRoomContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
+                if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
-                    CellRoomContent.localScale -=
+                    AllContent.localScale -=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
             }
@@ -148,11 +133,11 @@ public class PanelOtherRoomEditor : PanelBase
 
     public void Init()
     {
-        InitGrid();
-        InitContent();
+        InitGrid(Hot.BodyExpeditionRoom.Y, Hot.BodyExpeditionRoom.X);
+        InitChooseContent();
     }
 
-    public void InitContent()
+    public void InitChooseContent()
     {
         foreach (E_MapObject e_Obj in Enum.GetValues(typeof(E_MapObject)))
         {
@@ -174,57 +159,6 @@ public class PanelOtherRoomEditor : PanelBase
                 });
             }
         }
-    }
-
-    public void InitGrid()
-    {
-        for (int i1 = 0; i1 < Hot.BodyExpeditionRoom.Y; i1++)
-        {
-            int tempi1 = i1;
-
-            Grids.Add(new());
-            ItemRoot.Add(new());
-
-            GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj1.transform.SetParent(ItemContent, false);
-            GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
-            glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.cellSize = new(Hot.BodySizeGridExpeditionMap.X, Hot.BodySizeGridExpeditionMap.Y);
-            glg.constraintCount = 1;
-            glg.childAlignment = TextAnchor.MiddleCenter;
-
-            for (int i2 = 0; i2 < Hot.BodyExpeditionRoom.X; i2++)
-            {
-                int tempi2 = i2;
-
-                Grids[tempi1].Add(new());
-
-                GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-                obj2.transform.SetParent(obj1.transform, false);
-
-                ItemRoot[tempi1].Add(obj2.transform);
-
-                Hot.MgrUI_.CreatePanel<PanelGridRoomEditor>(false, "/PanelGridRoomEditor",
-                (panel) =>
-                {
-                    Grids[tempi1][tempi2] = panel;
-
-                    panel.transform.SetParent(ComponentRoot, false);
-                    panel.ImgBk.transform.SetParent(ImgBkContent, false);
-                    panel.ImgStatus.transform.SetParent(ImgStatusContent, false);
-
-                    panel.Init(tempi2, tempi1);
-                });
-            }
-        }
-    }
-
-    public void ChangeCurrentChoose(E_MapObject e_MapObject)
-    {
-        Hot.e_ChoseObj = e_MapObject;
-        ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
-        ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodySizeGridExpeditionMap.Y);
     }
 
     public void LoadRoomConfig(List<List<PanelCellGridRoomEditorConfig>> map)
@@ -257,13 +191,21 @@ public class PanelOtherRoomEditor : PanelBase
                 }
             }
         }
-    }        
+    }
 
-    public void Clear()
+    public void ChangeCurrentChoose(E_MapObject e_MapObject)
     {
-        foreach (List<Transform> list in ItemRoot)
+        Hot.e_ChoseObj = e_MapObject;
+        ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
+        ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta =
+            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodySizeGridExpeditionMap.Y);
+    }
+
+    public override void ClearList()
+    {
+        foreach (var list in ItemRoot)
         {
-            foreach (Transform item in list)
+            foreach (var item in list)
             {
                 if (item.childCount > 0)
                 {
@@ -272,9 +214,9 @@ public class PanelOtherRoomEditor : PanelBase
             }
         }
 
-        foreach (List<PanelGridRoomEditor> list in Grids)
+        foreach (var list in Grids)
         {
-            foreach (PanelGridRoomEditor item in list)
+            foreach (var item in list)
             {
                 item.CellRoomEditor = null;
                 item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");

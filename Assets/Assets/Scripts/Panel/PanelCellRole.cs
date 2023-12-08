@@ -99,7 +99,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
                 (panel) =>
                 {
-                    panel.NowRole = this;
+                    panel.IndexListRole = Index;
                     panel.BtnDismiss.SetActive(true);
                 });
                 break;

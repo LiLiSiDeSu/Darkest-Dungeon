@@ -30,11 +30,10 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
         switch (controlname)
         {
             case "BtnRolePortraitCanDrag":                
-                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Role.Index]);
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
                 (panel) =>
                 {
-                    panel.NowRole = Role;
+                    panel.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Role.Index]);
                     panel.BtnDismiss.SetActive(true);
                 });
                 break;
@@ -86,7 +85,6 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 //从RootContent和RootContent里的替换
                 if (Hot.NowEnterExpeditionRolePrepareRoot.transform.childCount > 0)
                 {
-                    Debug.Log("从RootContent和RootContent里的替换");
                     PanelCellRolePortraitCanDrag beReplace = Hot.NowEnterExpeditionRolePrepareRoot.transform.GetComponentInChildren<PanelCellRolePortraitCanDrag>();
                     beReplace.transform.SetParent(Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot.transform, false);
                     beReplace.ExpeditionRolePrepareRoot = Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot;
@@ -96,7 +94,6 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 //从RootContent拖到RootContent里空的Root下
                 else
                 {
-                    Debug.Log("从RootContent拖到RootContent里空的Root下");
                     ;
                 }
 
@@ -110,7 +107,6 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 //从RoleList和RootContent里的替换
                 if (Hot.NowEnterExpeditionRolePrepareRoot.transform.childCount > 0)
                 {
-                    Debug.Log("从RoleList和RootContent里的替换");
                     PanelCellRolePortraitCanDrag beReplace = Hot.NowEnterExpeditionRolePrepareRoot.transform.GetComponentInChildren<PanelCellRolePortraitCanDrag>();
                     beReplace.ExpeditionRolePrepareRoot = null;
                     beReplace.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
@@ -122,7 +118,6 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 //从RoleList拖到空的ExpeditionRolePrepareRoot
                 else
                 {
-                    Debug.Log("从RoleList拖到空的ExpeditionRolePrepareRoot");
                     ;
                 }
 

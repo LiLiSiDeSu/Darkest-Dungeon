@@ -86,7 +86,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
                     PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;                    
 
-                    PanelTownItem_.InitInfo();
+                    PanelTownItem_.InitStore();
                     PanelTownItem_.InitContent();
 
                     Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,

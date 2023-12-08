@@ -190,6 +190,7 @@ public enum E_NowPointerLocation
     PanelRoleList,
     PanelGameArchiveChoose,
     PanelRoleGuildRecruit,
+    PanelRoleStore,
 }
 
 public enum E_ItemLocation

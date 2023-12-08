@@ -347,6 +347,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 421697885302169470}
+  - {fileID: 5999002975692642554}
   m_Father: {fileID: 643039522679746146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -534,7 +535,6 @@ RectTransform:
   - {fileID: 1472282365177827952}
   - {fileID: 9102091087630866803}
   - {fileID: 1983839117730926443}
-  - {fileID: 5999002975692642554}
   m_Father: {fileID: 6053147103750527677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -629,12 +629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d2db6a5e4245a40b7d029d3d73c295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowCapacity: 0
   AllContent: {fileID: 0}
   ImgBkContent: {fileID: 0}
   ImgStatusContent: {fileID: 0}
-  ImgItemContent: {fileID: 0}
+  ItemContent: {fileID: 0}
   ComponentRoot: {fileID: 0}
+  NowCapacity: 0
   IptName: {fileID: 0}
   PanelCellTownStore_: {fileID: 0}
 --- !u!1 &6599678607070381759
@@ -760,11 +760,11 @@ Transform:
   m_GameObject: {fileID: 6854375831514347881}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 58.28903, y: 181.74004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 643039522679746146}
+  m_Father: {fileID: 1983839117730926443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6895417437547377240
 GameObject:

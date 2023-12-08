@@ -6,14 +6,11 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOtherMiniMapEditor : PanelBase
+public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
 {
     public string PathFolder;
 
     public my_Vector2 EntrancePos = my_Vector2.m_One;
-
-    public List<List<PanelGridMiniMapEditor>> Grids = new();
-    public List<List<Transform>> ItemRoot = new();
 
     public Image ImgCurrentChoose;
 
@@ -27,12 +24,6 @@ public class PanelOtherMiniMapEditor : PanelBase
     public Transform CellHallScrollView;
     public Transform CellHallContent;
 
-    public Transform AllContent;
-    public Transform ImgBkContent;
-    public Transform ImgStatusContent;
-    public Transform ItemContent;
-    public Transform ComponentRoot;
-
     public Transform RootPanelChangeMapSize;
     public InputField IptChangeX;
     public InputField IptChangeY;
@@ -42,6 +33,37 @@ public class PanelOtherMiniMapEditor : PanelBase
         base.Awake();
 
         PathFolder = "/MapTemplet";
+
+        ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
+        ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+
+        IptFileName = transform.FindSonSonSon("IptFileName").GetComponent<InputField>();
+        IptWidth = transform.FindSonSonSon("IptWidth").GetComponent<InputField>();
+        IptHeight = transform.FindSonSonSon("IptHeight").GetComponent<InputField>();
+        IptLoad = transform.FindSonSonSon("IptLoad").GetComponent<InputField>();
+
+        transform.FindSonSonSon("ImgSave").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgGenerate").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgLoad").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgClearMap").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+
+        CellRoomScrollView = transform.FindSonSonSon("CellRoomScrollView");
+        CellHallScrollView = transform.FindSonSonSon("CellHallScrollView");
+        CellRoomContent = transform.FindSonSonSon("CellRoomContent");
+        CellHallContent = transform.FindSonSonSon("CellHallContent");
+
+        RootPanelChangeMapSize = transform.FindSonSonSon("RootPanelChangeMapSize");
+        IptChangeX = transform.FindSonSonSon("IptChangeX").GetComponent<InputField>();
+        IptChangeY = transform.FindSonSonSon("IptChangeY").GetComponent<InputField>();
+        transform.FindSonSonSon("ImgChangeMapSize").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+
+        InitChooseContent();
+
+        CellHallScrollView.gameObject.SetActive(false);
+        CellRoomScrollView.gameObject.SetActive(false);
+        RootPanelChangeMapSize.gameObject.SetActive(false);
+        IptChangeX.text = "0";
+        IptChangeY.text = "0";
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
@@ -121,43 +143,6 @@ public class PanelOtherMiniMapEditor : PanelBase
                 }
             }
         });
-
-        ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
-        ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-
-        IptFileName = transform.FindSonSonSon("IptFileName").GetComponent<InputField>();
-        IptWidth = transform.FindSonSonSon("IptWidth").GetComponent<InputField>();
-        IptHeight = transform.FindSonSonSon("IptHeight").GetComponent<InputField>();
-        IptLoad = transform.FindSonSonSon("IptLoad").GetComponent<InputField>();
-
-        transform.FindSonSonSon("ImgSave").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgGenerate").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgLoad").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgClearMap").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-
-        CellRoomScrollView = transform.FindSonSonSon("CellRoomScrollView");
-        CellHallScrollView = transform.FindSonSonSon("CellHallScrollView");
-        CellRoomContent = transform.FindSonSonSon("CellRoomContent");
-        CellHallContent = transform.FindSonSonSon("CellHallContent");
-
-        AllContent = transform.FindSonSonSon("AllContent");
-        ImgBkContent = transform.FindSonSonSon("ImgBkContent");
-        ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");
-        ItemContent = transform.FindSonSonSon("ItemContent");
-        ComponentRoot = transform.FindSonSonSon("ComponentRoot");
-
-        RootPanelChangeMapSize = transform.FindSonSonSon("RootPanelChangeMapSize");
-        IptChangeX = transform.FindSonSonSon("IptChangeX").GetComponent<InputField>();
-        IptChangeY = transform.FindSonSonSon("IptChangeY").GetComponent<InputField>();
-        transform.FindSonSonSon("ImgChangeMapSize").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-
-        InitChooseContent();
-
-        CellHallScrollView.gameObject.SetActive(false);
-        CellRoomScrollView.gameObject.SetActive(false);
-        RootPanelChangeMapSize.gameObject.SetActive(false);
-        IptChangeX.text = "0";
-        IptChangeY.text = "0";
     }
 
     protected override void Button_OnClick(string controlname)
@@ -601,8 +586,7 @@ public class PanelOtherMiniMapEditor : PanelBase
             Destroy(item.gameObject);
         }
 
-        Grids.Clear();
-        ItemRoot.Clear();
+        base.ClearList();
     }
 
     public void Save()
@@ -656,32 +640,5 @@ public class PanelOtherMiniMapEditor : PanelBase
         }
 
         Hot.MgrJson_.Save(MapData, PathFolder + "/Editor", "/" + IptFileName.text);
-    }
-
-    public void ChangeCellSize()
-    {
-        foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
-        {
-            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
-        }
-        foreach (GridLayoutGroup item in ImgBkContent.GetComponentsInChildren<GridLayoutGroup>())
-        {
-            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
-        }
-        foreach (GridLayoutGroup item in ImgStatusContent.GetComponentsInChildren<GridLayoutGroup>())
-        {
-            item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
-        }
-
-        foreach (List<Transform> listItem in ItemRoot)
-        {
-            foreach (Transform item in listItem)
-            {
-                if (item.childCount > 0)
-                {
-                    item.GetComponentInChildren<PanelCellItem>().ChangeSize();
-                }
-            }
-        }
     }
 }

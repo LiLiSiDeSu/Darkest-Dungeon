@@ -39,6 +39,12 @@ public static class Hot
         130
     };
 
+    public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
+    {
+        { E_RoleName.LiLiSi, new() { StoreSize = new(10, 7) } },
+        { E_RoleName.Crusader, new() { StoreSize = new(10, 9) } },
+    };
+
     #region Body
 
     public static my_Vector2 BodyExpeditionRoom = new(48, 18);
@@ -178,6 +184,10 @@ public static class Hot
 
     #region Expedition
 
+    public static PanelExpeditionRoleDetails PanelExpeditionRoleDetails_
+    {
+        get { return MgrUI_.GetPanel<PanelExpeditionRoleDetails>("PanelExpeditionRoleDetails"); }
+    }
     public static PanelExpeditionRoom PanelExpeditionRoom_
     {
         get { return MgrUI_.GetPanel<PanelExpeditionRoom>("PanelExpeditionRoom"); }

@@ -4,24 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelGridTownItem : PanelBase
+public class PanelGridTownItem : PanelBaseGrid
 {
-    public int X;
-    public int Y;
-
-    public Image ImgBk;
-    public Image ImgStatus;
-
     public PanelCellItem Item;
 
     protected override void Awake()
     {
         base.Awake();
-
-        ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-
-        ImgBk.alphaHitTestMinimumThreshold = 0.2f;
 
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, EventTriggerType.PointerEnter,
         (param) =>

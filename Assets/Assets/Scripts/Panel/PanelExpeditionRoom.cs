@@ -6,30 +6,15 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelExpeditionRoom : PanelBase
+public class PanelExpeditionRoom : PanelBaseVector2<PanelGridExpeditionRoom>
 {
-    public List<List<PanelGridExpeditionRoom>> Grids = new();
-    public List<List<Transform>> ItemRoot = new();
-
     public Transform ImgRoomBk;
-
-    public Transform CellRoomContent;
-    public Transform ImgBkContent;
-    public Transform ImgStatusContent;
-    public Transform ItemContent;
-    public Transform ComponentRoot;
 
     protected override void Awake()
     {
         base.Awake();
 
         ImgRoomBk = transform.FindSonSonSon("ImgRoomBk");
-
-        CellRoomContent = transform.FindSonSonSon("CellRoomContent");
-        ImgBkContent = transform.FindSonSonSon("ImgBkContent");
-        ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");
-        ItemContent = transform.FindSonSonSon("ItemContent");
-        ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
         (key) =>
@@ -56,67 +41,30 @@ public class PanelExpeditionRoom : PanelBase
             {
                 if (key == Hot.MgrInput_.Add)
                 {
-                    CellRoomContent.localScale +=
+                    AllContent.localScale +=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
 
-                if (CellRoomContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
+                if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
-                    CellRoomContent.localScale -=
+                    AllContent.localScale -=
                         new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
             }
         });
 
-        Init();
-    }    
-
-    public void Init()
-    {
-        for (int i1 = 0; i1 < Hot.BodyExpeditionRoom.Y; i1++)
+        Hot.MgrUI_.CreatePanel<PanelExpeditionRoleDetails>(true, "/PanelExpeditionRoleDetails",
+        (panel) =>
         {
-            int tempi1 = i1;
+            panel.transform.SetParent(transform, false);
+        });
 
-            Grids.Add(new());
-            ItemRoot.Add(new());
-
-            GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj1.transform.SetParent(ItemContent, false);
-            GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
-            glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.cellSize = new(Hot.BodySizeGridExpeditionMap.X, Hot.BodySizeGridExpeditionMap.Y);
-            glg.constraintCount = 1;
-            glg.childAlignment = TextAnchor.MiddleCenter;
-
-            for (int i2 = 0; i2 < Hot.BodyExpeditionRoom.X; i2++)
-            {
-                int tempi2 = i2;
-
-                Grids[tempi1].Add(new());
-
-                GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-                obj2.transform.SetParent(obj1.transform, false);
-
-                ItemRoot[tempi1].Add(obj2.transform);
-
-                Hot.MgrUI_.CreatePanel<PanelGridExpeditionRoom>(false, "/PanelGridExpeditionRoom",
-                (panel) =>
-                {
-                    Grids[tempi1][tempi2] = panel;
-
-                    panel.transform.SetParent(ComponentRoot, false);
-                    panel.ImgBk.transform.SetParent(ImgBkContent, false);
-                    panel.ImgStatus.transform.SetParent(ImgStatusContent, false);
-
-                    panel.Init(tempi2, tempi1);
-                });
-            }
-        }
-    }
+        InitGrid(Hot.BodyExpeditionRoom.Y, Hot.BodyExpeditionRoom.X);
+    }    
 
     public void LoadRoomData(int p_x, int p_y)
     {
-        ClearRoom();
+        ClearList();
 
         List<List<DataContainer_CellExpeditionMapGrid>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
 
@@ -150,11 +98,11 @@ public class PanelExpeditionRoom : PanelBase
         }
     }
 
-    public void ClearRoom()
+    public override void ClearList()
     {
-        foreach (List<PanelGridExpeditionRoom> list in Grids)
+        foreach (var list in Grids)
         {
-            foreach (PanelGridExpeditionRoom item in list)
+            foreach (var item in list)
             {
                 if (item.CellExpeditionRoom != null)
                 {

@@ -3,22 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelGridRoomEditor : PanelBase
+public class PanelGridRoomEditor : PanelBaseGrid
 {
-    public int X;
-    public int Y;
-
-    public Image ImgBk;
-    public Image ImgStatus;
-
     public PanelCellRoomEditor CellRoomEditor;
 
     protected override void Awake()
     {
         base.Awake();
-
-        ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
 
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
@@ -125,12 +116,6 @@ public class PanelGridRoomEditor : PanelBase
                 }
                 break;
         }
-    }
-
-    public void Init(int x, int y)
-    {
-        X = x; 
-        Y = y;
     }
 
     public bool JudgeCanPut()
