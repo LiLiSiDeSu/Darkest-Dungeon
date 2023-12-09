@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelBaseVector2Store : PanelBaseVector2<PanelGridTownItem>
+public class PanelBaseVector2Store : PanelBaseVector2<PanelCellItem, PanelGridTownItem>
 {
     public int NowCapacity = 0;
 
-    public virtual void UpdateInfoByAdd(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem) { }    
+    public virtual void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
+    {
+        NowCapacity += Hot.BodyDicItem[p_e_Item].X * Hot.BodyDicItem[p_e_Item].Y;        
+    }
 
-    public virtual void UpdateInfoBySubtract(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem) { }
+    public virtual void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
+    {
+        NowCapacity -= Hot.BodyDicItem[p_e_Item].X * Hot.BodyDicItem[p_e_Item].Y;        
+    }
 }

@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
              IPointerEnterHandler, IPointerExitHandler
-{    
+{
+    public E_RoleLocation e_RoleLocation;
+
     private Image ImgBk;
     public Image ImgRolePortrait;
     public Transform Root;
@@ -73,7 +75,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
                 Hot.DataNowCellGameArchive.ListCellRole.
                     Insert(panel.Index, Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[panel.Index]);
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[panel.Index], E_RoleLocation.GuildRecruit);
 
                 for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count - 1; i++)
                 {
@@ -122,11 +124,13 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
         switch (controlname)
         {
             case "BtnRolePortrait":                
-                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);                
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails", 
                 (panel) =>
                 {
+                    panel.IndexRole = Index;
+                    panel.e_RoleLocation = e_RoleLocation;
                     panel.BtnDismiss.SetActive(false);
+                    panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
                 });                
                 break;
         }

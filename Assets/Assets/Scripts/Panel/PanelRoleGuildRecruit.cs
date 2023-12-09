@@ -44,9 +44,10 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
             (false, "/PanelCellRoleRecruit",
             (panel) =>
             {
-                panel.Index = tempi;                
-                GameObject obj =
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
+                panel.Index = tempi;
+                panel.e_RoleLocation = E_RoleLocation.GuildRecruit;
+
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);

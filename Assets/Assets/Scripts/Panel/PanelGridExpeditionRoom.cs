@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelGridExpeditionRoom : PanelBaseGrid
+public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
 {
-    public PanelCellExpeditionRoom CellExpeditionRoom;
-
     protected override void Awake()
     {
         base.Awake();

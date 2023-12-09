@@ -81,17 +81,19 @@ public class PanelTownItem : PanelBaseVector2Store,
             Show();
     }
 
-    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
     {
-        NowCapacity += Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;
-        PanelCellTownStore_.TxtCapacity.text = 
+        base.UpdateInfoByAdd(p_e_Item);
+
+        PanelCellTownStore_.TxtCapacity.text =
             NowCapacity + " / " + Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X * Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y;
     }
 
-    public override void UpdateInfoBySubtract(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
     {
-        NowCapacity -= Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;        
-        PanelCellTownStore_.TxtCapacity.text = 
+        base.UpdateInfoByReduce(p_e_Item);
+
+        PanelCellTownStore_.TxtCapacity.text =
             NowCapacity + " / " + Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X * Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y;
     }
 
@@ -143,17 +145,17 @@ public class PanelTownItem : PanelBaseVector2Store,
 
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
-                        PanelCellItem_.e_Location = E_ItemLocation.TownItem;
-                        PanelCellItem_.e_SpriteNamePanelCellItem =
+                        PanelCellItem_.e_Location = E_ItemLocation.PanelTownItem;
+                        PanelCellItem_.e_Item =
                             Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
 
-                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
+                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_Item);
 
-                        PanelCellItem_.ChangeSize();
+                        PanelCellItem_.ChangeCellSize();
 
-                        for (int i1 = 0; i1 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicItem[PanelCellItem_.e_Item].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicItem[PanelCellItem_.e_Item].X; i2++)
                             {
                                 Grids[tempi1 + i1][tempi2 + i2].Item = PanelCellItem_;
                             }

@@ -4,25 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellMiniMapEditor : PanelBase,
+public class PanelCellMiniMapEditor : PanelBaseCellVector2,
              IPointerEnterHandler, IPointerExitHandler
 {    
-    public Image ImgCellMiniMapEditor;
-    public Image ImgStatus;
-
-    public PanelGridMiniMapEditor RootGrid = new();
+    public PanelBaseGrid<PanelCellMiniMapEditor> RootGrid = new();
 
     public List<List<PanelCellGridRoomEditorConfig>> Map = new();
 
     public E_CellMiniMapRoom e_Room = E_CellMiniMapRoom.None;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        ImgCellMiniMapEditor = transform.FindSonSonSon("ImgCellMiniMapEditor").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-    }
 
     protected override void Button_OnClick(string controlname)
     {
@@ -38,7 +27,7 @@ public class PanelCellMiniMapEditor : PanelBase,
 
                 if (Hot.ChoseCellMiniMapEditor != this)
                 {
-                    Hot.ChoseCellMiniMapEditor.ImgCellMiniMapEditor.raycastTarget = true;
+                    Hot.ChoseCellMiniMapEditor.ImgItem.raycastTarget = true;
                     Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                     Hot.ChoseCellMiniMapEditor = this;
                 }
@@ -50,7 +39,7 @@ public class PanelCellMiniMapEditor : PanelBase,
                 }
 
                 Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
-                Hot.ChoseCellMiniMapEditor.ImgCellMiniMapEditor.raycastTarget = false;
+                Hot.ChoseCellMiniMapEditor.ImgItem.raycastTarget = false;
                 break;
         }
     }
@@ -72,7 +61,7 @@ public class PanelCellMiniMapEditor : PanelBase,
     public void Init(E_CellMiniMapRoom p_e_room)
     {
         e_Room = p_e_room;
-        ImgCellMiniMapEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
+        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
         ChangeRoomSize();
 
         InitRoomMap();
@@ -94,7 +83,7 @@ public class PanelCellMiniMapEditor : PanelBase,
 
     public void ChangeRoomSize()
     {
-        ImgCellMiniMapEditor.GetComponent<RectTransform>().sizeDelta =
+        ImgItem.GetComponent<RectTransform>().sizeDelta =
             new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
             new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);

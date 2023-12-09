@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelExpeditionRoom : PanelBaseVector2<PanelGridExpeditionRoom>
+public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, PanelGridExpeditionRoom>
 {
     public Transform ImgRoomBk;
 
@@ -64,7 +64,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelGridExpeditionRoom>
 
     public void LoadRoomData(int p_x, int p_y)
     {
-        ClearList();
+        ClearItem();
 
         List<List<DataContainer_CellExpeditionMapGrid>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
 
@@ -89,25 +89,10 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelGridExpeditionRoom>
                         {
                             for (int X = 0; X < Hot.BodyDicMapObject[panel.e_Obj].X; X++)
                             {
-                                Grids[tempY + Y][tempX + X].CellExpeditionRoom = panel;
+                                Grids[tempY + Y][tempX + X].Item = panel;
                             }
                         }
                     });
-                }
-            }
-        }
-    }
-
-    public override void ClearList()
-    {
-        foreach (var list in Grids)
-        {
-            foreach (var item in list)
-            {
-                if (item.CellExpeditionRoom != null)
-                {
-                    Destroy(item.CellExpeditionRoom.gameObject);
-                    item.CellExpeditionRoom = null;
                 }
             }
         }

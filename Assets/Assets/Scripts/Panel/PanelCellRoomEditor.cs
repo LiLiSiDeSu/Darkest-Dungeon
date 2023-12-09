@@ -1,26 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRoomEditor : PanelBase,
+public class PanelCellRoomEditor : PanelBaseCellVector2,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public Image ImgCellRoomEditor;
-    public Image ImgStatus;
-
-    public PanelGridRoomEditor RootGrid = new();
+    public PanelBaseGrid<PanelCellRoomEditor> RootGrid = new();
 
     public E_MapObject e_Obj = E_MapObject.None;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        ImgCellRoomEditor = transform.FindSonSonSon("ImgCellRoomEditor").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-    }
 
     #region EventSystem
 
@@ -73,16 +63,24 @@ public class PanelCellRoomEditor : PanelBase,
         }
     }
 
-    public void Init(E_MapObject p_e_Obj, PanelGridRoomEditor p_rootGrid)
+    public void Init(E_MapObject p_e_Obj, PanelBaseGrid<PanelCellRoomEditor> p_rootGrid)
     {
         e_Obj = p_e_Obj;
         RootGrid = p_rootGrid;
 
-        ImgCellRoomEditor.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);
+        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);
 
-        ImgCellRoomEditor.GetComponent<RectTransform>().sizeDelta = 
-            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
+        ImgItem.GetComponent<RectTransform>().sizeDelta = 
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGrid.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGridExpeditionMap.Y);
+            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGrid.Y);
+    }
+
+    public override void ChangeCellSize()
+    {
+        base.ChangeCellSize();
+
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
     }
 }

@@ -21,6 +21,8 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
     public List<GameObject> ListImgCellSanity = new();
 
+    public DataContainer_CellRole NowRole;
+
     /// <summary>
     /// 压力极限前的压力图标 在Awake里面会提前创建
     /// </summary>
@@ -51,6 +53,31 @@ public class PanelRoleDetails : PanelBaseRoleStore
             ListImgCellSanity[i].GetComponent<Image>().sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
             ListImgCellSanity[i].SetActive(false);
         }
+
+        Hot.CenterEvent_.AddEventListener("Esc" + "PanelRoleDetails",
+        () =>
+        {
+            IndexRole = -1;
+            e_RoleLocation = E_RoleLocation.None;
+            NowRole = null;
+            TxtCapacity.text = "";
+        });
+
+        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        (key) =>
+        {
+            if (Hot.PoolNowPanel_.ContainPanel("PanelRoleDetails"))
+            {
+                if (key == Hot.MgrInput_.Add)
+                {
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                }
+                else if (key == Hot.MgrInput_.Reduce)
+                {
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
+            }
+        });
     }
 
     protected override void Button_OnClick(string controlname)
@@ -60,99 +87,67 @@ public class PanelRoleDetails : PanelBaseRoleStore
         switch (controlname)
         {
             case "BtnDismiss":
-                Hot.PanelRoleList_.RemoveRole(IndexListRole);
+                Hot.PanelRoleList_.RemoveRole(IndexRole);
                 Hot.MgrUI_.HidePanel(false, gameObject, "PanelRoleDetails");
                 break;
         }
     }
 
-    public void UpdateContent(DataContainer_CellRole Role)
+    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
     {
-        (AllContent as RectTransform).sizeDelta =
-            new(Hot.DicRoleConfig[Role.e_RoleName].StoreSize.x * Hot.BodySizeCellItem.X,
-                Hot.DicRoleConfig[Role.e_RoleName].StoreSize.y * Hot.BodySizeCellItem.Y);
+        base.UpdateInfoByAdd(p_e_Item);
 
-        transform.FindSonSonSon("ImgBkContent").GetComponent<GridLayoutGroup>().constraintCount = Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X;
-        transform.FindSonSonSon("ImgStatusContent").GetComponent<GridLayoutGroup>().constraintCount = Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X;
-
-        for (int i1 = 0; i1 < Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y; i1++)
-        {
-            int tempi1 = i1;
-
-            Grids.Add(new());
-            ItemRoot.Add(new());
-
-            GameObject obj1 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-            obj1.transform.SetParent(ItemContent, false);
-            GridLayoutGroup glg = obj1.AddComponent<GridLayoutGroup>();
-            glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            glg.constraintCount = 1;
-            glg.childAlignment = TextAnchor.MiddleCenter;
-
-            for (int i2 = 0; i2 < Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X; i2++)
-            {
-                int tempi2 = i2;
-
-                Grids[tempi1].Add(new());
-
-                GameObject obj2 = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-                obj2.transform.SetParent(obj1.transform, false);
-
-                ItemRoot[tempi1].Add(obj2.transform);
-
-                Hot.MgrUI_.CreatePanel<PanelGridTownItem>(false, "/PanelGridTownItem",
-                (PanelCellTownItemGrid_) =>
-                {
-                    Grids[tempi1][tempi2] = PanelCellTownItemGrid_;
-
-                    PanelCellTownItemGrid_.transform.SetParent(ComponentRoot, false);
-                    PanelCellTownItemGrid_.ImgBk.transform.SetParent(ImgBkContent, false);
-                    PanelCellTownItemGrid_.ImgStatus.transform.SetParent(ImgStatusContent, false);
-
-                    PanelCellTownItemGrid_.X = tempi2;
-                    PanelCellTownItemGrid_.Y = tempi1;
-                });
-            }
-        }
-
-        LoadData();
-
-        ChangeCellSize();
+        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
     }
 
-    public void LoadData()
+    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
     {
-        for (int i1 = 0; i1 < Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y; i1++)
+        base.UpdateInfoByReduce(p_e_Item);
+
+        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
+    }
+
+    public void UpdateContent(DataContainer_CellRole Role)
+    {
+        ClearList();
+        
+        InitGrid(Role.ListItem.Count, Role.ListItem[0].Count);
+
+        LoadData(Role);        
+    }
+
+    public void LoadData(DataContainer_CellRole Role)
+    {
+        for (int i1 = 0; i1 < Role.ListItem.Count; i1++)
         {
             int tempi1 = i1;
 
-            for (int i2 = 0; i2 < Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X; i2++)
+            for (int i2 = 0; i2 < Role.ListItem[0].Count; i2++)
             {
                 int tempi2 = i2;
 
-                if (Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (Role.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
-                    (PanelCellItem_) =>
+                    (panel) =>
                     {
-                        PanelCellItem_.transform.SetParent(ItemRoot[tempi1][tempi2], false);
-                        PanelCellItem_.transform.localPosition = Vector3.zero;
+                        panel.transform.SetParent(ItemRoot[tempi1][tempi2], false);
+                        panel.transform.localPosition = new(-20, 20);
 
-                        PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
-                        PanelCellItem_.MemberOf = this;
-                        PanelCellItem_.e_Location = E_ItemLocation.TownItem;
-                        PanelCellItem_.e_SpriteNamePanelCellItem =
-                            Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
+                        panel.RootGrid = Grids[tempi1][tempi2];
+                        panel.MemberOf = this;
+                        panel.e_Location = E_ItemLocation.PanelTownItem;
+                        panel.e_Item = Role.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
 
-                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
+                        panel.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + panel.e_Item);
 
-                        PanelCellItem_.ChangeCellSize();
+                        panel.ChangeCellSize();
 
-                        for (int i1 = 0; i1 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicItem[panel.e_Item].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicItem[panel.e_Item].X; i2++)
                             {
-                                Grids[tempi1 + i1][tempi2 + i2].Item = PanelCellItem_;
+                                Grids[tempi1 + i1][tempi2 + i2].Item = panel;
                             }
                         }
                     });
@@ -161,8 +156,8 @@ public class PanelRoleDetails : PanelBaseRoleStore
         }
     }
 
-    public void UpdateInfo(DataContainer_CellRole Role)
-    {        
+    public void UpdateInfoByGuildRecruit(DataContainer_CellRole Role)
+    {
         ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + Role.e_RoleName + "Await");
 
         TxtRoleName.text = Role.Name;
@@ -173,7 +168,23 @@ public class PanelRoleDetails : PanelBaseRoleStore
         UpdateLevelInfo(Role);
         UpdateSanityInfo(Role);
         UpdateExperience(Role);
-        UpdateContent(Role);
+    }
+
+    public void UpdateInfo(DataContainer_CellRole p_Role)
+    {        
+        NowRole = p_Role;
+
+        ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + p_Role.e_RoleName + "Await");
+
+        TxtRoleName.text = p_Role.Name;
+        TxtRoleLevel.text = p_Role.NowLevel.ToString();
+        TxtSanityDetails.text = p_Role.NowSanity + " / " + p_Role.MaxSanity;
+
+        UpdateSanityExplosionLimit(p_Role);
+        UpdateLevelInfo(p_Role);
+        UpdateSanityInfo(p_Role);
+        UpdateExperience(p_Role);
+        UpdateContent(p_Role);
     }
 
     public void UpdateSanityExplosionLimit(DataContainer_CellRole Role)

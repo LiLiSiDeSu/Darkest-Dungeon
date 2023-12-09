@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelBaseVector2<T> : PanelBase
-       where T : PanelBaseGrid, new()
+public class PanelBaseVector2<T0, T1> : PanelBase
+       where T0 : PanelBaseCellVector2, new()
+       where T1 : PanelBaseGrid<T0>, new()
 {
     public Transform AllContent;
     public Transform ImgBkContent;
@@ -12,7 +15,7 @@ public class PanelBaseVector2<T> : PanelBase
     public Transform ItemContent;
     public Transform ComponentRoot;
 
-    public List<List<T>> Grids = new();
+    public List<List<PanelBaseGrid<T0>>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
 
     protected override void Awake()
@@ -26,7 +29,7 @@ public class PanelBaseVector2<T> : PanelBase
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
     }
 
-    public void InitGrid(int Y, int X)
+    public virtual void InitGrid(int Y, int X)
     {
         (AllContent as RectTransform).sizeDelta = new(X * Hot.BodySizeCellMinimap.X, Y * Hot.BodySizeCellMinimap.Y);
 
@@ -51,7 +54,7 @@ public class PanelBaseVector2<T> : PanelBase
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
-                Hot.MgrUI_.CreatePanel<T>(false, "/" + typeof(T).Name,
+                Hot.MgrUI_.CreatePanel<T1>(false, "/" + typeof(T1).Name,
                 (panel) =>
                 {
                     Grids[tempiY][tempiX] = panel;
@@ -67,7 +70,7 @@ public class PanelBaseVector2<T> : PanelBase
         ChangeCellSize();
     }
 
-    public void ChangeCellSize()
+    public virtual void ChangeCellSize()
     {
         foreach (GridLayoutGroup item in ItemContent.GetComponentsInChildren<GridLayoutGroup>())
         {
@@ -82,13 +85,36 @@ public class PanelBaseVector2<T> : PanelBase
             item.cellSize = new(Hot.BodySizeCellMinimap.X, Hot.BodySizeCellMinimap.Y);
         }
 
-        foreach (List<Transform> listItem in ItemRoot)
+        foreach (var list in Grids)
         {
-            foreach (Transform item in listItem)
+            foreach (var item in list)
             {
-                if (item.childCount > 0)
+                item.Item?.ChangeCellSize();
+            }
+        }
+    }
+
+    public virtual void ClearImgStatus()
+    {
+        foreach (var list in Grids)
+        {
+            foreach (var item in list)
+            {
+                item.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            }
+        }
+    }
+
+    public virtual void ClearItem()
+    {
+        foreach (var list in Grids)
+        {
+            foreach (var item in list)
+            {
+                if (item.Item != null)
                 {
-                    item.GetComponentInChildren<PanelCellItem>().ChangeSize();
+                    Destroy(item.Item.gameObject);
+                    item.Item = null;
                 }
             }
         }
@@ -96,6 +122,26 @@ public class PanelBaseVector2<T> : PanelBase
 
     public virtual void ClearList()
     {
+        foreach (var list in Grids)
+        {
+            foreach (var item in list)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+        foreach (var item in ImgBkContent.GetComponentsInChildren<ContentStep>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in ImgStatusContent.GetComponentsInChildren<ContentStep>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in ItemContent.GetComponentsInChildren<ContentStep>())
+        {
+            Destroy(item.gameObject);
+        }
+
         Grids.Clear();
         ItemRoot.Clear();
     }

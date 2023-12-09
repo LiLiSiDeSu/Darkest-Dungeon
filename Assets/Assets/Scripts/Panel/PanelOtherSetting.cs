@@ -74,7 +74,7 @@ public class PanelOtherSetting : PanelBase
 
                     //清理数据
                     Hot.PanelTownStore_.Clear();
-                    Hot.PanelTownShopItem_.Clear();
+                    Hot.PanelTownShopItem_.ClearList();
                     Hot.PanelRoleList_.Clear();
                     Hot.PanelBarExpedition_.Clear();
                     Hot.PanelRoleGuildRecruit_.Clear();

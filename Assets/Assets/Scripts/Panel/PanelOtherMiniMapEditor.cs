@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
+public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, PanelGridMiniMapEditor>
 {
     public string PathFolder;
 
@@ -87,10 +89,10 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
                 if (Hot.ChoseCellMiniMapEditor != null)
                 {
                     Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-                    Hot.ChoseCellMiniMapEditor.ImgCellMiniMapEditor.raycastTarget = true;
+                    Hot.ChoseCellMiniMapEditor.ImgItem.raycastTarget = true;
                     Hot.ChoseCellMiniMapEditor = null;
 
-                    ClearGridsImgStatus();
+                    ClearImgStatus();
 
                     return;
                 }
@@ -102,7 +104,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
                     {
                         for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.NowEnterCellMiniMapEditor.e_Room].X; i2++)
                         {
-                            Hot.PanelOtherMiniMapEditor_.Grids[Hot.NowEnterCellMiniMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMiniMapEditor.RootGrid.X + i2].CellMiniMapEditor = null;
+                            Hot.PanelOtherMiniMapEditor_.Grids[Hot.NowEnterCellMiniMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMiniMapEditor.RootGrid.X + i2].Item = null;
                         }
                     }
 
@@ -118,7 +120,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
                 ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 Hot.e_ChoseRoom = E_CellMiniMapRoom.None;
 
-                ClearGridsImgStatus();
+                ClearImgStatus();
             }
         });
 
@@ -129,17 +131,11 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
             {
                 if (key == Hot.MgrInput_.Add)
                 {
-                    AllContent.localScale +=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                    AllContent.localScale +=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
                 else if (key == Hot.MgrInput_.Reduce)
                 {
-                    AllContent.localScale -=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                    AllContent.localScale -=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
                 }
             }
         });
@@ -187,7 +183,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
                 }
                 break;
             case "BtnClearMap":
-                ClearMap();
+                ClearList();
                 IptFileName.text = "";
                 IptWidth.text = "";
                 IptHeight.text = "";
@@ -362,9 +358,35 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
         (AllContent as RectTransform).sizeDelta = new(int.Parse(IptWidth.text) * Hot.BodySizeCellMinimap.X, int.Parse(IptHeight.text) * Hot.BodySizeCellMinimap.Y);
     }
 
+    public bool JudgeCanReduceY()
+    {
+        for (int i = 0; i < Grids[^1].Count; i++)
+        {
+            if (Grids[^1][i].Item != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool JudgeCanReduceX()
+    {
+        for (int i = 0; i < Grids.Count; i++)
+        {
+            if (Grids[i][^1].Item != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void GenerateGrid()
     {
-        ClearMap();
+        ClearList();
 
         (AllContent as RectTransform).sizeDelta = new(int.Parse(IptWidth.text) * Hot.BodySizeCellMinimap.X, int.Parse(IptHeight.text) * Hot.BodySizeCellMinimap.Y);
 
@@ -405,35 +427,9 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
         ChangeCellSize();
     }
 
-    public bool JudgeCanReduceY()
-    {
-        for (int i = 0; i < Grids[^1].Count; i++)
-        {
-            if (Grids[^1][i].CellMiniMapEditor != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public bool JudgeCanReduceX()
-    {
-        for (int i = 0; i < Grids.Count; i++)
-        {
-            if (Grids[i][^1].CellMiniMapEditor != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public void GenerateGridByLoadData(DataContainer_Expedition MapData)
     {
-        ClearMap();
+        ClearList();
 
         (AllContent as RectTransform).sizeDelta = new(int.Parse(IptWidth.text) * Hot.BodySizeCellMinimap.X, int.Parse(IptHeight.text) * Hot.BodySizeCellMinimap.Y);
 
@@ -502,7 +498,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
                         {
                             for (int i4 = 0; i4 < Hot.BodyDicRoom[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].X; i4++)
                             {
-                                Grids[tempi1 + i3][tempi2 + i4].CellMiniMapEditor = PanelCellMiniMapEditor_;
+                                Grids[tempi1 + i3][tempi2 + i4].Item = PanelCellMiniMapEditor_;
                             }
                         }
 
@@ -551,40 +547,9 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelGridMiniMapEditor>
         }));
     }
 
-    public void ClearGridsImgStatus()
-    {
-        foreach (List<PanelGridMiniMapEditor> list in Grids)
-        {
-            foreach (PanelGridMiniMapEditor item in list)
-            {
-                item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-            }
-        }
-    }
-
-    public void ClearMap()
+    public override void ClearList()
     {
         EntrancePos = my_Vector2.m_One;
-
-        foreach (List<PanelGridMiniMapEditor> list in Grids)
-        {
-            foreach (PanelGridMiniMapEditor item in list)
-            {
-                Destroy(item.gameObject);
-            }
-        }
-        foreach (ContentStep item in ImgBkContent.GetComponentsInChildren<ContentStep>())
-        {
-            Destroy(item.gameObject);
-        }
-        foreach (ContentStep item in ImgStatusContent.GetComponentsInChildren<ContentStep>())
-        {
-            Destroy(item.gameObject);
-        }
-        foreach (ContentStep item in ItemContent.GetComponentsInChildren<ContentStep>())
-        {
-            Destroy(item.gameObject);
-        }
 
         base.ClearList();
     }

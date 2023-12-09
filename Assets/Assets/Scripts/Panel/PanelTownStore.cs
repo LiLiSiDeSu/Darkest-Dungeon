@@ -92,7 +92,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,
                     () =>
                     {
-                        if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.TownItem)
+                        if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.PanelTownItem)
                         {
                             Hot.PanelTownStore_.CancelNowChoosedItem();
                         }
@@ -106,9 +106,9 @@ public class PanelTownStore : PanelBaseDynamicScrollView
     {
         if (Hot.NowEnterCellGridItem != null)
         {
-            for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+            for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
             {
-                for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
                 {
                     Hot.NowPanelCanStoreItem.Grids[Hot.NowEnterCellGridItem.Y + i1][Hot.NowEnterCellGridItem.X + i2].ImgStatus.sprite =
                         Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");

@@ -109,6 +109,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
             {
                 panel.Index = tempi;
                 panel.CreatePanelCellRoleCanDrag();
+
                 GameObject obj =
                     Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
@@ -117,7 +118,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi]);
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[tempi], E_RoleLocation.RoleList);
             });
 
             NowIndex++;

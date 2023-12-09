@@ -4,32 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellItem : PanelBase,
+public class PanelCellItem : PanelBaseCellVector2,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public PanelGridTownItem RootGrid = new();
+    public PanelBaseGrid<PanelCellItem> RootGrid = new();
     public PanelBaseVector2Store MemberOf = new();
-
-    public Image ImgItem;
-    public Image ImgStatus;
 
     public E_ItemLocation e_Location = E_ItemLocation.None;
 
-    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
-
-    protected override void Awake()
-    {
-        base.Awake();        
-
-        ImgItem = transform.FindSonSonSon("ImgItem").GetComponent<Image>();
-        ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-    }
+    public E_SpriteNamePanelCellItem e_Item = E_SpriteNamePanelCellItem.None;
 
     #region EventSystem接口实现
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.PanelTownShopCost_.UpdateInfo(Hot.CostDicItem[e_SpriteNamePanelCellItem]);
+        Hot.PanelTownShopCost_.UpdateInfo(Hot.CostDicItem[e_Item]);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -48,14 +37,14 @@ public class PanelCellItem : PanelBase,
             case "BtnItem":
                 if (Hot.ChoseCellItem == null)
                 {
-                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                    ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
                     Hot.ChoseCellItem = this;
                 }
                 else if (Hot.ChoseCellItem != this)
                 {
                     Hot.ChoseCellItem.ImgItem.raycastTarget = true;
-                    Hot.ChoseCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-                    ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                    Hot.ChoseCellItem.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
                     Hot.ChoseCellItem = this;
                 }
 
@@ -64,11 +53,11 @@ public class PanelCellItem : PanelBase,
         }
     }        
 
-    public void ChangeSize()
+    public override void ChangeCellSize()
     {
-        ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodySizeCellItem.X, Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y * Hot.BodySizeCellItem.Y);
-        ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodySizeCellItem.X, Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y * Hot.BodySizeCellItem.Y);
+        base.ChangeCellSize();
+
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodySizeGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodySizeGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodySizeGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodySizeGrid.Y);
     }
 }

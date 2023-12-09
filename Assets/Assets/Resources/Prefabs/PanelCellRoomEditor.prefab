@@ -50,9 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a5d4535efdb9b4494f934870c69f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RootGrid: {fileID: 0}
-  ImgCellRoomEditor: {fileID: 0}
+  Index: 0
+  ImgItem: {fileID: 0}
   ImgStatus: {fileID: 0}
+  RootGrid: {fileID: 0}
   e_Obj: 0
 --- !u!1 &5137756226077117307
 GameObject:
@@ -66,7 +67,7 @@ GameObject:
   - component: {fileID: 7108930024997607949}
   - component: {fileID: 3023879615471396034}
   m_Layer: 0
-  m_Name: ImgCellRoomEditor
+  m_Name: ImgItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

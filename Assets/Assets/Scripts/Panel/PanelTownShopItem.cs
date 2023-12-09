@@ -113,16 +113,16 @@ public class PanelTownShopItem : PanelBaseVector2Store,
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
                         PanelCellItem_.e_Location = E_ItemLocation.TownShopItem;
-                        PanelCellItem_.e_SpriteNamePanelCellItem =
+                        PanelCellItem_.e_Item =
                             Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;                        
 
-                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_SpriteNamePanelCellItem);
+                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_Item);
 
-                        PanelCellItem_.ChangeSize();
+                        PanelCellItem_.ChangeCellSize();
 
-                        for (int i1 = 0; i1 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicItem[PanelCellItem_.e_Item].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicItem[PanelCellItem_.e_SpriteNamePanelCellItem].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicItem[PanelCellItem_.e_Item].X; i2++)
                             {
                                 Grids[tempi1 + i1][tempi2 + i2].Item = PanelCellItem_;
                             }
@@ -135,25 +135,11 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         ChangeCellSize();
     }    
 
-    public void Clear()
+    public override void ClearList()
     {
         TxtCapacity.text = ""; 
 
-        foreach (List<PanelGridTownItem> list in Grids)
-        {
-            foreach (PanelGridTownItem item in list)
-            {
-                Destroy(item.ImgBk.gameObject);
-                Destroy(item.ImgStatus.gameObject);
-                Destroy(item.gameObject);
-                if (item.Item != null)
-                {
-                    Destroy(item.Item.gameObject);
-                }
-            }
-        }
-
-        ClearList();
+        base.ClearList();
     }
 
     public void InitStore()
@@ -176,15 +162,13 @@ public class PanelTownShopItem : PanelBaseVector2Store,
     {
         base.UpdateInfoByAdd(e_SpriteNamePanelCellItem);
 
-        NowCapacity += Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 
-    public override void UpdateInfoBySubtract(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
     {
-        base.UpdateInfoBySubtract(e_SpriteNamePanelCellItem);
+        base.UpdateInfoByReduce(e_SpriteNamePanelCellItem);
 
-        NowCapacity -= Hot.BodyDicItem[e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[e_SpriteNamePanelCellItem].Y;        
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 }

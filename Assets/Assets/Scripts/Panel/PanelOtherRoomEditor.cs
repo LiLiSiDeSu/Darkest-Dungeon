@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
+public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelGridRoomEditor>
 {    
     public Image ImgCurrentChoose;
 
@@ -35,7 +35,8 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
             Hot.NowEnterCellRoomEditor = null;
             ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
             Hot.e_ChoseObj = E_MapObject.None;
-            Hot.PanelOtherRoomEditor_.ClearList();
+            Hot.PanelOtherRoomEditor_.ClearImgStatus();
+            Hot.PanelOtherRoomEditor_.ClearItem();
         });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
@@ -78,7 +79,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
                         for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.NowEnterCellRoomEditor.e_Obj].X; i2++)
                         {
                             Hot.NowEditorDependency.Map[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
-                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].CellRoomEditor = null;
+                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].Item = null;
                             Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
                                 Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                         }
@@ -116,14 +117,12 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
             {
                 if (key == Hot.MgrInput_.Add)
                 {
-                    AllContent.localScale +=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
 
                 if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
-                    AllContent.localScale -=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
             }
         });
@@ -162,7 +161,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
     }
 
     public void LoadRoomConfig(List<List<PanelCellGridRoomEditorConfig>> map)
-    {        
+    {
         for (int Y = 0; Y < map.Count; Y++)
         {
             int tempiY = Y;
@@ -184,7 +183,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
                         {
                             for (int i2 = 0; i2 < Hot.BodyDicMapObject[map[tempiY][tempiX].e_Obj].X; i2++)
                             {
-                                Grids[tempiY + i1][tempiX + i2].CellRoomEditor = panel;
+                                Grids[tempiY + i1][tempiX + i2].Item = panel;
                             }
                         }
                     });
@@ -198,29 +197,6 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelGridRoomEditor>
         Hot.e_ChoseObj = e_MapObject;
         ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_MapObject);
         ImgCurrentChoose.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodySizeGridExpeditionMap.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodySizeGridExpeditionMap.Y);
-    }
-
-    public override void ClearList()
-    {
-        foreach (var list in ItemRoot)
-        {
-            foreach (var item in list)
-            {
-                if (item.childCount > 0)
-                {
-                    Destroy(item.GetChild(0).gameObject);
-                }
-            }
-        }
-
-        foreach (var list in Grids)
-        {
-            foreach (var item in list)
-            {
-                item.CellRoomEditor = null;
-                item.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-            }
-        }
+            new(Hot.BodyDicMapObject[e_MapObject].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_MapObject].Y * Hot.BodySizeGrid.Y);
     }
 }

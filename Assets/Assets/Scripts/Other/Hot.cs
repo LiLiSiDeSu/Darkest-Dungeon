@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class Hot
 {
+    public static GraphicRaycaster raycaster;
+    public static PointerEventData pointerData;
+
     #region Config
 
     public static int StepSanity = 10;
@@ -29,7 +33,7 @@ public static class Hot
     /// <summary>
     /// 各个等级升级所需的经验
     /// </summary>
-    public static List<int> ListNeedExperienceToUpLevel = new List<int>()
+    public static List<int> ListNeedExperienceToUpLevel = new()
     {
         50,
         55,
@@ -41,14 +45,14 @@ public static class Hot
 
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
-        { E_RoleName.LiLiSi, new() { StoreSize = new(10, 7) } },
-        { E_RoleName.Crusader, new() { StoreSize = new(10, 9) } },
+        { E_RoleName.LiLiSi, new() { StoreSize = new(20, 7) } },
+        { E_RoleName.Crusader, new() { StoreSize = new(20, 9) } },
     };
 
     #region Body
 
     public static my_Vector2 BodyExpeditionRoom = new(48, 18);
-    public static my_Vector2 BodySizeGridExpeditionMap = new(40, 40);
+    public static my_Vector2 BodySizeGrid = new(40, 40);
     public static my_Vector2 BodySizeCellItem = new(40, 40);
     public static my_Vector2 BodySizeCellMinimap = new(40, 40);
 
@@ -441,7 +445,7 @@ public static class Hot
     /// <summary>
     /// 现在进入的MiniMap编辑器背景Grid
     /// </summary>
-    public static PanelGridMiniMapEditor NowEnterGridMiniMapEditor = null;
+    public static PanelBaseGrid<PanelCellMiniMapEditor> NowEnterGridMiniMapEditor = null;
     /// <summary>
     /// 现在进入的MiniMap编辑器Cell      
     /// </summary>
@@ -504,24 +508,33 @@ public static class Hot
 
     #region Function
 
-    public static GameObject CreateContentStepY(int p_index, Transform father)
+    public static Sprite LoadSprite(E_Res p_e_name)
+    {
+        return MgrRes_.Load<Sprite>("Art/" + p_e_name);
+    }
+    public static Sprite LoadSprite(string p_name)
+    {
+        return MgrRes_.Load<Sprite>("Art/" + p_name);
+    }
+
+    public static GameObject CreateContentStepY(int p_index, Transform p_father)
     {
         GameObject obj = MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-        obj.transform.SetParent(father, false);
+        obj.transform.SetParent(p_father, false);
         obj.name = p_index.ToString();
         GridLayoutGroup glg = obj.AddComponent<GridLayoutGroup>();
         glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
         glg.constraintCount = 1;
         glg.childAlignment = TextAnchor.MiddleCenter;
-        glg.cellSize = new(BodySizeGridExpeditionMap.X, BodySizeGridExpeditionMap.Y);
+        glg.cellSize = new(BodySizeGrid.X, BodySizeGrid.Y);
 
         return obj;
     }
 
-    public static GameObject CreateContentStepX(int p_index, Transform father)
+    public static GameObject CreateContentStepX(int p_index, Transform p_father)
     {
         GameObject obj = MgrRes_.Load<GameObject>("Prefabs/" + "ContentStep");
-        obj.transform.SetParent(father.transform, false);
+        obj.transform.SetParent(p_father.transform, false);
         obj.name = p_index.ToString();
 
         return obj;

@@ -69,10 +69,9 @@ public class DataContainer_PanelCellGameArchive
 public class DataContainer_CellRole
 {
     public E_RoleName e_RoleName = E_RoleName.Crusader;
-    public int IndexExpedition = -1;
+    public int IndexExpeditionRoot = -1;
     public string Name = "LuoLiKong";
     public int NowLevel = 0;
-    //每个人的资质不同 MaxLevel也会不同 也会受各种加成的影响
     public int MaxLevel = 0;
     public int NowExperience = 0;
     public int NowSanity = 0;
@@ -82,25 +81,25 @@ public class DataContainer_CellRole
 
     public DataContainer_CellRole() { }
     public DataContainer_CellRole
-    (E_RoleName e_RoleName,
-     string Name,
-     int NowLevel, int MaxLevel, int NowExperience,
-     int NowSanity, int MaxSanity, int LimitToSanityExplosion)
+    (E_RoleName p_e_RoleName,
+     string p_Name,
+     int p_NowLevel, int p_MaxLevel, int p_NowExperience,
+     int p_NowSanity, int p_MaxSanity, int p_LimitToSanityExplosion)
     {
-        this.e_RoleName = e_RoleName;
-        this.Name = Name;
-        this.NowLevel = NowLevel;
-        this.MaxLevel = MaxLevel;
-        this.NowExperience = NowExperience;
-        this.NowSanity = NowSanity;
-        this.MaxSanity = MaxSanity;
-        this.LimitToSanityExplosion = LimitToSanityExplosion;
+        e_RoleName = p_e_RoleName;
+        Name = p_Name;
+        NowLevel = p_NowLevel;
+        MaxLevel = p_MaxLevel;
+        NowExperience = p_NowExperience;
+        NowSanity = p_NowSanity;
+        MaxSanity = p_MaxSanity;
+        LimitToSanityExplosion = p_LimitToSanityExplosion;
 
-        for (int Y = 0; Y < Hot.DicRoleConfig[e_RoleName].StoreSize.y; Y++)
+        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].StoreSize.y; Y++)
         {
             ListItem.Add(new());
 
-            for (int X = 0; X < Hot.DicRoleConfig[e_RoleName].StoreSize.x; X++)
+            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.x; X++)
             {
                 ListItem[Y].Add(new());
             }

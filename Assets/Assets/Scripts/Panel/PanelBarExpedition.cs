@@ -75,17 +75,17 @@ public class PanelBarExpedition : PanelBase,
         {
             int tempi = i;
 
-            if (Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpedition != -1)
+            if (Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot != -1)
             {
                 Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
                 (false, "/PanelCellRolePortraitCanDrag",
                 (panel) =>
                 {
-                    panel.ExpeditionRolePrepareRoot = ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpedition];
+                    panel.ExpeditionRolePrepareRoot = ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot];
 
                     panel.Role = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     panel.Role.RolePortraitCanDrag = panel;
-                    panel.Init(panel.Role, ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpedition].transform, new(100, 100));
+                    panel.Init(panel.Role, ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot].transform, new(100, 100));
                 });
             }
         }

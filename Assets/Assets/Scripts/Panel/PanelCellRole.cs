@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class PanelCellRole : PanelBaseCellDynamicScrollView,
              IPointerEnterHandler, IPointerExitHandler
 {
+    public E_RoleLocation e_RoleLocation;
+
     public Image ImgRolePortrait;
     public Image ImgProgress;
     public Image ImgRoleLevelBk;
@@ -95,12 +97,13 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
         switch (controlname)
         {
             case "BtnRolePortrait":
-                Hot.PanelRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Index]);
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
                 (panel) =>
                 {
-                    panel.IndexListRole = Index;
+                    panel.IndexRole = Index;
+                    panel.e_RoleLocation = e_RoleLocation;
                     panel.BtnDismiss.SetActive(true);
+                    panel.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRole[Index]);
                 });
                 break;
         }
@@ -108,7 +111,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public void CreatePanelCellRoleCanDrag()
     {
-        if (Hot.DataNowCellGameArchive.ListCellRole[Index].IndexExpedition == -1)
+        if (Hot.DataNowCellGameArchive.ListCellRole[Index].IndexExpeditionRoot == -1)
         {
             Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>(false, "/PanelCellRolePortraitCanDrag",
             (panel) =>
@@ -119,19 +122,20 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
         }
     }
 
-    public void InitInfo(DataContainer_CellRole Role)
+    public void InitInfo(DataContainer_CellRole p_Role, E_RoleLocation p_e_RoleLocation)
     {
-        ImgRolePortrait.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + Role.e_RoleName);
+        ImgRolePortrait.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + p_Role.e_RoleName);
+        e_RoleLocation = p_e_RoleLocation;
 
-        TxtRoleName.text = Role.Name;
-        TxtRoleLevel.text = Role.NowLevel.ToString();
+        TxtRoleName.text = p_Role.Name;
+        TxtRoleLevel.text = p_Role.NowLevel.ToString();
 
-        TxtRoleName.text = Role.Name;
+        TxtRoleName.text = p_Role.Name;
         ChangeSanityExplosionLimit();
         UpdateLevelInfo();
         UpdateSanityInfo();
         UpdateExperience();
-        ChangeRoleStatus(Role.IndexExpedition);
+        ChangeRoleStatus(p_Role.IndexExpeditionRoot);
     }
 
     /// <summary>

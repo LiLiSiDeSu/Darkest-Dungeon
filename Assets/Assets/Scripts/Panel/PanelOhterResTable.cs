@@ -234,7 +234,7 @@ public class PanelOhterResTable : PanelBase
             Hot.DataPanelResTable.NowCrystal = Hot.DataPanelResTable.LevelStepCrystal * Hot.DataPanelResTable.NowLevelCrystal;
     }
 
-    public void Subtraction(InfoContainer_Cost cost)
+    public void Reduce(InfoContainer_Cost cost)
     {        
         Hot.DataPanelResTable.NowCopper -= cost.Copper;
         Hot.DataPanelResTable.NowSilver -= cost.Silver;

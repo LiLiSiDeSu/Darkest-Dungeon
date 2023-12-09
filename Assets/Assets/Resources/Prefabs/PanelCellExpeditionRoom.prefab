@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2405027057920326906}
   - component: {fileID: 4223567463027678048}
   m_Layer: 0
-  m_Name: ImgCellRoomEditor
+  m_Name: ImgItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,3 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1591300138ac47b50c2b901032752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Index: 0
+  ImgItem: {fileID: 0}
+  ImgStatus: {fileID: 0}
+  RootGrid: {fileID: 0}
+  e_Obj: 0

@@ -2,6 +2,13 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
+public enum E_Res
+{
+    ImgEmpty,
+    ImgCoverTransparenctGreen,
+    ImgCoverTransparenctRed,
+}
+
 public enum E_MapObject
 {
     None,
@@ -163,6 +170,7 @@ public enum E_ExpeditionLocation
     /// 怎么可能在城镇远征呢 哈哈
     /// </summary>
     Town,
+
     BloodCourtyard,
     Lair,
     Farm,
@@ -170,6 +178,13 @@ public enum E_ExpeditionLocation
     Ruins,
     Darkest,
     Sea
+}
+
+public enum E_RoleLocation
+{
+    None,
+    RoleList,
+    GuildRecruit,
 }
 
 public enum E_PlayerLocation
@@ -196,8 +211,9 @@ public enum E_NowPointerLocation
 public enum E_ItemLocation
 {    
     None,
-    TownItem,
-    TownShopItem
+    PanelTownItem,
+    TownShopItem,
+    PanelRoleStore,
 }
 
 public enum E_ArrowDirection

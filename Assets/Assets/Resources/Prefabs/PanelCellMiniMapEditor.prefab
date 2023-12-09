@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1870780742594157595}
   - component: {fileID: 4673709653219484676}
   m_Layer: 0
-  m_Name: ImgCellMiniMapEditor
+  m_Name: ImgItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a0fbd00564f7c41a4a83d241b451c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImgCellMiniMapEditor: {fileID: 0}
+  Index: 0
+  ImgItem: {fileID: 0}
   ImgStatus: {fileID: 0}
   RootGrid: {fileID: 0}
-  e_Hall: 0
   e_Room: 0
 --- !u!1 &5998255632966271820
 GameObject:

@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 {        
     public Dictionary<string, PanelBase> DicPanel = new();
 
     public RectTransform UIBaseCanvas;
+    public EventSystem UIBaseEventSystem;
 
     private void Awake()
     {
@@ -23,9 +25,10 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             UIBaseCanvas = obj.transform as RectTransform;
             UIBaseCanvas.gameObject.name = "UIBaseCanvas";
             obj.transform.SetParent(UI.transform);
+            Hot.raycaster = obj.GetComponent<GraphicRaycaster>();
         });
 
-        GameObject UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem");
+        UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem").GetComponent<EventSystem>();
         UIBaseEventSystem.gameObject.name = "UIBaseEventSystem";
         UIBaseEventSystem.transform.parent = UI.transform;
     }

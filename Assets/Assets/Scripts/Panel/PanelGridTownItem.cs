@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelGridTownItem : PanelBaseGrid
+public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
 {
-    public PanelCellItem Item;
-
     protected override void Awake()
     {
         base.Awake();
@@ -19,17 +18,17 @@ public class PanelGridTownItem : PanelBaseGrid
 
             if (Hot.ChoseCellItem != null && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+                for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                    for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
                     {
-                        Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctRed");
+                        Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
                     }
                 }
             }
             else
             {
-                ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
             }
         });
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, EventTriggerType.PointerExit,
@@ -39,17 +38,17 @@ public class PanelGridTownItem : PanelBaseGrid
 
             if (Hot.ChoseCellItem != null && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+                for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                    for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
                     {
-                        Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                        Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     }
                 }
             }
             else
             {
-                ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
             }
         });
     }
@@ -67,17 +66,17 @@ public class PanelGridTownItem : PanelBaseGrid
                    (Hot.ChoseCellItem.e_Location == E_ItemLocation.TownShopItem && Hot.e_NowPointerLocation == E_NowPointerLocation.PanelTownShopItem)) &&
                     JudgeCanPut())
                 {
-                    for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+                    for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
                     {
-                        for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                        for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
                         {
                             Hot.ChoseCellItem.MemberOf.Grids[Hot.ChoseCellItem.RootGrid.Y + i1][Hot.ChoseCellItem.RootGrid.X + i2].Item = null;
                         }
                     }
 
-                    for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+                    for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
                     {
-                        for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+                        for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
                         {
                             Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item = Hot.ChoseCellItem;
                         }
@@ -86,49 +85,86 @@ public class PanelGridTownItem : PanelBaseGrid
 
                     Hot.ChoseCellItem.MemberOf.ItemRoot[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].GetChild(0).
                         SetParent(Hot.NowPanelCanStoreItem.ItemRoot[Y][X], false);
-                    Hot.ChoseCellItem.MemberOf.UpdateInfoBySubtract(Hot.ChoseCellItem.e_SpriteNamePanelCellItem);
-                    Hot.NowPanelCanStoreItem.UpdateInfoByAdd(Hot.ChoseCellItem.e_SpriteNamePanelCellItem);
+                    Hot.ChoseCellItem.MemberOf.UpdateInfoByReduce(Hot.ChoseCellItem.e_Item);
+                    Hot.NowPanelCanStoreItem.UpdateInfoByAdd(Hot.ChoseCellItem.e_Item);
 
                     switch (Hot.ChoseCellItem.e_Location)
                     {
-                        case E_ItemLocation.TownItem:
+                        //TownItem里的物品
+                        case E_ItemLocation.PanelTownItem:
                             Hot.DataNowCellGameArchive.ListCellStore[(Hot.ChoseCellItem.MemberOf as PanelTownItem).PanelCellTownStore_.Index].
                                 ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
-
                             switch (Hot.e_NowPointerLocation)
                             {
-                                //物品在物品栏中移动
+                                //在TownItem中移动
                                 case E_NowPointerLocation.PanelTownItem:
                                     Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
-                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_SpriteNamePanelCellItem;
+                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     break;
-                                //卖东西
+                                //卖到TownShop
                                 case E_NowPointerLocation.PanelTownShopItem:
-                                    Hot.DataNowCellGameArchive.TownShop.ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_SpriteNamePanelCellItem;
-                                    Hot.PanelOtherResTable_.Add(Hot.CostDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem]);
+                                    Hot.DataNowCellGameArchive.TownShop.ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.PanelOtherResTable_.Add(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.TownShopItem;
+                                    break;
+                                //放到RoleStore
+                                case E_NowPointerLocation.PanelRoleStore:
+                                    Debug.Log(Hot.PanelRoleDetails_.IndexRole);
+                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelRoleStore;
                                     break;
                             }
                             break;
+                        //TownShop里的物品
                         case E_ItemLocation.TownShopItem:
-                            Hot.DataNowCellGameArchive.TownShop.ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem =
-                                E_SpriteNamePanelCellItem.None;
-
+                            Hot.DataNowCellGameArchive.TownShop.
+                                ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
                             switch (Hot.e_NowPointerLocation)
                             {
-                                //买东西
+                                //买到TownItem
                                 case E_NowPointerLocation.PanelTownItem:
                                     Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
-                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_SpriteNamePanelCellItem;
-                                    Hot.PanelOtherResTable_.Subtraction(Hot.CostDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem]);
-                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.TownItem;
+                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.PanelOtherResTable_.Reduce(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
+                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelTownItem;
                                     break;
-                                //这里按理说是商店内物品在商店内移动的逻辑
-                                //但我觉得能动商店里的东西太肏了 所以现不写
+                                //在TownShop内移动的逻辑
                                 case E_NowPointerLocation.PanelTownShopItem:
                                     //啊? 什么你居然要移动商店物品 给钱!!!
                                     //给钱逻辑 先不写把 感觉好肏
-                                    Hot.DataNowCellGameArchive.TownShop.ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_SpriteNamePanelCellItem;
+                                    Hot.DataNowCellGameArchive.TownShop.ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    break;
+                                //买到RoleStore
+                                case E_NowPointerLocation.PanelRoleStore:
+                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.PanelOtherResTable_.Reduce(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
+                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelRoleStore;
+                                    break;
+                            }
+                            break;
+                        //RoleStore里的物品
+                        case E_ItemLocation.PanelRoleStore:
+                            Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                                ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
+                            switch (Hot.e_NowPointerLocation)
+                            {
+                                //放到TownItem
+                                case E_NowPointerLocation.PanelTownItem:
+                                    Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
+                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelTownItem;
+                                    break;
+                                //卖到TownShop里
+                                case E_NowPointerLocation.PanelTownShopItem:
+                                    Hot.DataNowCellGameArchive.TownShop.ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.PanelOtherResTable_.Add(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
+                                    Hot.ChoseCellItem.e_Location = E_ItemLocation.TownShopItem;
+                                    break;
+                                //在RoleStore里移动
+                                case E_NowPointerLocation.PanelRoleStore:
+                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                                        ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     break;
                             }
                             break;
@@ -145,9 +181,9 @@ public class PanelGridTownItem : PanelBaseGrid
     {
         if (Hot.NowPanelCanStoreItem is PanelTownItem)
         {
-            if (Y + Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y >
+            if (Y + Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y >
                     Hot.BodyDicStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].Y ||
-                X + Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X >
+                X + Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X >
                     Hot.BodyDicStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.e_PanelCellTownStore].X)
 
             {
@@ -157,18 +193,18 @@ public class PanelGridTownItem : PanelBaseGrid
 
         if (Hot.NowPanelCanStoreItem is PanelTownShopItem)
         {
-            if (Y + Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y >
+            if (Y + Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y >
                     Hot.DataNowCellGameArchive.TownShop.Y ||
-                X + Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X >
+                X + Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X >
                     Hot.DataNowCellGameArchive.TownShop.X)
             {
                 return false;
             }
         }
 
-        for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].Y; i1++)
+        for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
         {
-            for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_SpriteNamePanelCellItem].X; i2++)
+            for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
             {
                 if (Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item == null || Hot.NowPanelCanStoreItem.Grids[Y + i1][X + i2].Item == Hot.ChoseCellItem)
                 {

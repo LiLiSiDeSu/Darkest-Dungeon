@@ -6,7 +6,6 @@ public class PanelBaseDrag : PanelBase,
 {
     protected Vector2 DragOffSet;
 
-
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         DragOffSet = new Vector2(transform.position.x, transform.position.y) - eventData.position;
