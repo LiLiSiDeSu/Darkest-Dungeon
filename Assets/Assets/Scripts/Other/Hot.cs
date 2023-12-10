@@ -47,6 +47,7 @@ public static class Hot
     {
         { E_RoleName.LiLiSi, new() { StoreSize = new(20, 7) } },
         { E_RoleName.Crusader, new() { StoreSize = new(20, 9) } },
+        { E_RoleName.PlagueDoctor, new() { StoreSize = new(15, 6) } },
     };
 
     #region Body

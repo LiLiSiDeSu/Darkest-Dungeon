@@ -148,8 +148,8 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         {
             new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.LiLiSi, "cao2", 3, 99, 30, 29, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 4, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 4, 99, 1, 46, 200, 1),
+            new DataContainer_CellRole(E_RoleName.PlagueDoctor, "cao3", 4, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.PlagueDoctor, "cao4", 4, 99, 1, 46, 200, 1),
             new DataContainer_CellRole(E_RoleName.LiLiSi, "cao5", 2, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.Crusader, "cao6", 3, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.Crusader, "cao5", 2, 99, 40, 46, 200, 10),

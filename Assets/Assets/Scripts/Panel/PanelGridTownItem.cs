@@ -109,7 +109,6 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                                     break;
                                 //·Åµ½RoleStore
                                 case E_NowPointerLocation.PanelRoleStore:
-                                    Debug.Log(Hot.PanelRoleDetails_.IndexRole);
                                     Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelRoleStore;

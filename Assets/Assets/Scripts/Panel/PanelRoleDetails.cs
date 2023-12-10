@@ -61,6 +61,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
             e_RoleLocation = E_RoleLocation.None;
             NowRole = null;
             TxtCapacity.text = "";
+            NowCapacity = 0;
         });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
@@ -116,6 +117,25 @@ public class PanelRoleDetails : PanelBaseRoleStore
         LoadData(Role);        
     }
 
+    public void InitTxtCapacity()
+    {
+        foreach (List<DataContainer_CellItem> listItem in Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem)
+        {
+            foreach (DataContainer_CellItem item in listItem)
+            {
+                if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                {
+                    NowCapacity += Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;
+                }
+            }
+        }
+
+        TxtCapacity.text =
+           NowCapacity + " / " +
+           Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem[0].Count * 
+           Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem.Count;
+    }
+
     public void LoadData(DataContainer_CellRole Role)
     {
         for (int i1 = 0; i1 < Role.ListItem.Count; i1++)
@@ -136,7 +156,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
                         panel.RootGrid = Grids[tempi1][tempi2];
                         panel.MemberOf = this;
-                        panel.e_Location = E_ItemLocation.PanelTownItem;
+                        panel.e_Location = E_ItemLocation.PanelRoleStore;
                         panel.e_Item = Role.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
 
                         panel.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + panel.e_Item);
@@ -154,6 +174,8 @@ public class PanelRoleDetails : PanelBaseRoleStore
                 }
             }
         }
+
+        InitTxtCapacity();
     }
 
     public void UpdateInfoByGuildRecruit(DataContainer_CellRole Role)

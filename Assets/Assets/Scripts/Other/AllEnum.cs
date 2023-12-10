@@ -162,6 +162,7 @@ public enum E_RoleName
 {        
     Crusader,
     LiLiSi,
+    PlagueDoctor,
 }
 
 public enum E_ExpeditionLocation
