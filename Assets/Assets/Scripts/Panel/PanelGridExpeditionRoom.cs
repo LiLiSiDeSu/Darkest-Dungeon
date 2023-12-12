@@ -14,14 +14,14 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         {
             Hot.NowEnterGridExpeditionRoom = this;
 
-            ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderChoosedGreen");
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.BorderChoosedGreen);
         });
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
         (param) =>
         {
             Hot.NowEnterGridExpeditionRoom = null;
 
-            ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
         });
     }
 

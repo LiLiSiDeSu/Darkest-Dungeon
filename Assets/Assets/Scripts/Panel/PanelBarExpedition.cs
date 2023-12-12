@@ -7,16 +7,9 @@ using static UnityEditor.Progress;
 public class PanelBarExpedition : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public int NowIndex;
-
     public List<PanelCellExpeditionRolePrepareRoot> ListCellExpeditionRolePrepareRoot = new();
 
     public Transform Bk;
-
-    private void Update()
-    {
-        Debug.Log(Hot.DragingRolePortraitCanDrag + " - " + Hot.ReplaceRolePortraitCanDrag + " - " + Hot.NowEnterExpeditionRolePrepareRoot);
-    }
 
     protected override void Awake()
     {
@@ -36,8 +29,14 @@ public class PanelBarExpedition : PanelBase,
                 {
                     Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                     Hot.MgrUI_.HideAllPanel();
-                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                     Hot.PanelExpeditionMiniMap_.Init();
+
+                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom",
+                    (panel) =>
+                    {
+                        my_Vector2 pos = Hot.NowExpeditionEvent.DataExpedition.EntrancePos;
+                        panel.LoadDataMap(pos.X, pos.Y);
+                    });
                 }
                 break;
         }

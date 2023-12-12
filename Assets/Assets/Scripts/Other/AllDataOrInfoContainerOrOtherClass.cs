@@ -11,11 +11,6 @@ public class my_Vector2
     public int X;
     public int Y;
 
-    public static my_Vector2 m_One
-    {
-        get { return new(-1, -1); }
-    }
-
     public my_Vector2()
     {
         X = -1;
@@ -35,12 +30,15 @@ public class RoleConfig
 
 public class DataContainer_PanelCellGameArchive
 {
-    public string GameArchiveName = "";
-    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;    
+    public string GameArchiveName = "";    
+    public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
-    public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
+    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
+    public my_Vector2 NowRoomPos = new();
+    public int NowEventIndex = -1;
+
     public DataContainer_ResTable ResTable = new();    
     public List<DataContainer_CellTownStore> ListCellStore = new();        
     public List<DataContainer_CellRole> ListCellRole = new();
@@ -61,6 +59,18 @@ public class DataContainer_PanelCellGameArchive
         this.Week = Week;
         this.Time = Time;
         this.ListCellStore = ListCellStore;
+    }
+
+    public void InitDataNowEnterCellExpeditionMiniMap()
+    {
+        e_ExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
+        NowEventIndex = Hot.NowExpeditionEvent.Index;
+        UpdataNowRoomPos();
+    }
+
+    public void UpdataNowRoomPos()
+    {
+        NowRoomPos = new(Hot.NowEnterCellExpeditionMiniMap.RootGrid.X, Hot.NowEnterCellExpeditionMiniMap.RootGrid.Y);
     }
 }
 
@@ -109,7 +119,7 @@ public class DataContainer_CellRole
 
 public class DataContainer_CellRoleRecruit
 {
-    public DataContainer_CellRole Role = new();
+    public DataContainer_CellRole Role;
     public DataContainer_CoinCost Cost = new();
 
     public DataContainer_CellRoleRecruit() { }
@@ -127,15 +137,15 @@ public class DataContainer_CellRoleRecruit
 
 public class DataContainer_ExpeditionPrepare
 {
-    public List<DataContainer_Expedition> BloodCourtyard = new();
-    public List<DataContainer_Expedition> Lair = new();
-    public List<DataContainer_Expedition> Farm = new();
-    public List<DataContainer_Expedition> Wilds = new();
-    public List<DataContainer_Expedition> Ruins = new();
-    public List<DataContainer_Expedition> Sea = new();
-    public List<DataContainer_Expedition> Darkest = new();
+    public List<DataContainer_ExpeditionMiniMap> BloodCourtyard = new();
+    public List<DataContainer_ExpeditionMiniMap> Lair = new();
+    public List<DataContainer_ExpeditionMiniMap> Farm = new();
+    public List<DataContainer_ExpeditionMiniMap> Wilds = new();
+    public List<DataContainer_ExpeditionMiniMap> Ruins = new();
+    public List<DataContainer_ExpeditionMiniMap> Sea = new();
+    public List<DataContainer_ExpeditionMiniMap> Darkest = new();
 
-    public List<DataContainer_Expedition> this[E_ExpeditionLocation e_ExpeditionLocation]
+    public List<DataContainer_ExpeditionMiniMap> this[E_ExpeditionLocation e_ExpeditionLocation]
     {
         get
         {
@@ -163,9 +173,9 @@ public class DataContainer_ExpeditionPrepare
 
     public DataContainer_ExpeditionPrepare() { }
     public DataContainer_ExpeditionPrepare
-    (List<DataContainer_Expedition> bloodCourtyard, List<DataContainer_Expedition> lair, List<DataContainer_Expedition> farm,
-     List<DataContainer_Expedition> wilds, List<DataContainer_Expedition> ruins, List<DataContainer_Expedition> sed,
-     List<DataContainer_Expedition> darkest)
+    (List<DataContainer_ExpeditionMiniMap> bloodCourtyard, List<DataContainer_ExpeditionMiniMap> lair, List<DataContainer_ExpeditionMiniMap> farm,
+     List<DataContainer_ExpeditionMiniMap> wilds, List<DataContainer_ExpeditionMiniMap> ruins, List<DataContainer_ExpeditionMiniMap> sed,
+     List<DataContainer_ExpeditionMiniMap> darkest)
     {
         BloodCourtyard = bloodCourtyard;
         Lair = lair;
@@ -179,35 +189,45 @@ public class DataContainer_ExpeditionPrepare
 
 #region Map
 
-public class DataContainer_Expedition
+public class DataContainer_ExpeditionMiniMap
 {
     public E_DungeonLevel e_dungeonLevel = E_DungeonLevel.Zero;
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
-    public my_Vector2 EntrancePos = my_Vector2.m_One;
-
+    public my_Vector2 EntrancePos = new();
     public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
-    public DataContainer_Expedition() { }
-    public DataContainer_Expedition
-    (E_DungeonLevel e_dungeonLevel, E_DungeonSize e_dungeonSize,
-     E_ExpeditionEvent e_ExpeditionEvent)
-    {
-        this.e_dungeonLevel = e_dungeonLevel;
-        this.e_dungeonSize = e_dungeonSize;
-        this.e_ExpeditionEvent = e_ExpeditionEvent;
-    }
+    public DataContainer_ExpeditionMiniMap() { }
 }
 
 public class DataContainer_CellExpeditionMiniMap
 {
-    public E_CellMiniMapRoom e_Room = E_CellMiniMapRoom.None;
+    public E_CellMap e_Room = E_CellMap.None;
 
-    public List<List<DataContainer_CellExpeditionMapGrid>> Map = new();
+    public List<List<DataContainer_GridExpeditionMap>> Map = new();
+
+    public DataContainer_CellExpeditionMiniMap() { }
+    public DataContainer_CellExpeditionMiniMap(E_CellMap p_e_CellMap = E_CellMap.None) 
+    {
+        e_Room = p_e_CellMap;
+
+        if (e_Room != E_CellMap.None && Map.Count <= 0)
+        {
+            for (int Y = 0; Y < Hot.BodySizeMap.Y; Y++)
+            {
+                Map.Add(new());
+
+                for (int X = 0; X < Hot.BodySizeMap.X; X++)
+                {
+                    Map[Y].Add(new());
+                }
+            }
+        }
+    }
 }
 
-public class DataContainer_CellExpeditionMapObject
+public class DataContainer_CellExpeditionMapObj
 {
     public E_MapObject e_Obj = E_MapObject.None;
 }
@@ -217,7 +237,7 @@ public class DataContainer_CellOtherRole
 
 }
 
-public class DataContainer_CellExpeditionMapGrid
+public class DataContainer_GridExpeditionMap
 {
     public int IndexRoleListRole = -1;
 
@@ -225,7 +245,7 @@ public class DataContainer_CellExpeditionMapGrid
     public DataContainer_CellOtherRole OtherRole = new();
 
     //当前远征地图格子所拥有的物体
-    public DataContainer_CellExpeditionMapObject Obj = new();
+    public DataContainer_CellExpeditionMapObj Obj = new();
 }
 
 #endregion
@@ -238,7 +258,6 @@ public class DataContainer_CellTownStore
     public E_PanelCellTownStore e_PanelCellTownStore = E_PanelCellTownStore.StoreWood;
     public List<List<DataContainer_CellItem>> ListItem = new(); 
 
-    public DataContainer_CellTownStore() { }
     public DataContainer_CellTownStore
     (string p_name, E_PanelCellTownStore p_e_PanelCellTownStore)
     {

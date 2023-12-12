@@ -59,14 +59,14 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             panel.transform.SetParent(transform, false);
         });
 
-        InitGrid(Hot.BodyExpeditionRoom.Y, Hot.BodyExpeditionRoom.X);
+        InitGrids(Hot.BodySizeMap.Y, Hot.BodySizeMap.X);
     }    
 
-    public void LoadRoomData(int p_x, int p_y)
+    public void LoadDataMap(int p_x, int p_y)
     {
         ClearItem();
 
-        List<List<DataContainer_CellExpeditionMapGrid>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
+        List<List<DataContainer_GridExpeditionMap>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
 
         for (int Y = 0; Y < Map.Count; Y++)
         {

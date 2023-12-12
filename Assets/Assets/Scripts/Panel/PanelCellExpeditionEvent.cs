@@ -13,7 +13,7 @@ public class PanelCellExpeditionEvent : PanelBaseCell
     public Image ImgExpeditionEvent;
     public Image ImgCurrentChoose;
 
-    public DataContainer_Expedition DataExpedition => Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index];
+    public DataContainer_ExpeditionMiniMap DataExpedition => Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index];
 
     protected override void Awake()
     {
@@ -69,5 +69,10 @@ public class PanelCellExpeditionEvent : PanelBaseCell
         ImgBorderExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderExpedition" + DataExpedition.e_dungeonSize + "Level" + DataExpedition.e_dungeonLevel);
 
         ImgExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/ExpeditionEvent" + DataExpedition.e_ExpeditionEvent);
+    }
+
+    public DataContainer_CellExpeditionMiniMap GetDataCellExpeditionMiniMap(int p_x, int p_y)
+    {
+        return DataExpedition.ListCellMiniMap[p_y][p_x];
     }
 }

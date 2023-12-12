@@ -7,6 +7,8 @@ public enum E_Res
     ImgEmpty,
     ImgCoverTransparenctGreen,
     ImgCoverTransparenctRed,
+
+    BorderChoosedGreen,
 }
 
 public enum E_MapObject
@@ -37,7 +39,7 @@ public enum E_MapObject
     MapObjectPlatform0,
 }
 
-public enum E_CellMiniMapRoom
+public enum E_CellMap
 {
     None,
 

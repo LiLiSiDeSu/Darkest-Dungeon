@@ -11,7 +11,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     public List<List<PanelCellGridRoomEditorConfig>> Map = new();
 
-    public E_CellMiniMapRoom e_Room = E_CellMiniMapRoom.None;
+    public E_CellMap e_Room = E_CellMap.None;
 
     protected override void Button_OnClick(string controlname)
     {
@@ -58,7 +58,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     #endregion
 
-    public void Init(E_CellMiniMapRoom p_e_room)
+    public void Init(E_CellMap p_e_room)
     {
         e_Room = p_e_room;
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
@@ -69,11 +69,11 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     public void InitRoomMap()
     {
-        for (int i5 = 0; i5 < Hot.BodyExpeditionRoom.Y; i5++)
+        for (int i5 = 0; i5 < Hot.BodySizeMap.Y; i5++)
         {
             Map.Add(new());
 
-            for (int i6 = 0; i6 < Hot.BodyExpeditionRoom.X; i6++)
+            for (int i6 = 0; i6 < Hot.BodySizeMap.X; i6++)
             {
                 Map[i5].Add(new());
                 Map[i5][i6].Init(i5, i6);

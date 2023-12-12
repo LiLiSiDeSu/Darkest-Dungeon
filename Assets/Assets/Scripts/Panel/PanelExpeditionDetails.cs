@@ -16,7 +16,7 @@ public class PanelExpeditionDetails : PanelBase
         TxtEntrancePos = transform.FindSonSonSon("TxtEntrancePos").GetComponent<Text>();
     }
 
-    public void UpdateInfo(DataContainer_Expedition data)
+    public void UpdateInfo(DataContainer_ExpeditionMiniMap data)
     {
         TxtHeightAndWidth.text = "H:" + data.ListCellMiniMap.Count + " / " + "W:" + data.ListCellMiniMap[0].Count;
         TxtEntrancePos.text = "H:" + data.EntrancePos.Y + " / " + "W:" + data.EntrancePos.X;

@@ -1,14 +1,22 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 
-public class PanelExpeditionMiniMap : PanelBase
-{
-    public List<List<Transform>> ItemRoot = new();
-
-    public Transform ExpeditionMiniMapContent;
+public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMap, PanelGridExpeditionMiniMap>
+{    
+    public int MiniMapY
+    {
+        get
+        {
+            return Grids.Count;
+        }
+    }
+    public int MiniMapX
+    {
+        get
+        {
+            return Grids[0].Count;
+        }
+    }
 
     protected override void Awake()
     {
@@ -32,51 +40,43 @@ public class PanelExpeditionMiniMap : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && key == Hot.MgrInput_.Add)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap"))
             {
-                ExpeditionMiniMapContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                if (key == Hot.MgrInput_.Add)
+                {
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
+
+                if (key == Hot.MgrInput_.Reduce && AllContent.localScale.x > 0.5f)
+                {
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
             }
         });
-
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap") && key == Hot.MgrInput_.Reduce && ExpeditionMiniMapContent.localScale.x > 0.5f)
-            {
-                ExpeditionMiniMapContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-            }
-        });
-
-        ExpeditionMiniMapContent = transform.FindSonSonSon("ExpeditionMiniMapContent");
     }    
 
     public void Init()
     {
-        ExpeditionMiniMapContent.GetComponent<RectTransform>().sizeDelta = 
-            new(Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count * Hot.BodySizeCellMinimap.X, Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count * Hot.BodySizeCellMinimap.Y);
+        InitGrids(Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count, Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count);
+        InitItem();
+    }
 
-        for (int Y = 0; Y < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count; Y++)
+    public void InitItem()
+    {
+        for (int iY = 0; iY < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count; iY++)
         {
-            int tempY = Y;
-            GameObject StepY = Hot.CreateContentStepY(Y, ExpeditionMiniMapContent);
-            ItemRoot.Add(new());
-
-            for (int X = 0; X < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[Y].Count; X++)
+            for (int iX = 0; iX < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count; iX++)
             {
-                int tempX = X;
-                GameObject StepX = Hot.CreateContentStepY(X, StepY.transform);
-                ItemRoot[Y].Add(StepX.transform);
 
-                if (Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[Y][X].e_Room != E_CellMiniMapRoom.None)
-                {
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionMiniMap>(false, "/PanelCellExpeditionMiniMap",
-                    (panel) =>
-                    {
-                        panel.Init(tempX, tempY);
-                        panel.transform.SetParent(StepX.transform, false);
-                    });
-                }
             }
         }
+
+        //¸øHot.NowEnterCellExpeditionMiniMap¸³EntranceµÄÖµ
+        //Hot.DataNowCellGameArchive.InitDataNowEnterCellExpeditionMiniMap();
+    }
+
+    public PanelCellExpeditionMiniMap GetCellExpeditionMiniMap(int p_x, int p_y)
+    {
+        return Grids[p_y][p_x].Item;
     }
 }

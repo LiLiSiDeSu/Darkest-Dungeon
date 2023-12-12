@@ -42,11 +42,11 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
         RootGrid = p_rootGrid;
         transform.SetParent(p_rootGrid.transform, false);
 
-        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);
+        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Obj);
 
         ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGrid.Y);
+            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[p_e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[p_e_Obj].Y * Hot.BodySizeGrid.Y);
+            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
     }
 }

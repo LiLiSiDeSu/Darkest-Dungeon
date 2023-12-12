@@ -102,8 +102,8 @@ public class PanelExpeditionPrepare : PanelBase
     public void Refresh()
     {
         Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.
-            Add(Hot.MgrJson_.Load<DataContainer_Expedition>(Hot.PanelOtherMiniMapEditor_.PathFolder + "/Default", "/Map0"));
+            Add(Hot.MgrJson_.Load<DataContainer_ExpeditionMiniMap>(Hot.PanelOtherMiniMapEditor_.PathFolder + "/Default", "/Map0"));
         Hot.DataNowCellGameArchive.ExpeditionPrepare.Darkest.
-            Add(Hot.MgrJson_.Load<DataContainer_Expedition>(Hot.PanelOtherMiniMapEditor_.PathFolder + "/Default", "/Map1"));
+            Add(Hot.MgrJson_.Load<DataContainer_ExpeditionMiniMap>(Hot.PanelOtherMiniMapEditor_.PathFolder + "/Default", "/Map1"));
     }
 }

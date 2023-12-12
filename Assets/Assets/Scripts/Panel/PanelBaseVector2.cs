@@ -29,7 +29,7 @@ public class PanelBaseVector2<T0, T1> : PanelBase
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
     }
 
-    public virtual void InitGrid(int Y, int X)
+    public virtual void InitGrids(int Y, int X)
     {
         (AllContent as RectTransform).sizeDelta = new(X * Hot.BodySizeCellMinimap.X, Y * Hot.BodySizeCellMinimap.Y);
 

@@ -52,7 +52,7 @@ public static class Hot
 
     #region Body
 
-    public static my_Vector2 BodyExpeditionRoom = new(48, 18);
+    public static my_Vector2 BodySizeMap = new(48, 18);
     public static my_Vector2 BodySizeGrid = new(40, 40);
     public static my_Vector2 BodySizeCellItem = new(40, 40);
     public static my_Vector2 BodySizeCellMinimap = new(40, 40);
@@ -83,20 +83,20 @@ public static class Hot
         { E_MapObject.MapObjectStore4, new(2, 2) },
     };
     
-    public static Dictionary<E_CellMiniMapRoom, my_Vector2> BodyDicRoom = new()
+    public static Dictionary<E_CellMap, my_Vector2> BodyDicRoom = new()
     {
-        { E_CellMiniMapRoom.CellMapRoomBoss, new(4, 4) },
-        { E_CellMiniMapRoom.CellMapRoomLocked, new(3, 3) },
-        { E_CellMiniMapRoom.CellMapRoomEmpty, new(3, 3) },
-        { E_CellMiniMapRoom.CellMapRoomEntrance, new(3, 3) },
-        { E_CellMiniMapRoom.CellMapRoomUnkown, new(3, 3) },
+        { E_CellMap.CellMapRoomBoss, new(4, 4) },
+        { E_CellMap.CellMapRoomLocked, new(3, 3) },
+        { E_CellMap.CellMapRoomEmpty, new(3, 3) },
+        { E_CellMap.CellMapRoomEntrance, new(3, 3) },
+        { E_CellMap.CellMapRoomUnkown, new(3, 3) },
 
-        { E_CellMiniMapRoom.CellMapHallDark, new(1, 1) },
-        { E_CellMiniMapRoom.CellMapHallDim, new(1, 1) },
-        { E_CellMiniMapRoom.CellMapHallLight, new(1, 1) },
-        { E_CellMiniMapRoom.CellMapHallBattle, new(1, 1) },
-        { E_CellMiniMapRoom.CellMapHallTrap, new(1, 1) },
-        { E_CellMiniMapRoom.CellMapHallSecret, new(1, 1) },
+        { E_CellMap.CellMapHallDark, new(1, 1) },
+        { E_CellMap.CellMapHallDim, new(1, 1) },
+        { E_CellMap.CellMapHallLight, new(1, 1) },
+        { E_CellMap.CellMapHallBattle, new(1, 1) },
+        { E_CellMap.CellMapHallTrap, new(1, 1) },
+        { E_CellMap.CellMapHallSecret, new(1, 1) },
     };
 
     public static Dictionary<E_PanelCellTownStore, my_Vector2> BodyDicStore = new()
@@ -426,7 +426,7 @@ public static class Hot
     #region Editor
 
     public static E_MapObject e_ChoseObj = E_MapObject.None;
-    public static E_CellMiniMapRoom e_ChoseRoom = E_CellMiniMapRoom.None;
+    public static E_CellMap e_ChoseRoom = E_CellMap.None;
     /// <summary>
     /// 现在进入的RoomEditor Grid
     /// </summary>
@@ -460,14 +460,9 @@ public static class Hot
 
     #region Expedition
 
-    public static PanelCellExpeditionEvent NowExpeditionEvent = null;
-    /// <summary>
-    /// 现在进入的ExpeditionRoom Grid
-    /// </summary>
+    public static PanelCellExpeditionEvent NowExpeditionEvent;    
+    public static PanelCellExpeditionMiniMap NowEnterCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
-    /// <summary>
-    /// 现在进入的ExpeditionRoom Cell
-    /// </summary>
     public static PanelCellExpeditionRoom NowEnterCellExpeditionRoom;
 
     #endregion

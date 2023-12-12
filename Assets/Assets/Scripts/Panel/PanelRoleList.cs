@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PanelRoleList : PanelBaseDynamicScrollView
 {
-    private bool IsOpen = true;
+    public bool IsOpen = true;
 
     public GameObject ScrollView_;
     public GameObject BtnPackUp;

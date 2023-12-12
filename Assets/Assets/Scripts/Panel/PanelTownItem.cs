@@ -120,7 +120,7 @@ public class PanelTownItem : PanelBaseVector2Store,
     {
         IptName.text = Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].Name;
 
-        InitGrid(Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y, Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X);
+        InitGrids(Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y, Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X);
 
         LoadData();
     }    

@@ -23,26 +23,23 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
         (key) =>
         {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.Add)
+            if (Hot.NowPanelCanStoreItem != null)
             {
-                Hot.NowPanelCanStoreItem.AllContent.localScale +=
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-            }
-        });
+                if (key == Hot.MgrInput_.Add)
+                {
+                    Hot.NowPanelCanStoreItem.AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
-        (key) =>
-        {
-            if (Hot.NowPanelCanStoreItem != null && key == Hot.MgrInput_.Reduce)
-            {
-                Hot.NowPanelCanStoreItem.AllContent.localScale -=
-                    new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);                
+                if (key == Hot.MgrInput_.Reduce)
+                {
+                    Hot.NowPanelCanStoreItem.AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
+                }
             }
         });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
         {
-            if (Hot.NowIndexCellGameArchive != -1 && key == Hot.MgrInput_.Tab)
+            if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
                     Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
@@ -66,8 +63,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             (PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.Index = tempi;
-                GameObject obj =
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + PanelCellTownStore_.PrefabsDynamicContentStepSuffix);
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + PanelCellTownStore_.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);

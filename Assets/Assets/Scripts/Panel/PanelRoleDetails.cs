@@ -112,7 +112,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
     {
         ClearList();
         
-        InitGrid(Role.ListItem.Count, Role.ListItem[0].Count);
+        InitGrids(Role.ListItem.Count, Role.ListItem[0].Count);
 
         LoadData(Role);        
     }

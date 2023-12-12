@@ -9,46 +9,46 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
     {
         base.Awake();
 
-        //Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
-        //(param) =>
-        //{
-        //    Hot.NowEnterGridRoomEditor = this; 
+        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
+        (param) =>
+        {
+            Hot.NowEnterGridRoomEditor = this;
 
-        //    if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
-        //    {
-        //        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
-        //        {
-        //            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
-        //            {
-        //                Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctRed");
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
-        //    }
-        //});
-        //Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
-        //(param) =>
-        //{
-        //    Hot.NowEnterGridRoomEditor = null;
+            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+            {
+                for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                {
+                    for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                    {
+                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
+                    }
+                }
+            }
+            else
+            {
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+            }
+        });
+        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
+        (param) =>
+        {
+            Hot.NowEnterGridRoomEditor = null;
 
-        //    if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
-        //    {
-        //        for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
-        //        {
-        //            for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
-        //            {
-        //                Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-        //    }
-        //});
+            if (Hot.e_ChoseObj != E_MapObject.None && JudgeCanPut())
+            {
+                for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
+                {
+                    for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
+                    {
+                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    }
+                }
+            }
+            else
+            {
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            }
+        });
     }
 
     protected override void Button_OnClick(string controlname)
@@ -120,8 +120,8 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
     {
         if (Hot.e_ChoseObj != E_MapObject.None)
         {
-            if (Y + Hot.BodyDicMapObject[Hot.e_ChoseObj].Y > Hot.BodyExpeditionRoom.Y ||
-                X + Hot.BodyDicMapObject[Hot.e_ChoseObj].X > Hot.BodyExpeditionRoom.X)
+            if (Y + Hot.BodyDicMapObject[Hot.e_ChoseObj].Y > Hot.BodySizeMap.Y ||
+                X + Hot.BodyDicMapObject[Hot.e_ChoseObj].X > Hot.BodySizeMap.X)
 
             {
                 return false;

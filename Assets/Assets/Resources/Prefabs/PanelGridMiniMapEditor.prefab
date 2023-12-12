@@ -258,4 +258,4 @@ MonoBehaviour:
   Y: 0
   ImgBk: {fileID: 0}
   ImgStatus: {fileID: 0}
-  CellMiniMapEditor: {fileID: 0}
+  Item: {fileID: 0}

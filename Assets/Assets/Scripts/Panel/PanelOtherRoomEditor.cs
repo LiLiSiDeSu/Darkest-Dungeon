@@ -132,7 +132,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
 
     public void Init()
     {
-        InitGrid(Hot.BodyExpeditionRoom.Y, Hot.BodyExpeditionRoom.X);
+        InitGrids(Hot.BodySizeMap.Y, Hot.BodySizeMap.X);
         InitChooseContent();
     }
 

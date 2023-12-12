@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PanelCellMiniMapEditorChoose : PanelBase
 {
-    public E_CellMiniMapRoom e_CellExpeditionMiniMap = E_CellMiniMapRoom.None;
+    public E_CellMap e_CellExpeditionMiniMap = E_CellMap.None;
     public Image ImgCellMiniMapEditorChoose;
 
     protected override void Awake()
@@ -25,9 +25,9 @@ public class PanelCellMiniMapEditorChoose : PanelBase
             case "BtnCellMiniMapEditorChoose":
                 Hot.e_ChoseRoom = e_CellExpeditionMiniMap;
 
-                if (Hot.PanelOtherMiniMapEditor_.EntrancePos.X != -1 && Hot.e_ChoseRoom == E_CellMiniMapRoom.CellMapRoomEntrance)
+                if (Hot.PanelOtherMiniMapEditor_.EntrancePos.X != -1 && Hot.e_ChoseRoom == E_CellMap.CellMapRoomEntrance)
                 {
-                    Hot.e_ChoseRoom = E_CellMiniMapRoom.None;
+                    Hot.e_ChoseRoom = E_CellMap.None;
                     return;
                 }
 
@@ -38,7 +38,7 @@ public class PanelCellMiniMapEditorChoose : PanelBase
         }
     }
 
-    public void Init(E_CellMiniMapRoom p_e_CellExpeditionMiniMap)
+    public void Init(E_CellMap p_e_CellExpeditionMiniMap)
     {
         e_CellExpeditionMiniMap = p_e_CellExpeditionMiniMap;
         ImgCellMiniMapEditorChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_CellExpeditionMiniMap.ToString());

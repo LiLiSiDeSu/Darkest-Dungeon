@@ -20,8 +20,6 @@ public class PanelBaseGrid<T> : PanelBase
 
         ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
         ImgStatus = transform.FindSonSonSon("ImgStatus").GetComponent<Image>();
-
-        ImgBk.alphaHitTestMinimumThreshold = 0.2f;
     }
 
     public void Init(int p_X, int p_Y, Transform father)
