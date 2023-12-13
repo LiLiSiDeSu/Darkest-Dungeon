@@ -11,7 +11,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     public List<List<PanelCellGridRoomEditorConfig>> Map = new();
 
-    public E_CellMap e_Room = E_CellMap.None;
+    public E_CellMiniMap e_Room = E_CellMiniMap.None;
 
     protected override void Button_OnClick(string controlname)
     {
@@ -58,7 +58,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     #endregion
 
-    public void Init(E_CellMap p_e_room)
+    public void Init(E_CellMiniMap p_e_room)
     {
         e_Room = p_e_room;
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Room);
@@ -84,8 +84,8 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
     public void ChangeRoomSize()
     {
         ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);
+            new(Hot.BodyDicCellMiniMap[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicCellMiniMap[e_Room].Y * Hot.BodySizeCellMinimap.Y);
         ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicRoom[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicRoom[e_Room].Y * Hot.BodySizeCellMinimap.Y);
+            new(Hot.BodyDicCellMiniMap[e_Room].X * Hot.BodySizeCellMinimap.X, Hot.BodyDicCellMiniMap[e_Room].Y * Hot.BodySizeCellMinimap.Y);
     }    
 }

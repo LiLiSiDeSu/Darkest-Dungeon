@@ -13,11 +13,11 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
         {
             Hot.NowEnterGridMiniMapEditor = this;
 
-            if (Hot.e_ChoseRoom != E_CellMap.None && JudgeCanPut())
+            if (Hot.e_ChoseRoom != E_CellMiniMap.None && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                    for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                     {
                         Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
                     }
@@ -34,11 +34,11 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
         {
             Hot.NowEnterGridMiniMapEditor = null;
 
-            if (Hot.e_ChoseRoom != E_CellMap.None && JudgeCanPut())
+            if (Hot.e_ChoseRoom != E_CellMiniMap.None && JudgeCanPut())
             {
-                for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                 {
-                    for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                    for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                     {
                         Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     }
@@ -60,7 +60,7 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
         switch (controlname)
         {
             case "ImgBk":
-                if (Hot.e_ChoseRoom != E_CellMap.None && JudgeCanPut())
+                if (Hot.e_ChoseRoom != E_CellMiniMap.None && JudgeCanPut())
                 {
                     if (Hot.ChoseCellMiniMapEditor == null)
                     {
@@ -74,21 +74,21 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
 
                             panel.Init(Hot.e_ChoseRoom);
 
-                            for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                            for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                             {
-                                for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                                for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                                 {
                                     Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].Item = panel;
                                 }
                             }
 
-                            if (Hot.e_ChoseRoom == E_CellMap.CellMapRoomEntrance)
+                            if (Hot.e_ChoseRoom == E_CellMiniMap.CellMiniMapRoomEntrance)
                             {
                                 Hot.PanelOtherMiniMapEditor_.EntrancePos.X = X;
                                 Hot.PanelOtherMiniMapEditor_.EntrancePos.Y = Y;
 
                                 Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-                                Hot.e_ChoseRoom = E_CellMap.None;
+                                Hot.e_ChoseRoom = E_CellMiniMap.None;
                             }   
                         });
                     }
@@ -96,23 +96,23 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                     //移动存在的PanelCellMiniMapEditor
                     if (Hot.ChoseCellMiniMapEditor != null)
                     {
-                        for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                             {
                                 Hot.PanelOtherMiniMapEditor_.Grids[Hot.ChoseCellMiniMapEditor.RootGrid.Y + i1][Hot.ChoseCellMiniMapEditor.RootGrid.X + i2].Item = null;
                             }
                         }
 
-                        for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                             {
                                 Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].Item = Hot.ChoseCellMiniMapEditor;
                             }
                         }
 
-                        if (Hot.ChoseCellMiniMapEditor.e_Room == E_CellMap.CellMapRoomEntrance)
+                        if (Hot.ChoseCellMiniMapEditor.e_Room == E_CellMiniMap.CellMiniMapRoomEntrance)
                         {
                             Hot.PanelOtherMiniMapEditor_.EntrancePos = new(X, Y);
                         }
@@ -123,11 +123,11 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                     }
 
                     //清空status
-                    if (Hot.e_ChoseRoom != E_CellMap.None)
+                    if (Hot.e_ChoseRoom != E_CellMiniMap.None)
                     {
-                        for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+                        for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                         {
-                            for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                            for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                             {
                                 Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                             }
@@ -140,17 +140,17 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
 
     public bool JudgeCanPut()
     {
-        if (Hot.e_ChoseRoom != E_CellMap.None)
+        if (Hot.e_ChoseRoom != E_CellMiniMap.None)
         {
-            if (Y + Hot.BodyDicRoom[Hot.e_ChoseRoom].Y > int.Parse(Hot.PanelOtherMiniMapEditor_.IptHeight.text) ||
-                X + Hot.BodyDicRoom[Hot.e_ChoseRoom].X > int.Parse(Hot.PanelOtherMiniMapEditor_.IptWidth.text))
+            if (Y + Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y > int.Parse(Hot.PanelOtherMiniMapEditor_.IptHeight.text) ||
+                X + Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X > int.Parse(Hot.PanelOtherMiniMapEditor_.IptWidth.text))
             {
                 return false;
             }
 
-            for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.e_ChoseRoom].Y; i1++)
+            for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
             {
-                for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.e_ChoseRoom].X; i2++)
+                for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                 {
                     if (Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].Item == null ||
                         Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].Item == Hot.ChoseCellMiniMapEditor)

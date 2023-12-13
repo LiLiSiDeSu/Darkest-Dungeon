@@ -63,11 +63,21 @@ public class PanelBaseVector2<T0, T1> : PanelBase
 
                     panel.ImgBk.transform.SetParent(ImgBkY.transform, false);
                     panel.ImgStatus.transform.SetParent(ImgStatusY.transform, false);
+
+                    if (tempiY == Y - 1 && tempiX == X - 1)
+                    {
+                        End();
+                    }
                 });
             }
         }
 
         ChangeCellSize();
+    }
+
+    public virtual void End()
+    {
+
     }
 
     public virtual void ChangeCellSize()
@@ -90,6 +100,28 @@ public class PanelBaseVector2<T0, T1> : PanelBase
             foreach (var item in list)
             {
                 item.Item?.ChangeCellSize();
+            }
+        }
+    }
+
+    public void EnableImgBkRayCast()
+    {
+        foreach (var list in Grids)
+        {
+            foreach (var item in list)
+            {
+                item.ImgBk.raycastTarget = true;
+            }
+        }
+    }
+
+    public void DisableImgBkRaycast()
+    {
+        foreach (var list in Grids)
+        {
+            foreach (var item in list)
+            {
+                item.ImgBk.raycastTarget = false;
             }
         }
     }

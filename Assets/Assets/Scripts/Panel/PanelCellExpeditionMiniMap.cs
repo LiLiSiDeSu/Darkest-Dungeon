@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
 {
     public PanelBaseGrid<PanelCellExpeditionMiniMap> RootGrid = new();
-    public E_CellMap e_CellMap = E_CellMap.None;
+    public E_CellMiniMap e_CellMap = E_CellMiniMap.None;
 
     protected override void Button_OnClick(string controlname)
     {
@@ -16,32 +16,39 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
         switch (controlname)
         {
             case "BtnCellExpeditionMiniMap":
-                if (JudgeCanEnter())
+                if (JudgeRoleCanEnter() && JudgeIsSide())
                 {
                     Hot.PanelExpeditionRoom_.LoadDataMap(RootGrid.X, RootGrid.Y);
                     Hot.NowEnterCellExpeditionMiniMap = this;
-                    Hot.DataNowCellGameArchive.UpdataNowRoomPos();
+                    Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
                 }
                 break;
         }
     }
 
-    public void Init(PanelBaseGrid<PanelCellExpeditionMiniMap> p_RootGrid, E_CellMap p_e_CellMap)
+    public void Init(PanelBaseGrid<PanelCellExpeditionMiniMap> p_RootGrid, E_CellMiniMap p_e_CellMap)
     {
         e_CellMap = p_e_CellMap;
         RootGrid = p_RootGrid;
-        transform.SetParent(RootGrid.transform, false);
+
+        transform.SetParent(Hot.PanelExpeditionMiniMap_.ItemRoot[RootGrid.Y][RootGrid.X].transform, false);
+        transform.localPosition = Vector3.zero;
 
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_CellMap);
 
-        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicRoom[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicRoom[e_CellMap].Y * Hot.BodySizeGrid.Y);
-        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicRoom[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicRoom[e_CellMap].Y * Hot.BodySizeGrid.Y);
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodySizeGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodySizeGrid.Y);
     }
 
-    public bool JudgeCanEnter()
+    public bool JudgeRoleCanEnter()
     {
-        int roomX = Hot.BodyDicRoom[Hot.NowExpeditionEvent.GetDataCellExpeditionMiniMap(RootGrid.X, RootGrid.Y).e_Room].X;
-        int roomY = Hot.BodyDicRoom[Hot.NowExpeditionEvent.GetDataCellExpeditionMiniMap(RootGrid.X, RootGrid.Y).e_Room].Y;
+        return true;
+    }
+
+    public bool JudgeIsSide()
+    {
+        int roomX = Hot.BodyDicCellMiniMap[Hot.NowExpeditionEvent.GetDataCellExpeditionMiniMap(RootGrid.X, RootGrid.Y).e_CellMiniMap].X;
+        int roomY = Hot.BodyDicCellMiniMap[Hot.NowExpeditionEvent.GetDataCellExpeditionMiniMap(RootGrid.X, RootGrid.Y).e_CellMiniMap].Y;
 
         for (int iX = 0; iX < roomX; iX++)
         {
@@ -83,7 +90,6 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             }
         }
 
-        Debug.Log(false);
         return false;
     }
 }

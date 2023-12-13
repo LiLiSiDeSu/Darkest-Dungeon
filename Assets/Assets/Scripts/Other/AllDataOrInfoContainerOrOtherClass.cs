@@ -36,7 +36,7 @@ public class DataContainer_PanelCellGameArchive
     public string Time = "0000/00/00 00:00:00";
 
     public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
-    public my_Vector2 NowRoomPos = new();
+    public my_Vector2 NowCellMiniMapPos = new();
     public int NowEventIndex = -1;
 
     public DataContainer_ResTable ResTable = new();    
@@ -61,16 +61,16 @@ public class DataContainer_PanelCellGameArchive
         this.ListCellStore = ListCellStore;
     }
 
-    public void InitDataNowEnterCellExpeditionMiniMap()
+    public void InitDataNowEnterCellMiniMap()
     {
         e_ExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
         NowEventIndex = Hot.NowExpeditionEvent.Index;
-        UpdataNowRoomPos();
+        UpdataNowCellMiniMapPos();
     }
 
-    public void UpdataNowRoomPos()
+    public void UpdataNowCellMiniMapPos()
     {
-        NowRoomPos = new(Hot.NowEnterCellExpeditionMiniMap.RootGrid.X, Hot.NowEnterCellExpeditionMiniMap.RootGrid.Y);
+        NowCellMiniMapPos = new(Hot.NowEnterCellExpeditionMiniMap.RootGrid.X, Hot.NowEnterCellExpeditionMiniMap.RootGrid.Y);
     }
 }
 
@@ -203,16 +203,16 @@ public class DataContainer_ExpeditionMiniMap
 
 public class DataContainer_CellExpeditionMiniMap
 {
-    public E_CellMap e_Room = E_CellMap.None;
+    public E_CellMiniMap e_CellMiniMap = E_CellMiniMap.None;
 
     public List<List<DataContainer_GridExpeditionMap>> Map = new();
 
     public DataContainer_CellExpeditionMiniMap() { }
-    public DataContainer_CellExpeditionMiniMap(E_CellMap p_e_CellMap = E_CellMap.None) 
+    public DataContainer_CellExpeditionMiniMap(E_CellMiniMap p_e_CellMap = E_CellMiniMap.None) 
     {
-        e_Room = p_e_CellMap;
+        e_CellMiniMap = p_e_CellMap;
 
-        if (e_Room != E_CellMap.None && Map.Count <= 0)
+        if (e_CellMiniMap != E_CellMiniMap.None && Map.Count <= 0)
         {
             for (int Y = 0; Y < Hot.BodySizeMap.Y; Y++)
             {

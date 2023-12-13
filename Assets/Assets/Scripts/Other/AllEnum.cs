@@ -39,22 +39,22 @@ public enum E_MapObject
     MapObjectPlatform0,
 }
 
-public enum E_CellMap
+public enum E_CellMiniMap
 {
     None,
 
-    CellMapHallDark,
-    CellMapHallDim,
-    CellMapHallLight,
-    CellMapHallBattle,
-    CellMapHallTrap,
-    CellMapHallSecret,
+    CellMiniMapHallDark,
+    CellMiniMapHallDim,
+    CellMiniMapHallLight,
+    CellMiniMapHallBattle,
+    CellMiniMapHallTrap,
+    CellMiniMapHallSecret,
 
-    CellMapRoomBoss,
-    CellMapRoomEmpty,
-    CellMapRoomEntrance,
-    CellMapRoomLocked,
-    CellMapRoomUnkown,
+    CellMiniMapRoomBoss,
+    CellMiniMapRoomEmpty,
+    CellMiniMapRoomEntrance,
+    CellMiniMapRoomLocked,
+    CellMiniMapRoomUnkown,
 }
 
 public enum E_GameArchiveLevel

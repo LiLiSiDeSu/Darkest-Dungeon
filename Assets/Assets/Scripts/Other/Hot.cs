@@ -83,20 +83,20 @@ public static class Hot
         { E_MapObject.MapObjectStore4, new(2, 2) },
     };
     
-    public static Dictionary<E_CellMap, my_Vector2> BodyDicRoom = new()
+    public static Dictionary<E_CellMiniMap, my_Vector2> BodyDicCellMiniMap = new()
     {
-        { E_CellMap.CellMapRoomBoss, new(4, 4) },
-        { E_CellMap.CellMapRoomLocked, new(3, 3) },
-        { E_CellMap.CellMapRoomEmpty, new(3, 3) },
-        { E_CellMap.CellMapRoomEntrance, new(3, 3) },
-        { E_CellMap.CellMapRoomUnkown, new(3, 3) },
+        { E_CellMiniMap.CellMiniMapRoomBoss, new(4, 4) },
+        { E_CellMiniMap.CellMiniMapRoomLocked, new(3, 3) },
+        { E_CellMiniMap.CellMiniMapRoomEmpty, new(3, 3) },
+        { E_CellMiniMap.CellMiniMapRoomEntrance, new(3, 3) },
+        { E_CellMiniMap.CellMiniMapRoomUnkown, new(3, 3) },
 
-        { E_CellMap.CellMapHallDark, new(1, 1) },
-        { E_CellMap.CellMapHallDim, new(1, 1) },
-        { E_CellMap.CellMapHallLight, new(1, 1) },
-        { E_CellMap.CellMapHallBattle, new(1, 1) },
-        { E_CellMap.CellMapHallTrap, new(1, 1) },
-        { E_CellMap.CellMapHallSecret, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallDark, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallDim, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallLight, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallBattle, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallTrap, new(1, 1) },
+        { E_CellMiniMap.CellMiniMapHallSecret, new(1, 1) },
     };
 
     public static Dictionary<E_PanelCellTownStore, my_Vector2> BodyDicStore = new()
@@ -426,7 +426,7 @@ public static class Hot
     #region Editor
 
     public static E_MapObject e_ChoseObj = E_MapObject.None;
-    public static E_CellMap e_ChoseRoom = E_CellMap.None;
+    public static E_CellMiniMap e_ChoseRoom = E_CellMiniMap.None;
     /// <summary>
     /// 现在进入的RoomEditor Grid
     /// </summary>

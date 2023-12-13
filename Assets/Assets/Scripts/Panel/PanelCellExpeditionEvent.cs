@@ -38,7 +38,6 @@ public class PanelCellExpeditionEvent : PanelBaseCell
                     Hot.NowExpeditionEvent = this;
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
                     Hot.PanelExpeditionDetails_.UpdateInfo(DataExpedition);
-                    Debug.Log(DataExpedition.e_dungeonSize + " - " + DataExpedition.e_dungeonLevel + " - " + DataExpedition.e_ExpeditionEvent);
                     return;
                 }
                 if (Hot.NowExpeditionEvent == this)

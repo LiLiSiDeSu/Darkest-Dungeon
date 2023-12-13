@@ -80,10 +80,12 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Mouse1)
             {
+                ClearImgStatus();
+
                 //取消现在选择的CellMapEditor
                 if (Hot.ChoseCellMiniMapEditor != null)
                 {
-                    if (Hot.ChoseCellMiniMapEditor.e_Room == E_CellMap.CellMapRoomEntrance)
+                    if (Hot.ChoseCellMiniMapEditor.e_Room == E_CellMiniMap.CellMiniMapRoomEntrance)
                     {
                         CancelNowChoseRoomType();
                     }
@@ -98,15 +100,15 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                 //删除创建的MiniMapCell
                 if (Hot.NowEnterCellMiniMapEditor != null)
                 {
-                    for (int i1 = 0; i1 < Hot.BodyDicRoom[Hot.NowEnterCellMiniMapEditor.e_Room].Y; i1++)
+                    for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.NowEnterCellMiniMapEditor.e_Room].Y; i1++)
                     {
-                        for (int i2 = 0; i2 < Hot.BodyDicRoom[Hot.NowEnterCellMiniMapEditor.e_Room].X; i2++)
+                        for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.NowEnterCellMiniMapEditor.e_Room].X; i2++)
                         {
                             Hot.PanelOtherMiniMapEditor_.Grids[Hot.NowEnterCellMiniMapEditor.RootGrid.Y + i1][Hot.NowEnterCellMiniMapEditor.RootGrid.X + i2].Item = null;
                         }
                     }
 
-                    if (Hot.NowEnterCellMiniMapEditor.e_Room == E_CellMap.CellMapRoomEntrance)
+                    if (Hot.NowEnterCellMiniMapEditor.e_Room == E_CellMiniMap.CellMiniMapRoomEntrance)
                     {
                         EntrancePos = new();
                     }
@@ -115,8 +117,6 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                 }
 
                 CancelNowChoseRoomType();
-
-                ClearImgStatus();
             }
         });
 
@@ -193,7 +193,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                 {
                     CellRoomScrollView.gameObject.SetActive(true);
                 }
-                Hot.e_ChoseRoom = E_CellMap.None;
+                Hot.e_ChoseRoom = E_CellMiniMap.None;
                 Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 CellHallScrollView.gameObject.SetActive(false);
                 break;
@@ -206,7 +206,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                 {
                     CellHallScrollView.gameObject.SetActive(true);
                 }
-                Hot.e_ChoseRoom = E_CellMap.None;
+                Hot.e_ChoseRoom = E_CellMiniMap.None;
                 Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
                 CellRoomScrollView.gameObject.SetActive(false);
                 break;
@@ -216,14 +216,14 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
     public void CancelNowChoseRoomType()
     {
         ImgCurrentChoose.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
-        Hot.e_ChoseRoom = E_CellMap.None;
+        Hot.e_ChoseRoom = E_CellMiniMap.None;
     }
 
     public void InitChooseContent()
     {
-        foreach (E_CellMap e_CellExpeditionRoom in Enum.GetValues(typeof(E_CellMap)))
+        foreach (E_CellMiniMap e_CellExpeditionRoom in Enum.GetValues(typeof(E_CellMiniMap)))
         {
-            if (e_CellExpeditionRoom != E_CellMap.None)
+            if (e_CellExpeditionRoom != E_CellMiniMap.None)
             {
                 Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditorChoose>
                 (false, "/PanelCellMiniMapEditorChoose",
@@ -416,7 +416,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
             {
                 int tempi2 = i2;
 
-                if (MapData.ListCellMiniMap[tempi1][tempi2].e_Room != E_CellMap.None)
+                if (MapData.ListCellMiniMap[tempi1][tempi2].e_CellMiniMap != E_CellMiniMap.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
                     (PanelCellMiniMapEditor_) =>
@@ -426,16 +426,17 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
                         PanelCellMiniMapEditor_.RootGrid = Grids[tempi1][tempi2];
 
-                        for (int i3 = 0; i3 < Hot.BodyDicRoom[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].Y; i3++)
+                        E_CellMiniMap e_CellMiniMap = MapData.ListCellMiniMap[tempi1][tempi2].e_CellMiniMap;
+                        for (int i3 = 0; i3 < Hot.BodyDicCellMiniMap[e_CellMiniMap].Y; i3++)
                         {
-                            for (int i4 = 0; i4 < Hot.BodyDicRoom[MapData.ListCellMiniMap[tempi1][tempi2].e_Room].X; i4++)
+                            for (int i4 = 0; i4 < Hot.BodyDicCellMiniMap[e_CellMiniMap].X; i4++)
                             {
                                 Grids[tempi1 + i3][tempi2 + i4].Item = PanelCellMiniMapEditor_;
                             }
                         }
 
                         //Init DataIndexMap
-                        PanelCellMiniMapEditor_.Init(MapData.ListCellMiniMap[tempi1][tempi2].e_Room);
+                        PanelCellMiniMapEditor_.Init(e_CellMiniMap);
 
                         for (int i5 = 0; i5 < Hot.BodySizeMap.Y; i5++)
                         {
@@ -451,11 +452,12 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                                 {
                                     PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
 
-                                    for (int j1 = 0; j1 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].Y; j1++)
+                                    E_MapObject e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                    for (int j1 = 0; j1 < Hot.BodyDicMapObject[e_Obj].Y; j1++)
                                     {
-                                        for (int j2 = 0; j2 < Hot.BodyDicMapObject[MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj].X; j2++)
+                                        for (int j2 = 0; j2 < Hot.BodyDicMapObject[e_Obj].X; j2++)
                                         {
-                                            PanelCellMiniMapEditor_.Map[tempi5 + j1][tempi6 + j2].e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                            PanelCellMiniMapEditor_.Map[tempi5 + j1][tempi6 + j2].e_Obj = e_Obj;
                                         }
                                     }
                                 }

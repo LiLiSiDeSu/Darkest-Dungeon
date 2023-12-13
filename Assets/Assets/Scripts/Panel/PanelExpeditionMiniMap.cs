@@ -53,7 +53,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
                 }
             }
         });
-    }    
+    }
 
     public void Init()
     {
@@ -61,18 +61,49 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         InitItem();
     }
 
+    public override void End()
+    {
+        base.End();
+
+        DisableImgBkRaycast();
+    }
+
     public void InitItem()
     {
         for (int iY = 0; iY < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count; iY++)
         {
+            int tempY = iY;
+
             for (int iX = 0; iX < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count; iX++)
             {
+                int tempX = iX;
 
+                if (Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[tempY][tempX].e_CellMiniMap != E_CellMiniMap.None)
+                {
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionMiniMap>(false, "/PanelCellExpeditionMiniMap",
+                    (panel) =>
+                    {
+                        E_CellMiniMap e_CellMiniMap = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[tempY][tempX].e_CellMiniMap;
+                        panel.Init(Grids[tempY][tempX], e_CellMiniMap);
+
+                        for (int jY = 0; jY < Hot.BodyDicCellMiniMap[e_CellMiniMap].Y; jY++)
+                        {
+                            for (int jX = 0; jX < Hot.BodyDicCellMiniMap[e_CellMiniMap].X; jX++)
+                            {
+                                Grids[tempY + jY][tempX + jX].Item = panel;
+                            }
+                        }
+
+                        if (e_CellMiniMap == E_CellMiniMap.CellMiniMapRoomEntrance)
+                        {
+                            my_Vector2 pos = Hot.NowExpeditionEvent.DataExpedition.EntrancePos;
+                            Hot.NowEnterCellExpeditionMiniMap = Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(pos.X, pos.Y);
+                            Hot.DataNowCellGameArchive.InitDataNowEnterCellMiniMap();
+                        }
+                    });
+                }
             }
         }
-
-        //¸øHot.NowEnterCellExpeditionMiniMap¸³EntranceµÄÖµ
-        //Hot.DataNowCellGameArchive.InitDataNowEnterCellExpeditionMiniMap();
     }
 
     public PanelCellExpeditionMiniMap GetCellExpeditionMiniMap(int p_x, int p_y)

@@ -189,8 +189,8 @@ RectTransform:
   - {fileID: 8965744058634515738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -209,8 +209,8 @@ MonoBehaviour:
   Index: 0
   ImgItem: {fileID: 0}
   ImgStatus: {fileID: 0}
-  X: 0
-  Y: 0
+  RootGrid: {fileID: 0}
+  e_CellMap: 0
 --- !u!1 &8272335391477590250
 GameObject:
   m_ObjectHideFlags: 0
