@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, PanelGridExpeditionRoom>
 {
@@ -16,16 +17,16 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
         ImgRoomBk = transform.FindSonSonSon("ImgRoomBk");
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == Hot.MgrInput_.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
-                Hot.NowEnterGridExpeditionRoom.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                Hot.NowEnterGridExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
             }
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyUp",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == Hot.MgrInput_.LeftControl)
@@ -34,21 +35,19 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap"))
             {
-                if (key == Hot.MgrInput_.Add)
+                if (AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
                 {
-                    AllContent.localScale +=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
 
                 if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
-                    AllContent.localScale -=
-                        new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
             }
         });
@@ -59,14 +58,14 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             panel.transform.SetParent(transform, false);
         });
 
-        InitGrids(Hot.BodySizeMap.Y, Hot.BodySizeMap.X);
+        InitGrids(Hot.BodyMap.Y, Hot.BodyMap.X);
     }    
 
     public void LoadDataMap(int p_x, int p_y)
     {
         ClearItem();
 
-        List<List<DataContainer_GridExpeditionMap>> Map = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[p_y][p_x].Map;
+        List<List<DataContainer_GridExpeditionMap>> Map = Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[p_y][p_x].Map;
 
         for (int Y = 0; Y < Map.Count; Y++)
         {
@@ -76,22 +75,12 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             {
                 int tempX = X;
 
-                if (Map[tempY][tempX].Obj.e_Obj != E_MapObject.None)
+                if (Map[tempY][tempX].MapObj != null || Map[tempY][tempX].IndexListRole != -1 || Map[tempY][tempX].OtherRole != null)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
                     (panel) =>
                     {
-                        panel.Init(Map[tempY][tempX].Obj.e_Obj, Grids[tempY][tempX]);
-                        panel.transform.SetParent(ItemRoot[tempY][tempX], false);
-                        panel.transform.localPosition = new(-20, 20);
-
-                        for (int Y = 0; Y < Hot.BodyDicMapObject[panel.e_Obj].Y; Y++)
-                        {
-                            for (int X = 0; X < Hot.BodyDicMapObject[panel.e_Obj].X; X++)
-                            {
-                                Grids[tempY + Y][tempX + X].Item = panel;
-                            }
-                        }
+                        panel.Init(Grids[tempY][tempX]);
                     });
                 }
             }

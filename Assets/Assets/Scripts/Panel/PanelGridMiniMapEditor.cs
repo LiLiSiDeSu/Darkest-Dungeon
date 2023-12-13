@@ -68,11 +68,7 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                         Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
                         (panel) =>
                         {
-                            panel.transform.SetParent(Hot.PanelOtherMiniMapEditor_.ItemRoot[Y][X], false);
-                            panel.transform.transform.localPosition = new Vector3(-20, 20);
-                            panel.RootGrid = this;
-
-                            panel.Init(Hot.e_ChoseRoom);
+                            panel.Init(Hot.e_ChoseRoom, this);
 
                             for (int i1 = 0; i1 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].Y; i1++)
                             {
@@ -87,7 +83,7 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                                 Hot.PanelOtherMiniMapEditor_.EntrancePos.X = X;
                                 Hot.PanelOtherMiniMapEditor_.EntrancePos.Y = Y;
 
-                                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                                Hot.PanelOtherMiniMapEditor_.ImgCurrentChoose.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                                 Hot.e_ChoseRoom = E_CellMiniMap.None;
                             }   
                         });
@@ -129,7 +125,7 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                         {
                             for (int i2 = 0; i2 < Hot.BodyDicCellMiniMap[Hot.e_ChoseRoom].X; i2++)
                             {
-                                Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                                Hot.PanelOtherMiniMapEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                             }
                         }
                     }

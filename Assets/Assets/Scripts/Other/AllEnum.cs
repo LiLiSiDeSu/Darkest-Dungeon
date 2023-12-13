@@ -2,6 +2,13 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
+public enum E_InputKeyEvent
+{
+    KeyUp,
+    KeyDown,
+    KeyHold,
+}
+
 public enum E_Res
 {
     ImgEmpty,

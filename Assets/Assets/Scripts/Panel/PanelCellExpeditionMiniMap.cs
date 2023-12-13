@@ -36,8 +36,8 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
 
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_CellMap);
 
-        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodySizeGrid.Y);
-        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodySizeGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodySizeGrid.Y);
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodyGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodyGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicCellMiniMap[e_CellMap].X * Hot.BodyGrid.X, Hot.BodyDicCellMiniMap[e_CellMap].Y * Hot.BodyGrid.Y);
     }
 
     public bool JudgeRoleCanEnter()

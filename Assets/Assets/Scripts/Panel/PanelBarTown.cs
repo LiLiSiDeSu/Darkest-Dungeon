@@ -7,7 +7,7 @@ public class PanelBarTown : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.PanelBar)
             {
@@ -46,9 +46,9 @@ public class PanelBarTown : PanelBase
 
         switch (controlname)
         {
-            case "BtnExpedition":                
-                Hot.MgrUI_.ShowPanel<PanelExpeditionPrepare>(true, "PanelExpeditionPrepare");
+            case "BtnExpedition":
                 Hot.e_NowPlayerLocation = E_PlayerLocation.PrepareExpedition;
+                Hot.MgrUI_.ShowPanel<PanelExpeditionPrepare>(true, "PanelExpeditionPrepare");
                 break;
         }
     }

@@ -12,7 +12,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
 
     private void Awake()
     {
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.S))

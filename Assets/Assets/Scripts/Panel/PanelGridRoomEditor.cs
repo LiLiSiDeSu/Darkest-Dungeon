@@ -66,8 +66,6 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                         (panel) =>
                         {
                             panel.Init(Hot.e_ChoseObj, this);
-                            panel.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
-                            panel.transform.localPosition = new(-20, 20);
                             Hot.NowEditorDependency.Map[Y][X].IsHave = true;
 
                             for (int i1 = 0; i1 < Hot.BodyDicMapObject[Hot.e_ChoseObj].Y; i1++)
@@ -93,7 +91,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                                 Hot.PanelOtherRoomEditor_.
                                     Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].Item = null;
                                 Hot.PanelOtherRoomEditor_.Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
-                                    Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                                    Hot.LoadSprite(E_Res.ImgEmpty);
                             }
                         }
 
@@ -120,8 +118,8 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
     {
         if (Hot.e_ChoseObj != E_MapObject.None)
         {
-            if (Y + Hot.BodyDicMapObject[Hot.e_ChoseObj].Y > Hot.BodySizeMap.Y ||
-                X + Hot.BodyDicMapObject[Hot.e_ChoseObj].X > Hot.BodySizeMap.X)
+            if (Y + Hot.BodyDicMapObject[Hot.e_ChoseObj].Y > Hot.BodyMap.Y ||
+                X + Hot.BodyDicMapObject[Hot.e_ChoseObj].X > Hot.BodyMap.X)
 
             {
                 return false;

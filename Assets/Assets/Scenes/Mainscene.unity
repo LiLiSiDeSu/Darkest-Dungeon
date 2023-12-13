@@ -186,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6388033586236655979, guid: c77b3e086abc51a44a23c7a1b00b26ef, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6756370374060462289, guid: c77b3e086abc51a44a23c7a1b00b26ef, type: 3}
       propertyPath: m_Pivot.x
@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684611876316930896, guid: 313b4e757f9068e48829c48f1bb8d74c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1890048476469600505, guid: 313b4e757f9068e48829c48f1bb8d74c, type: 3}
       propertyPath: m_RaycastTarget

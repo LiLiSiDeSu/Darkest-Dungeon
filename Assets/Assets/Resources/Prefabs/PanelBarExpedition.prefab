@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 5215493956888883740}
   - component: {fileID: 2910669474315687086}
   m_Layer: 5
-  m_Name: Bk
+  m_Name: ExpeditionRoleRootBk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1026,6 +1026,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac906316ecce6942860fdac4f51a0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowIndex: 0
   ListCellExpeditionRolePrepareRoot: []
-  RootExpeditionRole0: {fileID: 0}
+  Bk: {fileID: 0}

@@ -11,7 +11,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.ChoseCellItem != null && key == Hot.MgrInput_.Mouse1)
@@ -20,24 +20,24 @@ public class PanelTownStore : PanelBaseDynamicScrollView
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.NowPanelCanStoreItem != null)
             {
-                if (key == Hot.MgrInput_.Add)
+                if (Hot.NowPanelCanStoreItem.AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
                 {
                     Hot.NowPanelCanStoreItem.AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
                 }
 
-                if (key == Hot.MgrInput_.Reduce)
+                if (Hot.NowPanelCanStoreItem.AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
                     Hot.NowPanelCanStoreItem.AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
                 }
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {

@@ -9,13 +9,13 @@ public class PanelBarExpedition : PanelBase,
 {
     public List<PanelCellExpeditionRolePrepareRoot> ListCellExpeditionRolePrepareRoot = new();
 
-    public Transform Bk;
+    public Transform ExpeditionRoleRootBk;
 
     protected override void Awake()
     {
         base.Awake();
 
-        Bk = transform.FindSonSonSon("Bk");
+        ExpeditionRoleRootBk = transform.FindSonSonSon("ExpeditionRoleRootBk");
     }
 
     protected override void Button_OnClick(string controlname)
@@ -27,16 +27,11 @@ public class PanelBarExpedition : PanelBase,
             case "BtnExpedition":
                 if (Hot.NowExpeditionEvent != null)
                 {
+                    InitRolePos();
                     Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                     Hot.MgrUI_.HideAllPanel();
                     Hot.PanelExpeditionMiniMap_.Init();
-
-                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom",
-                    (panel) =>
-                    {
-                        my_Vector2 pos = Hot.NowExpeditionEvent.DataExpedition.EntrancePos;
-                        panel.LoadDataMap(pos.X, pos.Y);
-                    });
+                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                 }
                 break;
         }
@@ -65,7 +60,7 @@ public class PanelBarExpedition : PanelBase,
             Hot.MgrUI_.CreatePanel<PanelCellExpeditionRolePrepareRoot>(false, "/PanelCellExpeditionRolePrepareRoot",
             (panel) =>
             {
-                panel.Init(tempi, Bk);
+                panel.Init(tempi, ExpeditionRoleRootBk);
                 ListCellExpeditionRolePrepareRoot.Add(panel);
             });
         }
@@ -86,6 +81,17 @@ public class PanelBarExpedition : PanelBase,
                     panel.Role.RolePortraitCanDrag = panel;
                     panel.Init(panel.Role, ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot].transform, new(100, 100));
                 });
+            }
+        }
+    }
+
+    public void InitRolePos()
+    {
+        foreach (PanelCellExpeditionRolePrepareRoot item in ListCellExpeditionRolePrepareRoot)
+        {
+            if (item.transform.childCount > 0)
+            {
+                Hot.ListIndexPutRole.Add(item.GetComponentInChildren<PanelCellRolePortraitCanDrag>().Role.Index);
             }
         }
     }

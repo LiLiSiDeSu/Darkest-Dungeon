@@ -21,7 +21,7 @@ public class PanelRoleList : PanelBaseDynamicScrollView
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.PanelRole)

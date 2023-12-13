@@ -64,7 +64,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
             NowCapacity = 0;
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelRoleDetails"))

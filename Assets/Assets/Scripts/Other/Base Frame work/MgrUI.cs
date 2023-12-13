@@ -25,7 +25,6 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             UIBaseCanvas = obj.transform as RectTransform;
             UIBaseCanvas.gameObject.name = "UIBaseCanvas";
             obj.transform.SetParent(UI.transform);
-            Hot.raycaster = obj.GetComponent<GraphicRaycaster>();
         });
 
         UIBaseEventSystem = MgrRes.GetInstance().Load<GameObject>("Prefabs" + "/UIBaseEventSystem").GetComponent<EventSystem>();

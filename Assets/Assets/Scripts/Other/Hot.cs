@@ -8,10 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class Hot
-{
-    public static GraphicRaycaster raycaster;
-    public static PointerEventData pointerData;
-
+{    
     #region Config
 
     public static int StepSanity = 10;
@@ -45,15 +42,15 @@ public static class Hot
 
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
-        { E_RoleName.LiLiSi, new() { StoreSize = new(20, 7) } },
-        { E_RoleName.Crusader, new() { StoreSize = new(20, 9) } },
-        { E_RoleName.PlagueDoctor, new() { StoreSize = new(15, 6) } },
+        { E_RoleName.LiLiSi, new(new(20, 7), new(2, 3)) },
+        { E_RoleName.Crusader, new(new(20, 9), new(2, 3)) },
+        { E_RoleName.PlagueDoctor, new(new(15, 6), new(2, 3)) },
     };
 
     #region Body
 
-    public static my_Vector2 BodySizeMap = new(48, 18);
-    public static my_Vector2 BodySizeGrid = new(40, 40);
+    public static my_Vector2 BodyMap = new(48, 18);
+    public static my_Vector2 BodyGrid = new(40, 40);
     public static my_Vector2 BodySizeCellItem = new(40, 40);
     public static my_Vector2 BodySizeCellMinimap = new(40, 40);
 
@@ -85,7 +82,7 @@ public static class Hot
     
     public static Dictionary<E_CellMiniMap, my_Vector2> BodyDicCellMiniMap = new()
     {
-        { E_CellMiniMap.CellMiniMapRoomBoss, new(4, 4) },
+        { E_CellMiniMap.CellMiniMapRoomBoss, new(3, 3) },
         { E_CellMiniMap.CellMiniMapRoomLocked, new(3, 3) },
         { E_CellMiniMap.CellMiniMapRoomEmpty, new(3, 3) },
         { E_CellMiniMap.CellMiniMapRoomEntrance, new(3, 3) },
@@ -460,6 +457,7 @@ public static class Hot
 
     #region Expedition
 
+    public static List<int> ListIndexPutRole = new();
     public static PanelCellExpeditionEvent NowExpeditionEvent;    
     public static PanelCellExpeditionMiniMap NowEnterCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
@@ -522,7 +520,7 @@ public static class Hot
         glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
         glg.constraintCount = 1;
         glg.childAlignment = TextAnchor.MiddleCenter;
-        glg.cellSize = new(BodySizeGrid.X, BodySizeGrid.Y);
+        glg.cellSize = new(BodyGrid.X, BodyGrid.Y);
 
         return obj;
     }

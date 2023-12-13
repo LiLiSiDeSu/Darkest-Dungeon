@@ -62,7 +62,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
         IptChangeX.text = "0";
         IptChangeY.text = "0";
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.NowEnterCellMiniMapEditor != null && key == Hot.MgrInput_.Return)
@@ -75,7 +75,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
         //这里可以用PoolInvoke来优化
         //但以后再说吧
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Mouse1)
@@ -120,16 +120,16 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor"))
             {
-                if (key == Hot.MgrInput_.Add)
+                if (AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
                 {
                     AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
                 }
-                else if (key == Hot.MgrInput_.Reduce)
+                else if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
                 {
                     AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
                 }
@@ -421,11 +421,6 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                     Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
                     (PanelCellMiniMapEditor_) =>
                     {
-                        PanelCellMiniMapEditor_.transform.SetParent(ItemRoot[tempi1][tempi2].transform, false);
-                        PanelCellMiniMapEditor_.transform.localPosition = new Vector3(-20, 20);
-
-                        PanelCellMiniMapEditor_.RootGrid = Grids[tempi1][tempi2];
-
                         E_CellMiniMap e_CellMiniMap = MapData.ListCellMiniMap[tempi1][tempi2].e_CellMiniMap;
                         for (int i3 = 0; i3 < Hot.BodyDicCellMiniMap[e_CellMiniMap].Y; i3++)
                         {
@@ -435,24 +430,23 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                             }
                         }
 
-                        //Init DataIndexMap
-                        PanelCellMiniMapEditor_.Init(e_CellMiniMap);
+                        PanelCellMiniMapEditor_.Init(e_CellMiniMap, Grids[tempi1][tempi2]);
 
-                        for (int i5 = 0; i5 < Hot.BodySizeMap.Y; i5++)
+                        for (int i5 = 0; i5 < Hot.BodyMap.Y; i5++)
                         {
                             int tempi5 = i5;
 
-                            for (int i6 = 0; i6 < Hot.BodySizeMap.X; i6++)
+                            for (int i6 = 0; i6 < Hot.BodyMap.X; i6++)
                             {
                                 int tempi6 = i6;
 
                                 PanelCellMiniMapEditor_.Map[tempi5][tempi6].Init(tempi5, tempi6);
 
-                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj != E_MapObject.None)
+                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].MapObj.e_Obj != E_MapObject.None)
                                 {
                                     PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
 
-                                    E_MapObject e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].Obj.e_Obj;
+                                    E_MapObject e_Obj = MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].MapObj.e_Obj;
                                     for (int j1 = 0; j1 < Hot.BodyDicMapObject[e_Obj].Y; j1++)
                                     {
                                         for (int j2 = 0; j2 < Hot.BodyDicMapObject[e_Obj].X; j2++)
@@ -519,7 +513,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                             {
                                 MapData.ListCellMiniMap[i1][i2].Map[i3][i4] = new()
                                 {
-                                    Obj = new()
+                                    MapObj = new()
                                     {
                                         e_Obj = ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map[i3][i4].e_Obj,
                                     }

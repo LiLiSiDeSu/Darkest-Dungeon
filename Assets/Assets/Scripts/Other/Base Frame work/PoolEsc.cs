@@ -7,7 +7,7 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 
     private void Start()
     {
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.Esc)
                 HideTop();

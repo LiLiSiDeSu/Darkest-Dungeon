@@ -57,7 +57,7 @@ public class PanelCellItem : PanelBaseCellVector2,
     {
         base.ChangeCellSize();
 
-        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodySizeGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodySizeGrid.Y);
-        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodySizeGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodySizeGrid.Y);
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodyGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodyGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(Hot.BodyDicItem[e_Item].X * Hot.BodyGrid.X, Hot.BodyDicItem[e_Item].Y * Hot.BodyGrid.Y);
     }
 }

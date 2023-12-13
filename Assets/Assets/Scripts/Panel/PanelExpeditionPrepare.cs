@@ -49,7 +49,7 @@ public class PanelExpeditionPrepare : PanelBase
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
         });
 
-        Hot.MgrUI_.CreatePanelAndShow<PanelExpeditionDetails>(true, "/PanelExpeditionDetails",
+        Hot.MgrUI_.CreatePanel<PanelExpeditionDetails>(true, "/PanelExpeditionDetails",
         (panel) =>
         {
             panel.transform.SetParent(transform, false);
@@ -70,11 +70,7 @@ public class PanelExpeditionPrepare : PanelBase
 
         foreach (E_ExpeditionLocation e_ExpeditionLocation in Enum.GetValues(typeof(E_ExpeditionLocation)))
         {
-            if (e_ExpeditionLocation == E_ExpeditionLocation.Town)
-            {
-                ;
-            }
-            else
+            if (e_ExpeditionLocation != E_ExpeditionLocation.Town)
             {
                 for (int i = 0; i < Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation].Count; i++)
                 {
@@ -87,7 +83,7 @@ public class PanelExpeditionPrepare : PanelBase
                         panel.Init(tempi, e_ExpeditionLocation);
                     });
                 }
-            }            
+            }         
         }        
     }
 

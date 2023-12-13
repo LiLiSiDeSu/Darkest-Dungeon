@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Test1 : Test2<PanelBaseVector2Store>
+public class Test1 : MonoBehaviour
 {
 
 }

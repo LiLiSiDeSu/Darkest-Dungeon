@@ -9,8 +9,6 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 {
     public PanelBaseGrid<PanelCellExpeditionRoom> RootGrid = new();
 
-    public E_MapObject e_Obj = E_MapObject.None;
-
     protected override void Button_OnClick(string controlname)
     {
         base.Button_OnClick(controlname);
@@ -36,17 +34,62 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
     #endregion
 
-    public void Init(E_MapObject p_e_Obj, PanelBaseGrid<PanelCellExpeditionRoom> p_rootGrid)
+    public void Init(PanelBaseGrid<PanelCellExpeditionRoom> p_rootGrid)
     {
-        e_Obj = p_e_Obj;
         RootGrid = p_rootGrid;
-        transform.SetParent(p_rootGrid.transform, false);
+        transform.SetParent(Hot.PanelExpeditionRoom_.ItemRoot[RootGrid.Y][RootGrid.X], false);
+        transform.localPosition = new(-20, 20);
 
-        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + e_Obj);
+        PanelGridExpeditionRoom tempRootGrid = RootGrid as PanelGridExpeditionRoom;
+        if (tempRootGrid.Data.MapObj != null)
+        {
+            tempRootGrid.InitGridByMapObject(this);
+        }
+        else
+        {
+            E_RoleName e_RoleName;
 
-        ImgItem.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
-        ImgStatus.GetComponent<RectTransform>().sizeDelta =
-            new(Hot.BodyDicMapObject[e_Obj].X * Hot.BodySizeGrid.X, Hot.BodyDicMapObject[e_Obj].Y * Hot.BodySizeGrid.Y);
+            if (tempRootGrid.Data.IndexListRole != -1)
+            {
+                e_RoleName = Hot.DataNowCellGameArchive.ListCellRole[tempRootGrid.Data.IndexListRole].e_RoleName;
+            }
+            else
+            {
+                e_RoleName = tempRootGrid.Data.OtherRole.e_RoleName;
+            }
+
+            tempRootGrid.InitGridByRole(e_RoleName, this);
+        }
+
+        int X = 0;
+        int Y = 0;
+        string itemName = "";
+        if (tempRootGrid.Data.MapObj != null)
+        {
+            X = Hot.BodyDicMapObject[tempRootGrid.Data.MapObj.e_Obj].X;
+            Y = Hot.BodyDicMapObject[tempRootGrid.Data.MapObj.e_Obj].Y;
+            itemName = tempRootGrid.Data.MapObj.e_Obj.ToString();
+        }
+        else
+        {
+            E_RoleName e_RoleName;
+
+            if (tempRootGrid.Data.IndexListRole != -1)
+            {
+                e_RoleName = Hot.DataNowCellGameArchive.ListCellRole[tempRootGrid.Data.IndexListRole].e_RoleName;
+            }
+            else
+            {
+                e_RoleName = tempRootGrid.Data.OtherRole.e_RoleName;
+            }
+
+            X = Hot.DicRoleConfig[e_RoleName].BodySize.X;
+            Y = Hot.DicRoleConfig[e_RoleName].BodySize.Y;
+            itemName = e_RoleName.ToString();
+        }
+
+        ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + itemName);
+        ImgItem.GetComponent<RectTransform>().sizeDelta = new(X * Hot.BodyGrid.X, Y * Hot.BodyGrid.Y);
+        ImgStatus.GetComponent<RectTransform>().sizeDelta = new(X * Hot.BodyGrid.X, Y * Hot.BodyGrid.Y);
     }
 }

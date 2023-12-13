@@ -13,7 +13,7 @@ public class PanelOhterResTable : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.CapsLock && Hot.NowIndexCellGameArchive != -1)
             {
@@ -49,14 +49,14 @@ public class PanelOhterResTable : PanelBase
             panel.transform.SetParent(RootTranslate, false);
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.Add)
             {
                 Hot.NowTranslateRate += Hot.AddTranslateRate;                
             }
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyUp", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.Add)
             {

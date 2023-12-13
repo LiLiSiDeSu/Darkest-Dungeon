@@ -31,7 +31,7 @@ public class PanelTownItem : PanelBaseVector2Store,
         });
     }
 
-    #region EventSystem接口实现
+    #region EventSystem
 
     public void OnPointerEnter(PointerEventData eventData)
     {

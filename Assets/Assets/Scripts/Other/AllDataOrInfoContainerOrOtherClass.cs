@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,15 @@ public class my_Vector2
 
 public class RoleConfig
 {
-    public Vector2Int StoreSize;
+    public my_Vector2 StoreSize;
+    public my_Vector2 BodySize;
+
+    public RoleConfig() { }
+    public RoleConfig(my_Vector2 p_StoreSize, my_Vector2 p_BodySize)
+    {
+        StoreSize = p_StoreSize;
+        BodySize = p_BodySize;
+    }
 }
 
 public class DataContainer_PanelCellGameArchive
@@ -35,37 +44,47 @@ public class DataContainer_PanelCellGameArchive
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
-    public E_ExpeditionLocation e_ExpeditionLocation = E_ExpeditionLocation.Town;
-    public my_Vector2 NowCellMiniMapPos = new();
+    public E_ExpeditionLocation e_NowExpeditionLocation = E_ExpeditionLocation.Town;
     public int NowEventIndex = -1;
+    public my_Vector2 NowCellMiniMapPos = new();
+    [JsonIgnore]
+    public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
+    [JsonIgnore]
+    public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
+    
 
     public DataContainer_ResTable ResTable = new();    
     public List<DataContainer_CellTownStore> ListCellStore = new();        
     public List<DataContainer_CellRole> ListCellRole = new();
     public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
-
     public DataContainer_TownShop TownShop = new();
-
-    public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();    
-
+    public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
+    
     public DataContainer_PanelCellGameArchive() { }
     public DataContainer_PanelCellGameArchive
-    (string GameArchiveName, E_GameArchiveLevel e_GameArchiveLevel, E_ExpeditionLocation e_ExpeditionLocation, string Week, string Time, 
-    List<DataContainer_CellTownStore> ListCellStore)
+    (string p_GameArchiveName, E_GameArchiveLevel p_e_GameArchiveLevel, E_ExpeditionLocation p_e_NowExpeditionLocation, string p_Week, string p_Time, 
+    List<DataContainer_CellTownStore> p_ListCellStore)
     {
-        this.GameArchiveName = GameArchiveName;
-        this.e_GameArchiveLevel = e_GameArchiveLevel;
-        this.e_ExpeditionLocation = e_ExpeditionLocation;
-        this.Week = Week;
-        this.Time = Time;
-        this.ListCellStore = ListCellStore;
+        GameArchiveName = p_GameArchiveName;
+        e_GameArchiveLevel = p_e_GameArchiveLevel;
+        e_NowExpeditionLocation = p_e_NowExpeditionLocation;
+        Week = p_Week;
+        Time = p_Time;
+        ListCellStore = p_ListCellStore;
     }
 
-    public void InitDataNowEnterCellMiniMap()
+    public void InitDataNowEnterEvent()
     {
-        e_ExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
-        NowEventIndex = Hot.NowExpeditionEvent.Index;
-        UpdataNowCellMiniMapPos();
+        if (Hot.NowExpeditionEvent != null)
+        {
+            e_NowExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
+            NowEventIndex = Hot.NowExpeditionEvent.Index;
+        }
+        else
+        {
+            e_NowExpeditionLocation = E_ExpeditionLocation.Town;
+            NowEventIndex = -1;
+        }
     }
 
     public void UpdataNowCellMiniMapPos()
@@ -105,11 +124,11 @@ public class DataContainer_CellRole
         MaxSanity = p_MaxSanity;
         LimitToSanityExplosion = p_LimitToSanityExplosion;
 
-        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].StoreSize.y; Y++)
+        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].StoreSize.Y; Y++)
         {
             ListItem.Add(new());
 
-            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.x; X++)
+            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.Y; X++)
             {
                 ListItem[Y].Add(new());
             }
@@ -214,11 +233,11 @@ public class DataContainer_CellExpeditionMiniMap
 
         if (e_CellMiniMap != E_CellMiniMap.None && Map.Count <= 0)
         {
-            for (int Y = 0; Y < Hot.BodySizeMap.Y; Y++)
+            for (int Y = 0; Y < Hot.BodyMap.Y; Y++)
             {
                 Map.Add(new());
 
-                for (int X = 0; X < Hot.BodySizeMap.X; X++)
+                for (int X = 0; X < Hot.BodyMap.X; X++)
                 {
                     Map[Y].Add(new());
                 }
@@ -232,20 +251,15 @@ public class DataContainer_CellExpeditionMapObj
     public E_MapObject e_Obj = E_MapObject.None;
 }
 
-public class DataContainer_CellOtherRole
-{
-
-}
-
 public class DataContainer_GridExpeditionMap
 {
-    public int IndexRoleListRole = -1;
+    public int IndexListRole = -1;
 
     //当前远征地图格子所拥有的角色(不是RoleList里面的的角色)
-    public DataContainer_CellOtherRole OtherRole = new();
+    public DataContainer_CellRole OtherRole;
 
     //当前远征地图格子所拥有的物体
-    public DataContainer_CellExpeditionMapObj Obj = new();
+    public DataContainer_CellExpeditionMapObj MapObj;
 }
 
 #endregion

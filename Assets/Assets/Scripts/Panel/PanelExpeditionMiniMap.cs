@@ -2,27 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMap, PanelGridExpeditionMiniMap>
-{    
-    public int MiniMapY
-    {
-        get
-        {
-            return Grids.Count;
-        }
-    }
-    public int MiniMapX
-    {
-        get
-        {
-            return Grids[0].Count;
-        }
-    }
+{
+    public int MiniMapY => Grids.Count;
+    public int MiniMapX => Grids[0].Count;
 
     protected override void Awake()
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyDown", (key) =>
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Map)
             {
@@ -37,7 +25,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>("KeyHold",
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap"))
@@ -57,7 +45,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
     public void Init()
     {
-        InitGrids(Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count, Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count);
+        InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
         InitItem();
     }
 
@@ -70,20 +58,22 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
     public void InitItem()
     {
-        for (int iY = 0; iY < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap.Count; iY++)
+        DataContainer_ExpeditionMiniMap DataNowExpeditionEvent = Hot.DataNowCellGameArchive.DataNowEvent;
+
+        for (int iY = 0; iY < DataNowExpeditionEvent.ListCellMiniMap.Count; iY++)
         {
             int tempY = iY;
 
-            for (int iX = 0; iX < Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[0].Count; iX++)
+            for (int iX = 0; iX < DataNowExpeditionEvent.ListCellMiniMap[0].Count; iX++)
             {
                 int tempX = iX;
 
-                if (Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[tempY][tempX].e_CellMiniMap != E_CellMiniMap.None)
+                if (DataNowExpeditionEvent.ListCellMiniMap[tempY][tempX].e_CellMiniMap != E_CellMiniMap.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellExpeditionMiniMap>(false, "/PanelCellExpeditionMiniMap",
                     (panel) =>
                     {
-                        E_CellMiniMap e_CellMiniMap = Hot.NowExpeditionEvent.DataExpedition.ListCellMiniMap[tempY][tempX].e_CellMiniMap;
+                        E_CellMiniMap e_CellMiniMap = DataNowExpeditionEvent.ListCellMiniMap[tempY][tempX].e_CellMiniMap;
                         panel.Init(Grids[tempY][tempX], e_CellMiniMap);
 
                         for (int jY = 0; jY < Hot.BodyDicCellMiniMap[e_CellMiniMap].Y; jY++)
@@ -96,9 +86,11 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
                         if (e_CellMiniMap == E_CellMiniMap.CellMiniMapRoomEntrance)
                         {
-                            my_Vector2 pos = Hot.NowExpeditionEvent.DataExpedition.EntrancePos;
+                            my_Vector2 pos = DataNowExpeditionEvent.EntrancePos;
                             Hot.NowEnterCellExpeditionMiniMap = Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(pos.X, pos.Y);
-                            Hot.DataNowCellGameArchive.InitDataNowEnterCellMiniMap();
+                            Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
+                            Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
+                            Hot.PanelExpeditionRoom_.LoadDataMap(pos.X, pos.Y);
                         }
                     });
                 }

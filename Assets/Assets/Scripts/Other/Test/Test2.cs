@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test2<T> : MonoBehaviour
+public class Test2 : MonoBehaviour
 {
-    private void Awake()
+    private void Update()
     {
-        Debug.Log(typeof(T).Name);
+        Debug.Log(Hot.DataNowCellGameArchive.NowCellMiniMapPos.X + " - " + Hot.DataNowCellGameArchive.NowCellMiniMapPos.Y);
     }
 }

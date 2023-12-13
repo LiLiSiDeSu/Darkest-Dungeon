@@ -184,7 +184,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 
         ChangeImgGameArchiveLevel(data.e_GameArchiveLevel);
 
-        TxtLocation.text = data.e_ExpeditionLocation.ToString();
+        TxtLocation.text = data.e_NowExpeditionLocation.ToString();
         TxtWeek.text = data.Week;
         TxtTime.text = data.Time;
     }

@@ -13,8 +13,6 @@ public class PanelCellExpeditionEvent : PanelBaseCell
     public Image ImgExpeditionEvent;
     public Image ImgCurrentChoose;
 
-    public DataContainer_ExpeditionMiniMap DataExpedition => Hot.DataNowCellGameArchive.ExpeditionPrepare[e_ExpeditionLocation][Index];
-
     protected override void Awake()
     {
         base.Awake();
@@ -36,14 +34,16 @@ public class PanelCellExpeditionEvent : PanelBaseCell
                 if (Hot.NowExpeditionEvent == null)
                 {
                     Hot.NowExpeditionEvent = this;
+                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
-                    Hot.PanelExpeditionDetails_.UpdateInfo(DataExpedition);
+                    Hot.PanelExpeditionDetails_.UpdateInfo();
                     return;
                 }
                 if (Hot.NowExpeditionEvent == this)
                 {
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                     Hot.NowExpeditionEvent = null;
+                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.PanelExpeditionDetails_.Clear();
                     return;
                 }
@@ -51,9 +51,9 @@ public class PanelCellExpeditionEvent : PanelBaseCell
                 {
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                     Hot.NowExpeditionEvent = this;
+                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
-                    Hot.PanelExpeditionDetails_.UpdateInfo(DataExpedition);
-                    Debug.Log(DataExpedition.e_dungeonSize + " - " + DataExpedition.e_dungeonLevel + " - " + DataExpedition.e_ExpeditionEvent);
+                    Hot.PanelExpeditionDetails_.UpdateInfo();
                     return;
                 }                
                 break;
@@ -65,13 +65,14 @@ public class PanelCellExpeditionEvent : PanelBaseCell
         Index = index;
         e_ExpeditionLocation = e_expeditionLocation;
 
-        ImgBorderExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderExpedition" + DataExpedition.e_dungeonSize + "Level" + DataExpedition.e_dungeonLevel);
+        DataContainer_ExpeditionMiniMap data = Hot.DataNowCellGameArchive.ExpeditionPrepare[e_expeditionLocation][index];
 
-        ImgExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/ExpeditionEvent" + DataExpedition.e_ExpeditionEvent);
+        ImgBorderExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderExpedition" + data.e_dungeonSize + "Level" + data.e_dungeonLevel);
+        ImgExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/ExpeditionEvent" + data.e_ExpeditionEvent);
     }
 
     public DataContainer_CellExpeditionMiniMap GetDataCellExpeditionMiniMap(int p_x, int p_y)
     {
-        return DataExpedition.ListCellMiniMap[p_y][p_x];
+        return Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[p_y][p_x];
     }
 }
