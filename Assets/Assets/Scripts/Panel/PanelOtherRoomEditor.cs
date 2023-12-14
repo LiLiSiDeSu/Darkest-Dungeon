@@ -42,7 +42,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
                 Hot.NowEnterGridRoomEditor.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
@@ -51,7 +51,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(true);
             }
@@ -60,7 +60,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == Hot.MgrInput_.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.Mouse1)
             {
                 if (Hot.ChoseCellRoomEditor != null)
                 {
@@ -160,7 +160,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         }
     }
 
-    public void LoadRoomConfig(List<List<PanelCellGridRoomEditorConfig>> map)
+    public void LoadRoomConfig(List<List<PanelGridRoomEditorConfig>> map)
     {
         for (int Y = 0; Y < map.Count; Y++)
         {

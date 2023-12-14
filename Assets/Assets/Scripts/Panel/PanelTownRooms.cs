@@ -20,7 +20,7 @@ public class PanelTownRooms : PanelBase
         {
             if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.TownShopItem)
             {
-                Hot.PanelTownStore_.CancelNowChoosedItem();
+                Hot.PanelBarTownStore_.CancelNowChoosedItem();
             }
 
             Hot.MgrUI_.HidePanel(false, PanelRoomRoot.GetChild(0).gameObject, PanelRoomRoot.GetChild(0).gameObject.name);

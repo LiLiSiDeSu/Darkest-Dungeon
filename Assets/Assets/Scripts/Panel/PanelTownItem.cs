@@ -69,7 +69,7 @@ public class PanelTownItem : PanelBaseVector2Store,
         Hot.MgrUI_.ShowPanel<PanelTownItem>(true, gameObject.name,
         (panel) =>
         {
-            panel.transform.SetParent(Hot.PanelTownStore_.RootPanelTownItem, false);
+            panel.transform.SetParent(Hot.PanelBarTownStore_.RootPanelTownItem, false);
         });
     }
 
@@ -99,7 +99,7 @@ public class PanelTownItem : PanelBaseVector2Store,
 
     public void InitTxtCapacity()
     {
-        foreach (List<DataContainer_CellItem> listItem in Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem)
+        foreach (List<DataContainer_CellItem> listItem in Hot.DataNowCellGameArchive.StoreList[PanelCellTownStore_.Index].ListItem)
         {
             foreach (DataContainer_CellItem item in listItem)
             {
@@ -118,7 +118,7 @@ public class PanelTownItem : PanelBaseVector2Store,
 
     public void InitContent()
     {
-        IptName.text = Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].Name;
+        IptName.text = Hot.DataNowCellGameArchive.StoreList[PanelCellTownStore_.Index].Name;
 
         InitGrids(Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y, Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X);
 
@@ -135,7 +135,7 @@ public class PanelTownItem : PanelBaseVector2Store,
             {
                 int tempi2 = i2;
 
-                if (Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (Hot.DataNowCellGameArchive.StoreList[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
                     (PanelCellItem_) =>
@@ -146,7 +146,7 @@ public class PanelTownItem : PanelBaseVector2Store,
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
                         PanelCellItem_.e_Location = E_ItemLocation.PanelTownItem;
-                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.ListCellStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
+                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.StoreList[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
 
                         PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_Item);
 

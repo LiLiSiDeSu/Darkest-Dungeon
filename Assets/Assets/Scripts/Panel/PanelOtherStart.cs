@@ -23,6 +23,7 @@ public class PanelOtherStart : PanelBase
             case "BtnStart":
                 Hot.MgrUI_.HidePanel(false, gameObject, "PanelOtherStart");
                 Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, "PanelGameArchiveChoose");
+                Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;
                 break;
             case "BtnMapEditor":
                 Hot.MgrUI_.ShowPanel<PanelOtherMiniMapEditor>(true, "PanelOtherMiniMapEditor");

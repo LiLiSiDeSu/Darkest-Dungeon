@@ -20,7 +20,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == Hot.MgrInput_.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
                 Hot.NowEnterGridExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
@@ -29,7 +29,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == Hot.MgrInput_.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(true);
             }

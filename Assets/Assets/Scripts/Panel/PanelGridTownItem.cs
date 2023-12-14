@@ -92,13 +92,13 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                     {
                         //TownItem里的物品
                         case E_ItemLocation.PanelTownItem:
-                            Hot.DataNowCellGameArchive.ListCellStore[(Hot.ChoseCellItem.MemberOf as PanelTownItem).PanelCellTownStore_.Index].
+                            Hot.DataNowCellGameArchive.StoreList[(Hot.ChoseCellItem.MemberOf as PanelTownItem).PanelCellTownStore_.Index].
                                 ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
                             switch (Hot.e_NowPointerLocation)
                             {
                                 //在TownItem中移动
                                 case E_NowPointerLocation.PanelTownItem:
-                                    Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
+                                    Hot.DataNowCellGameArchive.StoreList[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     break;
                                 //卖到TownShop
@@ -109,7 +109,7 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                                     break;
                                 //放到RoleStore
                                 case E_NowPointerLocation.PanelRoleStore:
-                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                                    Hot.DataNowCellGameArchive.RoleList[Hot.PanelRoleDetails_.IndexRole].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelRoleStore;
                                     break;
@@ -123,7 +123,7 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                             {
                                 //买到TownItem
                                 case E_NowPointerLocation.PanelTownItem:
-                                    Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
+                                    Hot.DataNowCellGameArchive.StoreList[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     Hot.PanelOtherResTable_.Reduce(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelTownItem;
@@ -136,7 +136,7 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                                     break;
                                 //买到RoleStore
                                 case E_NowPointerLocation.PanelRoleStore:
-                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
+                                    Hot.DataNowCellGameArchive.RoleList[Hot.PanelRoleDetails_.IndexRole].ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     Hot.PanelOtherResTable_.Reduce(Hot.CostDicItem[Hot.ChoseCellItem.e_Item]);
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelRoleStore;
                                     break;
@@ -144,13 +144,13 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                             break;
                         //RoleStore里的物品
                         case E_ItemLocation.PanelRoleStore:
-                            Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                            Hot.DataNowCellGameArchive.RoleList[Hot.PanelRoleDetails_.IndexRole].
                                 ListItem[Hot.ChoseCellItem.RootGrid.Y][Hot.ChoseCellItem.RootGrid.X].e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;
                             switch (Hot.e_NowPointerLocation)
                             {
                                 //放到TownItem
                                 case E_NowPointerLocation.PanelTownItem:
-                                    Hot.DataNowCellGameArchive.ListCellStore[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
+                                    Hot.DataNowCellGameArchive.StoreList[(Hot.NowPanelCanStoreItem as PanelTownItem).PanelCellTownStore_.Index].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     Hot.ChoseCellItem.e_Location = E_ItemLocation.PanelTownItem;
                                     break;
@@ -162,7 +162,7 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                                     break;
                                 //在RoleStore里移动
                                 case E_NowPointerLocation.PanelRoleStore:
-                                    Hot.DataNowCellGameArchive.ListCellRole[Hot.PanelRoleDetails_.IndexRole].
+                                    Hot.DataNowCellGameArchive.RoleList[Hot.PanelRoleDetails_.IndexRole].
                                         ListItem[Y][X].e_SpriteNamePanelCellItem = Hot.ChoseCellItem.e_Item;
                                     break;
                             }

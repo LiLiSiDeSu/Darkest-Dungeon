@@ -172,7 +172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4c5f149e26c5bd4c989ba8863398d6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5644bc837a1dc124eb80dfcafa79dbcc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -313,15 +313,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 0
+  DragOffSet: {x: 0, y: 0}
+  PrefabsDynamicContentStepSuffix: 
+  Father: {fileID: 0}
+  e_RoleLocation: 0
   ImgRolePortrait: {fileID: 0}
   ImgProgress: {fileID: 0}
   ImgRoleLevelBk: {fileID: 0}
   ImgRoleStatus: {fileID: 0}
+  ImgPanelBk: {fileID: 0}
   TxtRoleName: {fileID: 0}
   TxtRoleLevel: {fileID: 0}
   Root: {fileID: 0}
   RootPortrait: {fileID: 0}
   RootSanityValueBar: {fileID: 0}
+  RolePortraitCanDrag: {fileID: 0}
   ListImgCellSanity: []
 --- !u!1 &1745794768974694487
 GameObject:

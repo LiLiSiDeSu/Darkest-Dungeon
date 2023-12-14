@@ -42,9 +42,10 @@ public static class Hot
 
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
-        { E_RoleName.LiLiSi, new(new(20, 7), new(2, 3)) },
-        { E_RoleName.Crusader, new(new(20, 9), new(2, 3)) },
-        { E_RoleName.PlagueDoctor, new(new(15, 6), new(2, 3)) },
+        { E_RoleName.LiLiSi, new(E_RoleMoveType.Land, new(20, 7), new(2, 3)) },
+        { E_RoleName.Crusader, new(E_RoleMoveType.Land, new(20, 9), new(2, 3)) },
+        { E_RoleName.PlagueDoctor, new(E_RoleMoveType.Land, new(15, 6), new(2, 3)) },
+        { E_RoleName.DevilFly, new(E_RoleMoveType.Sky, new(6, 4), new(2, 3)) },
     };
 
     #region Body
@@ -186,6 +187,10 @@ public static class Hot
 
     #region Expedition
 
+    public static PanelBarRoleListExpedition PanelBarRoleListExpedition_
+    {
+        get { return MgrUI_.GetPanel<PanelBarRoleListExpedition>("PanelBarRoleListExpedition"); }
+    }
     public static PanelExpeditionRoleDetails PanelExpeditionRoleDetails_
     {
         get { return MgrUI_.GetPanel<PanelExpeditionRoleDetails>("PanelExpeditionRoleDetails"); }
@@ -249,9 +254,9 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
     }
-    public static PanelRoleList PanelRoleList_
+    public static PanelBarRoleList PanelBarRoleList_
     {
-        get { return MgrUI_.GetPanel<PanelRoleList>("PanelRoleList"); }
+        get { return MgrUI_.GetPanel<PanelBarRoleList>("PanelBarRoleList"); }
     }
     public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
     {
@@ -281,9 +286,9 @@ public static class Hot
     /// <summary>
     /// 所有城镇箱子面板
     /// </summary>
-    public static PanelTownStore PanelTownStore_
+    public static PanelBarTownStore PanelBarTownStore_
     {
-        get { return MgrUI_.GetPanel<PanelTownStore>("PanelTownStore"); }
+        get { return MgrUI_.GetPanel<PanelBarTownStore>("PanelBarTownStore"); }
     }
 
     #region TownShop
@@ -457,7 +462,6 @@ public static class Hot
 
     #region Expedition
 
-    public static List<int> ListIndexPutRole = new();
     public static PanelCellExpeditionEvent NowExpeditionEvent;    
     public static PanelCellExpeditionMiniMap NowEnterCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;

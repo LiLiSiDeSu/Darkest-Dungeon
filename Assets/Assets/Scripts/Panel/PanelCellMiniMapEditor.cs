@@ -9,7 +9,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 {    
     public PanelBaseGrid<PanelCellMiniMapEditor> RootGrid = new();
 
-    public List<List<PanelCellGridRoomEditorConfig>> Map = new();
+    public List<List<PanelGridRoomEditorConfig>> Map = new();
 
     public E_CellMiniMap e_Room = E_CellMiniMap.None;
 

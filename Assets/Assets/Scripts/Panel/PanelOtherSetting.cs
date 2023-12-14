@@ -54,6 +54,7 @@ public class PanelOtherSetting : PanelBase
                 ImgCurrentChoice.gameObject.SetActive(false);
             });
         }
+
         btns = null;
     }
 
@@ -70,17 +71,18 @@ public class PanelOtherSetting : PanelBase
             case "BtnBackStart":
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
+                    Hot.Data_.Save();
+
                     Hot.MgrUI_.HideAllPanel();
 
-                    //清理数据
-                    Hot.PanelTownStore_.Clear();
+                    Hot.PanelBarTownStore_.Clear();
+                    Hot.PanelBarRoleList_.Clear();
+                    Hot.PanelBarRoleListExpedition_.Clear();
                     Hot.PanelTownShopItem_.ClearList();
-                    Hot.PanelRoleList_.Clear();
                     Hot.PanelBarExpedition_.Clear();
                     Hot.PanelRoleGuildRecruit_.Clear();
                     Hot.PanelExpeditionPrepare_.Clear();
-
-                    Hot.e_NowPlayerLocation = E_PlayerLocation.None;
+                    Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;
 
                     Hot.MgrUI_.ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
 

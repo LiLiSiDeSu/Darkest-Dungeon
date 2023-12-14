@@ -26,12 +26,15 @@ public class my_Vector2
 
 public class RoleConfig
 {
+    public E_RoleMoveType e_MoveType;
+
     public my_Vector2 StoreSize;
     public my_Vector2 BodySize;
 
     public RoleConfig() { }
-    public RoleConfig(my_Vector2 p_StoreSize, my_Vector2 p_BodySize)
+    public RoleConfig(E_RoleMoveType p_e_MoveType, my_Vector2 p_StoreSize, my_Vector2 p_BodySize)
     {
+        e_MoveType = p_e_MoveType;
         StoreSize = p_StoreSize;
         BodySize = p_BodySize;
     }
@@ -44,6 +47,7 @@ public class DataContainer_PanelCellGameArchive
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
+    public List<int> RoleIndexListExpedition = new();
     public E_ExpeditionLocation e_NowExpeditionLocation = E_ExpeditionLocation.Town;
     public int NowEventIndex = -1;
     public my_Vector2 NowCellMiniMapPos = new();
@@ -54,9 +58,9 @@ public class DataContainer_PanelCellGameArchive
     
 
     public DataContainer_ResTable ResTable = new();    
-    public List<DataContainer_CellTownStore> ListCellStore = new();        
-    public List<DataContainer_CellRole> ListCellRole = new();
-    public List<DataContainer_CellRoleRecruit> ListCellRoleRecruit = new();
+    public List<DataContainer_CellTownStore> StoreList = new();        
+    public List<DataContainer_CellRole> RoleList = new();
+    public List<DataContainer_CellRoleRecruit> RoleListRecruit = new();
     public DataContainer_TownShop TownShop = new();
     public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
     
@@ -70,7 +74,7 @@ public class DataContainer_PanelCellGameArchive
         e_NowExpeditionLocation = p_e_NowExpeditionLocation;
         Week = p_Week;
         Time = p_Time;
-        ListCellStore = p_ListCellStore;
+        StoreList = p_ListCellStore;
     }
 
     public void InitDataNowEnterEvent()
@@ -128,7 +132,7 @@ public class DataContainer_CellRole
         {
             ListItem.Add(new());
 
-            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.Y; X++)
+            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.X; X++)
             {
                 ListItem[Y].Add(new());
             }
@@ -139,7 +143,7 @@ public class DataContainer_CellRole
 public class DataContainer_CellRoleRecruit
 {
     public DataContainer_CellRole Role;
-    public DataContainer_CoinCost Cost = new();
+    public DataContainer_CoinCost Cost;
 
     public DataContainer_CellRoleRecruit() { }
     public DataContainer_CellRoleRecruit
@@ -218,6 +222,10 @@ public class DataContainer_ExpeditionMiniMap
     public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
     public DataContainer_ExpeditionMiniMap() { }
+    public DataContainer_ExpeditionMiniMap(my_Vector2 p_EntrancePos) 
+    {
+        EntrancePos = p_EntrancePos;
+    }
 }
 
 public class DataContainer_CellExpeditionMiniMap

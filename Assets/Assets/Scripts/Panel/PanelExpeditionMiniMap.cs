@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMap, PanelGridExpeditionMiniMap>
@@ -45,6 +46,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
     public void Init()
     {
+        ClearList();
         InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
         InitItem();
     }
@@ -86,11 +88,20 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
                         if (e_CellMiniMap == E_CellMiniMap.CellMiniMapRoomEntrance)
                         {
-                            my_Vector2 pos = DataNowExpeditionEvent.EntrancePos;
-                            Hot.NowEnterCellExpeditionMiniMap = Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(pos.X, pos.Y);
-                            Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
-                            Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
-                            Hot.PanelExpeditionRoom_.LoadDataMap(pos.X, pos.Y);
+                            my_Vector2 pos = new();
+                            if (Hot.e_NowPlayerLocation != E_PlayerLocation.ChooseGameArchive)
+                            {
+                                pos = DataNowExpeditionEvent.EntrancePos;
+                                Hot.NowEnterCellExpeditionMiniMap = GetCellExpeditionMiniMap(pos.X, pos.Y);
+                                Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
+                                Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
+                            }
+                            else
+                            {
+                                pos = Hot.DataNowCellGameArchive.NowCellMiniMapPos;
+                            }
+                            Hot.PanelExpeditionRoom_.LoadDataMap(pos.X, pos.Y);                            
+                            Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                         }
                     });
                 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Data : InstanceBaseAuto_Mono<Data>
@@ -9,28 +11,6 @@ public class Data : InstanceBaseAuto_Mono<Data>
     public string PathGameArchiveData = "";
     
     public List<DataContainer_PanelCellGameArchive> DataListCellGameArchive = new();
-
-    private void Awake()
-    {
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
-        (key) =>
-        {
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.S))
-            {
-                if (Hot.NowIndexCellGameArchive != -1)
-                {
-                    Hot.Data_.Save();
-                    Debug.Log("Save");
-                }
-                else
-                {
-                    Hot.Data_.SaveAll();
-                    Debug.Log("SaveAll");
-                }
-                //后面搞个进度条
-            }
-        });
-    }
 
     private void Start()
     {        
@@ -54,9 +34,14 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// 保存指定存档
     /// </summary>
     /// <param name="index">要被保存的存档的Index</param>
-    public void Save(int index)
+    public async void Save(int index)
     {
-        MgrJson.GetInstance().Save(DataListCellGameArchive[index], "/GameArchiveData", PathGameArchiveData + index);
+        await Task.Run(() => 
+        { 
+            MgrJson.GetInstance().Save(DataListCellGameArchive[index], "/GameArchiveData", PathGameArchiveData + index); 
+        });
+
+        Debug.Log("Save" + " - " + index);
     }
 
     /// <summary>
@@ -70,10 +55,15 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// <summary>
     /// 保存所有存档
     /// </summary>
-    public void SaveAll()
+    public async void SaveAll()
     {
-        for (int i = 0; i < DataListCellGameArchive.Count; i++)
-            Save(i);
+        await Task.Run(() =>
+        {
+            for (int i = 0; i < DataListCellGameArchive.Count; i++)
+                Save(i);
+        });
+
+        Debug.Log("SaveAll");
     }
 
     /// <summary>

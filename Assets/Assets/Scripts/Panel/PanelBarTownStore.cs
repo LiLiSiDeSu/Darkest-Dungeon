@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PanelTownStore : PanelBaseDynamicScrollView
+public class PanelBarTownStore : PanelBaseDynamicScrollView
 {    
     public Transform RootPanelTownItem;
 
@@ -14,7 +14,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.ChoseCellItem != null && key == Hot.MgrInput_.Mouse1)
+            if (Hot.ChoseCellItem != null && key == KeyCode.Mouse1)
             {
                 CancelNowChoosedItem();
             }
@@ -41,10 +41,10 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         {
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {
-                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelTownStore"))
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelTownStore_.gameObject, "PanelTownStore");
+                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarTownStore"))
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelBarTownStore_.gameObject, "PanelBarTownStore");
                 else
-                    Hot.MgrUI_.ShowPanel<PanelTownStore>(true, "PanelTownStore");
+                    Hot.MgrUI_.ShowPanel<PanelBarTownStore>(true, "PanelBarTownStore");
             }
         });
 
@@ -54,7 +54,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
 
     public override void InitContent()
     {
-        for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.ListCellStore.Count; i1++)
+        for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.StoreList.Count; i1++)
         {
             int tempi = i1;
 
@@ -90,7 +90,7 @@ public class PanelTownStore : PanelBaseDynamicScrollView
                     {
                         if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.PanelTownItem)
                         {
-                            Hot.PanelTownStore_.CancelNowChoosedItem();
+                            Hot.PanelBarTownStore_.CancelNowChoosedItem();
                         }
                     });
                 });
@@ -146,9 +146,11 @@ public class PanelTownStore : PanelBaseDynamicScrollView
         List<DataContainer_CellTownStore> tempData = new();
         for (int i = 0; i < all.Length; i++)
         {
-            tempData.Add(Hot.DataNowCellGameArchive.ListCellStore[all[i].Index]);
+            tempData.Add(Hot.DataNowCellGameArchive.StoreList[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.ListCellStore = tempData;
+        Hot.DataNowCellGameArchive.StoreList = tempData;
+
+        Hot.Data_.Save();
     }
 }

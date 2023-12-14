@@ -51,7 +51,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
             if (tempRootGrid.Data.IndexListRole != -1)
             {
-                e_RoleName = Hot.DataNowCellGameArchive.ListCellRole[tempRootGrid.Data.IndexListRole].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.RoleList[tempRootGrid.Data.IndexListRole].e_RoleName;
             }
             else
             {
@@ -76,7 +76,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
             if (tempRootGrid.Data.IndexListRole != -1)
             {
-                e_RoleName = Hot.DataNowCellGameArchive.ListCellRole[tempRootGrid.Data.IndexListRole].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.RoleList[tempRootGrid.Data.IndexListRole].e_RoleName;
             }
             else
             {
@@ -85,7 +85,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
             X = Hot.DicRoleConfig[e_RoleName].BodySize.X;
             Y = Hot.DicRoleConfig[e_RoleName].BodySize.Y;
-            itemName = e_RoleName.ToString();
+            itemName = "Role" + e_RoleName.ToString() + "Await";
         }
 
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + itemName);

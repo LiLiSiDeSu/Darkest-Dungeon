@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading;
+using UnityEngine;
 
 public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {    
@@ -38,15 +39,15 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelTown>
             (true, "/PanelTown", true, false, "PanelTown");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelTownStore>
-            (true, "/PanelTownStore", true, true, "PanelTownStore");
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarTownStore>
+            (true, "/PanelBarTownStore", true, true, "PanelBarTownStore");
 
         #endregion
 
         #region Role
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelRoleList>
-            (true, "/PanelRoleList", true, false, "PanelRoleList");
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleList>
+            (true, "/PanelBarRoleList", true, false, "PanelBarRoleList");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
             (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
@@ -76,6 +77,8 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionRoom>
             (true, "/PanelExpeditionRoom", true, false, "PanelExpeditionRoom");
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleListExpedition>
+            (true, "/PanelBarRoleListExpedition", true, false, "PanelBarRoleListExpedition");
 
         #endregion
 

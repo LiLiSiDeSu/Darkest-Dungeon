@@ -40,7 +40,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
     public void InitContent()
     {
-        InitStore();
+        InitTxtCapacity();
 
         (AllContent as RectTransform).sizeDelta = new Vector2(Hot.DataNowCellGameArchive.TownShop.X * Hot.BodySizeCellItem.X, 
                                                               Hot.DataNowCellGameArchive.TownShop.Y * Hot.BodySizeCellItem.Y);
@@ -142,7 +142,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         base.ClearList();
     }
 
-    public void InitStore()
+    public void InitTxtCapacity()
     {
         foreach (List<DataContainer_CellItem> listItem2 in Hot.DataNowCellGameArchive.TownShop.ListItem)
         {

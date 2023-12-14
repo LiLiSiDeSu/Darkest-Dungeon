@@ -4,55 +4,38 @@ using UnityEngine;
 
 public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
 {        
-    //每个都要在下面添加检测哦
-    public KeyCode W = KeyCode.N;
-    public KeyCode A = KeyCode.A;
-    public KeyCode S = KeyCode.S;
-    public KeyCode D = KeyCode.D;
-
     public KeyCode UpArrow = KeyCode.UpArrow;
     public KeyCode DownArrow = KeyCode.DownArrow;
     public KeyCode Setting = KeyCode.I;    
-    public KeyCode PanelRole = KeyCode.R;    
+    public KeyCode RoleList = KeyCode.R;    
     public KeyCode PanelBar = KeyCode.F;
     public KeyCode Add = KeyCode.K;
     public KeyCode Reduce = KeyCode.L;
     public KeyCode Map = KeyCode.M;
 
-    public KeyCode Esc = KeyCode.Escape;
-    public KeyCode LeftControl = KeyCode.LeftControl;
     public KeyCode Tab = KeyCode.Tab;
     public KeyCode CapsLock = KeyCode.CapsLock;
-    public KeyCode Mouse1 = KeyCode.Mouse1;
-    public KeyCode Return = KeyCode.Return;
 
     private void Update()
     {        
-        //没有开启输入检测 就不去检测 直接return
         if (!IsOpen)
             return;
-
-        //在这里添加需要检测的键
-        CheckKeyCode(W);
-        CheckKeyCode(S);
-        CheckKeyCode(A);
-        CheckKeyCode(D);
 
         CheckKeyCode(UpArrow);
         CheckKeyCode(DownArrow);
         CheckKeyCode(Setting);
-        CheckKeyCode(PanelRole);
+        CheckKeyCode(RoleList);
         CheckKeyCode(PanelBar);
         CheckKeyCode(Add);
         CheckKeyCode(Reduce);
         CheckKeyCode(Map);
-
-        CheckKeyCode(Mouse1);
-        CheckKeyCode(Esc);
-        CheckKeyCode(Return);
-        CheckKeyCode(LeftControl);
         CheckKeyCode(Tab);
         CheckKeyCode(CapsLock);
+
+        CheckKeyCode(KeyCode.Mouse1);
+        CheckKeyCode(KeyCode.Escape);
+        CheckKeyCode(KeyCode.LeftControl);
+        CheckKeyCode(KeyCode.Return);
     }
 
     /// <summary>

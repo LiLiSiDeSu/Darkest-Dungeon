@@ -29,7 +29,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
     public void OnPointerEnter(PointerEventData eventData)
     {        
-        Hot.PanelRoleGuildRecruitCost_.UpdateInfo(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Cost);
+        Hot.PanelRoleGuildRecruitCost_.UpdateInfo(Hot.DataNowCellGameArchive.RoleListRecruit[Index].Cost);
         Root.localPosition = new(40, 0, 0);
     }
 
@@ -47,7 +47,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
         Root.localPosition = new(0, 0, 0);
 
-        Hot.PanelRoleList_.EnableDetection();
+        Hot.PanelBarRoleList_.EnableDetection();
         Hot.DragingPanelCellRoleRecruit = this;
 
         Hot.PaddingContentStep_.transform.SetParent(Hot.PanelRoleGuildRecruit_.Content, false);
@@ -63,19 +63,19 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
             (false, "/PanelCellRole",
             (panel) =>
             {
-                panel.Index = Hot.DataNowCellGameArchive.ListCellRole.Count - 1;
+                panel.Index = Hot.DataNowCellGameArchive.RoleList.Count - 1;
                 panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = panel.Index.ToString();
-                obj.transform.SetParent(Hot.PanelRoleList_.Content, false);
+                obj.transform.SetParent(Hot.PanelBarRoleList_.Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(panel.Index);
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
-                Hot.PanelRoleList_.ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
+                Hot.PanelBarRoleList_.ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                Hot.DataNowCellGameArchive.ListCellRole.
-                    Insert(panel.Index, Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
+                Hot.DataNowCellGameArchive.RoleList.
+                    Insert(panel.Index, Hot.DataNowCellGameArchive.RoleListRecruit[Index].Role);
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListCellRole[panel.Index], E_RoleLocation.GuildRecruit);
+                panel.InitInfo(Hot.DataNowCellGameArchive.RoleList[panel.Index], E_RoleLocation.GuildRecruit);
 
                 for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count - 1; i++)
                 {
@@ -90,7 +90,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
                 DestroyImmediate(Father.ListDynamicContentStep[Index].gameObject);
                 DestroyImmediate(gameObject);
 
-                Hot.PanelRoleList_.SortContent();
+                Hot.PanelBarRoleList_.SortContent();
                 Hot.PanelRoleGuildRecruit_.SortContent();
                 
                 Hot.PanelRoleGuildRecruit_.DisableDetection();
@@ -101,7 +101,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
             base.OnEndDrag(eventData);
         }
 
-        Hot.PanelRoleList_.DisableDetection();
+        Hot.PanelBarRoleList_.DisableDetection();
 
         Hot.DragingPanelCellRoleRecruit = null;
     }    
@@ -130,7 +130,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
                     panel.IndexRole = Index;
                     panel.e_RoleLocation = e_RoleLocation;
                     panel.BtnDismiss.SetActive(false);
-                    panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.ListCellRoleRecruit[Index].Role);
+                    panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.RoleListRecruit[Index].Role);
                 });                
                 break;
         }

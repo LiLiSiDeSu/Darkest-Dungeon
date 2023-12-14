@@ -73,7 +73,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
         ImgPanelBk.raycastTarget = false;
         ImgStore.raycastTarget = false;
 
-        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelTownStore_.Content, false);
+        Hot.PaddingContentStep_.transform.SetParent(Hot.PanelBarTownStore_.Content, false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -88,8 +88,8 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
     {
         transform.SetParent(Hot.PaddingContentStep_.DependentObjRoot, false);
         transform.localPosition = Vector3.zero;
-        DestroyImmediate(Hot.PanelTownStore_.ListDynamicContentStep[Index].gameObject);
-        Hot.PanelTownStore_.SortContent();
+        DestroyImmediate(Hot.PanelBarTownStore_.ListDynamicContentStep[Index].gameObject);
+        Hot.PanelBarTownStore_.SortContent();
         Hot.PaddingContentStep_ = null;
     }
 
@@ -111,7 +111,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
                         Hot.MgrUI_.ShowPanel<PanelTownItem>(true, PanelCellItem_.gameObject.name,
                         (panel) =>
                         {
-                            panel.transform.SetParent(Hot.PanelTownStore_.RootPanelTownItem, false);
+                            panel.transform.SetParent(Hot.PanelBarTownStore_.RootPanelTownItem, false);
                         });
                         break;
                 }
@@ -133,15 +133,15 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
 
     public void Rename(string name)
     {
-        Hot.DataNowCellGameArchive.ListCellStore[Index].Name = name;
+        Hot.DataNowCellGameArchive.StoreList[Index].Name = name;
         IptName.text = name;
         PanelCellItem_.IptName.text = name;
     }
 
     public void Init()
     {
-        IptName.text = Hot.DataNowCellGameArchive.ListCellStore[Index].Name;
-        e_PanelCellTownStore = Hot.DataNowCellGameArchive.ListCellStore[Index].e_PanelCellTownStore;
+        IptName.text = Hot.DataNowCellGameArchive.StoreList[Index].Name;
+        e_PanelCellTownStore = Hot.DataNowCellGameArchive.StoreList[Index].e_PanelCellTownStore;
         
         InitInfo();
     }

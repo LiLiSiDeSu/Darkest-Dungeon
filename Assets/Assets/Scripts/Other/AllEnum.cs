@@ -9,6 +9,12 @@ public enum E_InputKeyEvent
     KeyHold,
 }
 
+public enum E_RoleMoveType
+{
+    Land,
+    Sky,
+}
+
 public enum E_Res
 {
     ImgEmpty,
@@ -169,9 +175,11 @@ public enum E_RoleAction
 
 public enum E_RoleName
 {        
+    None,
     Crusader,
     LiLiSi,
     PlagueDoctor,
+    DevilFly,
 }
 
 public enum E_ExpeditionLocation
@@ -201,6 +209,7 @@ public enum E_PlayerLocation
 {
     None,
     Town,
+    ChooseGameArchive,
     PrepareExpedition,
     OnExpedition
 }

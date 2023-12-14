@@ -88,7 +88,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
         switch (controlname)
         {
             case "BtnDismiss":
-                Hot.PanelRoleList_.RemoveRole(IndexRole);
+                Hot.PanelBarRoleList_.RemoveRole(IndexRole);
                 Hot.MgrUI_.HidePanel(false, gameObject, "PanelRoleDetails");
                 break;
         }
@@ -119,7 +119,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
     public void InitTxtCapacity()
     {
-        foreach (List<DataContainer_CellItem> listItem in Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem)
+        foreach (List<DataContainer_CellItem> listItem in Hot.DataNowCellGameArchive.RoleList[IndexRole].ListItem)
         {
             foreach (DataContainer_CellItem item in listItem)
             {
@@ -132,8 +132,8 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
         TxtCapacity.text =
            NowCapacity + " / " +
-           Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem[0].Count * 
-           Hot.DataNowCellGameArchive.ListCellRole[IndexRole].ListItem.Count;
+           Hot.DataNowCellGameArchive.RoleList[IndexRole].ListItem[0].Count * 
+           Hot.DataNowCellGameArchive.RoleList[IndexRole].ListItem.Count;
     }
 
     public void LoadData(DataContainer_CellRole Role)

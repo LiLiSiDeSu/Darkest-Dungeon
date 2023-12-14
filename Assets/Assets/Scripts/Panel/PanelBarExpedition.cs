@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
+using UnityEngine.UIElements;
 
 public class PanelBarExpedition : PanelBase,
              IPointerEnterHandler, IPointerExitHandler
@@ -25,13 +25,18 @@ public class PanelBarExpedition : PanelBase,
         switch (controlname)
         {
             case "BtnExpedition":
-                if (Hot.NowExpeditionEvent != null)
+                InitRolePos();
+                if (Hot.NowExpeditionEvent != null && Hot.DataNowCellGameArchive.RoleIndexListExpedition.Count > 0)
                 {
-                    InitRolePos();
                     Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                     Hot.MgrUI_.HideAllPanel();
                     Hot.PanelExpeditionMiniMap_.Init();
                     Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
+                    Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition",
+                    (panel) =>
+                    {
+                        panel.InitByTown();
+                    });
                 }
                 break;
         }
@@ -65,21 +70,21 @@ public class PanelBarExpedition : PanelBase,
             });
         }
 
-        for (int i = 0; i < Hot.DataNowCellGameArchive.ListCellRole.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.RoleList.Count; i++)
         {
             int tempi = i;
 
-            if (Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot != -1)
+            if (Hot.DataNowCellGameArchive.RoleList[tempi].IndexExpeditionRoot != -1)
             {
                 Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
                 (false, "/PanelCellRolePortraitCanDrag",
                 (panel) =>
                 {
-                    panel.ExpeditionRolePrepareRoot = ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot];
+                    panel.ExpeditionRolePrepareRoot = ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.RoleList[tempi].IndexExpeditionRoot];
 
-                    panel.Role = Hot.PanelRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
+                    panel.Role = Hot.PanelBarRoleList_.ListDynamicContentStep[tempi].GetComponentInChildren<PanelCellRole>();
                     panel.Role.RolePortraitCanDrag = panel;
-                    panel.Init(panel.Role, ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListCellRole[tempi].IndexExpeditionRoot].transform, new(100, 100));
+                    panel.Init(panel.Role, ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.RoleList[tempi].IndexExpeditionRoot].transform, new(100, 100));
                 });
             }
         }
@@ -87,11 +92,13 @@ public class PanelBarExpedition : PanelBase,
 
     public void InitRolePos()
     {
+        Hot.DataNowCellGameArchive.RoleIndexListExpedition.Clear();
+
         foreach (PanelCellExpeditionRolePrepareRoot item in ListCellExpeditionRolePrepareRoot)
         {
             if (item.transform.childCount > 0)
             {
-                Hot.ListIndexPutRole.Add(item.GetComponentInChildren<PanelCellRolePortraitCanDrag>().Role.Index);
+                Hot.DataNowCellGameArchive.RoleIndexListExpedition.Add(item.GetComponentInChildren<PanelCellRolePortraitCanDrag>().Role.Index);
             }
         }
     }

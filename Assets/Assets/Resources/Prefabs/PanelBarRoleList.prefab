@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 581135145401794172}
   - component: {fileID: 4271095230440331214}
   m_Layer: 0
-  m_Name: PanelRoleList
+  m_Name: PanelBarRoleList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,11 +565,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4196989785693368919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16054b2bf8d5adc469f8bcc769d55ebc, type: 3}
+  m_Script: {fileID: 11500000, guid: a997857635b8d6a49b719b749d257178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NowIndex: 0
   ListDynamicContentStep: []
+  Content: {fileID: 0}
+  IsOpen: 1
   ScrollView_: {fileID: 0}
   BtnPackUp: {fileID: 0}
   BtnOpen: {fileID: 0}
@@ -577,7 +579,6 @@ MonoBehaviour:
   ImgDecorateFrameBottom: {fileID: 0}
   ImgPackUp: {fileID: 0}
   ImgOpen: {fileID: 0}
-  RoleContent: {fileID: 0}
 --- !u!1 &4365571075461585509
 GameObject:
   m_ObjectHideFlags: 0

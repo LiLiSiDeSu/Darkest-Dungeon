@@ -9,8 +9,10 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
     {
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
-            if (key == Hot.MgrInput_.Esc)
+            if (key == KeyCode.Escape)
+            {
                 HideTop();
+            }
         });
     }
 

@@ -65,7 +65,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.NowEnterCellMiniMapEditor != null && key == Hot.MgrInput_.Return)
+            if (Hot.NowEnterCellMiniMapEditor != null && key == KeyCode.Return)
             {
                 Hot.MgrUI_.ShowPanel<PanelOtherRoomEditor>(true, "PanelOtherRoomEditor");
                 Hot.NowEditorDependency = Hot.NowEnterCellMiniMapEditor;
@@ -78,7 +78,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == Hot.MgrInput_.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor") && key == KeyCode.Mouse1)
             {
                 ClearImgStatus();
 
@@ -395,13 +395,11 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
     public void GenerateGridByLoadData(DataContainer_ExpeditionMiniMap MapData)
     {
-        ClearList();
-
         (AllContent as RectTransform).sizeDelta = new(int.Parse(IptWidth.text) * Hot.BodySizeCellMinimap.X, int.Parse(IptHeight.text) * Hot.BodySizeCellMinimap.Y);
 
-        EntrancePos = MapData.EntrancePos;
-
         InitGrids(MapData.ListCellMiniMap.Count, MapData.ListCellMiniMap[0].Count);
+
+        EntrancePos = MapData.EntrancePos;
 
         GenerateItemByLoad(MapData);
     }
@@ -442,7 +440,8 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
                                 PanelCellMiniMapEditor_.Map[tempi5][tempi6].Init(tempi5, tempi6);
 
-                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].MapObj.e_Obj != E_MapObject.None)
+                                if (MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].MapObj != null &&
+                                    MapData.ListCellMiniMap[tempi1][tempi2].Map[tempi5][tempi6].MapObj.e_Obj != E_MapObject.None)
                                 {
                                     PanelCellMiniMapEditor_.Map[tempi5][tempi6].IsHave = true;
 
@@ -484,10 +483,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
     public void Save()
     {
-        DataContainer_ExpeditionMiniMap MapData = new()
-        {
-            EntrancePos = EntrancePos
-        };
+        DataContainer_ExpeditionMiniMap MapData = new(EntrancePos);
 
         for (int i1 = 0; i1 < ItemRoot.Count; i1++)
         {
@@ -504,7 +500,6 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                     MapData.ListCellMiniMap[i1].Add(new());
                     MapData.ListCellMiniMap[i1][i2] = new(ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().e_Room);
 
-                    //±£¥ÊMap 
                     for (int i3 = 0; i3 < ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map.Count; i3++)
                     {
                         for (int i4 = 0; i4 < ItemRoot[i1][i2].GetComponentInChildren<PanelCellMiniMapEditor>().Map[i3].Count; i4++)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -97,17 +98,30 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 
                     Hot.NowIndexCellGameArchive = Index;
-                    Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
 
                     Hot.PanelOtherResTable_.UpdateInfo();
-                    Hot.PanelTownStore_.InitContent();
+                    Hot.PanelBarTownStore_.InitContent();
                     Hot.PanelTownShopItem_.InitContent();
-                    Hot.PanelRoleList_.InitContent();
+                    Hot.PanelBarRoleList_.InitContent();
                     Hot.PanelBarExpedition_.Init();
                     Hot.PanelExpeditionPrepare_.InitContent();
                     Hot.PanelRoleGuildRecruit_.InitContent();
 
-                    Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                    if (Hot.DataNowCellGameArchive.e_NowExpeditionLocation == E_ExpeditionLocation.Town)
+                    {
+                        Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+                        Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                    }
+                    else
+                    {
+                        Hot.PanelExpeditionMiniMap_.Init();
+                        Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
+                        Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition",
+                        (panel) =>
+                        {
+                            panel.InitByOnExpedition();
+                        });
+                    }
                 }
 
                 #endregion

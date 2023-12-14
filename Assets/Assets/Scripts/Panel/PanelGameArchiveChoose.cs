@@ -82,6 +82,8 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
         }
 
         Hot.Data_.DataListCellGameArchive = allData;
+
+        Hot.Data_.SaveAll();
     }
 
     public void AddGameArchive()

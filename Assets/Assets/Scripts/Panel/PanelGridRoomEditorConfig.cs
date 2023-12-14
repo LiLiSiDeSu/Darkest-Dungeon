@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelCellGridRoomEditorConfig
+public class PanelGridRoomEditorConfig
 {
     public int X;
     public int Y;
