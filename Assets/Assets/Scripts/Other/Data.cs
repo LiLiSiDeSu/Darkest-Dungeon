@@ -55,15 +55,12 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// <summary>
     /// ±£´æËùÓĞ´æµµ
     /// </summary>
-    public async void SaveAll()
+    public void SaveAll()
     {
-        await Task.Run(() =>
+        for (int i = 0; i < DataListCellGameArchive.Count; i++)
         {
-            for (int i = 0; i < DataListCellGameArchive.Count; i++)
-                Save(i);
-        });
-
-        Debug.Log("SaveAll");
+            Save(i);
+        }
     }
 
     /// <summary>

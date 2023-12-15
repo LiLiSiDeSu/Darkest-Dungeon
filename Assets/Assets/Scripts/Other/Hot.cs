@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class Hot
@@ -383,6 +378,8 @@ public static class Hot
 
     #region Other
 
+    public static Transform NowEnterContent;
+    public static bool UpdateOver = true;
     public static bool CanBuy = false;
     /// <summary>
     /// 现在鼠标所在的区域

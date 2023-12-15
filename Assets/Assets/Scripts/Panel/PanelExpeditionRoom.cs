@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, PanelGridExpeditionRoom>
 {
@@ -35,36 +36,20 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && !Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap"))
-            {
-                if (AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
-                {
-                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                }
-
-                if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
-                {
-                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                }
-            }
-        });
-
         Hot.MgrUI_.CreatePanel<PanelExpeditionRoleDetails>(true, "/PanelExpeditionRoleDetails",
         (panel) =>
         {
             panel.transform.SetParent(transform, false);
         });
 
+        LimitAdd = 5f;
+        LimitReduce = 1f;
+
         InitGrids(Hot.BodyMap.Y, Hot.BodyMap.X);
     }    
 
     public void LoadDataMap(int p_x, int p_y)
     {
-        ClearItem();
-
         List<List<DataContainer_GridExpeditionMap>> Map = Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[p_y][p_x].Map;
 
         for (int Y = 0; Y < Map.Count; Y++)
@@ -78,12 +63,35 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 if (Map[tempY][tempX].MapObj != null || Map[tempY][tempX].IndexListRole != -1 || Map[tempY][tempX].OtherRole != null)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
-                    (panel) =>
+                    (PanelCellExpeditionRoom_) =>
                     {
-                        panel.Init(Grids[tempY][tempX]);
+                        PanelCellExpeditionRoom_.Init(Grids[tempY][tempX]);
+
+                        if (Map[tempY][tempX].IndexListRole != -1)
+                        {
+                            Hot.MgrUI_.CreatePanel<PanelCellRoleExpedition>(false, "/PanelCellRoleExpedition",
+                            (PanelCellRoleExpedition_) =>
+                            {
+                                PanelCellRoleExpedition_.CellExpeditionMiniMap = PanelCellExpeditionRoom_;
+                                PanelCellRoleExpedition_.Init(
+                                           Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Count, 
+                                          (PanelCellRoleExpedition_.CellExpeditionMiniMap.RootGrid as PanelGridExpeditionRoom).Data.IndexListRole,
+                                           Hot.PanelBarRoleListExpedition_.RoleListExpeditionContent);
+                                Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Add(PanelCellRoleExpedition_);
+                                if (Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Count == Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count)
+                                {
+                                    Hot.PanelBarRoleListExpedition_.Sort();
+                                }
+                            });
+                        }
                     });
                 }
             }
         }
+    }
+
+    public void Clear()
+    {
+        ClearItem();
     }
 }

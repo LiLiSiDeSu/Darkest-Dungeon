@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PanelExpeditionRoleDetails : PanelBaseRoleStore
 {
     public Image ImgPortraitRole;
-    public Text TxtRoleName;
-    public Text TxtCapacity;
+    public Text TxtRoleName;    
 
     public Transform SkillContent;
+    public Transform RolePropertyContent;
 
     protected override void Awake()
     {
@@ -17,9 +17,12 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
 
         ImgPortraitRole = transform.FindSonSonSon("ImgPortraitRole").GetComponent<Image>();
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
-        TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
 
         SkillContent = transform.FindSonSonSon("SkillContent");
+        RolePropertyContent = transform.FindSonSonSon("RolePropertyContent");
+
+        LimitAdd = 3f;
+        LimitReduce = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)
@@ -31,6 +34,16 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
             case "BtnSkipTurn":
                 Debug.Log("SkipTurn");
                 break;
+            case "BtnBackTown":
+                Hot.PanelExpeditionRoom_.Clear();
+                Hot.PanelBarRoleListExpedition_.ClearAndData();
+                Hot.MgrUI_.HideAllPanel();
+                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+                Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                Hot.NowExpeditionEvent = null;
+                Hot.NowEnterCellExpeditionMiniMap = null;
+                Hot.DataNowCellGameArchive.ResetNowEvent();
+                break;
         }
     }
 
@@ -38,5 +51,7 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
     {
         ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + p_roleData.e_RoleName);
         TxtRoleName.text = p_roleData.Name;
+
+        UpdateContent(p_roleData);
     }
 }

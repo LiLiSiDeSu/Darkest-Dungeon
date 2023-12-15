@@ -29,15 +29,8 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
 
         switch (controlname)
         {
-            case "BtnRolePortraitCanDrag":                
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
-                (panel) =>
-                {
-                    panel.IndexRole = Role.Index;
-                    panel.e_RoleLocation = Role.e_RoleLocation;
-                    panel.BtnDismiss.SetActive(true);
-                    panel.UpdateInfo(Hot.DataNowCellGameArchive.RoleList[Role.Index]);
-                });
+            case "BtnRolePortraitCanDrag":
+                Hot.PanelRoleDetails_.Show(Role.Index, Role.e_RoleLocation);
                 break;
         }
     }
@@ -77,7 +70,7 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
             RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
             transform.SetParent(Role.RootPortrait, false);
             transform.localPosition = Vector3.zero;
-            Hot.DataNowCellGameArchive.RoleList[Role.Index].IndexExpeditionRoot = -1;
+            Hot.DataNowCellGameArchive.ListRole[Role.Index].IndexExpeditionRoot = -1;
         }
         else
         {
@@ -90,7 +83,7 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                     beReplace.transform.SetParent(Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot.transform, false);
                     beReplace.ExpeditionRolePrepareRoot = Hot.DragingRolePortraitCanDrag.ExpeditionRolePrepareRoot;
                     beReplace.transform.localPosition = Vector3.zero;
-                    Hot.DataNowCellGameArchive.RoleList[beReplace.Role.Index].IndexExpeditionRoot = beReplace.ExpeditionRolePrepareRoot.Index;
+                    Hot.DataNowCellGameArchive.ListRole[beReplace.Role.Index].IndexExpeditionRoot = beReplace.ExpeditionRolePrepareRoot.Index;
                 }
                 //从RootContent拖到RootContent里空的Root下
                 else
@@ -101,7 +94,7 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 transform.SetParent(Hot.NowEnterExpeditionRolePrepareRoot.transform, false);
                 transform.localPosition = Vector3.zero;
                 ExpeditionRolePrepareRoot = Hot.NowEnterExpeditionRolePrepareRoot;
-                Hot.DataNowCellGameArchive.RoleList[Role.Index].IndexExpeditionRoot = ExpeditionRolePrepareRoot.Index;
+                Hot.DataNowCellGameArchive.ListRole[Role.Index].IndexExpeditionRoot = ExpeditionRolePrepareRoot.Index;
             }
             else
             {
@@ -114,7 +107,7 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                     beReplace.transform.SetParent(beReplace.Role.RootPortrait, false);
                     beReplace.transform.localPosition = Vector3.zero;
                     beReplace.Role.ChangeRoleStatus(-1);
-                    Hot.DataNowCellGameArchive.RoleList[beReplace.Role.Index].IndexExpeditionRoot = -1;
+                    Hot.DataNowCellGameArchive.ListRole[beReplace.Role.Index].IndexExpeditionRoot = -1;
                 }
                 //从RoleList拖到空的ExpeditionRolePrepareRoot
                 else
@@ -126,11 +119,11 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 transform.SetParent(Hot.NowEnterExpeditionRolePrepareRoot.transform, false);
                 transform.localPosition = Vector3.zero;
                 ExpeditionRolePrepareRoot = Hot.NowEnterExpeditionRolePrepareRoot;
-                Hot.DataNowCellGameArchive.RoleList[Role.Index].IndexExpeditionRoot = ExpeditionRolePrepareRoot.Index;
+                Hot.DataNowCellGameArchive.ListRole[Role.Index].IndexExpeditionRoot = ExpeditionRolePrepareRoot.Index;
             }
         }
 
-        Role.ChangeRoleStatus(Hot.DataNowCellGameArchive.RoleList[Role.Index].IndexExpeditionRoot);
+        Role.ChangeRoleStatus(Hot.DataNowCellGameArchive.ListRole[Role.Index].IndexExpeditionRoot);
         ImgRolePortraitCanDrag.raycastTarget = true;
         Hot.DragingRolePortraitCanDrag = null;
 

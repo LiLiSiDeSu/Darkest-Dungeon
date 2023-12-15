@@ -20,23 +20,6 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
-        (key) =>
-        {
-            if (Hot.NowPanelCanStoreItem != null)
-            {
-                if (Hot.NowPanelCanStoreItem.AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
-                {
-                    Hot.NowPanelCanStoreItem.AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                }
-
-                if (Hot.NowPanelCanStoreItem.AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
-                {
-                    Hot.NowPanelCanStoreItem.AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                }
-            }
-        });
-
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
         {
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
@@ -54,7 +37,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
 
     public override void InitContent()
     {
-        for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.StoreList.Count; i1++)
+        for (int i1 = 0; i1 < Hot.DataNowCellGameArchive.ListStore.Count; i1++)
         {
             int tempi = i1;
 
@@ -146,10 +129,10 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
         List<DataContainer_CellTownStore> tempData = new();
         for (int i = 0; i < all.Length; i++)
         {
-            tempData.Add(Hot.DataNowCellGameArchive.StoreList[all[i].Index]);
+            tempData.Add(Hot.DataNowCellGameArchive.ListStore[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.StoreList = tempData;
+        Hot.DataNowCellGameArchive.ListStore = tempData;
 
         Hot.Data_.Save();
     }

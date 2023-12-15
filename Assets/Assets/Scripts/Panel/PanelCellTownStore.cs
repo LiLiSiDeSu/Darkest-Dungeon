@@ -133,15 +133,15 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
 
     public void Rename(string name)
     {
-        Hot.DataNowCellGameArchive.StoreList[Index].Name = name;
+        Hot.DataNowCellGameArchive.ListStore[Index].Name = name;
         IptName.text = name;
         PanelCellItem_.IptName.text = name;
     }
 
     public void Init()
     {
-        IptName.text = Hot.DataNowCellGameArchive.StoreList[Index].Name;
-        e_PanelCellTownStore = Hot.DataNowCellGameArchive.StoreList[Index].e_PanelCellTownStore;
+        IptName.text = Hot.DataNowCellGameArchive.ListStore[Index].Name;
+        e_PanelCellTownStore = Hot.DataNowCellGameArchive.ListStore[Index].e_PanelCellTownStore;
         
         InitInfo();
     }

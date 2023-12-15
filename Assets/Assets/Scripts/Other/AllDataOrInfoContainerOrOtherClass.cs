@@ -47,7 +47,7 @@ public class DataContainer_PanelCellGameArchive
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
-    public List<int> RoleIndexListExpedition = new();
+    public List<int> ListExpeditionRoleIndex = new();
     public E_ExpeditionLocation e_NowExpeditionLocation = E_ExpeditionLocation.Town;
     public int NowEventIndex = -1;
     public my_Vector2 NowCellMiniMapPos = new();
@@ -55,12 +55,16 @@ public class DataContainer_PanelCellGameArchive
     public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
     [JsonIgnore]
     public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
-    
+    public DataContainer_ExpeditionMiniMap GetDataNowEvent(E_ExpeditionLocation p_e_NowExpeditionLocation, int p_NowEventIndex)
+    {
+        return ExpeditionPrepare[p_e_NowExpeditionLocation][p_NowEventIndex];
+    }
+
 
     public DataContainer_ResTable ResTable = new();    
-    public List<DataContainer_CellTownStore> StoreList = new();        
-    public List<DataContainer_CellRole> RoleList = new();
-    public List<DataContainer_CellRoleRecruit> RoleListRecruit = new();
+    public List<DataContainer_CellTownStore> ListStore = new();        
+    public List<DataContainer_CellRole> ListRole = new();
+    public List<DataContainer_CellRoleRecruit> ListRoleRecruit = new();
     public DataContainer_TownShop TownShop = new();
     public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
     
@@ -74,21 +78,15 @@ public class DataContainer_PanelCellGameArchive
         e_NowExpeditionLocation = p_e_NowExpeditionLocation;
         Week = p_Week;
         Time = p_Time;
-        StoreList = p_ListCellStore;
+        ListStore = p_ListCellStore;
     }
 
-    public void InitDataNowEnterEvent()
+    public void ResetNowEvent()
     {
-        if (Hot.NowExpeditionEvent != null)
-        {
-            e_NowExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
-            NowEventIndex = Hot.NowExpeditionEvent.Index;
-        }
-        else
-        {
-            e_NowExpeditionLocation = E_ExpeditionLocation.Town;
-            NowEventIndex = -1;
-        }
+        e_NowExpeditionLocation = E_ExpeditionLocation.Town;
+        NowEventIndex = -1;
+        ListExpeditionRoleIndex.Clear();
+        NowCellMiniMapPos = new();
     }
 
     public void UpdataNowCellMiniMapPos()

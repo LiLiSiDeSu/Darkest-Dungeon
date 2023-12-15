@@ -144,7 +144,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         #endregion
 
-        GameArchiveDataCellList[0].RoleList = new List<DataContainer_CellRole>()
+        GameArchiveDataCellList[0].ListRole = new List<DataContainer_CellRole>()
         {
             new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.LiLiSi, "cao2", 3, 99, 30, 29, 200, 10),
@@ -161,7 +161,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         GameArchiveDataCellList[0].ResTable = new DataContainer_ResTable(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);
 
-        GameArchiveDataCellList[0].RoleListRecruit = new List<DataContainer_CellRoleRecruit>()
+        GameArchiveDataCellList[0].ListRoleRecruit = new List<DataContainer_CellRoleRecruit>()
         {
             new DataContainer_CellRoleRecruit
             (new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
@@ -200,36 +200,36 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         #region 0
 
-        GameArchiveDataCellList[0].StoreList.Add(new("Wood", E_PanelCellTownStore.StoreWood));
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][1] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][2] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][3] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCoodedMutton);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][4] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][5] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][6] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][7] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][8] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
-        GameArchiveDataCellList[0].StoreList[0].ListItem[0][9] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore.Add(new("Wood", E_PanelCellTownStore.StoreWood));
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][1] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][2] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][3] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCoodedMutton);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][4] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][5] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][6] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCookie);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][7] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][8] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[0][9] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.None);
 
-        GameArchiveDataCellList[0].StoreList[0].ListItem[2][6] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
+        GameArchiveDataCellList[0].ListStore[0].ListItem[2][6] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
 
         #endregion
 
         #region 1
 
-        GameArchiveDataCellList[0].StoreList.Add(new("Iron", E_PanelCellTownStore.StoreIron));
-        GameArchiveDataCellList[0].StoreList[1].ListItem[0][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
-        GameArchiveDataCellList[0].StoreList[1].ListItem[3][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
-        GameArchiveDataCellList[0].StoreList[1].ListItem[6][2] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
+        GameArchiveDataCellList[0].ListStore.Add(new("Iron", E_PanelCellTownStore.StoreIron));
+        GameArchiveDataCellList[0].ListStore[1].ListItem[0][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
+        GameArchiveDataCellList[0].ListStore[1].ListItem[3][0] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
+        GameArchiveDataCellList[0].ListStore[1].ListItem[6][2] = new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple);
 
         #endregion
 
         #region 2
 
-        GameArchiveDataCellList[0].StoreList.Add(new("Big!!!", E_PanelCellTownStore.StoreGold));
+        GameArchiveDataCellList[0].ListStore.Add(new("Big!!!", E_PanelCellTownStore.StoreGold));
         
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodApple),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -249,7 +249,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -269,7 +269,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -289,7 +289,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -309,108 +309,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
-        //{
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //});
-
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
-        //{
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
-        //{
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
-        //{
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
-        //{
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
-        //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -431,7 +330,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
 
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -451,7 +350,108 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
+        //{
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //});
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
+        //{
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //});
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
+        //{
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //});
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
+        //{
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //});
+
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
+        //{
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
+        //});
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.ItemFoodCoodedMutton),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
@@ -471,7 +471,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //});                
-        //GameArchiveDataCellList[0].StoreList[2].ListItem.Add(new()
+        //GameArchiveDataCellList[0].ListStore[2].ListItem.Add(new()
         //{
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),
         //    new DataContainer_CellItem(E_SpriteNamePanelCellItem.None),

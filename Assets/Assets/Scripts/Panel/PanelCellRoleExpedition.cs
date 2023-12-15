@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRoleExpedition : PanelBase,
+public class PanelCellRoleExpedition : PanelBaseCell,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public bool IsPut;
     public int IndexRoleList;
     public Image ImgRolePortrait;
-    public PanelCellExpeditionRoom RoleObj;
+    public PanelCellExpeditionRoom CellExpeditionMiniMap;
 
     protected override void Awake()
     {
@@ -40,15 +39,16 @@ public class PanelCellRoleExpedition : PanelBase,
         switch (controlname)
         {
             case "BtnRolePortrait":
-                Debug.Log("Cao");
+                Hot.PanelExpeditionRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListRole[IndexRoleList]);
                 break;
         }
     }
 
-    public void Init(int p_IndexRoleList, Transform p_father)
+    public void Init(int p_Index, int p_IndexRoleList, Transform p_father)
     {
         transform.SetParent(p_father, false);
+        Index = p_Index;
         IndexRoleList = p_IndexRoleList;
-        ImgRolePortrait.sprite = Hot.LoadSprite("Portrait" + Hot.DataNowCellGameArchive.RoleList[IndexRoleList].e_RoleName.ToString());
+        ImgRolePortrait.sprite = Hot.LoadSprite("Portrait" + Hot.DataNowCellGameArchive.ListRole[IndexRoleList].e_RoleName.ToString());
     }
 }

@@ -51,7 +51,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
             if (tempRootGrid.Data.IndexListRole != -1)
             {
-                e_RoleName = Hot.DataNowCellGameArchive.RoleList[tempRootGrid.Data.IndexListRole].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].e_RoleName;
             }
             else
             {
@@ -76,7 +76,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
             if (tempRootGrid.Data.IndexListRole != -1)
             {
-                e_RoleName = Hot.DataNowCellGameArchive.RoleList[tempRootGrid.Data.IndexListRole].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].e_RoleName;
             }
             else
             {

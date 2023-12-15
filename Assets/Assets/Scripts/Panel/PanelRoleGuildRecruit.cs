@@ -36,7 +36,7 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
     {
         NowIndex = 0;
 
-        for (int i = 0; i < Hot.DataNowCellGameArchive.RoleListRecruit.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListRoleRecruit.Count; i++)
         {
             int tempi = i;
 
@@ -55,7 +55,7 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
                 panel.ImgRolePortrait.sprite =  
-                    Hot.MgrRes_.Load<Sprite>("Art/Portrait" + Hot.DataNowCellGameArchive.RoleListRecruit[tempi].Role.e_RoleName);
+                    Hot.MgrRes_.Load<Sprite>("Art/Portrait" + Hot.DataNowCellGameArchive.ListRoleRecruit[tempi].Role.e_RoleName);
             });
 
             NowIndex++;
@@ -86,9 +86,9 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
         List<DataContainer_CellRoleRecruit> tempData = new();
         for (int i = 0; i < all.Length; i++)
         {
-            tempData.Add(Hot.DataNowCellGameArchive.RoleListRecruit[all[i].Index]);
+            tempData.Add(Hot.DataNowCellGameArchive.ListRoleRecruit[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.RoleListRecruit = tempData;
+        Hot.DataNowCellGameArchive.ListRoleRecruit = tempData;
     }
 }

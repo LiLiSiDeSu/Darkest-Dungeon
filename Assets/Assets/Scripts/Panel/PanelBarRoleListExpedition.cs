@@ -1,12 +1,17 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelBarRoleListExpedition : PanelBase
 {
-    public int NowPutIndex = 0;
-    public List<int> ListNeedPutRole = new();
+    public int NowPutIndex = -1;
+
+    public List<int> ListNeedPutRoleIndex = new();
+    public List<PanelCellRoleExpedition> ListCellRoleExpedition = new();
 
     public Transform RoleListExpeditionContent;
 
@@ -33,48 +38,80 @@ public class PanelBarRoleListExpedition : PanelBase
         RoleListExpeditionContent = transform.FindSonSonSon("RoleListExpeditionContent");
     }
 
-    public void InitByTown()
+    public void Init()
     {
-        ListNeedPutRole = new();
-        for (int i = 0; i < Hot.DataNowCellGameArchive.RoleIndexListExpedition.Count; i++)
+        ListNeedPutRoleIndex = new();
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count; i++)
         {
-            ListNeedPutRole.Add(Hot.DataNowCellGameArchive.RoleIndexListExpedition[i]);
+            ListNeedPutRoleIndex.Add(Hot.DataNowCellGameArchive.ListExpeditionRoleIndex[i]);
         }
 
-        foreach (int index in ListNeedPutRole)
+        for (int i = 0; i < ListNeedPutRoleIndex.Count; i++)
         {
+            int tempi = i;
+
             Hot.MgrUI_.CreatePanel<PanelCellRoleExpedition>(false, "/PanelCellRoleExpedition",
             (panel) =>
             {
-                panel.Init(index, RoleListExpeditionContent);
+                panel.Init(tempi, ListNeedPutRoleIndex[tempi], RoleListExpeditionContent);
+                ListCellRoleExpedition.Add(panel);
             });
         }
-    }
-
-    public void InitByOnExpedition()
-    {
-        foreach (int index in Hot.DataNowCellGameArchive.RoleIndexListExpedition)
-        {
-            Hot.MgrUI_.CreatePanel<PanelCellRoleExpedition>(false, "/PanelCellRoleExpedition",
-            (panel) =>
-            {
-                panel.Init(index, RoleListExpeditionContent);
-            });
-        }
-    }
+    }    
 
     public PanelCellRoleExpedition GetCellRoleExpedition(int p_Index)
     {
         return RoleListExpeditionContent.GetChild(p_Index).GetComponent<PanelCellRoleExpedition>();
     }
 
-    public void Clear()
+    public void ClearNoData()
     {
-        ListNeedPutRole.Clear();
-
-        foreach (PanelCellRoleExpedition item in RoleListExpeditionContent.GetComponentsInChildren<PanelCellRoleExpedition>())
+        foreach (PanelCellRoleExpedition item in ListCellRoleExpedition)
         {
             Destroy(item.gameObject);
+        }
+
+        NowPutIndex = -1;
+        ListNeedPutRoleIndex.Clear();
+        ListCellRoleExpedition.Clear();
+    }
+
+    public void ClearAndData()
+    {
+        foreach (PanelCellRoleExpedition item in ListCellRoleExpedition)
+        {
+            (item.CellExpeditionMiniMap.RootGrid as PanelGridExpeditionRoom).Data.IndexListRole = -1;
+            Destroy(item.gameObject);
+        }
+
+        NowPutIndex = -1;
+        ListNeedPutRoleIndex.Clear();
+        ListCellRoleExpedition.Clear();
+    }
+
+    public void Sort()
+    {
+        List<int> ListIndex = Hot.DataNowCellGameArchive.ListExpeditionRoleIndex;
+        int count = RoleListExpeditionContent.childCount;
+
+        for (int i = 0; i < ListCellRoleExpedition.Count; i++)
+        {
+            ListCellRoleExpedition[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+        }
+
+        for (int i = 0; count != RoleListExpeditionContent.childCount; i++)
+        {
+            if (i == count)
+            {
+                i = 0;
+            }
+
+            if (ListIndex[0] == ListCellRoleExpedition[i].IndexRoleList)
+            {
+                ListCellRoleExpedition[i].transform.SetParent(RoleListExpeditionContent, false);
+                ListCellRoleExpedition[i].transform.localPosition = Vector3.zero;
+                ListIndex.RemoveAt(0);
+            }
         }
     }
 }

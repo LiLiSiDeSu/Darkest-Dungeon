@@ -54,7 +54,7 @@ public class LayoutForNowNews : MonoBehaviour
         if (Hot.NowIndexCellGameArchive != -1)
         {
             String_PanelTownItemStatus = "---PanelTownItemStatus---\n";
-            for (int i = 0; i < Hot.DataNowCellGameArchive.StoreList.Count; i++)
+            for (int i = 0; i < Hot.DataNowCellGameArchive.ListStore.Count; i++)
             {
                 String_PanelTownItemStatus += Hot.MgrUI_.GetPanel<PanelTownItem>("PanelTownItem" + i).gameObject.name;                   
             }

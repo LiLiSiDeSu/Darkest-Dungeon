@@ -120,21 +120,8 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherMiniMapEditor"))
-            {
-                if (AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
-                {
-                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                }
-                else if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
-                {
-                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime, 0);
-                }
-            }
-        });
+        LimitAdd = 5f;
+        LimitReduce = 1f;
     }
 
     protected override void Button_OnClick(string controlname)
@@ -179,7 +166,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
                 }
                 break;
             case "BtnClearMap":
-                ClearList();
+                ClearAll();
                 IptFileName.text = "";
                 IptWidth.text = "";
                 IptHeight.text = "";
@@ -388,7 +375,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 
     public override void InitGrids(int Y, int X)
     {
-        ClearList();
+        ClearAll();
 
         base.InitGrids(Y, X);
     }
@@ -474,11 +461,11 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
         }));
     }
 
-    public override void ClearList()
+    public override void ClearAll()
     {
         EntrancePos = new();
 
-        base.ClearList();
+        base.ClearAll();
     }
 
     public void Save()

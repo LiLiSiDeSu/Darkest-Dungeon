@@ -110,22 +110,8 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor"))
-            {
-                if (AllContent.localScale.x < 5f && key == Hot.MgrInput_.Add)
-                {
-                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                }
-
-                if (AllContent.localScale.x > 1f && key == Hot.MgrInput_.Reduce)
-                {
-                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
-                }
-            }
-        });
+        LimitAdd = 5f;
+        LimitReduce = 1f;
 
         Init();
     }

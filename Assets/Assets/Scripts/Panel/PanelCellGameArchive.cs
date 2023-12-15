@@ -116,11 +116,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     {
                         Hot.PanelExpeditionMiniMap_.Init();
                         Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
-                        Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition",
-                        (panel) =>
-                        {
-                            panel.InitByOnExpedition();
-                        });
+                        Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition");
                     }
                 }
 

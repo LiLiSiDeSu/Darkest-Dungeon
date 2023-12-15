@@ -94,12 +94,25 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
                 break;
         }
     }
+    
+    public void Show()
+    {
+        if (Hot.PoolNowPanel_.ContainPanel("PanelBarRoleList"))
+        {
+            Hot.MgrUI_.HidePanel(false, gameObject, gameObject.name);
+            Show();
+        }
+        else
+        {
+            Hot.MgrUI_.ShowPanel<PanelBarRoleList>(true, "PanelBarRoleList");
+        }
+    }
 
     public override void InitContent()
     {
         NowIndex = 0;
 
-        for (int i = 0; i < Hot.DataNowCellGameArchive.RoleList.Count; i++)
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListRole.Count; i++)
         {
             int tempi = i;
 
@@ -110,15 +123,14 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
                 panel.Index = tempi;
                 panel.CreatePanelCellRoleCanDrag();
 
-                GameObject obj =
-                    Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
+                GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = tempi.ToString();
                 obj.transform.SetParent(Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(tempi);
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
                 ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.RoleList[tempi], E_RoleLocation.RoleList);
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole[tempi], E_RoleLocation.RoleList);
             });
 
             NowIndex++;
@@ -152,10 +164,10 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
         List<DataContainer_CellRole> tempData = new();
         for (int i = 0; i < all.Length; i++)
         {
-            tempData.Add(Hot.DataNowCellGameArchive.RoleList[all[i].Index]);
+            tempData.Add(Hot.DataNowCellGameArchive.ListRole[all[i].Index]);
             all[i].Index = i;
         }
-        Hot.DataNowCellGameArchive.RoleList = tempData;
+        Hot.DataNowCellGameArchive.ListRole = tempData;
 
         Hot.Data_.Save();
     }

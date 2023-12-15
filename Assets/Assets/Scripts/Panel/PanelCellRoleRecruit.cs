@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -29,7 +30,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
     public void OnPointerEnter(PointerEventData eventData)
     {        
-        Hot.PanelRoleGuildRecruitCost_.UpdateInfo(Hot.DataNowCellGameArchive.RoleListRecruit[Index].Cost);
+        Hot.PanelRoleGuildRecruitCost_.UpdateInfo(Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Cost);
         Root.localPosition = new(40, 0, 0);
     }
 
@@ -63,7 +64,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
             (false, "/PanelCellRole",
             (panel) =>
             {
-                panel.Index = Hot.DataNowCellGameArchive.RoleList.Count - 1;
+                panel.Index = Hot.DataNowCellGameArchive.ListRole.Count - 1;
                 panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = panel.Index.ToString();
@@ -72,10 +73,10 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
                 Hot.PanelBarRoleList_.ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                Hot.DataNowCellGameArchive.RoleList.
-                    Insert(panel.Index, Hot.DataNowCellGameArchive.RoleListRecruit[Index].Role);
+                Hot.DataNowCellGameArchive.ListRole.
+                    Insert(panel.Index, Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Role);
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.RoleList[panel.Index], E_RoleLocation.GuildRecruit);
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole[panel.Index], E_RoleLocation.GuildRecruit);
 
                 for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count - 1; i++)
                 {
@@ -123,15 +124,8 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
         switch (controlname)
         {
-            case "BtnRolePortrait":                
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails", 
-                (panel) =>
-                {
-                    panel.IndexRole = Index;
-                    panel.e_RoleLocation = e_RoleLocation;
-                    panel.BtnDismiss.SetActive(false);
-                    panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.RoleListRecruit[Index].Role);
-                });                
+            case "BtnRolePortrait":
+                Hot.PanelRoleDetails_.Show(Index, e_RoleLocation);
                 break;
         }
     }    

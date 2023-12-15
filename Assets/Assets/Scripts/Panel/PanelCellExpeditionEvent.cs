@@ -34,16 +34,14 @@ public class PanelCellExpeditionEvent : PanelBaseCell
                 if (Hot.NowExpeditionEvent == null)
                 {
                     Hot.NowExpeditionEvent = this;
-                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
-                    Hot.PanelExpeditionDetails_.UpdateInfo();
+                    Hot.PanelExpeditionDetails_.UpdateInfo(Hot.DataNowCellGameArchive.GetDataNowEvent(Hot.NowExpeditionEvent.e_ExpeditionLocation, Hot.NowExpeditionEvent.Index));
                     return;
                 }
                 if (Hot.NowExpeditionEvent == this)
                 {
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                     Hot.NowExpeditionEvent = null;
-                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.PanelExpeditionDetails_.Clear();
                     return;
                 }
@@ -51,9 +49,8 @@ public class PanelCellExpeditionEvent : PanelBaseCell
                 {
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                     Hot.NowExpeditionEvent = this;
-                    Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(true);
-                    Hot.PanelExpeditionDetails_.UpdateInfo();
+                    Hot.PanelExpeditionDetails_.UpdateInfo(Hot.DataNowCellGameArchive.GetDataNowEvent(Hot.NowExpeditionEvent.e_ExpeditionLocation, Hot.NowExpeditionEvent.Index));
                     return;
                 }                
                 break;

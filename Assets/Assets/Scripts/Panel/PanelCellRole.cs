@@ -95,21 +95,14 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
         switch (controlname)
         {
             case "BtnRolePortrait":
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
-                (panel) =>
-                {
-                    panel.IndexRole = Index;
-                    panel.e_RoleLocation = e_RoleLocation;
-                    panel.BtnDismiss.SetActive(true);
-                    panel.UpdateInfo(Hot.DataNowCellGameArchive.RoleList[Index]);
-                });
+                Hot.PanelRoleDetails_.Show(Index, e_RoleLocation);
                 break;
         }
     }
 
     public void CreatePanelCellRoleCanDrag()
     {
-        if (Hot.DataNowCellGameArchive.RoleList[Index].IndexExpeditionRoot == -1)
+        if (Hot.DataNowCellGameArchive.ListRole[Index].IndexExpeditionRoot == -1)
         {
             Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>(false, "/PanelCellRolePortraitCanDrag",
             (panel) =>
@@ -142,9 +135,9 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
     /// </summary>
     public void ChangeSanityExplosionLimit()
     {
-        if (ListImgCellSanity.Count < Hot.DataNowCellGameArchive.RoleList[Index].LimitToSanityExplosion)
+        if (ListImgCellSanity.Count < Hot.DataNowCellGameArchive.ListRole[Index].LimitToSanityExplosion)
         {
-            int v1 = Hot.DataNowCellGameArchive.RoleList[Index].LimitToSanityExplosion - ListImgCellSanity.Count;
+            int v1 = Hot.DataNowCellGameArchive.ListRole[Index].LimitToSanityExplosion - ListImgCellSanity.Count;
 
             for
             (int i = 0; i < v1; i++)
@@ -156,9 +149,9 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
             }
         }
 
-        if (ListImgCellSanity.Count > Hot.DataNowCellGameArchive.RoleList[Index].LimitToSanityExplosion)
+        if (ListImgCellSanity.Count > Hot.DataNowCellGameArchive.ListRole[Index].LimitToSanityExplosion)
         {
-            int v1 = ListImgCellSanity.Count - Hot.DataNowCellGameArchive.RoleList[Index].LimitToSanityExplosion;
+            int v1 = ListImgCellSanity.Count - Hot.DataNowCellGameArchive.ListRole[Index].LimitToSanityExplosion;
 
             for
             (int i = 0; i < v1; i++)
@@ -170,14 +163,14 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public void ChangeName(string NameToChange)
     {
-        Hot.DataNowCellGameArchive.RoleList[Index].Name = NameToChange;
+        Hot.DataNowCellGameArchive.ListRole[Index].Name = NameToChange;
 
         TxtRoleName.text = NameToChange;
     }
 
     public void ChangeSanity(int ValueToChange)
     {
-        Hot.DataNowCellGameArchive.RoleList[Index].NowSanity += ValueToChange;
+        Hot.DataNowCellGameArchive.ListRole[Index].NowSanity += ValueToChange;
 
         UpdateSanityInfo();
     }
@@ -189,10 +182,10 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
 
     public void ChangeLevel(int p_valueToChange)
     {
-        Hot.DataNowCellGameArchive.RoleList[Index].NowLevel += p_valueToChange;
+        Hot.DataNowCellGameArchive.ListRole[Index].NowLevel += p_valueToChange;
         if
-        (Hot.DataNowCellGameArchive.RoleList[Index].NowLevel > Hot.DataNowCellGameArchive.RoleList[Index].MaxLevel)
-            Hot.DataNowCellGameArchive.RoleList[Index].NowLevel = Hot.DataNowCellGameArchive.RoleList[Index].MaxLevel;
+        (Hot.DataNowCellGameArchive.ListRole[Index].NowLevel > Hot.DataNowCellGameArchive.ListRole[Index].MaxLevel)
+            Hot.DataNowCellGameArchive.ListRole[Index].NowLevel = Hot.DataNowCellGameArchive.ListRole[Index].MaxLevel;
 
         UpdateLevelInfo();
     }
@@ -214,7 +207,7 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
         for (int i = 0; i < ListImgCellSanity.Count; i++)
         {
             if
-            (i < Hot.DataNowCellGameArchive.RoleList[Index].NowSanity / Hot.StepSanity)
+            (i < Hot.DataNowCellGameArchive.ListRole[Index].NowSanity / Hot.StepSanity)
             {
                 ListImgCellSanity[i].GetComponent<Image>().sprite =
                     Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueHave");
@@ -229,14 +222,14 @@ public class PanelCellRole : PanelBaseCellDynamicScrollView,
     {
         //等级的底图改变逻辑
 
-        TxtRoleLevel.text = Hot.DataNowCellGameArchive.RoleList[Index].NowLevel.ToString();
+        TxtRoleLevel.text = Hot.DataNowCellGameArchive.ListRole[Index].NowLevel.ToString();
     }
 
     public void UpdateExperience()
     {
         ImgProgress.GetComponent<RectTransform>().sizeDelta =
             new Vector2(ImgProgress.GetComponent<RectTransform>().sizeDelta.x,
-                        49.3f * ((float)Hot.DataNowCellGameArchive.RoleList[Index].NowExperience /
-                        Hot.ListNeedExperienceToUpLevel[Hot.DataNowCellGameArchive.RoleList[Index].NowLevel]));
+                        49.3f * ((float)Hot.DataNowCellGameArchive.ListRole[Index].NowExperience /
+                        Hot.ListNeedExperienceToUpLevel[Hot.DataNowCellGameArchive.ListRole[Index].NowLevel]));
     }
 }

@@ -77,9 +77,10 @@ public class PanelOtherSetting : PanelBase
 
                     Hot.PanelBarTownStore_.Clear();
                     Hot.PanelBarRoleList_.Clear();
-                    Hot.PanelBarRoleListExpedition_.Clear();
-                    Hot.PanelTownShopItem_.ClearList();
                     Hot.PanelBarExpedition_.Clear();
+                    Hot.PanelBarRoleListExpedition_.ClearNoData();
+                    Hot.PanelExpeditionRoom_.Clear();
+                    Hot.PanelTownShopItem_.ClearAll();
                     Hot.PanelRoleGuildRecruit_.Clear();
                     Hot.PanelExpeditionPrepare_.Clear();
                     Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;

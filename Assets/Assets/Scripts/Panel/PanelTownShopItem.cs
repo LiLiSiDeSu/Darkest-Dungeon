@@ -20,6 +20,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
 
         TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
+        TxtCapacity.text = " 0 / 0";
     }
 
     #region EventSystem接口实现
@@ -113,10 +114,9 @@ public class PanelTownShopItem : PanelBaseVector2Store,
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
                         PanelCellItem_.e_Location = E_ItemLocation.TownShopItem;
-                        PanelCellItem_.e_Item =
-                            Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;                        
+                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem; ;
 
-                        PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_Item);
+                        PanelCellItem_.ImgItem.sprite = Hot.LoadSprite(PanelCellItem_.e_Item.ToString());
 
                         PanelCellItem_.ChangeCellSize();
 
@@ -135,11 +135,11 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         ChangeCellSize();
     }    
 
-    public override void ClearList()
+    public override void ClearAll()
     {
-        TxtCapacity.text = ""; 
+        TxtCapacity.text = "0 / 0"; 
 
-        base.ClearList();
+        base.ClearAll();
     }
 
     public void InitTxtCapacity()

@@ -46,9 +46,9 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
     public void Init()
     {
-        ClearList();
+        ClearAll();
         InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
-        InitItem();
+        LoadItem();
     }
 
     public override void End()
@@ -58,7 +58,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         DisableImgBkRaycast();
     }
 
-    public void InitItem()
+    public void LoadItem()
     {
         DataContainer_ExpeditionMiniMap DataNowExpeditionEvent = Hot.DataNowCellGameArchive.DataNowEvent;
 
@@ -93,7 +93,6 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
                             {
                                 pos = DataNowExpeditionEvent.EntrancePos;
                                 Hot.NowEnterCellExpeditionMiniMap = GetCellExpeditionMiniMap(pos.X, pos.Y);
-                                Hot.DataNowCellGameArchive.InitDataNowEnterEvent();
                                 Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
                             }
                             else

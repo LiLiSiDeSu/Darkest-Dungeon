@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PanelBaseVector2<T0, T1> : PanelBase
        where T0 : PanelBaseCellVector2, new()
@@ -14,6 +15,9 @@ public class PanelBaseVector2<T0, T1> : PanelBase
     public Transform ImgStatusContent;
     public Transform ItemContent;
     public Transform ComponentRoot;
+
+    public float LimitAdd = 0f;
+    public float LimitReduce = 0f;
 
     public List<List<PanelBaseGrid<T0>>> Grids = new();
     public List<List<Transform>> ItemRoot = new();
@@ -27,6 +31,32 @@ public class PanelBaseVector2<T0, T1> : PanelBase
         ItemContent = transform.FindSonSonSon("ItemContent");
         ImgStatusContent = transform.FindSonSonSon("ImgStatusContent");
         ComponentRoot = transform.FindSonSonSon("ComponentRoot");
+
+        Hot.MgrUI_.AddCustomEventListener(AllContent.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
+        (param) =>
+        {
+            Hot.NowEnterContent = AllContent;
+        });
+        Hot.MgrUI_.AddCustomEventListener(AllContent.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
+        (param) =>
+        {
+            Hot.NowEnterContent = null;
+        });
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
+        (key) =>
+        {
+            if (Hot.NowEnterContent != null && Hot.NowEnterContent == AllContent)
+            {
+                if (key == Hot.MgrInput_.Add && AllContent.localScale.x < LimitAdd)
+                {
+                    AllContent.localScale += new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                }
+                else if (key == Hot.MgrInput_.Reduce && AllContent.localScale.x > LimitReduce)
+                {
+                    AllContent.localScale -= new Vector3(Hot.ValueChangeMapSize * Time.deltaTime, Hot.ValueChangeMapSize * Time.deltaTime);
+                }
+            }
+        });
     }
 
     public virtual void InitGrids(int Y, int X)
@@ -152,29 +182,31 @@ public class PanelBaseVector2<T0, T1> : PanelBase
         }
     }
 
-    public virtual void ClearList()
+    public virtual void ClearAll()
     {
-        foreach (var list in Grids)
+        int tempCount = 0;
+        tempCount = ItemContent.childCount;
+        for (int i = 0; i < tempCount; i++)
         {
-            foreach (var item in list)
-            {
-                Destroy(item.gameObject);
-            }
+            DestroyImmediate(ItemContent.GetChild(0).gameObject);
         }
-        foreach (var item in ImgBkContent.GetComponentsInChildren<ContentStep>())
+        tempCount = ImgBkContent.childCount;
+        for (int i = 0; i < tempCount; i++)
         {
-            Destroy(item.gameObject);
+            DestroyImmediate(ImgBkContent.GetChild(0).gameObject);
         }
-        foreach (var item in ImgStatusContent.GetComponentsInChildren<ContentStep>())
+        tempCount = ImgStatusContent.childCount;
+        for (int i = 0; i < tempCount; i++)
         {
-            Destroy(item.gameObject);
+            DestroyImmediate(ImgStatusContent.GetChild(0).gameObject);
         }
-        foreach (var item in ItemContent.GetComponentsInChildren<ContentStep>())
+        tempCount = ComponentRoot.childCount;
+        for (int i = 0; i < tempCount; i++)
         {
-            Destroy(item.gameObject);
+            DestroyImmediate(ComponentRoot.GetChild(0).gameObject);
         }
 
         Grids.Clear();
-        ItemRoot.Clear();
+        ItemRoot.Clear();        
     }
 }
