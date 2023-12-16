@@ -64,6 +64,7 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
             (false, "/PanelCellRole",
             (panel) =>
             {
+                Hot.DataNowCellGameArchive.ListRole.Add(Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Role);
                 panel.Index = Hot.DataNowCellGameArchive.ListRole.Count - 1;
                 panel.CreatePanelCellRoleCanDrag();
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
@@ -71,19 +72,14 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
                 obj.transform.SetParent(Hot.PanelBarRoleList_.Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(panel.Index);
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
-                Hot.PanelBarRoleList_.ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());
 
-                Hot.DataNowCellGameArchive.ListRole.
-                    Insert(panel.Index, Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Role);
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole[panel.Index], E_RoleLocation.RoleList);
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole[panel.Index], E_RoleLocation.GuildRecruit);
-
-                for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count - 1; i++)
+                for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                 {
-                    Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
-                        SetParent(Hot.MgrUI_.UIBaseCanvas, false);
-                    Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
-                        SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
+                    Debug.Log(i);
+                    Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+                    Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
                 }
 
                 DestroyImmediate(Hot.PaddingContentStep_.gameObject);

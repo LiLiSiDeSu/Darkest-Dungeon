@@ -152,11 +152,6 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
             new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 4, 99, 1, 46, 200, 1),
             new DataContainer_CellRole(E_RoleName.LiLiSi, "cao5", 2, 99, 40, 46, 200, 10),
             new DataContainer_CellRole(E_RoleName.Crusader, "cao6", 3, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.DevilFly, "cao5", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao4", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao2", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.LiLiSi, "cao1", 2, 99, 40, 46, 200, 10),
         };
 
         GameArchiveDataCellList[0].ResTable = new DataContainer_ResTable(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);

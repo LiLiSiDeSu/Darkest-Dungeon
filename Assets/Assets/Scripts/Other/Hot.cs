@@ -381,13 +381,8 @@ public static class Hot
     public static Transform NowEnterContent;
     public static bool UpdateOver = true;
     public static bool CanBuy = false;
-    /// <summary>
-    /// 现在鼠标所在的区域
-    /// </summary>
+
     public static E_NowPointerLocation e_NowPointerLocation = E_NowPointerLocation.None;
-    /// <summary>
-    /// 现在玩家所在的区域(从开发者视角来看)
-    /// </summary>
     public static E_PlayerLocation e_NowPlayerLocation = E_PlayerLocation.None;
 
     #endregion

@@ -39,7 +39,10 @@ public class PanelCellRoleExpedition : PanelBaseCell,
         switch (controlname)
         {
             case "BtnRolePortrait":
-                Hot.PanelExpeditionRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListRole[IndexRoleList]);
+                if (Hot.UpdateOver)
+                {
+                    Hot.PanelExpeditionRoleDetails_.UpdateInfo(Hot.DataNowCellGameArchive.ListRole[IndexRoleList]);
+                }
                 break;
         }
     }

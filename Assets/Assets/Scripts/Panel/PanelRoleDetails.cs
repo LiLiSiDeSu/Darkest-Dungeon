@@ -78,8 +78,6 @@ public class PanelRoleDetails : PanelBaseRoleStore
             }
             else
             {
-                Hot.UpdateOver = false;
-
                 Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
                 (panel) =>
                 {
@@ -90,14 +88,13 @@ public class PanelRoleDetails : PanelBaseRoleStore
                     {
                         case E_RoleLocation.RoleList:
                             panel.UpdateInfo(Hot.DataNowCellGameArchive.ListRole[p_index]);
+                            Hot.PanelBarRoleList_.Show();
                             break;
                         case E_RoleLocation.GuildRecruit:
                             panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.ListRoleRecruit[p_index].Role);
                             break;
                     }
                 });
-
-                Hot.PanelBarRoleList_.Show();
             }
         }
     }

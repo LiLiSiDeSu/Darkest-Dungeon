@@ -81,6 +81,8 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
     {
         ClearAll();
 
+        Hot.UpdateOver = false;
+
         InitGrids(Role.ListItem.Count, Role.ListItem[0].Count);
 
         LoadData(Role);
