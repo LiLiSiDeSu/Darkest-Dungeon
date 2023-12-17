@@ -18,7 +18,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             case "BtnCellExpeditionMiniMap":
                 if (JudgeRoleCanEnter() && JudgeIsSide())
                 {
-                    Hot.PanelExpeditionRoom_.LoadDataMap(RootGrid.X, RootGrid.Y);
+                    Hot.PanelExpeditionRoom_.LoadDataMap(RootGrid.X, RootGrid.Y, false);
                     Hot.NowEnterCellExpeditionMiniMap = this;
                     Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
                 }

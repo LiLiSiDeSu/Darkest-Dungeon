@@ -74,7 +74,7 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
         ListDynamicContentStep = tempList;
 
         PanelCellGameArchive[] all = Content.GetComponentsInChildren<PanelCellGameArchive>();
-        List<DataContainer_PanelCellGameArchive> allData = new();
+        List<DataContainer_CellGameArchive> allData = new();
         for (int i = 0; i < all.Length; i++)
         {
             allData.Add(Hot.Data_.DataListCellGameArchive[all[i].Index]);
@@ -100,7 +100,7 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
             panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
             ListDynamicContentStep.Add(obj.GetComponent<DynamicContentStep>());            
 
-            Hot.Data_.DataListCellGameArchive.Add(new DataContainer_PanelCellGameArchive());
+            Hot.Data_.DataListCellGameArchive.Add(new DataContainer_CellGameArchive());
             panel.Init(Hot.Data_.DataListCellGameArchive[panel.Index]);
             Hot.Data_.Save(panel.Index);
 

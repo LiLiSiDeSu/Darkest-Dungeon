@@ -32,17 +32,16 @@ public class PanelBarExpedition : PanelBase,
                     Hot.MgrUI_.HideAllPanel();
                     Hot.DataNowCellGameArchive.e_NowExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
                     Hot.DataNowCellGameArchive.NowEventIndex = Hot.NowExpeditionEvent.Index;
-                    Debug.Log(Hot.NowExpeditionEvent.e_ExpeditionLocation);
-                    Debug.Log(Hot.DataNowCellGameArchive.e_NowExpeditionLocation);
-                    Debug.Log(Hot.NowExpeditionEvent.Index);
-                    Debug.Log(Hot.DataNowCellGameArchive.NowEventIndex);
-                    Hot.PanelExpeditionMiniMap_.Init();
+                    Hot.PanelExpeditionMiniMap_.Init(false);
                     Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                     Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition",
                     (panel) =>
                     {
                         panel.Init();
                     });
+
+                    Hot.Data_.Save();
+                    Debug.Log(Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count);
                 }
                 break;
         }

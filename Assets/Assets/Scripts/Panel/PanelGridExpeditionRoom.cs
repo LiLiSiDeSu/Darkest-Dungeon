@@ -39,7 +39,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                 {
                     for (int iX = 0; iX < Hot.DicRoleConfig[e_RoleName].BodySize.X; iX++)
                     {
-                        Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+                        Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX * Hot.VFlip].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
                     }
                 }
 
@@ -69,7 +69,15 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                 {
                     for (int iX = 0; iX < Hot.DicRoleConfig[e_RoleName].BodySize.X; iX++)
                     {
-                        Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                        Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX * Hot.VFlip].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    }
+                }
+
+                if ((Hot.VFlip == -1 && X != Hot.BodyMap.X - 1) || (Hot.VFlip == 1 && X != 0))
+                {
+                    for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].BodySize.Y; iY++)
+                    {
+                        Hot.PanelExpeditionRoom_.Grids[Y + iY][X + -Hot.VFlip].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     }
                 }
 
@@ -99,11 +107,13 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                 {
                     PutListRole(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex], Hot.PanelBarRoleListExpedition_.NowPutIndex);
 
+                    Hot.DataNowCellGameArchive.ListNowPutRole.Add(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]);
+
                     for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].BodySize.Y; iY++)
                     {
                         for (int iX = 0; iX < Hot.DicRoleConfig[e_RoleName].BodySize.X; iX++)
                         {
-                            Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                            Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX * Hot.VFlip].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                         }
                     }
 
@@ -133,8 +143,13 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             return false;
         }
 
-        if (Y + Hot.DicRoleConfig[p_e_RoleName].BodySize.Y > Hot.BodyMap.Y ||
-            X + Hot.DicRoleConfig[p_e_RoleName].BodySize.X > Hot.BodyMap.X)
+        if (Hot.VFlip == -1 && X == 0)
+        {
+            return false;
+        }
+
+        if (Y + Hot.DicRoleConfig[p_e_RoleName].BodySize.Y > Hot.BodyMap.Y || 
+            X + Hot.DicRoleConfig[p_e_RoleName].BodySize.X * Hot.VFlip > Hot.BodyMap.X)
         {
             return false;
         }
@@ -143,8 +158,8 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         {
             for (int i2 = 0; i2 < Hot.DicRoleConfig[p_e_RoleName].BodySize.X; i2++)
             {
-                if (Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2].Item == null ||
-                    Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2].Item == Hot.ChoseCellMiniMapEditor)
+                if (Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2 * Hot.VFlip].Item == null ||
+                    Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2 * Hot.VFlip].Item == Hot.ChoseCellMiniMapEditor)
                 {
                     ;
                 }
@@ -171,20 +186,20 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         return true;
     }
 
-    public void PutMapObj(DataContainer_CellExpeditionMapObj p_MapObj)
-    {
-        Data.MapObj = p_MapObj;
-        CreateCellRoom();
-    }
     public void PutListRole(int p_IndexListRole, int p_index)
     {
         Data.IndexListRole = p_IndexListRole;
         Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
         (panel) =>
         {
-            panel.Init(this);
+            panel.Init(this, true);
             Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition[p_index].CellExpeditionMiniMap = panel;
         });
+    }
+    public void PutMapObj(DataContainer_CellExpeditionMapObj p_MapObj)
+    {
+        Data.MapObj = p_MapObj;
+        CreateCellRoom();
     }
     public void PutOtherRole(DataContainer_CellRole p_OtherRole)
     {
@@ -197,7 +212,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
         (panel) =>
         {
-            panel.Init(this);
+            panel.Init(this, true);
         });
     }
     public void InitGridByMapObject(PanelCellExpeditionRoom p_panel)
@@ -206,17 +221,17 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         {
             for (int iX = 0; iX < Hot.BodyDicMapObject[Data.MapObj.e_Obj].X; iX++)
             {
-                Hot.PanelExpeditionRoom_.Grids[iY + Y][iX + X].Item = p_panel;
+                Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX].Item = p_panel;
             }
         }
     }
-    public void InitGridByRole(E_RoleName e_RoleName, PanelCellExpeditionRoom p_panel)
+    public void InitGridByRole(E_RoleName p_e_RoleName, PanelCellExpeditionRoom p_panel, int p_VFlip)
     {
-        for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].BodySize.Y; iY++)
+        for (int iY = 0; iY < Hot.DicRoleConfig[p_e_RoleName].BodySize.Y; iY++)
         {
-            for (int iX = 0; iX < Hot.DicRoleConfig[e_RoleName].BodySize.X; iX++)
+            for (int iX = 0; iX < Hot.DicRoleConfig[p_e_RoleName].BodySize.X; iX++)
             {
-                Hot.PanelExpeditionRoom_.Grids[iY + Y][iX + X].Item = p_panel;
+                Hot.PanelExpeditionRoom_.Grids[Y + iY][X + iX * Hot.VFlip].Item = p_panel;
             }
         }
     }

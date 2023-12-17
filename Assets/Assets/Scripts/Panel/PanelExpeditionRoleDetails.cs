@@ -37,21 +37,32 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
             case "BtnBackTown":
                 Hot.PanelExpeditionRoom_.Clear();
                 Hot.PanelBarRoleListExpedition_.ClearAndData();
-                Hot.MgrUI_.HideAllPanel();
-                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
-                Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+                Hot.DataNowCellGameArchive.ClearNowEvent();
+                Hot.PanelExpeditionRoom_.ClearImgStatus();
+
+                Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                 Hot.NowExpeditionEvent = null;
                 Hot.NowEnterCellExpeditionMiniMap = null;
-                Hot.DataNowCellGameArchive.ResetNowEvent();
+
+                Hot.MgrUI_.HideAllPanel();
+                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+
+                Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
+
+                Hot.Data_.Save();
                 break;
         }
     }
 
-    public void UpdateInfo(DataContainer_CellRole p_roleData)
+    public void UpdateInfo()
     {
-        ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + p_roleData.e_RoleName);
-        TxtRoleName.text = p_roleData.Name;
+        NowCapacity = 0;
 
-        UpdateContent(p_roleData);
+        DataContainer_CellRole roleData = Hot.DataNowCellGameArchive.ListRole[IndexRole];
+
+        ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + roleData.e_RoleName);
+        TxtRoleName.text = roleData.Name;
+
+        UpdateContent(roleData);
     }
 }

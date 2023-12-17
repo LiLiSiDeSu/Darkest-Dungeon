@@ -44,11 +44,11 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         });
     }
 
-    public void Init()
+    public void Init(bool isCreateByChooseGameArchive)
     {
         ClearAll();
         InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
-        LoadItem();
+        LoadItem(isCreateByChooseGameArchive);
     }
 
     public override void End()
@@ -58,7 +58,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         DisableImgBkRaycast();
     }
 
-    public void LoadItem()
+    public void LoadItem(bool isCreateByChooseGameArchive)
     {
         DataContainer_ExpeditionMiniMap DataNowExpeditionEvent = Hot.DataNowCellGameArchive.DataNowEvent;
 
@@ -99,7 +99,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
                             {
                                 pos = Hot.DataNowCellGameArchive.NowCellMiniMapPos;
                             }
-                            Hot.PanelExpeditionRoom_.LoadDataMap(pos.X, pos.Y);                            
+                            Hot.PanelExpeditionRoom_.LoadDataMap(pos.X, pos.Y, isCreateByChooseGameArchive);                            
                             Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
                         }
                     });

@@ -12,7 +12,7 @@ public class PanelCellItem : PanelBaseCellVector2,
 
     public E_ItemLocation e_Location = E_ItemLocation.None;
 
-    public E_SpriteNamePanelCellItem e_Item = E_SpriteNamePanelCellItem.None;
+    public E_Item e_Item = E_Item.None;
 
     #region EventSystem接口实现
 

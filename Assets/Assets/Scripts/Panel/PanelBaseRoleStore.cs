@@ -12,8 +12,6 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
 
     public Text TxtCapacity;
 
-    public DataContainer_CellRole NowRole;
-
     protected override void Awake()
     {
         base.Awake();
@@ -25,7 +23,6 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         () =>
         {
             IndexRole = -1;
-            NowRole = null;
             TxtCapacity.text = "0 / 0";
             NowCapacity = 0;
         });
@@ -47,18 +44,18 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
 
     #endregion
 
-    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
+    public override void UpdateInfoByAdd(E_Item p_e_Item)
     {
         base.UpdateInfoByAdd(p_e_Item);
 
-        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
+        TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.ListRole[IndexRole].ListItem[0].Count * Hot.DataNowCellGameArchive.ListRole[IndexRole].ListItem.Count;
     }
 
-    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
+    public override void UpdateInfoByReduce(E_Item p_e_Item)
     {
         base.UpdateInfoByReduce(p_e_Item);
 
-        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
+        TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.ListRole[IndexRole].ListItem[0].Count * Hot.DataNowCellGameArchive.ListRole[IndexRole].ListItem.Count;
     }
 
     public void InitTxtCapacity(DataContainer_CellRole Role)
@@ -67,9 +64,9 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         {
             foreach (DataContainer_CellItem item in listItem)
             {
-                if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (item.e_Item != E_Item.None)
                 {
-                    NowCapacity += Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;
+                    NowCapacity += Hot.BodyDicItem[item.e_Item].X * Hot.BodyDicItem[item.e_Item].Y;
                 }
             }
         }
@@ -107,7 +104,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
             {
                 int tempi2 = i2;
 
-                if (Role.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (Role.ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
                     (panel) =>
@@ -118,7 +115,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
                         panel.RootGrid = Grids[tempi1][tempi2];
                         panel.MemberOf = this;
                         panel.e_Location = E_ItemLocation.PanelRoleStore;
-                        panel.e_Item = Role.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
+                        panel.e_Item = Role.ListItem[tempi1][tempi2].e_Item;
 
                         panel.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + panel.e_Item);
 

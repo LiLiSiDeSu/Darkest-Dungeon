@@ -114,7 +114,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                     }
                     else
                     {
-                        Hot.PanelExpeditionMiniMap_.Init();
+                        Hot.PanelExpeditionMiniMap_.Init(true);
                         Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                         Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition");
                     }
@@ -188,7 +188,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
         }
     }     
 
-    public void Init(DataContainer_PanelCellGameArchive data)
+    public void Init(DataContainer_CellGameArchive data)
     {
         IptGameArchiveName.text = data.GameArchiveName;
 

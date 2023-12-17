@@ -79,20 +79,24 @@ public class PanelTownItem : PanelBaseVector2Store,
     public void ShowForBtn()
     {
         if (PoolNowPanel.GetInstance().ListNowPanel.Contains(gameObject.name))
+        {
             Hide();
+        }
         else
+        {
             Show();
+        }
     }
 
-    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
+    public override void UpdateInfoByAdd(E_Item p_e_Item)
     {
         base.UpdateInfoByAdd(p_e_Item);
 
-        PanelCellTownStore_.TxtCapacity.text =
+        PanelCellTownStore_.TxtCapacity.text = 
             NowCapacity + " / " + Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X * Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y;
     }
 
-    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
+    public override void UpdateInfoByReduce(E_Item p_e_Item)
     {
         base.UpdateInfoByReduce(p_e_Item);
 
@@ -106,9 +110,9 @@ public class PanelTownItem : PanelBaseVector2Store,
         {
             foreach (DataContainer_CellItem item in listItem)
             {
-                if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (item.e_Item != E_Item.None)
                 {
-                    NowCapacity += Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;
+                    NowCapacity += Hot.BodyDicItem[item.e_Item].X * Hot.BodyDicItem[item.e_Item].Y;
                 }
             }
         }
@@ -138,7 +142,7 @@ public class PanelTownItem : PanelBaseVector2Store,
             {
                 int tempi2 = i2;
 
-                if (Hot.DataNowCellGameArchive.ListStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (Hot.DataNowCellGameArchive.ListStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
                     (PanelCellItem_) =>
@@ -149,7 +153,7 @@ public class PanelTownItem : PanelBaseVector2Store,
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
                         PanelCellItem_.e_Location = E_ItemLocation.PanelTownItem;
-                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.ListStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem;
+                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.ListStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_Item;
 
                         PanelCellItem_.ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + PanelCellItem_.e_Item);
 

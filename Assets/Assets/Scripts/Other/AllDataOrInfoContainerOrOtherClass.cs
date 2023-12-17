@@ -40,13 +40,14 @@ public class RoleConfig
     }
 }
 
-public class DataContainer_PanelCellGameArchive
+public class DataContainer_CellGameArchive
 {
     public string GameArchiveName = "";    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
+    public List<int> ListNowPutRole = new();
     public List<int> ListExpeditionRoleIndex = new();
     public E_ExpeditionLocation e_NowExpeditionLocation = E_ExpeditionLocation.Town;
     public int NowEventIndex = -1;
@@ -68,8 +69,8 @@ public class DataContainer_PanelCellGameArchive
     public DataContainer_TownShop TownShop = new();
     public DataContainer_ExpeditionPrepare ExpeditionPrepare = new();
     
-    public DataContainer_PanelCellGameArchive() { }
-    public DataContainer_PanelCellGameArchive
+    public DataContainer_CellGameArchive() { }
+    public DataContainer_CellGameArchive
     (string p_GameArchiveName, E_GameArchiveLevel p_e_GameArchiveLevel, E_ExpeditionLocation p_e_NowExpeditionLocation, string p_Week, string p_Time, 
     List<DataContainer_CellTownStore> p_ListCellStore)
     {
@@ -81,12 +82,13 @@ public class DataContainer_PanelCellGameArchive
         ListStore = p_ListCellStore;
     }
 
-    public void ResetNowEvent()
+    public void ClearNowEvent()
     {
         e_NowExpeditionLocation = E_ExpeditionLocation.Town;
         NowEventIndex = -1;
-        ListExpeditionRoleIndex.Clear();
         NowCellMiniMapPos = new();
+        ListExpeditionRoleIndex.Clear();
+        ListNowPutRole.Clear();
     }
 
     public void UpdataNowCellMiniMapPos()
@@ -99,9 +101,10 @@ public class DataContainer_PanelCellGameArchive
 
 public class DataContainer_CellRole
 {
-    public E_RoleName e_RoleName = E_RoleName.Crusader;
+    public E_RoleName e_RoleName = E_RoleName.None;
+    public string Name = "Default";
+    public int VFlip = 1;
     public int IndexExpeditionRoot = -1;
-    public string Name = "LuoLiKong";
     public int NowLevel = 0;
     public int MaxLevel = 0;
     public int NowExperience = 0;
@@ -306,13 +309,13 @@ public class DataContainer_TownShop
 
 public class DataContainer_CellItem
 {    
-    public E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem = E_SpriteNamePanelCellItem.None;   
+    public E_Item e_Item = E_Item.None;   
 
     public DataContainer_CellItem() { }
     public DataContainer_CellItem
-    (E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    (E_Item p_e_Item)
     {             
-        this.e_SpriteNamePanelCellItem = e_SpriteNamePanelCellItem;
+        e_Item = p_e_Item;
     }
 }
 

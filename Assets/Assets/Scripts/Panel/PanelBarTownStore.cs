@@ -25,9 +25,13 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {
                 if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarTownStore"))
+                {
                     Hot.MgrUI_.HidePanel(false, Hot.PanelBarTownStore_.gameObject, "PanelBarTownStore");
+                }
                 else
+                {
                     Hot.MgrUI_.ShowPanel<PanelBarTownStore>(true, "PanelBarTownStore");
+                }
             }
         });
 
@@ -83,22 +87,24 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
 
     public void CancelNowChoosedItem()
     {
-        if (Hot.NowEnterCellGridItem != null)
+        if (Hot.ChoseCellItem != null)
         {
-            for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
+            if (Hot.NowEnterGridItem != null)
             {
-                for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
+                for (int i1 = 0; i1 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].Y; i1++)
                 {
-                    Hot.NowPanelCanStoreItem.Grids[Hot.NowEnterCellGridItem.Y + i1][Hot.NowEnterCellGridItem.X + i2].ImgStatus.sprite =
-                        Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    for (int i2 = 0; i2 < Hot.BodyDicItem[Hot.ChoseCellItem.e_Item].X; i2++)
+                    {
+                        Hot.NowPanelCanStoreItem.Grids[Hot.NowEnterGridItem.Y + i1][Hot.NowEnterGridItem.X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    }
                 }
             }
-        }
 
-        Hot.ChoseCellItem.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
-        Hot.ChoseCellItem.ImgItem.raycastTarget = true;
-        Hot.ChoseCellItem = null;
-        Hot.CanBuy = false;        
+            Hot.ChoseCellItem.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            Hot.ChoseCellItem.ImgItem.raycastTarget = true;
+            Hot.ChoseCellItem = null;
+            Hot.CanBuy = false;
+        }
     }
 
     public override void Clear()

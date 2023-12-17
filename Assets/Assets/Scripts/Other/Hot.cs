@@ -37,7 +37,6 @@ public static class Hot
 
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
-        { E_RoleName.LiLiSi, new(E_RoleMoveType.Land, new(20, 7), new(2, 3)) },
         { E_RoleName.Crusader, new(E_RoleMoveType.Land, new(20, 9), new(2, 3)) },
         { E_RoleName.PlagueDoctor, new(E_RoleMoveType.Land, new(15, 6), new(2, 3)) },
         { E_RoleName.DevilFly, new(E_RoleMoveType.Sky, new(6, 4), new(2, 3)) },
@@ -99,44 +98,44 @@ public static class Hot
         { E_PanelCellTownStore.StoreGold, new(15, 13) },
     };
 
-    public static Dictionary<E_SpriteNamePanelCellItem, my_Vector2> BodyDicItem = new()
+    public static Dictionary<E_Item, my_Vector2> BodyDicItem = new()
     {
-        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1) },
-        { E_SpriteNamePanelCellItem.ItemFoodApple, new(3, 3) },
-        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2) },
+        { E_Item.ItemFoodCookie, new(1, 1) },
+        { E_Item.ItemFoodApple, new(3, 3) },
+        { E_Item.ItemFoodBread, new(1, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(2, 3) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(2, 3) },
+        { E_Item.ItemFoodRawBeef, new(2, 3) },
+        { E_Item.ItemFoodCookedBeef, new(2, 3) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(2, 2) },
+        { E_Item.ItemFoodRawChicken, new(2, 2) },
+        { E_Item.ItemFoodCoodedChicken, new(2, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(2, 2) },
+        { E_Item.ItemFoodRawMutton, new(2, 2) },
+        { E_Item.ItemFoodCoodedMutton, new(2, 2) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(2, 2) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(2, 2) },
+        { E_Item.ItemFoodRawPotato, new(2, 2) },
+        { E_Item.ItemFoodCookedPotato, new(2, 2) },
     };
 
     #endregion
 
-    public static Dictionary<E_SpriteNamePanelCellItem, InfoContainer_Cost> CostDicItem = new()
+    public static Dictionary<E_Item, InfoContainer_Cost> CostDicItem = new()
     {
-        { E_SpriteNamePanelCellItem.ItemFoodCookie, new(1, 1, 1, 1, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodApple, new(2, 2, 2, 2, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodBread, new(1, 2, 1, 2, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodCookie, new(1, 1, 1, 1, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodApple, new(2, 2, 2, 2, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodBread, new(1, 2, 1, 2, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawBeef, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedBeef, new(11, 11, 13, 12, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodRawBeef, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodCookedBeef, new(11, 11, 13, 12, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawChicken, new(21, 13, 122, 11, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedChicken, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodRawChicken, new(21, 13, 122, 11, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodCoodedChicken, new(11, 11, 11, 11, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawMutton, new(11, 11, 21, 21, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCoodedMutton, new(41, 31, 31, 31, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodRawMutton, new(11, 11, 21, 21, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodCoodedMutton, new(41, 31, 31, 31, 0, 0, 0, 0, 0) },
 
-        { E_SpriteNamePanelCellItem.ItemFoodRawPotato, new(22, 22, 22, 22, 0, 0, 0, 0, 0) },
-        { E_SpriteNamePanelCellItem.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodRawPotato, new(22, 22, 22, 22, 0, 0, 0, 0, 0) },
+        { E_Item.ItemFoodCookedPotato, new(12, 22, 11, 11, 0, 0, 0, 0, 0) },
     };
 
     #endregion
@@ -367,7 +366,7 @@ public static class Hot
     /// <summary>
     /// 现在读取的存档Data
     /// </summary>
-    public static DataContainer_PanelCellGameArchive DataNowCellGameArchive
+    public static DataContainer_CellGameArchive DataNowCellGameArchive
     {
         get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
     }
@@ -379,6 +378,7 @@ public static class Hot
     #region Other
 
     public static Transform NowEnterContent;
+    public static int VFlip = 1;
     public static bool UpdateOver = true;
     public static bool CanBuy = false;
 
@@ -490,7 +490,7 @@ public static class Hot
     /// <summary>
     /// 现在进入的物品背景格子
     /// </summary>
-    public static PanelGridTownItem NowEnterCellGridItem = null;
+    public static PanelGridTownItem NowEnterGridItem = null;
 
     #endregion
 

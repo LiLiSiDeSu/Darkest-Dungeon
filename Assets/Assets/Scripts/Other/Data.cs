@@ -10,7 +10,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
 {
     public string PathGameArchiveData = "";
     
-    public List<DataContainer_PanelCellGameArchive> DataListCellGameArchive = new();
+    public List<DataContainer_CellGameArchive> DataListCellGameArchive = new();
 
     private void Start()
     {        
@@ -26,7 +26,7 @@ public class Data : InstanceBaseAuto_Mono<Data>
         for (int i = 0; i < AllPathGameArchive.Length; i++)
         {
             DataListCellGameArchive.
-                Add(MgrJson.GetInstance().Load<DataContainer_PanelCellGameArchive>("/GameArchiveData", PathGameArchiveData + i));
+                Add(MgrJson.GetInstance().Load<DataContainer_CellGameArchive>("/GameArchiveData", PathGameArchiveData + i));
         }
     }
 

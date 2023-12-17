@@ -80,7 +80,11 @@ public class PanelBarRoleListExpedition : PanelBase
     {
         foreach (PanelCellRoleExpedition item in ListCellRoleExpedition)
         {
-            (item.CellExpeditionMiniMap.RootGrid as PanelGridExpeditionRoom).Data.IndexListRole = -1;
+            if (item.CellExpeditionMiniMap != null)
+            {
+                (item.CellExpeditionMiniMap.RootGrid as PanelGridExpeditionRoom).Data.IndexListRole = -1;
+            }
+
             Destroy(item.gameObject);
         }
 
@@ -91,7 +95,11 @@ public class PanelBarRoleListExpedition : PanelBase
 
     public void Sort()
     {
-        List<int> ListIndex = Hot.DataNowCellGameArchive.ListExpeditionRoleIndex;
+        List<int> ListIndex = new();
+        for (int i = 0; i < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count; i++)
+        {
+            ListIndex.Add(Hot.DataNowCellGameArchive.ListExpeditionRoleIndex[i]);
+        }
         int count = RoleListExpeditionContent.childCount;
 
         for (int i = 0; i < ListCellRoleExpedition.Count; i++)
@@ -108,6 +116,7 @@ public class PanelBarRoleListExpedition : PanelBase
 
             if (ListIndex[0] == ListCellRoleExpedition[i].IndexRoleList)
             {
+                ListCellRoleExpedition[i].Index = RoleListExpeditionContent.childCount;
                 ListCellRoleExpedition[i].transform.SetParent(RoleListExpeditionContent, false);
                 ListCellRoleExpedition[i].transform.localPosition = Vector3.zero;
                 ListIndex.RemoveAt(0);

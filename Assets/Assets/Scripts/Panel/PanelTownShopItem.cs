@@ -103,7 +103,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
             {
                 int tempi2 = i2;
 
-                if (Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
                     (PanelCellItem_) =>
@@ -114,7 +114,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
                         PanelCellItem_.RootGrid = Grids[tempi1][tempi2];
                         PanelCellItem_.MemberOf = this;
                         PanelCellItem_.e_Location = E_ItemLocation.TownShopItem;
-                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_SpriteNamePanelCellItem; ;
+                        PanelCellItem_.e_Item = Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_Item; ;
 
                         PanelCellItem_.ImgItem.sprite = Hot.LoadSprite(PanelCellItem_.e_Item.ToString());
 
@@ -148,9 +148,9 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         {
             foreach (DataContainer_CellItem item in listItem2)
             {
-                if (item.e_SpriteNamePanelCellItem != E_SpriteNamePanelCellItem.None)
+                if (item.e_Item != E_Item.None)
                 {
-                    NowCapacity += Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].X * Hot.BodyDicItem[item.e_SpriteNamePanelCellItem].Y;                    
+                    NowCapacity += Hot.BodyDicItem[item.e_Item].X * Hot.BodyDicItem[item.e_Item].Y;                    
                 }
             }
         }
@@ -158,14 +158,14 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 
-    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    public override void UpdateInfoByAdd(E_Item e_SpriteNamePanelCellItem)
     {
         base.UpdateInfoByAdd(e_SpriteNamePanelCellItem);
 
         TxtCapacity.text = NowCapacity + " / " + Hot.DataNowCellGameArchive.TownShop.X * Hot.DataNowCellGameArchive.TownShop.Y;
     }
 
-    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem e_SpriteNamePanelCellItem)
+    public override void UpdateInfoByReduce(E_Item e_SpriteNamePanelCellItem)
     {
         base.UpdateInfoByReduce(e_SpriteNamePanelCellItem);
 

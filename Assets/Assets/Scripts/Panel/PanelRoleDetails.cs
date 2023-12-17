@@ -87,7 +87,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
                     switch (p_e_RoleLocation)
                     {
                         case E_RoleLocation.RoleList:
-                            panel.UpdateInfo(Hot.DataNowCellGameArchive.ListRole[p_index]);
+                            panel.UpdateInfoByRoleList();
                             Hot.PanelBarRoleList_.Show();
                             break;
                         case E_RoleLocation.GuildRecruit:
@@ -97,20 +97,6 @@ public class PanelRoleDetails : PanelBaseRoleStore
                 });
             }
         }
-    }
-
-    public override void UpdateInfoByAdd(E_SpriteNamePanelCellItem p_e_Item)
-    {
-        base.UpdateInfoByAdd(p_e_Item);
-
-        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
-    }
-
-    public override void UpdateInfoByReduce(E_SpriteNamePanelCellItem p_e_Item)
-    {
-        base.UpdateInfoByReduce(p_e_Item);
-
-        TxtCapacity.text = NowCapacity + " / " + NowRole.ListItem[0].Count * NowRole.ListItem.Count;
     }
 
     public void UpdateInfoByGuildRecruit(DataContainer_CellRole Role)
@@ -127,21 +113,23 @@ public class PanelRoleDetails : PanelBaseRoleStore
         UpdateExperience(Role);
     }
 
-    public void UpdateInfo(DataContainer_CellRole p_Role)
-    {        
-        NowRole = p_Role;
+    public void UpdateInfoByRoleList()
+    {
+        NowCapacity = 0;
 
-        ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + p_Role.e_RoleName + "Await");
+        DataContainer_CellRole RoleData = Hot.DataNowCellGameArchive.ListRole[IndexRole];
 
-        TxtRoleName.text = p_Role.Name;
-        TxtRoleLevel.text = p_Role.NowLevel.ToString();
-        TxtSanityDetails.text = p_Role.NowSanity + " / " + p_Role.MaxSanity;
+        ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + RoleData.e_RoleName + "Await");
 
-        UpdateSanityExplosionLimit(p_Role);
-        UpdateLevelInfo(p_Role);
-        UpdateSanityInfo(p_Role);
-        UpdateExperience(p_Role);
-        UpdateContent(p_Role);
+        TxtRoleName.text = RoleData.Name;
+        TxtRoleLevel.text = RoleData.NowLevel.ToString();
+        TxtSanityDetails.text = RoleData.NowSanity + " / " + RoleData.MaxSanity;
+
+        UpdateSanityExplosionLimit(RoleData);
+        UpdateLevelInfo(RoleData);
+        UpdateSanityInfo(RoleData);
+        UpdateExperience(RoleData);
+        UpdateContent(RoleData);
     }
 
     public void UpdateSanityExplosionLimit(DataContainer_CellRole Role)

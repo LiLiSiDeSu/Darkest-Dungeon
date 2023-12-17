@@ -85,7 +85,7 @@ public enum E_PanelCellTownStore
     StoreGold
 }
 
-public enum E_SpriteNamePanelCellItem
+public enum E_Item
 {
     None,
 
@@ -177,7 +177,6 @@ public enum E_RoleName
 {        
     None,
     Crusader,
-    LiLiSi,
     PlagueDoctor,
     DevilFly,
 }

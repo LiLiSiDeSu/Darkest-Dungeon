@@ -34,7 +34,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
 
     #endregion
 
-    public void Init(PanelBaseGrid<PanelCellExpeditionRoom> p_rootGrid)
+    public void Init(PanelBaseGrid<PanelCellExpeditionRoom> p_rootGrid, bool isCreateByPut)
     {
         RootGrid = p_rootGrid;
         transform.SetParent(Hot.PanelExpeditionRoom_.ItemRoot[RootGrid.Y][RootGrid.X], false);
@@ -52,13 +52,18 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
             if (tempRootGrid.Data.IndexListRole != -1)
             {
                 e_RoleName = Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].e_RoleName;
+
+                if (isCreateByPut)
+                {
+                    Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].VFlip = Hot.VFlip;
+                }
             }
             else
             {
                 e_RoleName = tempRootGrid.Data.OtherRole.e_RoleName;
             }
 
-            tempRootGrid.InitGridByRole(e_RoleName, this);
+            tempRootGrid.InitGridByRole(e_RoleName, this, Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].VFlip);
         }
 
         int X = 0;
@@ -86,6 +91,12 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2,
             X = Hot.DicRoleConfig[e_RoleName].BodySize.X;
             Y = Hot.DicRoleConfig[e_RoleName].BodySize.Y;
             itemName = "Role" + e_RoleName.ToString() + "Await";
+
+            if (Hot.DataNowCellGameArchive.ListRole[tempRootGrid.Data.IndexListRole].VFlip == -1)
+            {
+                transform.localRotation = new(0, 180, 0, 0);
+                transform.localPosition += new Vector3(Hot.BodyGrid.X / 2 * Hot.DicRoleConfig[e_RoleName].BodySize.X, 0);
+            }
         }
 
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + itemName);
