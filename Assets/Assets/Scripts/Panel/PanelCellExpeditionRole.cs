@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRoleExpedition : PanelBaseCell,
+public class PanelCellExpeditionRole : PanelBaseCell,
              IPointerEnterHandler, IPointerExitHandler
 {
     public int IndexRoleList;

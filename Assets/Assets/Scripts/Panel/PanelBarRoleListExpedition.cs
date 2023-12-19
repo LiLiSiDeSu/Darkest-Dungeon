@@ -11,7 +11,7 @@ public class PanelBarRoleListExpedition : PanelBase
     public int NowPutIndex = -1;
 
     public List<int> ListNeedPutRoleIndex = new();
-    public List<PanelCellRoleExpedition> ListCellRoleExpedition = new();
+    public List<PanelCellExpeditionRole> ListCellRoleExpedition = new();
 
     public Transform RoleListExpeditionContent;
 
@@ -50,23 +50,43 @@ public class PanelBarRoleListExpedition : PanelBase
         {
             int tempi = i;
 
-            Hot.MgrUI_.CreatePanel<PanelCellRoleExpedition>(false, "/PanelCellRoleExpedition",
+            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
             (panel) =>
             {
                 panel.Init(tempi, ListNeedPutRoleIndex[tempi], RoleListExpeditionContent);
                 ListCellRoleExpedition.Add(panel);
+
+                if (tempi == ListNeedPutRoleIndex.Count - 1)
+                {
+                    DisableImgStatus();
+                }
             });
         }
     }    
 
-    public PanelCellRoleExpedition GetCellRoleExpedition(int p_Index)
+    public void EnableImgStatus()
     {
-        return RoleListExpeditionContent.GetChild(p_Index).GetComponent<PanelCellRoleExpedition>();
+        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        {
+            item.ImgRolePortrait.raycastTarget = true;
+        }
+    }
+    public void DisableImgStatus()
+    {
+        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        {
+            item.ImgRolePortrait.raycastTarget = false;
+        }
+    }
+
+    public PanelCellExpeditionRole GetCellRoleExpedition(int p_Index)
+    {
+        return RoleListExpeditionContent.GetChild(p_Index).GetComponent<PanelCellExpeditionRole>();
     }
 
     public void ClearNoData()
     {
-        foreach (PanelCellRoleExpedition item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
         {
             Destroy(item.gameObject);
         }
@@ -78,7 +98,7 @@ public class PanelBarRoleListExpedition : PanelBase
 
     public void ClearAndData()
     {
-        foreach (PanelCellRoleExpedition item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
         {
             if (item.CellExpeditionMiniMap != null)
             {
