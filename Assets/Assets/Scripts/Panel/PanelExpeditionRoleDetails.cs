@@ -40,7 +40,10 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
                 Hot.DataNowCellGameArchive.ClearNowEvent();
                 Hot.PanelExpeditionRoom_.ClearImgStatus();
 
-                Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
+                if (Hot.NowExpeditionEvent != null)
+                {
+                    Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
+                }
                 Hot.NowExpeditionEvent = null;
                 Hot.NowEnterCellExpeditionMiniMap = null;
 

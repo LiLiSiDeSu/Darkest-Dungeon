@@ -124,6 +124,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                     {
                         Hot.PanelBarRoleListExpedition_.NowPutIndex = -1;
                         Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Clear();
+                        Hot.PanelBarRoleListExpedition_.EnableImgStatus();
                     }
 
                     Hot.PanelBarRoleListExpedition_.NowPutIndex++;
@@ -143,7 +144,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             return false;
         }
 
-        if (Hot.VFlip == -1 && X == 0)
+        if (Hot.VFlip == -1 && X < Hot.DicRoleConfig[p_e_RoleName].BodySize.X - 1)
         {
             return false;
         }

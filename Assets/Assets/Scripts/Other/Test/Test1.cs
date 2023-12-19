@@ -12,6 +12,6 @@ public class Test1 : MonoBehaviour
 {
     private void Update()
     {
-        Debug.Log(Hot.Data_.DataListCellGameArchive[0].NowEventIndex + " - " + Hot.Data_.DataListCellGameArchive[0].e_NowExpeditionLocation);
+        Debug.Log(Hot.NowEnterGridExpeditionRoom.Item);
     }
 }
