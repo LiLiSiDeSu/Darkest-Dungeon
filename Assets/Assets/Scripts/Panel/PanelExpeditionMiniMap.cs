@@ -88,11 +88,11 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
                         if (e_CellMiniMap == E_CellMiniMap.CellMiniMapRoomEntrance)
                         {
-                            my_Vector2 pos = new();
+                            my_VectorInt2 pos = new();
                             if (Hot.e_NowPlayerLocation != E_PlayerLocation.ChooseGameArchive)
                             {
                                 pos = DataNowExpeditionEvent.EntrancePos;
-                                Hot.NowEnterCellExpeditionMiniMap = GetCellExpeditionMiniMap(pos.X, pos.Y);
+                                Hot.NowInCellExpeditionMiniMap = GetCellExpeditionMiniMap(pos.X, pos.Y);
                                 Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
                             }
                             else

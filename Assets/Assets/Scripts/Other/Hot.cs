@@ -37,19 +37,37 @@ public static class Hot
 
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
-        { E_RoleName.Crusader, new(E_RoleMoveType.Land, new(20, 9), new(2, 3)) },
-        { E_RoleName.PlagueDoctor, new(E_RoleMoveType.Land, new(15, 6), new(2, 3)) },
-        { E_RoleName.DevilFly, new(E_RoleMoveType.Sky, new(6, 4), new(2, 3)) },
+        { 
+            E_RoleName.Crusader, 
+            new(E_RoleMoveType.Land, 
+                new(20, 9), 
+                new(3, 5), 
+                new(4, 3, 3, 7))
+        },
+        { 
+            E_RoleName.PlagueDoctor, 
+            new(E_RoleMoveType.Land, 
+                new(15, 6), 
+                new(2, 3), 
+                new(5, 2, 4, 6)) 
+        },
+        { 
+            E_RoleName.DevilFly, 
+            new(E_RoleMoveType.Sky, 
+                new(6, 4), 
+                new(2, 3), 
+                new(4, 4, 4, 4)) 
+        },
     };
 
     #region Body
 
-    public static my_Vector2 BodyMap = new(48, 18);
-    public static my_Vector2 BodyGrid = new(40, 40);
-    public static my_Vector2 BodySizeCellItem = new(40, 40);
-    public static my_Vector2 BodySizeCellMinimap = new(40, 40);
+    public static my_VectorInt2 BodyMap = new(48, 18);
+    public static my_VectorInt2 BodyGrid = new(40, 40);
+    public static my_VectorInt2 BodySizeCellItem = new(40, 40);
+    public static my_VectorInt2 BodySizeCellMinimap = new(40, 40);
 
-    public static Dictionary<E_MapObject, my_Vector2> BodyDicMapObject = new()
+    public static Dictionary<E_MapObject, my_VectorInt2> BodyDicMapObject = new()
     {
         { E_MapObject.MapObjectGridSoil, new(1, 1) },
         { E_MapObject.MapObjectGridStone, new(1, 1) },
@@ -75,7 +93,7 @@ public static class Hot
         { E_MapObject.MapObjectStore4, new(2, 2) },
     };
     
-    public static Dictionary<E_CellMiniMap, my_Vector2> BodyDicCellMiniMap = new()
+    public static Dictionary<E_CellMiniMap, my_VectorInt2> BodyDicCellMiniMap = new()
     {
         { E_CellMiniMap.CellMiniMapRoomBoss, new(3, 3) },
         { E_CellMiniMap.CellMiniMapRoomLocked, new(3, 3) },
@@ -91,14 +109,14 @@ public static class Hot
         { E_CellMiniMap.CellMiniMapHallSecret, new(1, 1) },
     };
 
-    public static Dictionary<E_PanelCellTownStore, my_Vector2> BodyDicStore = new()
+    public static Dictionary<E_PanelCellTownStore, my_VectorInt2> BodyDicStore = new()
     {
         { E_PanelCellTownStore.StoreWood, new(10, 5) },
         { E_PanelCellTownStore.StoreIron, new(12, 10) },
         { E_PanelCellTownStore.StoreGold, new(15, 13) },
     };
 
-    public static Dictionary<E_Item, my_Vector2> BodyDicItem = new()
+    public static Dictionary<E_Item, my_VectorInt2> BodyDicItem = new()
     {
         { E_Item.ItemFoodCookie, new(1, 1) },
         { E_Item.ItemFoodApple, new(3, 3) },
@@ -455,9 +473,9 @@ public static class Hot
     #region Expedition
 
     public static PanelCellExpeditionEvent NowExpeditionEvent;    
-    public static PanelCellExpeditionMiniMap NowEnterCellExpeditionMiniMap;
+    public static PanelCellExpeditionMiniMap NowInCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
-    public static PanelCellExpeditionRoom NowEnterCellExpeditionRoom;
+    public static PanelCellExpeditionRoom NowChoseCellExpeditionRoom;
 
     #endregion
 

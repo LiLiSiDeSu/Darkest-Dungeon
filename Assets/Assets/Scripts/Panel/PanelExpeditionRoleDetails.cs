@@ -45,7 +45,7 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
                     Hot.NowExpeditionEvent.ImgCurrentChoose.gameObject.SetActive(false);
                 }
                 Hot.NowExpeditionEvent = null;
-                Hot.NowEnterCellExpeditionMiniMap = null;
+                Hot.NowInCellExpeditionMiniMap = null;
 
                 Hot.MgrUI_.HideAllPanel();
                 Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
