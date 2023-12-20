@@ -40,8 +40,6 @@ public class Data : InstanceBaseAuto_Mono<Data>
         { 
             MgrJson.GetInstance().Save(DataListCellGameArchive[index], "/GameArchiveData", PathGameArchiveData + index); 
         });
-
-        Debug.Log("Save" + " - " + index);
     }
 
     /// <summary>

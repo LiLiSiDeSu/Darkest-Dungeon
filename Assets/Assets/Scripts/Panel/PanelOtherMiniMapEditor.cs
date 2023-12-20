@@ -7,7 +7,7 @@ public class PanelOtherMiniMapEditor : PanelBaseVector2<PanelCellMiniMapEditor, 
 {
     public string PathFolder;
 
-    public my_Vector2 EntrancePos = new();
+    public my_VectorInt2 EntrancePos = new();
 
     public Image ImgCurrentChoose;
 

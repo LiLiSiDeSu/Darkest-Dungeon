@@ -41,7 +41,6 @@ public class PanelBarExpedition : PanelBase,
                     });
 
                     Hot.Data_.Save();
-                    Debug.Log(Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count);
                 }
                 break;
         }

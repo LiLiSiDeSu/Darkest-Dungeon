@@ -7,20 +7,37 @@ using UnityEngine;
 public sealed class AllDataOrInfoContainerOrOtherClass { }
 
 [Serializable]
-public class my_Vector2
+public class my_VectorInt2
 {
     public int X;
     public int Y;
 
-    public my_Vector2()
+    public my_VectorInt2()
     {
         X = -1;
         Y = -1;
     }
-    public my_Vector2(int X, int Y)
+    public my_VectorInt2(int X, int Y)
     {
         this.X = X;
         this.Y = Y;
+    }
+}
+
+public class VectorInt2_4
+{
+    public int Jump;
+    public int Fall;
+    public int BackUp;
+    public int Forward;
+
+    public VectorInt2_4() { }
+    public VectorInt2_4(int p_Jump, int p_Fall, int p_BackUp, int p_Forward) 
+    { 
+        Jump = p_Jump;
+        Fall = p_Fall;
+        BackUp = p_BackUp;
+        Forward = p_Forward;
     }
 }
 
@@ -28,15 +45,18 @@ public class RoleConfig
 {
     public E_RoleMoveType e_MoveType;
 
-    public my_Vector2 StoreSize;
-    public my_Vector2 BodySize;
+    public my_VectorInt2 SizeStore;
+    public my_VectorInt2 SizeBody;
+
+    public VectorInt2_4 SizeMove;
 
     public RoleConfig() { }
-    public RoleConfig(E_RoleMoveType p_e_MoveType, my_Vector2 p_StoreSize, my_Vector2 p_BodySize)
+    public RoleConfig(E_RoleMoveType p_e_MoveType, my_VectorInt2 p_SizeStore, my_VectorInt2 p_SizeBody, VectorInt2_4 p_SizeMove)
     {
         e_MoveType = p_e_MoveType;
-        StoreSize = p_StoreSize;
-        BodySize = p_BodySize;
+        SizeStore = p_SizeStore;
+        SizeBody = p_SizeBody;
+        SizeMove = p_SizeMove;
     }
 }
 
@@ -51,7 +71,7 @@ public class DataContainer_CellGameArchive
     public List<int> ListExpeditionRoleIndex = new();
     public E_ExpeditionLocation e_NowExpeditionLocation = E_ExpeditionLocation.Town;
     public int NowEventIndex = -1;
-    public my_Vector2 NowCellMiniMapPos = new();
+    public my_VectorInt2 NowCellMiniMapPos = new();
     [JsonIgnore]
     public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
     [JsonIgnore]
@@ -93,7 +113,7 @@ public class DataContainer_CellGameArchive
 
     public void UpdataNowCellMiniMapPos()
     {
-        NowCellMiniMapPos = new(Hot.NowEnterCellExpeditionMiniMap.RootGrid.X, Hot.NowEnterCellExpeditionMiniMap.RootGrid.Y);
+        NowCellMiniMapPos = new(Hot.NowInCellExpeditionMiniMap.RootGrid.X, Hot.NowInCellExpeditionMiniMap.RootGrid.Y);
     }
 }
 
@@ -129,11 +149,11 @@ public class DataContainer_CellRole
         MaxSanity = p_MaxSanity;
         LimitToSanityExplosion = p_LimitToSanityExplosion;
 
-        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].StoreSize.Y; Y++)
+        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].SizeStore.Y; Y++)
         {
             ListItem.Add(new());
 
-            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].StoreSize.X; X++)
+            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].SizeStore.X; X++)
             {
                 ListItem[Y].Add(new());
             }
@@ -219,11 +239,11 @@ public class DataContainer_ExpeditionMiniMap
     public E_DungeonSize e_dungeonSize = E_DungeonSize.Small;
     public E_ExpeditionEvent e_ExpeditionEvent = E_ExpeditionEvent.Boss0;
 
-    public my_Vector2 EntrancePos = new();
+    public my_VectorInt2 EntrancePos = new();
     public List<List<DataContainer_CellExpeditionMiniMap>> ListCellMiniMap = new();
 
     public DataContainer_ExpeditionMiniMap() { }
-    public DataContainer_ExpeditionMiniMap(my_Vector2 p_EntrancePos) 
+    public DataContainer_ExpeditionMiniMap(my_VectorInt2 p_EntrancePos) 
     {
         EntrancePos = p_EntrancePos;
     }

@@ -19,7 +19,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
                 if (JudgeRoleCanEnter() && JudgeIsSide())
                 {
                     Hot.PanelExpeditionRoom_.LoadDataMap(RootGrid.X, RootGrid.Y, false);
-                    Hot.NowEnterCellExpeditionMiniMap = this;
+                    Hot.NowInCellExpeditionMiniMap = this;
                     Hot.DataNowCellGameArchive.UpdataNowCellMiniMapPos();
                 }
                 break;
@@ -55,7 +55,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             if (RootGrid.Y - 1 >= 0)
             {
                 if (Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y - 1) != null &&
-                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y - 1) == Hot.NowEnterCellExpeditionMiniMap)
+                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y - 1) == Hot.NowInCellExpeditionMiniMap)
                 {
                     return true;
                 }
@@ -63,7 +63,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             if (RootGrid.Y + roomY <= Hot.PanelExpeditionMiniMap_.MiniMapY - 1)
             {
                 if (Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y + roomY) != null &&
-                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y + roomY) == Hot.NowEnterCellExpeditionMiniMap)
+                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + iX, RootGrid.Y + roomY) == Hot.NowInCellExpeditionMiniMap)
                 {
                     return true;
                 }
@@ -75,7 +75,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             if (RootGrid.X - 1 >= 0)
             {
                 if (Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X - 1, RootGrid.Y + iY) != null &&
-                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X - 1, RootGrid.Y + iY) == Hot.NowEnterCellExpeditionMiniMap)
+                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X - 1, RootGrid.Y + iY) == Hot.NowInCellExpeditionMiniMap)
                 {
                     return true;
                 }
@@ -83,7 +83,7 @@ public class PanelCellExpeditionMiniMap : PanelBaseCellVector2
             if (RootGrid.X + roomX <= Hot.PanelExpeditionMiniMap_.MiniMapX - 1)
             {
                 if (Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + roomX, RootGrid.Y + iY) != null &&
-                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + roomX, RootGrid.Y + iY) == Hot.NowEnterCellExpeditionMiniMap)
+                    Hot.PanelExpeditionMiniMap_.GetCellExpeditionMiniMap(RootGrid.X + roomX, RootGrid.Y + iY) == Hot.NowInCellExpeditionMiniMap)
                 {
                     return true;
                 }

@@ -102,7 +102,7 @@ public class PanelBarRoleListExpedition : PanelBase
         {
             if (item.CellExpeditionMiniMap != null)
             {
-                (item.CellExpeditionMiniMap.RootGrid as PanelGridExpeditionRoom).Data.IndexListRole = -1;
+                item.CellExpeditionMiniMap.RootGrid.Data.IndexListRole = -1;
             }
 
             Destroy(item.gameObject);
