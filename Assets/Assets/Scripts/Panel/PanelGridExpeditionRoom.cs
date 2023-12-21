@@ -108,7 +108,6 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         {
             case "ImgBk":
                 PutRoleStartPos();
-                RoleMove();
                 break;
         }
     }
@@ -136,7 +135,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             for (int i2 = 0; i2 < Hot.DicRoleConfig[p_e_RoleName].SizeBody.X; i2++)
             {
                 if (Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2 * Hot.VFlip].Item == null ||
-                    Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2 * Hot.VFlip].Item == Hot.ChoseCellMiniMapEditor)
+                    Hot.PanelExpeditionRoom_.Grids[Y + i1][X + i2 * Hot.VFlip].Item == Hot.ChoseCellExpeditionRoom)
                 {
                     ;
                 }
@@ -170,7 +169,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         (panel) =>
         {
             panel.Init(this, true);
-            Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition[p_index].CellExpeditionMiniMap = panel;
+            Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition[p_index].CellExpeditionRoom = panel;
         });
     }
     public void PutMapObj(DataContainer_CellExpeditionMapObj p_MapObj)
@@ -252,21 +251,17 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         }
     }
 
-    public void SetCanMoveTrue()
+    public void SetCanMove(bool p_CanMove)
     {
-        CanMove = true;
-        ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
-    }
-    public void SetCanMoveFalse()
-    {
-        CanMove = false;
-        ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
-    }
-    public void RoleMove()
-    {
+        CanMove = p_CanMove;
+
         if (CanMove)
         {
-
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
+        }
+        else
+        {
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
         }
     }
 }

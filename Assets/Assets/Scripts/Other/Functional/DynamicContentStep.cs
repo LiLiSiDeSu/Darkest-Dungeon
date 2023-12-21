@@ -14,8 +14,8 @@ public class DynamicContentStep : ContentStep
     {
         DependentObjRoot = transform.FindSonSonSon("DependentObjRoot");
         RootDetectionArea = transform.FindSonSonSon("RootDetectionArea").gameObject;
-        transform.FindSonSonSon("DetectionAreaUp").GetComponent<DetectionArea>().e_ArrowDirection = E_ArrowDirection.Up;
-        transform.FindSonSonSon("DetectionAreaDown").GetComponent<DetectionArea>().e_ArrowDirection = E_ArrowDirection.Down;
+        transform.FindSonSonSon("DetectionAreaUp").GetComponent<DetectionArea>().e_ArrowDirection = E_WSAD.W;
+        transform.FindSonSonSon("DetectionAreaDown").GetComponent<DetectionArea>().e_ArrowDirection = E_WSAD.S;
         Index = index;
         transform.FindSonSonSon("DetectionAreaUp").GetComponent<DetectionArea>().Index = index;
         transform.FindSonSonSon("DetectionAreaDown").GetComponent<DetectionArea>().Index = index;

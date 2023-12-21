@@ -9,10 +9,10 @@ public class DetectionArea : MonoBehaviour,
              IPointerEnterHandler
 {
     public int Index;
-    public E_ArrowDirection e_ArrowDirection = E_ArrowDirection.Up;
+    public E_WSAD e_ArrowDirection = E_WSAD.W;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.CenterEvent_.EventTrigger<int, E_ArrowDirection>("DynamicContentStep", Index, e_ArrowDirection);
+        Hot.CenterEvent_.EventTrigger<int, E_WSAD>("DynamicContentStep", Index, e_ArrowDirection);
     }
 }

@@ -31,6 +31,26 @@ public class VectorInt2_4
     public int BackUp;
     public int Forward;
 
+    public int this[KeyCode key]
+    {
+        get
+        {
+            switch (key)
+            {
+                case KeyCode.W:
+                    return Jump;
+                case KeyCode.S:
+                    return Fall;
+                case KeyCode.A:
+                    return BackUp;
+                case KeyCode.D:
+                    return Forward;
+                default:
+                    return 0;
+            }
+        }
+    }
+
     public VectorInt2_4() { }
     public VectorInt2_4(int p_Jump, int p_Fall, int p_BackUp, int p_Forward) 
     { 

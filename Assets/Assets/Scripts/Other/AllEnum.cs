@@ -234,12 +234,12 @@ public enum E_ItemLocation
     PanelRoleStore,
 }
 
-public enum E_ArrowDirection
+public enum E_WSAD
 {
-    Up,
-    Down,
-    Left,
-    Right
+    W,
+    S,
+    A,
+    D
 }
 
 public enum E_PoPoCatStatus
