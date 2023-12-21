@@ -108,7 +108,7 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         #region DynamicContentStep的事件注册        
 
-        Hot.CenterEvent_.AddEventListener<int, E_ArrowDirection>
+        Hot.CenterEvent_.AddEventListener<int, E_WSAD>
         ("DynamicContentStep",
         (index, arrow) =>
         {
@@ -118,7 +118,7 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
             switch (arrow)
             {
-                case E_ArrowDirection.Up:                    
+                case E_WSAD.W:                    
                     for (int i = index; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                     {
                         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.
@@ -127,7 +127,7 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
                             SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
                     }
                     break;
-                case E_ArrowDirection.Down:                                
+                case E_WSAD.S:                                
                     for (int i = index + 1; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                     {
                         Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.

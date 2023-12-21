@@ -49,10 +49,10 @@ public class PanelTranslateAncestralProperty : PanelBase
         switch (controlname)
         {
             case "BtnArrowUp":
-                UpDateBtnStatus(E_ArrowDirection.Up);                
+                UpDateBtnStatus(E_WSAD.W);                
                 break;
             case "BtnArrowDown":
-                UpDateBtnStatus(E_ArrowDirection.Down);
+                UpDateBtnStatus(E_WSAD.S);
                 break;
             case "Btn0":
                 ;
@@ -247,15 +247,15 @@ public class PanelTranslateAncestralProperty : PanelBase
         Hot.PanelOtherResTable_.UpdateInfo();        
     }
 
-    private void UpDateBtnStatus(E_ArrowDirection e_ArrowDirection)
+    private void UpDateBtnStatus(E_WSAD e_ArrowDirection)
     {
         switch (e_ArrowDirection)
         {
-            case E_ArrowDirection.Up:
+            case E_WSAD.W:
                 ListBtnStatus.Insert(0, ListBtnStatus[ListBtnStatus.Count - 1]);
                 ListBtnStatus.RemoveAt(ListBtnStatus.Count - 1);
                 break;
-            case E_ArrowDirection.Down:
+            case E_WSAD.S:
                 ListBtnStatus.Add(ListBtnStatus[0]);
                 ListBtnStatus.RemoveAt(0);
                 break;            

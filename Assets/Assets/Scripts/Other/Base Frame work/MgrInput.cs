@@ -36,6 +36,10 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(KeyCode.Escape);
         CheckKeyCode(KeyCode.LeftControl);
         CheckKeyCode(KeyCode.Return);
+        CheckKeyCode(KeyCode.W);
+        CheckKeyCode(KeyCode.S);
+        CheckKeyCode(KeyCode.A);
+        CheckKeyCode(KeyCode.D);
     }
 
     /// <summary>

@@ -84,6 +84,28 @@ public class PanelBarRoleListExpedition : PanelBase
         return RoleListExpeditionContent.GetChild(p_Index).GetComponent<PanelCellExpeditionRole>();
     }
 
+    public void ClickMapRole(int p_RoleIndex)
+    {
+        if (p_RoleIndex == -1)
+        {
+            Hot.PanelExpeditionRoleDetails_.IndexRole = -1;
+            Hot.PanelExpeditionRoleDetails_.Clear();
+
+            return;
+        }
+
+        for (int i = 0; i < ListCellRoleExpedition.Count; i++)
+        {
+            if (ListCellRoleExpedition[i].IndexRoleList == p_RoleIndex)
+            {
+                Hot.PanelExpeditionRoleDetails_.IndexRole = ListCellRoleExpedition[i].IndexRoleList;
+                Hot.PanelExpeditionRoleDetails_.UpdateInfo();
+
+                return;
+            }
+        }
+    }
+
     public void ClearNoData()
     {
         foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
@@ -100,9 +122,9 @@ public class PanelBarRoleListExpedition : PanelBase
     {
         foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
         {
-            if (item.CellExpeditionMiniMap != null)
+            if (item.CellExpeditionRoom != null)
             {
-                item.CellExpeditionMiniMap.RootGrid.Data.IndexListRole = -1;
+                item.CellExpeditionRoom.RootGrid.Data.IndexListRole = -1;
             }
 
             Destroy(item.gameObject);

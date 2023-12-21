@@ -68,4 +68,13 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
 
         UpdateContent(roleData);
     }
+
+    public void Clear()
+    {
+        NowCapacity = 0;
+        ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + E_RoleName.None);
+        TxtRoleName.text = "";
+
+        ClearAll();
+    }
 }

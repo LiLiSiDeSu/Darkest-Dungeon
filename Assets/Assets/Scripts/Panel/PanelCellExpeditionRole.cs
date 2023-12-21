@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class PanelCellExpeditionRole : PanelBaseCell,
 {
     public int IndexRoleList;
     public Image ImgRolePortrait;
-    public PanelCellExpeditionRoom CellExpeditionMiniMap;
+    public PanelCellExpeditionRoom CellExpeditionRoom;
 
     protected override void Awake()
     {
@@ -41,8 +42,50 @@ public class PanelCellExpeditionRole : PanelBaseCell,
             case "BtnRolePortrait":
                 if (Hot.UpdateOver)
                 {
-                    Hot.PanelExpeditionRoleDetails_.IndexRole = IndexRoleList;
-                    Hot.PanelExpeditionRoleDetails_.UpdateInfo();
+                    if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count != 0)
+                    {
+                        return;
+                    }
+
+                    if (Hot.PanelExpeditionRoleDetails_.IndexRole == IndexRoleList)
+                    {
+                        Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
+                    }
+                    else
+                    {
+                        Hot.PanelBarRoleListExpedition_.ClickMapRole(IndexRoleList);
+                    }
+
+                    if (Hot.ChoseCellExpeditionRoom == null)
+                    {
+                        Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
+                        Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
+                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+
+                        return;
+                    }
+                    if (Hot.ChoseCellExpeditionRoom == CellExpeditionRoom)
+                    {
+                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                        Hot.ChoseCellExpeditionRoom = null;
+                        Hot.PanelExpeditionRoom_.ClearImgStatus();
+                        Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
+                        Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
+
+                        return;
+                    }
+                    if (Hot.ChoseCellExpeditionRoom != CellExpeditionRoom)
+                    {
+                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                        Hot.PanelExpeditionRoom_.ClearImgStatus();
+                        Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
+                        Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
+                        Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
+                        Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
+                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+
+                        return;
+                    }
                 }
                 break;
         }

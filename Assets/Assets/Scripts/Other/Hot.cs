@@ -417,7 +417,7 @@ public static class Hot
             return PaddingContentStep_.GetComponent<RectTransform>().GetSiblingIndex();
         }
     }
-    public static E_ArrowDirection e_PaddingArrowDirection;
+    public static E_WSAD e_PaddingArrowDirection;
     public static DynamicContentStep PaddingContentStep_;
     /// <summary>
     /// 现在进入的DynamicScrollView 现用于 存档 角色名册 城镇箱子 的 动态改变位置
@@ -475,7 +475,7 @@ public static class Hot
     public static PanelCellExpeditionEvent NowExpeditionEvent;    
     public static PanelCellExpeditionMiniMap NowInCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
-    public static PanelCellExpeditionRoom NowChoseCellExpeditionRoom;
+    public static PanelCellExpeditionRoom ChoseCellExpeditionRoom;
 
     #endregion
 
