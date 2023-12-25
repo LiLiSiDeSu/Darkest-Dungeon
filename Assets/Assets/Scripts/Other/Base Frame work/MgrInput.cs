@@ -19,7 +19,9 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
     private void Update()
     {        
         if (!IsOpen)
+        {
             return;
+        }
 
         CheckKeyCode(UpArrow);
         CheckKeyCode(DownArrow);
@@ -40,6 +42,7 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(KeyCode.S);
         CheckKeyCode(KeyCode.A);
         CheckKeyCode(KeyCode.D);
+        CheckKeyCode(KeyCode.V);
     }
 
     /// <summary>
@@ -66,12 +69,18 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
 
         //事件中心模块 统一触发抬起事件
         if (Input.GetKeyUp(key))
+        {
             CenterEvent.GetInstance().EventTrigger<KeyCode>(E_InputKeyEvent.KeyUp.ToString(), key);
+        }
         //事件中心模块 统一触发按下事件
         if (Input.GetKeyDown(key))
+        {
             CenterEvent.GetInstance().EventTrigger<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), key);
+        }
         //事件中心模块 统一触发按住事件
         if (Input.GetKey(key))
+        {
             CenterEvent.GetInstance().EventTrigger<KeyCode>(E_InputKeyEvent.KeyHold.ToString(), key);
+        }
     }
 }

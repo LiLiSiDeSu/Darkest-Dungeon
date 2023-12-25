@@ -47,7 +47,8 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
     public void Init(bool isCreateByChooseGameArchive)
     {
         ClearAll();
-        InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
+        InitGrids(Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap.Count, 
+                  Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[0].Count);
         LoadItem(isCreateByChooseGameArchive);
     }
 

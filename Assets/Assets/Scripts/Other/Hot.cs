@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public static class Hot
-{    
+{
     #region Config
 
+    public static int ExpeditionTimeLineLength = 30;
     public static int StepSanity = 10;
 
     /// <summary>
@@ -22,38 +23,61 @@ public static class Hot
     /// </summary>
     public static float ValueChangeMapSize = 0.4f;
 
-    /// <summary>
-    /// 各个等级升级所需的经验
-    /// </summary>
-    public static List<int> ListNeedExperienceToUpLevel = new()
-    {
-        50,
-        55,
-        60,
-        90,
-        100,
-        130
-    };
-
     public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
     {
         { 
             E_RoleName.Crusader, 
-            new(E_RoleMoveType.Land, 
+            new(E_RoleMoveType.Land,
+                new()
+                {
+                    50,
+                    55,
+                    60,
+                    90,
+
+                    100,
+                    130,
+                    150,
+                },
+                200, 300, 50, 100, 10, 4,
                 new(20, 9), 
                 new(3, 5), 
                 new(4, 3, 3, 7))
         },
         { 
             E_RoleName.PlagueDoctor, 
-            new(E_RoleMoveType.Land, 
+            new(E_RoleMoveType.Land,
+                new()
+                {
+                    50,
+                    55,
+                    60,
+                    90,
+
+                    100,
+                    130,
+                    150,
+                },
+                200, 300, 50, 120, 10, 7,
                 new(15, 6), 
                 new(2, 3), 
                 new(5, 2, 4, 6)) 
         },
         { 
             E_RoleName.DevilFly, 
-            new(E_RoleMoveType.Sky, 
+            new(E_RoleMoveType.Sky,
+                new()
+                {
+                    50,
+                    55,
+                    60,
+                    90,
+
+                    100,
+                    130,
+                    150,
+                },
+                200, 300, 50, 150, 10, 10,
                 new(6, 4), 
                 new(2, 3), 
                 new(4, 4, 4, 4)) 
@@ -222,6 +246,10 @@ public static class Hot
     public static PanelExpeditionPrepare PanelExpeditionPrepare_
     {
         get { return MgrUI_.GetPanel<PanelExpeditionPrepare>("PanelExpeditionPrepare"); }
+    }
+    public static PanelBarExpeditionTimeLine PanelBarExpeditionTimeLine_
+    {
+        get { return MgrUI_.GetPanel<PanelBarExpeditionTimeLine>("PanelBarExpeditionTimeLine"); }
     }
 
     #endregion

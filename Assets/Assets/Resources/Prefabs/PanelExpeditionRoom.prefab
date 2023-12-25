@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8147636137921459221}
-  - component: {fileID: 8179103546106010614}
+  - component: {fileID: 1916216453096025688}
   m_Layer: 5
   m_Name: PanelExpeditionRoom
   m_TagString: Untagged
@@ -375,7 +375,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8179103546106010614
+--- !u!114 &1916216453096025688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,6 +394,8 @@ MonoBehaviour:
   ComponentRoot: {fileID: 0}
   LimitAdd: 0
   LimitReduce: 0
+  NowRoleMoveStep: 0
+  NowRoleMoveKey: 0
   ImgRoomBk: {fileID: 0}
 --- !u!1 &7204466140684901066
 GameObject:

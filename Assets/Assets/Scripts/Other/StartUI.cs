@@ -39,15 +39,9 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
         Hot.MgrUI_.CreatePanelAndPush<PanelTown>
             (true, "/PanelTown", true, false, "PanelTown");
 
-        Hot.MgrUI_.CreatePanelAndPush<PanelBarTownStore>
-            (true, "/PanelBarTownStore", true, true, "PanelBarTownStore");
-
         #endregion
 
         #region Role
-
-        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleList>
-            (true, "/PanelBarRoleList", true, false, "PanelBarRoleList");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
             (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
@@ -61,6 +55,18 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarExpedition>
             (true, "/PanelBarExpedition", true, false, "PanelBarExpedition");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleListExpedition>
+            (true, "/PanelBarRoleListExpedition", true, false, "PanelBarRoleListExpedition");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarExpeditionTimeLine>
+            (true, "/PanelBarExpeditionTimeLine", true, false, "PanelBarExpeditionTimeLine");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarTownStore>
+            (true, "/PanelBarTownStore", true, true, "PanelBarTownStore");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleList>
+            (true, "/PanelBarRoleList", true, false, "PanelBarRoleList");
 
         #endregion
 
@@ -77,8 +83,6 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionRoom>
             (true, "/PanelExpeditionRoom", true, false, "PanelExpeditionRoom");
-        Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleListExpedition>
-            (true, "/PanelBarRoleListExpedition", true, false, "PanelBarRoleListExpedition");
 
         #endregion
 

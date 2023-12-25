@@ -93,7 +93,8 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
             case "BtnGameArchiveChoosed":
                 #region ChoosedGameArchive
 
-                if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" && Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
+                if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" && 
+                    Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
                 {
                     Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
 
@@ -117,6 +118,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                         Hot.PanelExpeditionMiniMap_.Init(true);
                         Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
                         Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition");
+                        Hot.PanelBarExpeditionTimeLine_.UpdateTimeLine();
                     }
                 }
 

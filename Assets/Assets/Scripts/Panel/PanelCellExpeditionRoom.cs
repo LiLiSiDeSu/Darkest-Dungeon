@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PanelCellExpeditionRoom : PanelBaseCellVector2
 {
-    public PanelGridExpeditionRoom RootGrid = new();
+    public PanelGridExpeditionRoom RootGrid;
     public Image ImgVFlipCast;
 
     protected override void Button_OnClick(string controlname)
@@ -27,7 +27,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2
 
                     return;
                 }
-                if (Hot.ChoseCellExpeditionRoom == this)
+                if (Hot.ChoseCellExpeditionRoom == this && Hot.UpdateOver)
                 {
                     Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     Hot.ChoseCellExpeditionRoom = null;
@@ -38,7 +38,7 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2
 
                     return;
                 }
-                if (Hot.ChoseCellExpeditionRoom != this)
+                if (Hot.ChoseCellExpeditionRoom != this && Hot.UpdateOver)
                 {
                     Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     Hot.PanelExpeditionRoom_.ClearImgStatus();

@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
-{        
+{
     public Dictionary<string, PanelBase> DicPanel = new();
 
     public RectTransform UIBaseCanvas;
@@ -19,9 +19,9 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         GameObject UI = new("UI");
         UI.transform.SetParent(MgrInstance.Instance.Gaming.transform, false);
 
-        MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + "/UIBaseCanvas", 
+        MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + "/UIBaseCanvas",
         (obj) =>
-        {            
+        {
             UIBaseCanvas = obj.transform as RectTransform;
             UIBaseCanvas.gameObject.name = "UIBaseCanvas";
             obj.transform.SetParent(UI.transform);
@@ -45,7 +45,9 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     public void AddDicPanel(string panelname, PanelBase panel)
     {
         if (!DicPanel.ContainsKey(panelname))
+        {
             DicPanel.Add(panelname, panel);
+        }
     }
 
     /// <summary>
@@ -64,7 +66,9 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
         {
             //调试用 一般这边报错了就是Prefabs名字和类名不一样
             if (obj == null)
+            {
                 Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
+            }
 
             obj.name = obj.name.Replace("(Clone)", "");
 
@@ -73,10 +77,13 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             obj.transform.localScale = Vector3.one;
 
             T panel = obj.GetComponent<T>();
-            
+
             callback?.Invoke(panel);
 
-            if (isAddDicPanel) DicPanel.Add(obj.name, panel);
+            if (isAddDicPanel)
+            {
+                DicPanel.Add(obj.name, panel);
+            }
         });
     }
 
@@ -90,16 +97,18 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
     /// <param name="callback">回调委托</param>
     public void CreatePanelAndShow<T>
-    (bool isAddDicPanel, string panelname, UnityAction<T> callback = null) 
+    (bool isAddDicPanel, string panelname, UnityAction<T> callback = null)
     where T : PanelBase
-    {                  
+    {
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
             //调试用 一般这边报错了就是Prefabs名字和类名不一样
             if (obj == null)
+            {
                 Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
+            }
 
-            obj.name = obj.name.Replace("(Clone)", "");            
+            obj.name = obj.name.Replace("(Clone)", "");
 
             obj.transform.SetParent(UIBaseCanvas);
             obj.transform.localPosition = Vector3.zero;
@@ -107,12 +116,15 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 
             T panel = obj.GetComponent<T>();
 
-            callback?.Invoke(panel);            
+            callback?.Invoke(panel);
 
-            if (isAddDicPanel) DicPanel.Add(obj.name, panel);            
+            if (isAddDicPanel)
+            {
+                DicPanel.Add(obj.name, panel);
+            }
 
             PoolNowPanel.GetInstance().ListNowPanel.Add(obj.name);
-        });        
+        });
     }
 
     /// <summary>
@@ -127,24 +139,33 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="PushObjName">给添加到缓存池的对象取个可爱的名字</param>
     /// <param name="callback">回调委托</param>
     public void CreatePanelAndPush<T>
-    (bool isAddDicPanel, string panelname, 
+    (bool isAddDicPanel, string panelname,
      bool isPush = false, bool Active = false, string PushObjName = "", UnityAction<T> callback = null)
     where T : PanelBase
-    {        
+    {
         MgrRes.GetInstance().LoadAsync<GameObject>("Prefabs" + panelname, (obj) =>
         {
             //调试用
             if (obj == null)
+            {
                 Debug.Log("Path: Prefabs" + panelname + " is null ---注意\"/\"");
+            }
+
             obj.name = obj.name.Replace("(Clone)", "");
 
             T panel = obj.GetComponent<T>();
 
             callback?.Invoke(panel);
 
-            if (isAddDicPanel) DicPanel.Add(obj.name, panel);
-
-            if (isPush) PoolBuffer.GetInstance().Push(Active, obj, PushObjName);
+            if (isAddDicPanel)
+            {
+                DicPanel.Add(obj.name, panel);
+            }
+            if (isPush)
+            {
+                PoolBuffer.GetInstance().Push(Active, obj, PushObjName);
+            } 
+                
         });
     }
 
@@ -157,14 +178,17 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// <param name="callback">回调委托</param>
     /// <param name="CallBackForPoolEsc">PoolEsc的回调委托</param>
     public void ShowPanel<T>
-    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null) 
+    (bool isAddpoolEsc, string panelname, UnityAction<T> callback = null)
     where T : PanelBase
     {
         PoolBuffer.GetInstance().TakeAndGet(panelname).transform.SetParent(UIBaseCanvas, false);
         GetPanel<T>(panelname).transform.localPosition = Vector3.zero;
         GetPanel<T>(panelname).transform.localScale = Vector3.one;
 
-        if (isAddpoolEsc) PoolEsc.GetInstance().ListEsc.Add(panelname);
+        if (isAddpoolEsc)
+        {
+            PoolEsc.GetInstance().ListEsc.Add(panelname);
+        }
 
         PoolNowPanel.GetInstance().ListNowPanel.Add(panelname);
 
@@ -180,9 +204,12 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     public void HidePanel(bool Active, GameObject panel, string panelname)
     {
         PoolBuffer.GetInstance().Push(Active, panel, panelname);
-        PoolNowPanel.GetInstance().ListNowPanel.Remove(panelname);    
+        PoolNowPanel.GetInstance().ListNowPanel.Remove(panelname);
+
         if (PoolEsc.GetInstance().ListEsc.Contains(panelname))
+        {
             PoolEsc.GetInstance().ListEsc.Remove(panelname);
+        }
     }
 
     /// <summary>
@@ -210,16 +237,22 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     public T GetPanel<T>(string panelname) where T : PanelBase
     {
         if (DicPanel.ContainsKey(panelname))
+        {
             return DicPanel[panelname] as T;
+        }
         else
+        {
             Debug.Log("--- MgrUI: " + panelname + " is null ---");
+        }
         return null;
     }
 
     public PanelBase GetPanel(string panelname)
     {
         if (DicPanel.ContainsKey(panelname))
+        {
             return DicPanel[panelname];
+        }
         return null;
     }
 
