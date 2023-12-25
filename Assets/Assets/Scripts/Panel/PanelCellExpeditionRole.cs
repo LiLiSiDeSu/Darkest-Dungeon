@@ -9,7 +9,10 @@ public class PanelCellExpeditionRole : PanelBaseCell,
              IPointerEnterHandler, IPointerExitHandler
 {
     public int IndexRoleList;
+
     public Image ImgRolePortrait;
+    public Image ImgBanner;
+
     public PanelCellExpeditionRoom CellExpeditionRoom;
 
     protected override void Awake()
@@ -17,6 +20,8 @@ public class PanelCellExpeditionRole : PanelBaseCell,
         base.Awake();
 
         ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
+        ImgBanner = transform.FindSonSonSon("ImgBanner").GetComponent<Image>();
+        ImgBanner.gameObject.SetActive(false);
     }
 
     #region EventSystem

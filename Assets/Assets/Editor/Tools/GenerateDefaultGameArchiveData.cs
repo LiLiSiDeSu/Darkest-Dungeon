@@ -9,17 +9,17 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 {                          
     private static int DefaultGameArchiveDataCount = 10;
 
-    [MenuItem("-Tools-/Generate/DefaultGameArchiveData #&%_1", false, 1)]
+    [MenuItem("-Tools-/Generate/DefaultGameArchiveData", false, 1)]
     private static void Generate()
     {
         MgrJson.GetInstance().filePath = Application.persistentDataPath + "/Data/JsonData";
         Data.GetInstance().PathGameArchiveData = "/GameArchiveData";
 
-        List<DataContainer_CellGameArchive> GameArchiveDataCellList = new List<DataContainer_CellGameArchive>();
+        List<DataContainer_CellGameArchive> GameArchiveDataCellList = new();
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)
         {
-            GameArchiveDataCellList.Add(new DataContainer_CellGameArchive());
+            GameArchiveDataCellList.Add(new());
         }
 
         GameArchiveDataCellList[0].GameArchiveName = "Test";
@@ -144,51 +144,43 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
 
         #endregion
 
-        GameArchiveDataCellList[0].ListRole = new List<DataContainer_CellRole>()
+        GameArchiveDataCellList[0].ListRole = new()
         {
-            new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.DevilFly, "cao2", 3, 99, 30, 29, 200, 10),
-            new DataContainer_CellRole(E_RoleName.PlagueDoctor, "cao3", 4, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 4, 99, 1, 46, 200, 1),
-            new DataContainer_CellRole(E_RoleName.DevilFly, "cao5", 2, 99, 40, 46, 200, 10),
-            new DataContainer_CellRole(E_RoleName.Crusader, "cao6", 3, 99, 40, 46, 200, 10),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao0", 100, 130, 2, 24, 10),
+            new DataContainer_CellRole(E_RoleName.DevilFly, "cao1", 12, 50, 4, 12, 12),
+            new DataContainer_CellRole(E_RoleName.PlagueDoctor, "cao2", 120, 5, 5, 22, 7),
+            new DataContainer_CellRole(E_RoleName.DevilFly, "cao3", 20, 140, 2, 15, 1),
+            new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 30, 10, 3, 11, 21),
+            new DataContainer_CellRole(E_RoleName.Crusader, "cao5", 50, 78, 6, 2, 30),
         };
 
-        GameArchiveDataCellList[0].ResTable = new DataContainer_ResTable(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);
+        GameArchiveDataCellList[0].ResTable = new(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000);
 
-        GameArchiveDataCellList[0].ListRoleRecruit = new List<DataContainer_CellRoleRecruit>()
+        GameArchiveDataCellList[0].ListRoleRecruit = new()
         {
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, "cao1", 2, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao0", 100, 130, 2, 24, 33),
              new DataContainer_CoinCost(2, 3, 4, 5)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao10", 2, 99, 40, 10, 200, 2),
+            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao1", 12, 50, 1, 12, 32),
              new DataContainer_CoinCost(22, 3, 34, 51)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, "cao5", 2, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.Crusader, "cao2", 120, 10, 1, 22, 23),
              new DataContainer_CoinCost(232, 332, 411, 55)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao3", 20, 140, 4, 15, 11),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, "cao3", 4, 99, 40, 46, 200, 10),
+            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 30, 10, 2, 11, 10),
              new DataContainer_CoinCost(22, 31, 42, 523)),
 
             new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao4", 4, 99, 1, 46, 200, 1),
+            (new DataContainer_CellRole(E_RoleName.DevilFly, "cao5", 50, 78, 1, 2, 9),
              new DataContainer_CoinCost(22, 31, 42, 523)),
-
-            new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, "cao4", 4, 99, 1, 46, 200, 1),
-             new DataContainer_CoinCost(22, 31, 42, 523)),
-
-            new DataContainer_CellRoleRecruit
-            (new DataContainer_CellRole(E_RoleName.Crusader, "cao4", 4, 99, 1, 46, 200, 1),
-             new DataContainer_CoinCost(22, 31, 42, 523))
         };
 
         #region TownStore

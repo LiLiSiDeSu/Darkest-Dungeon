@@ -83,8 +83,6 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         InitGrids(Role.ListItem.Count, Role.ListItem[0].Count);
 
         LoadData(Role);
-
-        InitTxtCapacity(Role);
     }
 
     public override void End()

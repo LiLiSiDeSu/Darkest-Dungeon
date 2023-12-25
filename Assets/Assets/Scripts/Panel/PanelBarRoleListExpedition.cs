@@ -1,17 +1,13 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PanelBarRoleListExpedition : PanelBase
 {
-    public int NowPutIndex = -1;
+    public int IndexChose = -1;
+    public int IndexNowPut = -1;
 
     public List<int> ListNeedPutRoleIndex = new();
-    public List<PanelCellExpeditionRole> ListCellRoleExpedition = new();
+    public List<PanelCellExpeditionRole> ListCellExpeditionRole = new();
 
     public Transform RoleListExpeditionContent;
 
@@ -54,7 +50,7 @@ public class PanelBarRoleListExpedition : PanelBase
             (panel) =>
             {
                 panel.Init(tempi, ListNeedPutRoleIndex[tempi], RoleListExpeditionContent);
-                ListCellRoleExpedition.Add(panel);
+                ListCellExpeditionRole.Add(panel);
 
                 if (tempi == ListNeedPutRoleIndex.Count - 1)
                 {
@@ -66,14 +62,14 @@ public class PanelBarRoleListExpedition : PanelBase
 
     public void EnableImgStatus()
     {
-        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellExpeditionRole)
         {
             item.ImgRolePortrait.raycastTarget = true;
         }
     }
     public void DisableImgStatus()
     {
-        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellExpeditionRole)
         {
             item.ImgRolePortrait.raycastTarget = false;
         }
@@ -88,18 +84,28 @@ public class PanelBarRoleListExpedition : PanelBase
     {
         if (p_RoleIndex == -1)
         {
+            ListCellExpeditionRole[IndexChose].ImgBanner.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            ListCellExpeditionRole[IndexChose].ImgBanner.gameObject.SetActive(false);
+            IndexChose = -1;
             Hot.PanelExpeditionRoleDetails_.IndexRole = -1;
             Hot.PanelExpeditionRoleDetails_.Clear();
 
             return;
         }
 
-        for (int i = 0; i < ListCellRoleExpedition.Count; i++)
+        for (int i = 0; i < ListCellExpeditionRole.Count; i++)
         {
-            if (ListCellRoleExpedition[i].IndexRoleList == p_RoleIndex)
+            if (ListCellExpeditionRole[i].IndexRoleList == p_RoleIndex)
             {
-                Hot.PanelExpeditionRoleDetails_.IndexRole = ListCellRoleExpedition[i].IndexRoleList;
-                Hot.PanelExpeditionRoleDetails_.UpdateInfo();
+                Hot.PanelExpeditionRoleDetails_.UpdateInfo(ListCellExpeditionRole[i].IndexRoleList);
+                if (IndexChose != -1)
+                {
+                    ListCellExpeditionRole[IndexChose].ImgBanner.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    ListCellExpeditionRole[IndexChose].ImgBanner.gameObject.SetActive(false);
+                }
+                IndexChose = i;
+                ListCellExpeditionRole[IndexChose].ImgBanner.sprite = Hot.LoadSprite(E_Res.DecorateBanner);
+                ListCellExpeditionRole[IndexChose].ImgBanner.gameObject.SetActive(true);
 
                 return;
             }
@@ -108,19 +114,19 @@ public class PanelBarRoleListExpedition : PanelBase
 
     public void ClearNoData()
     {
-        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellExpeditionRole)
         {
             Destroy(item.gameObject);
         }
 
-        NowPutIndex = -1;
+        IndexNowPut = -1;
         ListNeedPutRoleIndex.Clear();
-        ListCellRoleExpedition.Clear();
+        ListCellExpeditionRole.Clear();
     }
 
     public void ClearAndData()
     {
-        foreach (PanelCellExpeditionRole item in ListCellRoleExpedition)
+        foreach (PanelCellExpeditionRole item in ListCellExpeditionRole)
         {
             if (item.CellExpeditionRoom != null)
             {
@@ -130,9 +136,9 @@ public class PanelBarRoleListExpedition : PanelBase
             Destroy(item.gameObject);
         }
 
-        NowPutIndex = -1;
+        IndexNowPut = -1;
         ListNeedPutRoleIndex.Clear();
-        ListCellRoleExpedition.Clear();
+        ListCellExpeditionRole.Clear();
     }
 
     public void Sort()
@@ -144,9 +150,9 @@ public class PanelBarRoleListExpedition : PanelBase
         }
         int count = RoleListExpeditionContent.childCount;
 
-        for (int i = 0; i < ListCellRoleExpedition.Count; i++)
+        for (int i = 0; i < ListCellExpeditionRole.Count; i++)
         {
-            ListCellRoleExpedition[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
+            ListCellExpeditionRole[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
         }
 
         for (int i = 0; count != RoleListExpeditionContent.childCount; i++)
@@ -156,11 +162,11 @@ public class PanelBarRoleListExpedition : PanelBase
                 i = 0;
             }
 
-            if (ListIndex[0] == ListCellRoleExpedition[i].IndexRoleList)
+            if (ListIndex[0] == ListCellExpeditionRole[i].IndexRoleList)
             {
-                ListCellRoleExpedition[i].Index = RoleListExpeditionContent.childCount;
-                ListCellRoleExpedition[i].transform.SetParent(RoleListExpeditionContent, false);
-                ListCellRoleExpedition[i].transform.localPosition = Vector3.zero;
+                ListCellExpeditionRole[i].Index = RoleListExpeditionContent.childCount;
+                ListCellExpeditionRole[i].transform.SetParent(RoleListExpeditionContent, false);
+                ListCellExpeditionRole[i].transform.localPosition = Vector3.zero;
                 ListIndex.RemoveAt(0);
             }
         }

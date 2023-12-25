@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class PanelRoleDetails : PanelBaseRoleStore
@@ -91,7 +92,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
                             Hot.PanelBarRoleList_.Show();
                             break;
                         case E_RoleLocation.GuildRecruit:
-                            panel.UpdateInfoByGuildRecruit(Hot.DataNowCellGameArchive.ListRoleRecruit[p_index].Role);
+                            panel.UpdateInfoByGuildRecruit();
                             break;
                     }
                 });
@@ -99,18 +100,22 @@ public class PanelRoleDetails : PanelBaseRoleStore
         }
     }
 
-    public void UpdateInfoByGuildRecruit(DataContainer_CellRole Role)
+    public void UpdateInfoByGuildRecruit()
     {
-        ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + Role.e_RoleName + "Await");
+        DataContainer_CellRole RoleData = Hot.DataNowCellGameArchive.ListRoleRecruit[IndexRole].Role;
 
-        TxtRoleName.text = Role.Name;
-        TxtRoleLevel.text = Role.NowLevel.ToString();
-        TxtSanityDetails.text = Role.NowSanity + " / " + Role.MaxSanity;
+        ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + RoleData.e_RoleName + "Await");
 
-        UpdateSanityExplosionLimit(Role);
-        UpdateLevelInfo(Role);
-        UpdateSanityInfo(Role);
-        UpdateExperience(Role);
+        TxtRoleName.text = RoleData.Name;
+        TxtRoleLevel.text = RoleData.NowLevel.ToString();
+        TxtSanityDetails.text = RoleData.NowSanity + " / " + RoleData.MaxSanity;
+
+        InitTxtCapacity(RoleData);
+
+        UpdateSanityExplosionLimit(RoleData);
+        UpdateLevelInfo(RoleData);
+        UpdateSanityInfo(RoleData);
+        UpdateExperience(RoleData);
     }
 
     public void UpdateInfoByRoleList()
@@ -125,10 +130,13 @@ public class PanelRoleDetails : PanelBaseRoleStore
         TxtRoleLevel.text = RoleData.NowLevel.ToString();
         TxtSanityDetails.text = RoleData.NowSanity + " / " + RoleData.MaxSanity;
 
+        InitTxtCapacity(RoleData);
+
         UpdateSanityExplosionLimit(RoleData);
         UpdateLevelInfo(RoleData);
         UpdateSanityInfo(RoleData);
         UpdateExperience(RoleData);
+
         UpdateContent(RoleData);
     }
 
@@ -185,15 +193,14 @@ public class PanelRoleDetails : PanelBaseRoleStore
     {
         for (int i = 0; i < ListImgCellSanity.Count; i++)
         {
-            if
-            (i < Role.NowSanity / Hot.StepSanity)
+            if (i < Role.NowSanity / Hot.StepSanity)
             {
-                ListImgCellSanity[i].GetComponent<Image>().sprite =
-                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueHave");
+                ListImgCellSanity[i].GetComponent<Image>().sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueHave");
             }
             else
-                ListImgCellSanity[i].GetComponent<Image>().sprite =
-                    Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
+            {
+                ListImgCellSanity[i].GetComponent<Image>().sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "DecorateCellSanityValueNone");
+            }
         }
     }
 
@@ -206,8 +213,10 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
     public void UpdateExperience(DataContainer_CellRole Role)
     {
+        E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[IndexRole].e_RoleName;
+
         ImgProgress.GetComponent<RectTransform>().sizeDelta =
-            new Vector2(ImgProgress.GetComponent<RectTransform>().sizeDelta.x,
-                        49.3f * ((float)Role.NowExperience / Hot.ListNeedExperienceToUpLevel[Role.NowLevel]));
+            new(ImgProgress.GetComponent<RectTransform>().sizeDelta.x,
+            49.3f * ((float)Role.NowExperience / Hot.DicRoleConfig[e_RoleName].ListLevelUpNeedExperience[Role.NowLevel]));
     }
 }

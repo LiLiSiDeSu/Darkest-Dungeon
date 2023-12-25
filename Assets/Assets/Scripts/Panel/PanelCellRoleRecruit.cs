@@ -6,13 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
+public class PanelCellRoleRecruit : PanelBaseCellRole,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public E_RoleLocation e_RoleLocation;
-
     private Image ImgBk;
-    public Image ImgRolePortrait;
     public Transform Root;
 
     protected override void Awake()
@@ -23,7 +20,6 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
 
         Root = transform.FindSonSonSon("Root");
         ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
-        ImgRolePortrait = transform.FindSonSonSon("ImgRolePortrait").GetComponent<Image>();
     }    
 
     #region EventSystem接口实现
@@ -65,19 +61,16 @@ public class PanelCellRoleRecruit : PanelBaseCellDynamicScrollView,
             (panel) =>
             {
                 Hot.DataNowCellGameArchive.ListRole.Add(Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Role);
-                panel.Index = Hot.DataNowCellGameArchive.ListRole.Count - 1;
                 panel.CreatePanelCellRoleCanDrag();
+                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole.Count - 1, E_RoleLocation.RoleList);
                 GameObject obj = Hot.MgrRes_.Load<GameObject>("Prefabs/" + "DynamicContentStepFor" + panel.PrefabsDynamicContentStepSuffix);
                 obj.name = panel.Index.ToString();
                 obj.transform.SetParent(Hot.PanelBarRoleList_.Content, false);
                 obj.GetComponent<DynamicContentStep>().Init(panel.Index);
                 panel.transform.SetParent(obj.GetComponent<DynamicContentStep>().DependentObjRoot, false);
 
-                panel.InitInfo(Hot.DataNowCellGameArchive.ListRole[panel.Index], E_RoleLocation.RoleList);
-
                 for (int i = Hot.PaddingIndex; i < Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep.Count; i++)
                 {
-                    Debug.Log(i);
                     Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.SetParent(Hot.MgrUI_.UIBaseCanvas, false);
                     Hot.NowPanelBaseDynamicScrollView_.ListDynamicContentStep[i].transform.SetParent(Hot.NowPanelBaseDynamicScrollView_.Content, false);
                 }

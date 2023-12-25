@@ -21,7 +21,11 @@ public enum E_Res
     ImgCoverTransparenctGreen,
     ImgCoverTransparenctRed,
 
+    DecorateBanner,
+
     BorderChoosedGreen,
+
+    PortraitNone,
 }
 
 public enum E_MapObject

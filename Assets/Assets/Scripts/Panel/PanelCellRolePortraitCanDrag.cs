@@ -10,9 +10,9 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
 {
     public Image ImgRolePortraitCanDrag;
 
-    public PanelCellExpeditionRolePrepareRoot ExpeditionRolePrepareRoot;
     public RectTransform RectRolePortraitCanDrag;
-    public PanelCellRole Role;
+    public PanelCellRole Role = new();
+    public PanelCellExpeditionRolePrepareRoot ExpeditionRolePrepareRoot = new();
 
     protected override void Awake()
     {
@@ -103,10 +103,10 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                 {
                     PanelCellRolePortraitCanDrag beReplace = Hot.NowEnterExpeditionRolePrepareRoot.transform.GetComponentInChildren<PanelCellRolePortraitCanDrag>();
                     beReplace.ExpeditionRolePrepareRoot = null;
-                    beReplace.RectRolePortraitCanDrag.sizeDelta = new Vector2(80, 80);
+                    beReplace.RectRolePortraitCanDrag.sizeDelta = new(80, 80);
                     beReplace.transform.SetParent(beReplace.Role.RootPortrait, false);
                     beReplace.transform.localPosition = Vector3.zero;
-                    beReplace.Role.ChangeRoleStatus(-1);
+                    beReplace.Role.ChangeRoleStatus();
                     Hot.DataNowCellGameArchive.ListRole[beReplace.Role.Index].IndexExpeditionRoot = -1;
                 }
                 //´ÓRoleListÍÏµ½¿ÕµÄExpeditionRolePrepareRoot
@@ -123,7 +123,7 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
             }
         }
 
-        Role.ChangeRoleStatus(Hot.DataNowCellGameArchive.ListRole[Role.Index].IndexExpeditionRoot);
+        Role.ChangeRoleStatus();
         ImgRolePortraitCanDrag.raycastTarget = true;
         Hot.DragingRolePortraitCanDrag = null;
 

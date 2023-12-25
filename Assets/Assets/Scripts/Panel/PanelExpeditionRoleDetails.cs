@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelExpeditionRoleDetails : PanelBaseRoleStore
 {
     public Image ImgPortraitRole;
-    public Text TxtRoleName;    
+
+    public Text TxtRoleName;
+    public Text TxtHp;
+    public Text TxtSanity;
+    public Text TxtLevel;
+    public Text TxtExperience;
+    public Text TxtAction;
+    public Text TxtSpeed;
 
     public Transform SkillContent;
     public Transform RolePropertyContent;
@@ -16,7 +21,14 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
         base.Awake();
 
         ImgPortraitRole = transform.FindSonSonSon("ImgPortraitRole").GetComponent<Image>();
+
         TxtRoleName = transform.FindSonSonSon("TxtRoleName").GetComponent<Text>();
+        TxtHp = transform.FindSonSonSon("TxtHp").GetComponent<Text>();
+        TxtSanity = transform.FindSonSonSon("TxtSanity").GetComponent<Text>();
+        TxtLevel = transform.FindSonSonSon("TxtLevel").GetComponent<Text>();
+        TxtExperience = transform.FindSonSonSon("TxtExperience").GetComponent<Text>();
+        TxtAction = transform.FindSonSonSon("TxtAction").GetComponent<Text>();
+        TxtSpeed = transform.FindSonSonSon("TxtSpeed").GetComponent<Text>();
 
         SkillContent = transform.FindSonSonSon("SkillContent");
         RolePropertyContent = transform.FindSonSonSon("RolePropertyContent");
@@ -57,14 +69,23 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
         }
     }
 
-    public void UpdateInfo()
+    public void UpdateInfo(int p_IndexRole)
     {
         NowCapacity = 0;
+        IndexRole = p_IndexRole;
 
         DataContainer_CellRole roleData = Hot.DataNowCellGameArchive.ListRole[IndexRole];
 
         ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + roleData.e_RoleName);
+
         TxtRoleName.text = roleData.Name;
+        TxtHp.text = roleData.NowHp + " / " + roleData.MaxHp;
+        TxtSanity.text = roleData.NowSanity + " / " + roleData.MaxSanity;
+        TxtLevel.text = roleData.NowLevel + " / " + roleData.MaxLevel;
+        TxtExperience.text = roleData.NowExperience + " / " + Hot.DicRoleConfig[roleData.e_RoleName].ListLevelUpNeedExperience[roleData.NowLevel];
+        TxtAction.text = roleData.NowAction + " / " + roleData.MaxAction;
+        TxtSpeed.text = roleData.NowSpeed.ToString();
+        InitTxtCapacity(roleData);
 
         UpdateContent(roleData);
     }
@@ -73,7 +94,15 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
     {
         NowCapacity = 0;
         ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + E_RoleName.None);
+
         TxtRoleName.text = "";
+        TxtHp.text = "0 / 0";
+        TxtSanity.text = "0 / 0";
+        TxtLevel.text = "0 / 0";
+        TxtExperience.text = "0 / 0";
+        TxtCapacity.text = "0 / 0";
+        TxtAction.text = "0 / 0";
+        TxtSpeed.text = "0";
 
         ClearAll();
     }

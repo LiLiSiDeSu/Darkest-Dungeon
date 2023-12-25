@@ -23,21 +23,19 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         {
             Hot.NowEnterGridExpeditionRoom = this;
 
-            Debug.Log(Hot.PanelExpeditionRoom_.Grids[Y][X].Item);
-
             E_RoleName e_RoleName = E_RoleName.None;    
             if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0)
             {
-                if (Hot.PanelBarRoleListExpedition_.NowPutIndex == -1)
+                if (Hot.PanelBarRoleListExpedition_.IndexNowPut == -1)
                 {
-                    Hot.PanelBarRoleListExpedition_.NowPutIndex = 0;
+                    Hot.PanelBarRoleListExpedition_.IndexNowPut = 0;
                 }
-                e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]].e_RoleName;
             }
 
             if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0 && JudgeRoleCanPut(e_RoleName))
             {
-                Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.NowPutIndex).transform.localPosition += new Vector3(0, -20);
+                Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.IndexNowPut).transform.localPosition += new Vector3(0, -20);
 
                 for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; iY++)
                 {
@@ -65,12 +63,12 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             E_RoleName e_RoleName = E_RoleName.None;
             if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0)
             {
-                e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]].e_RoleName;
+                e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]].e_RoleName;
             }
 
             if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0 && JudgeRoleCanPut(e_RoleName))
             {
-                Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.NowPutIndex).transform.localPosition += new Vector3(0, 20);
+                Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.IndexNowPut).transform.localPosition += new Vector3(0, 20);
 
                 for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; iY++)
                 {
@@ -169,7 +167,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         (panel) =>
         {
             panel.Init(this, true);
-            Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition[p_index].CellExpeditionRoom = panel;
+            Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole[p_index].CellExpeditionRoom = panel;
         });
     }
     public void PutMapObj(DataContainer_CellExpeditionMapObj p_MapObj)
@@ -187,14 +185,14 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         E_RoleName e_RoleName = E_RoleName.None;
         if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0)
         {
-            e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]].e_RoleName;
+            e_RoleName = Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]].e_RoleName;
         }
 
         if (Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count > 0 && JudgeRoleCanPut(e_RoleName))
         {
-            PutListRole(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex], Hot.PanelBarRoleListExpedition_.NowPutIndex);
+            PutListRole(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut], Hot.PanelBarRoleListExpedition_.IndexNowPut);
 
-            Hot.DataNowCellGameArchive.ListNowPutRole.Add(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]);
+            Hot.DataNowCellGameArchive.ListNowPutRole.Add(Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]);
 
             for (int iY = 0; iY < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; iY++)
             {
@@ -204,17 +202,18 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                 }
             }
 
-            Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.NowPutIndex).transform.localPosition =
-                new Vector3(Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.NowPutIndex).transform.localPosition.x, 0);
+            Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.IndexNowPut).transform.localPosition =
+                new Vector3(Hot.PanelBarRoleListExpedition_.GetCellRoleExpedition(Hot.PanelBarRoleListExpedition_.IndexNowPut).transform.localPosition.x, 0);
 
-            if (Hot.PanelBarRoleListExpedition_.NowPutIndex == Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count - 1)
+            if (Hot.PanelBarRoleListExpedition_.IndexNowPut == Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count - 1)
             {
-                Hot.PanelBarRoleListExpedition_.NowPutIndex = -1;
+                Hot.PanelBarRoleListExpedition_.IndexNowPut = -1;
                 Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Clear();
                 Hot.PanelBarRoleListExpedition_.EnableImgStatus();
+                Hot.PanelBarExpeditionTimeLine_.UpdateTimeLine();
             }
 
-            Hot.PanelBarRoleListExpedition_.NowPutIndex++;
+            Hot.PanelBarRoleListExpedition_.IndexNowPut++;
 
             Hot.Data_.Save();
 

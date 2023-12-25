@@ -64,26 +64,47 @@ public class VectorInt2_4
 public class RoleConfig
 {
     public E_RoleMoveType e_MoveType;
+    public List<int> ListLevelUpNeedExperience;
+
+    public int MaxHp;
+    public int MaxSanity;
+    public int MaxLevel;
+    public int MaxAction;
+    public int LimitToSanityExplosion;
+    public int InitialSpeed;
 
     public my_VectorInt2 SizeStore;
     public my_VectorInt2 SizeBody;
-
     public VectorInt2_4 SizeMove;
 
     public RoleConfig() { }
-    public RoleConfig(E_RoleMoveType p_e_MoveType, my_VectorInt2 p_SizeStore, my_VectorInt2 p_SizeBody, VectorInt2_4 p_SizeMove)
+    public RoleConfig
+    (E_RoleMoveType p_e_MoveType, 
+     List<int> p_ListLevelUpNeedExperience,
+     int p_MaxHp, int p_MaxSanity, int p_MaxLevel, int p_MaxActionValue,
+     int p_LimitToSanityExplosion, int p_InitialSpeed,
+     my_VectorInt2 p_SizeStore, my_VectorInt2 p_SizeBody, VectorInt2_4 p_SizeMove)
     {
         e_MoveType = p_e_MoveType;
+        ListLevelUpNeedExperience = p_ListLevelUpNeedExperience;
+
         SizeStore = p_SizeStore;
         SizeBody = p_SizeBody;
         SizeMove = p_SizeMove;
+
+        MaxHp = p_MaxHp;
+        MaxSanity = p_MaxSanity;
+        MaxLevel = p_MaxLevel;
+        MaxAction = p_MaxActionValue;
+        LimitToSanityExplosion = p_LimitToSanityExplosion;
+        InitialSpeed = p_InitialSpeed;
     }
 }
 
 public class DataContainer_CellGameArchive
 {
-    public string GameArchiveName = "";    
     public E_GameArchiveLevel e_GameArchiveLevel = E_GameArchiveLevel.None;
+    public string GameArchiveName = "";
     public string Week = "0";
     public string Time = "0000/00/00 00:00:00";
 
@@ -93,9 +114,10 @@ public class DataContainer_CellGameArchive
     public int NowEventIndex = -1;
     public my_VectorInt2 NowCellMiniMapPos = new();
     [JsonIgnore]
-    public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
+    public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => 
+        DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
     [JsonIgnore]
-    public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
+    public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
     public DataContainer_ExpeditionMiniMap GetDataNowEvent(E_ExpeditionLocation p_e_NowExpeditionLocation, int p_NowEventIndex)
     {
         return ExpeditionPrepare[p_e_NowExpeditionLocation][p_NowEventIndex];
@@ -143,31 +165,72 @@ public class DataContainer_CellRole
 {
     public E_RoleName e_RoleName = E_RoleName.None;
     public string Name = "Default";
+    public int NowHp = 0;
+    public int NowSanity = 0;
+    public int NowLevel = 0;
+    public int NowExperience = 0;
+    public int NowSpeed = 0;
+    public int NowAction = 0;
+
+    public int MaxHp = 0;
+    public int MaxSanity = 0;
+    public int MaxLevel = 0;
+    public int MaxAction = 0;
+    public int LimitToSanityExplosion = 0;
+
     public int VFlip = 1;
     public int IndexExpeditionRoot = -1;
-    public int NowLevel = 0;
-    public int MaxLevel = 0;
-    public int NowExperience = 0;
-    public int NowSanity = 0;
-    public int MaxSanity = 0;
-    public int LimitToSanityExplosion = 0;
+
     public List<List<DataContainer_CellItem>> ListItem = new();
 
     public DataContainer_CellRole() { }
+    public DataContainer_CellRole(E_RoleName p_e_RoleName) 
+    {
+        NowHp = Hot.DicRoleConfig[e_RoleName].MaxHp;
+        NowSanity = 0;
+        NowLevel = 0;
+        NowAction = Hot.DicRoleConfig[e_RoleName].MaxAction;
+        NowSpeed = Hot.DicRoleConfig[e_RoleName].InitialSpeed;
+
+        MaxHp = Hot.DicRoleConfig[e_RoleName].MaxHp;
+        MaxSanity = Hot.DicRoleConfig[e_RoleName].MaxSanity;
+        MaxLevel = Hot.DicRoleConfig[e_RoleName].MaxLevel;
+        MaxAction = Hot.DicRoleConfig[e_RoleName].MaxAction;
+        LimitToSanityExplosion = Hot.DicRoleConfig[e_RoleName].LimitToSanityExplosion;
+
+        for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].SizeStore.Y; Y++)
+        {
+            ListItem.Add(new());
+
+            for (int X = 0; X < Hot.DicRoleConfig[p_e_RoleName].SizeStore.X; X++)
+            {
+                ListItem[Y].Add(new());
+            }
+        }
+    }
     public DataContainer_CellRole
     (E_RoleName p_e_RoleName,
      string p_Name,
-     int p_NowLevel, int p_MaxLevel, int p_NowExperience,
-     int p_NowSanity, int p_MaxSanity, int p_LimitToSanityExplosion)
+     int p_NowHp,
+     int p_NowSanity,
+     int p_NowLevel,
+     int p_NowExperience,
+     int p_NowAction)
     {
         e_RoleName = p_e_RoleName;
+        NowHp = p_NowHp;
         Name = p_Name;
         NowLevel = p_NowLevel;
-        MaxLevel = p_MaxLevel;
         NowExperience = p_NowExperience;
         NowSanity = p_NowSanity;
-        MaxSanity = p_MaxSanity;
-        LimitToSanityExplosion = p_LimitToSanityExplosion;
+        NowAction = p_NowAction;
+        NowSpeed = Hot.DicRoleConfig[e_RoleName].InitialSpeed;
+
+        MaxHp = Hot.DicRoleConfig[e_RoleName].MaxHp;
+        MaxSanity = Hot.DicRoleConfig[e_RoleName].MaxSanity;
+        MaxLevel = Hot.DicRoleConfig[e_RoleName].MaxLevel;
+        MaxAction = Hot.DicRoleConfig[e_RoleName].MaxAction;
+        LimitToSanityExplosion = Hot.DicRoleConfig[e_RoleName].LimitToSanityExplosion;
 
         for (int Y = 0; Y < Hot.DicRoleConfig[p_e_RoleName].SizeStore.Y; Y++)
         {

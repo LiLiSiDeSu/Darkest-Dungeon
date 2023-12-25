@@ -1,15 +1,13 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
 
 public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, PanelGridExpeditionRoom>
 {
-    public int NowRoleMoveStep = 1;
+    public int NowRoleMoveStep = 0;
     public KeyCode NowRoleMoveKey = KeyCode.None;
     public VectorInt2_4 NowRoleMoveSize = new();
+
 
     public Transform ImgRoomBk;
 
@@ -33,26 +31,30 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         {
             if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.Mouse1)
             {
-                if (Hot.ChoseCellExpeditionRoom != null)
+                if (Hot.ChoseCellExpeditionRoom != null && Hot.UpdateOver)
                 {
                     Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     Hot.ChoseCellExpeditionRoom = null;
                     Hot.PanelExpeditionRoom_.ClearImgStatus();
+                    Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
                     NowRoleMoveStep = 0;
                     NowRoleMoveKey = KeyCode.None;
                 }
             }
         });
 
+        //VFlip已经放置的角色
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            int X = Hot.ChoseCellExpeditionRoom.RootGrid.X;
-            int Y = Hot.ChoseCellExpeditionRoom.RootGrid.Y;
-
             if (key == KeyCode.F && Hot.ChoseCellExpeditionRoom != null && Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole != -1)
             {
+                NowRoleMoveKey = KeyCode.None;
+                NowRoleMoveStep = 0;
+
                 E_RoleName e_RoleName = ChoseRoleData.e_RoleName;
+                int X = Hot.ChoseCellExpeditionRoom.RootGrid.X;
+                int Y = Hot.ChoseCellExpeditionRoom.RootGrid.Y;
 
                 if (ChoseRoleData.VFlip == 1)
                 {
@@ -94,6 +96,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             }
         });
 
+        //移动角色预放置位置
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
@@ -138,11 +141,33 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             }
         });
 
+        //减少现在角色移动的距离
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        (key) =>
+        {
+            if (key == Hot.MgrInput_.Reduce && NowRoleMoveKey != KeyCode.None && NowRoleMoveStep > 1)
+            {
+                PreMove(Hot.PanelExpeditionRoom_.ChoseRoleData.e_RoleName, 
+                        Hot.ChoseCellExpeditionRoom.RootGrid.X, 
+                        Hot.ChoseCellExpeditionRoom.RootGrid.Y, 
+                        Hot.PanelExpeditionRoom_.ChoseRoleData.VFlip,
+                        true);
+
+                NowRoleMoveStep -= 1;
+
+                PreMove(Hot.PanelExpeditionRoom_.ChoseRoleData.e_RoleName,
+                        Hot.ChoseCellExpeditionRoom.RootGrid.X,
+                        Hot.ChoseCellExpeditionRoom.RootGrid.Y,
+                        Hot.PanelExpeditionRoom_.ChoseRoleData.VFlip,
+                        false);
+            }
+        });
+
+        //放置角色
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.Return && Hot.ChoseCellExpeditionRoom != null)
-
             {
                 int x = Hot.ChoseCellExpeditionRoom.RootGrid.X;
                 int y = Hot.ChoseCellExpeditionRoom.RootGrid.Y;
@@ -198,7 +223,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             if (key == KeyCode.F && Hot.NowEnterGridExpeditionRoom != null && Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count != 0)
             {
                 E_RoleName e_RoleName =
-                    Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]].e_RoleName;
+                    Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]].e_RoleName;
 
                 Hot.VFlip = 1;
                 if (Hot.NowEnterGridExpeditionRoom.JudgeRoleCanPut(e_RoleName))
@@ -233,7 +258,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             if (key == KeyCode.F && Hot.NowEnterGridExpeditionRoom != null && Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count != 0)
             {
                 E_RoleName e_RoleName =
-                    Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.NowPutIndex]].e_RoleName;
+                    Hot.DataNowCellGameArchive.ListRole[Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[Hot.PanelBarRoleListExpedition_.IndexNowPut]].e_RoleName;
 
                 Hot.VFlip = -1;
                 if (Hot.NowEnterGridExpeditionRoom.JudgeRoleCanPut(e_RoleName))
@@ -313,20 +338,20 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                             {
                                 PanelCellRoleExpedition_.CellExpeditionRoom = PanelCellExpeditionRoom_;
                                 PanelCellRoleExpedition_.Init(
-                                    Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Count,
+                                    Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Count,
                                     PanelCellRoleExpedition_.CellExpeditionRoom.RootGrid.Data.IndexListRole,
                                     Hot.PanelBarRoleListExpedition_.RoleListExpeditionContent);
-                                Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Add(PanelCellRoleExpedition_);
+                                Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Add(PanelCellRoleExpedition_);
 
                                 if (Hot.DataNowCellGameArchive.ListNowPutRole.Count < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count &&
-                                    Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Count == Hot.DataNowCellGameArchive.ListNowPutRole.Count)
+                                    Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Count == Hot.DataNowCellGameArchive.ListNowPutRole.Count)
                                 {
                                     for (int i = 0; i < Hot.DataNowCellGameArchive.ListNowPutRole.Count; i++)
                                     {
                                         Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Add(-1);
                                     }
 
-                                    Hot.PanelBarRoleListExpedition_.NowPutIndex = Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count;
+                                    Hot.PanelBarRoleListExpedition_.IndexNowPut = Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count;
 
                                     for (int i = 0; i < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count; i++)
                                     {
@@ -346,7 +371,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                                             panel.Init(tempi, 
                                                        Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex[tempi], 
                                                        Hot.PanelBarRoleListExpedition_.RoleListExpeditionContent);
-                                            Hot.PanelBarRoleListExpedition_.ListCellRoleExpedition.Add(panel);
+                                            Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Add(panel);
                                         });
                                     }
                                 }

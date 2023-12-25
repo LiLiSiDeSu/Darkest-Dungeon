@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 11.8}
+  m_AnchoredPosition: {x: 0, y: 117.7}
   m_SizeDelta: {x: 708.1, y: 71.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2968159692613999900
@@ -202,7 +202,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 488.2}
-  m_SizeDelta: {x: 600, y: 144.1}
+  m_SizeDelta: {x: 600, y: 368.836}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &9080152157576873126
 CanvasRenderer:
@@ -276,7 +276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 14.78}
+  m_AnchoredPosition: {x: 0, y: 119.54}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2642620910607312585
@@ -366,7 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33b310e0ca5ac64d8334d2c3a6d78ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowPutIndex: -1
+  IndexChose: -1
+  IndexNowPut: -1
   ListNeedPutRoleIndex: 
   ListCellRoleExpedition: []
   RoleListExpeditionContent: {fileID: 0}
