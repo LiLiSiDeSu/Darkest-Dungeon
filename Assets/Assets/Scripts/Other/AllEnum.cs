@@ -24,6 +24,7 @@ public enum E_Res
     DecorateBanner,
 
     BorderChoosedGreen,
+    BorderChoosedRed,
 
     PortraitNone,
 }

@@ -11,14 +11,6 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
     public Transform ImgRoomBk;
 
-    public DataContainer_CellRole ChoseRoleData
-    {
-        get
-        {
-            return Hot.DataNowCellGameArchive.ListRole[Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole];
-        }
-    }
-
     protected override void Awake()
     {
         base.Awake();
@@ -33,12 +25,10 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             {
                 if (Hot.ChoseCellExpeditionRoom != null && Hot.UpdateOver)
                 {
-                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
                     Hot.ChoseCellExpeditionRoom = null;
-                    Hot.PanelExpeditionRoom_.ClearImgStatus();
-                    Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
-                    NowRoleMoveStep = 0;
-                    NowRoleMoveKey = KeyCode.None;
+                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
+                    ClearMoveStaus();
                 }
             }
         });
@@ -52,16 +42,18 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 NowRoleMoveKey = KeyCode.None;
                 NowRoleMoveStep = 0;
 
-                E_RoleName e_RoleName = ChoseRoleData.e_RoleName;
+                E_RoleName e_RoleName = Hot.ChoseRoleData.e_RoleName;
                 int X = Hot.ChoseCellExpeditionRoom.RootGrid.X;
                 int Y = Hot.ChoseCellExpeditionRoom.RootGrid.Y;
 
-                if (ChoseRoleData.VFlip == 1)
+                if (Hot.ChoseRoleData.VFlip == 1)
                 {
                     Hot.ChoseCellExpeditionRoom.transform.SetParent(ItemRoot[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1], false);
-                    (Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom).Data = (Grids[Y][X] as PanelGridExpeditionRoom).Data;
+                    (Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom).Data = 
+                        (Grids[Y][X] as PanelGridExpeditionRoom).Data;
                     (Grids[Y][X] as PanelGridExpeditionRoom).Data = new();
-                    Hot.ChoseCellExpeditionRoom.RootGrid = Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom;
+                    Hot.ChoseCellExpeditionRoom.RootGrid = 
+                        Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom;
                     Hot.ChoseCellExpeditionRoom.transform.localRotation = new(0, 180, 0, 0);
                     Hot.ChoseCellExpeditionRoom.transform.localPosition = new Vector3(20, 20);
                     Hot.ChoseCellExpeditionRoom.ImgItem.raycastTarget = false;
@@ -73,23 +65,25 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                     Hot.ChoseCellExpeditionRoom.ImgVFlipCast.raycastTarget = true;
                     Hot.ChoseCellExpeditionRoom.ImgVFlipCast.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
 
-                    ChoseRoleData.VFlip = -1;
+                    Hot.ChoseRoleData.VFlip = -1;
                 }
                 else
                 {
                     Hot.ChoseCellExpeditionRoom.transform.SetParent(ItemRoot[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)], false);
-                    (Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom).Data = (Grids[Y][X] as PanelGridExpeditionRoom).Data;
+                    (Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom).Data = 
+                        (Grids[Y][X] as PanelGridExpeditionRoom).Data;
                     (Grids[Y][X] as PanelGridExpeditionRoom).Data = new();
-                    Hot.ChoseCellExpeditionRoom.RootGrid = Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom;
+                    Hot.ChoseCellExpeditionRoom.RootGrid = 
+                        Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom;
                     Hot.ChoseCellExpeditionRoom.transform.localRotation = Quaternion.identity;
                     Hot.ChoseCellExpeditionRoom.transform.localPosition = new(-20, 20);
                     Hot.ChoseCellExpeditionRoom.ImgItem.raycastTarget = true;
                     Destroy(Hot.ChoseCellExpeditionRoom.ImgVFlipCast.gameObject);
 
-                    ChoseRoleData.VFlip = 1;
+                    Hot.ChoseRoleData.VFlip = 1;
                 }
 
-                Hot.PanelExpeditionRoom_.ClearImgStatus();
+                ClearImgStatus();
                 Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
 
                 Hot.Data_.Save();
@@ -118,7 +112,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                     return;
                 }
 
-                PreMove(ChoseRoleData.e_RoleName,
+                PreMove(Hot.ChoseRoleData.e_RoleName,
                         Hot.ChoseCellExpeditionRoom.RootGrid.X,
                         Hot.ChoseCellExpeditionRoom.RootGrid.Y,
                         Hot.DataNowCellGameArchive.ListRole[Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole].VFlip,
@@ -137,7 +131,10 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                     NowRoleMoveStep = NowRoleMoveSize[NowRoleMoveKey];
                 }
 
-                PreMove(ChoseRoleData.e_RoleName, Hot.ChoseCellExpeditionRoom.RootGrid.X, Hot.ChoseCellExpeditionRoom.RootGrid.Y, ChoseRoleData.VFlip, false);
+                PreMove(Hot.ChoseRoleData.e_RoleName, 
+                        Hot.ChoseCellExpeditionRoom.RootGrid.X, 
+                        Hot.ChoseCellExpeditionRoom.RootGrid.Y, 
+                        Hot.ChoseRoleData.VFlip, false);
             }
         });
 
@@ -147,18 +144,18 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         {
             if (key == Hot.MgrInput_.Reduce && NowRoleMoveKey != KeyCode.None && NowRoleMoveStep > 1)
             {
-                PreMove(Hot.PanelExpeditionRoom_.ChoseRoleData.e_RoleName, 
+                PreMove(Hot.ChoseRoleData.e_RoleName, 
                         Hot.ChoseCellExpeditionRoom.RootGrid.X, 
                         Hot.ChoseCellExpeditionRoom.RootGrid.Y, 
-                        Hot.PanelExpeditionRoom_.ChoseRoleData.VFlip,
+                        Hot.ChoseRoleData.VFlip,
                         true);
 
                 NowRoleMoveStep -= 1;
 
-                PreMove(Hot.PanelExpeditionRoom_.ChoseRoleData.e_RoleName,
+                PreMove(Hot.ChoseRoleData.e_RoleName,
                         Hot.ChoseCellExpeditionRoom.RootGrid.X,
                         Hot.ChoseCellExpeditionRoom.RootGrid.Y,
-                        Hot.PanelExpeditionRoom_.ChoseRoleData.VFlip,
+                        Hot.ChoseRoleData.VFlip,
                         false);
             }
         });
@@ -311,6 +308,12 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
             }
         }
     }
+    public void ClearMoveStaus()
+    {
+        ClearImgStatus();
+        NowRoleMoveStep = 0;
+        NowRoleMoveKey = KeyCode.None;
+    }
 
     public void LoadDataMap(int p_x, int p_y, bool isCreateByChooseGameArchive)
     {
@@ -329,18 +332,26 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                     Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
                     (PanelCellExpeditionRoom_) =>
                     {
-                       PanelCellExpeditionRoom_.Init(Grids[tempY][tempX] as PanelGridExpeditionRoom, false);
+                        PanelCellExpeditionRoom_.Init(Grids[tempY][tempX] as PanelGridExpeditionRoom, false);
 
                         if (Map[tempY][tempX].IndexListRole != -1)
                         {
+                            Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
+                            (panel) =>
+                            {
+                                int Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].NowSpeed;
+                                E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].e_RoleName;
+                                panel.Init(Hot.ExpeditionTimeLineLength - Speed, PanelCellExpeditionRoom_,
+                                           Hot.PanelBarExpeditionTimeLine_.GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
+                            });
+
                             Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
                             (PanelCellRoleExpedition_) =>
                             {
                                 PanelCellRoleExpedition_.CellExpeditionRoom = PanelCellExpeditionRoom_;
-                                PanelCellRoleExpedition_.Init(
-                                    Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Count,
-                                    PanelCellRoleExpedition_.CellExpeditionRoom.RootGrid.Data.IndexListRole,
-                                    Hot.PanelBarRoleListExpedition_.RoleListExpeditionContent);
+                                PanelCellRoleExpedition_.Init(Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Count,
+                                                              PanelCellRoleExpedition_.CellExpeditionRoom.RootGrid.Data.IndexListRole,
+                                                              Hot.PanelBarRoleListExpedition_.RoleListExpeditionContent);
                                 Hot.PanelBarRoleListExpedition_.ListCellExpeditionRole.Add(PanelCellRoleExpedition_);
 
                                 if (Hot.DataNowCellGameArchive.ListNowPutRole.Count < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count &&
@@ -376,6 +387,10 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                                     }
                                 }
                             });
+                        }
+                        else if (Map[tempY][tempX].OtherRole != null)
+                        {
+
                         }
                     });
                 }
@@ -430,9 +445,12 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
     {
         (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Item.transform.SetParent(ItemRoot[movePos.y][movePos.x], false);
         (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom).Data = (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Data;
-        (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).InitGridByRole(ChoseRoleData.e_RoleName, null, ChoseRoleData.VFlip);
+        (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).
+            InitGridByRole(Hot.ChoseRoleData.e_RoleName, null, Hot.ChoseRoleData.VFlip);
         (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom).
-            InitGridByRole(ChoseRoleData.e_RoleName, ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>(), ChoseRoleData.VFlip);
+            InitGridByRole(Hot.ChoseRoleData.e_RoleName, 
+                           ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>(), 
+                           Hot.ChoseRoleData.VFlip);
         ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>().RootGrid = (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom);
         (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Data = new();
 

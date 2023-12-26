@@ -47,8 +47,9 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
                 Debug.Log("SkipTurn");
                 break;
             case "BtnBackTown":
-                Hot.PanelExpeditionRoom_.Clear();
                 Hot.PanelBarRoleListExpedition_.ClearAndData();
+                Hot.PanelBarExpeditionTimeLine_.Clear();
+                Hot.PanelExpeditionRoom_.Clear();
                 Hot.DataNowCellGameArchive.ClearNowEvent();
                 Hot.PanelExpeditionRoom_.ClearImgStatus();
 

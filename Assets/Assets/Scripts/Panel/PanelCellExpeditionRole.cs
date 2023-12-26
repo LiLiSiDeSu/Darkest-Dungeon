@@ -54,40 +54,36 @@ public class PanelCellExpeditionRole : PanelBaseCell,
 
                     if (Hot.PanelExpeditionRoleDetails_.IndexRole == IndexRoleList)
                     {
-                        Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
+                        Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
                     }
                     else
                     {
-                        Hot.PanelBarRoleListExpedition_.ClickMapRole(IndexRoleList);
+                        Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(IndexRoleList);
                     }
 
                     if (Hot.ChoseCellExpeditionRoom == null)
                     {
                         Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
                         Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
-                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+                        Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
 
                         return;
                     }
                     if (Hot.ChoseCellExpeditionRoom == CellExpeditionRoom)
                     {
-                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                        Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
                         Hot.ChoseCellExpeditionRoom = null;
-                        Hot.PanelExpeditionRoom_.ClearImgStatus();
-                        Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
-                        Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
+                        Hot.PanelExpeditionRoom_.ClearMoveStaus();
 
                         return;
                     }
                     if (Hot.ChoseCellExpeditionRoom != CellExpeditionRoom)
                     {
-                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
-                        Hot.PanelExpeditionRoom_.ClearImgStatus();
-                        Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
-                        Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
+                        Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
+                        Hot.PanelExpeditionRoom_.ClearMoveStaus();
                         Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
                         Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
-                        Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+                        Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
 
                         return;
                     }

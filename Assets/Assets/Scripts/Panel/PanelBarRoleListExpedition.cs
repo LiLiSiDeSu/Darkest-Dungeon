@@ -80,8 +80,13 @@ public class PanelBarRoleListExpedition : PanelBase
         return RoleListExpeditionContent.GetChild(p_Index).GetComponent<PanelCellExpeditionRole>();
     }
 
-    public void ClickMapRole(int p_RoleIndex)
+    public void ClickMapExpeditionRole(int p_RoleIndex)
     {
+        if (p_RoleIndex == -1 && IndexChose == -1)
+        {
+            return;
+        }
+
         if (p_RoleIndex == -1)
         {
             ListCellExpeditionRole[IndexChose].ImgBanner.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
