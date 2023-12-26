@@ -504,6 +504,10 @@ public static class Hot
     public static PanelCellExpeditionMiniMap NowInCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
     public static PanelCellExpeditionRoom ChoseCellExpeditionRoom;
+    public static DataContainer_CellRole ChoseRoleData
+    {
+        get { return DataNowCellGameArchive.ListRole[ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole]; }
+    }
 
     #endregion
 

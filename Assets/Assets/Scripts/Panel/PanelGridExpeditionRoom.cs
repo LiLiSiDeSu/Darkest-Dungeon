@@ -210,7 +210,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
                 Hot.PanelBarRoleListExpedition_.IndexNowPut = -1;
                 Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Clear();
                 Hot.PanelBarRoleListExpedition_.EnableImgStatus();
-                Hot.PanelBarExpeditionTimeLine_.UpdateTimeLine();
+                Hot.PanelBarExpeditionTimeLine_.InitTimeLine();
             }
 
             Hot.PanelBarRoleListExpedition_.IndexNowPut++;

@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 public class PanelCellExpeditionRoom : PanelBaseCellVector2
 {
-    public PanelGridExpeditionRoom RootGrid;
     public Image ImgVFlipCast;
+
+    public PanelGridExpeditionRoom RootGrid;
+    public PanelCellExpeditionTimeLine CellTimeLine;
 
     protected override void Button_OnClick(string controlname)
     {
@@ -21,34 +23,30 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2
                 if (Hot.ChoseCellExpeditionRoom == null)
                 {
                     Hot.ChoseCellExpeditionRoom = this;
-                    GenerateMoveArea();
-                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
-                    Hot.PanelBarRoleListExpedition_.ClickMapRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
+                    Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
+                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
+                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
 
                     return;
                 }
                 if (Hot.ChoseCellExpeditionRoom == this && Hot.UpdateOver)
                 {
-                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
                     Hot.ChoseCellExpeditionRoom = null;
-                    Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
-                    Hot.PanelExpeditionRoom_.ClearImgStatus();
-                    Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
-                    Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
+                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
+                    Hot.PanelExpeditionRoom_.ClearMoveStaus();
 
                     return;
                 }
                 if (Hot.ChoseCellExpeditionRoom != this && Hot.UpdateOver)
                 {
-                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
-                    Hot.PanelExpeditionRoom_.ClearImgStatus();
-                    Hot.PanelExpeditionRoom_.NowRoleMoveStep = 0;
-                    Hot.PanelExpeditionRoom_.NowRoleMoveKey = KeyCode.None;
-                    Hot.PanelBarRoleListExpedition_.ClickMapRole(-1);
+                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
+                    Hot.PanelExpeditionRoom_.ClearMoveStaus();
+                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
                     Hot.ChoseCellExpeditionRoom = this;
-                    Hot.PanelBarRoleListExpedition_.ClickMapRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
-                    GenerateMoveArea();
-                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
+                    Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
+                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
 
                     return;
                 }
@@ -135,6 +133,28 @@ public class PanelCellExpeditionRoom : PanelBaseCellVector2
         {
             ImgVFlipCast.GetComponent<RectTransform>().sizeDelta = new(X * Hot.BodyGrid.X, Y * Hot.BodyGrid.Y);
             ImgVFlipCast.GetComponent<RectTransform>().sizeDelta = new(X * Hot.BodyGrid.X, Y * Hot.BodyGrid.Y);
+        }
+    }
+
+    public void UpdateImgStatus(bool isClear)
+    {
+        if (isClear)
+        {
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+
+            if (CellTimeLine != null)
+            {
+                CellTimeLine.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            }
+        }
+        else
+        {
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+
+            if (CellTimeLine != null)
+            {
+                CellTimeLine.ImgStatus.sprite = Hot.LoadSprite(E_Res.BorderChoosedRed);
+            }
         }
     }
 

@@ -79,6 +79,7 @@ public class PanelOtherSetting : PanelBase
                     Hot.PanelBarRoleList_.Clear();
                     Hot.PanelBarExpedition_.Clear();
                     Hot.PanelBarRoleListExpedition_.ClearNoData();
+                    Hot.PanelBarExpeditionTimeLine_.Clear();
                     Hot.PanelExpeditionRoom_.Clear();
                     Hot.PanelTownShopItem_.ClearAll();
                     Hot.PanelRoleGuildRecruit_.Clear();

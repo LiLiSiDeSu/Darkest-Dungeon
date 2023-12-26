@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +52,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
         }
     }
 
-    public void UpdateTimeLine()
+    public void InitTimeLine()
     {
         List<List<DataContainer_GridExpeditionMap>> Map = Hot.DataNowCellGameArchive.DataNowCellMiniMap.Map;
 
@@ -69,7 +71,8 @@ public class PanelBarExpeditionTimeLine : PanelBase
                     {
                         int Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempiY][tempiX].IndexListRole].NowSpeed;
                         E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[Map[tempiY][tempiX].IndexListRole].e_RoleName;
-                        panel.Init(tempiX, tempiY, e_RoleName, GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
+                        panel.Init(Hot.ExpeditionTimeLineLength - Speed, Hot.PanelExpeditionRoom_.Grids[tempiY][tempiX].Item, 
+                                   GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
                     });
                 }
                 else if (Map[tempiY][tempiX].OtherRole != null)
@@ -79,7 +82,8 @@ public class PanelBarExpeditionTimeLine : PanelBase
                     {
                         int Speed = Map[tempiY][tempiX].OtherRole.NowSpeed;
                         E_RoleName e_RoleName = Map[tempiY][tempiX].OtherRole.e_RoleName;
-                        panel.Init(tempiX, tempiY, e_RoleName, GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
+                        panel.Init(Hot.ExpeditionTimeLineLength - Speed, Hot.PanelExpeditionRoom_.Grids[tempiY][tempiX].Item,
+                                   GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
                     });
                 }
             }
@@ -88,6 +92,14 @@ public class PanelBarExpeditionTimeLine : PanelBase
 
     public void Clear()
     {
-
+        int Count0 = ExpeditionTimeLineContent.childCount;
+        for (int i1 = 0; i1 < Count0; i1++)
+        {
+            int Count1 = ExpeditionTimeLineContent.GetChild(i1).FindSonSonSon("ContentStepContent").childCount;
+            for (int i2 = 0; i2 < Count1; i2++)
+            {
+                Destroy(ExpeditionTimeLineContent.GetChild(i1).FindSonSonSon("ContentStepContent").GetChild(i2).gameObject);
+            }
+        }
     }
 }
