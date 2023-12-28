@@ -27,9 +27,19 @@ public class PanelBarExpeditionTimeLine : PanelBase
             }
         });
 
+        //¹ý»ØºÏ
+        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        (key) =>
+        {
+            if (key == KeyCode.Space && Hot.PoolNowPanel_.ContainPanel("PanelBarExpeditionTimeLine"))
+            {
+                NextTurn();
+            }
+        });
+
         ExpeditionTimeLineContent = transform.FindSonSonSon("ExpeditionTimeLineContent");
 
-        Init();
+        InitContentStepScrollView();
     }
 
     public Transform GetContentStepContent(int p_Index)
@@ -37,7 +47,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
         return ExpeditionTimeLineContent.GetChild(p_Index).FindSonSonSon("ContentStepContent");
     }
 
-    public void Init()
+    public void InitContentStepScrollView()
     {
         for (int i = 0; i < Hot.ExpeditionTimeLineLength; i++)
         {
@@ -51,7 +61,6 @@ public class PanelBarExpeditionTimeLine : PanelBase
             });
         }
     }
-
     public void InitTimeLine()
     {
         List<List<DataContainer_GridExpeditionMap>> Map = Hot.DataNowCellGameArchive.DataNowCellMiniMap.Map;
@@ -64,42 +73,57 @@ public class PanelBarExpeditionTimeLine : PanelBase
             {
                 int tempiX = iX;
 
-                if (Map[tempiY][tempiX].IndexListRole != -1)
+                if (Map[tempiY][tempiX].IndexListRole != -1 || Map[tempiY][tempiX].OtherRole != null)
                 {
                     Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
                     (panel) =>
                     {
-                        int Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempiY][tempiX].IndexListRole].NowSpeed;
-                        E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[Map[tempiY][tempiX].IndexListRole].e_RoleName;
-                        panel.Init(Hot.ExpeditionTimeLineLength - Speed, Hot.PanelExpeditionRoom_.Grids[tempiY][tempiX].Item, 
-                                   GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
-                    });
-                }
-                else if (Map[tempiY][tempiX].OtherRole != null)
-                {
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
-                    (panel) =>
-                    {
-                        int Speed = Map[tempiY][tempiX].OtherRole.NowSpeed;
-                        E_RoleName e_RoleName = Map[tempiY][tempiX].OtherRole.e_RoleName;
-                        panel.Init(Hot.ExpeditionTimeLineLength - Speed, Hot.PanelExpeditionRoom_.Grids[tempiY][tempiX].Item,
-                                   GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
+                        int Speed = -1;
+
+                        if (Map[tempiY][tempiX].IndexListRole != -1)
+                        {
+                            Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempiY][tempiX].IndexListRole].NowSpeed;
+                        }
+                        else if (Map[tempiY][tempiX].OtherRole != null)
+                        {
+                            Speed = Map[tempiY][tempiX].OtherRole.NowSpeed;
+                        }
+
+                        panel.Init(Speed, Hot.PanelExpeditionRoom_.Grids[tempiY][tempiX].Item);
                     });
                 }
             }
         }
     }
-
     public void Clear()
     {
         int Count0 = ExpeditionTimeLineContent.childCount;
+
         for (int i1 = 0; i1 < Count0; i1++)
         {
-            int Count1 = ExpeditionTimeLineContent.GetChild(i1).FindSonSonSon("ContentStepContent").childCount;
+            int Count1 = GetContentStepContent(i1).childCount;
+
             for (int i2 = 0; i2 < Count1; i2++)
             {
-                Destroy(ExpeditionTimeLineContent.GetChild(i1).FindSonSonSon("ContentStepContent").GetChild(i2).gameObject);
+                Destroy(GetContentStepContent(i1).GetChild(i2).gameObject);
             }
         }
+    }
+
+    public void NextTurn()
+    {
+        int Count0 = ExpeditionTimeLineContent.childCount;
+
+        for (int i1 = 0; i1 < Count0; i1++)
+        {
+            int Count1 = GetContentStepContent(i1).childCount;
+
+            for (int i2 = 0; i2 < Count1; i2++)
+            {
+                GetContentStepContent(i1).GetChild(0).GetComponent<PanelCellExpeditionTimeLine>().NextTurn();
+            }
+        }
+
+        Hot.Data_.Save();
     }
 }

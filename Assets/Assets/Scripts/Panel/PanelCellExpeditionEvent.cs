@@ -67,9 +67,4 @@ public class PanelCellExpeditionEvent : PanelBaseCell
         ImgBorderExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "BorderExpedition" + data.e_dungeonSize + "Level" + data.e_dungeonLevel);
         ImgExpeditionEvent.sprite = Hot.MgrRes_.Load<Sprite>("Art/ExpeditionEvent" + data.e_ExpeditionEvent);
     }
-
-    public DataContainer_CellExpeditionMiniMap GetDataCellExpeditionMiniMap(int p_x, int p_y)
-    {
-        return Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[p_y][p_x];
-    }
 }

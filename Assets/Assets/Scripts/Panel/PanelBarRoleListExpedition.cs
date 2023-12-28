@@ -37,6 +37,7 @@ public class PanelBarRoleListExpedition : PanelBase
     public void Init()
     {
         ListNeedPutRoleIndex = new();
+
         for (int i = 0; i < Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count; i++)
         {
             ListNeedPutRoleIndex.Add(Hot.DataNowCellGameArchive.ListExpeditionRoleIndex[i]);
@@ -135,6 +136,7 @@ public class PanelBarRoleListExpedition : PanelBase
         {
             if (item.CellExpeditionRoom != null)
             {
+                Hot.DataNowCellGameArchive.ListRole[item.CellExpeditionRoom.RootGrid.Data.IndexListRole].ReSetExpeditionData();
                 item.CellExpeditionRoom.RootGrid.Data.IndexListRole = -1;
             }
 
@@ -144,6 +146,8 @@ public class PanelBarRoleListExpedition : PanelBase
         IndexNowPut = -1;
         ListNeedPutRoleIndex.Clear();
         ListCellExpeditionRole.Clear();
+
+        Hot.Data_.Save();
     }
 
     public void Sort()
