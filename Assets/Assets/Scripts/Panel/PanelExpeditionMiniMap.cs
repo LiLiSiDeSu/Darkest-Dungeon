@@ -77,7 +77,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
                     (panel) =>
                     {
                         E_CellMiniMap e_CellMiniMap = DataNowExpeditionEvent.ListCellMiniMap[tempY][tempX].e_CellMiniMap;
-                        panel.Init(Grids[tempY][tempX], e_CellMiniMap);
+                        panel.Init(Grids[tempY][tempX] as PanelGridExpeditionMiniMap);
 
                         for (int jY = 0; jY < Hot.BodyDicCellMiniMap[e_CellMiniMap].Y; jY++)
                         {

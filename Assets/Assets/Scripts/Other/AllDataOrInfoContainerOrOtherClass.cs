@@ -114,15 +114,17 @@ public class DataContainer_CellGameArchive
     public int NowEventIndex = -1;
     public my_VectorInt2 NowCellMiniMapPos = new();
     [JsonIgnore]
-    public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => 
-        DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
+    public DataContainer_CellExpeditionMiniMap DataNowCellMiniMap => DataNowEvent.ListCellMiniMap[NowCellMiniMapPos.Y][NowCellMiniMapPos.X];
     [JsonIgnore]
     public DataContainer_ExpeditionMiniMap DataNowEvent => ExpeditionPrepare[e_NowExpeditionLocation][NowEventIndex];
+    public DataContainer_CellExpeditionMiniMap GetDataNowCellMiniMap(int p_Y, int p_X)
+    {
+        return DataNowEvent.ListCellMiniMap[p_Y][p_X];
+    }
     public DataContainer_ExpeditionMiniMap GetDataNowEvent(E_ExpeditionLocation p_e_NowExpeditionLocation, int p_NowEventIndex)
     {
         return ExpeditionPrepare[p_e_NowExpeditionLocation][p_NowEventIndex];
     }
-
 
     public DataContainer_ResTable ResTable = new();    
     public List<DataContainer_CellTownStore> ListStore = new();        
@@ -172,6 +174,8 @@ public class DataContainer_CellRole
     public int NowSpeed = 0;
     public int NowAction = 0;
 
+    public int NowTimeLinePos = -1;
+
     public int MaxHp = 0;
     public int MaxSanity = 0;
     public int MaxLevel = 0;
@@ -210,12 +214,7 @@ public class DataContainer_CellRole
     }
     public DataContainer_CellRole
     (E_RoleName p_e_RoleName,
-     string p_Name,
-     int p_NowHp,
-     int p_NowSanity,
-     int p_NowLevel,
-     int p_NowExperience,
-     int p_NowAction)
+     string p_Name, int p_NowHp, int p_NowSanity, int p_NowLevel, int p_NowExperience, int p_NowAction)
     {
         e_RoleName = p_e_RoleName;
         NowHp = p_NowHp;
@@ -241,6 +240,12 @@ public class DataContainer_CellRole
                 ListItem[Y].Add(new());
             }
         }
+    }
+
+    public void ReSetExpeditionData()
+    {
+        VFlip = 1;
+        NowTimeLinePos = -1;
     }
 }
 

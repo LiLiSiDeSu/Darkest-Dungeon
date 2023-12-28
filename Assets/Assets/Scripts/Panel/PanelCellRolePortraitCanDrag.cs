@@ -106,8 +106,8 @@ public class PanelCellRolePortraitCanDrag : PanelBaseDrag,
                     beReplace.RectRolePortraitCanDrag.sizeDelta = new(80, 80);
                     beReplace.transform.SetParent(beReplace.Role.RootPortrait, false);
                     beReplace.transform.localPosition = Vector3.zero;
-                    beReplace.Role.ChangeRoleStatus();
                     Hot.DataNowCellGameArchive.ListRole[beReplace.Role.Index].IndexExpeditionRoot = -1;
+                    beReplace.Role.ChangeRoleStatus();
                 }
                 //´ÓRoleListÍÏµ½¿ÕµÄExpeditionRolePrepareRoot
                 else

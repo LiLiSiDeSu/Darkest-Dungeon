@@ -49,11 +49,9 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 if (Hot.ChoseRoleData.VFlip == 1)
                 {
                     Hot.ChoseCellExpeditionRoom.transform.SetParent(ItemRoot[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1], false);
-                    (Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom).Data = 
-                        (Grids[Y][X] as PanelGridExpeditionRoom).Data;
+                    (Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom).Data = (Grids[Y][X] as PanelGridExpeditionRoom).Data;
                     (Grids[Y][X] as PanelGridExpeditionRoom).Data = new();
-                    Hot.ChoseCellExpeditionRoom.RootGrid = 
-                        Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom;
+                    Hot.ChoseCellExpeditionRoom.RootGrid = Grids[Y][X + Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1] as PanelGridExpeditionRoom;
                     Hot.ChoseCellExpeditionRoom.transform.localRotation = new(0, 180, 0, 0);
                     Hot.ChoseCellExpeditionRoom.transform.localPosition = new Vector3(20, 20);
                     Hot.ChoseCellExpeditionRoom.ImgItem.raycastTarget = false;
@@ -70,11 +68,9 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 else
                 {
                     Hot.ChoseCellExpeditionRoom.transform.SetParent(ItemRoot[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)], false);
-                    (Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom).Data = 
-                        (Grids[Y][X] as PanelGridExpeditionRoom).Data;
+                    (Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom).Data = (Grids[Y][X] as PanelGridExpeditionRoom).Data;
                     (Grids[Y][X] as PanelGridExpeditionRoom).Data = new();
-                    Hot.ChoseCellExpeditionRoom.RootGrid = 
-                        Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom;
+                    Hot.ChoseCellExpeditionRoom.RootGrid = Grids[Y][X - (Hot.DicRoleConfig[e_RoleName].SizeBody.X - 1)] as PanelGridExpeditionRoom;
                     Hot.ChoseCellExpeditionRoom.transform.localRotation = Quaternion.identity;
                     Hot.ChoseCellExpeditionRoom.transform.localPosition = new(-20, 20);
                     Hot.ChoseCellExpeditionRoom.ImgItem.raycastTarget = true;
@@ -317,6 +313,8 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
     public void LoadDataMap(int p_x, int p_y, bool isCreateByChooseGameArchive)
     {
+        Clear();
+
         List<List<DataContainer_GridExpeditionMap>> Map = Hot.DataNowCellGameArchive.DataNowEvent.ListCellMiniMap[p_y][p_x].Map;
 
         for (int Y = 0; Y < Map.Count; Y++)
@@ -339,10 +337,18 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                             Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
                             (panel) =>
                             {
-                                int Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].NowSpeed;
-                                E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].e_RoleName;
-                                panel.Init(Hot.ExpeditionTimeLineLength - Speed, PanelCellExpeditionRoom_,
-                                           Hot.PanelBarExpeditionTimeLine_.GetContentStepContent(Hot.ExpeditionTimeLineLength - Speed));
+                                int Speed = -1;
+                                
+                                if (isCreateByChooseGameArchive)
+                                {
+                                    Speed = Hot.ExpeditionTimeLineLength - Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].NowTimeLinePos;
+                                }
+                                else
+                                {
+                                    Speed = Hot.DataNowCellGameArchive.ListRole[Map[tempY][tempX].IndexListRole].NowSpeed;
+                                }
+
+                                panel.Init(Speed, PanelCellExpeditionRoom_);
                             });
 
                             Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
@@ -445,12 +451,10 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
     {
         (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Item.transform.SetParent(ItemRoot[movePos.y][movePos.x], false);
         (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom).Data = (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Data;
-        (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).
-            InitGridByRole(Hot.ChoseRoleData.e_RoleName, null, Hot.ChoseRoleData.VFlip);
-        (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom).
-            InitGridByRole(Hot.ChoseRoleData.e_RoleName, 
-                           ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>(), 
-                           Hot.ChoseRoleData.VFlip);
+        (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).InitGridByRole(Hot.ChoseRoleData.e_RoleName, null, Hot.ChoseRoleData.VFlip);
+        (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom).InitGridByRole(Hot.ChoseRoleData.e_RoleName, 
+                                                                                ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>(), 
+                                                                                Hot.ChoseRoleData.VFlip);
         ItemRoot[movePos.y][movePos.x].GetComponentInChildren<PanelCellExpeditionRoom>().RootGrid = (Grids[movePos.y][movePos.x] as PanelGridExpeditionRoom);
         (Grids[sourecPos.y][sourecPos.x] as PanelGridExpeditionRoom).Data = new();
 

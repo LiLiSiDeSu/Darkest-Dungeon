@@ -1,12 +1,28 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelCellExpeditionTimeLine : PanelBaseCell
+public class PanelCellExpeditionTimeLine : PanelBase
 {
     public Image ImgStatus;
     public Image ImgRolePortrait;
 
     public PanelCellExpeditionRoom CellExpeditionRoom;
+
+    public DataContainer_CellRole Data
+    {
+        get
+        {
+            if (CellExpeditionRoom.RootGrid.Data.IndexListRole != -1)
+            {
+                return Hot.DataNowCellGameArchive.ListRole[CellExpeditionRoom.RootGrid.Data.IndexListRole];
+            }
+            else
+            {
+                return CellExpeditionRoom.RootGrid.Data.OtherRole;
+            }
+        }
+    }
 
     protected override void Awake()
     {
@@ -57,25 +73,29 @@ public class PanelCellExpeditionTimeLine : PanelBaseCell
         }
     }
 
-    public void Init(int p_Index, PanelCellExpeditionRoom p_CellExpeditionRoom, Transform p_Fahter)
+    public void Init(int p_Speed, PanelCellExpeditionRoom p_CellExpeditionRoom)
     {
-        Index = p_Index;
+        int NowTimeLinePos = Hot.ExpeditionTimeLineLength - p_Speed;
 
         CellExpeditionRoom = p_CellExpeditionRoom;
         CellExpeditionRoom.CellTimeLine = this;
 
-        transform.SetParent(p_Fahter, false);
+        Data.NowTimeLinePos = NowTimeLinePos;
+        ImgRolePortrait.sprite = Hot.LoadSprite("Portrait" + Data.e_RoleName.ToString());
+        transform.SetParent(Hot.PanelBarExpeditionTimeLine_.GetContentStepContent(NowTimeLinePos), false);
 
-        if (p_CellExpeditionRoom.RootGrid.Data.IndexListRole != -1)
+        Hot.Data_.Save();
+    }
+
+    public void NextTurn()
+    {
+        Data.NowTimeLinePos -= Data.NowSpeed;
+
+        if (Data.NowTimeLinePos < 0)
         {
-            E_RoleName e_RoleName = Hot.DataNowCellGameArchive.ListRole[p_CellExpeditionRoom.RootGrid.Data.IndexListRole].e_RoleName;
-            ImgRolePortrait.sprite = Hot.LoadSprite("Portrait" + e_RoleName.ToString());
+            Data.NowTimeLinePos = 0;
         }
-        else
-        {
-            E_RoleName e_RoleName = p_CellExpeditionRoom.RootGrid.Data.OtherRole.e_RoleName;
-            ImgRolePortrait.sprite = Hot.LoadSprite("Portrait" + e_RoleName.ToString());
-        }
-        
+
+        transform.SetParent(Hot.PanelBarExpeditionTimeLine_.GetContentStepContent(Data.NowTimeLinePos), false);
     }
 }

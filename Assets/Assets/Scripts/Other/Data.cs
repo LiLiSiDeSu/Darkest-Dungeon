@@ -34,9 +34,9 @@ public class Data : InstanceBaseAuto_Mono<Data>
     /// 保存指定存档
     /// </summary>
     /// <param name="index">要被保存的存档的Index</param>
-    public async void Save(int index)
+    public void Save(int index)
     {
-        await Task.Run(() => 
+        Task.Run(() => 
         { 
             MgrJson.GetInstance().Save(DataListCellGameArchive[index], "/GameArchiveData", PathGameArchiveData + index); 
         });
