@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PanelOtherStart : PanelBase
@@ -11,7 +7,7 @@ public class PanelOtherStart : PanelBase
         base.Awake();
 
         transform.FindSonSonSon("ImgStart").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
-        transform.FindSonSonSon("ImgMapEditor").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
+        transform.FindSonSonSon("ImgEditorMap").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)
@@ -25,8 +21,11 @@ public class PanelOtherStart : PanelBase
                 Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, "PanelGameArchiveChoose");
                 Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;
                 break;
-            case "BtnMapEditor":
-                Hot.MgrUI_.ShowPanel<PanelOtherMiniMapEditor>(true, "PanelOtherMiniMapEditor");
+            case "BtnEditorMap":
+                Hot.MgrUI_.ShowPanel<PanelOtherEditorMiniMap>(true, "PanelOtherEditorMiniMap");
+                break;
+            case "BtnEditorRoleConfig":
+                Hot.MgrUI_.ShowPanel<PanelOtherEditorRoleConfig>(true, "PanelOtherEditorRoleConfig");
                 break;
         }
     }

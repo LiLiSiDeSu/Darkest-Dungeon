@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using UnityEngine;
+﻿using System.Security.Policy;
 
 public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {
@@ -18,9 +17,6 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherSetting>
             (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
-
-        Hot.MgrUI_.CreatePanelAndPush<PanelOtherRoomEditor>
-            (true, "/PanelOtherRoomEditor", true, false, "PanelOtherRoomEditor");
 
         #endregion
 
@@ -70,6 +66,19 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         #endregion
 
+        #region Editor
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorMiniMap>
+            (true, "/PanelOtherEditorMiniMap", true, false, "PanelOtherEditorMiniMap");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorRoom>
+            (true, "/PanelOtherEditorRoom", true, false, "PanelOtherEditorRoom");
+
+        Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorRoleConfig>
+            (true, "/PanelOtherEditorRoleConfig", true, false, "PanelOtherEditorRoleConfig");
+
+        #endregion
+
         #region Expedition
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrepare>
@@ -77,9 +86,6 @@ public class StartUI : InstanceBaseAuto_Mono<StartUI>
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMiniMap>
             (true, "/PanelExpeditionMiniMap", true, false, "PanelExpeditionMiniMap");
-
-        Hot.MgrUI_.CreatePanelAndPush<PanelOtherMiniMapEditor>
-            (true, "/PanelOtherMiniMapEditor", true, false, "PanelOtherMiniMapEditor");
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionRoom>
             (true, "/PanelExpeditionRoom", true, false, "PanelExpeditionRoom");

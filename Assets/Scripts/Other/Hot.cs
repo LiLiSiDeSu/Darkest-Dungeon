@@ -302,17 +302,9 @@ public static class Hot
     {
         get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
     }
-    public static PanelOtherMiniMapEditor PanelOtherMiniMapEditor_
-    {
-        get { return MgrUI_.GetPanel<PanelOtherMiniMapEditor>("PanelOtherMiniMapEditor"); }
-    }
     public static PanelOtherSetting PanelOtherSetting_
     {
         get { return MgrUI_.GetPanel<PanelOtherSetting>("PanelOtherSetting"); }
-    }
-    public static PanelOtherRoomEditor PanelOtherRoomEditor_
-    {
-        get { return MgrUI_.GetPanel<PanelOtherRoomEditor>("PanelOtherRoomEditor"); }
     }
 
     #endregion
@@ -352,9 +344,7 @@ public static class Hot
     #endregion
 
     #region Town    
-    /// <summary>
-    /// 所有城镇箱子面板
-    /// </summary>
+
     public static PanelBarTownStore PanelBarTownStore_
     {
         get { return MgrUI_.GetPanel<PanelBarTownStore>("PanelBarTownStore"); }
@@ -426,6 +416,23 @@ public static class Hot
     public static PanelRoomSurvivorMaster PanelRoomSurvivorMaster_
     {
         get { return MgrUI_.GetPanel<PanelRoomSurvivorMaster>("PanelRoomSurvivorMaster"); }
+    }
+
+    #endregion
+
+    #region Editor
+
+    public static PanelOtherEditorRoom PanelOtherEditorRoom_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherEditorRoom>("PanelOtherEditorRoom"); }
+    }
+    public static PanelOtherEditorMiniMap PanelOtherEditorMiniMap_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherEditorMiniMap>("PanelOtherEditorMiniMap"); }
+    }
+    public static PanelOtherEditorRoleConfig PanelOtherEditorRoleConfig_
+    {
+        get { return MgrUI_.GetPanel<PanelOtherEditorRoleConfig>("PanelOtherEditorRoleConfig"); }
     }
 
     #endregion

@@ -1,12 +1,9 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelGridRoomEditor>
+public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelGridRoomEditor>
 {
     public Image ImgCurrentChoose;
 
@@ -26,7 +23,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
 
         ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelOtherRoomEditor",
+        Hot.CenterEvent_.AddEventListener("Esc" + "PanelOtherEditorRoom",
         () =>
         {
             Hot.NowEditorDependency = null;
@@ -35,14 +32,14 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
             Hot.NowEnterCellRoomEditor = null;
             ImgCurrentChoose.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
             Hot.e_ChoseObj = E_MapObject.None;
-            Hot.PanelOtherRoomEditor_.ClearImgStatus();
-            Hot.PanelOtherRoomEditor_.ClearItem();
+            Hot.PanelOtherEditorRoom_.ClearImgStatus();
+            Hot.PanelOtherEditorRoom_.ClearItem();
         });
 
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
                 Hot.NowEnterGridRoomEditor.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
@@ -51,7 +48,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(true);
             }
@@ -60,7 +57,7 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherRoomEditor") && key == KeyCode.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.Mouse1)
             {
                 if (Hot.ChoseCellRoomEditor != null)
                 {
@@ -78,10 +75,12 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
                     {
                         for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.NowEnterCellRoomEditor.e_Obj].X; i2++)
                         {
-                            Hot.NowEditorDependency.Map[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
-                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].Item = null;
-                            Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1][Hot.NowEnterCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
-                                Hot.LoadSprite(E_Res.ImgEmpty);
+                            Hot.NowEditorDependency.Map[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1]
+                                                       [Hot.NowEnterCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
+                            Hot.PanelOtherEditorRoom_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1]
+                                                           [Hot.NowEnterCellRoomEditor.RootGrid.X + i2].Item = null;
+                            Hot.PanelOtherEditorRoom_.Grids[Hot.NowEnterCellRoomEditor.RootGrid.Y + i1]
+                                                           [Hot.NowEnterCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                         }
                     }
 
@@ -98,14 +97,14 @@ public class PanelOtherRoomEditor : PanelBaseVector2<PanelCellRoomEditor, PanelG
                         {
                             for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
                             {
-                                Hot.PanelOtherRoomEditor_.Grids[Hot.NowEnterGridRoomEditor.Y + i1][Hot.NowEnterGridRoomEditor.X + i2].ImgStatus.sprite =
+                                Hot.PanelOtherEditorRoom_.Grids[Hot.NowEnterGridRoomEditor.Y + i1][Hot.NowEnterGridRoomEditor.X + i2].ImgStatus.sprite =
                                     Hot.LoadSprite(E_Res.ImgEmpty);
                             }
                         }
                     }
 
                     Hot.e_ChoseObj = E_MapObject.None;
-                    Hot.PanelOtherRoomEditor_.ImgCurrentChoose.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                    Hot.PanelOtherEditorRoom_.ImgCurrentChoose.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                 }
             }
         });

@@ -29,9 +29,7 @@ public class PanelBase : MonoBehaviour
 
         for (int i = 0; i < controls.Length; i++)
         {
-            //这里的name不声明在for外面是为了避免下面注册监听事件时调用的OnClick传入的参数不为最后一次给name赋值的值(闭包)
             string name = controls[i].gameObject.name;
-            //------------------------------------------------------------------------------------------------- !!!
 
             if (controls[i] is Button)
             {
@@ -74,11 +72,6 @@ public class PanelBase : MonoBehaviour
             }
         }
     }
-
-    //----------------------------------------------------------------------------------------------
-    //                       || 用于事件监听里面调用的函数 ||                 
-    //                       || 只要在子类重写逻辑就行     ||           ☟
-    //                       || 也可以自己添加            ||
 
     #region Button
 

@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 3790536071946492883}
   - component: {fileID: 5488347009914725801}
   m_Layer: 5
-  m_Name: PanelOtherRoomEditor
+  m_Name: PanelOtherEditorRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -88,8 +88,6 @@ public enum E_PanelCellTownStore
 
 public enum E_Skill
 {
-    None,
-
     SkillForwardUpCut,
     SkillForwardDownCut,
 }

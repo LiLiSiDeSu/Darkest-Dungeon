@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
 {
@@ -51,6 +50,8 @@ public class PanelGridTownItem : PanelBaseGrid<PanelCellItem>
                 ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
             }
         });
+
+        ImgBk.alphaHitTestMinimumThreshold = 0.2f;
     }
 
     protected override void Button_OnClick(string controlname)

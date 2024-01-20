@@ -38,7 +38,7 @@ public class PanelCellRoomEditor : PanelBaseCellVector2,
                     Hot.ChoseCellRoomEditor = this;
                     ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
 
-                    Hot.PanelOtherRoomEditor_.ChangeCurrentChoose(e_Obj);
+                    Hot.PanelOtherEditorRoom_.ChangeCurrentChoose(e_Obj);
 
                     return;
                 }
@@ -57,7 +57,7 @@ public class PanelCellRoomEditor : PanelBaseCellVector2,
                     Hot.ChoseCellRoomEditor = this;
                     ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
 
-                    Hot.PanelOtherRoomEditor_.ChangeCurrentChoose(e_Obj);
+                    Hot.PanelOtherEditorRoom_.ChangeCurrentChoose(e_Obj);
                 }
                 break;
         }
@@ -68,7 +68,7 @@ public class PanelCellRoomEditor : PanelBaseCellVector2,
         e_Obj = p_e_Obj;
         RootGrid = p_rootGrid;
 
-        transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[RootGrid.Y][RootGrid.X], false);
+        transform.SetParent(Hot.PanelOtherEditorRoom_.ItemRoot[RootGrid.Y][RootGrid.X], false);
         transform.localPosition = new(-20, 20);
 
         ImgItem.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + p_e_Obj);

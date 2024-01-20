@@ -12,21 +12,10 @@ using UnityEngine.UI;
 
 public class Test1 : MonoBehaviour
 {
-    public async void TaskTest()
-    {
-        await Task.Run(() =>
-        {
-            Thread.Sleep(2000);
-            Debug.Log("cao1");
-        });
-
-        Debug.Log("cao2");
-    }
-
     private void Awake()
     {
-        TaskTest();
-
-        Debug.Log("cao3");
+        int[] c = new int[] { 1, 2, 3, 4};
+        int[] b = c;
+        c = null;
     }
 }

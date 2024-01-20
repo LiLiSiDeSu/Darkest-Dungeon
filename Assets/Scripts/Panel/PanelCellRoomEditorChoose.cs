@@ -24,7 +24,7 @@ public class PanelCellRoomEditorChoose : PanelBase
         switch (controlname)
         {
             case "BtnChoose":
-                Hot.PanelOtherRoomEditor_.ChangeCurrentChoose(e_MapObject);
+                Hot.PanelOtherEditorRoom_.ChangeCurrentChoose(e_MapObject);
                 if (Hot.ChoseCellRoomEditor != null)
                 {
                     Hot.ChoseCellRoomEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");

@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
 {
     protected override void Awake()
@@ -20,7 +15,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                 {
                     for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
                     {
-                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
+                        Hot.PanelOtherEditorRoom_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
                     }
                 }
             }
@@ -40,7 +35,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                 {
                     for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
                     {
-                        Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+                        Hot.PanelOtherEditorRoom_.Grids[Y + i1][X + i2].ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                     }
                 }
             }
@@ -73,7 +68,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                                 for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.e_ChoseObj].X; i2++)
                                 {
                                     Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.e_ChoseObj;
-                                    Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].Item = panel;
+                                    Hot.PanelOtherEditorRoom_.Grids[Y + i1][X + i2].Item = panel;
                                 }
                             }
                         });
@@ -88,15 +83,15 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                             for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].X; i2++)
                             {
                                 Hot.NowEditorDependency.Map[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].e_Obj = E_MapObject.None;
-                                Hot.PanelOtherRoomEditor_.
+                                Hot.PanelOtherEditorRoom_.
                                     Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].Item = null;
-                                Hot.PanelOtherRoomEditor_.Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
+                                Hot.PanelOtherEditorRoom_.Grids[Hot.ChoseCellRoomEditor.RootGrid.Y + i1][Hot.ChoseCellRoomEditor.RootGrid.X + i2].ImgStatus.sprite =
                                     Hot.LoadSprite(E_Res.ImgEmpty);
                             }
                         }
 
                         Hot.ChoseCellRoomEditor.RootGrid = this;
-                        Hot.ChoseCellRoomEditor.transform.SetParent(Hot.PanelOtherRoomEditor_.ItemRoot[Y][X], false);
+                        Hot.ChoseCellRoomEditor.transform.SetParent(Hot.PanelOtherEditorRoom_.ItemRoot[Y][X], false);
                         Hot.ChoseCellRoomEditor.transform.localPosition = new(-20, 20);
                         Hot.NowEditorDependency.Map[Hot.ChoseCellRoomEditor.RootGrid.Y][Hot.ChoseCellRoomEditor.RootGrid.X].IsHave = true;
 
@@ -105,7 +100,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                             for (int i2 = 0; i2 < Hot.BodyDicMapObject[Hot.ChoseCellRoomEditor.e_Obj].X; i2++)
                             {
                                 Hot.NowEditorDependency.Map[Y + i1][X + i2].e_Obj = Hot.ChoseCellRoomEditor.e_Obj;
-                                Hot.PanelOtherRoomEditor_.Grids[Y + i1][X + i2].Item = Hot.ChoseCellRoomEditor;
+                                Hot.PanelOtherEditorRoom_.Grids[Y + i1][X + i2].Item = Hot.ChoseCellRoomEditor;
                             }
                         }
                     }

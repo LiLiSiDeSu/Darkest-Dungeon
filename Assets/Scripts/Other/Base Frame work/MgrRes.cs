@@ -27,6 +27,15 @@ public class MgrRes : InstanceBaseAuto_Mono<MgrRes>
         }
     }
 
+    public Sprite LoadSprite(E_Res p_e_name)
+    {
+        return Load<Sprite>("Art/" + p_e_name);
+    }
+    public Sprite LoadSprite(string p_name)
+    {
+        return Load<Sprite>("Art/" + p_name);
+    }
+
     public void LoadAsync<T>(string path, UnityAction<T> callback) where T : Object
     {
         StartCoroutine(ReallyLoadAsync(path, callback));
