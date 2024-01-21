@@ -40,7 +40,7 @@ public class PanelCellRole : PanelBaseCellRole,
         RootSanityValueBar = transform.FindSonSonSon("RootSanityValueBar");
     }
 
-    #region EventSystem接口实现
+    #region EventSystem锟接匡拷实锟斤拷
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -96,7 +96,7 @@ public class PanelCellRole : PanelBaseCellRole,
     {
         if (Data.IndexExpeditionRoot == -1)
         {
-            Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>(false, "/PanelCellRolePortraitCanDrag",
+            Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>(false, E_PanelName.PanelCellRolePortraitCanDrag,
             (panel) =>
             {
                 RolePortraitCanDrag = panel;
@@ -122,8 +122,8 @@ public class PanelCellRole : PanelBaseCellRole,
     }
 
     /// <summary>
-    /// 改变RootSanityValueBar下的ImgCellSanity的数量
-    /// 记住一定要在UpdateSanityInfo前调用
+    /// 锟侥憋拷RootSanityValueBar锟铰碉拷ImgCellSanity锟斤拷锟斤拷锟斤拷
+    /// 锟斤拷住一锟斤拷要锟斤拷UpdateSanityInfo前锟斤拷锟斤拷
     /// </summary>
     public void ChangeSanityExplosionLimit()
     {
@@ -212,7 +212,7 @@ public class PanelCellRole : PanelBaseCellRole,
 
     public void UpdateLevelInfo()
     {
-        //等级的底图改变逻辑
+        //锟饺硷拷锟侥碉拷图锟侥憋拷锟竭硷拷
 
         TxtRoleLevel.text = Data.NowLevel.ToString();
     }

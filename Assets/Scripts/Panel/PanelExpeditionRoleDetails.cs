@@ -62,7 +62,7 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
                 Hot.NowInCellExpeditionMiniMap = null;
 
                 Hot.MgrUI_.HideAllPanel();
-                Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+                Hot.MgrUI_.ShowPanel<PanelTown>(false, E_PanelName.PanelTown);
 
                 Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
 
@@ -84,7 +84,7 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
         {
             E_Skill tempe_Skill = e_Skill;
 
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoleSkill>(false, "/PanelCellExpeditionRoleSkill",
+            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoleSkill>(false, E_PanelName.PanelCellExpeditionRoleSkill,
             (panel) =>
             {
                 panel.Init(tempe_Skill, SkillContent);

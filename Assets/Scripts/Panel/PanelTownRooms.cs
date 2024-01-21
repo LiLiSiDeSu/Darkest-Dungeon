@@ -15,7 +15,8 @@ public class PanelTownRooms : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelTownRooms",
+        Hot.CenterEvent_.AddEventListener
+        ("Esc" + "PanelTownRooms",
         () =>
         {
             if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.TownShopItem)
@@ -30,6 +31,7 @@ public class PanelTownRooms : PanelBase
         PanelRoomRoot = transform.FindSonSonSon("PanelRoomRoot");
 
         Button[] btns = transform.FindSonSonSon("BtnRoomRoot").GetComponentsInChildren<Button>();
+
         foreach (Button btn in btns)
         {
             DicBtnPos.Add(btn.gameObject.name, btn.transform.localPosition);
@@ -52,56 +54,64 @@ public class PanelTownRooms : PanelBase
         switch (controlname)
         {
             case "BtnRoomGuild":
-                Hot.MgrUI_.ShowPanel<PanelRoomGuild>(false, "PanelRoomGuild",
+                Hot.MgrUI_.ShowPanel<PanelRoomGuild>
+                (false, E_PanelName.PanelRoomGuild,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomGraveyard":
-                Hot.MgrUI_.ShowPanel<PanelRoomGraveyard>(false, "PanelRoomGraveyard",
+                Hot.MgrUI_.ShowPanel<PanelRoomGraveyard>
+                (false, E_PanelName.PanelRoomGraveyard,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomTownShop":
-                Hot.MgrUI_.ShowPanel<PanelRoomTownShop>(false, "PanelRoomTownShop",
+                Hot.MgrUI_.ShowPanel<PanelRoomTownShop>
+                (false, E_PanelName.PanelRoomTownShop,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomSmithy":
-                Hot.MgrUI_.ShowPanel<PanelRoomSmithy>(false, "PanelRoomSmithy",
+                Hot.MgrUI_.ShowPanel<PanelRoomSmithy>
+                (false, E_PanelName.PanelRoomSmithy,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomTavern":
-                Hot.MgrUI_.ShowPanel<PanelRoomTavern>(false, "PanelRoomTavern",
+                Hot.MgrUI_.ShowPanel<PanelRoomTavern>
+                (false, E_PanelName.PanelRoomTavern,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomAbbey":
-                Hot.MgrUI_.ShowPanel<PanelRoomAbbey>(false, "PanelRoomAbbey",
+                Hot.MgrUI_.ShowPanel<PanelRoomAbbey>
+                (false, E_PanelName.PanelRoomAbbey,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomSanitarium":
-                Hot.MgrUI_.ShowPanel<PanelRoomSanitarium>(false, "PanelRoomSanitarium",
+                Hot.MgrUI_.ShowPanel<PanelRoomSanitarium>
+                (false, E_PanelName.PanelRoomSanitarium,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
                 });
                 break;
             case "BtnRoomSurvivorMaster":
-                Hot.MgrUI_.ShowPanel<PanelRoomSurvivorMaster>(false, "PanelRoomSurvivorMaster",
+                Hot.MgrUI_.ShowPanel<PanelRoomSurvivorMaster>
+                (false, E_PanelName.PanelRoomSurvivorMaster,
                 (panel) =>
                 {
                     panel.transform.SetParent(Hot.PanelTownRooms_.PanelRoomRoot, false);
@@ -112,6 +122,6 @@ public class PanelTownRooms : PanelBase
 
     public void ChangeImgCurrentChoicePos(string btnName)
     {
-        ImgCurrentChoice.transform.localPosition = new Vector3(DicBtnPos[btnName].x + 80, DicBtnPos[btnName].y, 0);
+        ImgCurrentChoice.transform.localPosition = new(DicBtnPos[btnName].x + 80, DicBtnPos[btnName].y, 0);
     }
 }

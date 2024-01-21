@@ -23,7 +23,7 @@ public class PanelTown : PanelBase
     {
         base.Button_OnClick(controlname);
 
-        Hot.MgrUI_.ShowPanel<PanelTownRooms>(true, "PanelTownRooms");
+        Hot.MgrUI_.ShowPanel<PanelTownRooms>(true, E_PanelName.PanelTownRooms);
         Hot.PanelTownRooms_.ChangeImgCurrentChoicePos(controlname);
         Hot.PanelTownRooms_.ShowRoom(controlname);
     }

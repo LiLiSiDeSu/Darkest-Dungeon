@@ -23,7 +23,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
         TxtCapacity.text = " 0 / 0";
     }
 
-    #region EventSystem接口实现
+    #region EventSystem锟接匡拷实锟斤拷
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -75,7 +75,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
                 ItemRoot[tempi1].Add(obj2.transform);
 
-                Hot.MgrUI_.CreatePanel<PanelGridTownItem>(false, "/PanelGridTownItem",
+                Hot.MgrUI_.CreatePanel<PanelGridTownItem>(false, E_PanelName.PanelGridTownItem,
                 (PanelCellTownItemGrid_) =>
                 {
                     Grids[tempi1][tempi2] = PanelCellTownItemGrid_;
@@ -105,7 +105,7 @@ public class PanelTownShopItem : PanelBaseVector2Store,
 
                 if (Hot.DataNowCellGameArchive.TownShop.ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
+                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, E_PanelName.PanelCellItem,
                     (PanelCellItem_) =>
                     {
                         PanelCellItem_.transform.SetParent(ItemRoot[tempi1][tempi2], false);

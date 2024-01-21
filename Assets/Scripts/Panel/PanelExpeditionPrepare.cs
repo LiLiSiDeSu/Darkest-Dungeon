@@ -49,7 +49,7 @@ public class PanelExpeditionPrepare : PanelBase
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
         });
 
-        Hot.MgrUI_.CreatePanel<PanelExpeditionDetails>(true, "/PanelExpeditionDetails",
+        Hot.MgrUI_.CreatePanel<PanelExpeditionDetails>(true, E_PanelName.PanelExpeditionDetails,
         (panel) =>
         {
             panel.transform.SetParent(transform, false);
@@ -76,7 +76,7 @@ public class PanelExpeditionPrepare : PanelBase
                 {
                     int tempi = i;
 
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, "/PanelCellExpeditionEvent",
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionEvent>(false, E_PanelName.PanelCellExpeditionEvent,
                     (panel) =>
                     {
                         panel.transform.SetParent(this[e_ExpeditionLocation], false);

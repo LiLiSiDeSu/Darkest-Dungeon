@@ -21,8 +21,8 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
         switch (controlname)
         {
             case "BtnBackStartPanel":
-                MgrUI.GetInstance().HidePanel(false, gameObject, "PanelGameArchiveChoose");
-                MgrUI.GetInstance().ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
+                MgrUI.GetInstance().HidePanel(false, gameObject, E_PanelName.PanelGameArchiveChoose);
+                MgrUI.GetInstance().ShowPanel<PanelOtherStart>(false, E_PanelName.PanelOtherStart);
                 break;
 
             case "BtnAddpanelGameArchivCell":
@@ -38,7 +38,7 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
             int tempi = i;
             
             MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
-            (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
+            (false, E_PanelName.PanelCellGameArchive, false, false,
             (panel) =>
             {
                 panel.Index = tempi;
@@ -84,7 +84,7 @@ public class PanelGameArchiveChoose : PanelBaseDynamicScrollView
     public void AddGameArchive()
     {
         MgrUI.GetInstance().CreatePanelAndPush<PanelCellGameArchive>
-        (false, "/PanelCellGameArchive", false, false, "PanelCellGameArchive",
+        (false, E_PanelName.PanelCellGameArchive, false, false,
         (panel) =>
         {
             panel.Index = NowIndex;

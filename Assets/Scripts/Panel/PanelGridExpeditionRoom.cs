@@ -14,7 +14,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
     {
         base.Awake();
 
-        #region ½ÇÉ«Ô¤·ÅÖÃ
+        #region ï¿½ï¿½É«Ô¤ï¿½ï¿½ï¿½ï¿½
 
         Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
@@ -163,7 +163,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
     public void PutListRole(int p_IndexListRole, int p_index)
     {
         Data.IndexListRole = p_IndexListRole;
-        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
+        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, E_PanelName.PanelCellExpeditionRoom,
         (panel) =>
         {
             panel.Init(this, true);
@@ -222,7 +222,7 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
     }
     private void CreateCellExpeditionRoom()
     {
-        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
+        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, E_PanelName.PanelCellExpeditionRoom,
         (panel) =>
         {
             panel.Init(this, true);

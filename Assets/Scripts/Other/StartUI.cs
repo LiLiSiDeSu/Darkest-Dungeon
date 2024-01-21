@@ -1,118 +1,116 @@
-﻿using System.Security.Policy;
-
-public class StartUI : InstanceBaseAuto_Mono<StartUI>
+﻿public class StartUI : InstanceBaseAuto_Mono<StartUI>
 {
     private void Start()
     {
         #region Other
 
         Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
-            (true, "/PanelOtherStart");
+            (true, E_PanelName.PanelOtherStart);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherDestroyArchiveHint>
-            (true, "/PanelOtherDestroyArchiveHint", true, false, "PanelOtherDestroyArchiveHint");
+            (true, E_PanelName.PanelOtherDestroyArchiveHint, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOhterResTable>
-            (true, "/PanelOhterResTable", true, false, "PanelOhterResTable");
+            (true, E_PanelName.PanelOhterResTable, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherSetting>
-            (true, "/PanelOtherSetting", true, false, "PanelOtherSetting");
+            (true, E_PanelName.PanelOtherSetting, true, false);
 
         #endregion
 
         #region GameArchive
 
         Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChoose>
-            (true, "/PanelGameArchiveChoose", true, true, "PanelGameArchiveChoose");
+            (true, E_PanelName.PanelGameArchiveChoose, true, true);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelGameArchiveChooseLevel>
-            (true, "/PanelGameArchiveChooseLevel", true, false, "PanelGameArchiveChooseLevel");
+            (true, E_PanelName.PanelGameArchiveChooseLevel, true, false);
 
         #endregion
 
         #region Town
 
         Hot.MgrUI_.CreatePanelAndPush<PanelTown>
-            (true, "/PanelTown", true, false, "PanelTown");
+            (true, E_PanelName.PanelTown, true, false);
 
         #endregion
 
         #region Role
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoleDetails>
-            (true, "/PanelRoleDetails", true, false, "PanelRoleDetails");
+            (true, E_PanelName.PanelRoleDetails, true, false);
 
         #endregion
 
         #region Bar
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarTown>
-            (true, "/PanelBarTown", true, false, "PanelBarTown");
+            (true, E_PanelName.PanelBarTown, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarExpedition>
-            (true, "/PanelBarExpedition", true, false, "PanelBarExpedition");
+            (true, E_PanelName.PanelBarExpedition, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleListExpedition>
-            (true, "/PanelBarRoleListExpedition", true, false, "PanelBarRoleListExpedition");
+            (true, E_PanelName.PanelBarRoleListExpedition, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarExpeditionTimeLine>
-            (true, "/PanelBarExpeditionTimeLine", true, false, "PanelBarExpeditionTimeLine");
+            (true, E_PanelName.PanelBarExpeditionTimeLine, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarTownStore>
-            (true, "/PanelBarTownStore", true, true, "PanelBarTownStore");
+            (true, E_PanelName.PanelBarTownStore, true, true);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelBarRoleList>
-            (true, "/PanelBarRoleList", true, false, "PanelBarRoleList");
+            (true, E_PanelName.PanelBarRoleList, true, false);
 
         #endregion
 
         #region Editor
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorMiniMap>
-            (true, "/PanelOtherEditorMiniMap", true, false, "PanelOtherEditorMiniMap");
+            (true, E_PanelName.PanelOtherEditorMiniMap, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorRoom>
-            (true, "/PanelOtherEditorRoom", true, false, "PanelOtherEditorRoom");
+            (true, E_PanelName.PanelOtherEditorRoom, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherEditorRoleConfig>
-            (true, "/PanelOtherEditorRoleConfig", true, false, "PanelOtherEditorRoleConfig");
+            (true, E_PanelName.PanelOtherEditorRoleConfig, true, false);
 
         #endregion
 
         #region Expedition
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionPrepare>
-            (true, "/PanelExpeditionPrepare", true, false, "PanelExpeditionPrepare");
+            (true, E_PanelName.PanelExpeditionPrepare, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionMiniMap>
-            (true, "/PanelExpeditionMiniMap", true, false, "PanelExpeditionMiniMap");
+            (true, E_PanelName.PanelExpeditionMiniMap, true, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelExpeditionRoom>
-            (true, "/PanelExpeditionRoom", true, false, "PanelExpeditionRoom");
+            (true, E_PanelName.PanelExpeditionRoom, true, false);
 
         #endregion
 
         #region PanelTownRooms
 
         Hot.MgrUI_.CreatePanelAndPush<PanelTownRooms>
-            (true, "/PanelTownRooms", true, true, "PanelTownRooms");
+            (true, E_PanelName.PanelTownRooms, true, true);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomGuild>
-            (true, "/PanelRoomGuild", true, false, "PanelRoomGuild");
+            (true, E_PanelName.PanelRoomGuild, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomGraveyard>
-            (true, "/PanelRoomGraveyard", true, false, "PanelRoomGraveyard");
+            (true, E_PanelName.PanelRoomGraveyard, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomTownShop>
-            (true, "/PanelRoomTownShop", true, false, "PanelRoomTownShop");
+            (true, E_PanelName.PanelRoomTownShop, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomSmithy>
-            (true, "/PanelRoomSmithy", true, false, "PanelRoomSmithy");
+            (true, E_PanelName.PanelRoomSmithy, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomTavern>
-            (true, "/PanelRoomTavern", true, false, "PanelRoomTavern");
+            (true, E_PanelName.PanelRoomTavern, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomSurvivorMaster>
-            (true, "/PanelRoomSurvivorMaster", true, false, "PanelRoomSurvivorMaster");
+            (true, E_PanelName.PanelRoomSurvivorMaster, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomAbbey>
-            (true, "/PanelRoomAbbey", true, false, "PanelRoomAbbey");
+            (true, E_PanelName.PanelRoomAbbey, true, false);
         Hot.MgrUI_.CreatePanelAndPush<PanelRoomSanitarium>
-            (true, "/PanelRoomSanitarium", true, false, "PanelRoomSanitarium");
+            (true, E_PanelName.PanelRoomSanitarium, true, false);
 
         #endregion
 

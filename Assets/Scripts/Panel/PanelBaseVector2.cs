@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -84,7 +85,7 @@ public class PanelBaseVector2<T0, T1> : PanelBase
 
                 ItemRoot[tempiY].Add(ItemX.transform);
 
-                Hot.MgrUI_.CreatePanel<T1>(false, "/" + typeof(T1).Name,
+                Hot.MgrUI_.CreatePanel<T1>(false, (E_PanelName)Enum.Parse(typeof(E_PanelName), typeof(T1).Name),
                 (panel) =>
                 {
                     Grids[tempiY][tempiX] = panel;

@@ -17,15 +17,15 @@ public class PanelOtherStart : PanelBase
         switch (controlname)
         {
             case "BtnStart":
-                Hot.MgrUI_.HidePanel(false, gameObject, "PanelOtherStart");
-                Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, "PanelGameArchiveChoose");
+                Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelOtherStart);
+                Hot.MgrUI_.ShowPanel<PanelGameArchiveChoose>(false, E_PanelName.PanelGameArchiveChoose);
                 Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;
                 break;
             case "BtnEditorMap":
-                Hot.MgrUI_.ShowPanel<PanelOtherEditorMiniMap>(true, "PanelOtherEditorMiniMap");
+                Hot.MgrUI_.ShowPanel<PanelOtherEditorMiniMap>(true, E_PanelName.PanelOtherEditorMiniMap);
                 break;
             case "BtnEditorRoleConfig":
-                Hot.MgrUI_.ShowPanel<PanelOtherEditorRoleConfig>(true, "PanelOtherEditorRoleConfig");
+                Hot.MgrUI_.ShowPanel<PanelOtherEditorRoleConfig>(true, E_PanelName.PanelOtherEditorRoleConfig);
                 break;
         }
     }

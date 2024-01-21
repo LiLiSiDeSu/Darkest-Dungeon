@@ -40,8 +40,9 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
                 //这里的判断是为了防止加入了PoolEsc但没有加入MgrUI的DicPanel中的面板
                 //在执行下面Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject的逻辑时的空引用报错
                 if (Hot.MgrUI_.ContainPanel(ListEsc[^1]))
-                    PoolBuffer.GetInstance().
-                        Push(false, Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
+                {
+                    PoolBuffer.GetInstance().Push(false, Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject, ListEsc[^1]);
+                }
 
                 PoolNowPanel.GetInstance().ListNowPanel.Remove(ListEsc[^1]);
 

@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,7 +7,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
 {
     public E_PanelCellTownStore e_PanelCellTownStore;
 
-    public PanelTownItem PanelCellItem_ = new();
+    public PanelTownItem PanelTownItem_;
 
     public InputField IptName;
 
@@ -52,7 +47,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
         });
     }
 
-    #region EventSystem接口实现
+    #region EventSystem
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -102,13 +97,14 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
         switch (controlname)
         {
             case "BtnCellTownStore":
-                switch (Hot.PoolNowPanel_.ContainPanel(PanelCellItem_.gameObject.name))
+                switch (Hot.PoolNowPanel_.ContainPanel(PanelTownItem_.gameObject.name))
                 {
                     case true:
-                        Hot.MgrUI_.HidePanel(false, PanelCellItem_.gameObject, PanelCellItem_.gameObject.name);
+                        Hot.MgrUI_.HidePanel(false, PanelTownItem_.gameObject, PanelTownItem_.gameObject.name);
                         break;
                     case false:
-                        Hot.MgrUI_.ShowPanel<PanelTownItem>(true, PanelCellItem_.gameObject.name,
+                        Hot.MgrUI_.ShowPanel<PanelTownItem>
+                        (true, PanelTownItem_.gameObject.name,
                         (panel) =>
                         {
                             panel.transform.SetParent(Hot.PanelBarTownStore_.RootPanelTownItem, false);
@@ -135,7 +131,7 @@ public class PanelCellTownStore : PanelBaseCellDynamicScrollView,
     {
         Hot.DataNowCellGameArchive.ListStore[Index].Name = name;
         IptName.text = name;
-        PanelCellItem_.IptName.text = name;
+        PanelTownItem_.IptName.text = name;
     }
 
     public void Init()

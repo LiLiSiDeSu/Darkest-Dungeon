@@ -12,19 +12,19 @@ public class PanelRoomTownShop : PanelBase
         base.Awake();
 
         MgrUI.GetInstance().CreatePanel<PanelTownShopCost>
-        (true, "/PanelTownShopCost",
+        (true, E_PanelName.PanelTownShopCost,
         (panel) =>
         {
             panel.transform.SetParent(transform.FindSonSonSon("PanelTownShopCostRoot"), false);
         });
         MgrUI.GetInstance().CreatePanel<PanelTownShopItem>
-        (true, "/PanelTownShopItem",
+        (true, E_PanelName.PanelTownShopItem,
         (panel) =>
         {
             panel.transform.SetParent(transform.FindSonSonSon("PanelTownShopItemRoot"), false);
         });
         MgrUI.GetInstance().CreatePanel<PanelMinistrantPoPoCat>
-        (true, "/PanelMinistrantPoPoCat",
+        (true, E_PanelName.PanelMinistrantPoPoCat,
         (panel) =>
         {
             panel.transform.SetParent(transform.FindSonSonSon("PanelMinistrantPoPoCatRoot"), false);

@@ -18,13 +18,13 @@ public class PanelOtherSetting : PanelBase
         {
             if (key == Hot.MgrInput_.Setting)
             {
-                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOtherSetting"))
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherSetting))
                 {
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherSetting_.gameObject, "PanelOtherSetting");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelOtherSetting_.gameObject, E_PanelName.PanelOtherSetting);
                 }
                 else
                 {
-                    Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, "PanelOtherSetting");
+                    Hot.MgrUI_.ShowPanel<PanelOtherSetting>(true, E_PanelName.PanelOtherSetting);
                 }
             }
         });
@@ -86,17 +86,18 @@ public class PanelOtherSetting : PanelBase
                     Hot.PanelExpeditionPrepare_.Clear();
                     Hot.e_NowPlayerLocation = E_PlayerLocation.ChooseGameArchive;
 
-                    Hot.MgrUI_.ShowPanel<PanelOtherStart>(false, "PanelOtherStart");
+                    Hot.MgrUI_.ShowPanel<PanelOtherStart>(false, E_PanelName.PanelOtherStart);
 
                     Hot.NowIndexCellGameArchive = -1;
                 }
                 break;
 
             case "BtnKeySetting":
+                Debug.Log("BtnKeySetting!!!");
                 break;
 
             case "BtnThanks":
-                Debug.Log("°¢Àê¸Á¶¼");
+                Debug.Log("Thanks!!!");
                 break;
 
             case "Btn>-<":

@@ -20,13 +20,13 @@ public class PanelBarRoleListExpedition : PanelBase
         {
             if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.RoleList)
             {
-                if (Hot.PoolNowPanel_.ContainPanel("PanelBarRoleListExpedition"))
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarRoleListExpedition))
                 {
-                    Hot.MgrUI_.HidePanel(false, gameObject, "PanelBarRoleListExpedition");
+                    Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelBarRoleListExpedition);
                 }
                 else
                 {
-                    Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition");
+                    Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, E_PanelName.PanelBarRoleListExpedition);
                 }
             }
         });
@@ -47,7 +47,7 @@ public class PanelBarRoleListExpedition : PanelBase
         {
             int tempi = i;
 
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
+            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, E_PanelName.PanelCellExpeditionRole,
             (panel) =>
             {
                 panel.Init(tempi, ListNeedPutRoleIndex[tempi], RoleListExpeditionContent);

@@ -2,6 +2,84 @@ using UnityEngine;
 
 public sealed class AllEnum : MonoBehaviour { }
 
+public enum E_PanelName
+{
+    PanelOtherEditorRoleConfig,
+    PanelOtherEditorRoom,
+    PanelOtherEditorMiniMap,
+    PanelCellRoomEditor,
+    PanelCellRoleConfigSkill,
+    PanelCellRoleConfigRole,
+    PanelCellGameArchive,
+    PanelCellTownStore,
+    PanelCellExpeditionRole,
+    PanelCellExpeditionTimeLine,
+    PanelCellRoleSkill,
+    PanelCellItem,
+    PanelCellExpeditionRolePrepareRoot,
+    PanelCellRolePortraitCanDrag,
+    PanelCellRole,
+    PanelCellRoomEditorChoose,
+    PanelGridTownItem,
+    PanelCellExpeditionRoom,
+    PanelExpeditionRoleDetails,
+    PanelCellRoleRecruit,
+    PanelTownShopCost,
+    PanelTownShopItem,
+    PanelMinistrantPoPoCat,
+    PanelTranslateAncestralProperty,
+    PanelTranslateCoinAncestralProperty,
+    PanelTranslateCoinCoin,
+    PanelRoleGuildRecruit,
+    PanelRoleGuildRecruitCost,
+    PanelExpeditionDetails,
+    PanelCellExpeditionRoleSkill,
+    PanelCellExpeditionEvent,
+    PanelCellMiniMapEditor,
+    PanelCellMiniMapEditorChoose,
+    PanelCellExpeditionMiniMap,
+    PanelGridMiniMapEditor,
+
+    PanelGridExpeditionMiniMap,
+    PanelGridExpeditionRoom,
+    PanelGridRoomEditor,
+    PanelGridRoomEditorConfig,
+
+    PanelTownRooms,
+    PanelRoomSanitarium,
+    PanelRoomAbbey,
+    PanelRoomSurvivorMaster,
+    PanelRoomTavern,
+    PanelRoomSmithy,
+    PanelRoomTownShop,
+    PanelRoomGraveyard,
+    PanelRoomGuild,
+
+    PanelExpeditionRoom,
+    PanelExpeditionMiniMap,
+    PanelExpeditionPrepare,
+
+    PanelBarRoleList,
+    PanelBarTownStore,
+    PanelBarExpeditionTimeLine,
+    PanelBarRoleListExpedition,
+    PanelBarExpedition,
+    PanelBarTown,
+    
+    PanelRoleDetails,
+
+    PanelTown,
+    PanelTownItem,
+
+    PanelGameArchiveChooseLevel,
+    PanelGameArchiveChoose,
+
+    PanelOtherSetting,
+    PanelOhterResTable,
+    PanelOtherDestroyArchiveHint,
+    PanelOtherStart,
+}
+
 public enum E_InputKeyEvent
 {
     KeyUp,
@@ -119,7 +197,6 @@ public enum E_AncestralProperty
     Badge,
     Crystal
 }
-
 public enum E_SpriteNameCoin
 {
     Copper,

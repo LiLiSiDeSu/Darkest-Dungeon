@@ -22,7 +22,7 @@ public class PanelCellRoleRecruit : PanelBaseCellRole,
         ImgBk = transform.FindSonSonSon("ImgBk").GetComponent<Image>();
     }
 
-    #region EventSystem接口实现
+    #region EventSystem锟接匡拷实锟斤拷
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -57,7 +57,7 @@ public class PanelCellRoleRecruit : PanelBaseCellRole,
         if (Hot.e_NowPointerLocation == E_NowPointerLocation.PanelRoleList)
         {
             Hot.MgrUI_.CreatePanel<PanelCellRole>
-            (false, "/PanelCellRole",
+            (false, E_PanelName.PanelCellRole,
             (panel) =>
             {
                 Hot.DataNowCellGameArchive.ListRole.Add(Hot.DataNowCellGameArchive.ListRoleRecruit[Index].Role);

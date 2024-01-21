@@ -76,7 +76,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
         {
             case "BtnDismiss":
                 Hot.PanelBarRoleList_.RemoveRole(IndexRole);
-                Hot.MgrUI_.HidePanel(false, gameObject, "PanelRoleDetails");
+                Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelRoleDetails);
                 break;
         }
     }
@@ -85,16 +85,17 @@ public class PanelRoleDetails : PanelBaseRoleStore
     {
         if (Hot.UpdateOver)
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelRoleDetails"))
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelRoleDetails))
             {
-                Hot.MgrUI_.HidePanel(false, gameObject, "PanelRoleDetails");
+                Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelRoleDetails);
                 Show(p_index, p_e_RoleLocation);
             }
             else
             {
                 Clear();
 
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>(true, "PanelRoleDetails",
+                Hot.MgrUI_.ShowPanel<PanelRoleDetails>
+                (true, E_PanelName.PanelRoleDetails,
                 (panel) =>
                 {
                     panel.IndexRole = p_index;
@@ -193,7 +194,7 @@ public class PanelRoleDetails : PanelBaseRoleStore
         {
             E_Skill tempe_Skill = e_Skill;
 
-            Hot.MgrUI_.CreatePanel<PanelCellRoleSkill>(false, "/PanelCellRoleSkill",
+            Hot.MgrUI_.CreatePanel<PanelCellRoleSkill>(false, E_PanelName.PanelCellRoleSkill,
             (panel) =>
             {
                 panel.Init(tempe_Skill, SkillContent);

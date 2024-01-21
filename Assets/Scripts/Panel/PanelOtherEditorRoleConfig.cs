@@ -30,7 +30,7 @@ public class PanelOtherEditorRoleConfig : PanelBase
             if (item == E_RoleName.None)
                 continue;
 
-            Hot.MgrUI_.CreatePanel<PanelCellRoleConfigRole>(false, "/PanelCellRoleConfigRole",
+            Hot.MgrUI_.CreatePanel<PanelCellRoleConfigRole>(false, E_PanelName.PanelCellRoleConfigRole,
             (panel) =>
             {
                 panel.Init(item, RoleContent);
@@ -39,7 +39,7 @@ public class PanelOtherEditorRoleConfig : PanelBase
 
         foreach (E_Skill item in Enum.GetValues(typeof(E_Skill)))
         {
-            Hot.MgrUI_.CreatePanel<PanelCellRoleConfigSkill>(false, "/PanelCellRoleConfigSkill",
+            Hot.MgrUI_.CreatePanel<PanelCellRoleConfigSkill>(false, E_PanelName.PanelCellRoleConfigSkill,
             (panel) =>
             {
                 panel.Init(item, SkillContent);

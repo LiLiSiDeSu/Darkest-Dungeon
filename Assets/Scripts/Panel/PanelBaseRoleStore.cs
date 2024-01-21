@@ -102,7 +102,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
 
                 if (Role.ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
+                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, E_PanelName.PanelCellItem,
                     (panel) =>
                     {
                         panel.transform.SetParent(ItemRoot[tempi1][tempi2], false);

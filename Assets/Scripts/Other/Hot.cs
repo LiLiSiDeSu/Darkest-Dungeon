@@ -254,31 +254,31 @@ public static class Hot
 
     public static PanelBarRoleListExpedition PanelBarRoleListExpedition_
     {
-        get { return MgrUI_.GetPanel<PanelBarRoleListExpedition>("PanelBarRoleListExpedition"); }
+        get { return MgrUI_.GetPanel<PanelBarRoleListExpedition>(E_PanelName.PanelBarRoleListExpedition); }
     }
     public static PanelExpeditionRoleDetails PanelExpeditionRoleDetails_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionRoleDetails>("PanelExpeditionRoleDetails"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionRoleDetails>(E_PanelName.PanelExpeditionRoleDetails); }
     }
     public static PanelExpeditionRoom PanelExpeditionRoom_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionRoom>("PanelExpeditionRoom"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionRoom>(E_PanelName.PanelExpeditionRoom); }
     }
     public static PanelExpeditionDetails PanelExpeditionDetails_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionDetails>("PanelExpeditionDetails"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionDetails>(E_PanelName.PanelExpeditionDetails); }
     }
     public static PanelExpeditionMiniMap PanelExpeditionMiniMap_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>("PanelExpeditionMiniMap"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionMiniMap>(E_PanelName.PanelExpeditionMiniMap); }
     }
     public static PanelExpeditionPrepare PanelExpeditionPrepare_
     {
-        get { return MgrUI_.GetPanel<PanelExpeditionPrepare>("PanelExpeditionPrepare"); }
+        get { return MgrUI_.GetPanel<PanelExpeditionPrepare>(E_PanelName.PanelExpeditionPrepare); }
     }
     public static PanelBarExpeditionTimeLine PanelBarExpeditionTimeLine_
     {
-        get { return MgrUI_.GetPanel<PanelBarExpeditionTimeLine>("PanelBarExpeditionTimeLine"); }
+        get { return MgrUI_.GetPanel<PanelBarExpeditionTimeLine>(E_PanelName.PanelBarExpeditionTimeLine); }
     }
 
     #endregion
@@ -287,11 +287,11 @@ public static class Hot
 
     public static PanelBarExpedition PanelBarExpedition_
     {
-        get { return MgrUI_.GetPanel<PanelBarExpedition>("PanelBarExpedition"); }
+        get { return MgrUI_.GetPanel<PanelBarExpedition>(E_PanelName.PanelBarExpedition); }
     }
     public static PanelBarTown PanelBarTown_
     {
-        get { return MgrUI_.GetPanel<PanelBarTown>("PanelBarTown"); }
+        get { return MgrUI_.GetPanel<PanelBarTown>(E_PanelName.PanelBarTown); }
     }
 
     #endregion
@@ -300,11 +300,11 @@ public static class Hot
 
     public static PanelOhterResTable PanelOtherResTable_
     {
-        get { return MgrUI_.GetPanel<PanelOhterResTable>("PanelOhterResTable"); }
+        get { return MgrUI_.GetPanel<PanelOhterResTable>(E_PanelName.PanelOhterResTable); }
     }
     public static PanelOtherSetting PanelOtherSetting_
     {
-        get { return MgrUI_.GetPanel<PanelOtherSetting>("PanelOtherSetting"); }
+        get { return MgrUI_.GetPanel<PanelOtherSetting>(E_PanelName.PanelOtherSetting); }
     }
 
     #endregion
@@ -313,19 +313,19 @@ public static class Hot
 
     public static PanelRoleDetails PanelRoleDetails_
     {
-        get { return MgrUI_.GetPanel<PanelRoleDetails>("PanelRoleDetails"); }
+        get { return MgrUI_.GetPanel<PanelRoleDetails>(E_PanelName.PanelRoleDetails); }
     }
     public static PanelBarRoleList PanelBarRoleList_
     {
-        get { return MgrUI_.GetPanel<PanelBarRoleList>("PanelBarRoleList"); }
+        get { return MgrUI_.GetPanel<PanelBarRoleList>(E_PanelName.PanelBarRoleList); }
     }
     public static PanelRoleGuildRecruit PanelRoleGuildRecruit_
     {
-        get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>("PanelRoleGuildRecruit"); }
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruit>(E_PanelName.PanelRoleGuildRecruit); }
     }
     public static PanelRoleGuildRecruitCost PanelRoleGuildRecruitCost_
     {
-        get { return MgrUI_.GetPanel<PanelRoleGuildRecruitCost>("PanelRoleGuildRecruitCost"); }
+        get { return MgrUI_.GetPanel<PanelRoleGuildRecruitCost>(E_PanelName.PanelRoleGuildRecruitCost); }
     }
 
     #endregion
@@ -334,11 +334,11 @@ public static class Hot
 
     public static PanelGameArchiveChoose PanelGameArchiveChoose_
     {
-        get { return MgrUI_.GetPanel<PanelGameArchiveChoose>("PanelGameArchiveChoose"); }
+        get { return MgrUI_.GetPanel<PanelGameArchiveChoose>(E_PanelName.PanelGameArchiveChoose); }
     }
     public static PanelOtherDestroyArchiveHint PanelOtherDestroyArchiveHint_
     {
-        get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>("PanelOtherDestroyArchiveHint"); }
+        get { return MgrUI_.GetPanel<PanelOtherDestroyArchiveHint>(E_PanelName.PanelOtherDestroyArchiveHint); }
     }
 
     #endregion
@@ -347,31 +347,19 @@ public static class Hot
 
     public static PanelBarTownStore PanelBarTownStore_
     {
-        get { return MgrUI_.GetPanel<PanelBarTownStore>("PanelBarTownStore"); }
+        get { return MgrUI_.GetPanel<PanelBarTownStore>(E_PanelName.PanelBarTownStore); }
     }
 
     #region TownShop
 
-    /// <summary>
-    /// 城镇商店花费面板
-    /// </summary>
     public static PanelTownShopCost PanelTownShopCost_
     {
-        get { return MgrUI_.GetPanel<PanelTownShopCost>("PanelTownShopCost"); }
+        get { return MgrUI_.GetPanel<PanelTownShopCost>(E_PanelName.PanelTownShopCost); }
     }
-    /// <summary>
-    /// 城镇商店面板娘PoPoCat
-    /// </summary>
-    public static PanelMinistrantPoPoCat PanelMinistrantPoPoCat_
-    {
-        get { return MgrUI_.GetPanel<PanelMinistrantPoPoCat>("PanelMinistrantPoPoCat"); }
-    }
-    /// <summary>
-    /// 城镇商店面板
-    /// </summary>
+
     public static PanelTownShopItem PanelTownShopItem_
     {
-        get { return MgrUI_.GetPanel<PanelTownShopItem>("PanelTownShopItem"); }
+        get { return MgrUI_.GetPanel<PanelTownShopItem>(E_PanelName.PanelTownShopItem); }
     }
 
     #endregion
@@ -382,40 +370,40 @@ public static class Hot
 
     public static PanelTownRooms PanelTownRooms_
     {
-        get { return MgrUI_.GetPanel<PanelTownRooms>("PanelTownRooms"); }
+        get { return MgrUI_.GetPanel<PanelTownRooms>(E_PanelName.PanelTownRooms); }
     }
-    //---
+    
     public static PanelRoomGuild PanelRoomGuild_
     {
-        get { return MgrUI_.GetPanel<PanelRoomGuild>("PanelRoomGuild"); }
+        get { return MgrUI_.GetPanel<PanelRoomGuild>(E_PanelName.PanelRoomGuild); }
     }
     public static PanelRoomGraveyard PanelRoomGraveyard_
     {
-        get { return MgrUI_.GetPanel<PanelRoomGraveyard>("PanelRoomGraveyard"); }
+        get { return MgrUI_.GetPanel<PanelRoomGraveyard>(E_PanelName.PanelRoomGraveyard); }
     }
     public static PanelRoomTownShop PanelRoomTownShop_
     {
-        get { return MgrUI_.GetPanel<PanelRoomTownShop>("PanelRoomTownShop"); }
+        get { return MgrUI_.GetPanel<PanelRoomTownShop>(E_PanelName.PanelRoomTownShop); }
     }
     public static PanelRoomSmithy PanelRoomSmithy_
     {
-        get { return MgrUI_.GetPanel<PanelRoomSmithy>("PanelRoomSmithy"); }
+        get { return MgrUI_.GetPanel<PanelRoomSmithy>(E_PanelName.PanelRoomSmithy); }
     }
     public static PanelRoomTavern PanelRoomTavern_
     {
-        get { return MgrUI_.GetPanel<PanelRoomTavern>("PanelRoomTavern"); }
+        get { return MgrUI_.GetPanel<PanelRoomTavern>(E_PanelName.PanelRoomTavern); }
     }
     public static PanelRoomAbbey PanelRoomAbbey_
     {
-        get { return MgrUI_.GetPanel<PanelRoomAbbey>("PanelRoomAbbey"); }
+        get { return MgrUI_.GetPanel<PanelRoomAbbey>(E_PanelName.PanelRoomAbbey); }
     }
     public static PanelRoomSanitarium PanelRoomSanitarium_
     {
-        get { return MgrUI_.GetPanel<PanelRoomSanitarium>("PanelRoomSanitarium"); }
+        get { return MgrUI_.GetPanel<PanelRoomSanitarium>(E_PanelName.PanelRoomSanitarium); }
     }
     public static PanelRoomSurvivorMaster PanelRoomSurvivorMaster_
     {
-        get { return MgrUI_.GetPanel<PanelRoomSurvivorMaster>("PanelRoomSurvivorMaster"); }
+        get { return MgrUI_.GetPanel<PanelRoomSurvivorMaster>(E_PanelName.PanelRoomSurvivorMaster); }
     }
 
     #endregion
@@ -424,15 +412,15 @@ public static class Hot
 
     public static PanelOtherEditorRoom PanelOtherEditorRoom_
     {
-        get { return MgrUI_.GetPanel<PanelOtherEditorRoom>("PanelOtherEditorRoom"); }
+        get { return MgrUI_.GetPanel<PanelOtherEditorRoom>(E_PanelName.PanelOtherEditorRoom); }
     }
     public static PanelOtherEditorMiniMap PanelOtherEditorMiniMap_
     {
-        get { return MgrUI_.GetPanel<PanelOtherEditorMiniMap>("PanelOtherEditorMiniMap"); }
+        get { return MgrUI_.GetPanel<PanelOtherEditorMiniMap>(E_PanelName.PanelOtherEditorMiniMap); }
     }
     public static PanelOtherEditorRoleConfig PanelOtherEditorRoleConfig_
     {
-        get { return MgrUI_.GetPanel<PanelOtherEditorRoleConfig>("PanelOtherEditorRoleConfig"); }
+        get { return MgrUI_.GetPanel<PanelOtherEditorRoleConfig>(E_PanelName.PanelOtherEditorRoleConfig); }
     }
 
     #endregion
@@ -445,9 +433,7 @@ public static class Hot
     {
         get { return DataNowCellGameArchive.ResTable; }
     }
-    /// <summary>
-    /// 现在读取的存档Data
-    /// </summary>
+
     public static DataContainer_CellGameArchive DataNowCellGameArchive
     {
         get { return Data_.DataListCellGameArchive[NowIndexCellGameArchive]; }
@@ -476,7 +462,9 @@ public static class Hot
         get
         {
             if (PaddingContentStep_ == null)
+            {
                 return 0;
+            }
 
             return PaddingContentStep_.GetComponent<RectTransform>().GetSiblingIndex();
         }
@@ -492,9 +480,6 @@ public static class Hot
 
     #region GameArchive
 
-    /// <summary>
-    /// 当前存档的Index
-    /// </summary>
     public static int NowIndexCellGameArchive = -1;
 
     #endregion

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMap, PanelGridExpeditionMiniMap>
@@ -15,13 +13,13 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         {
             if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Map)
             {
-                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelExpeditionMiniMap"))
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionMiniMap))
                 {
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelExpeditionMiniMap_.gameObject, "PanelExpeditionMiniMap");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelExpeditionMiniMap_.gameObject, E_PanelName.PanelExpeditionMiniMap);
                 }
                 else
                 {
-                    Hot.MgrUI_.ShowPanel<PanelExpeditionMiniMap>(true, "PanelExpeditionMiniMap");
+                    Hot.MgrUI_.ShowPanel<PanelExpeditionMiniMap>(true, E_PanelName.PanelExpeditionMiniMap);
                 }
             }
         });
@@ -29,7 +27,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionMiniMap"))
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionMiniMap))
             {
                 if (key == Hot.MgrInput_.Add)
                 {
@@ -73,7 +71,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
 
                 if (DataNowExpeditionEvent.ListCellMiniMap[tempY][tempX].e_CellMiniMap != E_CellMiniMap.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionMiniMap>(false, "/PanelCellExpeditionMiniMap",
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionMiniMap>(false, E_PanelName.PanelCellExpeditionMiniMap,
                     (panel) =>
                     {
                         E_CellMiniMap e_CellMiniMap = DataNowExpeditionEvent.ListCellMiniMap[tempY][tempX].e_CellMiniMap;

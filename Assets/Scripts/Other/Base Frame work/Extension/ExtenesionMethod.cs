@@ -26,7 +26,7 @@ public static class ExtenesionMethod
         return null;
     }
 
-    public static void DeepCopy<T>(this List<T> slef, List<T> toCopy)
+    public static void DeepCopy<T>(this List<T> slef , List<T> toCopy)
     {
         foreach (T item in toCopy)
         {

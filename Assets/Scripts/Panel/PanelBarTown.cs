@@ -14,23 +14,23 @@ public class PanelBarTown : PanelBase
                 switch (Hot.e_NowPlayerLocation)
                 {
                     case E_PlayerLocation.Town:
-                        if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarTown"))
+                        if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarTown))
                         {
-                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarTown_.gameObject, "PanelBarTown");
+                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarTown_.gameObject, E_PanelName.PanelBarTown);
                         }
                         else
                         {
-                            Hot.MgrUI_.ShowPanel<PanelBarTown>(true, "PanelBarTown");
+                            Hot.MgrUI_.ShowPanel<PanelBarTown>(true, E_PanelName.PanelBarTown);
                         }
                         break;
                     case E_PlayerLocation.PrepareExpedition:
-                        if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarExpedition"))
+                        if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarExpedition))
                         {
-                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarExpedition_.gameObject, "PanelBarExpedition");
+                            Hot.MgrUI_.HidePanel(false, Hot.PanelBarExpedition_.gameObject, E_PanelName.PanelBarExpedition);
                         }
                         else
                         {
-                            Hot.MgrUI_.ShowPanel<PanelBarExpedition>(true, "PanelBarExpedition");
+                            Hot.MgrUI_.ShowPanel<PanelBarExpedition>(true, E_PanelName.PanelBarExpedition);
                         }
                         break;
                 }
@@ -48,7 +48,7 @@ public class PanelBarTown : PanelBase
         {
             case "BtnExpedition":
                 Hot.e_NowPlayerLocation = E_PlayerLocation.PrepareExpedition;
-                Hot.MgrUI_.ShowPanel<PanelExpeditionPrepare>(true, "PanelExpeditionPrepare");
+                Hot.MgrUI_.ShowPanel<PanelExpeditionPrepare>(true, E_PanelName.PanelExpeditionPrepare);
                 break;
         }
     }

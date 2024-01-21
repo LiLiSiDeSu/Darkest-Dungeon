@@ -27,20 +27,28 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
             if (Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.RoleList)
             {
 
-                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarRoleList"))
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelBarRoleList_.gameObject, "PanelBarRoleList");
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarRoleList))
+                {
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelBarRoleList_.gameObject, E_PanelName.PanelBarRoleList);
+                }
                 else
-                    Hot.MgrUI_.ShowPanel<PanelBarRoleList>(true, "PanelBarRoleList");
+                {
+                    Hot.MgrUI_.ShowPanel<PanelBarRoleList>(true, E_PanelName.PanelBarRoleList);
+                }
             }
         });
 
         ScrollView_ = transform.FindSonSonSon("ScrollView_").gameObject;
+
         BtnPackUp = transform.FindSonSonSon("BtnPackUp").gameObject;
         BtnOpen = transform.FindSonSonSon("BtnOpen").gameObject;
+
         ImgDecorateFrameTop = transform.FindSonSonSon("ImgDecorateFrameTop");
         ImgDecorateFrameBottom = transform.FindSonSonSon("ImgDecorateFrameBottom");
+
         ImgPackUp = transform.FindSonSonSon("ImgPackUp").GetComponent<Image>();
         ImgOpen = transform.FindSonSonSon("ImgOpen").GetComponent<Image>();
+
         ImgPackUp.alphaHitTestMinimumThreshold = 0.2f;
         ImgOpen.alphaHitTestMinimumThreshold = 0.2f;
 
@@ -49,7 +57,7 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
         BtnOpen.SetActive(false);
     }
 
-    #region EventSystem接口实现
+    #region EventSystem
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
@@ -97,14 +105,14 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
 
     public void Show()
     {
-        if (Hot.PoolNowPanel_.ContainPanel("PanelBarRoleList"))
+        if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarRoleList))
         {
-            Hot.MgrUI_.HidePanel(false, gameObject, gameObject.name);
+            Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelBarRoleList);
             Show();
         }
         else
         {
-            Hot.MgrUI_.ShowPanel<PanelBarRoleList>(true, "PanelBarRoleList");
+            Hot.MgrUI_.ShowPanel<PanelBarRoleList>(true, E_PanelName.PanelBarRoleList);
         }
     }
 
@@ -117,7 +125,7 @@ public class PanelBarRoleList : PanelBaseDynamicScrollView
             int tempi = i;
 
             Hot.MgrUI_.CreatePanel<PanelCellRole>
-            (false, "/PanelCellRole",
+            (false, E_PanelName.PanelCellRole,
             (panel) =>
             {
                 panel.InitInfo(tempi, E_RoleLocation.RoleList);

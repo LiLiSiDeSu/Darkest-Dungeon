@@ -21,7 +21,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.Mouse1)
             {
                 if (Hot.ChoseCellExpeditionRoom != null && Hot.UpdateOver)
                 {
@@ -190,7 +190,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
                 ClearImgStatus();
@@ -199,7 +199,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelExpeditionRoom") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(true);
             }
@@ -280,7 +280,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
         #endregion
 
-        Hot.MgrUI_.CreatePanel<PanelExpeditionRoleDetails>(true, "/PanelExpeditionRoleDetails",
+        Hot.MgrUI_.CreatePanel<PanelExpeditionRoleDetails>(true, E_PanelName.PanelExpeditionRoleDetails,
         (panel) =>
         {
             panel.transform.SetParent(transform, false);
@@ -326,7 +326,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
                 if (Map[tempY][tempX].MapObj != null || Map[tempY][tempX].IndexListRole != -1 || Map[tempY][tempX].OtherRole != null)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, "/PanelCellExpeditionRoom",
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoom>(false, E_PanelName.PanelCellExpeditionRoom,
                     (PanelCellExpeditionRoom_) =>
                     {
                         PanelCellExpeditionRoom_.Init(Grids[tempY][tempX] as PanelGridExpeditionRoom, false);
@@ -335,7 +335,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                         {
                             if (Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count == Hot.DataNowCellGameArchive.ListNowPutRole.Count)
                             {
-                                Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
+                                Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, E_PanelName.PanelCellExpeditionTimeLine,
                                 (panel) =>
                                 {
                                     int Speed = -1;
@@ -353,7 +353,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                                 });
                             }
 
-                            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
+                            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, E_PanelName.PanelCellExpeditionRole,
                             (PanelCellRoleExpedition_) =>
                             {
                                 PanelCellRoleExpedition_.CellExpeditionRoom = PanelCellExpeditionRoom_;
@@ -384,7 +384,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                                     {
                                         int tempi = i + Hot.DataNowCellGameArchive.ListNowPutRole.Count;
 
-                                        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, "/PanelCellExpeditionRole",
+                                        Hot.MgrUI_.CreatePanel<PanelCellExpeditionRole>(false, E_PanelName.PanelCellExpeditionRole,
                                         (panel) =>
                                         {
                                             panel.Init(tempi,

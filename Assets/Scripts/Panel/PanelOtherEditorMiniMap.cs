@@ -71,7 +71,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
         {
             if (Hot.NowEnterCellMiniMapEditor != null && key == KeyCode.Return)
             {
-                Hot.MgrUI_.ShowPanel<PanelOtherEditorRoom>(true, "PanelOtherEditorRoom");
+                Hot.MgrUI_.ShowPanel<PanelOtherEditorRoom>(true, E_PanelName.PanelOtherEditorRoom);
                 Hot.NowEditorDependency = Hot.NowEnterCellMiniMapEditor;
                 Hot.PanelOtherEditorRoom_.LoadRoomConfig(Hot.NowEditorDependency.Map);
             }
@@ -80,7 +80,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorMiniMap") && key == KeyCode.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorMiniMap) && key == KeyCode.Mouse1)
             {
                 ClearImgStatus();
 
@@ -215,7 +215,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
             if (e_CellExpeditionRoom != E_CellMiniMap.None)
             {
                 Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditorChoose>
-                (false, "/PanelCellMiniMapEditorChoose",
+                (false, E_PanelName.PanelCellMiniMapEditorChoose,
                 (panel) =>
                 {
                     panel.Init(e_CellExpeditionRoom);
@@ -260,7 +260,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
                     GameObject objX = Hot.CreateContentStepX(tempix, ItemY.transform);
                     ItemRoot[GridsCount].Add(objX.transform);
 
-                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, E_PanelName.PanelGridMiniMapEditor,
                     (panel) =>
                     {
                         panel.Init(tempix, GridsCount, ComponentRoot);
@@ -348,7 +348,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
                     GameObject itemX = Hot.CreateContentStepX(Grids.Count, ItemContent.Find(tempiY.ToString()));
                     ItemRoot[tempiY].Add(itemX.transform);
 
-                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, "/PanelGridMiniMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelGridMiniMapEditor>(false, E_PanelName.PanelGridMiniMapEditor,
                     (panel) =>
                     {
                         Grids[tempiY].Add(panel);
@@ -571,7 +571,7 @@ public class PanelOtherEditorMiniMap : PanelBaseVector2<PanelCellMiniMapEditor, 
 
                 if (MapData.ListCellMiniMap[tempi1][tempi2].e_CellMiniMap != E_CellMiniMap.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
+                    Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, E_PanelName.PanelCellMiniMapEditor,
                     (PanelCellMiniMapEditor_) =>
                     {
                         E_CellMiniMap e_CellMiniMap = MapData.ListCellMiniMap[tempi1][tempi2].e_CellMiniMap;

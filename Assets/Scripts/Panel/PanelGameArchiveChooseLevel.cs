@@ -11,7 +11,7 @@ public class PanelGameArchiveChooseLevel : PanelBase
     private Image ImgGameArchiveDecorateLevel;
     private Text TxtDescribes;
 
-    string[] Describes =
+    private string[] Describes =
     {
         "明耀战役 虽然仍有挑战性 但被调整为比普通模式更快 更宽松 推荐暗黑地牢的新玩家尝试 只有菜通才会玩 (挑衅~~~)",
         "普通战役是游戏的\"原始\"设置 虽然没有时间限制 但与明耀战役相比 战役会更长且更具有挑战性 (是男人就去玩血月无光)",
@@ -52,8 +52,9 @@ public class PanelGameArchiveChooseLevel : PanelBase
         for (int i = 0; i < 3; i++)
         {
             int tempi = i;
-            MgrUI.GetInstance().AddCustomEventListener(transform.FindSonSonSon(controlnames[i]).gameObject,
-            EventTriggerType.PointerEnter, (param) =>
+            MgrUI.GetInstance().AddCustomEventListener
+            (transform.FindSonSonSon(controlnames[i]).gameObject, EventTriggerType.PointerEnter, 
+            (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(true);
                 ImgCurrentChoice.localPosition = new Vector3(ImgCurrentChoice.localPosition.x, pos[tempi], 0);
@@ -61,8 +62,9 @@ public class PanelGameArchiveChooseLevel : PanelBase
                                    MgrRes.GetInstance().Load<Sprite>(decorate[tempi]);
                 TxtDescribes.text = Describes[tempi];
             });
-            MgrUI.GetInstance().AddCustomEventListener(transform.FindSonSonSon(controlnames[i]).gameObject,
-            EventTriggerType.PointerExit, (param) =>
+            MgrUI.GetInstance().AddCustomEventListener
+            (transform.FindSonSonSon(controlnames[i]).gameObject, EventTriggerType.PointerExit, 
+            (param) =>
             {
                 ImgCurrentChoice.gameObject.SetActive(false);
                 ImgGameArchiveDecorateLevel.sprite = MgrRes.GetInstance().Load<Sprite>(decorate[decorate.Length - 1]);
@@ -98,7 +100,7 @@ public class PanelGameArchiveChooseLevel : PanelBase
                 break;
 
             case "BtnClose":
-                MgrUI.GetInstance().HidePanel(false, gameObject, gameObject.name);
+                Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelGameArchiveChooseLevel);
                 break;
         }
     }

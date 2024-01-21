@@ -26,6 +26,7 @@ public class PanelBarExpedition : PanelBase,
         {
             case "BtnExpedition":
                 InitRolePos();
+                
                 if (Hot.NowExpeditionEvent != null && Hot.DataNowCellGameArchive.ListExpeditionRoleIndex.Count > 0)
                 {
                     Hot.e_NowPlayerLocation = E_PlayerLocation.OnExpedition;
@@ -33,8 +34,9 @@ public class PanelBarExpedition : PanelBase,
                     Hot.DataNowCellGameArchive.e_NowExpeditionLocation = Hot.NowExpeditionEvent.e_ExpeditionLocation;
                     Hot.DataNowCellGameArchive.NowEventIndex = Hot.NowExpeditionEvent.Index;
                     Hot.PanelExpeditionMiniMap_.Init(false);
-                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
-                    Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition",
+                    Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, E_PanelName.PanelExpeditionRoom);
+                    Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>
+                    (true, E_PanelName.PanelBarRoleListExpedition,
                     (panel) =>
                     {
                         panel.Init();
@@ -66,7 +68,7 @@ public class PanelBarExpedition : PanelBase,
         {
             int tempi = i;
 
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRolePrepareRoot>(false, "/PanelCellExpeditionRolePrepareRoot",
+            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRolePrepareRoot>(false, E_PanelName.PanelCellExpeditionRolePrepareRoot,
             (panel) =>
             {
                 panel.Init(tempi, ExpeditionRoleRootBk);
@@ -81,7 +83,7 @@ public class PanelBarExpedition : PanelBase,
             if (Hot.DataNowCellGameArchive.ListRole[tempi].IndexExpeditionRoot != -1)
             {
                 Hot.MgrUI_.CreatePanel<PanelCellRolePortraitCanDrag>
-                (false, "/PanelCellRolePortraitCanDrag",
+                (false, E_PanelName.PanelCellRolePortraitCanDrag,
                 (panel) =>
                 {
                     panel.ExpeditionRolePrepareRoot = ListCellExpeditionRolePrepareRoot[Hot.DataNowCellGameArchive.ListRole[tempi].IndexExpeditionRoot];

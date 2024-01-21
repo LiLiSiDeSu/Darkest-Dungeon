@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PanelOhterResTable : PanelBase
 {
-    private Dictionary<string, Text> AllText = new Dictionary<string, Text>();
+    private Dictionary<string, Text> AllText = new();
     private Transform RootRes;
     private Transform RootTranslate;
 
@@ -19,10 +19,14 @@ public class PanelOhterResTable : PanelBase
             {
                 if (Hot.NowIndexCellGameArchive != -1)
                 {
-                    if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelOhterResTable"))
-                        Hot.MgrUI_.HidePanel(false, Hot.PanelOtherResTable_.gameObject, "PanelOhterResTable");
+                    if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOhterResTable))
+                    {
+                        Hot.MgrUI_.HidePanel(false, Hot.PanelOtherResTable_.gameObject, E_PanelName.PanelOhterResTable);
+                    }
                     else
-                        Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, "PanelOhterResTable");
+                    {
+                        Hot.MgrUI_.ShowPanel<PanelOhterResTable>(true, E_PanelName.PanelOhterResTable);
+                    }
                 }
             }
         });
@@ -31,19 +35,19 @@ public class PanelOhterResTable : PanelBase
         RootTranslate = transform.FindSonSonSon("RootTranslate");
 
         Hot.MgrUI_.CreatePanel<PanelTranslateAncestralProperty>
-        (false, "/PanelTranslateAncestralProperty",
+        (false, E_PanelName.PanelTranslateAncestralProperty,
         (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
         });
         Hot.MgrUI_.CreatePanel<PanelTranslateCoinAncestralProperty>
-        (false, "/PanelTranslateCoinAncestralProperty",
+        (false, E_PanelName.PanelTranslateCoinAncestralProperty,
         (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);
         });
         Hot.MgrUI_.CreatePanel<PanelTranslateCoinCoin>
-        (false, "/PanelTranslateCoinCoin",
+        (false, E_PanelName.PanelTranslateCoinCoin,
         (panel) =>
         {
             panel.transform.SetParent(RootTranslate, false);

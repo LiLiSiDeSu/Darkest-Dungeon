@@ -39,7 +39,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(false);
                 Hot.NowEnterGridRoomEditor.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
@@ -48,7 +48,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.LeftControl)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.LeftControl)
             {
                 ImgBkContent.gameObject.SetActive(true);
             }
@@ -57,7 +57,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (Hot.PoolNowPanel_.ContainPanel("PanelOtherEditorRoom") && key == KeyCode.Mouse1)
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.Mouse1)
             {
                 if (Hot.ChoseCellRoomEditor != null)
                 {
@@ -127,7 +127,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
         {
             if (e_Obj != E_MapObject.None)
             {
-                Hot.MgrUI_.CreatePanel<PanelCellRoomEditorChoose>(false, "/PanelCellRoomEditorChoose",
+                Hot.MgrUI_.CreatePanel<PanelCellRoomEditorChoose>(false, E_PanelName.PanelCellRoomEditorChoose,
                 (panel) =>
                 {
                     if (e_Obj.ToString().Contains("Grid"))
@@ -157,7 +157,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
 
                 if (map[tempiY][tempiX].IsHave)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                    Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, E_PanelName.PanelCellRoomEditor,
                     (panel) =>
                     {
                         panel.Init(map[tempiY][tempiX].e_Obj, Grids[tempiY][tempiX]);

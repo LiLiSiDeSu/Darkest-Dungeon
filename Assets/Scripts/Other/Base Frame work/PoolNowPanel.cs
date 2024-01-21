@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PoolNowPanel : InstanceBaseAuto_Mono<PoolNowPanel>
 {
@@ -9,5 +7,9 @@ public class PoolNowPanel : InstanceBaseAuto_Mono<PoolNowPanel>
     public bool ContainPanel(string panelName)
     {
         return ListNowPanel.Contains(panelName);
+    }
+    public bool ContainPanel(E_PanelName p_e_PanelName)
+    {
+        return ListNowPanel.Contains(p_e_PanelName.ToString());
     }
 }

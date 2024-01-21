@@ -41,7 +41,7 @@ public class PanelRoleGuildRecruit : PanelBaseDynamicScrollView
             int tempi = i;
 
             Hot.MgrUI_.CreatePanel<PanelCellRoleRecruit>
-            (false, "/PanelCellRoleRecruit",
+            (false, E_PanelName.PanelCellRoleRecruit,
             (panel) =>
             {
                 panel.Index = tempi;

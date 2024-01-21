@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,12 +16,14 @@ public class PanelTownItem : PanelBaseVector2Store,
 
         IptName = transform.FindSonSonSon("IptName").GetComponent<InputField>();
 
-        Hot.MgrUI_.AddCustomEventListener(IptName.gameObject, EventTriggerType.PointerEnter,
+        Hot.MgrUI_.AddCustomEventListener
+        (IptName.gameObject, EventTriggerType.PointerEnter,
         (param) =>
         {
             Hot.MgrInput_.OpenOrCloseCheck(false);
         });
-        Hot.MgrUI_.AddCustomEventListener(IptName.gameObject, EventTriggerType.PointerExit,
+        Hot.MgrUI_.AddCustomEventListener
+        (IptName.gameObject, EventTriggerType.PointerExit,
         (param) =>
         {
             Hot.MgrInput_.OpenOrCloseCheck(true);
@@ -69,7 +68,8 @@ public class PanelTownItem : PanelBaseVector2Store,
 
     public void Show()
     {
-        Hot.MgrUI_.ShowPanel<PanelTownItem>(true, gameObject.name,
+        Hot.MgrUI_.ShowPanel<PanelTownItem>
+        (true, gameObject.name,
         (panel) =>
         {
             panel.transform.SetParent(Hot.PanelBarTownStore_.RootPanelTownItem, false);
@@ -78,7 +78,7 @@ public class PanelTownItem : PanelBaseVector2Store,
 
     public void ShowForBtn()
     {
-        if (PoolNowPanel.GetInstance().ListNowPanel.Contains(gameObject.name))
+        if (PoolNowPanel.GetInstance().ContainPanel(gameObject.name))
         {
             Hide();
         }
@@ -118,7 +118,7 @@ public class PanelTownItem : PanelBaseVector2Store,
         }
 
         PanelCellTownStore_.TxtCapacity.text =
-           PanelCellTownStore_.PanelCellItem_.NowCapacity + " / " +
+           PanelCellTownStore_.PanelTownItem_.NowCapacity + " / " +
            Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].X *
            Hot.BodyDicStore[PanelCellTownStore_.e_PanelCellTownStore].Y;
     }
@@ -144,7 +144,7 @@ public class PanelTownItem : PanelBaseVector2Store,
 
                 if (Hot.DataNowCellGameArchive.ListStore[PanelCellTownStore_.Index].ListItem[tempi1][tempi2].e_Item != E_Item.None)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, "/PanelCellItem",
+                    Hot.MgrUI_.CreatePanel<PanelCellItem>(false, E_PanelName.PanelCellItem,
                     (PanelCellItem_) =>
                     {
                         PanelCellItem_.transform.SetParent(ItemRoot[tempi1][tempi2], false);

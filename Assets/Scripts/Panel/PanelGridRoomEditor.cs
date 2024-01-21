@@ -57,7 +57,7 @@ public class PanelGridRoomEditor : PanelBaseGrid<PanelCellRoomEditor>
                 {
                     if (Hot.ChoseCellRoomEditor == null)
                     {
-                        Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, "/PanelCellRoomEditor",
+                        Hot.MgrUI_.CreatePanel<PanelCellRoomEditor>(false, E_PanelName.PanelCellRoomEditor,
                         (panel) =>
                         {
                             panel.Init(Hot.e_ChoseObj, this);

@@ -14,13 +14,13 @@ public class PanelBarExpeditionTimeLine : PanelBase
         {
             if (key == KeyCode.V && Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition)
             {
-                if (Hot.PoolNowPanel_.ContainPanel("PanelBarExpeditionTimeLine"))
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarExpeditionTimeLine))
                 {
-                    Hot.MgrUI_.HidePanel(false, gameObject, "PanelBarExpeditionTimeLine");
+                    Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelBarExpeditionTimeLine);
                 }
                 else
                 {
-                    Hot.MgrUI_.ShowPanel<PanelBarExpeditionTimeLine>(true, "PanelBarExpeditionTimeLine");
+                    Hot.MgrUI_.ShowPanel<PanelBarExpeditionTimeLine>(true, E_PanelName.PanelBarExpeditionTimeLine);
                 }
             }
         });
@@ -29,7 +29,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
         Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
         (key) =>
         {
-            if (key == KeyCode.Space && Hot.PoolNowPanel_.ContainPanel("PanelBarExpeditionTimeLine"))
+            if (key == KeyCode.Space && Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarExpeditionTimeLine))
             {
                 NextTurn();
             }
@@ -73,7 +73,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
 
                 if (Map[tempiY][tempiX].IndexListRole != -1 || Map[tempiY][tempiX].OtherRole != null)
                 {
-                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, "/PanelCellExpeditionTimeLine",
+                    Hot.MgrUI_.CreatePanel<PanelCellExpeditionTimeLine>(false, E_PanelName.PanelCellExpeditionTimeLine,
                     (panel) =>
                     {
                         int Speed = -1;

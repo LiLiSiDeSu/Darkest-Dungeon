@@ -63,7 +63,7 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                     if (Hot.ChoseCellMiniMapEditor == null)
                     {
                         //����PanelCellMiniMapEditor
-                        Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, "/PanelCellMiniMapEditor",
+                        Hot.MgrUI_.CreatePanel<PanelCellMiniMapEditor>(false, E_PanelName.PanelCellMiniMapEditor,
                         (panel) =>
                         {
                             panel.Init(Hot.e_ChoseRoom, this);

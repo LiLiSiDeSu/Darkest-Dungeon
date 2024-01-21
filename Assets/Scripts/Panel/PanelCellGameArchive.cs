@@ -93,7 +93,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                 if (Hot.Data_.DataListCellGameArchive[Index].GameArchiveName != "" &&
                     Hot.Data_.DataListCellGameArchive[Index].e_GameArchiveLevel != E_GameArchiveLevel.None)
                 {
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, "PanelGameArchiveChoose");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelGameArchiveChoose_.gameObject, E_PanelName.PanelGameArchiveChoose);
 
                     Hot.NowIndexCellGameArchive = Index;
 
@@ -107,14 +107,14 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 
                     if (Hot.DataNowCellGameArchive.e_NowExpeditionLocation == E_ExpeditionLocation.Town)
                     {
-                        Hot.MgrUI_.ShowPanel<PanelTown>(false, "PanelTown");
+                        Hot.MgrUI_.ShowPanel<PanelTown>(false, E_PanelName.PanelTown);
                         Hot.e_NowPlayerLocation = E_PlayerLocation.Town;
                     }
                     else
                     {
                         Hot.PanelExpeditionMiniMap_.Init(true);
-                        Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, "PanelExpeditionRoom");
-                        Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, "PanelBarRoleListExpedition");
+                        Hot.MgrUI_.ShowPanel<PanelExpeditionRoom>(false, E_PanelName.PanelExpeditionRoom);
+                        Hot.MgrUI_.ShowPanel<PanelBarRoleListExpedition>(true, E_PanelName.PanelBarRoleListExpedition);
                     }
                 }
 
@@ -124,7 +124,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
             case "BtnGameArchiveDestroy":
                 #region DestroyGameArchive
 
-                Hot.MgrUI_.ShowPanel<PanelOtherDestroyArchiveHint>(true, "PanelOtherDestroyArchiveHint", (panel1) =>
+                Hot.MgrUI_.ShowPanel<PanelOtherDestroyArchiveHint>(true, E_PanelName.PanelOtherDestroyArchiveHint, (panel1) =>
                 {
                     Hot.PanelOtherDestroyArchiveHint_.DelConfirm += (panel2) =>
                     {
@@ -136,11 +136,11 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
 
                         Hot.PanelGameArchiveChoose_.SortContent();
 
-                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");
+                        Hot.MgrUI_.HidePanel(false, panel2, E_PanelName.PanelOtherDestroyArchiveHint);
                     };
                     Hot.PanelOtherDestroyArchiveHint_.DelCancel += (panel2) =>
                     {
-                        Hot.MgrUI_.HidePanel(false, panel2, "PanelOtherDestroyArchiveHint");
+                        Hot.MgrUI_.HidePanel(false, panel2, E_PanelName.PanelOtherDestroyArchiveHint);
                     };
                 });
 
@@ -175,7 +175,7 @@ public class PanelCellGameArchive : PanelBaseCellDynamicScrollView,
                 if (Data.GetInstance().DataListCellGameArchive[Index].e_GameArchiveLevel == E_GameArchiveLevel.None)
                 {
                     Hot.MgrUI_.ShowPanel<PanelGameArchiveChooseLevel>
-                    (true, "PanelGameArchiveChooseLevel",
+                    (true, E_PanelName.PanelGameArchiveChooseLevel,
                     (panel) =>
                     {
                         panel.IndexNowGameArchive = Index;

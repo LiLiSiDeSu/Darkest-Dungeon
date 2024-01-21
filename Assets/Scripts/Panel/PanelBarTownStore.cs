@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PanelBarTownStore : PanelBaseDynamicScrollView
 {
@@ -24,13 +22,13 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
         {
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {
-                if (Hot.PoolNowPanel_.ListNowPanel.Contains("PanelBarTownStore"))
+                if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarTownStore))
                 {
-                    Hot.MgrUI_.HidePanel(false, Hot.PanelBarTownStore_.gameObject, "PanelBarTownStore");
+                    Hot.MgrUI_.HidePanel(false, Hot.PanelBarTownStore_.gameObject, E_PanelName.PanelBarTownStore);
                 }
                 else
                 {
-                    Hot.MgrUI_.ShowPanel<PanelBarTownStore>(true, "PanelBarTownStore");
+                    Hot.MgrUI_.ShowPanel<PanelBarTownStore>(true, E_PanelName.PanelBarTownStore);
                 }
             }
         });
@@ -46,7 +44,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
             int tempi = i1;
 
             Hot.MgrUI_.CreatePanel<PanelCellTownStore>
-            (false, "/PanelCellTownStore",
+            (false, E_PanelName.PanelCellTownStore,
             (PanelCellTownStore_) =>
             {
                 PanelCellTownStore_.Index = tempi;
@@ -59,7 +57,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
                 PanelCellTownStore_.Init();
 
                 Hot.MgrUI_.CreatePanelAndPush<PanelTownItem>
-                (true, "/PanelTownItem", true, false, "PanelTownItem" + tempi,
+                (true, E_PanelName.PanelTownItem, true, false,
                 (PanelTownItem_) =>
                 {
                     PanelTownItem_.gameObject.name = "PanelTownItem" + tempi;
@@ -67,12 +65,13 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
                     PanelTownItem_.gameObject.SetActive(false);
 
                     PanelTownItem_.PanelCellTownStore_ = PanelCellTownStore_;
-                    PanelCellTownStore_.PanelCellItem_ = PanelTownItem_;
+                    PanelCellTownStore_.PanelTownItem_ = PanelTownItem_;
 
                     PanelTownItem_.InitTxtCapacity();
                     PanelTownItem_.InitContent();
 
-                    Hot.CenterEvent_.AddEventListener("Esc" + PanelTownItem_.gameObject.name,
+                    Hot.CenterEvent_.AddEventListener
+                    ("Esc" + PanelTownItem_.gameObject.name,
                     () =>
                     {
                         if (Hot.ChoseCellItem != null && Hot.ChoseCellItem.e_Location == E_ItemLocation.PanelTownItem)
@@ -80,7 +79,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
                             Hot.PanelBarTownStore_.CancelNowChoosedItem();
                         }
                     });
-                });
+                }, "PanelTownItem" + tempi);
             });
         }
     }
@@ -111,9 +110,9 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
     {
         foreach (DynamicContentStep item in Content.GetComponentsInChildren<DynamicContentStep>())
         {
-            Hot.MgrUI_.DicPanel.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject.name);
-            Hot.PoolBuffer_.DicPool.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject.name);
-            DestroyImmediate(item.GetComponentInChildren<PanelCellTownStore>().PanelCellItem_.gameObject);
+            Hot.MgrUI_.DicPanel.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelTownItem_.gameObject.name);
+            Hot.PoolBuffer_.DicPool.Remove(item.GetComponentInChildren<PanelCellTownStore>().PanelTownItem_.gameObject.name);
+            DestroyImmediate(item.GetComponentInChildren<PanelCellTownStore>().PanelTownItem_.gameObject);
             DestroyImmediate(item.gameObject);
         }
     }
