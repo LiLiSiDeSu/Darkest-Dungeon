@@ -7,7 +7,7 @@ public class PanelBarTown : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == Hot.MgrInput_.PanelBar)
             {

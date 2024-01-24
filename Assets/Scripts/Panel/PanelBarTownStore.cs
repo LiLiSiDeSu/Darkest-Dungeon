@@ -9,7 +9,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.ChoseCellItem != null && key == KeyCode.Mouse1)
@@ -18,7 +18,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(), (key) =>
         {
             if (Hot.NowIndexCellGameArchive != -1 && Hot.e_NowPlayerLocation != E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Tab)
             {
@@ -70,7 +70,7 @@ public class PanelBarTownStore : PanelBaseDynamicScrollView
                     PanelTownItem_.InitTxtCapacity();
                     PanelTownItem_.InitContent();
 
-                    Hot.CenterEvent_.AddEventListener
+                    Hot.TriggerEvent_.AddEventListener
                     ("Esc" + PanelTownItem_.gameObject.name,
                     () =>
                     {

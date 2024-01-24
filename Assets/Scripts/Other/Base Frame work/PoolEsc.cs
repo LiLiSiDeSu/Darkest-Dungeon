@@ -7,7 +7,7 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
 
     private void Start()
     {
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(), (key) =>
         {
             if (key == KeyCode.Escape)
             {
@@ -58,7 +58,7 @@ public class PoolEsc : InstanceBaseAuto_Mono<PoolEsc>
     {
         if (ListEsc.Count > 0)
         {
-            Hot.CenterEvent_.EventTrigger("Esc" + ListEsc[^1]);
+            Hot.TriggerEvent_.EventTrigger("Esc" + ListEsc[^1]);
 
             //这里的判断是为了防止加入了PoolEsc但没有加入MgrUI的DicPanel中的面板
             //在执行下面Hot.MgrUI_.GetPanel(ListEsc[^1]).gameObject的逻辑时的空引用报错

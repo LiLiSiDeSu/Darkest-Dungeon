@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -392,11 +391,7 @@ public class DataContainer_CellExpeditionMapObj
 public class DataContainer_GridExpeditionMap
 {
     public int IndexListRole = -1;
-
-    //��ǰԶ����ͼ������ӵ�еĽ�ɫ(����RoleList����ĵĽ�ɫ)
     public DataContainer_CellRole OtherRole;
-
-    //��ǰԶ����ͼ������ӵ�е�����
     public DataContainer_CellExpeditionMapObj MapObj;
 }
 
@@ -406,7 +401,7 @@ public class DataContainer_GridExpeditionMap
 
 public class DataContainer_CellTownStore
 {
-    public string Name = "û������";
+    public string Name = "没有名字";
     public E_PanelCellTownStore e_PanelCellTownStore = E_PanelCellTownStore.StoreWood;
     public List<List<DataContainer_CellItem>> ListItem = new();
 

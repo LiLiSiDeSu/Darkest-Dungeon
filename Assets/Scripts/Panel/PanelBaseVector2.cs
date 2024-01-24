@@ -1,11 +1,7 @@
 using System;
-using System.CodeDom;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class PanelBaseVector2<T0, T1> : PanelBase
        where T0 : PanelBaseCellVector2, new()
@@ -43,7 +39,8 @@ public class PanelBaseVector2<T0, T1> : PanelBase
         {
             Hot.NowEnterContent = null;
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>
+        (E_KeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.NowEnterContent != null && Hot.NowEnterContent == AllContent)

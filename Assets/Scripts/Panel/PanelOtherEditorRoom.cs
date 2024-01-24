@@ -23,7 +23,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
 
         ImgCurrentChoose = transform.FindSonSonSon("ImgCurrentChoose").GetComponent<Image>();
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelOtherEditorRoom",
+        Hot.TriggerEvent_.AddEventListener("Esc" + "PanelOtherEditorRoom",
         () =>
         {
             Hot.NowEditorDependency = null;
@@ -36,7 +36,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
             Hot.PanelOtherEditorRoom_.ClearItem();
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.LeftControl)
@@ -45,7 +45,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
                 Hot.NowEnterGridRoomEditor.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
             }
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyUp.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.LeftControl)
@@ -54,7 +54,7 @@ public class PanelOtherEditorRoom : PanelBaseVector2<PanelCellRoomEditor, PanelG
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoom) && key == KeyCode.Mouse1)

@@ -9,7 +9,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.V && Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition)
@@ -26,7 +26,7 @@ public class PanelBarExpeditionTimeLine : PanelBase
         });
 
         //���غ�
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.Space && Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelBarExpeditionTimeLine))

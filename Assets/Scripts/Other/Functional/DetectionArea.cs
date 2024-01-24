@@ -13,6 +13,6 @@ public class DetectionArea : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Hot.CenterEvent_.EventTrigger<int, E_WSAD>("DynamicContentStep", Index, e_ArrowDirection);
+        Hot.TriggerEvent_.EventTrigger<int, E_WSAD>("DynamicContentStep", Index, e_ArrowDirection);
     }
 }

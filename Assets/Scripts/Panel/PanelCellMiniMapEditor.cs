@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 public class PanelCellMiniMapEditor : PanelBaseCellVector2,
              IPointerEnterHandler, IPointerExitHandler
 {
-    public PanelBaseGrid<PanelCellMiniMapEditor> RootGrid = new();
+    public PanelGridMiniMapEditor RootGrid;
 
     public List<List<PanelGridRoomEditorConfig>> Map = new();
 
-    public E_CellMiniMap e_CellMiniMap = E_CellMiniMap.None;
+    public E_CellMiniMap e_CellMiniMap;
 
     protected override void Button_OnClick(string controlname)
     {
@@ -26,17 +26,17 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
                 if (Hot.ChoseCellMiniMapEditor != this)
                 {
                     Hot.ChoseCellMiniMapEditor.ImgItem.raycastTarget = true;
-                    Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgEmpty");
+                    Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgEmpty);
                     Hot.ChoseCellMiniMapEditor = this;
                 }
 
                 if (Hot.ChoseCellMiniMapEditor != null)
                 {
                     Hot.e_ChoseRoom = Hot.ChoseCellMiniMapEditor.e_CellMiniMap;
-                    Hot.PanelOtherEditorMiniMap_.ImgCurrentChoose.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + Hot.ChoseCellMiniMapEditor.e_CellMiniMap);
+                    Hot.PanelOtherEditorMiniMap_.ImgCurrentChoose.sprite = Hot.MgrRes_.LoadSprite(Hot.ChoseCellMiniMapEditor.e_CellMiniMap.ToString());
                 }
 
-                Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.Load<Sprite>("Art/" + "ImgCoverTransparenctGreen");
+                Hot.ChoseCellMiniMapEditor.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgCoverTransparenctGreen);
                 Hot.ChoseCellMiniMapEditor.ImgItem.raycastTarget = false;
                 break;
         }
@@ -56,7 +56,7 @@ public class PanelCellMiniMapEditor : PanelBaseCellVector2,
 
     #endregion
 
-    public void Init(E_CellMiniMap p_e_room, PanelBaseGrid<PanelCellMiniMapEditor> p_RootGrid)
+    public void Init(E_CellMiniMap p_e_room, PanelGridMiniMapEditor p_RootGrid)
     {
         e_CellMiniMap = p_e_room;
         RootGrid = p_RootGrid;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelCellRoleConfigRole : PanelBase
+public class PanelCellRoleConfigChooseRole : PanelBase
 {
     public E_RoleName e_RoleName;
 
@@ -21,7 +21,20 @@ public class PanelCellRoleConfigRole : PanelBase
         switch (controlname)
         {
             case "BtnChooseRole":
-                Hot.PanelOtherEditorRoleConfig_.ImgCurrentRole.sprite = ImgChooseRole.sprite;
+                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName == e_RoleName)
+                {
+                    Hot.PanelOtherEditorRoleConfig_.Clear();
+                }
+                else
+                {
+                    Hot.PanelOtherEditorRoleConfig_.ClearRoleSkillContent();
+
+                    Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentRole(e_RoleName);
+                    Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(E_Skill.None);
+                    Hot.PanelOtherEditorRoleConfig_.UpdateRoleSkillContent(e_RoleName);
+
+                    Hot.PanelOtherEditorRoleConfig_.GenerateByData(e_RoleName);
+                }
                 break;
         }
     }

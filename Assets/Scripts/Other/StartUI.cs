@@ -116,7 +116,7 @@
 
         #region DynamicContentStep的事件注册        
 
-        Hot.CenterEvent_.AddEventListener<int, E_WSAD>
+        Hot.TriggerEvent_.AddEventListener<int, E_WSAD>
         ("DynamicContentStep",
         (index, arrow) =>
         {

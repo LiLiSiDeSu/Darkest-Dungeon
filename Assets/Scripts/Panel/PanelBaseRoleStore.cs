@@ -17,7 +17,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
         TxtCapacity.text = "0 / 0";
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelRoleDetails",
+        Hot.TriggerEvent_.AddEventListener("Esc" + "PanelRoleDetails",
         () =>
         {
             IndexRole = -1;

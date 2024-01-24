@@ -9,7 +9,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(), (key) =>
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(), (key) =>
         {
             if (Hot.e_NowPlayerLocation == E_PlayerLocation.OnExpedition && key == Hot.MgrInput_.Map)
             {
@@ -24,7 +24,7 @@ public class PanelExpeditionMiniMap : PanelBaseVector2<PanelCellExpeditionMiniMa
             }
         });
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyHold.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyHold.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionMiniMap))

@@ -15,7 +15,7 @@ public class PanelTownRooms : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener
+        Hot.TriggerEvent_.AddEventListener
         ("Esc" + "PanelTownRooms",
         () =>
         {

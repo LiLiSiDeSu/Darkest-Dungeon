@@ -18,7 +18,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         ImgRoomBk = transform.FindSonSonSon("ImgRoomBk");
 
         //取消现在选择的角色
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.Mouse1)
@@ -34,7 +34,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         });
 
         //VFlip已经放置的角色
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.F && Hot.ChoseCellExpeditionRoom != null && Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole != -1)
@@ -87,7 +87,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         });
 
         //角色移动预放置
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.ChoseCellExpeditionRoom == null)
@@ -134,7 +134,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         });
 
         //减少现在角色移动的距离
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == Hot.MgrInput_.Reduce && NowRoleMoveKey != KeyCode.None && NowRoleMoveStep > 1)
@@ -156,7 +156,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
         });
 
         //放置角色
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.Return && Hot.ChoseCellExpeditionRoom != null)
@@ -187,7 +187,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
         #region 开启关闭PanelExpeditionRoom移动
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.LeftControl)
@@ -196,7 +196,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 ClearImgStatus();
             }
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyUp.ToString(),
         (key) =>
         {
             if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelExpeditionRoom) && key == KeyCode.LeftControl)
@@ -209,7 +209,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
 
         #region Grid预放置逻辑
 
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyDown.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
         (key) =>
         {
             if (key == KeyCode.F && Hot.NowEnterGridExpeditionRoom != null && Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count != 0)
@@ -244,7 +244,7 @@ public class PanelExpeditionRoom : PanelBaseVector2<PanelCellExpeditionRoom, Pan
                 Hot.VFlip = -1;
             }
         });
-        Hot.CenterEvent_.AddEventListener<KeyCode>(E_InputKeyEvent.KeyUp.ToString(),
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyUp.ToString(),
         (key) =>
         {
             if (key == KeyCode.F && Hot.NowEnterGridExpeditionRoom != null && Hot.PanelBarRoleListExpedition_.ListNeedPutRoleIndex.Count != 0)

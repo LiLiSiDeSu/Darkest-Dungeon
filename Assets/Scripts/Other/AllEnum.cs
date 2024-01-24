@@ -8,8 +8,13 @@ public enum E_PanelName
     PanelOtherEditorRoom,
     PanelOtherEditorMiniMap,
     PanelCellRoomEditor,
-    PanelCellRoleConfigSkill,
-    PanelCellRoleConfigRole,
+
+    PanelCellRoleConfigChooseSkill,
+    PanelCellRoleConfigChooseRole,
+    PanelCellRoleConfig,
+    PanelGridRoleConfig,
+    PanelCellRoleConfigRoleSkill,
+    
     PanelCellGameArchive,
     PanelCellTownStore,
     PanelCellExpeditionRole,
@@ -80,7 +85,7 @@ public enum E_PanelName
     PanelOtherStart,
 }
 
-public enum E_InputKeyEvent
+public enum E_KeyEvent
 {
     KeyUp,
     KeyDown,
@@ -166,6 +171,8 @@ public enum E_PanelCellTownStore
 
 public enum E_Skill
 {
+    None,
+
     SkillForwardUpCut,
     SkillForwardDownCut,
 }

@@ -43,7 +43,7 @@ public class PanelExpeditionPrepare : PanelBase
     {
         base.Awake();
 
-        Hot.CenterEvent_.AddEventListener("Esc" + "PanelExpeditionPrepare",
+        Hot.TriggerEvent_.AddEventListener("Esc" + "PanelExpeditionPrepare",
         () =>
         {
             Hot.e_NowPlayerLocation = E_PlayerLocation.Town;

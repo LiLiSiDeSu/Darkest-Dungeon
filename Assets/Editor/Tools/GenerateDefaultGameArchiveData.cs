@@ -12,6 +12,97 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         MgrJson.GetInstance().filePath = Application.persistentDataPath + "/Data/JsonData";
         Data.GetInstance().PathGameArchiveData = "/GameArchiveData";
 
+        Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
+        {
+            {
+                E_RoleName.Crusader,
+                new(E_RoleMoveType.Land,
+                    new()
+                    {
+                        50, 55, 60, 90,
+                        100, 130, 150,
+                    },
+                    new()
+                    {
+                        {
+                            E_Skill.SkillForwardUpCut,
+                            new(new(),new()
+                            {
+
+                            })
+                        },
+                        {
+                            E_Skill.SkillForwardDownCut,
+                            new(new(),new()
+                            {
+
+                            })
+                        },
+                    },
+                    200, 300, 50, 100,
+                    10, 4,
+                    new(20, 9),
+                    new(3, 5),
+                    new(4, 3, 3, 7))
+            },
+            {
+                E_RoleName.PlagueDoctor,
+                new(E_RoleMoveType.Land,
+                    new()
+                    {
+                        50, 55, 60, 90,
+                        100, 130, 150,
+                    },
+                    new()
+                    {
+                        {
+                            E_Skill.SkillForwardUpCut,
+                            new(new(),new()
+                            {
+
+                            })
+                        },
+                        {
+                            E_Skill.SkillForwardDownCut,
+                            new(new(),new()
+                            {
+
+                            })
+                        },
+                    },
+                    200, 300, 50, 120,
+                    10, 7,
+                    new(15, 6),
+                    new(2, 3),
+                    new(5, 2, 4, 6))
+            },
+            {
+                E_RoleName.DevilFly,
+                new(E_RoleMoveType.Sky,
+                    new()
+                    {
+                        50, 55, 60, 90,
+                        100, 130, 150,
+                    },
+                    new()
+                    {
+                        {
+                            E_Skill.SkillForwardDownCut,
+                            new(new(),new()
+                            {
+
+                            })
+                        },
+                    },
+                    200, 300, 50, 150,
+                    10, 10,
+                    new(6, 4),
+                    new(2, 3),
+                    new(4, 4, 4, 4))
+            },
+        };
+        Hot.MgrJson_.Save(DicRoleConfig, "", "/Config");
+
         List<DataContainer_CellGameArchive> GameArchiveDataCellList = new();
 
         for (int i = 0; i < DefaultGameArchiveDataCount; i++)

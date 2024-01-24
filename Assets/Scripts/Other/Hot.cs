@@ -23,95 +23,7 @@ public static class Hot
     /// </summary>
     public static float ValueChangeMapSize = 0.4f;
 
-    public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = new()
-    {
-        {
-            E_RoleName.Crusader,
-            new(E_RoleMoveType.Land,
-                new()
-                {
-                    50, 55, 60, 90,
-                    100, 130, 150,
-                },
-                new()
-                {
-                    {
-                        E_Skill.SkillForwardUpCut,
-                        new(new(),new()
-                        {
-
-                        })
-                    },
-                    {
-                        E_Skill.SkillForwardDownCut,
-                        new(new(),new()
-                        {
-
-                        })
-                    },
-                },
-                200, 300, 50, 100,
-                10, 4,
-                new(20, 9),
-                new(3, 5),
-                new(4, 3, 3, 7))
-        },
-        {
-            E_RoleName.PlagueDoctor,
-            new(E_RoleMoveType.Land,
-                new()
-                {
-                    50, 55, 60, 90,
-                    100, 130, 150,
-                },
-                new()
-                {
-                    {
-                        E_Skill.SkillForwardUpCut,
-                        new(new(),new()
-                        {
-
-                        })
-                    },
-                    {
-                        E_Skill.SkillForwardDownCut,
-                        new(new(),new()
-                        {
-
-                        })
-                    },
-                },
-                200, 300, 50, 120,
-                10, 7,
-                new(15, 6),
-                new(2, 3),
-                new(5, 2, 4, 6))
-        },
-        {
-            E_RoleName.DevilFly,
-            new(E_RoleMoveType.Sky,
-                new()
-                {
-                    50, 55, 60, 90,
-                    100, 130, 150,
-                },
-                new()
-                {
-                    {
-                        E_Skill.SkillForwardDownCut,
-                        new(new(),new()
-                        {
-
-                        })
-                    },
-                },
-                200, 300, 50, 150,
-                10, 10,
-                new(6, 4),
-                new(2, 3),
-                new(4, 4, 4, 4))
-        },
-    };
+    public static Dictionary<E_RoleName, RoleConfig> DicRoleConfig = MgrJson_.Load<Dictionary<E_RoleName, RoleConfig>>("", "/Config");
 
     #region Body
 
@@ -237,9 +149,9 @@ public static class Hot
     {
         get { return MgrJson.GetInstance(); }
     }
-    public static CenterEvent CenterEvent_
+    public static TriggerEvent TriggerEvent_
     {
-        get { return CenterEvent.GetInstance(); }
+        get { return TriggerEvent.GetInstance(); }
     }
     public static MgrRes MgrRes_
     {
@@ -503,19 +415,23 @@ public static class Hot
     /// <summary>
     /// 现在的编辑器属于哪个MiniMap Cell
     /// </summary>
-    public static PanelCellMiniMapEditor NowEditorDependency = null;
+    public static PanelCellMiniMapEditor NowEditorDependency;
     /// <summary>
     /// 现在进入的MiniMap编辑器背景Grid
     /// </summary>
-    public static PanelBaseGrid<PanelCellMiniMapEditor> NowEnterGridMiniMapEditor = null;
+    public static PanelBaseGrid<PanelCellMiniMapEditor> NowEnterGridMiniMapEditor;
     /// <summary>
     /// 现在进入的MiniMap编辑器Cell      
     /// </summary>
-    public static PanelCellMiniMapEditor NowEnterCellMiniMapEditor = null;
+    public static PanelCellMiniMapEditor NowEnterCellMiniMapEditor;
     /// <summary>
     /// 现在选择的MiniMap编辑器Cell
     /// </summary>
-    public static PanelCellMiniMapEditor ChoseCellMiniMapEditor = null;
+    public static PanelCellMiniMapEditor ChoseCellMiniMapEditor;
+
+    public static PanelCellRoleConfig NowEnterCellRoleConfig;
+    public static PanelGridRoleConfig NowEnterGridRoleConfig;
+    public static PanelCellRoleConfig ChoseCellRoleConfig;
 
     #endregion
 

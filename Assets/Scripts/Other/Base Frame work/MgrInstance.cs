@@ -25,7 +25,7 @@ public class MgrInstance : InstanceBase_Mono<MgrInstance>
         PoolEsc.GetInstance().transform.SetParent(transform);
         //--
         PoolNowPanel.GetInstance().transform.SetParent(Other.transform);
-        CenterEvent.GetInstance().transform.SetParent(Other.transform);
+        TriggerEvent.GetInstance().transform.SetParent(Other.transform);
         MgrInput.GetInstance().transform.SetParent(Other.transform);
         MgrJson.GetInstance().transform.SetParent(Other.transform);
         MgrRes.GetInstance().transform.SetParent(Other.transform);
