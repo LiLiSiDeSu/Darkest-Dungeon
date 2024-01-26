@@ -20,14 +20,13 @@ public class PanelCellRoleConfigRoleSkill : PanelBase
 
         switch (controlname)
         {
-            case "BtnChooseSkill":
-                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill == e_Skill)
+            case "BtnRoleSkill":
+                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill != e_Skill)
                 {
-                    Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(E_Skill.None);
-                }
-                else
-                {
+                    Hot.PanelOtherEditorRoleConfig_.ClearSkillArea();
                     Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(e_Skill);
+
+                    Hot.PanelOtherEditorRoleConfig_.GenerateByData(e_Skill);
                 }
                 break;
         }

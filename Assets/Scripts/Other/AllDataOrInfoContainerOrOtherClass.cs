@@ -16,10 +16,10 @@ public class my_VectorInt2
         X = -1;
         Y = -1;
     }
-    public my_VectorInt2(int X, int Y)
+    public my_VectorInt2(int p_X, int p_Y)
     {
-        this.X = X;
-        this.Y = Y;
+        X = p_X;
+        Y = p_Y;
     }
 }
 
@@ -62,11 +62,11 @@ public class VectorInt2_4
 
 public class SkillConfig
 {
-    public my_VectorInt2 StartPos;
-    public List<List<int>> Area;
+    public my_VectorInt2 StartPos = new();
+    public List<List<E_RoleSkillArea>> Area = new();
 
     public SkillConfig() { }
-    public SkillConfig(my_VectorInt2 p_StartPos, List<List<int>> p_Area)
+    public SkillConfig(my_VectorInt2 p_StartPos, List<List<E_RoleSkillArea>> p_Area)
     {
         StartPos = p_StartPos;
         Area = p_Area;

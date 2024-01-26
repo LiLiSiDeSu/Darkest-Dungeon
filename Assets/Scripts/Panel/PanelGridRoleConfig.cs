@@ -60,54 +60,41 @@ public class PanelGridRoleConfig : PanelBaseGrid<PanelCellRoleConfig>
         switch (controlname)
         {
             case "ImgBk":
-                if (Hot.ChoseCellRoleConfig == null)
-                {
-                    return;
-                }
-
                 E_RoleName e_RoleName = Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName;
-                if (e_RoleName != E_RoleName.None && JudgeCanPut())
+
+                //Create
+                if (Hot.ChoseCellRoleConfig == null && 
+                    Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill != E_Skill.None &&
+                    Hot.DicRoleConfig[e_RoleName].DicSkill.ContainsKey(Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill))
                 {
-                    //Create
-                    if (Hot.ChoseCellRoleConfig == null)
+                    Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
+                    (false, E_PanelName.PanelCellRoleConfig,
+                    (panel) =>
                     {
-                        Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
-                        (false, E_PanelName.PanelCellRoleConfig,
-                        (panel) =>
-                        {
-                            panel.Init(e_RoleName, this);
+                        panel.Init(E_RoleName.None, this);
 
-                            for (int i1 = 0; i1 < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; i1++)
-                            {
-                                for (int i2 = 0; i2 < Hot.DicRoleConfig[e_RoleName].SizeBody.X; i2++)
-                                {
-                                    Hot.PanelOtherEditorRoleConfig_.Grids[Y + i1][X + i2].Item = panel;
-                                }
-                            }
-                        });
+                        Hot.PanelOtherEditorRoleConfig_.Grids[Y][X].Item = panel;
+
+                        Hot.PanelOtherEditorRoleConfig_.SkillAreaNum++;
+                    });
+                }
+                //Move
+                else if (Hot.ChoseCellRoleConfig != null && JudgeCanPut())
+                {
+                    for (int i1 = 0; i1 < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; i1++)
+                    {
+                        for (int i2 = 0; i2 < Hot.DicRoleConfig[e_RoleName].SizeBody.X; i2++)
+                        {
+                            Hot.PanelOtherEditorRoleConfig_.Grids[Hot.ChoseCellRoleConfig.RootGrid.Y + i1][Hot.ChoseCellRoleConfig.RootGrid.X + i2].Item = null;
+                        }
                     }
-                    //Move
-                    else if (Hot.ChoseCellRoleConfig != null)
+
+                    for (int i1 = 0; i1 < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; i1++)
                     {
-                        for (int i1 = 0; i1 < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; i1++)
+                        for (int i2 = 0; i2 < Hot.DicRoleConfig[e_RoleName].SizeBody.X; i2++)
                         {
-                            for (int i2 = 0; i2 < Hot.DicRoleConfig[e_RoleName].SizeBody.X; i2++)
-                            {
-                                Hot.PanelOtherEditorRoleConfig_.Grids[Hot.ChoseCellRoleConfig.RootGrid.Y + i1][Hot.ChoseCellRoleConfig.RootGrid.X + i2].Item = null;
-                            }
+                            Hot.PanelOtherEditorRoleConfig_.Grids[Y + i1][X + i2].Item = Hot.ChoseCellRoleConfig;
                         }
-
-                        for (int i1 = 0; i1 < Hot.DicRoleConfig[e_RoleName].SizeBody.Y; i1++)
-                        {
-                            for (int i2 = 0; i2 < Hot.DicRoleConfig[e_RoleName].SizeBody.X; i2++)
-                            {
-                                Hot.PanelOtherEditorRoleConfig_.Grids[Y + i1][X + i2].Item = Hot.ChoseCellRoleConfig;
-                            }
-                        }
-
-                        Hot.ChoseCellRoleConfig.transform.SetParent(Hot.PanelOtherEditorRoleConfig_.ItemRoot[Y][X], false);
-                        Hot.ChoseCellRoleConfig.transform.localPosition = new(-20, 20);
-                        Hot.ChoseCellRoleConfig.RootGrid = this;
                     }
 
                     //Clear ImgStatus
@@ -121,6 +108,10 @@ public class PanelGridRoleConfig : PanelBaseGrid<PanelCellRoleConfig>
                             }
                         }
                     }
+
+                    Hot.ChoseCellRoleConfig.transform.SetParent(Hot.PanelOtherEditorRoleConfig_.ItemRoot[Y][X], false);
+                    Hot.ChoseCellRoleConfig.transform.localPosition = new(-20, 20);
+                    Hot.ChoseCellRoleConfig.RootGrid = this;
                 }
                 break;
         }

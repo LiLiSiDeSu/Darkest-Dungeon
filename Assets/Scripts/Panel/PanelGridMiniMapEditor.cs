@@ -89,7 +89,6 @@ public class PanelGridMiniMapEditor : PanelBaseGrid<PanelCellMiniMapEditor>
                             }
                         });
                     }
-
                     //Move
                     else if (Hot.ChoseCellMiniMapEditor != null)
                     {

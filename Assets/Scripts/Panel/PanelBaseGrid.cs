@@ -25,10 +25,10 @@ public class PanelBaseGrid<T> : PanelBase
         X = p_X;
         Y = p_Y;
 
-        ImgBk.gameObject.name = X.ToString();
-        ImgStatus.gameObject.name = X.ToString();
+        ImgBk.gameObject.name = Y + "-" + X;
+        ImgStatus.gameObject.name = Y + "-" + X;
 
         transform.SetParent(father, false);
-        gameObject.name = p_Y.ToString();
+        gameObject.name = Y + "-" + X;
     }
 }

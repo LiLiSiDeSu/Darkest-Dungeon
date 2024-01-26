@@ -15,7 +15,7 @@ public class PanelCellRoleConfig : PanelBaseCellVector2,
         switch (controlname)
         {
             case "BtnCellRoleConfig":
-                if (Hot.ChoseCellRoleConfig == null)
+                if (Hot.ChoseCellRoleConfig == null && e_RoleName != E_RoleName.None)
                 {
                     Hot.ChoseCellRoleConfig = this;
                     Hot.ChoseCellRoleConfig.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgCoverTransparenctGreen);

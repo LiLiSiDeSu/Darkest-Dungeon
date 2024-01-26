@@ -579,6 +579,8 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
         DestroyImmediate(Hot.Data_.gameObject);
         DestroyImmediate(Hot.MgrJson_.gameObject);
 
+        Debug.Log("GenerateDefaultGameArchiveData Done!!!");
+
         #endregion
     }
 }

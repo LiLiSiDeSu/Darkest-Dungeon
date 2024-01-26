@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
 {
@@ -44,6 +42,8 @@ public class MgrInput : InstanceBaseAuto_Mono<MgrInput>
         CheckKeyCode(KeyCode.A);
         CheckKeyCode(KeyCode.D);
         CheckKeyCode(KeyCode.V);
+        CheckKeyCode(KeyCode.C);
+        CheckKeyCode(KeyCode.Q);
     }
 
     /// <summary>

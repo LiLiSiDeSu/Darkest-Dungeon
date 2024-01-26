@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, PanelGridRoleConfig>
 {
+    public bool HotKeyDone = true;
+    public int SkillAreaNum;
+
     public E_Skill e_ChoseSkill;
     public E_RoleName e_ChoseRoleName;
 
@@ -21,6 +24,7 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
     public Transform RoleSkillContent;
 
     public Dictionary<E_Skill ,PanelCellRoleConfigChooseSkill> DicSkills = new();
+    public Dictionary<E_Skill, PanelCellRoleConfigRoleSkill> DicRoleSkill = new();
 
     protected override void Awake()
     {
@@ -38,37 +42,7 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
         SkillContent = transform.FindSonSonSon("SkillContent");
         RoleSkillContent = transform.FindSonSonSon("RoleSkillContent");
 
-        Hot.TriggerEvent_.AddEventListener<KeyCode>
-        (E_KeyEvent.KeyDown.ToString(), 
-        (key) =>
-        {
-            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoleConfig) && key == KeyCode.Mouse1)
-            {
-                if (Hot.ChoseCellRoleConfig != null)
-                {
-                    return;
-                }
-                if (e_ChoseSkill != E_Skill.None)
-                {
-                    UpdateImgCurrentSkill(E_Skill.None);
-
-                    Hot.ChoseCellRoleConfig = null;
-                    Hot.NowEnterCellRoleConfig = null;
-                    Hot.NowEnterGridRoleConfig = null;
-
-                    //Clear skill area
-
-                    return;
-                }
-                if (e_ChoseRoleName != E_RoleName.None)
-                {
-                    Clear();
-
-                    return;
-                }
-            }
-        });
-
+        // Cancel
         Hot.TriggerEvent_.AddEventListener<KeyCode>
         (E_KeyEvent.KeyDown.ToString(),
         (key) =>
@@ -77,7 +51,7 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
             {
                 ClearImgStatus();
 
-                //Unselect the CellMapEditor that was selected
+                // Unselect the CellMapEditor that was selected
                 if (Hot.ChoseCellRoleConfig != null)
                 {
                     Hot.ChoseCellRoleConfig.ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
@@ -86,6 +60,58 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
 
                     return;
                 }
+                if (Hot.NowEnterCellRoleConfig != null && Hot.NowEnterCellRoleConfig.e_RoleName == E_RoleName.None)
+                {
+                    Hot.NowEnterCellRoleConfig.RootGrid.Item = null;
+                    DestroyImmediate(Hot.NowEnterCellRoleConfig.gameObject);
+                    SkillAreaNum--;
+                }
+            }
+        });
+
+        // Hot Key
+        Hot.TriggerEvent_.AddEventListener<KeyCode>(E_KeyEvent.KeyDown.ToString(),
+        (key) =>
+        {   
+            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelOtherEditorRoleConfig))
+            {
+                if (!HotKeyDone)
+                {
+                    return;
+                }
+
+                HotKeyDone = false;
+
+                switch (key)
+                {
+                    case KeyCode.A:
+                        Save();
+                        break;
+                    case KeyCode.S:
+                        Clear();
+                        break;
+                    case KeyCode.D:
+                        ChangeMapSize();
+                        break;
+                    case KeyCode.F:
+                        ClipMap();
+                        break;
+                    case KeyCode.C:
+                        AddSkill();
+                        break;
+                    case KeyCode.V:
+                        ReduceSkill();
+                        break;
+                    case KeyCode.Q:
+                        TogIsReversal.isOn = !TogIsReversal.isOn;
+                        break;
+                    case KeyCode.W:
+                        IptChangeX.text = (-int.Parse(IptChangeX.text)).ToString();
+                        IptChangeY.text = (-int.Parse(IptChangeY.text)).ToString();
+                        break;
+                }
+
+                HotKeyDone = true;
             }
         });
 
@@ -93,6 +119,11 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
         LimitReduce = 0.3f;
 
         InitChooseContent();
+    }
+
+    private void Update()
+    {
+        Debug.Log(HotKeyDone);
     }
 
     protected override void Button_OnClick(string controlname)
@@ -105,13 +136,25 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
                 Clear();
                 break;
             case "BtnSave":
-                Debug.Log("BtnSave");
+                Save();
                 break;
             case "BtnChangeMapSize":
-                if (Grids.Count > 0)
-                {
-                    ChangeMapSize();
-                }
+                ChangeMapSize();
+                break;
+            case "BtnCurrentSkill":
+                ClearSkillArea();
+                break;
+            case "BtnCurrentRole":
+                Clear();
+                break;
+            case "BtnAddSkill":
+                AddSkill();
+                break;
+            case "BtnReduceSkill":
+                ReduceSkill();
+                break;
+            case "BtnClipMap":
+                ClipMap();
                 break;
         }
     }
@@ -150,6 +193,41 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
         }
     }
     
+    public void AddSkill()
+    {
+        if (e_ChoseSkill != E_Skill.None && !Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.ContainsKey(e_ChoseSkill))
+        {
+            DicSkills[e_ChoseSkill].UpdateImgIsRoleSkill(true);
+
+            Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.Add(e_ChoseSkill, new());
+            Hot.PanelOtherEditorRoleConfig_.GenerateByData(e_ChoseSkill);
+
+            Hot.MgrUI_.CreatePanel<PanelCellRoleConfigRoleSkill>
+            (false, E_PanelName.PanelCellRoleConfigRoleSkill,
+            (panel) =>
+            {
+                panel.Init(e_ChoseSkill, RoleSkillContent);
+                DicRoleSkill.Add(e_ChoseSkill, panel);
+            });
+
+            Save();
+        }
+    }
+    public void ReduceSkill()
+    {
+        if (e_ChoseSkill != E_Skill.None && Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.ContainsKey(e_ChoseSkill))
+        {
+            DicSkills[e_ChoseSkill].UpdateImgIsRoleSkill(false);
+
+            Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.Remove(e_ChoseSkill);
+            DestroyImmediate(DicRoleSkill[e_ChoseSkill].gameObject);
+            DicRoleSkill.Remove(e_ChoseSkill);
+
+            Save();
+            ClearSkillArea();
+        }
+    }
+
     public void Clear()
     {
         ClearAll();
@@ -159,6 +237,8 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
     }
     public void ClearRoleSkillContent()
     {
+        SkillAreaNum = 0;
+
         if (e_ChoseRoleName == E_RoleName.None)
         {
             return;
@@ -174,9 +254,68 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
         {
             DestroyImmediate(RoleSkillContent.GetChild(0).gameObject);
         }
+
+        DicRoleSkill.Clear();
+    }
+    public void ClearSkillArea()
+    {
+        SkillAreaNum = 0;
+
+        UpdateImgCurrentSkill(E_Skill.None);
+
+        foreach (List<PanelBaseGrid<PanelCellRoleConfig>> list in Grids)
+        {
+            foreach (PanelGridRoleConfig item in list)
+            {
+                if (item.Item != null && item.Item.e_RoleName == E_RoleName.None)
+                {
+                    item.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgEmpty);
+                    DestroyImmediate(item.Item.gameObject);
+                }
+            }
+        }
     }
     public void Save()
     {
+        ClipMap();
+
+        if (SkillAreaNum != 0)
+        {
+            List<List<E_RoleSkillArea>> Area = new();
+            my_VectorInt2 StartPos = new();
+
+            for (int iy = 0; iy < Grids.Count; iy++)
+            {
+                Area.Add(new());
+
+                for (int ix = 0; ix < Grids[iy].Count; ix++)
+                {
+                    if (Grids[iy][ix].Item != null)
+                    {
+                        if (Grids[iy][ix].Item.e_RoleName == E_RoleName.None)
+                        {
+                            Area[iy].Add(E_RoleSkillArea.Skill);
+                        }
+                        else if (Grids[iy][ix].Item.e_RoleName != E_RoleName.None)
+                        {
+                            Area[iy].Add(E_RoleSkillArea.Role);
+
+                            if (Grids[iy][ix] == Grids[iy][ix].Item.RootGrid)
+                            {
+                                StartPos = new(Grids[iy][ix].X, Grids[iy][ix].Y);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Area[iy].Add(E_RoleSkillArea.None);
+                    }
+                }
+            }
+
+            Hot.DicRoleConfig[e_ChoseRoleName].DicSkill[e_ChoseSkill] = new(StartPos, Area);
+        }
+
         Hot.MgrJson_.Save(Hot.DicRoleConfig, "", "/Config");
     }
 
@@ -186,46 +325,95 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
 
         base.InitGrids(Y, X);
     }
-    public void GenerateByData(E_RoleName p_e_Rolename)
+    public void GenerateByData(E_Skill p_e_Skill)
     {
         (AllContent as RectTransform).sizeDelta = 
-            new(Hot.DicRoleConfig[p_e_Rolename].SizeBody.X * Hot.BodySizeCellMinimap.X, Hot.DicRoleConfig[p_e_Rolename].SizeBody.Y * Hot.BodySizeCellMinimap.Y);
+            new(Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X * Hot.BodySizeCellMinimap.X, 
+                Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y * Hot.BodySizeCellMinimap.Y);
 
-        InitGrids(Hot.DicRoleConfig[p_e_Rolename].SizeBody.Y, Hot.DicRoleConfig[p_e_Rolename].SizeBody.X);
+        Debug.Log(e_ChoseRoleName + " - " + e_ChoseSkill);
 
-        Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
-        (false, E_PanelName.PanelCellRoleConfig, 
-        (panel) =>
+        if (!Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.ContainsKey(p_e_Skill) || Hot.DicRoleConfig[e_ChoseRoleName].DicSkill[p_e_Skill].Area.Count == 0)
         {
-            panel.Init(p_e_Rolename, Grids[0][0] as PanelGridRoleConfig);
+            InitGrids(Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y, Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X);
 
-            for (int iy = 0; iy < Hot.DicRoleConfig[p_e_Rolename].SizeBody.Y; iy++)
+            Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
+            (false, E_PanelName.PanelCellRoleConfig, 
+            (panel) =>
             {
-                for (int ix = 0; ix < Hot.DicRoleConfig[p_e_Rolename].SizeBody.X; ix++)
+                panel.Init(e_ChoseRoleName, Grids[0][0] as PanelGridRoleConfig);
+
+                for (int iy = 0; iy < Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y; iy++)
                 {
-                    Grids[panel.RootGrid.Y + iy][panel.RootGrid.X + ix].Item = panel;
+                    for (int ix = 0; ix < Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X; ix++)
+                    {
+                        Grids[panel.RootGrid.Y + iy][panel.RootGrid.X + ix].Item = panel;
+                    }
                 }
-            }
-        });
-    }
-
-    public void UpdateImgCurrentSkill(E_Skill p_e_Skill)
-    {
-        Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill = p_e_Skill;
-
-        if (p_e_Skill == E_Skill.None)
-        {
-            Hot.PanelOtherEditorRoleConfig_.ImgCurrentSkill.sprite = Hot.MgrRes_.LoadSprite("Portrait" + p_e_Skill);
+            });
         }
         else
         {
-            Hot.PanelOtherEditorRoleConfig_.ImgCurrentSkill.sprite = Hot.MgrRes_.LoadSprite(p_e_Skill.ToString());   
+            List<List<E_RoleSkillArea>> Area = Hot.DicRoleConfig[e_ChoseRoleName].DicSkill[p_e_Skill].Area;
+            my_VectorInt2 StartPos = Hot.DicRoleConfig[e_ChoseRoleName].DicSkill[p_e_Skill].StartPos;
+
+            InitGrids(Area.Count, Area[0].Count);
+
+            for (int iy = 0; iy < Area.Count; iy++)
+            {
+                int tempiy = iy;
+
+                for (int ix = 0; ix < Area[tempiy].Count; ix++)
+                {
+                    int tempix = ix;
+
+                    if (Area[tempiy][tempix] == E_RoleSkillArea.Skill)
+                    {
+                        Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
+                        (false, E_PanelName.PanelCellRoleConfig,
+                        (panel) =>
+                        {
+                            panel.Init(E_RoleName.None, Grids[tempiy][tempix] as PanelGridRoleConfig);
+                            Grids[tempiy][tempix].Item = panel;
+                        });
+                    }
+                }
+            }
+
+            Hot.MgrUI_.CreatePanel<PanelCellRoleConfig>
+            (false, E_PanelName.PanelCellRoleConfig,
+            (panel) =>
+            {
+                panel.Init(e_ChoseRoleName, Grids[StartPos.Y][StartPos.X] as PanelGridRoleConfig);
+
+                for (int iy = 0; iy < Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y; iy++)
+                {
+                    for (int ix = 0; ix < Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X; ix++)
+                    {
+                        Grids[StartPos.Y + iy][StartPos.X + ix].Item = panel;
+                    }
+                }
+            });
+        }
+    }
+
+    public void UpdateImgCurrentSkill(E_Skill p_e_Skill)
+    {        
+        e_ChoseSkill = p_e_Skill;
+
+        if (e_ChoseSkill != E_Skill.None)
+        {
+            ImgCurrentSkill.sprite = Hot.MgrRes_.LoadSprite(e_ChoseSkill.ToString());      
+        }
+        else
+        {
+            ImgCurrentSkill.sprite = Hot.MgrRes_.LoadSprite("Portrait" + E_RoleName.None);
         }
     }
     public void UpdateImgCurrentRole(E_RoleName p_e_RoleName)
     {
-        Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName = p_e_RoleName;
-        Hot.PanelOtherEditorRoleConfig_.ImgCurrentRole.sprite = Hot.MgrRes_.LoadSprite("Portrait" + p_e_RoleName);
+        e_ChoseRoleName = p_e_RoleName;
+        ImgCurrentRole.sprite = Hot.MgrRes_.LoadSprite("Portrait" + p_e_RoleName);
     }
 
     public void UpdateRoleSkillContent(E_RoleName p_e_RoleName)
@@ -244,12 +432,18 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
             (panel) =>
             {
                 panel.Init(item, RoleSkillContent);
+                DicRoleSkill.Add(item, panel);
             });
         }
     }
     
     public void ChangeMapSize()
     {
+        if (Grids.Count == 0 || !Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.ContainsKey(e_ChoseSkill))
+        {
+            return;
+        }
+
         int ChangeY = int.Parse(IptChangeY.text);
         int ChangeX = int.Parse(IptChangeX.text);
         bool isDone = false;
@@ -320,49 +514,11 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
         }
         else if (ChangeY < 0 && 
                 (ChangeY + Grids.Count) > 0 &&
-                (ChangeY + Grids.Count) >= Hot.DicRoleConfig[Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName].SizeBody.Y)
+                (ChangeY + Grids.Count) >= Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y)
         {
             isDone = true;
-            int ReduceUpLength = 0;
 
-            for (int i = 0; i < -ChangeY; i++)
-            {
-                if (TogIsReversal.isOn)
-                {
-                    if (JudgeUpCanReduceY())
-                    {
-                        ReduceUpLength++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    if (JudgeDownCanReduceY())
-                    {
-                        DestroyOneDownY(1);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-
-            for (int i2y = 0; i2y < Grids.Count; i2y++)
-            {
-                for (int i2x = 0; i2x < Grids[0].Count; i2x++)
-                {
-                    if (Grids[i2y][i2x].Item != null && Grids[i2y][i2x].Item.RootGrid == Grids[i2y][i2x])
-                    {
-                        MoveGrid(Grids[i2y][i2x] as PanelGridRoleConfig, Grids[i2y - ReduceUpLength][i2x] as PanelGridRoleConfig);
-                    }
-                }
-            }
-
-            DestroyOneDownY(ReduceUpLength);
+            ReduceMapY(ChangeY, TogIsReversal.isOn);
         }
 
         UpdateEvent updateEvent = gameObject.AddComponent<UpdateEvent>();
@@ -414,71 +570,158 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
             }
             else if (ChangeX < 0 && 
                     (ChangeX + Grids[0].Count) > 0 &&
-                    (ChangeX + Grids[0].Count) >= Hot.DicRoleConfig[Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName].SizeBody.X)
+                    (ChangeX + Grids[0].Count) >= Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X)
             {
-                int ReduceLeftLength = 0;
-
-                for (int i = 0; i < -ChangeX; i++)
-                {
-                    if (TogIsReversal.isOn)
-                    {
-                        if (JudgeLeftCanReduceX())
-                        {
-                            ReduceLeftLength++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (JudgeRightCanReduceX())
-                        {
-                            for (int y = 0; y < Grids.Count; y++)
-                            {
-                                DestroyImmediate(Grids[y][^1].ImgBk.gameObject);
-                                DestroyImmediate(Grids[y][^1].ImgStatus.gameObject);
-                                DestroyImmediate(ItemContent.Find(y.ToString()).GetChild(ItemContent.Find(y.ToString()).childCount - 1).gameObject);
-                                ItemRoot[y].RemoveAt(ItemRoot[y].Count - 1);
-                                DestroyImmediate(Grids[y][^1].gameObject);
-                                Grids[y].RemoveAt(Grids[y].Count - 1);
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                for (int i2y = 0; i2y < Grids.Count; i2y++)
-                {
-                    for (int i2x = 0; i2x < Grids[0].Count; i2x++)
-                    {
-                        if (Grids[i2y][i2x].Item != null && Grids[i2y][i2x].Item.RootGrid == Grids[i2y][i2x])
-                        {
-                            MoveGrid(Grids[i2y][i2x] as PanelGridRoleConfig, Grids[i2y][i2x - ReduceLeftLength] as PanelGridRoleConfig);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < ReduceLeftLength; i++)
-                {
-                    for (int y = 0; y < Grids.Count; y++)
-                    {
-                        DestroyImmediate(Grids[y][^1].ImgBk.gameObject);
-                        DestroyImmediate(Grids[y][^1].ImgStatus.gameObject);
-                        DestroyImmediate(ItemContent.Find(y.ToString()).GetChild(ItemContent.Find(y.ToString()).childCount - 1).gameObject);
-                        ItemRoot[y].RemoveAt(ItemRoot[y].Count - 1);
-                        DestroyImmediate(Grids[y][^1].gameObject);
-                        Grids[y].RemoveAt(Grids[y].Count - 1);
-                    }
-                }
+                ReduceMapX(ChangeX, TogIsReversal.isOn);
             }
 
             updateEvent.Byby();
         });
+    }
+    public void ClipMap()
+    {
+        if (Grids.Count == 0)
+        {
+            return;
+        }
+
+        while (ReduceMapY(-1, true)) {}
+        while (ReduceMapY(-1, false)) {}
+        while (ReduceMapX(-1, true)) {}
+        while (ReduceMapX(-1, false)) {}
+    }
+    public bool ReduceMapY(int p_ChangeY, bool p_isOn)
+    {
+        if (p_ChangeY < 0 && 
+           (p_ChangeY + Grids.Count) > 0 &&
+           (p_ChangeY + Grids.Count) >= Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y)
+        {
+            int ReduceUpLength = 0;
+            bool result = true;
+
+            for (int i = 0; i < -p_ChangeY; i++)
+            {
+                if (p_isOn)
+                {
+                    if (JudgeUpCanReduceY())
+                    {
+                        ReduceUpLength++;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (JudgeDownCanReduceY())
+                    {
+                        DestroyOneDownY(1);
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+
+            for (int i2y = 0; i2y < Grids.Count; i2y++)
+            {
+                for (int i2x = 0; i2x < Grids[0].Count; i2x++)
+                {
+                    if (Grids[i2y][i2x].Item != null && Grids[i2y][i2x].Item.RootGrid == Grids[i2y][i2x])
+                    {
+                        MoveGrid(Grids[i2y][i2x] as PanelGridRoleConfig, Grids[i2y - ReduceUpLength][i2x] as PanelGridRoleConfig);
+                    }
+                }
+            }
+
+            DestroyOneDownY(ReduceUpLength);
+
+            return result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ReduceMapX(int p_ChangeX, bool p_isOn)
+    {
+        if (p_ChangeX < 0 && 
+           (p_ChangeX + Grids[0].Count) > 0 &&
+           (p_ChangeX + Grids[0].Count) >= Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X)
+        {
+            int ReduceLeftLength = 0;
+            bool result = true;
+
+            for (int i = 0; i < -p_ChangeX; i++)
+            {
+                if (p_isOn)
+                {
+                    if (JudgeLeftCanReduceX())
+                    {
+                        ReduceLeftLength++;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (JudgeRightCanReduceX())
+                    {
+                        for (int y = 0; y < Grids.Count; y++)
+                        {
+                            DestroyImmediate(Grids[y][^1].ImgBk.gameObject);
+                            DestroyImmediate(Grids[y][^1].ImgStatus.gameObject);
+                            DestroyImmediate(ItemContent.Find(y.ToString()).GetChild(ItemContent.Find(y.ToString()).childCount - 1).gameObject);
+                            ItemRoot[y].RemoveAt(ItemRoot[y].Count - 1);
+                            DestroyImmediate(Grids[y][^1].gameObject);
+                            Grids[y].RemoveAt(Grids[y].Count - 1);
+                        }
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+
+            for (int i2y = 0; i2y < Grids.Count; i2y++)
+            {
+                for (int i2x = 0; i2x < Grids[0].Count; i2x++)
+                {
+                    if (Grids[i2y][i2x].Item != null && Grids[i2y][i2x].Item.RootGrid == Grids[i2y][i2x])
+                    {
+                        MoveGrid(Grids[i2y][i2x] as PanelGridRoleConfig, Grids[i2y][i2x - ReduceLeftLength] as PanelGridRoleConfig);
+                    }
+                }
+            }
+
+            for (int i = 0; i < ReduceLeftLength; i++)
+            {
+                for (int y = 0; y < Grids.Count; y++)
+                {
+                    DestroyImmediate(Grids[y][^1].ImgBk.gameObject);
+                    DestroyImmediate(Grids[y][^1].ImgStatus.gameObject);
+                    DestroyImmediate(ItemContent.Find(y.ToString()).GetChild(ItemContent.Find(y.ToString()).childCount - 1).gameObject);
+                    ItemRoot[y].RemoveAt(ItemRoot[y].Count - 1);
+                    DestroyImmediate(Grids[y][^1].gameObject);
+                    Grids[y].RemoveAt(Grids[y].Count - 1);
+                }
+            }
+
+            return result;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void MoveGrid(PanelGridRoleConfig p_source, PanelGridRoleConfig p_moveTo)
     {

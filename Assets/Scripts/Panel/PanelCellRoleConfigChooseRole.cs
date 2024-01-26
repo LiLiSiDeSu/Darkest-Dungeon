@@ -21,19 +21,13 @@ public class PanelCellRoleConfigChooseRole : PanelBase
         switch (controlname)
         {
             case "BtnChooseRole":
-                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName == e_RoleName)
+                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseRoleName != e_RoleName)
                 {
                     Hot.PanelOtherEditorRoleConfig_.Clear();
-                }
-                else
-                {
-                    Hot.PanelOtherEditorRoleConfig_.ClearRoleSkillContent();
 
                     Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentRole(e_RoleName);
                     Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(E_Skill.None);
                     Hot.PanelOtherEditorRoleConfig_.UpdateRoleSkillContent(e_RoleName);
-
-                    Hot.PanelOtherEditorRoleConfig_.GenerateByData(e_RoleName);
                 }
                 break;
         }

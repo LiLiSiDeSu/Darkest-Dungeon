@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.SqlServer.Server;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
 {
@@ -61,8 +55,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   
     /// <typeparam name="T">面板类型</typeparam>
-    /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
-    ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>    
+    /// <param name="p_e_PanelName">面板预设体的枚举</param>    
     /// <param name="callback">回调委托</param>
     public void CreatePanel<T>
     (bool isAddDicPanel, E_PanelName p_e_PanelName, UnityAction<T> callback = null)
@@ -100,12 +93,11 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     /// <typeparam name="T">面板类型</typeparam>   
     /// <param name="isAddDicPanel">是否要添加到PanelDic里面进行管理</param>   
-    /// <param name="panelname">面板预设体的名字(名字前要加"/"哦) 
-    ///  - 面板要做成Prefabs还要挂载对应的脚本哦</param>        
+    /// <param name="p_e_PanelName">面板预设体的枚举</param>        
     /// <param name="isAddpoolEsc">是否添加到poolEsc来从上到下逐个关闭</param>
     /// <param name="callback">回调委托</param>
     public void CreatePanelAndShow<T>
-    (bool isAddDicPanel, E_PanelName p_e_PanelName, UnityAction<T> callback = null)
+    (bool isAddDicPanel, E_PanelName p_e_PanelName, bool isAddpoolEsc, UnityAction<T> callback = null)
     where T : PanelBase
     {
         string panelName = "/" + p_e_PanelName.ToString();
@@ -132,6 +124,10 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
             {
                 DicPanel.Add(obj.name, panel);
             }
+            if (isAddpoolEsc)
+            {
+                PoolEsc.GetInstance().ListEsc.Add(obj.name);
+            }
 
             PoolNowPanel.GetInstance().ListNowPanel.Add(obj.name);
         });
@@ -142,8 +138,7 @@ public class MgrUI : InstanceBaseAuto_Mono<MgrUI>
     /// </summary>
     /// <typeparam name="T">面板的类型</typeparam>
     /// <param name="p_isAddDicPanel">是否要添加到PanelDic里面进行管理</param>
-    /// <param name="panelname">面板预设体的名字(名字前要加"/"哦
-    ///  - 面板要做成Prefabs还要挂载对应的脚本哦）</param>        
+    /// <param name="p_e_PanelName">面板预设体的枚举</param>        
     /// <param name="p_isPush">是否要添加到对象池</param>
     /// <param name="p_active">添加到缓存池后的状态</param>
     /// <param name="p_pushObjName">给添加到缓存池的对象取个可爱的名字</param>

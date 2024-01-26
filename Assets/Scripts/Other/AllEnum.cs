@@ -85,6 +85,13 @@ public enum E_PanelName
     PanelOtherStart,
 }
 
+public enum E_RoleSkillArea
+{
+    None,
+    Role,
+    Skill,
+}
+
 public enum E_KeyEvent
 {
     KeyUp,

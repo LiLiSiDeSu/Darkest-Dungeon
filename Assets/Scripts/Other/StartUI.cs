@@ -5,7 +5,7 @@
         #region Other
 
         Hot.MgrUI_.CreatePanelAndShow<PanelOtherStart>
-            (true, E_PanelName.PanelOtherStart);
+            (true, E_PanelName.PanelOtherStart, false);
 
         Hot.MgrUI_.CreatePanelAndPush<PanelOtherDestroyArchiveHint>
             (true, E_PanelName.PanelOtherDestroyArchiveHint, true, false);

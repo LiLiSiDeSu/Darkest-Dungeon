@@ -30,13 +30,11 @@ public class PanelCellRoleConfigChooseSkill : PanelBase
                     return;
                 }
 
-                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill == e_Skill)
+                if (Hot.PanelOtherEditorRoleConfig_.e_ChoseSkill != e_Skill)
                 {
-                    Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(E_Skill.None);
-                }
-                else
-                {
+                    Hot.PanelOtherEditorRoleConfig_.ClearSkillArea();
                     Hot.PanelOtherEditorRoleConfig_.UpdateImgCurrentSkill(e_Skill);
+                    Hot.PanelOtherEditorRoleConfig_.GenerateByData(e_Skill);
                 }
                 break;
         }
