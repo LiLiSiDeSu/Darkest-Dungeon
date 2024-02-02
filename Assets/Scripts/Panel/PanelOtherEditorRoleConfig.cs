@@ -331,8 +331,6 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
             new(Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X * Hot.BodySizeCellMinimap.X, 
                 Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y * Hot.BodySizeCellMinimap.Y);
 
-        Debug.Log(e_ChoseRoleName + " - " + e_ChoseSkill);
-
         if (!Hot.DicRoleConfig[e_ChoseRoleName].DicSkill.ContainsKey(p_e_Skill) || Hot.DicRoleConfig[e_ChoseRoleName].DicSkill[p_e_Skill].Area.Count == 0)
         {
             InitGrids(Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.Y, Hot.DicRoleConfig[e_ChoseRoleName].SizeBody.X);
@@ -542,7 +540,8 @@ public class PanelOtherEditorRoleConfig : PanelBaseVector2<PanelCellRoleConfig, 
                         GameObject itemX = Hot.CreateContentStepX(Grids.Count, ItemContent.Find(tempiY.ToString()));
                         ItemRoot[tempiY].Add(itemX.transform);
 
-                        Hot.MgrUI_.CreatePanel<PanelGridRoleConfig>(false, E_PanelName.PanelGridRoleConfig,
+                        Hot.MgrUI_.CreatePanel<PanelGridRoleConfig>
+                        (false, E_PanelName.PanelGridRoleConfig,
                         (panel) =>
                         {
                             Grids[tempiY].Add(panel);

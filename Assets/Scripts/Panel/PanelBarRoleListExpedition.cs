@@ -100,9 +100,9 @@ public class PanelBarRoleListExpedition : PanelBase
 
         for (int i = 0; i < ListCellExpeditionRole.Count; i++)
         {
-            if (ListCellExpeditionRole[i].IndexRoleList == p_RoleIndex)
+            if (ListCellExpeditionRole[i].IndexRole == p_RoleIndex)
             {
-                Hot.PanelExpeditionRoleDetails_.UpdateInfo(ListCellExpeditionRole[i].IndexRoleList);
+                Hot.PanelExpeditionRoleDetails_.UpdateInfo(ListCellExpeditionRole[i].IndexRole);
 
                 if (IndexChose != -1)
                 {
@@ -170,7 +170,7 @@ public class PanelBarRoleListExpedition : PanelBase
                 i = 0;
             }
 
-            if (ListIndex[0] == ListCellExpeditionRole[i].IndexRoleList)
+            if (ListIndex[0] == ListCellExpeditionRole[i].IndexRole)
             {
                 ListCellExpeditionRole[i].Index = RoleListExpeditionContent.childCount;
                 ListCellExpeditionRole[i].transform.SetParent(RoleListExpeditionContent, false);

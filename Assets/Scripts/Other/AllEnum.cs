@@ -113,6 +113,8 @@ public enum E_Res
 
     BorderChoosedGreen,
     BorderChoosedRed,
+
+    CellRoleSkillArea,
 }
 
 public enum E_MapObject

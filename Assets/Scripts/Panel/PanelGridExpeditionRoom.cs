@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
 {
-    public bool CanMove = false;
+    public bool CanChangeImgStatus = true;
 
     public DataContainer_GridExpeditionMap Data
     {
@@ -14,9 +14,8 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
     {
         base.Awake();
 
-        #region ��ɫԤ����
-
-        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
+        Hot.MgrUI_.AddCustomEventListener
+        (ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerEnter,
         (param) =>
         {
             Hot.NowEnterGridExpeditionRoom = this;
@@ -47,13 +46,14 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             }
             else
             {
-                if (!CanMove)
+                if (CanChangeImgStatus)
                 {
                     ImgStatus.sprite = Hot.LoadSprite(E_Res.BorderChoosedGreen);
                 }
             }
         });
-        Hot.MgrUI_.AddCustomEventListener(ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
+        Hot.MgrUI_.AddCustomEventListener
+        (ImgBk.gameObject, UnityEngine.EventSystems.EventTriggerType.PointerExit,
         (param) =>
         {
             Hot.NowEnterGridExpeditionRoom = null;
@@ -88,14 +88,12 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
             }
             else
             {
-                if (!CanMove)
+                if (CanChangeImgStatus)
                 {
                     ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
                 }
             }
         });
-
-        #endregion
     }
 
     protected override void Button_OnClick(string controlname)
@@ -249,17 +247,24 @@ public class PanelGridExpeditionRoom : PanelBaseGrid<PanelCellExpeditionRoom>
         }
     }
 
-    public void SetCanMove(bool p_CanMove)
+    public void SetCanChangeImgStatus(bool p_CanChangeImgStatus, bool p_isSkill = false)
     {
-        CanMove = p_CanMove;
+        CanChangeImgStatus = p_CanChangeImgStatus;
 
-        if (CanMove)
+        if (CanChangeImgStatus)
         {
-            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
+            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);   
         }
         else
         {
-            ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgEmpty);
+            if (p_isSkill)
+            {
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.CellRoleSkillArea);
+            }
+            else
+            {
+                ImgStatus.sprite = Hot.LoadSprite(E_Res.ImgCoverTransparenctRed);
+            }
         }
     }
 }

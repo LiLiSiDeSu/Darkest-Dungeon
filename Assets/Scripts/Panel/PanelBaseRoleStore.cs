@@ -7,6 +7,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
              IPointerEnterHandler, IPointerExitHandler
 {
     public int IndexRole = -1;
+    public bool UpdateOver = true;
 
     public Text TxtCapacity;
 
@@ -17,7 +18,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         TxtCapacity = transform.FindSonSonSon("TxtCapacity").GetComponent<Text>();
         TxtCapacity.text = "0 / 0";
 
-        Hot.TriggerEvent_.AddEventListener("Esc" + "PanelRoleDetails",
+        Hot.TriggerEvent_.AddEventListener("Esc" + E_PanelName.PanelRoleDetails,
         () =>
         {
             IndexRole = -1;
@@ -72,11 +73,11 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
         TxtCapacity.text = NowCapacity + " / " + Role.ListItem[0].Count * Role.ListItem.Count;
     }
 
-    public void UpdateContent(DataContainer_CellRole Role)
+    public void UpdateAllContent(DataContainer_CellRole Role)
     {
         ClearAll();
 
-        Hot.UpdateOver = false;
+        UpdateOver = false;
 
         InitGrids(Role.ListItem.Count, Role.ListItem[0].Count);
 
@@ -87,7 +88,7 @@ public class PanelBaseRoleStore : PanelBaseVector2Store,
     {
         base.End();
 
-        Hot.UpdateOver = true;
+        UpdateOver = true;
     }
 
     public void LoadData(DataContainer_CellRole Role)

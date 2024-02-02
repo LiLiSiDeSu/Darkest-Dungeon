@@ -359,7 +359,6 @@ public static class Hot
 
     public static Transform NowEnterContent;
     public static int VFlip = 1;
-    public static bool UpdateOver = true;
     public static bool CanBuy = false;
 
     public static E_NowPointerLocation e_NowPointerLocation = E_NowPointerLocation.None;
@@ -441,10 +440,6 @@ public static class Hot
     public static PanelCellExpeditionMiniMap NowInCellExpeditionMiniMap;
     public static PanelGridExpeditionRoom NowEnterGridExpeditionRoom;
     public static PanelCellExpeditionRoom ChoseCellExpeditionRoom;
-    public static DataContainer_CellRole ChoseRoleData
-    {
-        get { return DataNowCellGameArchive.ListRole[ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole]; }
-    }
 
     #endregion
 
@@ -453,9 +448,6 @@ public static class Hot
     public static PanelCellExpeditionRolePrepareRoot NowEnterExpeditionRolePrepareRoot;
     public static PanelCellRolePortraitCanDrag ReplaceRolePortraitCanDrag;
     public static PanelCellRolePortraitCanDrag DragingRolePortraitCanDrag;
-    /// <summary>
-    /// 现在拖动的角色招募PanelCell
-    /// </summary>
     public static PanelCellRoleRecruit DragingPanelCellRoleRecruit;
 
     #endregion

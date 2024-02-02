@@ -37,36 +37,7 @@ public class PanelCellExpeditionTimeLine : PanelBase
         switch (controlname)
         {
             case "BtnRolePortrait":
-                if (Hot.ChoseCellExpeditionRoom == null)
-                {
-                    Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
-                    Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
-                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
-                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
-
-                    return;
-                }
-                if (Hot.ChoseCellExpeditionRoom == CellExpeditionRoom && Hot.UpdateOver)
-                {
-                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
-                    Hot.ChoseCellExpeditionRoom = null;
-                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
-                    Hot.PanelExpeditionRoom_.ClearMoveStaus();
-
-                    return;
-                }
-                if (Hot.ChoseCellExpeditionRoom != CellExpeditionRoom && Hot.UpdateOver)
-                {
-                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(true);
-                    Hot.PanelExpeditionRoom_.ClearMoveStaus();
-                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(-1);
-                    Hot.ChoseCellExpeditionRoom = CellExpeditionRoom;
-                    Hot.PanelBarRoleListExpedition_.ClickMapExpeditionRole(Hot.ChoseCellExpeditionRoom.RootGrid.Data.IndexListRole);
-                    Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
-                    Hot.ChoseCellExpeditionRoom.UpdateImgStatus(false);
-
-                    return;
-                }
+                Hot.PanelExpeditionRoom_.RoleOnClick(CellExpeditionRoom);
                 break;
         }
     }

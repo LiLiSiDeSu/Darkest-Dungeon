@@ -6,12 +6,14 @@ public class PanelCellExpeditionRoleSkill : PanelBase
     public E_Skill e_Skill;
 
     public Image ImgRoleSkill;
+    public Image ImgIsChose;
 
     protected override void Awake()
     {
         base.Awake();
 
         ImgRoleSkill = transform.FindSonSonSon("ImgRoleSkill").GetComponent<Image>();
+        ImgIsChose = transform.FindSonSonSon("ImgIsChose").GetComponent<Image>();
     }
 
     protected override void Button_OnClick(string controlname)
@@ -21,7 +23,16 @@ public class PanelCellExpeditionRoleSkill : PanelBase
         switch (controlname)
         {
             case "BtnRoleSkill":
-                Debug.Log(e_Skill);
+                if (Hot.PanelExpeditionRoleDetails_.e_ChoseSkill == e_Skill)
+                {
+                    Hot.PanelExpeditionRoleDetails_.UpdateNowRoleSkill(E_Skill.None);
+                    Hot.ChoseCellExpeditionRoom.GenerateMoveArea();
+                    Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgCoverTransparenctGreen);
+                }
+                else
+                {
+                    Hot.PanelExpeditionRoleDetails_.UpdateNowRoleSkill(e_Skill);
+                }
                 break;
         }
     }

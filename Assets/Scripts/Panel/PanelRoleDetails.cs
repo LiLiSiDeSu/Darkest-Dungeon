@@ -83,61 +83,61 @@ public class PanelRoleDetails : PanelBaseRoleStore
 
     public void Show(int p_index, E_RoleLocation p_e_RoleLocation)
     {
-        if (Hot.UpdateOver)
+        if (!UpdateOver)
         {
-            if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelRoleDetails))
-            {
-                Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelRoleDetails);
-                Show(p_index, p_e_RoleLocation);
-            }
-            else
-            {
-                Clear();
+            return;
+        }
 
-                Hot.MgrUI_.ShowPanel<PanelRoleDetails>
-                (true, E_PanelName.PanelRoleDetails,
-                (panel) =>
+        if (Hot.PoolNowPanel_.ContainPanel(E_PanelName.PanelRoleDetails))
+        {
+            Hot.MgrUI_.HidePanel(false, gameObject, E_PanelName.PanelRoleDetails);
+            Show(p_index, p_e_RoleLocation);
+        }
+        else
+        {
+            Hot.MgrUI_.ShowPanel<PanelRoleDetails>
+            (true, E_PanelName.PanelRoleDetails,
+            (panel) =>
+            {
+                panel.IndexRole = p_index;
+                panel.e_RoleLocation = p_e_RoleLocation;
+
+                panel.BtnDismiss.SetActive(p_e_RoleLocation == E_RoleLocation.RoleList);
+
+                ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + DataRole.e_RoleName + "Await");
+
+                TxtRoleName.text = DataRole.Name;
+                TxtRoleLevel.text = DataRole.NowLevel.ToString();
+                TxtSanityDetails.text = DataRole.NowSanity + " / " + DataRole.MaxSanity;
+                TxtRoleLevel.text = DataRole.NowLevel.ToString();
+
+                InitTxtCapacity(DataRole);
+                UpdateSanityExplosionLimit();
+                UpdateSanityInfo();
+                UpdateExperience();
+                UpdateSkillContent();
+
+                switch (p_e_RoleLocation)
                 {
-                    panel.IndexRole = p_index;
-                    panel.e_RoleLocation = p_e_RoleLocation;
-
-                    panel.BtnDismiss.SetActive(p_e_RoleLocation == E_RoleLocation.RoleList);
-
-                    ImgRoleShow.sprite = Hot.MgrRes_.Load<Sprite>("Art/Role" + DataRole.e_RoleName + "Await");
-
-                    TxtRoleName.text = DataRole.Name;
-                    TxtRoleLevel.text = DataRole.NowLevel.ToString();
-                    TxtSanityDetails.text = DataRole.NowSanity + " / " + DataRole.MaxSanity;
-                    TxtRoleLevel.text = DataRole.NowLevel.ToString();
-
-                    InitTxtCapacity(DataRole);
-                    UpdateSanityExplosionLimit();
-                    UpdateSanityInfo();
-                    UpdateExperience();
-                    UpdateSkillContent();
-
-                    switch (p_e_RoleLocation)
-                    {
-                        case E_RoleLocation.RoleList:
-                            Hot.PanelBarRoleList_.Show();
-                            NowCapacity = 0;
-                            UpdateContent(DataRole);
-                            break;
-                        case E_RoleLocation.GuildRecruit:
-                            ;   
-                            break;
-                    }
-                });
-            }
+                    case E_RoleLocation.RoleList:
+                        Hot.PanelBarRoleList_.Show();
+                        NowCapacity = 0;
+                        UpdateAllContent(DataRole);
+                        break;
+                    case E_RoleLocation.GuildRecruit:
+                        ;   
+                        break;
+                }
+            });
         }
     }
-    public void Clear()
+    public void ClearSkillContent()
     {
         int count = SkillContent.childCount;
         
         for (int i = 0; i < count; i++)
         {
-            Destroy(SkillContent.GetChild(i).gameObject);
+            DestroyImmediate(SkillContent.GetChild(0).gameObject);
         }
     }
 
@@ -190,6 +190,8 @@ public class PanelRoleDetails : PanelBaseRoleStore
     }
     public void UpdateSkillContent()
     {
+        ClearSkillContent();
+
         foreach (E_Skill e_Skill in DataRole.DicSkill.Keys)
         {
             E_Skill tempe_Skill = e_Skill;

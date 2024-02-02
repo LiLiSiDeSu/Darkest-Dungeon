@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelExpeditionRoleDetails : PanelBaseRoleStore
 {
+    public E_Skill e_ChoseSkill;
+
+    public Dictionary<E_Skill, PanelCellExpeditionRoleSkill> DicSkillContent = new();
+
     public Image ImgPortraitRole;
 
     public Text TxtRoleName;
@@ -75,7 +80,6 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
     {
         Clear();
 
-        NowCapacity = 0;
         IndexRole = p_IndexRole;
 
         DataContainer_CellRole roleData = Hot.DataNowCellGameArchive.ListRole[IndexRole];
@@ -84,14 +88,16 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
         {
             E_Skill tempe_Skill = e_Skill;
 
-            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoleSkill>(false, E_PanelName.PanelCellExpeditionRoleSkill,
+            Hot.MgrUI_.CreatePanel<PanelCellExpeditionRoleSkill>
+            (false, E_PanelName.PanelCellExpeditionRoleSkill,
             (panel) =>
             {
                 panel.Init(tempe_Skill, SkillContent);
+                DicSkillContent.Add(tempe_Skill, panel);
             });
         }
 
-        ImgPortraitRole.sprite = Hot.MgrRes_.Load<Sprite>("Art/Portrait" + roleData.e_RoleName);
+        ImgPortraitRole.sprite = Hot.MgrRes_.LoadSprite("Portrait" + roleData.e_RoleName);
 
         TxtRoleName.text = roleData.Name;
         TxtHp.text = roleData.NowHp + " / " + roleData.MaxHp;
@@ -102,16 +108,61 @@ public class PanelExpeditionRoleDetails : PanelBaseRoleStore
         TxtSpeed.text = roleData.NowSpeed.ToString();
 
         InitTxtCapacity(roleData);
-        UpdateContent(roleData);
+        UpdateAllContent(roleData);
     }
 
     public void Clear()
     {
-        int Count = SkillContent.childCount;
+        NowCapacity = 0;
 
-        for (int i = 0; i < Count; i++)
+        ImgPortraitRole.sprite = Hot.MgrRes_.LoadSprite("Portrait" + E_RoleName.None);
+
+        TxtRoleName.text = "None";
+        TxtHp.text = "0 / 0";
+        TxtSanity.text = "0 / 0";
+        TxtLevel.text = "0 / 0";
+        TxtExperience.text = "0 / 0";
+        TxtAction.text = "0 / 0";
+        TxtSpeed.text = "0";
+        TxtCapacity.text = "0 / 0";
+
+        ClearAll();
+        ClearSkillContent();
+    }
+    public void ClearSkillContent()
+    {
+        foreach (PanelCellExpeditionRoleSkill item in DicSkillContent.Values)
         {
-            DestroyImmediate(SkillContent.GetChild(0).gameObject);
+            DestroyImmediate(item.gameObject);
         }
+
+        DicSkillContent.Clear();
+    }
+    public void UpdateNowRoleSkill(E_Skill p_e_Skill)
+    {
+        if (p_e_Skill == E_Skill.None)
+        {
+            if (e_ChoseSkill != E_Skill.None)
+            {
+                DicSkillContent[e_ChoseSkill].ImgIsChose.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgEmpty);
+                Hot.PanelExpeditionRoom_.RevertMapItemAlpha();
+                Hot.PanelExpeditionRoom_.ClearImgStatus();
+            }
+        }
+        else
+        {
+            if (e_ChoseSkill != E_Skill.None)
+            {
+                DicSkillContent[e_ChoseSkill].ImgIsChose.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgEmpty);
+            }
+
+            DicSkillContent[p_e_Skill].ImgIsChose.sprite = Hot.MgrRes_.LoadSprite(E_Res.BorderChoosedRed);
+            Hot.PanelExpeditionRoom_.ChangeMapItemAlpha(0.5f, Hot.ChoseCellExpeditionRoom.RootGrid.Item);
+            Hot.PanelExpeditionRoom_.ClearMoveStaus();
+            Hot.ChoseCellExpeditionRoom.GenerateSkillArea(p_e_Skill);
+            Hot.ChoseCellExpeditionRoom.ImgStatus.sprite = Hot.MgrRes_.LoadSprite(E_Res.ImgEmpty);
+        }
+
+        e_ChoseSkill = p_e_Skill;
     }
 }

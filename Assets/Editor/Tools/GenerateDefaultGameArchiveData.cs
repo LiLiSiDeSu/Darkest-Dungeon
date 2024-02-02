@@ -101,7 +101,7 @@ public sealed class GenerateDefaultGameArchiveData : MonoBehaviour
                     new(4, 4, 4, 4))
             },
         };
-        Hot.MgrJson_.Save(DicRoleConfig, "", "/Config");
+        //Hot.MgrJson_.Save(DicRoleConfig, "", "/Config");
 
         List<DataContainer_CellGameArchive> GameArchiveDataCellList = new();
 

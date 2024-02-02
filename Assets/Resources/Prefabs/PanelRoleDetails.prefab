@@ -2786,7 +2786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6335604005581099898}
-  - component: {fileID: 6828560903319758099}
+  - component: {fileID: 4974403026170998692}
   m_Layer: 0
   m_Name: PanelRoleDetails
   m_TagString: Untagged
@@ -2810,7 +2810,7 @@ Transform:
   - {fileID: 382797278159934367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6828560903319758099
+--- !u!114 &4974403026170998692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2831,6 +2831,7 @@ MonoBehaviour:
   LimitReduce: 0
   NowCapacity: 0
   IndexRole: -1
+  UpdateOver: 1
   TxtCapacity: {fileID: 0}
   ImgRoleShow: {fileID: 0}
   ImgBkRoleLevel: {fileID: 0}
@@ -2841,8 +2842,10 @@ MonoBehaviour:
   TxtSanityDetails: {fileID: 0}
   BtnDismiss: {fileID: 0}
   RootSanityValueBar: {fileID: 0}
+  SkillContent: {fileID: 0}
   ListImgCellSanity: []
   NumActiveObj: 0
+  e_RoleLocation: 0
 --- !u!1 &8688667863837213022
 GameObject:
   m_ObjectHideFlags: 0

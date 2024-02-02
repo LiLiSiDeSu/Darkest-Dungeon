@@ -1,9 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Test2 : PanelBase
+public class Test2 : MonoBehaviour
 {
-    private void Update()
+    public Image img;
+
+    private void Awake()
     {
-        Debug.Log(Hot.DataNowCellGameArchive.NowCellMiniMapPos.X + " - " + Hot.DataNowCellGameArchive.NowCellMiniMapPos.Y);
+        img = GetComponent<Image>();
+
+        Color color;
+        color = img.color;
+        color.a = 0.5f;
+        img.color = color;
     }
 }

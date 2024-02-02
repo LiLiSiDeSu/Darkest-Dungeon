@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3880404672848862151}
   - component: {fileID: 6423994206575995013}
   m_Layer: 0
-  m_Name: BtnCellRoomEditor
+  m_Name: BtnCellExpeditionRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,5 +284,6 @@ MonoBehaviour:
   Index: 0
   ImgItem: {fileID: 0}
   ImgStatus: {fileID: 0}
+  ImgVFlipCast: {fileID: 0}
   RootGrid: {fileID: 0}
-  VFlipCast: {fileID: 0}
+  CellTimeLine: {fileID: 0}
